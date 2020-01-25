@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    @include font-size-map($document-font-size);
+}
+
+.landing-text h1 {
+    @include font-size-map($title-font-size);
+}
+
+body {
+    background-color: rgba(240, 240, 240, 0.925);
+}
+

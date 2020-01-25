@@ -1,0 +1,26 @@
+//breakpoints mixin
+@mixin mediaQuery ($min-width: 0, $max-width: false) {
+    @if ($max-width == false) {
+        @media screen and (min-width: $min-width) {
+            @content;
+        }
+    } 
+    @else  {
+        @media screen and (min-width: $min-width) and (max-width: $max-width) {
+            @content;
+        }
+    }
+}
+
+@mixin font-size-map ($font-size-map) {
+    @each $screen-size, $font-size in $font-size-map {
+        @if ($screen-size == null){
+            font-size: $font-size;
+        }
+        @else {
+            @include mediaQuery($screen-size) {
+                font-size: $font-size;
+            }
+        }
+    }
+}
