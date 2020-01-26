@@ -1,3 +1,3 @@
-# home
+# weInspire Studio
+
 Static website
-asd
