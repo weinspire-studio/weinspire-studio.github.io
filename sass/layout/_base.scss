@@ -13,8 +13,6 @@ html {
 }
 
 html, body {
-    // background-color: rgba(240, 240, 240, 0.925);
-    // background-color: blue;
     height: 100%;
 }
 
@@ -25,9 +23,11 @@ html, body {
     // @include display-grid;
     text-align: center;
     @include margin-map($margin-map);
-    @include grid-map($grid-map);
+    @include grid-map($grid-list);
+}
 
-    
+
+  
     // @include media-query($xs) {
     //     background-color: blue;
     //     color: red;
@@ -40,5 +40,4 @@ html, body {
     //     background-color: gray;
     //     color: darkblue;
     // }
-}
 

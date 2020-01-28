@@ -16,7 +16,7 @@
 @mixin grid-media-query ($min-width: 0) {
     @media screen and (min-width: $min-width) {
         @content;
-        @if($min-width == 480px or $min-width == 640px){
+        @if($min-width >= $sm){
             grid-area: navbar;
             grid-area: hero-left;
             grid-area: hero-right;
@@ -50,41 +50,26 @@
     }
 }
 
-@mixin grid-map ($grid-map) {
-    @each $screen-size, $grid in $grid-map {
+@mixin grid-map ($grid-list) {
+    @each $screen-size  in $grid-list {
         @if ($screen-size == null){
-            display: $grid;
+            display: block;
         }
         @else {
             @include grid-media-query($screen-size) {
-                @if ($screen-size == $xs) {
-                    // @include text-grid;
+                @if ($screen-size == $sm) {
                     @include test-grid;
                 }
-                @else if ($screen-size == $sm){
+                @else if ($screen-size == $md){
                     @include test-grid2;
                 } 
-                @else if ($screen-size == $md){
+                @else if ($screen-size == $lg){
                     @include test-grid3;
                 } 
-                @else if ($screen-size == $lg){
+                @else if ($screen-size == $xl){
                     @include test-grid4;
                 } 
             }
         }
     }
 }
-
-// @mixin text-grid (){
-//     grid-template-columns: 1fr 1fr;
-//     grid-template-rows: .5fr 3fr 2fr 2fr 2fr;
-//     grid-template-areas: 
-//     'navbar navbar'
-//     'hero-left hero-right';
-//     background-color: goldenrod;
-// }
-
-
-// @function get-margin ($screen-size) {
-//     @return map-get($margin-map, $screen-size);
-// }
