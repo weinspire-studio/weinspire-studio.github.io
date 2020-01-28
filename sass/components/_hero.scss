@@ -1,7 +1,23 @@
+.hero {
+    justify-self: center;
+    width: 90%;
+}
+
 .hero-text {
-    grid-area: hero-right;
+    grid-area: hero-left;
 }
 
 .hero-img {
-    grid-area: hero-left;
+    grid-area: hero-right;
+    text-align: center;
+}
+
+.hero-img img {
+    height: 200px;
+    width: 200px;
+}
+
+.other {
+    height: 100%;
+    background-color: blue;
 }

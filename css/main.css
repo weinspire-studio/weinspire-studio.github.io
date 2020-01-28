@@ -99,25 +99,29 @@ html, body {
 
 @media screen and (min-width: 350px) {
   #grid-container {
-    display: -ms-grid;
-    display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: .5fr 3fr 2fr 2fr 2fr;
-        grid-template-areas: 'navbar navbar' 'hero-left hero-right';
     background-color: darkmagenta;
     grid-area: navbar;
     grid-area: hero-left;
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
     grid-area: hero-right;
   }
 }
 
 @media screen and (min-width: 600px) {
   #grid-container {
+    display: -ms-grid;
+    display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: .5fr 90% 2fr 2fr 2fr;
+        grid-template-areas: 'navbar navbar' 'hero-left hero-right';
+    text-align: left;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     background-color: #e94b0d;
     grid-area: navbar;
     grid-area: hero-left;
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
     grid-area: hero-right;
   }
 }
@@ -159,11 +163,28 @@ html, body {
   margin: 1rem 1.5rem;
 }
 
+.hero {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  width: 90%;
+}
+
 .hero-text {
-  grid-area: hero-right;
+  grid-area: hero-left;
 }
 
 .hero-img {
-  grid-area: hero-left;
+  grid-area: hero-right;
+  text-align: center;
+}
+
+.hero-img img {
+  height: 200px;
+  width: 200px;
+}
+
+.other {
+  height: 100%;
+  background-color: blue;
 }
 /*# sourceMappingURL=main.css.map */
