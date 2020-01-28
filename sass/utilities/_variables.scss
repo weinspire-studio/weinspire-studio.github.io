@@ -1,14 +1,101 @@
+// ia (min-width:992px) {
+//    @media (min-width:1200px) {
+//    @media (min-width:576px) {
+//    @media (min-width:768px) {
+    // https://www.travelperk.com/
+
+// extra small max width 350
+// for tables min-width 600
+
+
 //breakpoint variables
 $xs: 480px;
 $sm: 640px;
 $md: 1024px;
 $lg: 1170px;
 
+//colors
+$blackish-font-color: #414141;
+$blackish-font-color2: #212529;
+$background-light-color: lightgoldenrodyellow;
 
-// font sizes variables
+// margins
+$margin-mobile-small: 0 .5rem;
+$margin-mobile: 0 1rem;
+$margin-tablet: 0 1.5rem;
+$margin-desktop: 0 2rem;
+$margin-desktop-large: 0 3rem;
+
+// margins map
+$margin-map: (
+    null: $margin-mobile-small,
+    $xs: $margin-mobile,
+    $sm: $margin-tablet,
+    $md: $margin-desktop,
+    $lg: $margin-desktop-large
+);
+
+// font sizes maps
 $document-font-size: (null: .9rem, $xs: 1rem, $sm: 1.1rem, $md: 1.2rem, $lg: 1.3rem);
-
 $title-font-size: (null: 1.3rem, $xs: 1.5rem, $sm: 1.8rem, $md: 2.2rem, $lg: 2.5rem);
 
-// font colors
-$blackish-color: #414141
+
+@mixin reset-list {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+
+@mixin horizontal-list {
+@include reset-list;
+}
+
+$grid1: 'asd' ;
+$grid2: 'asd' ;
+$grid3: 'asd' ;
+$grid4: 'asd' ;
+
+$grid-map: (null: block, $xs: test-grid, $sm: test-grid2, $md: test-grid3, $lg: test-grid4);
+
+
+$screen-size: (null, $xs, $sm, $md, $lg);
+
+@mixin test-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: .5fr 3fr 2fr 2fr 2fr;
+    grid-template-areas: 
+    'navbar navbar'
+    'hero-left hero-right';
+    background-color: darkmagenta;
+}
+
+@mixin test-grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: .5fr 3fr 2fr 2fr 2fr;
+    grid-template-areas: 
+    'navbar navbar'
+    'hero-left hero-right';
+    background-color: rgb(233, 75, 13);
+}
+
+@mixin test-grid3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: .5fr 3fr 2fr 2fr 2fr;
+    grid-template-areas: 
+    'navbar navbar'
+    'hero-left hero-right';
+    background-color: rgb(0, 105, 70);
+}
+
+@mixin test-grid4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: .5fr 3fr 2fr 2fr 2fr;
+    grid-template-areas: 
+    'navbar navbar'
+    'hero-left hero-right';
+    background-color: rgb(93, 99, 190);
+}

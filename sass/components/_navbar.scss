@@ -1,0 +1,14 @@
+#navbar {
+    background-color: lightgreen;
+    grid-area: navbar;
+}
+
+.nav-list {
+    display: flex;
+    list-style-type: none;
+    justify-content: flex-end;
+}
+
+.nav-link {
+    margin: 1rem 1.5rem;
+}

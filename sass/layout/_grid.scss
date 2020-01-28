@@ -1,0 +1,28 @@
+// @mixin display-grid {
+//     display: -ms-grid;
+//     display: grid;
+//     grid-template-columns: 1fr 1fr;
+//     grid-template-rows: .5fr 3fr 2fr 2fr 2fr;
+//     grid-template-areas: 
+//     'navbar navbar'
+//     'hero-left hero-right';
+//     // 'comp1 comp2'
+//     // 'comp1 comp2'
+//     // 'comp1 comp2';
+
+//     // align-items: center;
+//     // justify-items: center;
+//     // background-color: $background-color;
+//     // margin: 0 2rem;
+//     // height: 100vh;
+//   }
+
+  @mixin text-grid (){
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: .5fr 3fr 2fr 2fr 2fr;
+    grid-template-areas: 
+    'navbar navbar'
+    'hero-left hero-right';
+    background-color: goldenrod;
+}

@@ -1,5 +1,5 @@
 //breakpoints mixin
-@mixin mediaQuery ($min-width: 0, $max-width: false) {
+@mixin media-query ($min-width: 0, $max-width: false) {
     @if ($max-width == false) {
         @media screen and (min-width: $min-width) {
             @content;
@@ -12,15 +12,79 @@
     }
 }
 
+
+@mixin grid-media-query ($min-width: 0) {
+    @media screen and (min-width: $min-width) {
+        @content;
+        @if($min-width == 480px or $min-width == 640px){
+            grid-area: navbar;
+            grid-area: hero-left;
+            grid-area: hero-right;
+        }
+    }
+} 
+
 @mixin font-size-map ($font-size-map) {
     @each $screen-size, $font-size in $font-size-map {
         @if ($screen-size == null){
             font-size: $font-size;
         }
         @else {
-            @include mediaQuery($screen-size) {
+            @include media-query($screen-size) {
                 font-size: $font-size;
             }
         }
     }
 }
+
+@mixin margin-map ($margin-map) {
+    @each $screen-size, $margin in $margin-map {
+        @if ($screen-size == null){
+            margin: $margin;
+        }
+        @else {
+            @include media-query($screen-size) {
+                margin: $margin;
+            }
+        }
+    }
+}
+
+@mixin grid-map ($grid-map) {
+    @each $screen-size, $grid in $grid-map {
+        @if ($screen-size == null){
+            display: $grid;
+        }
+        @else {
+            @include grid-media-query($screen-size) {
+                @if ($screen-size == $xs) {
+                    // @include text-grid;
+                    @include test-grid;
+                }
+                @else if ($screen-size == $sm){
+                    @include test-grid2;
+                } 
+                @else if ($screen-size == $md){
+                    @include test-grid3;
+                } 
+                @else if ($screen-size == $lg){
+                    @include test-grid4;
+                } 
+            }
+        }
+    }
+}
+
+// @mixin text-grid (){
+//     grid-template-columns: 1fr 1fr;
+//     grid-template-rows: .5fr 3fr 2fr 2fr 2fr;
+//     grid-template-areas: 
+//     'navbar navbar'
+//     'hero-left hero-right';
+//     background-color: goldenrod;
+// }
+
+
+// @function get-margin ($screen-size) {
+//     @return map-get($margin-map, $screen-size);
+// }

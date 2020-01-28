@@ -8,11 +8,37 @@ html {
     @include font-size-map($document-font-size);
 }
 
-.landing-text h1 {
+.hero-text h1 {
     @include font-size-map($title-font-size);
 }
 
-body {
-    background-color: rgba(240, 240, 240, 0.925);
+html, body {
+    // background-color: rgba(240, 240, 240, 0.925);
+    // background-color: blue;
+    height: 100%;
+}
+
+
+#grid-container {
+    height: 100%;
+    background-color: lightsteelblue;
+    // @include display-grid;
+    text-align: center;
+    @include margin-map($margin-map);
+    @include grid-map($grid-map);
+
+    
+    // @include media-query($xs) {
+    //     background-color: blue;
+    //     color: red;
+    // }
+    // @include media-query($sm) {
+    //     background-color: black;
+    //     color: darkgreen;
+    // }
+    // @include media-query($md) {
+    //     background-color: gray;
+    //     color: darkblue;
+    // }
 }
 
