@@ -1,6 +1,9 @@
 .hero {
     justify-self: center;
-    width: 90%;
+    @include media-query($md){
+        width: 90%;
+    }
+    border: 2px solid black;
 }
 
 .hero-text {
@@ -15,9 +18,4 @@
 .hero-img img {
     height: 200px;
     width: 200px;
-}
-
-.other {
-    height: 100%;
-    background-color: blue;
 }

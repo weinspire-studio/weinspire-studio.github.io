@@ -16,28 +16,34 @@ html, body {
     height: 100%;
 }
 
-
-#grid-container {
+#site-container {
     height: 100%;
+}
+
+
+#hero-grid {
+    height: 100%;
+    @include media-query ($md) {
+        height: 93.5%;
+    }
     background-color: lightsteelblue;
-    // @include display-grid;
     text-align: center;
-    @include margin-map($margin-map);
+    @include padding-map($padding-map);
     @include grid-map($grid-list);
 }
 
 
-  
-    // @include media-query($xs) {
-    //     background-color: blue;
-    //     color: red;
-    // }
-    // @include media-query($sm) {
-    //     background-color: black;
-    //     color: darkgreen;
-    // }
-    // @include media-query($md) {
-    //     background-color: gray;
-    //     color: darkblue;
-    // }
+#other {
+    height: 100%;
+    background-color: lightblue;
+}
 
+#another {
+    height: 100%;
+    background-color: lightsalmon;
+}
+
+#footer {
+    height: 30%;
+    background-color: black;
+}

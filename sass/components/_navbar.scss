@@ -1,14 +1,32 @@
 #navbar {
-    background-color: lightgreen;
-    grid-area: navbar;
+    @include media-query ($md){
+        @include padding-map($padding-map);
+        background-color: lightgreen;
+        grid-area: navbar;
+        height: 6.5%;
+    }
+}
+
+nav, .nav-list {
+    @include media-query ($md){
+        height: 100%;
+    }
 }
 
 .nav-list {
-    display: flex;
     list-style-type: none;
-    justify-content: flex-end;
+    display: none;
+    @include media-query ($md) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
 }
 
 .nav-link {
-    margin: 1rem 1.5rem;
+    margin: 0rem 1.5rem;
+
+    &:hover {
+        cursor: pointer;
+    }
 }

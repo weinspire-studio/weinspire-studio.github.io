@@ -65,40 +65,50 @@ html, body {
   height: 100%;
 }
 
-#grid-container {
+#site-container {
+  height: 100%;
+}
+
+#hero-grid {
   height: 100%;
   background-color: lightsteelblue;
   text-align: center;
-  margin: 0 0.5rem;
+  padding: 0 0.5rem;
   display: block;
 }
 
+@media screen and (min-width: 600px) {
+  #hero-grid {
+    height: 93.5%;
+  }
+}
+
 @media screen and (min-width: 350px) {
-  #grid-container {
-    margin: 0 1rem;
+  #hero-grid {
+    padding: 0 1rem;
   }
 }
 
 @media screen and (min-width: 600px) {
-  #grid-container {
-    margin: 0 1.5rem;
+  #hero-grid {
+    padding: 0 1.5rem;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  #grid-container {
-    margin: 0 2rem;
+  #hero-grid {
+    padding: 0 2rem;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  #grid-container {
-    margin: 0 3rem;
+  #hero-grid {
+    padding: 0 3rem;
   }
 }
 
 @media screen and (min-width: 350px) {
-  #grid-container {
+  #hero-grid {
     background-color: darkmagenta;
     grid-area: navbar;
     grid-area: hero-left;
@@ -107,12 +117,11 @@ html, body {
 }
 
 @media screen and (min-width: 600px) {
-  #grid-container {
+  #hero-grid {
     display: -ms-grid;
     display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: .5fr 90% 2fr 2fr 2fr;
-        grid-template-areas: 'navbar navbar' 'hero-left hero-right';
+        grid-template-areas: 'hero-left hero-right';
     text-align: left;
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -120,14 +129,14 @@ html, body {
     background-color: #e94b0d;
     grid-area: navbar;
     grid-area: hero-left;
-    -ms-grid-row: 2;
+    -ms-grid-row: 1;
     -ms-grid-column: 2;
     grid-area: hero-right;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  #grid-container {
+  #hero-grid {
     background-color: #006946;
     grid-area: navbar;
     grid-area: hero-left;
@@ -136,7 +145,7 @@ html, body {
 }
 
 @media screen and (min-width: 1200px) {
-  #grid-container {
+  #hero-grid {
     background-color: #5d63be;
     grid-area: navbar;
     grid-area: hero-left;
@@ -144,29 +153,97 @@ html, body {
   }
 }
 
-#navbar {
-  background-color: lightgreen;
-  grid-area: navbar;
+#other {
+  height: 100%;
+  background-color: lightblue;
+}
+
+#another {
+  height: 100%;
+  background-color: lightsalmon;
+}
+
+#footer {
+  height: 30%;
+  background-color: black;
+}
+
+@media screen and (min-width: 600px) {
+  #navbar {
+    padding: 0 0.5rem;
+    background-color: lightgreen;
+    grid-area: navbar;
+    height: 6.5%;
+  }
+}
+
+@media screen and (min-width: 600px) and (min-width: 350px) {
+  #navbar {
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (min-width: 600px) and (min-width: 600px) {
+  #navbar {
+    padding: 0 1.5rem;
+  }
+}
+
+@media screen and (min-width: 600px) and (min-width: 1024px) {
+  #navbar {
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (min-width: 600px) and (min-width: 1200px) {
+  #navbar {
+    padding: 0 3rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  nav, .nav-list {
+    height: 100%;
+  }
 }
 
 .nav-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   list-style-type: none;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .nav-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
 }
 
 .nav-link {
-  margin: 1rem 1.5rem;
+  margin: 0rem 1.5rem;
+}
+
+.nav-link:hover {
+  cursor: pointer;
 }
 
 .hero {
   -ms-grid-column-align: center;
       justify-self: center;
-  width: 90%;
+  border: 2px solid black;
+}
+
+@media screen and (min-width: 600px) {
+  .hero {
+    width: 90%;
+  }
 }
 
 .hero-text {
@@ -181,10 +258,5 @@ html, body {
 .hero-img img {
   height: 200px;
   width: 200px;
-}
-
-.other {
-  height: 100%;
-  background-color: blue;
 }
 /*# sourceMappingURL=main.css.map */

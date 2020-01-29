@@ -37,14 +37,14 @@
     }
 }
 
-@mixin margin-map ($margin-map) {
-    @each $screen-size, $margin in $margin-map {
+@mixin padding-map ($padding-map) {
+    @each $screen-size, $padding in $padding-map {
         @if ($screen-size == null){
-            margin: $margin;
+            padding: $padding;
         }
         @else {
             @include media-query($screen-size) {
-                margin: $margin;
+                padding: $padding;
             }
         }
     }

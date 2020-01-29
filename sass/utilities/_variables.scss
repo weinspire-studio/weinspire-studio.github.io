@@ -27,20 +27,20 @@ $blackish-font-color: #414141;
 $blackish-font-color2: #212529;
 $background-light-color: lightgoldenrodyellow;
 
-// margins
-$margin-mobile-small: 0 .5rem;
-$margin-mobile: 0 1rem;
-$margin-tablet: 0 1.5rem;
-$margin-desktop: 0 2rem;
-$margin-desktop-large: 0 3rem;
+// paddings
+$padding-mobile-small: 0 .5rem;
+$padding-mobile: 0 1rem;
+$padding-tablet: 0 1.5rem;
+$padding-desktop: 0 2rem;
+$padding-desktop-large: 0 3rem;
 
-// margins map
-$margin-map: (
-    null: $margin-mobile-small,
-    $sm: $margin-mobile,
-    $md: $margin-tablet,
-    $lg: $margin-desktop,
-    $xl: $margin-desktop-large
+// paddings map
+$padding-map: (
+    null: $padding-mobile-small,
+    $sm: $padding-mobile,
+    $md: $padding-tablet,
+    $lg: $padding-desktop,
+    $xl: $padding-desktop-large
 );
 
 // font sizes maps

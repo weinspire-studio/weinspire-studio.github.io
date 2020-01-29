@@ -11,9 +11,9 @@
 @mixin test-grid2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: .5fr 90% 2fr 2fr 2fr;
+  // grid-template-rows: 3rem calc(100% - 3rem);
   grid-template-areas: 
-  'navbar navbar'
+  // 'navbar navbar'
   'hero-left hero-right';
   text-align: left;
   align-items: center;
