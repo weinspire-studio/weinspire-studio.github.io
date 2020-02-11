@@ -8,34 +8,80 @@
     <title>Inspire Studio</title>
   </head>
   <body>
-    <div id="site-container">
-      <section id="navbar">
-        <nav>
-          <ul class="nav-list">
-            <li class="nav-link">Projects</li>
-            <li class="nav-link">Services</li>
-            <li class="nav-link">About</li>
-            <li class="nav-link">Contact</li>
-          </ul>
-        </nav>
-      </section>
-      <main id="hero-grid">
-        <div class="hero hero-text">
-          <h1>Turning your bussiness idea into a succesful reality.</h1>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
-            ullam saepe, quaerat velit reiciendis amet cum nostrum rem illo.
-            Similique. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Aperiam ipsam dignissimos esse, molestiae molestias libero quas
-            tenetur assumenda doloribus vitae cupiditate, similique eius minima
-            eligendi. Sed tenetur enim omnis libero.
-          </p>
+    <section id="bg-image">
+      <svg
+        id="svg-background"
+        data-name="Layer 1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 1921.2 1007.95"
+      >
+        <defs>
+          <linearGradient
+            id="linear-gradient"
+            x1="223.89"
+            y1="0.89"
+            x2="2096.31"
+            y2="1032.05"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0" stop-color="#005b7f" />
+            <stop offset="0.74" stop-color="#38bab2" />
+            <stop offset="0.79" stop-color="#34b4af" />
+            <stop offset="0.85" stop-color="#28a2a6" />
+            <stop offset="0.93" stop-color="#158597" />
+            <stop offset="1" stop-color="#006687" />
+          </linearGradient>
+          <linearGradient
+            id="linear-gradient-2"
+            x1="-97.09"
+            y1="583.75"
+            x2="1775.32"
+            y2="1614.91"
+            xlink:href="#linear-gradient"
+          />
+        </defs>
+        <path
+          class="cls-1"
+          d="M1921.2,0H0V813.21l1.19.48q21.77,8.53,43.74,16.5L67,838,89,845.63c7.38,2.5,14.8,4.87,22.19,7.31l11.1,3.63L133.5,860l22.29,7,22.39,6.65L189.37,877c3.73,1.11,7.49,2.11,11.24,3.18l22.49,6.29c7.48,2.16,15,4,22.56,6l22.57,6c3.75,1,7.54,1.92,11.32,2.86l11.33,2.8,22.67,5.6c15.15,3.55,30.34,7,45.51,10.45s30.44,6.52,45.65,9.79c30.51,6.17,61.05,12.16,91.74,17.32l23,4L542.5,955l23.06,3.63c3.85.59,7.68,1.24,11.53,1.78L588.65,962l46.24,6.4,46.36,5.47c15.43,2,30.94,3.31,46.42,4.89L750.9,981c3.87.36,7.74.82,11.62,1.09l11.64.9,46.54,3.68c1.94.14,3.88.33,5.82.44l5.83.33,11.65.67,23.3,1.37,23.3,1.39c3.88.27,7.77.34,11.66.51l11.66.44,46.66,1.74c3.89.19,7.78.17,11.67.25l11.67.17,23.35.35,23.35.42,5.84.1,5.84,0,11.68-.06q153.87-.14,307.56-13.11C1701.67,939.36,1921.2,861,1921.2,861Z"
+          transform="translate(0 0)"
+        />
+        <path
+          class="cls-2"
+          d="M1042.36,1005.95l-5.86.13h-29.3l-23.44-.08-11.72,0c-3.91,0-7.81,0-11.72-.12l-46.87-1.25-11.72-.31c-3.9-.13-7.81-.15-11.72-.38l-23.42-1.15c-62.47-2.63-124.79-8.2-186.94-15l-46.56-5.58-46.44-6.53L575.06,974c-3.87-.56-7.72-1.24-11.58-1.85l-23.15-3.77-23.14-3.77c-7.7-1.36-15.38-2.83-23.06-4.24-30.78-5.51-61.4-11.85-92-18.37l-22.88-5.13-11.44-2.57c-3.81-.86-7.63-1.69-11.42-2.66-15.17-3.77-30.36-7.45-45.51-11.29l-22.66-6-11.33-3c-3.77-1-7.56-2-11.31-3.07l-22.55-6.41c-7.51-2.15-15-4.25-22.5-6.58l-22.41-6.85c-3.73-1.16-7.48-2.25-11.2-3.46l-11.15-3.61-22.3-7.22-22.18-7.57c-29.5-10.28-58.85-21-87.79-32.75Q21.84,825,.38,815.63L0,815.46V861c385.07,128,759.84,156.89,1074.6,144.26q-10.26.25-20.52.43Z"
+          transform="translate(0 0)"
+        />
+        <!-- <rect width="100%" height="100%" fill="#000000" opacity=".7"></rect> -->
+      </svg>
+    </section>
+    <section id="navbar">
+      <nav>
+        <img src="./assets/brand-negative.svg" alt="" />
+        <div class="burger">
+          <div class="line-top"></div>
+          <div class="line-middle"></div>
+          <div class="line-bottom"></div>
         </div>
-        <div class="hero hero-img">
-          <img src="./assets/facebook.svg" alt="" />
-        </div>
-      </main>
-    </div>
+        <ul class="nav-list">
+          <li>Projects</li>
+          <li>Services</li>
+          <li>About</li>
+          <li>Contact</li>
+        </ul>
+      </nav>
+    </section>
+    <main id="hero-grid">
+      <div class="hero hero-text">
+        <h1>Turning your bussiness idea into a succesful reality.</h1>
+        <p>
+          Dolore ullam saepe, quaerat velit reiciendis amet cum nostrum rem
+          illo. Similique.
+        </p>
+      </div>
+      <div class="hero hero-img">
+        <img src="./assets/facebook.svg" alt="" />
+      </div>
+    </main>
     <section id="other"></section>
     <section id="another"></section>
     <section id="footer"></section>

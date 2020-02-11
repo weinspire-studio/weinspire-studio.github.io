@@ -1,4 +1,4 @@
-//breakpoints mixin
+//breakpoints mixins
 @mixin media-query ($min-width: 0, $max-width: false) {
     @if ($max-width == false) {
         @media screen and (min-width: $min-width) {
@@ -16,14 +16,15 @@
 @mixin grid-media-query ($min-width: 0) {
     @media screen and (min-width: $min-width) {
         @content;
-        @if($min-width >= $sm){
-            grid-area: navbar;
+        @if($min-width > $sm){
+            // grid-area: navbar;
             grid-area: hero-left;
             grid-area: hero-right;
         }
     }
 } 
 
+//maps for responsive elements.
 @mixin font-size-map ($font-size-map) {
     @each $screen-size, $font-size in $font-size-map {
         @if ($screen-size == null){
@@ -40,7 +41,7 @@
 @mixin padding-map ($padding-map) {
     @each $screen-size, $padding in $padding-map {
         @if ($screen-size == null){
-            padding: $padding;
+            padding: $padding-mobile-small;
         }
         @else {
             @include media-query($screen-size) {
@@ -53,7 +54,7 @@
 @mixin grid-map ($grid-list) {
     @each $screen-size  in $grid-list {
         @if ($screen-size == null){
-            display: block;
+            @content;
         }
         @else {
             @include grid-media-query($screen-size) {

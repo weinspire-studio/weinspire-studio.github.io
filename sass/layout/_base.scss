@@ -8,42 +8,36 @@ html {
     @include font-size-map($document-font-size);
 }
 
-.hero-text h1 {
-    @include font-size-map($title-font-size);
-}
-
 html, body {
     height: 100%;
 }
 
-#site-container {
-    height: 100%;
-}
-
-
-#hero-grid {
-    height: 100%;
-    @include media-query ($md) {
-        height: 93.5%;
-    }
-    background-color: lightsteelblue;
-    text-align: center;
-    @include padding-map($padding-map);
-    @include grid-map($grid-list);
+body {
+    font-family: "Open Sans", sans-serif;
+    overflow-x: hidden;
+    background-color: $background-color-light;
 }
 
 
 #other {
     height: 100%;
-    background-color: lightblue;
+    background-color: white;
 }
 
 #another {
     height: 100%;
-    background-color: lightsalmon;
+    // background-color: lightsalmon;
 }
 
 #footer {
     height: 30%;
-    background-color: black;
+    // background-color: black;
+}
+
+//Style Classes
+.menu-open {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    // transition: background-color .1s ease;
+    // z-index: 15;
 }
