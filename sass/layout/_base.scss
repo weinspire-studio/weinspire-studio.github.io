@@ -15,7 +15,7 @@ html, body {
 body {
     font-family: "Open Sans", sans-serif;
     overflow-x: hidden;
-    background-color: $background-color-light;
+    background-color: $background-light;
 }
 
 
@@ -29,15 +29,16 @@ body {
     // background-color: lightsalmon;
 }
 
-#footer {
-    height: 30%;
+// #footer {
+    // height: 50%;
     // background-color: black;
-}
+    // color: white;
+// }
 
 //Style Classes
 .menu-open {
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: $black-opacity;
     // transition: background-color .1s ease;
     // z-index: 15;
 }

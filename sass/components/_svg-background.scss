@@ -5,21 +5,22 @@
     z-index: -1;
     
     // transition: .5s ease;
-    height: 50%;
+    height: 95%;
     @include media-query ($md) {
-        width: 100%;
-        max-width: 100%;
+        // width: 100%;
+        // max-width: 100%;
+        min-height: 90%;
         height: auto;
     }
 }
 
 // SVG Classes
-.svg-opacity .cls-1 {
-    fill: rgba(0, 0, 0, 0.5);
+.svg-opacity .cls-1, .svg-opacity .cls-2 {
+    fill: $black-opacity;
 }
 
 .svg-opacity .cls-2 {
-    fill: rgba(0, 0, 0, 0.5);
+    fill: $black-opacity;
 }
 
 // SVG Styles

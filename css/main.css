@@ -48,10 +48,6 @@ body {
   height: 100%;
 }
 
-#footer {
-  height: 30%;
-}
-
 .menu-open {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.7);
@@ -60,27 +56,27 @@ body {
 #navbar {
   height: 3.25em;
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 0) {
   #navbar {
     padding: 0 0.5rem;
   }
 }
-@media screen and (min-width: 600px) and (min-width: 350px) {
+@media screen and (min-width: 0) and (min-width: 350px) {
   #navbar {
     padding: 0 1rem;
   }
 }
-@media screen and (min-width: 600px) and (min-width: 600px) {
+@media screen and (min-width: 0) and (min-width: 600px) {
   #navbar {
     padding: 0 1.5rem;
   }
 }
-@media screen and (min-width: 600px) and (min-width: 1024px) {
+@media screen and (min-width: 0) and (min-width: 1024px) {
   #navbar {
     padding: 0 2rem;
   }
 }
-@media screen and (min-width: 600px) and (min-width: 1200px) {
+@media screen and (min-width: 0) and (min-width: 1200px) {
   #navbar {
     padding: 0 3rem;
   }
@@ -88,7 +84,7 @@ body {
 
 nav img {
   height: 100%;
-  width: 180px;
+  width: 150px;
 }
 
 nav {
@@ -335,27 +331,30 @@ nav {
   width: 200px;
 }
 
+.hero-text-opacity {
+  color: rgba(0, 0, 0, 0.7);
+}
+
 #svg-background {
   position: absolute;
   top: 0;
   left: 0;
   z-index: -1;
-  height: 50%;
+  height: 95%;
 }
 @media screen and (min-width: 600px) {
   #svg-background {
-    width: 100%;
-    max-width: 100%;
+    min-height: 90%;
     height: auto;
   }
 }
 
-.svg-opacity .cls-1 {
-  fill: rgba(0, 0, 0, 0.5);
+.svg-opacity .cls-1, .svg-opacity .cls-2 {
+  fill: rgba(0, 0, 0, 0.7);
 }
 
 .svg-opacity .cls-2 {
-  fill: rgba(0, 0, 0, 0.5);
+  fill: rgba(0, 0, 0, 0.7);
 }
 
 .cls-1 {
@@ -364,6 +363,85 @@ nav {
 
 .cls-2 {
   fill: url(#linear-gradient-2);
+}
+
+#footer {
+  justify-items: center;
+  height: 50%;
+  background-color: black;
+  display: grid;
+  grid-template-rows: 1fr 5fr 1fr;
+  grid-template-columns: 0.25fr 0.25fr 0.15fr 0.15fr 0.2fr;
+  grid-template-areas: "arrow arrow arrow arrow arrow" "design-services dev-services site contact newsletter" "copyright copyright copyright copyright copyright";
+}
+
+#up-arrow {
+  height: 60px;
+  width: 60px;
+  fill: rgba(177, 177, 177, 0.904);
+  grid-area: arrow;
+  margin: auto;
+  transition: 0.5s ease-in;
+  animation: enlarge 0.5s ease infinite alternate;
+}
+
+#up-arrow:hover {
+  cursor: pointer;
+  fill: white;
+}
+
+.footer-design {
+  grid-area: design-services;
+}
+
+.footer-dev {
+  grid-area: dev-services;
+}
+
+.footer-site {
+  grid-area: site;
+}
+
+.footer-contact {
+  grid-area: contact;
+}
+
+.footer-newsletter {
+  grid-area: newsletter;
+}
+
+.footer-newsletter h4 {
+  color: white;
+  color: rgba(250, 250, 250, 0.8);
+  font-size: 0.8em;
+}
+
+#footer p {
+  color: rgba(250, 250, 250, 0.8);
+  font-size: 0.8em;
+}
+
+.footer-title {
+  padding: 0.7em 0;
+  color: white;
+  font-size: 1.1em;
+}
+
+#footer h5 {
+  font-size: 0.75em;
+  text-align: center;
+  align-self: center;
+  grid-area: copyright;
+  color: white;
+}
+
+@keyframes enlarge {
+  0% {
+    transform: scale(1) translateY(2.5px);
+  }
+  100% {
+    transform: scale(1.2) translateY(-1.5px);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

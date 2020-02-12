@@ -1,10 +1,7 @@
 // section navbar
 #navbar {
-    // background-color: rgb(255, 255, 255);
-    // height: 7%;
     height: 3.25em;
-    // padding-top: .5em;
-    @include media-query ($md){
+    @include media-query (){
         @include padding-map($padding-map);
         // grid-area: navbar;
     }
@@ -13,7 +10,7 @@
 // svg brand img
 nav img {
     height: 100%;
-    width: 180px;
+    width: 150px;
 }
 
 // ul nav-list 
@@ -24,7 +21,7 @@ nav {
     padding: 0 1.2em;
     height: 100%;
     align-items: center;
-    border-bottom: .12em solid $nav-color-light;
+    border-bottom: .12em solid $nav-light;
 }
 
 nav, .nav-list {
