@@ -29,6 +29,6 @@ $("#up-arrow").on("click", function() {
     {
       scrollTop: body
     },
-    1000
+    750
   );
 });
