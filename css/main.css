@@ -336,7 +336,7 @@ nav {
 }
 
 #bg-image {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #svg-background {
@@ -344,7 +344,7 @@ nav {
   top: 0;
   left: 0;
   z-index: -1;
-  overflow: hidden;
+  overflow-x: hidden;
   height: 95%;
 }
 @media screen and (min-width: 600px) {

@@ -1,12 +1,14 @@
 #bg-image {
-    overflow: hidden;
+    overflow-x: hidden;
+    // overflow: hidden;
 }
 #svg-background {
     position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
-    overflow: hidden;
+    // overflow: hidden;
+    overflow-x: hidden;
     
     // transition: .5s ease;
     height: 95%;
