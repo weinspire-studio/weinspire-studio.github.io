@@ -31,7 +31,6 @@ html {
 
 html, body {
   height: 100%;
-  overflow-x: hidden;
 }
 
 body {
@@ -337,6 +336,7 @@ nav {
 
 #bg-image {
   overflow-x: hidden;
+  position: relative;
 }
 
 #svg-background {
