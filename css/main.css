@@ -335,6 +335,10 @@ nav {
   color: rgba(0, 0, 0, 0.7);
 }
 
+#bg-image {
+  overflow: hidden;
+}
+
 #svg-background {
   position: absolute;
   top: 0;
