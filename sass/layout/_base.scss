@@ -10,11 +10,11 @@ html {
 
 html, body {
     height: 100%;
+    overflow-x: hidden;
 }
 
 body {
     font-family: "Open Sans", sans-serif;
-    overflow-x: hidden;
     background-color: $background-light;
 }
 

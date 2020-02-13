@@ -31,11 +31,11 @@ html {
 
 html, body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
   font-family: "Open Sans", sans-serif;
-  overflow-x: hidden;
   background-color: #f8f8f8;
 }
 
