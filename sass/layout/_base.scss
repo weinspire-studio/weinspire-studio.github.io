@@ -8,7 +8,7 @@ html {
     @include font-size-map($document-font-size);
 }
 
-html, body {
+html, body, #site-wrapper {
     height: 100%;
     // overflow-x: hidden;
 }
@@ -16,6 +16,11 @@ html, body {
 body {
     font-family: "Open Sans", sans-serif;
     background-color: $background-light;
+}
+
+#site-wrapper {
+    overflow-x: hidden;
+    position: relative;
 }
 
 

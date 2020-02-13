@@ -29,13 +29,18 @@ html {
   }
 }
 
-html, body {
+html, body, #site-wrapper {
   height: 100%;
 }
 
 body {
   font-family: "Open Sans", sans-serif;
   background-color: #f8f8f8;
+}
+
+#site-wrapper {
+  overflow-x: hidden;
+  position: relative;
 }
 
 #other {
@@ -332,11 +337,6 @@ nav {
 
 .hero-text-opacity {
   color: rgba(0, 0, 0, 0.7);
-}
-
-#bg-image {
-  overflow-x: hidden;
-  position: relative;
 }
 
 #svg-background {
