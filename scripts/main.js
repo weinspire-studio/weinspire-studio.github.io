@@ -6,12 +6,13 @@ const lineElements = document.querySelectorAll(".burger div");
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
 const navImg = document.querySelector("nav img");
+const siteWrapper = document.querySelector("#site-wrapper");
 
 // mobile burger and menu
 burger.addEventListener("click", () => {
   navList.classList.toggle("open");
   burger.classList.toggle("cross");
-  document.body.classList.toggle("menu-open");
+  siteWrapper.classList.toggle("menu-open");
   svgBackground.classList.toggle("svg-opacity");
   heroText.classList.toggle("hero-text-opacity");
   navImg.classList.toggle("logo-index");
@@ -23,11 +24,12 @@ burger.addEventListener("click", () => {
 });
 
 $("#up-arrow").on("click", function() {
-  const body = $("body").position().top;
+  const siteWrapper = $("#site-wrapper").position().top;
+  console.log(siteWrapper);
 
-  $("body, html").animate(
+  $("#site-wrapper").animate(
     {
-      scrollTop: body
+      scrollTop: siteWrapper
     },
     750
   );
