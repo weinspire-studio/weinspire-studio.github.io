@@ -45,7 +45,6 @@ body {
 
 #other {
   height: 100%;
-  background-color: white;
 }
 
 #another {
@@ -53,11 +52,13 @@ body {
 }
 
 .menu-open {
-  position: fixed;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
 #navbar {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
   height: 3.25em;
 }
 @media screen and (min-width: 0) {
@@ -105,13 +106,13 @@ nav {
   position: absolute;
   top: 0;
   right: 0;
-  height: 100%;
+  height: 100vh;
   width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: black;
-  background-color: white;
+  background-color: pink;
+  z-index: 1;
   transform: translateX(100%);
   transition: transform 0.35s ease-out;
 }
@@ -124,14 +125,12 @@ nav {
     transform: translateX(0);
     transition-property: none;
     background-color: transparent;
-    color: white;
   }
 }
 .nav-list li {
   text-transform: uppercase;
   margin: 2em 1.5em;
   padding: 0.75em;
-  z-index: 100;
 }
 @media screen and (min-width: 600px) {
   .nav-list li {
@@ -150,7 +149,12 @@ nav {
 
 .nav-list a {
   text-decoration: none;
-  color: white;
+  color: black;
+}
+@media screen and (min-width: 600px) {
+  .nav-list a {
+    color: white;
+  }
 }
 
 .burger {
@@ -223,6 +227,7 @@ nav {
 
 .logo-index {
   z-index: -2;
+  opacity: 10%;
 }
 
 @keyframes navLinksAnim {
@@ -238,6 +243,14 @@ nav {
     transform: translateX(0);
   }
 }
+.nav-white#navbar {
+  background-color: white;
+}
+
+.nav-white nav a {
+  color: black;
+}
+
 #hero-grid {
   height: 93%;
   height: calc(100% - 3.25em);
@@ -400,7 +413,7 @@ nav {
   fill: rgba(177, 177, 177, 0.904);
   grid-area: arrow;
   margin: auto;
-  transition: 0.5s ease-in;
+  transition: animation 0.5s ease-in;
   animation: enlarge 0.5s ease infinite alternate;
 }
 @media screen and (min-width: 600px) {
@@ -488,6 +501,11 @@ nav {
 }
 .footer-info .info-separator {
   display: none;
+}
+
+.footer-index {
+  z-index: -1;
+  position: inherit;
 }
 
 @keyframes enlarge {

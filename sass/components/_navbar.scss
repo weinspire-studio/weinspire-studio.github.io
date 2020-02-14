@@ -1,5 +1,9 @@
 // section navbar
 #navbar {
+    position: fixed;
+    z-index: 1;
+    // height: 100%;
+    width: 100%;
     height: 3.25em;
     @include media-query (){
         @include padding-map($padding-map);
@@ -35,13 +39,15 @@ nav, .nav-list {
     position: absolute;
     top: 0;
     right: 0;
-    height: 100%;
+    // height: 100%;
+    height: 100vh;
     width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: black;
-    background-color: white;
+    // color: black;
+    background-color: pink;
+    z-index: 1;
     transform: translateX(100%);
     transition: transform .35s ease-out;
     @include media-query ($md) {
@@ -52,13 +58,13 @@ nav, .nav-list {
         transform: translateX(0);
         transition-property: none;
         background-color: transparent;
-        color: white;
+        // color: white;
     }
     & li {
         text-transform: uppercase;
         margin: 2em 1.5em;
         padding: .75em;
-        z-index: 100;
+        // z-index: 1;
         // cursor: pointer;
         // color: $nav-color-light;
 
@@ -79,7 +85,10 @@ nav, .nav-list {
 
 .nav-list a {
     text-decoration: none;
-    color: white;
+    color: black;
+    @include media-query ($md) {
+        color: white;
+    }
 }
 
 // div burger menu
@@ -121,6 +130,7 @@ nav, .nav-list {
 
 // Style classes
 .open {
+    // position: absolute;
     opacity: 1;
     pointer-events: all;
     transform: translateX(0%);
@@ -152,6 +162,7 @@ nav, .nav-list {
 
 .logo-index {
     z-index: -2;
+    opacity: 10%;
 }
 
 // Animations
@@ -169,4 +180,12 @@ nav, .nav-list {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+.nav-white#navbar {
+    background-color: white;
+}
+
+.nav-white nav a {
+    color: black;
 }

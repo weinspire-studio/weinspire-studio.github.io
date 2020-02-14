@@ -1,6 +1,8 @@
 #footer {
     // height: 70%;
     // align-items: end;
+  
+
     display: flex;
     flex-direction: column;
     background-color: black;
@@ -29,7 +31,7 @@
     fill: rgba(177, 177, 177, 0.904);
     grid-area: arrow;
     margin: auto;
-    transition: .5s ease-in;
+    transition: animation .5s ease-in;
     animation: enlarge .5s ease infinite alternate;
     @include media-query ($md) {
         height: 60px;
@@ -124,6 +126,10 @@
     }
 }
 
+.footer-index {
+    z-index: -1;
+    position: inherit;
+}
 
 // #footer h5 {
 //     font-size: .75em;
