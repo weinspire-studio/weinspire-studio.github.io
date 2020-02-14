@@ -89,6 +89,6 @@ if (
   window.location.href === "https://weinspire-studio.github.io/home" ||
   window.location.href === "https://weinspire-studio.github.io/home/"
 ) {
-  anchorHome.href = "/#home";
+  anchorHome.href = "/home/#home";
   console.log("home");
 }
