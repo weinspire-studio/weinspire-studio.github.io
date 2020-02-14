@@ -41,10 +41,12 @@ body {
 #site-wrapper {
   overflow-x: hidden;
   position: relative;
+  transition: background-color 0.5s ease;
 }
 
 #other {
   height: 100%;
+  background-color: white;
 }
 
 #another {
@@ -57,7 +59,6 @@ body {
 
 #navbar {
   position: fixed;
-  z-index: 1;
   width: 100%;
   height: 3.25em;
 }
@@ -90,6 +91,7 @@ body {
 nav img {
   height: 100%;
   width: 150px;
+  transition: 0.5s ease;
 }
 
 nav {
@@ -106,15 +108,14 @@ nav {
   position: absolute;
   top: 0;
   right: 0;
-  height: 100vh;
+  height: 100%;
   width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: pink;
+  background-color: white;
   z-index: 1;
-  transform: translateX(100%);
-  transition: transform 0.35s ease-out;
+  transition: all 1s ease;
 }
 @media screen and (min-width: 600px) {
   .nav-list {
@@ -198,7 +199,6 @@ nav {
 .open {
   opacity: 1;
   pointer-events: all;
-  transform: translateX(0%);
 }
 
 .cross .line-top {
@@ -214,7 +214,7 @@ nav {
 }
 
 .nav-link-anim {
-  animation: navLinksAnim 0.5s ease-out forwards;
+  animation: navLinksAnim 0.125s ease-out forwards;
 }
 
 .visible {
@@ -226,7 +226,7 @@ nav {
 }
 
 .logo-index {
-  z-index: -2;
+  z-index: -1;
   opacity: 10%;
 }
 
@@ -251,9 +251,27 @@ nav {
   color: black;
 }
 
+.navigation {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.4s ease-out;
+  transform: translateX(100%);
+  position: fixed;
+}
+
+.translate {
+  transform: translateX(0%);
+}
+
+.translate .nav-list {
+  transform: translateX(0%);
+}
+
 #hero-grid {
-  height: 93%;
-  height: calc(100% - 3.25em);
+  height: 100%;
   text-align: center;
   padding: 0 0.5rem;
   display: flex;
@@ -317,6 +335,7 @@ nav {
 
 .hero-text {
   grid-area: hero-left;
+  transition: 0.55s color ease;
 }
 .hero-text h1 {
   padding-bottom: 1em;
@@ -369,14 +388,6 @@ nav {
     min-height: 90%;
     height: auto;
   }
-}
-
-.svg-opacity .cls-1, .svg-opacity .cls-2 {
-  fill: rgba(0, 0, 0, 0.7);
-}
-
-.svg-opacity .cls-2 {
-  fill: rgba(0, 0, 0, 0.7);
 }
 
 .cls-1 {

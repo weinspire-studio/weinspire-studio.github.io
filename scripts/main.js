@@ -1,79 +1,65 @@
 // variables definition
+const siteWrapper = document.querySelector("#site-wrapper");
 const svgBackground = document.querySelector("#svg-background");
-const heroText = document.querySelector(".hero-text");
 const burger = document.querySelector(".burger");
 const lineElements = document.querySelectorAll(".burger div");
+const navBar = document.querySelector("#navbar");
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
 const navImg = document.querySelector("nav img");
-const siteWrapper = document.querySelector("#site-wrapper");
-const largeScreenMQ = window.matchMedia("(min-width: 1024px)");
-const navBar = document.querySelector("#navbar");
+const navDiv = document.querySelector(".navigation");
+const nav = document.querySelector("nav");
+const heroText = document.querySelector(".hero-text");
 const footer = document.querySelector("#footer");
 const svgArrow = document.querySelector("#footer #up-arrow");
-
-// mobile burger and menu
-// TODO: add the listener only on small resolutions
-burger.addEventListener("click", () => {
-  siteWrapper.classList.toggle("menu-open");
-  burger.classList.toggle("cross");
-  navList.classList.toggle("open");
-  navImg.classList.toggle("logo-index");
-  heroText.classList.toggle("hero-text-opacity");
-  svgBackground.classList.toggle("svg-opacity");
-  footer.classList.toggle("footer-index");
-  navElements.forEach((navEl, index) => {
-    navEl.style.animationDelay = `${0.05 + index / 12.5}s`;
-    navEl.classList.toggle("nav-link-anim");
-    navEl.classList.toggle("invisible");
-  });
-});
+const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
+// const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
 
 // jQuery for animated scroll
 $("#up-arrow").on("click", function() {
-  const siteWrapper = $("#site-wrapper").position().top;
+  const siteWrapperTop = $("#site-wrapper").position().top;
   $("#site-wrapper").animate(
     {
-      scrollTop: siteWrapper
+      scrollTop: siteWrapperTop
     },
     750
   );
 });
 
 //
-
+let burgerHasListener = false;
 let hasListener = false;
 //on pageload, executes the following code, depending on screen width.
-if (largeScreenMQ.matches) {
-  largeScreenCode();
+if (notMobileScreenMQ.matches) {
+  // largeScreenCode();
+} else {
+  smallScreenCode();
 }
 
-// let i = 0;
 //adds listener that executes when screen width changes (passing by 1024px)
-largeScreenMQ.addListener(() => {
-  if (largeScreenMQ.matches) {
+notMobileScreenMQ.addListener(() => {
+  if (notMobileScreenMQ.matches) {
     largeScreenCode();
   } else {
     smallScreenCode();
   }
-
-  // console.log(`listener ${i}`);
-  // i++;
 });
 
 function largeScreenCode() {
   if (!hasListener) {
-    siteWrapper.addEventListener("scroll", styleNav);
+    siteWrapper.addEventListener("scroll", styleDesktopNav);
     hasListener = true;
   }
-  console.log("large screen code");
+  // console.log("large screen code");
+  stripDownDesktopNav();
 }
 
 function smallScreenCode() {
-  console.log("small screen code");
+  // console.log("small screen code");
+  animMobileNav();
 }
 
-function styleNav() {
+function styleDesktopNav() {
   // let scro = siteWrapper.scrollHeight;
   // console.log("height" + scro);
   // console.log(window.innerHeight);
@@ -84,6 +70,38 @@ function styleNav() {
   } else {
     navBar.classList.remove("nav-white");
   }
+}
+
+function animMobileNav() {
+  navList.parentNode.removeChild(navList);
+  navDiv.appendChild(navList);
+  // mobile burger and menu
+  // TODO: add the listener only on small resolutions
+  if (!burgerHasListener) {
+    burger.addEventListener("click", () => {
+      siteWrapper.classList.toggle("menu-open");
+      burger.classList.toggle("cross");
+      navList.classList.toggle("open");
+      navDiv.classList.toggle("translate");
+      navImg.classList.toggle("logo-index");
+      heroText.classList.toggle("hero-text-opacity");
+      // svgBackground.classList.toggle("svg-opacity");
+      footer.classList.toggle("footer-index");
+      navElements.forEach((navEl, index) => {
+        navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
+        navEl.classList.toggle("nav-link-anim");
+        navEl.classList.toggle("invisible");
+      });
+    });
+    console.log("se le puso el listener");
+  }
+  burgerHasListener = true;
+}
+
+function stripDownDesktopNav() {
+  // console.log(navDiv);
+  navDiv.removeChild(navList);
+  nav.appendChild(navList);
 }
 
 //// /////////// /////

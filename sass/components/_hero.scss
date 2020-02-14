@@ -1,6 +1,6 @@
 #hero-grid {
-    height: 93%;
-    height: calc(100% - 3.25em);
+    height: 100%;
+    // height: calc(100% - 3.25em);
     text-align: center;
     @include padding-map($padding-map);
     @include grid-map($grid-list) {
@@ -21,6 +21,8 @@
 
 .hero-text {
     grid-area: hero-left;
+    transition: .55s color ease;
+    // z-index: -1;
 
     & h1 {
         padding-bottom: 1em;
@@ -41,4 +43,5 @@
 
 .hero-text-opacity {
     color: $black-opacity;
+    // z-index: -1;
 }

@@ -20,12 +20,13 @@ body {
 #site-wrapper {
     overflow-x: hidden;
     position: relative;
+    transition: background-color .5s ease;
 }
 
 
 #other {
     height: 100%;
-    // background-color: white;
+    background-color: white;
 }
 
 #another {
@@ -36,6 +37,6 @@ body {
 .menu-open {
     // position: fixed;
     background-color: $black-opacity;
-    // transition: background-color .1s ease;
+    // transition: background-color .5s ease;
     // z-index: 15;
 }
