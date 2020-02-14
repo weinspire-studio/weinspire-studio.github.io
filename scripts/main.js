@@ -77,3 +77,18 @@ function styleNav() {
   // console.log(`changing nav ${i}`);
   // i++;
 }
+
+const anchorHome = document.querySelector(".nav-home");
+const anchorContact = document.querySelector(".nav-contact");
+
+console.log(anchorHome);
+console.log(window.location.href);
+console.log(anchorHome.href);
+
+if (
+  window.location.href === "https://weinspire-studio.github.io/home" ||
+  window.location.href === "https://weinspire-studio.github.io/home/"
+) {
+  anchorHome.href = "/#home";
+  console.log("home");
+}
