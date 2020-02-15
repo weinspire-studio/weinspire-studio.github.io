@@ -14,6 +14,8 @@ const footer = document.querySelector("#footer");
 const svgArrow = document.querySelector("#footer #up-arrow");
 const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
+const navBurger = document.querySelector(".navigation-burger");
+const navBurgerOverlay = document.querySelector(".navigation-burger-overlay");
 
 // jQuery for animated scroll
 $("#up-arrow").on("click", function() {
@@ -57,6 +59,10 @@ function largeScreenCode() {
 function smallScreenCode() {
   // console.log("small screen code");
   animMobileNav();
+  if (!hasListener) {
+    siteWrapper.addEventListener("scroll", styleDesktopNav);
+    hasListener = true;
+  }
 }
 
 function styleDesktopNav() {
@@ -75,10 +81,17 @@ function styleDesktopNav() {
 function animMobileNav() {
   navList.parentNode.removeChild(navList);
   navDiv.appendChild(navList);
+  let scrolledYMobile;
   // mobile burger and menu
   // TODO: add the listener only on small resolutions
   if (!burgerHasListener) {
     burger.addEventListener("click", () => {
+      scrolledYMobile = siteWrapper.scrollTop;
+      if (scrolledYMobile > 0) {
+        navBar.classList.toggle("transparent");
+        navBurgerOverlay.classList.toggle("navigation-burger-opacity");
+        navBurger.classList.toggle("navigation-burger-white");
+      }
       siteWrapper.classList.toggle("menu-open");
       burger.classList.toggle("cross");
       navList.classList.toggle("open");
@@ -93,7 +106,7 @@ function animMobileNav() {
         navEl.classList.toggle("invisible");
       });
     });
-    console.log("se le puso el listener");
+    // console.log("se le puso el listener");
   }
   burgerHasListener = true;
 }
