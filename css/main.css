@@ -56,6 +56,41 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+.burger {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  z-index: 6;
+}
+@media screen and (min-width: 350px) and (max-width: 600px) {
+  .burger {
+    height: 44px;
+    width: 44px;
+  }
+}
+@media screen and (min-width: 600px) {
+  .burger {
+    display: none;
+  }
+}
+.burger div {
+  position: relative;
+  top: 11.2%;
+  left: 16%;
+  width: 70%;
+  height: 2.5px;
+  margin: 6px 0;
+  background-color: white;
+  border-radius: 3px;
+  transition: 0.3s ease-in-out;
+}
+@media screen and (min-width: 350px) and (max-width: 600px) {
+  .burger div {
+    top: 15%;
+    left: 15%;
+  }
+}
+
 #navbar {
   position: fixed;
   z-index: 1;
@@ -102,6 +137,8 @@ nav {
   height: 100%;
   align-items: center;
   border-bottom: 0.12em solid rgba(255, 255, 255, 0.3);
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
 }
 
 .nav-list {
@@ -114,7 +151,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: pink;
+  background-color: white;
   transition: all 1s ease;
 }
 @media screen and (min-width: 600px) {
@@ -151,6 +188,7 @@ nav {
 .nav-list a {
   text-decoration: none;
   color: black;
+  transition: color 0.5s ease;
 }
 @media screen and (min-width: 600px) {
   .nav-list a {
@@ -158,43 +196,31 @@ nav {
   }
 }
 
-.burger {
-  z-index: 200 !important;
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-  /* background-color: white; */
-  cursor: pointer;
-  z-index: 6;
-  box-shadow: 0px 0px 10px 3px rgba(30, 30, 30, 0.301);
-  /* box-shadow: 0px 4px 24px rgba(29, 29, 29, 0.24); */
+.navigation-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  transition: all 0.5s ease;
+  transform: translateX(100%);
+  position: fixed;
 }
-@media screen and (min-width: 350px) and (max-width: 600px) {
-  .burger {
-    height: 44px;
-    width: 44px;
-  }
+
+.navigation-color-white {
+  width: 100%;
+  height: 3.25em;
+  background-color: transparent;
+  position: fixed;
+  transition: 0.5s ease;
 }
-@media screen and (min-width: 600px) {
-  .burger {
-    display: none;
-  }
-}
-.burger div {
-  position: relative;
-  top: 5.5px;
-  left: 5.5px;
-  width: 22px;
-  height: 2.5px;
-  margin: 6px 5px;
-  background-color: black;
-  border-radius: 3px;
-  transition: 0.3s ease-in-out;
-}
-@media screen and (min-width: 350px) and (max-width: 600px) {
-  .burger div {
-    width: 25px;
-  }
+
+.navigation-overlay-black {
+  width: 100%;
+  height: 3.25em;
+  position: fixed;
+  transition: background-color 0.5s ease;
 }
 
 .open {
@@ -204,6 +230,7 @@ nav {
 
 .cross .line-top {
   transform: rotate(45deg) translate(5.8px, 6px);
+  background-color: black;
 }
 
 .cross .line-middle {
@@ -212,6 +239,7 @@ nav {
 
 .cross .line-bottom {
   transform: rotate(-45deg) translate(6.5px, -7px);
+  background-color: black;
 }
 
 .nav-link-anim {
@@ -231,6 +259,41 @@ nav {
   opacity: 10%;
 }
 
+.nav-white#navbar {
+  background-color: white;
+  box-shadow: 12px 2px 8px 0px black;
+}
+
+.nav-no-border {
+  border-bottom: none;
+}
+
+.nav-white nav a {
+  color: black;
+}
+
+.nav-white .burger div {
+  background-color: black;
+}
+
+.navigation-white {
+  background-color: white;
+  z-index: 1;
+}
+
+.navigation-black {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.translate {
+  transform: translateX(0%);
+}
+
+.translate .nav-list {
+  transform: translateX(0%);
+}
+
 @keyframes navLinksAnim {
   0% {
     opacity: 0;
@@ -244,63 +307,6 @@ nav {
     transform: translateX(0);
   }
 }
-.nav-white#navbar {
-  background-color: white;
-}
-
-.nav-white nav a {
-  color: black;
-}
-
-.transparent {
-  background-color: transparent !important;
-}
-
-.navigation {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  transition: all 0.5s ease;
-  transform: translateX(100%);
-  position: fixed;
-}
-
-.navigation-burger {
-  width: 100%;
-  height: 3.25em;
-  background-color: transparent;
-  position: fixed;
-  transition: 0.5s ease;
-}
-
-.navigation-burger-white {
-  background-color: white;
-  z-index: 1;
-}
-
-.navigation-burger-overlay {
-  width: 100%;
-  height: 3.25em;
-  position: fixed;
-  transition: background-color 0.5s ease;
-}
-
-.navigation-burger-opacity {
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.translate {
-  transform: translateX(0%);
-}
-
-.translate .nav-list {
-  transform: translateX(0%);
-}
-
 #hero-grid {
   height: 100%;
   text-align: center;
@@ -408,25 +414,40 @@ nav {
 
 #svg-background {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   z-index: -1;
   overflow-x: hidden;
-  height: 95%;
 }
 @media screen and (min-width: 600px) {
   #svg-background {
-    min-height: 90%;
     height: auto;
   }
 }
 
 .cls-1 {
-  fill: url(#linear-gradient);
+  fill: #fff;
 }
 
 .cls-2 {
+  fill: url(#linear-gradient);
+}
+
+.cls-3 {
   fill: url(#linear-gradient-2);
+}
+
+.cls-4 {
+  fill: url(#linear-gradient-3);
+}
+
+#bg-image {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(155deg, #001029, #003a58, #006985, #009ba9, #43cfc3);
+  z-index: -1;
 }
 
 #footer {
