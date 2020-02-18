@@ -16,6 +16,7 @@ const svgArrow = document.querySelector("#footer #up-arrow");
 const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
+const navAnchors = document.querySelectorAll(".nav-list a");
 
 let hasScrollListener = false;
 let hasClickListener = false;
@@ -118,6 +119,63 @@ function toggleNavClasses() {
   // svgBackground.classList.toggle("svg-opacity");
   footer.classList.toggle("footer-index");
 }
+
+console.log(navAnchors[3].offsetWidth);
+console.log(navAnchors[0]);
+let asd = document.styleSheets[0].rules;
+// console.log(asd[10].selectorText);
+
+let property = new Object();
+property.selector = "width";
+// property.value = "20px";
+
+navAnchors.forEach(anchor => {
+  // anchor.style.width = anchor.offsetWidth
+  anchor.addEventListener("mouseover", function() {
+    // let property = new Object();
+    // property.selector = "width";
+    property.value = `${(anchor.offsetWidth + 5) / 2}` + `px`;
+    editStyle(".nav-list a", property);
+    // console.log("mouse over");
+  });
+  anchor.addEventListener("mouseleave", function() {
+    // this.classList.toggle("special");
+    // console.log("mouse leave");
+  });
+});
+
+//adds a custom property to an existing pseudo-class.
+function editStyle(className, property) {
+  let sheet = document.styleSheets[0];
+  let sheetLength = sheet.cssRules.length;
+  let classes = sheet.rules || sheet.cssRules;
+  for (let x = 0; x < classes.length; x++) {
+    if (classes[x].selectorText == className) {
+      sheet.insertRule(
+        `${className}:hover:before { ${property.selector}: ${property.value}; }`,
+        sheetLength
+      );
+      sheet.insertRule(
+        `${className}:hover:after { ${property.selector}: ${property.value}; }`,
+        sheetLength
+      );
+    }
+  }
+}
+
+// function getStyle(className) {
+//   let cssText = "";
+//   let classes =
+//     document.styleSheets[0].rules || document.styleSheets[0].cssRules;
+//   for (let x = 0; x < classes.length; x++) {
+//     if (classes[x].selectorText == className) {
+//       cssText += classes[x].cssText || classes[x].style.cssText;
+//     }
+//   }
+//   return cssText;
+// }
+// let special = getStyle(".special");
+// alert(special);
 
 //// /////////// /////
 // TODO:

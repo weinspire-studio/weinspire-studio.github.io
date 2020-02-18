@@ -1,16 +1,10 @@
 // div burger menu
 .burger {
-    // position: absolute;
-    // border-radius: 50%;
     height: 40px;
     width: 40px;
-    // background-color: pink; 
-    // position: absolute;
     cursor: pointer;
-    // right: 1em;
-    // top: .8em;
     z-index: 6;
-    // box-shadow: 0px 0px 10px 3px rgba(30, 30, 30, 0.301);
+
     @include media-query ($sm, $md) {
         height: 44px;
         width: 44px;
@@ -23,17 +17,14 @@
     position: relative;
     top: 11.2%;
     left: 16%;
-    // top: 5.5px;
-    // width: 22px;
-
     width: 70%;
     height: 2.5px;
     margin: 6px 0;
     background-color: white;
     border-radius: 3px;
     transition: 0.3s ease-in-out;
+
     @include media-query ($sm, $md) {
-        // width: 25px;
         top: 15%;
         left: 15%;
     }
@@ -44,13 +35,12 @@
 #navbar {
     position: fixed;
     z-index: 1;
-    // height: 100%;
     width: 100%;
     height: 3.25em;
     transition: .5s ease;
+
     @include media-query (){
         @include padding-map($padding-map);
-        // grid-area: navbar;
     }
 }
 
@@ -80,19 +70,13 @@ nav {
     top: 0;
     right: 0;
     height: 100%;
-    // height: 100vh;
     width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    // color: black;
     background-color: white;
-    // z-index: 1;
-    // transform: translateX(100%);
-    // transition: transform .35s ease-out;
     transition: all 1s ease;
-    // opacity: 0;
-    // pointer-events: none;
+
     @include media-query ($md) {
         position: initial;
         justify-content: flex-end;
@@ -107,9 +91,6 @@ nav {
         text-transform: uppercase;
         margin: 2em 1.5em;
         padding: .75em;
-        // z-index: 1;
-        // cursor: pointer;
-        // color: $nav-color-light;
 
         @include media-query ($md) {
             margin: .75em;
@@ -130,10 +111,55 @@ nav {
     text-decoration: none;
     color: black;
     transition: color .5s ease;
+
     @include media-query ($md) {
         color: white;
+        position: relative;
+        // text-shadow: 1px 1px 1.8px #515457e8;
+
+        &:hover {
+           color: rgb(255, 255, 255);
+           text-shadow: 1px 1px 1.8px #000000;
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 1.75px;
+            bottom: -7.5%;
+            right: 50%;
+            background-color: rgb(255, 255, 255);
+            transition: width .5s ease;
+        }
+
+        &:after { 
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 1.75px;
+            bottom: -7.5%;
+            left: 50%;
+            background-color: white;
+            transition: width .5s ease;
+        }
+
+        &.special {
+            // width: 50px!important;
+            // color: lightcoral;
+        }
+
+        &.special:before {
+            // background-color:violet;
+            // width: 50px;
+        }
     }
 }
+
+// .special {
+//     height: 5px;
+//     width: 200px;
+// }
 
 .navigation-container {
     height: 100%;
@@ -216,10 +242,6 @@ nav {
 .nav-white .burger div {
     background-color: black;
 }
-
-// .transparent {
-//     background-color: transparent!important;
-// }
 
 .navigation-white {
     background-color: white;

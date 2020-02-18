@@ -35,7 +35,7 @@ html, body, #site-wrapper {
 
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: #f8f8f8;
+  background-color: #f1f1f1;
 }
 
 #site-wrapper {
@@ -193,6 +193,31 @@ nav {
 @media screen and (min-width: 600px) {
   .nav-list a {
     color: white;
+    position: relative;
+  }
+  .nav-list a:hover {
+    color: white;
+    text-shadow: 1px 1px 1.8px #000000;
+  }
+  .nav-list a:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1.75px;
+    bottom: -7.5%;
+    right: 50%;
+    background-color: white;
+    transition: width 0.5s ease;
+  }
+  .nav-list a:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1.75px;
+    bottom: -7.5%;
+    left: 50%;
+    background-color: white;
+    transition: width 0.5s ease;
   }
 }
 
