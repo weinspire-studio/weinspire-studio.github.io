@@ -37,7 +37,7 @@
     z-index: 1;
     width: 100%;
     height: 3.25em;
-    transition: .5s ease;
+    transition: background-color .75s ease, box-shadow .8s ease;
 
     @include media-query (){
         @include padding-map($padding-map);
@@ -47,9 +47,23 @@
 // svg brand img
 nav img {
     height: 100%;
-    width: 150px;
     transition: opacity .5s ease;
+    width: 120px;
 }
+
+#brand-desktop {
+    // display: none;
+    @include media-query ($md) {
+        // display: initial;
+        width: 150px;
+    }
+}
+
+// #brand-mobile {
+//     @include media-query ($md) {
+//         display: none;
+//     }
+// }
 
 // ul nav-list 
 nav {
@@ -110,7 +124,7 @@ nav {
 .nav-list a {
     text-decoration: none;
     color: black;
-    transition: color .5s ease;
+    transition: color .75s ease, text-shadow .75s ease;
 
     @include media-query ($md) {
         color: white;
@@ -119,7 +133,7 @@ nav {
 
         &:hover {
            color: rgb(255, 255, 255);
-           text-shadow: 1px 1px 1.8px #000000;
+           text-shadow: 1px 1px 1.8px rgb(0, 0, 0);
         }
 
         &:before {
@@ -129,7 +143,6 @@ nav {
             height: 1.75px;
             bottom: -7.5%;
             right: 50%;
-            background-color: rgb(255, 255, 255);
             transition: width .5s ease;
         }
 
@@ -140,26 +153,23 @@ nav {
             height: 1.75px;
             bottom: -7.5%;
             left: 50%;
-            background-color: white;
             transition: width .5s ease;
-        }
-
-        &.special {
-            // width: 50px!important;
-            // color: lightcoral;
-        }
-
-        &.special:before {
-            // background-color:violet;
-            // width: 50px;
         }
     }
 }
 
-// .special {
-//     height: 5px;
-//     width: 200px;
-// }
+.anchor-white:hover {
+    color: black!important;
+    text-shadow: 1px 1px 1.8px rgb(175, 175, 175)!important;
+}
+
+.underline-white:before, .underline-white:after {
+    background-color: rgb(255, 255, 255);
+}
+
+.underline-black:before, .underline-black:after {
+    background-color: rgb(0, 0, 0);
+}
 
 .navigation-container {
     height: 100%;
