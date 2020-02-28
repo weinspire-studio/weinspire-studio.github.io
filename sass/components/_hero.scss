@@ -1,8 +1,12 @@
 #hero-grid {
-    height: 100%;
+    min-height: 100%;
     // height: calc(100% - 3.25em);
     text-align: center;
-    @include padding-map($padding-map);
+    @include padding-map($content-wrap-sm);
+    @include media-query( 0, $md) {
+        padding-top: 3.25em!important;
+    }
+
     @include grid-map($grid-list) {
         display: flex;
         flex-direction: column;
@@ -33,10 +37,13 @@
 .hero-img {
     grid-area: hero-right;
     text-align: center;
+    z-index: -1;
+    position: relative;
     
-    & img {
+    & .icon-facebook {
         height: 200px;
         width: 200px;
+        fill: pink;
     }
 }
 

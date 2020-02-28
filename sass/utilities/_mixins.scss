@@ -38,14 +38,27 @@
     }
 }
 
-@mixin padding-map ($padding-map) {
-    @each $screen-size, $padding in $padding-map {
+@mixin padding-map ($content-wrap-map) {
+    @each $screen-size, $padding in $content-wrap-map {
         @if ($screen-size == null){
-            padding: $padding-mobile-small;
+            padding: $padding;
         }
         @else {
             @include media-query($screen-size) {
                 padding: $padding;
+            }
+        }
+    }
+}
+
+@mixin margin-map ($content-wrap-map) {
+    @each $screen-size, $margin in $content-wrap-map {
+        @if ($screen-size == null){
+            margin: $margin;
+        }
+        @else {
+            @include media-query($screen-size) {
+                margin: $margin;
             }
         }
     }

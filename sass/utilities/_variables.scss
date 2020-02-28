@@ -15,12 +15,11 @@
 
 
 //breakpoint variables
-// $xxs: 320px;
-// $sm: 480px;
-$sm: 350px;
-$md: 600px;
-$lg: 1024px;
-$xl: 1200px;
+$xs: 351px; //large cells
+$sm: 479px; // landscape cells
+$md: 801px; // tablets
+$lg: 1024px; // desktops
+$xl: 1200px; // large desktops
 
 //colors
 $nav-light: rgba(255, 255, 255, 0.3);
@@ -31,25 +30,57 @@ $black-opacity: rgba(0, 0, 0, .7);
 $font-dark-: #414141;
 $font-dark2: #212529;
 
-// paddings
-$padding-mobile-small: 0 .5rem;
-$padding-mobile: 0 1rem;
-$padding-tablet: 0 1.5rem;
-$padding-desktop: 0 2rem;
-$padding-desktop-large: 0 3rem;
+// wrap sm (for margin or padding)
+$wrap-sm-mobile-small: 1em;
+$wrap-sm-mobile: 1.5em;
+$wrap-sm-tablet: 2em;
+$wrap-sm-desktop: 2.5em;
+$wrap-sm-desktop-large: 3em;
 
-// paddings map
-$padding-map: (
-    null: $padding-mobile-small,
-    $sm: $padding-mobile,
-    $md: $padding-tablet,
-    $lg: $padding-desktop,
-    $xl: $padding-desktop-large
+// wrap lg variables
+$wrap-lg-mobile-small: 1.5em;
+$wrap-lg-mobile: 2.25em;
+$wrap-lg-tablet: 3em;
+$wrap-lg-desktop: 4em;
+$wrap-lg-desktop-large: 4.5em;
+
+// wrap hr (0 vertical space)
+$wrap-hr-mobile-small: 0 1em;
+$wrap-hr-mobile: 0 1.5em;
+$wrap-hr-tablet: 0 2em;
+$wrap-hr-desktop: 0 2.5em;
+$wrap-hr-desktop-large: 0 3em;
+
+// wrap-sm map
+$content-wrap-sm: (
+    null: $wrap-sm-mobile-small,
+    $sm: $wrap-sm-mobile,
+    $md: $wrap-sm-tablet,
+    $lg: $wrap-sm-desktop,
+    $xl: $wrap-sm-desktop-large
+);
+
+// wrap-sm map
+$content-wrap-lg: (
+    null: $wrap-lg-mobile-small,
+    $sm: $wrap-lg-mobile,
+    $md: $wrap-lg-tablet,
+    $lg: $wrap-lg-desktop,
+    $xl: $wrap-lg-desktop-large
+);
+
+//horizontal wrap map
+$content-wrap-hr: (
+    null: $wrap-hr-mobile-small,
+    $sm: $wrap-hr-mobile,
+    $md: $wrap-hr-tablet,
+    $lg: $wrap-hr-desktop,
+    $xl: $wrap-hr-desktop-large
 );
 
 // font sizes maps
-$document-font-size: (null: .9rem, $sm: .95rem, $md: 1.05rem, $lg: 1.1rem, $xl: 1.15rem);
-$title-font-size: (null: 1.3rem, $sm: 1.5rem, $md: 1.8rem, $lg: 2.2rem, $xl: 2.5rem);
+$document-font-size: (null: .9em, $sm: .95em, $md: 1.05em, $lg: 1.1em, $xl: 1.15em);
+$title-font-size: (null: 1.3em, $sm: 1.5em, $md: 1.8em, $lg: 2.2em, $xl: 2.5em);
 
 // grid-list
-$grid-list: null $sm $md $lg $xl;
+$grid-list: null $xs $sm $md $lg $xl;

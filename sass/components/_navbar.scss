@@ -40,7 +40,7 @@
     transition: background-color .75s ease, box-shadow .8s ease;
 
     @include media-query (){
-        @include padding-map($padding-map);
+        @include padding-map($content-wrap-hr);
     }
 }
 
@@ -103,17 +103,20 @@ nav {
     }
     & li {
         text-transform: uppercase;
-        margin: 2em 1.5em;
+        margin: 1.5em 1.5em;
         padding: .75em;
+
+        @include media-query($sm) {
+            margin: .5em 1em;
+        }
 
         @include media-query ($md) {
             margin: .75em;
             padding: 0;
-            //  @include padding-map($padding-map);
         }  
     }
     & li:first-child {
-        margin-top: 4em;
+        margin-top: 2.5em;
 
         @include media-query ($md) {
             margin: .75em;

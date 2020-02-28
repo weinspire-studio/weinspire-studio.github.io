@@ -1,12 +1,9 @@
 #footer {
-    // height: 70%;
-    // align-items: end;
-  
-
     display: flex;
     flex-direction: column;
     background-color: black;
     padding: .25em .75em;
+    @include padding-map ($content-wrap-hr);
     color: $white-opacity;
     @include media-query ($md) {
         // height: 50%;
@@ -26,16 +23,16 @@
 }
 
 #up-arrow {
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     fill: rgba(177, 177, 177, 0.904);
     grid-area: arrow;
     margin: auto;
     transition: animation .5s ease-in;
     animation: enlarge .5s ease infinite alternate;
     @include media-query ($md) {
-        height: 60px;
-        width: 60px;
+        height: 45px;
+        width: 45px;
     }
 }
 
@@ -76,7 +73,6 @@
     padding: .7em 0;
     color: white;
     font-size: 1.1em;
-    // text-transform: uppercase;
 }
 
 .footer-site p {
@@ -105,7 +101,7 @@
     grid-area: copyright;
     align-self: center;
     text-align: center;
-
+    padding-bottom: .25em;
     & h5, & h6 {
         color: white;
         @include media-query ($md) {
@@ -113,16 +109,9 @@
             font-size: .75em;
         }
     }
-    & h5 {
-        // font-size: .75em;
-        // text-align: center;
-        // align-self: center;
-        // margin-bottom: .25em;
-    }
-
     & .info-separator {
         display: none;
-        // @include media-query ()
+
     }
 }
 
@@ -130,14 +119,6 @@
     z-index: -1;
     position: inherit;
 }
-
-// #footer h5 {
-//     font-size: .75em;
-//     text-align: center;
-//     align-self: center;
-//     // margin-bottom: .25em;
-//     color: white;
-// }
   
 @keyframes enlarge {
     0% {
