@@ -137,11 +137,14 @@ nav img {
 }
 
 nav {
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
   padding: 0 1.2em;
   height: 100%;
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
   border-bottom: 0.12em solid rgba(255, 255, 255, 0.3);
   border-bottom-left-radius: 1px;
   border-bottom-right-radius: 1px;
@@ -154,17 +157,22 @@ nav {
   right: 0;
   height: 100%;
   width: 70%;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
   background-color: white;
   transition: all 1s ease;
 }
 @media screen and (min-width: 801px) {
   .nav-list {
     position: initial;
-    justify-content: flex-end;
-    flex-direction: row;
+    -ms-flex-pack: end;
+        justify-content: flex-end;
+    -ms-flex-direction: row;
+        flex-direction: row;
     height: 100%;
     transform: translateX(0);
     transition-property: none;
@@ -358,9 +366,12 @@ nav {
   min-height: 100%;
   text-align: center;
   padding: 1em;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 @media screen and (min-width: 479px) {
   #hero-grid {
@@ -393,7 +404,8 @@ nav {
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "hero-left hero-right";
     text-align: left;
-    align-items: center;
+    -ms-flex-align: center;
+        align-items: center;
     grid-area: hero-left;
     grid-area: hero-right;
   }
@@ -507,9 +519,12 @@ nav {
 
 @media screen and (min-width: 801px) {
   form {
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
   }
 }
 
@@ -592,8 +607,10 @@ nav {
     grid-template-columns: 2fr 1.75fr;
     grid-template-rows: repeat(6, 1fr);
     grid-template-areas: "title title" "name right" "email right" "subject right" "button right" "status .";
-    justify-content: center;
-    align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
     margin-bottom: 0 !important;
     padding-bottom: 2.5em;
   }
@@ -635,7 +652,8 @@ nav {
 
 .field-button {
   grid-area: button;
-  align-self: flex-end;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
   text-align: center;
   margin-bottom: -1.25em;
 }
@@ -652,8 +670,10 @@ nav {
 
 .field-status {
   grid-area: status;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -ms-flex-pack: center;
+      justify-content: center;
   width: 100%;
   height: 100px;
   border-radius: 5px;
@@ -672,7 +692,8 @@ nav {
   background-color: rgba(39, 226, 139, 0.884);
   box-shadow: 5px 5px 5px #4b4b4bf6;
   margin-bottom: -3.75em;
-  align-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   padding: 0.3em 0 0.3em 1em;
   width: 95%;
 }
@@ -769,6 +790,16 @@ nav {
   transform: translateX(0);
 }
 
+.form-fields textarea::-moz-placeholder {
+  color: gray;
+  font-size: 1em;
+}
+
+.form-fields textarea:-ms-input-placeholder {
+  color: gray;
+  font-size: 1em;
+}
+
 .form-fields textarea::placeholder {
   color: gray;
   font-size: 1em;
@@ -803,8 +834,10 @@ nav {
 
 .info-container {
   font-size: 0.8em;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 @media screen and (min-width: 801px) {
   .info-container {
@@ -892,8 +925,10 @@ nav {
   }
 }
 #footer {
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -ms-flex-direction: column;
+      flex-direction: column;
   background-color: black;
   padding: 0.25em 0.75em;
   padding: 0 1em;
@@ -1012,7 +1047,8 @@ nav {
 
 .footer-info {
   grid-area: copyright;
-  align-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   text-align: center;
   padding-bottom: 0.25em;
 }
@@ -1042,5 +1078,3 @@ nav {
     transform: scale(1.2) translateY(-1.5px);
   }
 }
-
-/*# sourceMappingURL=main.css.map */

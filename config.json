@@ -1,0 +1,4 @@
+{
+    "main_css": "./css/main.css",
+    "main_scss": "./sass/main.scss"
+}
