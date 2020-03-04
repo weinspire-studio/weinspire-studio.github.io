@@ -17,11 +17,8 @@ form {
 
 .form-title h2 {
   text-transform: uppercase;
-  margin-bottom: .75em;
+  margin-bottom: .5em;
   word-spacing: .1em;
-  @include media-query ($md) {
-    margin-bottom: .1em;
-  }
 }
 
 
@@ -224,11 +221,14 @@ form {
 }
 
 .field-name, .field-email {
-  margin-top: 1em;
+  margin-top: 3.825em;
+  @include media-query($md) {
+    margin-top: 1em;
+  }
 }
 
 .field-message .label-span {
-  margin-top: 1em;
+  margin-top: .8em;
 }
 
 .form-fields input:focus + .input-label .label-span,
@@ -347,7 +347,7 @@ form {
 .button-inactive {
   cursor: not-allowed;
   background-color: rgb(236, 236, 236);
-  color: gray;
+  color: rgb(182, 182, 182);
 }
 
 .visible {

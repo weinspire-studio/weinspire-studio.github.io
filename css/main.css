@@ -323,10 +323,6 @@ nav {
   box-shadow: 12px 2px 8px 0px black;
 }
 
-.nav-no-border {
-  border-bottom: none;
-}
-
 .nav-white nav a {
   color: black;
 }
@@ -485,7 +481,7 @@ nav {
 
 #svg-background {
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   z-index: -1;
   overflow-x: hidden;
@@ -493,20 +489,25 @@ nav {
 @media screen and (min-width: 801px) {
   #svg-background {
     height: auto;
+    bottom: -5px;
   }
 }
 
 #bg-image {
   height: 100%;
+  width: 100%;
   position: absolute;
-  left: 0;
-  right: 0;
   background-image: linear-gradient(155deg, #001029, #003a58, #006985, #009ba9, #43cfc3);
   z-index: -1;
 }
 
-.cls-1 {
+.cls-1,
+.cls-2 {
   fill: #fff;
+}
+
+.cls-2 {
+  opacity: 0.5;
 }
 
 @media screen and (min-width: 801px) {
@@ -532,13 +533,8 @@ nav {
 
 .form-title h2 {
   text-transform: uppercase;
-  margin-bottom: 0.75em;
+  margin-bottom: 0.5em;
   word-spacing: 0.1em;
-}
-@media screen and (min-width: 801px) {
-  .form-title h2 {
-    margin-bottom: 0.1em;
-  }
 }
 
 @media screen and (min-width: 801px) {
@@ -767,11 +763,16 @@ nav {
 }
 
 .field-name, .field-email {
-  margin-top: 1em;
+  margin-top: 3.825em;
+}
+@media screen and (min-width: 801px) {
+  .field-name, .field-email {
+    margin-top: 1em;
+  }
 }
 
 .field-message .label-span {
-  margin-top: 1em;
+  margin-top: 0.8em;
 }
 
 .form-fields input:focus + .input-label .label-span,
@@ -897,7 +898,7 @@ nav {
 .button-inactive {
   cursor: not-allowed;
   background-color: #ececec;
-  color: gray;
+  color: #b6b6b6;
 }
 
 .visible {

@@ -1,7 +1,7 @@
 #svg-background {
     position: absolute;
     // top: 70%;
-    bottom: 0;
+    bottom: -2px;
     left: 0;
     z-index: -1;
     // overflow: hidden;
@@ -14,22 +14,24 @@
         // max-width: 100%;
         // min-height: 90%;
         height: auto;
+        bottom: -5px;
     }
 }
 
 #bg-image {
   height: 100%;
+  width: 100%;
   position: absolute;
-  left: 0;
-  right: 0;
+  // left: 0;
+  // right: 0;
   background-image: linear-gradient(155deg, #001029, #003a58, #006985, #009ba9, #43cfc3);
   z-index: -1;
 }
 
 // SVG Styles
-.cls-1 {
-  fill: #fff;
-}
+// .cls-1 {
+//   fill: #fff;
+// }
 // TODO: check url (dist..)
 // .cls-2 {
 //   fill: url(#linear-gradient);
@@ -40,3 +42,11 @@
 // .cls-4 {
 //   fill: url(#linear-gradient-3);
 // }
+
+.cls-1,
+.cls-2 {
+  fill: #fff;
+}
+.cls-2 {
+  opacity: 0.5;
+}
