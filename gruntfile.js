@@ -46,7 +46,7 @@ module.exports = function(grunt) {
       test: {
         options: {
           base: "./",
-          css: ["dist/css/main.min.css"]
+          css: ["./dist/css/main.min.css"]
           //   dimensions: [
           //     {
           //       height: 600,

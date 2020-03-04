@@ -505,18 +505,6 @@ nav {
   fill: #fff;
 }
 
-.cls-2 {
-  fill: url(#linear-gradient);
-}
-
-.cls-3 {
-  fill: url(#linear-gradient-2);
-}
-
-.cls-4 {
-  fill: url(#linear-gradient-3);
-}
-
 @media screen and (min-width: 801px) {
   form {
     display: -ms-flexbox;
