@@ -67,7 +67,7 @@ function smallScreenCode() {
   styleMobileNav();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
-    hasListener = true;
+    hasScrollListener = true;
   }
 }
 

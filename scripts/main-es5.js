@@ -63,7 +63,7 @@ function smallScreenCode() {
 
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
-    hasListener = true;
+    hasScrollListener = true;
   }
 } // animation effect (underline) for desktop nav anchors.
 

@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     conf: grunt.file.readJSON("config.json"),
     // cleans up the build directory (dist)
     clean: {
-      build: "dist"
+      build: "_dist"
     },
     //Detects errors and problems in js files.
     jshint: {
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
           "head-script-disabled": true,
           "style-disabled": true
         },
-        src: ["index.html"]
+        src: ["index-non_critical.html"]
       }
     },
     // compiles to sass
@@ -41,6 +41,31 @@ module.exports = function(grunt) {
         }
       }
     },
+    // critical css inlined. The rest is wrapped in async js function, with noscript (for js disabled browsers).
+    critical: {
+      test: {
+        options: {
+          base: "./",
+          css: ["_dist/css/main.min.css"]
+          //   dimensions: [
+          //     {
+          //       height: 600,
+          //       width: 350
+          //     },
+          //     {
+          //       height: 900,
+          //       width: 1200
+          //     }
+          //   ]
+          //   // height: 900,
+          //   // width: 1200
+        },
+        src: "./html/index-non_critical.html",
+        dest: "./index.html",
+        uncritical: "./css/main-uncritical.css",
+        extract: true
+      }
+    },
     // Uglify only works with ES5. Same config to cssmin
     cssmin: {
       options: {
@@ -49,7 +74,7 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          "./dist/css/main.min.css": "<%= conf.main_css %>"
+          "./_dist/css/main.min.css": "<%= conf.main_css %>"
         }
       }
     },
@@ -78,10 +103,10 @@ module.exports = function(grunt) {
       all_src: {
         options: {
           sourceMap: true,
-          sourceMapName: "./dist/js/sourceMap.map"
+          sourceMapName: "./_dist/js/sourceMap.map"
         },
         src: "./scripts/*-es5.js",
-        dest: "./dist/js/all.min.js"
+        dest: "./_dist/js/all.min.js"
       }
     },
     // Compile everything into one task with Watch Plugin
@@ -95,7 +120,7 @@ module.exports = function(grunt) {
         tasks: ["jshint", "babel", "uglify"]
       },
       html: {
-        files: "./index.html",
+        files: "./html/index-non_critical.html",
         tasks: ["htmlhint"]
       }
     }
@@ -111,11 +136,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-babel");
   grunt.loadNpmTasks("grunt-contrib-uglify");
+  grunt.loadNpmTasks("grunt-critical");
 
   // Register Grunt tasks
   // grunt.registerTask("default", ["watch"]);
   grunt.registerTask("default", ["watch"]);
   // grunt.registerTask("default", ['sass:dist', 'babel:dist']);
   // prettier-ignore
-  grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "htmlhint", "jshint", "babel", "uglify"]);
+  grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "critical", "htmlhint", "jshint", "babel", "uglify"]);
 };
