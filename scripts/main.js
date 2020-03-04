@@ -54,6 +54,7 @@ notMobileScreenMQ.addListener(() => {
 //FUNCTIONS
 //code that executes only in desktop and tablet screens (> 801px).
 function largeScreenCode() {
+  styleNavOnScroll();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
@@ -64,6 +65,7 @@ function largeScreenCode() {
 
 //code that executes only in cellphone screens (< 801px).
 function smallScreenCode() {
+  styleNavOnScroll();
   styleMobileNav();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
@@ -102,7 +104,7 @@ function styleAnchorOnHover() {
 // prettier-ignore
 function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
-  if(scrolledY > 0 ) {
+  if(scrolledY > 0) {
     navBar.classList.add("nav-white");
     nav.classList.add("nav-no-border");
   } else {
@@ -196,7 +198,6 @@ window.addEventListener("DOMContentLoaded", function() {
   let validEmail = false;
   let validText = true;
 
-  // TODO: reset textarea in largeScreenCode (not adding a new listener)
   // window.addEventListener("DOMContentLoaded", () => {
   textArea.value = "";
   // formElements.forEach(formEl => {
@@ -270,6 +271,10 @@ window.addEventListener("DOMContentLoaded", function() {
   // Success and Error functions for after the form is submitted
   function success() {
     form.reset();
+    formElements.forEach(formEl => {
+      formEl.classList.remove("input-correct");
+    });
+    // formEl.classList.add("input-error");
     formButton.classList.remove("button-active");
     formButton.classList.add("button-inactive");
     formButton.classList.add("disabled");
@@ -289,10 +294,7 @@ window.addEventListener("DOMContentLoaded", function() {
     e.preventDefault();
     var data = new FormData(form);
     if (!formButton.classList.contains("disabled")) {
-      // ajax(form.method, form.action, data, success, error);
-      formStatus.innerHTML =
-        "We are sorry! The message could not be sent, please try again. If the problem persists, you can reach to us by our social networks!";
-      showMessage();
+      ajax(form.method, form.action, data, success, error);
     }
   });
 });

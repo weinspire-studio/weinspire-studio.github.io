@@ -78,10 +78,6 @@ form {
   }
 }
 
-.field-name, .field-email, .field-message, .field-button, .field-status {
-  // width: 70%;
-}
-
 .field-name {
     grid-area: name;
 }
@@ -96,7 +92,7 @@ form {
   
 .form-fields textarea {
     width: 100%;
-    height: 2.5em;
+    height: 3.5em;
     font-family: inherit;
     font-size: .8em;
     border-radius: 5px;
@@ -223,13 +219,28 @@ form {
 .form-fields .label-span {
   display: block;
   transition: transform .5s ease, font-size .5s ease, color .5s ease;
+
+ 
+}
+
+.field-name, .field-email {
+  margin-top: 1em;
+}
+
+.field-message .label-span {
+  margin-top: 1em;
 }
 
 .form-fields input:focus + .input-label .label-span,
-.form-fields input:valid + .input-label .label-span,
+.form-fields input:valid + .input-label .label-span {
+  transform: translateY(-150%);
+  font-size: .9em;
+  color: #004d74;
+}
+
 .form-fields textarea:focus + .input-label .label-span,
 .form-fields textarea:valid + .input-label .label-span {
-  transform: translateY(-150%);
+  transform: translateY(-250%);
   font-size: .9em;
   color: #004d74;
 }

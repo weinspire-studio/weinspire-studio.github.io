@@ -1,7 +1,7 @@
 // Load Grunt
 module.exports = function(grunt) {
   // Load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns
-  require("load-grunt-tasks")(grunt);
+  // require("load-grunt-tasks")(grunt);
 
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
@@ -36,9 +36,17 @@ module.exports = function(grunt) {
     // compiles to sass
     sass: {
       dist: {
-        files: {
-          "<%= conf.main_css %>": "<%= conf.main_scss %>"
-        }
+        files: [
+          {
+            // "<%= conf.main_css %>": "<%= conf.main_scss %>"
+            // "./css/main.css": "./sass/main.scss"
+            expand: true,
+            cwd: "sass",
+            src: ["*.scss"],
+            dest: "css",
+            ext: ".css"
+          }
+        ]
       }
     },
     // critical css inlined. The rest is wrapped in async js function, with noscript (for js disabled browsers).
@@ -111,9 +119,13 @@ module.exports = function(grunt) {
     },
     // Compile everything into one task with Watch Plugin
     watch: {
+      scss: {
+        files: "./sass/**/*.scss",
+        tasks: ["sass"]
+      },
       css: {
-        files: "<%= conf.main_scss %>",
-        tasks: ["sass", "autoprefixer", "cssmin", "critical"]
+        files: "<%= conf.main_css %>",
+        tasks: ["autoprefixer", "cssmin", "critical"]
       },
       js: {
         files: "./scripts/main.js",
@@ -121,7 +133,7 @@ module.exports = function(grunt) {
       },
       html: {
         files: "./html/index-non_critical.html",
-        tasks: ["htmlhint"]
+        tasks: ["htmlhint", "critical"]
       }
     }
   });
@@ -139,7 +151,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-critical");
 
   // Register Grunt tasks
-  // grunt.registerTask("default", ["watch"]);
   grunt.registerTask("default", ["watch"]);
   // grunt.registerTask("default", ['sass:dist', 'babel:dist']);
   // prettier-ignore

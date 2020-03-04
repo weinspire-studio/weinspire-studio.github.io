@@ -48,6 +48,8 @@ notMobileScreenMQ.addListener(function () {
 //code that executes only in desktop and tablet screens (> 801px).
 
 function largeScreenCode() {
+  styleNavOnScroll();
+
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
@@ -59,6 +61,7 @@ function largeScreenCode() {
 
 
 function smallScreenCode() {
+  styleNavOnScroll();
   styleMobileNav();
 
   if (!hasScrollListener) {
@@ -192,8 +195,7 @@ window.addEventListener("DOMContentLoaded", function () {
   formElements.push(textArea);
   var validName = false;
   var validEmail = false;
-  var validText = true; // TODO: reset textarea in largeScreenCode (not adding a new listener)
-  // window.addEventListener("DOMContentLoaded", () => {
+  var validText = true; // window.addEventListener("DOMContentLoaded", () => {
 
   textArea.value = ""; // formElements.forEach(formEl => {
   //   formEl.setCustomValidity("");
@@ -274,6 +276,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
   function success() {
     form.reset();
+    formElements.forEach(function (formEl) {
+      formEl.classList.remove("input-correct");
+    }); // formEl.classList.add("input-error");
+
     formButton.classList.remove("button-active");
     formButton.classList.add("button-inactive");
     formButton.classList.add("disabled");
@@ -292,9 +298,7 @@ window.addEventListener("DOMContentLoaded", function () {
     var data = new FormData(form);
 
     if (!formButton.classList.contains("disabled")) {
-      // ajax(form.method, form.action, data, success, error);
-      formStatus.innerHTML = "We are sorry! The message could not be sent, please try again. If the problem persists, you can reach to us by our social networks!";
-      showMessage();
+      ajax(form.method, form.action, data, success, error);
     }
   });
 }); // helper function for sending an AJAX request
