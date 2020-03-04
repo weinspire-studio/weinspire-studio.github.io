@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     conf: grunt.file.readJSON("config.json"),
     // cleans up the build directory (dist)
     clean: {
-      build: "_dist"
+      build: "dist"
     },
     //Detects errors and problems in js files.
     jshint: {
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
       test: {
         options: {
           base: "./",
-          css: ["_dist/css/main.min.css"]
+          css: ["dist/css/main.min.css"]
           //   dimensions: [
           //     {
           //       height: 600,
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          "./_dist/css/main.min.css": "<%= conf.main_css %>"
+          "./dist/css/main.min.css": "<%= conf.main_css %>"
         }
       }
     },
@@ -103,10 +103,10 @@ module.exports = function(grunt) {
       all_src: {
         options: {
           sourceMap: true,
-          sourceMapName: "./_dist/js/sourceMap.map"
+          sourceMapName: "./dist/js/sourceMap.map"
         },
         src: "./scripts/*-es5.js",
-        dest: "./_dist/js/all.min.js"
+        dest: "./dist/js/all.min.js"
       }
     },
     // Compile everything into one task with Watch Plugin
