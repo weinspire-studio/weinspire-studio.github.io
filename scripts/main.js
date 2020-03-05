@@ -187,28 +187,34 @@ function editStyle(className, property) {
 }
 
 window.addEventListener("DOMContentLoaded", function() {
-  // get the form elements defined in your form HTML above
-
+  const form = document.getElementById("contact-form");
+  const formButton = document.getElementById("contact-form-button");
   const inputs = document.querySelectorAll(".field input");
   const textArea = document.querySelector(".field textarea");
-  const formButton = document.getElementById("contact-form-button");
   let formElements = Array.prototype.slice.call(inputs);
-  formElements.push(textArea);
   let validName = false;
   let validEmail = false;
   let validText = true;
-
-  // window.addEventListener("DOMContentLoaded", () => {
+  formElements.push(textArea);
   textArea.value = "";
-  // formElements.forEach(formEl => {
-  //   formEl.setCustomValidity("");
-  // });
-  // });
+
+  // handle the form submission event
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    if (!formButton.classList.contains("disabled")) {
+      ajax(form.method, form.action, data, success, error);
+    }
+  });
 
   formElements.forEach(formEl => {
     let visitedFlag = false;
     formEl.addEventListener("keyup", () => {
       let formElType = formEl.dataset.type;
+      let classes = {
+        add: [],
+        remove: []
+      };
       if (formElType === "name") {
         if (formEl.value.length !== 0) visitedFlag = true;
         if (visitedFlag) {
@@ -227,12 +233,10 @@ window.addEventListener("DOMContentLoaded", function() {
         if (visitedFlag) {
           validEmail = validateEmail(formEl);
           if (validEmail) {
-            formEl.classList.remove("input-error");
-            formEl.classList.remove("input-error-email");
+            formEl.classList.remove("input-error", "input-error-email");
             formEl.classList.add("input-correct");
           } else {
-            formEl.classList.add("input-error");
-            formEl.classList.add("input-error-email");
+            formEl.classList.add("input-error", "input-error-email");
             formEl.classList.remove("input-correct");
           }
         }
@@ -251,22 +255,14 @@ window.addEventListener("DOMContentLoaded", function() {
         }
       }
       if (validName && validEmail && validText) {
-        formButton.classList.add("button-shake");
-        formButton.classList.add("button-active");
-        formButton.classList.remove("button-inactive");
-        formButton.classList.remove("disabled");
+        formButton.classList.add("button-shake", "button-active");
+        formButton.classList.remove("button-inactive", "disabled");
       } else {
-        formButton.classList.add("disabled");
-        formButton.classList.add("button-inactive");
-        formButton.classList.remove("button-active");
-        formButton.classList.remove("button-shake");
+        formButton.classList.add("disabled", "button-inactive");
+        formButton.classList.remove("button-active", "button-shake");
       }
     });
   });
-
-  let form = document.getElementById("contact-form");
-  // let formButton = document.getElementById("contact-form-button");
-  let formStatus = document.getElementById("contact-form-status");
 
   // Success and Error functions for after the form is submitted
   function success() {
@@ -274,7 +270,6 @@ window.addEventListener("DOMContentLoaded", function() {
     formElements.forEach(formEl => {
       formEl.classList.remove("input-correct");
     });
-    // formEl.classList.add("input-error");
     formButton.classList.remove("button-active");
     formButton.classList.add("button-inactive");
     formButton.classList.add("disabled");
@@ -288,15 +283,6 @@ window.addEventListener("DOMContentLoaded", function() {
       "We are sorry! The message could not be sent, please try again. If the problem persists, you can reach to us by our social networks!";
     showMessage();
   }
-
-  // handle the form submission event
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    var data = new FormData(form);
-    if (!formButton.classList.contains("disabled")) {
-      ajax(form.method, form.action, data, success, error);
-    }
-  });
 });
 
 // helper function for sending an AJAX request
@@ -314,84 +300,6 @@ function ajax(method, url, data, success, error) {
   };
   xhr.send(data);
 }
-
-function validateForm() {
-  // const inputs = document.querySelectorAll(".field input");
-  // const textArea = document.querySelector(".field textarea");
-  // const formButton = document.getElementById("contact-form-button");
-  // let formElements = Array.prototype.slice.call(inputs);
-  // formElements.push(textArea);
-  // let validName = false;
-  // let validEmail = false;
-  // let validText = true;
-  // // TODO: reset textarea in largeScreenCode (not adding a new listener)
-  // window.addEventListener("DOMContentLoaded", () => {
-  //   textArea.value = "";
-  //   // formElements.forEach(formEl => {
-  //   //   formEl.setCustomValidity("");
-  //   // });
-  // });
-  // formElements.forEach(formEl => {
-  //   let visitedFlag = false;
-  //   formEl.addEventListener("keyup", () => {
-  //     let formElType = formEl.dataset.type;
-  //     if (formElType === "name") {
-  //       if (formEl.value.length !== 0) visitedFlag = true;
-  //       if (visitedFlag) {
-  //         validName = validateName(formEl);
-  //         if (validName) {
-  //           formEl.classList.remove("input-error");
-  //           formEl.classList.add("input-correct");
-  //         } else {
-  //           formEl.classList.remove("input-correct");
-  //           formEl.classList.add("input-error");
-  //         }
-  //       }
-  //     }
-  //     if (formElType === "email") {
-  //       if (formEl.value.length !== 0) visitedFlag = true;
-  //       if (visitedFlag) {
-  //         validEmail = validateEmail(formEl);
-  //         if (validEmail) {
-  //           formEl.classList.remove("input-error");
-  //           formEl.classList.remove("input-error-email");
-  //           formEl.classList.add("input-correct");
-  //         } else {
-  //           formEl.classList.add("input-error");
-  //           formEl.classList.add("input-error-email");
-  //           formEl.classList.remove("input-correct");
-  //         }
-  //       }
-  //     }
-  //     if (formElType === "text") {
-  //       if (formEl.value.length !== 0) visitedFlag = true;
-  //       if (visitedFlag) {
-  //         validText = validateText(formEl);
-  //         if (validText) {
-  //           formEl.classList.add("input-correct");
-  //           formEl.classList.remove("input-error");
-  //         } else {
-  //           formEl.classList.add("input-error");
-  //           formEl.classList.remove("input-correct");
-  //         }
-  //       }
-  //     }
-  //     if (validName && validEmail && validText) {
-  //       formButton.classList.add("button-shake");
-  //       formButton.classList.add("button-active");
-  //       formButton.classList.remove("button-inactive");
-  //       formButton.classList.remove("disabled");
-  //     } else {
-  //       formButton.classList.add("disabled");
-  //       formButton.classList.add("button-inactive");
-  //       formButton.classList.remove("button-active");
-  //       formButton.classList.remove("button-shake");
-  //     }
-  //   });
-  // });
-}
-
-// validateForm();
 
 function validateName(element) {
   if (
@@ -422,10 +330,8 @@ function validateText(element) {
 }
 
 function showMessage() {
-  // const message = document.querySelector(".form-fields .field-message");
   const message = document.querySelector(".field-status");
   message.classList.toggle("visible");
-
   setTimeout(() => {
     message.classList.toggle("visible");
   }, 8000);

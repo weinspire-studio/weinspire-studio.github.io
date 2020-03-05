@@ -494,7 +494,7 @@ nav {
 }
 
 #bg-image {
-  height: 100%;
+  height: 98%;
   width: 100%;
   position: absolute;
   background-image: linear-gradient(155deg, #001029, #003a58, #006985, #009ba9, #43cfc3);
@@ -937,8 +937,9 @@ nav {
       flex-direction: column;
   background-color: black;
   padding: 0.25em 0.75em;
-  padding: 0 1em;
+  margin-top: 10%;
   color: rgba(250, 250, 250, 0.8);
+  padding: 0 1em;
 }
 @media screen and (min-width: 479px) {
   #footer {
