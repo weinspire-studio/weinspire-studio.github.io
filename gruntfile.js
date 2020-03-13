@@ -30,7 +30,7 @@ module.exports = function(grunt) {
           "head-script-disabled": true,
           "style-disabled": true
         },
-        src: ["index-non_critical.html"]
+        src: ["index-dev.html"]
       }
     },
     // compiles to sass
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
           //   // height: 900,
           //   // width: 1200
         },
-        src: "./html/index-non_critical.html",
+        src: "./html/index-dev.html",
         dest: "./index.html",
         uncritical: "./css/main-uncritical.css",
         extract: true
@@ -132,7 +132,7 @@ module.exports = function(grunt) {
         tasks: ["jshint", "babel", "uglify"]
       },
       html: {
-        files: "./html/index-non_critical.html",
+        files: "./html/index-dev.html",
         tasks: ["htmlhint", "critical"]
       }
     }

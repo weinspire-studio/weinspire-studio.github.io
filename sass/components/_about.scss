@@ -1,0 +1,14 @@
+#section-about {
+    background-color: pink;
+    min-height: 50%;
+    @include padding-map($content-wrap-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .section-title {
+        padding-top: 0;
+        margin-top: -10%;
+    }
+}
+

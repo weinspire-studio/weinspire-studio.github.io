@@ -337,6 +337,45 @@ function showMessage() {
   }, 8000);
 }
 
+const list = document.querySelectorAll("#section-portfolio li");
+// console.log(list);
+list.forEach(l => {
+  l.addEventListener("mouseover", expand);
+  l.addEventListener("mouseleave", contract);
+});
+
+// list[0].addEventListener("mouseover", () => {
+//   console.log("expandedasd");
+// });
+
+function expand() {
+  if (this.nextElementSibling !== null) {
+    this.classList.remove("contracted");
+    this.classList.add("expanded");
+    this.lastElementChild.classList.add("show-caption");
+    let siblings = getAllSiblings(this, this.parentElement);
+    siblings.forEach(el => {
+      el.classList.remove("expanded");
+      el.classList.add("contracted");
+    });
+  }
+}
+
+function contract() {
+  this.classList.remove("expanded");
+  this.lastElementChild.classList.remove("show-caption");
+  let siblings = getAllSiblings(this, this.parentElement);
+  siblings.forEach(el => {
+    el.classList.remove("contracted");
+  });
+}
+
+function getAllSiblings(element, parent) {
+  const children = [...parent.children];
+  children.length = 5;
+  return children.filter(child => child !== element);
+}
+
 //// /////////// /////
 // changes the href of a navLink depending on whether the site is in home or in another page.
 // const anchorHome = document.querySelector(".nav-home");
@@ -363,23 +402,16 @@ function showMessage() {
 // }
 
 // TODO:
-
 // shadows
-// navbar mobile open bug (z-index)
-// bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes)
 // Logos and svg background (bottom on mobile)
-// check if elses (reduce them)
 // when navbar mobile opens, click everywhere to close it.
 // accesibility svg titles - svg sprite
 // inline svg catched?! see css tricks tutorial
-// grunt?
 // page loader!!
 // dynamic text! See youtube programming video!!
 // social network in navbar?
-// bugs: button focus blue, green inputs after submit
-
-//   "grunt-contrib-jshint": "latest",
-//   "jshint-stylish": "latest",
-//   "grunt-contrib-uglify": "latest",
-//   "grunt-contrib-cssmin": "latest",
-//   "grunt-contrib-watch": "latest"
+// bugs: button focus blue (in chrome),
+// navbar mobile open bug (z-index) DONE
+// bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
+// green inputs after submit DONE
+// in portfolio: if image stretches more than image witdh: repeat: round or size cover

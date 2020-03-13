@@ -1,0 +1,73 @@
+#services-grid {
+    min-height: 100%;
+    text-align: center;
+    @include padding-map($content-wrap-sm);
+    @include media-query ($md) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas: 
+        'info-top icon-top'
+        'icon-mid info-mid'
+        'info-btm icon-btm';
+        justify-items: center;
+        min-height: 1200px;
+    }
+}
+
+#services-grid p {
+    @include padding-map ($content-wrap-hr);
+    @include media-query ($md, $lg) {
+        padding: 0;
+    }
+}
+
+#grid-top-info {
+    grid-area: info-top;
+    & h2 {
+        padding-top: 0;
+        @include media-query ($md) {
+                padding-top: 3em;
+        }
+    }
+}
+#grid-top-icon {
+    grid-area: icon-top;
+}
+#grid-mid-icon {
+    grid-area: icon-mid;
+}
+#grid-mid-info {
+    grid-area: info-mid;
+}
+#grid-btm-info {
+    grid-area: info-btm;
+}
+#grid-btm-icon {
+    grid-area: icon-btm;
+}
+
+.service-icon {
+    align-self: center;
+    padding-top: 2em;
+    & .icon-facebook {
+        height: 200px;
+        width: 200px;
+        fill: pink;
+    }
+    @include media-query ($md) {
+        padding-top: 0;
+    }
+}
+
+// TODO: section title, and other common elements in base with same class.
+.section-title {
+    text-align: center;
+    padding: 2em 0 1em;
+    text-transform: uppercase;
+}
+
+.service-title {
+    padding: 3em 0 1em;
+}
+
