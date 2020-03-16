@@ -357,6 +357,22 @@ list.forEach(function (l) {
 }); // list[0].addEventListener("mouseover", () => {
 //   console.log("expandedasd");
 // });
+// $("#section-portfolio li").hover(
+//   function() {
+//     $(this).addClass("expanded");
+//     $(this)
+//       .siblings()
+//       .addClass("contracted");
+//     console.log($(this));
+//     console.log($(this).siblings());
+//   },
+//   function() {
+//     $(this).removeClass("expanded");
+//     $(this)
+//       .siblings()
+//       .removeClass("contracted");
+//   }
+// );
 
 function expand() {
   if (this.nextElementSibling !== null) {
@@ -422,4 +438,14 @@ function getAllSiblings(element, parent) {
 // bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
 // green inputs after submit DONE
 // in portfolio: if image stretches more than image witdh: repeat: round or size cover
+
+
+$(".destaques-item").hover(function () {
+  $(this).addClass("destaques-item-highlight");
+  $(this).siblings().addClass("destaques-item-lowlight");
+}, function () {
+  $(this).removeClass("destaques-item-highlight");
+  $(this).siblings().removeClass("destaques-item-lowlight");
+  console.log($(this).siblings());
+});
 //# sourceMappingURL=main-es5.js.map

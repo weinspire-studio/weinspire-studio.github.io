@@ -674,23 +674,9 @@ nav {
   padding: 3em 0 1em;
 }
 
-*, *:after, *:before {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  border: 0;
-}
-
 #section-portfolio {
   padding: 1em;
   height: 75%;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: center;
-      justify-content: center;
-  position: relative;
 }
 @media screen and (min-width: 479px) {
   #section-portfolio {
@@ -716,23 +702,18 @@ nav {
   background-color: whitesmoke;
   list-style: none;
   overflow: hidden;
-  padding-right: 1em;
-  padding-bottom: 1em;
-  padding-top: 1em;
-  padding-left: 1em;
-  margin-left: 1em;
+  padding: 1em;
   width: 100%;
   height: 450px;
 }
 #section-portfolio li {
   position: relative;
-  width: 20%;
+  width: calc(18% - 2px);
   height: 100%;
   float: right;
   overflow-y: hidden;
 }
 #section-portfolio .content-link {
-  position: relative;
   background-image: url("https://source.unsplash.com/850x450/?nature,water");
   transition: width 0.45s ease;
   border-left: 2px solid #808080b7;
@@ -758,14 +739,16 @@ nav {
   font-weight: 400;
   padding-top: 0.2em;
 }
+#section-portfolio ul li:nth-child(5) {
+  border-left: 2.25px solid #575757;
+  border-left-color: #464646;
+}
 #section-portfolio ul li:last-child {
   width: 0% !important;
-  background-color: green !important;
-  border-left-color: #4d4d4d;
 }
 
 .expanded {
-  width: 40% !important;
+  width: 30% !important;
 }
 
 .expanded .link-overlay {
@@ -778,6 +761,38 @@ nav {
 
 .contracted {
   width: 15% !important;
+}
+
+.destaques {
+  height: 425px;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  font-size: 0;
+  background: #ffffff;
+}
+
+.destaques-item {
+  transition: width 400ms, background-size 400ms;
+  display: inline-block;
+  vertical-align: top;
+  background: #ccc;
+  position: relative;
+  background-position: 50%;
+  width: 25%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.destaques-item-highlight {
+  width: 40%;
+}
+
+.destaques-item-lowlight {
+  width: 20%;
 }
 
 @media screen and (min-width: 801px) {
