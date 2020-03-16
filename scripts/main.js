@@ -337,12 +337,12 @@ function showMessage() {
   }, 8000);
 }
 
-const list = document.querySelectorAll("#section-portfolio li");
-// console.log(list);
-list.forEach(l => {
-  l.addEventListener("mouseover", expand);
-  l.addEventListener("mouseleave", contract);
-});
+// const list = document.querySelectorAll("#section-portfolio li");
+// // console.log(list);
+// list.forEach(l => {
+//   l.addEventListener("mouseover", expand);
+//   l.addEventListener("mouseleave", contract);
+// });
 
 // list[0].addEventListener("mouseover", () => {
 //   console.log("expandedasd");
@@ -393,6 +393,23 @@ function getAllSiblings(element, parent) {
   return children.filter(child => child !== element);
 }
 
+$("#section-portfolio li").hover(
+  function() {
+    $(this).addClass("expanded");
+    $(this)
+      .siblings()
+      .addClass("contracted");
+  },
+  function() {
+    $(this).removeClass("expanded");
+    $(this)
+      .siblings()
+      .removeClass("contracted");
+    // console.log($(this).siblings());
+    // console.log($(this));
+  }
+);
+
 //// /////////// /////
 // changes the href of a navLink depending on whether the site is in home or in another page.
 // const anchorHome = document.querySelector(".nav-home");
@@ -432,19 +449,3 @@ function getAllSiblings(element, parent) {
 // bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
 // green inputs after submit DONE
 // in portfolio: if image stretches more than image witdh: repeat: round or size cover
-
-$(".destaques-item").hover(
-  function() {
-    $(this).addClass("destaques-item-highlight");
-    $(this)
-      .siblings()
-      .addClass("destaques-item-lowlight");
-  },
-  function() {
-    $(this).removeClass("destaques-item-highlight");
-    $(this)
-      .siblings()
-      .removeClass("destaques-item-lowlight");
-    console.log($(this).siblings());
-  }
-);

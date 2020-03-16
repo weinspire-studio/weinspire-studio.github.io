@@ -347,14 +347,13 @@ function showMessage() {
   setTimeout(function () {
     message.classList.toggle("visible");
   }, 8000);
-}
-
-var list = document.querySelectorAll("#section-portfolio li"); // console.log(list);
-
-list.forEach(function (l) {
-  l.addEventListener("mouseover", expand);
-  l.addEventListener("mouseleave", contract);
-}); // list[0].addEventListener("mouseover", () => {
+} // const list = document.querySelectorAll("#section-portfolio li");
+// // console.log(list);
+// list.forEach(l => {
+//   l.addEventListener("mouseover", expand);
+//   l.addEventListener("mouseleave", contract);
+// });
+// list[0].addEventListener("mouseover", () => {
 //   console.log("expandedasd");
 // });
 // $("#section-portfolio li").hover(
@@ -373,6 +372,7 @@ list.forEach(function (l) {
 //       .removeClass("contracted");
 //   }
 // );
+
 
 function expand() {
   if (this.nextElementSibling !== null) {
@@ -403,7 +403,16 @@ function getAllSiblings(element, parent) {
   return children.filter(function (child) {
     return child !== element;
   });
-} //// /////////// /////
+}
+
+$("#section-portfolio li").hover(function () {
+  $(this).addClass("expanded");
+  $(this).siblings().addClass("contracted");
+}, function () {
+  $(this).removeClass("expanded");
+  $(this).siblings().removeClass("contracted"); // console.log($(this).siblings());
+  // console.log($(this));
+}); //// /////////// /////
 // changes the href of a navLink depending on whether the site is in home or in another page.
 // const anchorHome = document.querySelector(".nav-home");
 // const anchorContact = document.querySelector(".nav-contact");
@@ -438,14 +447,4 @@ function getAllSiblings(element, parent) {
 // bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
 // green inputs after submit DONE
 // in portfolio: if image stretches more than image witdh: repeat: round or size cover
-
-
-$(".destaques-item").hover(function () {
-  $(this).addClass("destaques-item-highlight");
-  $(this).siblings().addClass("destaques-item-lowlight");
-}, function () {
-  $(this).removeClass("destaques-item-highlight");
-  $(this).siblings().removeClass("destaques-item-lowlight");
-  console.log($(this).siblings());
-});
 //# sourceMappingURL=main-es5.js.map

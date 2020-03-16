@@ -1,5 +1,5 @@
 #section-portfolio {
-    @include padding-map ($content-wrap-sm);
+    // @include padding-map ($content-wrap-sm);
     height: 75%;
     // display: flex;
     // flex-direction: column;
@@ -11,9 +11,8 @@
         list-style: none;
         overflow: hidden;
         padding: 1em;
-        // margin-left: 1em;
         width: 100%;
-        height: 450px;
+        height: 475px;
         // height: 425px;
         // margin: 0;
         // padding: 0;
@@ -27,7 +26,7 @@
 
     li {
         position: relative;
-        width: calc(18% - 2px);
+        width: calc(20% - 2px);
         height: 100%;
         float: right;
         overflow-y: hidden;
@@ -106,38 +105,38 @@
 }
 
 .contracted {
-    width: 15%!important;
+    width: 17.5%!important;
 }
 
 // 
 // 
 
-.destaques {
-    height: 425px;
-    margin: 0;
-    padding: 0;
-    color: #fff;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 100%;
-    font-size: 0;
-    background: #ffffff;
-  }
-  .destaques-item {
-    transition: width 400ms, background-size 400ms;
-    display: inline-block;
-    vertical-align: top;
-    background: #ccc;
-    position: relative;
-    background-position: 50%;
-    width: 25%;
-    height: 100%;
-    overflow: hidden;
-  }
+// .destaques {
+//     height: 425px;
+//     margin: 0;
+//     padding: 0;
+//     color: #fff;
+//     white-space: nowrap;
+//     overflow: hidden;
+//     width: 100%;
+//     font-size: 0;
+//     background: #ffffff;
+//   }
+//   .destaques-item {
+//     transition: width 400ms, background-size 400ms;
+//     display: inline-block;
+//     vertical-align: top;
+//     background: #ccc;
+//     position: relative;
+//     background-position: 50%;
+//     width: 25%;
+//     height: 100%;
+//     overflow: hidden;
+//   }
   
-  .destaques-item-highlight {
-    width: 40%;
-  }
-  .destaques-item-lowlight {
-    width: 20%;
-  }
+//   .destaques-item-highlight {
+//     width: 40%;
+//   }
+//   .destaques-item-lowlight {
+//     width: 20%;
+//   }
