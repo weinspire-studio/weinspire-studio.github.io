@@ -727,7 +727,7 @@ nav {
 }
 
 .expanded {
-  width: 30% !important;
+  width: calc(30% - 2px) !important;
 }
 
 .expanded .link-overlay {
@@ -739,7 +739,7 @@ nav {
 }
 
 .contracted {
-  width: 17.5% !important;
+  width: calc(17.5% - 2px) !important;
 }
 
 @media screen and (min-width: 801px) {
