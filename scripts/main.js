@@ -506,4 +506,4 @@ var swiper = new Swiper(".swiper-container", {
 // green inputs after submit DONE
 // in portfolio: if image stretches more than image witdh: repeat: round or size cover
 // lazy - loading!
-//
+//download swipper only on mobile? conditional script

@@ -674,9 +674,6 @@ nav {
   padding: 3em 0 1em;
 }
 
-#section-portfolio {
-  height: 100%;
-}
 #section-portfolio ul {
   list-style: none;
 }
@@ -780,7 +777,7 @@ nav {
 }
 
 .swiper-container {
-  width: 100%;
+  width: 90%;
   height: 450px;
   z-index: 0 !important;
 }
