@@ -369,12 +369,16 @@ var swiper = new Swiper(".swiper-container", {
   grabCursor: true,
   cubeEffect: {
     shadow: false,
-    slideShadows: false,
+    slideShadows: true,
     shadowOffset: 20,
     shadowScale: 0.94
   },
   pagination: {
     el: ".swiper-pagination"
+  },
+  navigation: {
+    nextEl: "swiper-button-next",
+    prevEl: "swiper-button-next"
   }
 }); // var mySwiper = new Swiper(".swiper-container", {
 //   // Optional parameters
