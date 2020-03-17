@@ -675,55 +675,113 @@ nav {
 }
 
 #section-portfolio {
-  height: 75%;
+  height: 100%;
 }
 #section-portfolio ul {
-  background-color: whitesmoke;
   list-style: none;
-  overflow: hidden;
-  padding: 1em;
-  width: 100%;
-  height: 475px;
+}
+@media screen and (min-width: 801px) {
+  #section-portfolio ul {
+    background-color: whitesmoke;
+    overflow: hidden;
+    padding: 1em;
+    width: 100%;
+    height: 475px;
+    margin-left: -0.38em;
+  }
 }
 #section-portfolio li {
-  position: relative;
-  width: calc(20% - 2px);
-  height: 100%;
-  float: right;
-  overflow-y: hidden;
+  height: 450px;
 }
-#section-portfolio .content-link {
-  background-image: url("https://source.unsplash.com/850x450/?nature,water");
-  transition: width 0.45s ease;
-  border-left: 2px solid #808080b7;
-  box-shadow: 3px 4px 8px 1px #2b2b2b;
+@media screen and (min-width: 801px) {
+  #section-portfolio li {
+    height: 100%;
+    position: relative;
+    width: calc(20% - 2px);
+    float: right;
+    overflow-y: hidden;
+  }
 }
-#section-portfolio .link-overlay {
+
+.content-link:first-child {
+  background-image: url("https://source.unsplash.com/850x450/?nature,sky");
+}
+.content-link:nth-child(2) {
+  background-image: url("https://source.unsplash.com/850x450/?nature,fire");
+}
+.content-link:nth-child(3) {
+  background-image: url("https://source.unsplash.com/850x450/?nature,stone");
+}
+.content-link:nth-child(4) {
+  background-image: url("https://source.unsplash.com/850x450/?nature,tree");
+}
+.content-link:last-child {
+  background-image: url("https://source.unsplash.com/850x450/?nature,light");
+  border-left-color: #5c5c5c;
+}
+@media screen and (min-width: 801px) {
+  .content-link {
+    transition: width 0.45s ease;
+    border-left: 2px solid #808080b7;
+    box-shadow: 3px 4px 8px 1px #2b2b2b;
+  }
+}
+@media screen and (min-width: 801px) {
+  .content-link .link-overlay {
+    width: 100%;
+    height: 100%;
+    transition: 0.55s ease background-color;
+  }
+  .content-link .link-overlay#overlay-1 {
+    background-color: rgba(67, 207, 195, 0.4);
+  }
+  .content-link .link-overlay#overlay-2 {
+    background-color: rgba(0, 155, 169, 0.4);
+  }
+  .content-link .link-overlay#overlay-3 {
+    background-color: rgba(0, 105, 133, 0.4);
+  }
+  .content-link .link-overlay#overlay-4 {
+    background-color: rgba(0, 58, 88, 0.4);
+  }
+  .content-link .link-overlay#overlay-5 {
+    background-color: rgba(0, 16, 41, 0.4);
+  }
+}
+@media screen and (min-width: 801px) {
+  .content-link .link-caption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    padding: 1.25em 2em;
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+  }
+  .content-link .link-caption h6 {
+    font-weight: 400;
+    padding-top: 0.2em;
+  }
+  .content-link .link-caption#caption-1 {
+    background-color: #2ba79d;
+  }
+  .content-link .link-caption#caption-2 {
+    background-color: #008490;
+  }
+  .content-link .link-caption#caption-3 {
+    background-color: #006985;
+  }
+  .content-link .link-caption#caption-4 {
+    background-color: #003a58;
+  }
+  .content-link .link-caption#caption-5 {
+    background-color: #001029;
+  }
+}
+
+.swiper-container {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 128, 255, 0.459);
-  transition: 0.55s ease background-color;
-}
-#section-portfolio .link-caption {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background-color: blue;
-  color: white;
-  padding: 1.25em 2em;
-  transform: translateY(100%);
-  transition: transform 0.5s ease;
-}
-#section-portfolio .link-caption h6 {
-  font-weight: 400;
-  padding-top: 0.2em;
-}
-#section-portfolio ul li:nth-child(5) {
-  border-left: 2px solid #575757;
-  border-left-color: #494848;
-}
-#section-portfolio ul li:last-child {
-  width: 0% !important;
+  height: 450px;
 }
 
 .expanded {

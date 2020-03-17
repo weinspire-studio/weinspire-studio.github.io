@@ -1,13 +1,5 @@
 "use strict";
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
 // jshint esversion: 6
 //VARIABLES
 var siteWrapper = document.querySelector("#site-wrapper");
@@ -30,7 +22,8 @@ var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const svgBac
 
 var hasScrollListener = false;
 var hasClickListener = false;
-var hasHoverListener = false; // jQuery for animated scroll.
+var hasHoverListener = false;
+var hasHoverListenerOnPortolio = false; // jQuery for animated scroll.
 
 $("#up-arrow").on("click", function () {
   var siteWrapperTop = $("#site-wrapper").position().top;
@@ -43,7 +36,7 @@ if (notMobileScreenMQ.matches) {
   largeScreenCode();
 } else {
   smallScreenCode();
-} //adds listener that executes when screen width changes (passing by 801px).
+} //adds listener that executes code when screen width changes (passing by 801px).
 
 
 notMobileScreenMQ.addListener(function () {
@@ -65,6 +58,7 @@ function largeScreenCode() {
 
   restoreDesktopNav();
   styleAnchorOnHover();
+  animateImages();
 } //code that executes only in cellphone screens (< 801px).
 
 
@@ -75,6 +69,10 @@ function smallScreenCode() {
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
+  }
+
+  if (hasHoverListenerOnPortolio) {
+    $("#section-portfolio li").unbind("mouseenter mouseleave");
   }
 } // animation effect (underline) for desktop nav anchors.
 
@@ -347,7 +345,69 @@ function showMessage() {
   setTimeout(function () {
     message.classList.toggle("visible");
   }, 8000);
-} // const list = document.querySelectorAll("#section-portfolio li");
+}
+
+function animateImages() {
+  $("#section-portfolio li").hover(function () {
+    $(this).addClass("expanded");
+    $(this).siblings().addClass("contracted");
+    $(this).children().last().addClass("show-caption");
+  }, function () {
+    $(this).removeClass("expanded");
+    $(this).siblings().removeClass("contracted");
+    $(this).children().last().removeClass("show-caption");
+  });
+  hasHoverListenerOnPortolio = true;
+}
+
+var swiper = new Swiper(".swiper-container", {
+  // pagination: ".swiper-pagination",
+  // slidesPerView: "auto",
+  // paginationClickable: true,
+  // spaceBetween: 0
+  effect: "cube",
+  grabCursor: true,
+  cubeEffect: {
+    shadow: false,
+    slideShadows: false,
+    shadowOffset: 20,
+    shadowScale: 0.94
+  },
+  pagination: {
+    el: ".swiper-pagination"
+  }
+}); // var mySwiper = new Swiper(".swiper-container", {
+//   // Optional parameters
+//   direction: "vertical",
+//   loop: true,
+//   // If we need pagination
+//   pagination: {
+//     el: ".swiper-pagination"
+//   },
+//   // Navigation arrows
+//   navigation: {
+//     nextEl: ".swiper-button-next",
+//     prevEl: ".swiper-button-prev"
+//   },
+//   // And if we need scrollbar
+//   scrollbar: {
+//     el: ".swiper-scrollbar"
+//   }
+// });
+//
+//
+// -----------------
+// $("#section-portfolio ul").slick({
+//   slide: "li"
+// });
+// $("#section-portfolio ul").slick({
+//   autoplay: true,
+//   autoplaySpeed: 2000,
+//   fade: true,
+//   arrows: false
+// });
+// Plain JS way (portfolio).
+// const list = document.querySelectorAll("#section-portfolio li");
 // // console.log(list);
 // list.forEach(l => {
 //   l.addEventListener("mouseover", expand);
@@ -356,63 +416,32 @@ function showMessage() {
 // list[0].addEventListener("mouseover", () => {
 //   console.log("expandedasd");
 // });
-// $("#section-portfolio li").hover(
-//   function() {
-//     $(this).addClass("expanded");
-//     $(this)
-//       .siblings()
-//       .addClass("contracted");
-//     console.log($(this));
-//     console.log($(this).siblings());
-//   },
-//   function() {
-//     $(this).removeClass("expanded");
-//     $(this)
-//       .siblings()
-//       .removeClass("contracted");
+// function expand() {
+//   if (this.nextElementSibling !== null) {
+//     this.classList.remove("contracted");
+//     this.classList.add("expanded");
+//     this.lastElementChild.classList.add("show-caption");
+//     let siblings = getAllSiblings(this, this.parentElement);
+//     siblings.forEach(el => {
+//       el.classList.remove("expanded");
+//       el.classList.add("contracted");
+//     });
 //   }
-// );
-
-
-function expand() {
-  if (this.nextElementSibling !== null) {
-    this.classList.remove("contracted");
-    this.classList.add("expanded");
-    this.lastElementChild.classList.add("show-caption");
-    var siblings = getAllSiblings(this, this.parentElement);
-    siblings.forEach(function (el) {
-      el.classList.remove("expanded");
-      el.classList.add("contracted");
-    });
-  }
-}
-
-function contract() {
-  this.classList.remove("expanded");
-  this.lastElementChild.classList.remove("show-caption");
-  var siblings = getAllSiblings(this, this.parentElement);
-  siblings.forEach(function (el) {
-    el.classList.remove("contracted");
-  });
-}
-
-function getAllSiblings(element, parent) {
-  var children = _toConsumableArray(parent.children);
-
-  children.length = 5;
-  return children.filter(function (child) {
-    return child !== element;
-  });
-}
-
-$("#section-portfolio li").hover(function () {
-  $(this).addClass("expanded");
-  $(this).siblings().addClass("contracted");
-}, function () {
-  $(this).removeClass("expanded");
-  $(this).siblings().removeClass("contracted"); // console.log($(this).siblings());
-  // console.log($(this));
-}); //// /////////// /////
+// }
+// function contract() {
+//   this.classList.remove("expanded");
+//   this.lastElementChild.classList.remove("show-caption");
+//   let siblings = getAllSiblings(this, this.parentElement);
+//   siblings.forEach(el => {
+//     el.classList.remove("contracted");
+//   });
+// }
+// function getAllSiblings(element, parent) {
+//   const children = [...parent.children];
+//   children.length = 5;
+//   return children.filter(child => child !== element);
+// }
+//// /////////// /////
 // changes the href of a navLink depending on whether the site is in home or in another page.
 // const anchorHome = document.querySelector(".nav-home");
 // const anchorContact = document.querySelector(".nav-contact");

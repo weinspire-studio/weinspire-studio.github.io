@@ -1,95 +1,121 @@
 #section-portfolio {
     // @include padding-map ($content-wrap-sm);
-    height: 75%;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // position: relative;
-
+    height: 100%;
     ul {
-        background-color: $background-light;
+        // height: 500px;
         list-style: none;
-        overflow: hidden;
-        padding: 1em;
-        width: 100%;
-        height: 475px;
-        // height: 425px;
-        // margin: 0;
-        // padding: 0;
-        // color: #fff;
-        // white-space: nowrap;
-        // overflow: hidden;
-        // width: 100%;
-        // font-size: 0;
-        // background: #003469;
+        @include media-query ($md){
+            background-color: $background-light;
+            overflow: hidden;
+            padding: 1em;
+            width: 100%;
+            height: 475px;
+            margin-left: -.38em;
+        }
     }
-
     li {
-        position: relative;
-        width: calc(20% - 2px);
-        height: 100%;
-        float: right;
-        overflow-y: hidden;
-        // display: inline-block;
-        // vertical-align: top;
-//         -moz-transition: width 400ms, background-size 400ms;
-//   -o-transition: width 400ms, background-size 400ms;
-//   -webkit-transition: width 400ms, background-size 400ms;
-//   transition: width 400ms, background-size 400ms;
-//   display: inline-block;
-//   vertical-align: top;
-//   background: #ccc;
-//   position: relative;
-//   background-position: 50%;
-//   width: 23%;
-//   height: 100%;
-//   overflow: hidden;
+        height: 450px;
+        @include media-query ($md) {
+            height: 100%;
+            position: relative;
+            width: calc(20% - 2px);
+            float: right;
+            overflow-y: hidden;
+        }
     }
+}
 
-    .content-link {
-        // position: relative;
-        background-image: url("https://source.unsplash.com/850x450/?nature,water");
+.content-link {
+    &:first-child {
+        background-image: url("https://source.unsplash.com/850x450/?nature,sky");
+    };
+    &:nth-child(2) {
+        background-image: url("https://source.unsplash.com/850x450/?nature,fire");
+    };
+    &:nth-child(3) {
+        background-image: url("https://source.unsplash.com/850x450/?nature,stone");
+    };
+    &:nth-child(4) {
+        background-image: url("https://source.unsplash.com/850x450/?nature,tree");
+    };
+    &:last-child {
+        background-image: url("https://source.unsplash.com/850x450/?nature,light");
+        border-left-color: #5c5c5c;
+    }
+    @include media-query ($md) {
+        // background-image: url("https://source.unsplash.com/850x450/?nature,water");
         transition: width 0.45s ease;
         border-left: 2px solid #808080b7;
         box-shadow: 3px 4px 8px 1px #2b2b2b;
     }
-
     .link-overlay {
-        width:100%;
-        height:100%;
-        background-color: rgba(0, 128, 255, 0.459);
-        transition: .55s ease background-color;
-    }
+        @include media-query ($md) {
+            width:100%;
+            height:100%;
+            // background-color: rgba(0, 128, 255, 0.459);
+            transition: .55s ease background-color;
 
-    .link-caption {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        background-color: blue;
-        color: white;
-        padding: 1.25em 2em;
-        transform: translateY(100%);
-        transition: transform .5s ease;
+            &#overlay-1 {
+                background-color: rgba($blue-theme-lighter, .4);
+            };
+            &#overlay-2 {
+                background-color: rgba($blue-theme-light, .4);
+            };
+            &#overlay-3 {
+                background-color: rgba($blue-theme-middle, .4);
+            };
+            &#overlay-4 {
+                background-color: rgba($blue-theme-dark, .4);
+            };
+            &#overlay-5 {
+                background-color: rgba($blue-theme-darker, .4);
+            }
 
-        h6 {
-            font-weight: 400;
-            padding-top: .2em;
         }
     }
+    .link-caption {
+        @include media-query ($md) {
+    
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            // background-color: blue;
+            color: white;
+            padding: 1.25em 2em;
+            transform: translateY(100%);
+            transition: transform .5s ease;
+            h6 {
+                font-weight: 400;
+                padding-top: .2em;
+            }
 
-    ul li:nth-child(5) {
-        border-left: 2px solid #575757;
-        border-left-color: #494848;
-    }
-
-    ul li:last-child {
-        width: 0%!important;
-        // width: 200px;
-        // background-color: green;
-        // border-left-color: #363636!important;
-        // display: inline-block;
+            &#caption-1 {
+                background-color: darken($blue-theme-lighter, 12.5%);
+            };
+            &#caption-2 {
+                background-color: darken($blue-theme-light, 5%);
+            };
+            &#caption-3 {
+                background-color: $blue-theme-middle;
+            };
+            &#caption-4 {
+                background-color: $blue-theme-dark;
+            };
+            &#caption-5 {
+                background-color: $blue-theme-darker;
+            }
+        }
     }
 }
+
+
+.swiper-container {
+    width: 100%;
+    height: 450px;
+    // width: 100%;
+    // height: 100%;
+}
+
 
 // Style Classes
 .expanded {

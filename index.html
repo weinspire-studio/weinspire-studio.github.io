@@ -9,6 +9,8 @@
     </style>
     <link rel="preload" href="./dist/css/main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="./dist/css/main.min.css"></noscript>
+    <link rel="preload" href="https://unpkg.com/swiper/css/swiper.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"></noscript>
     <script>!function(n){"use strict";n.loadCSS||(n.loadCSS=function(){});var o=loadCSS.relpreload={};if(o.support=function(){var e;try{e=n.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),o.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},o.poly=function(){if(!o.support())for(var t=n.document.getElementsByTagName("link"),e=0;e<t.length;e++){var a=t[e];"preload"!==a.rel||"style"!==a.getAttribute("as")||a.getAttribute("data-loadcss")||(a.setAttribute("data-loadcss",!0),o.bindMediaToggle(a))}},!o.support()){o.poly();var t=n.setInterval(o.poly,500);n.addEventListener?n.addEventListener("load",function(){o.poly(),n.clearInterval(t)}):n.attachEvent&&n.attachEvent("onload",function(){o.poly(),n.clearInterval(t)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:n.loadCSS=loadCSS}("undefined"!=typeof global?global:this);</script>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WdhyyTh89ZNpQ.woff2" as="font" crossorigin>
@@ -194,46 +196,48 @@
         <h1 class="section-title">
           Our Last Works
         </h1>
-        <ul>
-          <li class="content-link">
-            <div class="link-overlay"></div>
-            <div class="link-caption">
+        <div class="swiper-container">
+        <ul class="swiper-wrapper">
+          <li class="content-link swiper-slide">
+            <div class="link-overlay" id="overlay-1"></div>
+            <div class="link-caption" id="caption-1">
               <h4>Job name</h4>
-                <h6>Image description with some details.</h6>
+              <h6>Image description with some details.</h6>
             </div>
-          </li><li class="content-link">
-            <div class="link-overlay"></div>
-            <div class="link-caption">
+          </li><li class="content-link swiper-slide">
+            <div class="link-overlay" id="overlay-2"></div>
+            <div class="link-caption" id="caption-2">
               <h4>Job name</h4>
-                <h6>Image description with some details.</h6>
+              <h6>Image description with some details.</h6>
             </div>
-          </li><li class="content-link">
-            <div class="link-overlay"></div>
-            <div class="link-caption">
+          </li><li class="content-link swiper-slide">
+            <div class="link-overlay" id="overlay-3"></div>
+            <div class="link-caption" id="caption-3">
               <h4>Job name</h4>
-                <h6>Image description with some details.</h6>
+              <h6>Image description with some details.</h6>
             </div>
-          </li><li class="content-link">
-            <div class="link-overlay"></div>
-            <div class="link-caption">
+          </li><li class="content-link swiper-slide">
+            <div class="link-overlay" id="overlay-4"></div>
+            <div class="link-caption" id="caption-4">
               <h4>Job name</h4>
-                <h6>Image description with some details.</h6>
+              <h6>Image description with some details.</h6>
+            </div>
+          </li><li class="content-link swiper-slide">
+            <div class="link-overlay" id="overlay-5"></div>
+            <div class="link-caption" id="caption-5">
+              <h4>Job name</h4>
+              <h6>Image description with some details.</h6>
             </div>
           </li>
-          <li class="content-link">
-            <div class="link-overlay"></div>
-            <div class="link-caption">
-              <h4>Job name</h4>
-                <h6>Image description with some details.</h6>
-            </div>
-          </li>
-          <li>
+          <!-- <li> -->
             <!-- <div></div> -->
             <!-- <h1>Job name</h1>
               <h2>Job description.</h2> -->
-          </li>
+          <!-- </li> -->
           <!-- <li class='fixed'></li> -->
         </ul>
+        <div class="swiper-pagination"></div>
+      </div>
       </section>
 
       <!-- eof portfolio -->
@@ -473,6 +477,12 @@
       crossorigin="anonymous"
     ></script> -->
     <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+    <!-- <script
+      defer
+      type="text/javascript"
+      src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script> -->
+    <script defer src="https://unpkg.com/swiper/js/swiper.min.js"></script>
     <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- JS file -->
     <script defer src="./dist/js/all.min.js"></script>

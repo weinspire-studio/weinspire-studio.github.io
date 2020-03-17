@@ -23,6 +23,7 @@ const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 let hasScrollListener = false;
 let hasClickListener = false;
 let hasHoverListener = false;
+let hasHoverListenerOnPortolio = false;
 
 // jQuery for animated scroll.
 $("#up-arrow").on("click", function() {
@@ -42,7 +43,7 @@ if (notMobileScreenMQ.matches) {
   smallScreenCode();
 }
 
-//adds listener that executes when screen width changes (passing by 801px).
+//adds listener that executes code when screen width changes (passing by 801px).
 notMobileScreenMQ.addListener(() => {
   if (notMobileScreenMQ.matches) {
     largeScreenCode();
@@ -61,6 +62,7 @@ function largeScreenCode() {
   }
   restoreDesktopNav();
   styleAnchorOnHover();
+  animateImages();
 }
 
 //code that executes only in cellphone screens (< 801px).
@@ -70,6 +72,9 @@ function smallScreenCode() {
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
+  }
+  if (hasHoverListenerOnPortolio) {
+    $("#section-portfolio li").unbind("mouseenter mouseleave");
   }
 }
 
@@ -337,6 +342,87 @@ function showMessage() {
   }, 8000);
 }
 
+function animateImages() {
+  $("#section-portfolio li").hover(
+    function() {
+      $(this).addClass("expanded");
+      $(this)
+        .siblings()
+        .addClass("contracted");
+      $(this)
+        .children()
+        .last()
+        .addClass("show-caption");
+    },
+    function() {
+      $(this).removeClass("expanded");
+      $(this)
+        .siblings()
+        .removeClass("contracted");
+      $(this)
+        .children()
+        .last()
+        .removeClass("show-caption");
+    }
+  );
+  hasHoverListenerOnPortolio = true;
+}
+
+var swiper = new Swiper(".swiper-container", {
+  // pagination: ".swiper-pagination",
+  // slidesPerView: "auto",
+  // paginationClickable: true,
+  // spaceBetween: 0
+  effect: "cube",
+  grabCursor: true,
+  cubeEffect: {
+    shadow: false,
+    slideShadows: false,
+    shadowOffset: 20,
+    shadowScale: 0.94
+  },
+  pagination: {
+    el: ".swiper-pagination"
+  }
+});
+
+// var mySwiper = new Swiper(".swiper-container", {
+//   // Optional parameters
+//   direction: "vertical",
+//   loop: true,
+
+//   // If we need pagination
+//   pagination: {
+//     el: ".swiper-pagination"
+//   },
+
+//   // Navigation arrows
+//   navigation: {
+//     nextEl: ".swiper-button-next",
+//     prevEl: ".swiper-button-prev"
+//   },
+
+//   // And if we need scrollbar
+//   scrollbar: {
+//     el: ".swiper-scrollbar"
+//   }
+// });
+
+//
+//
+// -----------------
+// $("#section-portfolio ul").slick({
+//   slide: "li"
+// });
+
+// $("#section-portfolio ul").slick({
+//   autoplay: true,
+//   autoplaySpeed: 2000,
+//   fade: true,
+//   arrows: false
+// });
+
+// Plain JS way (portfolio).
 // const list = document.querySelectorAll("#section-portfolio li");
 // // console.log(list);
 // list.forEach(l => {
@@ -348,67 +434,33 @@ function showMessage() {
 //   console.log("expandedasd");
 // });
 
-// $("#section-portfolio li").hover(
-//   function() {
-//     $(this).addClass("expanded");
-//     $(this)
-//       .siblings()
-//       .addClass("contracted");
-//     console.log($(this));
-//     console.log($(this).siblings());
-//   },
-//   function() {
-//     $(this).removeClass("expanded");
-//     $(this)
-//       .siblings()
-//       .removeClass("contracted");
+// function expand() {
+//   if (this.nextElementSibling !== null) {
+//     this.classList.remove("contracted");
+//     this.classList.add("expanded");
+//     this.lastElementChild.classList.add("show-caption");
+//     let siblings = getAllSiblings(this, this.parentElement);
+//     siblings.forEach(el => {
+//       el.classList.remove("expanded");
+//       el.classList.add("contracted");
+//     });
 //   }
-// );
+// }
 
-function expand() {
-  if (this.nextElementSibling !== null) {
-    this.classList.remove("contracted");
-    this.classList.add("expanded");
-    this.lastElementChild.classList.add("show-caption");
-    let siblings = getAllSiblings(this, this.parentElement);
-    siblings.forEach(el => {
-      el.classList.remove("expanded");
-      el.classList.add("contracted");
-    });
-  }
-}
+// function contract() {
+//   this.classList.remove("expanded");
+//   this.lastElementChild.classList.remove("show-caption");
+//   let siblings = getAllSiblings(this, this.parentElement);
+//   siblings.forEach(el => {
+//     el.classList.remove("contracted");
+//   });
+// }
 
-function contract() {
-  this.classList.remove("expanded");
-  this.lastElementChild.classList.remove("show-caption");
-  let siblings = getAllSiblings(this, this.parentElement);
-  siblings.forEach(el => {
-    el.classList.remove("contracted");
-  });
-}
-
-function getAllSiblings(element, parent) {
-  const children = [...parent.children];
-  children.length = 5;
-  return children.filter(child => child !== element);
-}
-
-$("#section-portfolio li").hover(
-  function() {
-    $(this).addClass("expanded");
-    $(this)
-      .siblings()
-      .addClass("contracted");
-  },
-  function() {
-    $(this).removeClass("expanded");
-    $(this)
-      .siblings()
-      .removeClass("contracted");
-    // console.log($(this).siblings());
-    // console.log($(this));
-  }
-);
+// function getAllSiblings(element, parent) {
+//   const children = [...parent.children];
+//   children.length = 5;
+//   return children.filter(child => child !== element);
+// }
 
 //// /////////// /////
 // changes the href of a navLink depending on whether the site is in home or in another page.
