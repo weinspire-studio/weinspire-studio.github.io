@@ -480,4 +480,6 @@ var swiper = new Swiper(".swiper-container", {
 // bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
 // green inputs after submit DONE
 // in portfolio: if image stretches more than image witdh: repeat: round or size cover
+// lazy - loading!
+//
 //# sourceMappingURL=main-es5.js.map
