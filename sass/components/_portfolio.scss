@@ -3,14 +3,15 @@
     // height: 100%;
     ul {
         // height: 500px;
+        width: 90%;
         list-style: none;
         @include media-query ($md){
             background-color: $background-light;
             overflow: hidden;
-            padding: 1em;
             width: 100%;
-            height: 475px;
-            margin-left: -.38em;
+            height: 450px;
+            // padding: 1em;
+            // margin-left: -.38em;
         }
     }
     li {
@@ -19,7 +20,8 @@
             height: 100%;
             position: relative;
             width: calc(20% - 2px);
-            float: right;
+            // float: right;
+            // display: inline-block;
             overflow-y: hidden;
         }
     }
@@ -44,7 +46,7 @@
     }
     @include media-query ($md) {
         // background-image: url("https://source.unsplash.com/850x450/?nature,water");
-        transition: width 0.45s ease;
+        transition: width 0.45s ease!important;
         border-left: 2px solid #808080b7;
         box-shadow: 3px 4px 8px 1px #2b2b2b;
     }
@@ -56,69 +58,78 @@
             transition: .55s ease background-color;
 
             &#overlay-1 {
-                background-color: rgba($blue-theme-lighter, .4);
+                background-color: rgba($blue-theme-darker, .4);
             };
             &#overlay-2 {
-                background-color: rgba($blue-theme-light, .4);
+                background-color: rgba($blue-theme-dark, .4);
             };
             &#overlay-3 {
                 background-color: rgba($blue-theme-middle, .4);
             };
             &#overlay-4 {
-                background-color: rgba($blue-theme-dark, .4);
+                background-color: rgba($blue-theme-light, .4);
             };
             &#overlay-5 {
-                background-color: rgba($blue-theme-darker, .4);
+                background-color: rgba($blue-theme-lighter, .4);
             }
 
         }
     }
     .link-caption {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        padding: 1.25em 2em;
+        &#caption-1 {
+            background-color: $blue-theme-darker;
+        };
+        &#caption-2 {
+            background-color: $blue-theme-dark;
+        };
+        &#caption-3 {
+            background-color: $blue-theme-middle;
+        };
+        &#caption-4 {
+            background-color: darken($blue-theme-light, 5%);
+        };
+        &#caption-5 {
+            background-color: darken($blue-theme-lighter, 12.5%);
+        }
+        h6 {
+            font-weight: 400;
+            padding-top: .2em;
+        }
         @include media-query ($md) {
-    
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            // background-color: blue;
-            color: white;
-            padding: 1.25em 2em;
             transform: translateY(100%);
             transition: transform .5s ease;
-            h6 {
-                font-weight: 400;
-                padding-top: .2em;
-            }
-
-            &#caption-1 {
-                background-color: darken($blue-theme-lighter, 12.5%);
-            };
-            &#caption-2 {
-                background-color: darken($blue-theme-light, 5%);
-            };
-            &#caption-3 {
-                background-color: $blue-theme-middle;
-            };
-            &#caption-4 {
-                background-color: $blue-theme-dark;
-            };
-            &#caption-5 {
-                background-color: $blue-theme-darker;
-            }
         }
     }
 }
 
 
 .swiper-container {
-    width: 90%;
+    width: 85%;
     height: 450px;
     z-index: 0!important;
+    @include media-query ($md) {
+        width: 95%;
+    }
 }
 
 .swiper-button-next, .swiper-button-prev {
     outline: none;
 }
 
+.swiper-pagination {
+    bottom: 5em!important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: white!important;
+    transform: scale(1.5);
+    transition: background-color .5s ease, transform .5s ease;
+}
 
 // Style Classes
 .expanded {

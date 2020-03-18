@@ -25,6 +25,9 @@ let hasClickListener = false;
 let hasHoverListener = false;
 let hasHoverListenerOnPortolio = false;
 
+// let swiper = defineSwiper();
+let swiper;
+
 // jQuery for animated scroll.
 $("#up-arrow").on("click", function() {
   const siteWrapperTop = $("#site-wrapper").position().top;
@@ -53,7 +56,7 @@ notMobileScreenMQ.addListener(() => {
 });
 
 //FUNCTIONS
-//code that executes only in desktop and tablet screens (> 801px).
+//code that executes only in desktop and large tablets screens (> 801px).
 function largeScreenCode() {
   styleNavOnScroll();
   if (!hasScrollListener) {
@@ -63,9 +66,12 @@ function largeScreenCode() {
   restoreDesktopNav();
   styleAnchorOnHover();
   animateImages();
+  if (swiper && swiper.params.init === true) {
+    swiper.destroy();
+  }
 }
 
-//code that executes only in cellphone screens (< 801px).
+//code that executes only in phones and small tablets screens (< 801px).
 function smallScreenCode() {
   styleNavOnScroll();
   styleMobileNav();
@@ -76,6 +82,11 @@ function smallScreenCode() {
   if (hasHoverListenerOnPortolio) {
     $("#section-portfolio li").unbind("mouseenter mouseleave");
   }
+  swiper = defineSwiper();
+  swiper.on("init", function() {
+    swiper.params.init = true;
+  });
+  swiper.init();
 }
 
 // animation effect (underline) for desktop nav anchors.
@@ -368,27 +379,40 @@ function animateImages() {
   hasHoverListenerOnPortolio = true;
 }
 
-var swiper = new Swiper(".swiper-container", {
-  // pagination: ".swiper-pagination",
-  // slidesPerView: "auto",
-  // paginationClickable: true,
-  // spaceBetween: 0
-  effect: "cube",
-  grabCursor: true,
-  cubeEffect: {
-    shadow: false,
-    slideShadows: true,
-    shadowOffset: 20,
-    shadowScale: 0.94
-  },
-  pagination: {
-    el: ".swiper-pagination"
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev"
-  }
-});
+function defineSwiper() {
+  swiper = new Swiper(".swiper-container", {
+    init: false,
+    // pagination: ".swiper-pagination",
+    // slidesPerView: "auto",
+    // paginationClickable: true,
+    // spaceBetween: 0
+    effect: "cube",
+    grabCursor: true,
+    cubeEffect: {
+      shadow: false,
+      slideShadows: true
+      // shadowOffset: 20,
+      // shadowScale: 0.94
+    },
+    pagination: {
+      el: ".swiper-pagination"
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    }
+    // watchOverflow: false
+  });
+  return swiper;
+}
+
+// function initSwiper(swiper) {
+//   swiper.init();
+// }
+
+// function destroySwiper(swiper) {
+//   swiper.destroy();
+// }
 
 // var mySwiper = new Swiper(".swiper-container", {
 //   // Optional parameters
@@ -507,3 +531,5 @@ var swiper = new Swiper(".swiper-container", {
 // in portfolio: if image stretches more than image witdh: repeat: round or size cover
 // lazy - loading!
 //download swipper only on mobile? conditional script
+// caption background color switched (portfolio)
+// on select input from contact form BUG!
