@@ -675,7 +675,8 @@ nav {
 }
 
 #section-portfolio ul {
-  width: 90%;
+  height: 100%;
+  width: 100%;
   list-style: none;
 }
 @media screen and (min-width: 801px) {
@@ -698,6 +699,9 @@ nav {
   }
 }
 
+.content-link {
+  width: 100%;
+}
 .content-link:first-child {
   background-image: url("https://source.unsplash.com/850x450/?nature,sky");
 }
@@ -789,6 +793,12 @@ nav {
 
 .swiper-button-next, .swiper-button-prev {
   outline: none;
+}
+@media screen and (min-width: 801px) {
+  .swiper-button-next, .swiper-button-prev {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 .swiper-pagination {

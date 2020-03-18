@@ -2,8 +2,8 @@
     // @include padding-map ($content-wrap-sm);
     // height: 100%;
     ul {
-        // height: 500px;
-        width: 90%;
+        height: 100%;
+        width: 100%;
         list-style: none;
         @include media-query ($md){
             background-color: $background-light;
@@ -28,6 +28,7 @@
 }
 
 .content-link {
+    width: 100%;
     &:first-child {
         background-image: url("https://source.unsplash.com/850x450/?nature,sky");
     };
@@ -119,6 +120,10 @@
 
 .swiper-button-next, .swiper-button-prev {
     outline: none;
+    @include media-query ($md) {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
 
 .swiper-pagination {

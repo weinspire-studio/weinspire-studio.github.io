@@ -362,7 +362,7 @@ function animateImages() {
         .addClass("contracted");
       $(this)
         .children()
-        .last()
+        .eq(1)
         .addClass("show-caption");
     },
     function() {
@@ -372,7 +372,7 @@ function animateImages() {
         .removeClass("contracted");
       $(this)
         .children()
-        .last()
+        .eq(1)
         .removeClass("show-caption");
     }
   );

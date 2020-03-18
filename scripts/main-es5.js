@@ -363,11 +363,11 @@ function animateImages() {
   $("#section-portfolio li").hover(function () {
     $(this).addClass("expanded");
     $(this).siblings().addClass("contracted");
-    $(this).children().last().addClass("show-caption");
+    $(this).children().eq(1).addClass("show-caption");
   }, function () {
     $(this).removeClass("expanded");
     $(this).siblings().removeClass("contracted");
-    $(this).children().last().removeClass("show-caption");
+    $(this).children().eq(1).removeClass("show-caption");
   });
   hasHoverListenerOnPortolio = true;
 }
