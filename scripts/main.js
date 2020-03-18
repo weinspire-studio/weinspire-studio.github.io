@@ -398,8 +398,8 @@ function defineSwiper() {
       el: ".swiper-pagination"
     },
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
+      nextEl: ".swiper-button-next2",
+      prevEl: ".swiper-button-prev2"
     }
     // watchOverflow: false
   });

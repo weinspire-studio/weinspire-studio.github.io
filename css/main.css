@@ -780,6 +780,24 @@ nav {
   }
 }
 
+.swiper-button-next2 {
+  width: 25px;
+  height: 25px;
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+}
+
+.swiper-button-prev2 {
+  width: 25px;
+  height: 25px;
+  background-color: green;
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+
 .swiper-container {
   width: 85%;
   height: 450px;
