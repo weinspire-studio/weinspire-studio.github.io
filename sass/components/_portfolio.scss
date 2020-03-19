@@ -145,7 +145,7 @@
     position: absolute;
     top: 50%;
     right: 1em;
-    z-index: 1;
+    z-index: 9999;
 }
 
 .swiper-button-prev2 {
@@ -155,7 +155,7 @@
     position: absolute;
     top: 50%;
     left: 1em;
-    z-index: 1;
+    z-index: 9999;
 }
 
 .swiper-pagination {
