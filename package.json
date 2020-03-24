@@ -12,7 +12,6 @@
     "grunt-autoprefixer": "latest",
     "grunt-browserify": "^5.3.0",
     "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-compress": "^1.6.0",
     "grunt-contrib-cssmin": "latest",
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-sass": "latest",

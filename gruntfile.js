@@ -1,8 +1,5 @@
 // Load Grunt
 module.exports = function(grunt) {
-  // Load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns
-  // require("load-grunt-tasks")(grunt);
-
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
     conf: grunt.file.readJSON("config.json"),
@@ -38,8 +35,6 @@ module.exports = function(grunt) {
       dist: {
         files: [
           {
-            // "<%= conf.main_css %>": "<%= conf.main_scss %>"
-            // "./css/main.css": "./sass/main.scss"
             expand: true,
             cwd: "sass",
             src: ["*.scss"],
@@ -55,18 +50,6 @@ module.exports = function(grunt) {
         options: {
           base: "./",
           css: ["./dist/css/main.min.css"]
-          //   dimensions: [
-          //     {
-          //       height: 600,
-          //       width: 350
-          //     },
-          //     {
-          //       height: 900,
-          //       width: 1200
-          //     }
-          //   ]
-          //   // height: 900,
-          //   // width: 1200
         },
         src: "./html/index-dev.html",
         dest: "./index.html",
@@ -95,18 +78,6 @@ module.exports = function(grunt) {
         dest: "<%= conf.main_css %>"
       }
     },
-    // babel: {
-    //   options: {
-    //     sourceMap: true,
-    //     presets: ["@babel/preset-env"]
-    //   },
-    //   files: {
-    //     expand: true,
-    //     src: ["./scripts/main.js"],
-    //     dest: "",
-    //     ext: "-es5.js"
-    //   }
-    // },
     browserify: {
       development: {
         src: [
@@ -123,9 +94,7 @@ module.exports = function(grunt) {
               {
                 presets: ["@babel/preset-env"],
                 global: true,
-                // ignore: [/\/node_modules\/(?!swiper|dom7\/)/]
                 only: [
-                  // /^(?:.*\/node_modules\/(?:swiper|dom7)\/|(?!.*\/node_modules\/)).*$/,
                   /^(?:.*\/node_custom_modules\/(?:swiper)\/|(?!.*\/node_custom_modules\/)).*$/
                 ]
               }
@@ -146,23 +115,6 @@ module.exports = function(grunt) {
         src: "./scripts/common.js",
         dest: "./dist/js/all.min.js"
         // src: "./scripts/*-es5.js",
-      }
-    },
-    compress: {
-      main: {
-        options: {
-          mode: "gzip"
-        },
-        // Each of the files in the src/ folder will be output to
-        // the dist/ folder each with the extension .gz.js
-        files: [
-          {
-            expand: true,
-            src: ["./dist/js/*.js"],
-            dest: "./",
-            ext: ".min.gz.js"
-          }
-        ]
       }
     },
     // Compile everything into one task with Watch Plugin
@@ -194,15 +146,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-autoprefixer");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-watch");
-  // grunt.loadNpmTasks("grunt-babel");
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-critical");
   grunt.loadNpmTasks("grunt-browserify");
-  grunt.loadNpmTasks("grunt-contrib-compress");
 
   // Register Grunt tasks
   grunt.registerTask("default", ["watch"]);
   // grunt.registerTask("default", ['sass:dist', 'babel:dist']);
   // prettier-ignore
-  grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "critical", "htmlhint", "jshint", "browserify", "uglify", "compress"]);
+  grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "critical", "htmlhint", "jshint", "browserify", "uglify"]);
 };
