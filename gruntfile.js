@@ -15,7 +15,7 @@ module.exports = function(grunt) {
       options: {
         reporter: require("jshint-stylish")
       },
-      build: ["gruntfile.js", "./scripts/main.js"]
+      build: ["gruntfile.js", "./scripts/swiper.js"]
     },
     // Loos for html errors.
     htmlhint: {
@@ -95,26 +95,74 @@ module.exports = function(grunt) {
         dest: "<%= conf.main_css %>"
       }
     },
-    babel: {
-      options: {
-        sourceMap: true,
-        presets: ["@babel/preset-env"]
-      },
-      files: {
-        expand: true,
-        src: ["./scripts/main.js"],
-        dest: "",
-        ext: "-es5.js"
+    // babel: {
+    //   options: {
+    //     sourceMap: true,
+    //     presets: ["@babel/preset-env"]
+    //   },
+    //   files: {
+    //     expand: true,
+    //     src: ["./scripts/main.js"],
+    //     dest: "",
+    //     ext: "-es5.js"
+    //   }
+    // },
+    browserify: {
+      development: {
+        src: [
+          "./scripts/main.js",
+          "./scripts/swiper.js"
+          // "./custom_modules/swiper/js/swiper.esm.js"
+        ],
+        dest: "./scripts/common.js",
+        options: {
+          // browserifyOptions: { debug: true },
+          transform: [
+            [
+              "babelify",
+              {
+                presets: ["@babel/preset-env"],
+                global: true,
+                // ignore: [/\/node_modules\/(?!swiper|dom7\/)/]
+                only: [
+                  // /^(?:.*\/node_modules\/(?:swiper|dom7)\/|(?!.*\/node_modules\/)).*$/,
+                  /^(?:.*\/node_custom_modules\/(?:swiper)\/|(?!.*\/node_custom_modules\/)).*$/
+                ]
+              }
+            ],
+            ["browserify-css", { global: true }]
+          ]
+          // watch: true,
+          // keepAlive: true
+        }
       }
     },
     uglify: {
       all_src: {
         options: {
-          sourceMap: true,
-          sourceMapName: "./dist/js/sourceMap.map"
+          // sourceMap: true,
+          // sourceMapName: "./dist/js/sourceMap.map"
         },
-        src: "./scripts/*-es5.js",
+        src: "./scripts/common.js",
         dest: "./dist/js/all.min.js"
+        // src: "./scripts/*-es5.js",
+      }
+    },
+    compress: {
+      main: {
+        options: {
+          mode: "gzip"
+        },
+        // Each of the files in the src/ folder will be output to
+        // the dist/ folder each with the extension .gz.js
+        files: [
+          {
+            expand: true,
+            src: ["./dist/js/*.js"],
+            dest: "./",
+            ext: ".min.gz.js"
+          }
+        ]
       }
     },
     // Compile everything into one task with Watch Plugin
@@ -128,8 +176,8 @@ module.exports = function(grunt) {
         tasks: ["autoprefixer", "cssmin", "critical"]
       },
       js: {
-        files: "./scripts/main.js",
-        tasks: ["jshint", "babel", "uglify"]
+        files: ["./scripts/main.js", "./scripts/swiper.js", "./gruntfile.js"],
+        tasks: ["jshint", "browserify", "uglify"]
       },
       html: {
         files: "./html/index-dev.html",
@@ -146,13 +194,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-autoprefixer");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks("grunt-babel");
+  // grunt.loadNpmTasks("grunt-babel");
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-critical");
+  grunt.loadNpmTasks("grunt-browserify");
+  grunt.loadNpmTasks("grunt-contrib-compress");
 
   // Register Grunt tasks
   grunt.registerTask("default", ["watch"]);
   // grunt.registerTask("default", ['sass:dist', 'babel:dist']);
   // prettier-ignore
-  grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "critical", "htmlhint", "jshint", "babel", "uglify"]);
+  grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "critical", "htmlhint", "jshint", "browserify", "uglify", "compress"]);
 };

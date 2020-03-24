@@ -1,5 +1,7 @@
 // jshint esversion: 6
 
+import { defineSwiper } from "./swiper";
+
 //VARIABLES
 const siteWrapper = document.querySelector("#site-wrapper");
 const burger = document.querySelector(".burger");
@@ -26,7 +28,7 @@ let hasHoverListener = false;
 let hasHoverListenerOnPortolio = false;
 
 // let swiper = defineSwiper();
-let swiper;
+// let swiper;
 
 // jQuery for animated scroll.
 $("#up-arrow").on("click", function() {
@@ -66,9 +68,9 @@ function largeScreenCode() {
   restoreDesktopNav();
   styleAnchorOnHover();
   animateImages();
-  if (swiper && swiper.params.init === true) {
-    swiper.destroy();
-  }
+  // if (swiper && swiper.params.init === true) {
+  //   swiper.destroy();
+  // }
 }
 
 //code that executes only in phones and small tablets screens (< 801px).
@@ -82,11 +84,11 @@ function smallScreenCode() {
   if (hasHoverListenerOnPortolio) {
     $("#section-portfolio li").unbind("mouseenter mouseleave");
   }
-  swiper = defineSwiper();
-  swiper.on("init", function() {
-    swiper.params.init = true;
+  let asd = defineSwiper();
+  asd.on("init", function() {
+    asd.params.init = true;
   });
-  swiper.init();
+  asd.init();
 }
 
 // animation effect (underline) for desktop nav anchors.
@@ -379,32 +381,32 @@ function animateImages() {
   hasHoverListenerOnPortolio = true;
 }
 
-function defineSwiper() {
-  swiper = new Swiper(".swiper-container", {
-    init: false,
-    // pagination: ".swiper-pagination",
-    // slidesPerView: "auto",
-    // paginationClickable: true,
-    // spaceBetween: 0
-    effect: "cube",
-    grabCursor: true,
-    cubeEffect: {
-      shadow: false,
-      slideShadows: true
-      // shadowOffset: 20,
-      // shadowScale: 0.94
-    },
-    pagination: {
-      el: ".swiper-pagination"
-    },
-    navigation: {
-      nextEl: ".swiper-button-next2",
-      prevEl: ".swiper-button-prev2"
-    }
-    // watchOverflow: false
-  });
-  return swiper;
-}
+// function defineSwiper() {
+//   swiper = new Swiper(".swiper-container", {
+//     init: false,
+//     // pagination: ".swiper-pagination",
+//     // slidesPerView: "auto",
+//     // paginationClickable: true,
+//     // spaceBetween: 0
+//     effect: "cube",
+//     grabCursor: true,
+//     cubeEffect: {
+//       shadow: false,
+//       slideShadows: true
+//       // shadowOffset: 20,
+//       // shadowScale: 0.94
+//     },
+//     pagination: {
+//       el: ".swiper-pagination"
+//     },
+//     navigation: {
+//       nextEl: ".swiper-button-next2",
+//       prevEl: ".swiper-button-prev2"
+//     }
+//     // watchOverflow: false
+//   });
+//   return swiper;
+// }
 
 // function initSwiper(swiper) {
 //   swiper.init();
@@ -533,3 +535,8 @@ function defineSwiper() {
 //download swipper only on mobile? conditional script
 // caption background color switched (portfolio)
 // on select input from contact form BUG!
+// es modules! bundles!
+// svg grunt!
+// transpilation, es6 sourcemap
+// source map debuggin? just for dev!
+// babel vs babelify? Modules? jquery modules? swiper?

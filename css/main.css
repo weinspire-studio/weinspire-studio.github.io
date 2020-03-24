@@ -805,6 +805,14 @@ nav {
   }
 }
 
+.swiper-button-next {
+  right: 2em !important;
+}
+
+.swiper-button-prev {
+  left: 2em !important;
+}
+
 .swiper-button-next2 {
   width: 25px;
   height: 25px;
