@@ -12,7 +12,7 @@ module.exports = function(grunt) {
       options: {
         reporter: require("jshint-stylish")
       },
-      build: ["gruntfile.js", "./scripts/swiper.js"]
+      build: ["gruntfile.js", "./js/sub_modules/*.js"]
     },
     // Loos for html errors.
     htmlhint: {
@@ -81,11 +81,11 @@ module.exports = function(grunt) {
     browserify: {
       development: {
         src: [
-          "./scripts/main.js",
-          "./scripts/swiper.js"
+          "./js/main.js",
+          "./js/sub_modules/swiper.js"
           // "./custom_modules/swiper/js/swiper.esm.js"
         ],
-        dest: "./scripts/common.js",
+        dest: "./js/common.js",
         options: {
           // browserifyOptions: { debug: true },
           transform: [
@@ -112,9 +112,9 @@ module.exports = function(grunt) {
           // sourceMap: true,
           // sourceMapName: "./dist/js/sourceMap.map"
         },
-        src: "./scripts/common.js",
+        src: "./js/common.js",
         dest: "./dist/js/all.min.js"
-        // src: "./scripts/*-es5.js",
+        // src: "./js/*-es5.js",
       }
     },
     // Compile everything into one task with Watch Plugin
@@ -128,7 +128,7 @@ module.exports = function(grunt) {
         tasks: ["autoprefixer", "cssmin", "critical"]
       },
       js: {
-        files: ["./scripts/main.js", "./scripts/swiper.js", "./gruntfile.js"],
+        files: ["./js/main.js", "./js/sub_modules/*.js", "./gruntfile.js"],
         tasks: ["jshint", "browserify", "uglify"]
       },
       html: {

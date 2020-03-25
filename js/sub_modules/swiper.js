@@ -1,11 +1,11 @@
 // jshint esversion: 6
 
 // import Swiper from "swiper";
-import "../node_custom_modules/swiper/css/swiper.min.css";
+import "../../node_custom_modules/swiper/css/swiper.min.css";
 import {
   Swiper,
   EffectCube
-} from "../node_custom_modules/swiper/js/swiper.esm.js";
+} from "../../node_custom_modules/swiper/js/swiper.esm.js";
 
 Swiper.use([EffectCube]);
 
