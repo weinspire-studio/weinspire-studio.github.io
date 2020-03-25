@@ -16,7 +16,7 @@ function smoothScroll() {
 }
 
 function animateImages() {
-  $("#section-portfolio li").hover(
+  $("#section-projects-design li").hover(
     function() {
       $(this).addClass("expanded");
       $(this)
@@ -43,7 +43,7 @@ function animateImages() {
 
 function unbindImages() {
   if (hasHoverListenerOnPortolio) {
-    $("#section-portfolio li").unbind("mouseenter mouseleave");
+    $("#section-projects-design li").unbind("mouseenter mouseleave");
   }
 }
 

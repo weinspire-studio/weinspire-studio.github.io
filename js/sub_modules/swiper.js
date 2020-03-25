@@ -23,14 +23,14 @@ var defineSwiper = function() {
       slideShadows: true
       // shadowOffset: 20,
       // shadowScale: 0.94
-    },
-    pagination: {
-      el: ".swiper-pagination"
-    },
-    navigation: {
-      nextEl: ".swiper-button-next2",
-      prevEl: ".swiper-button-prev2"
     }
+    // pagination: {
+    //   el: ".swiper-pagination"
+    // },
+    // navigation: {
+    //   nextEl: ".swiper-button-next2",
+    //   prevEl: ".swiper-button-prev2"
+    // }
     // watchOverflow: false
   });
   return swiper;

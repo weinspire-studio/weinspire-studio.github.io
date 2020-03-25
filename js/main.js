@@ -89,19 +89,19 @@ export { siteWrapper, nav, navBar };
 //
 //
 // -----------------
-// $("#section-portfolio ul").slick({
+// $("#section-projects-design ul").slick({
 //   slide: "li"
 // });
 
-// $("#section-portfolio ul").slick({
+// $("#section-projects-design ul").slick({
 //   autoplay: true,
 //   autoplaySpeed: 2000,
 //   fade: true,
 //   arrows: false
 // });
 
-// Plain JS way (portfolio).
-// const list = document.querySelectorAll("#section-portfolio li");
+// Plain JS way (projects-design).
+// const list = document.querySelectorAll("#section-projects-design li");
 // // console.log(list);
 // list.forEach(l => {
 //   l.addEventListener("mouseover", expand);
@@ -178,10 +178,10 @@ export { siteWrapper, nav, navBar };
 // navbar mobile open bug (z-index) DONE
 // bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
 // green inputs after submit DONE
-// in portfolio: if image stretches more than image witdh: repeat: round or size cover
+// in projects-design: if image stretches more than image witdh: repeat: round or size cover
 // lazy - loading!
 //download swipper only on mobile? conditional script
-// caption background color switched (portfolio)
+// caption background color switched (projects-design)
 // on select input from contact form BUG!
 // es modules! bundles!
 // svg grunt!

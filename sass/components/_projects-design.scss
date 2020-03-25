@@ -1,4 +1,4 @@
-#section-portfolio {
+#section-projects-design {
     // @include padding-map ($content-wrap-sm);
     // height: 100%;
     ul {
@@ -138,7 +138,7 @@
     left: 2em!important;
 }
 
-.swiper-button-next2 {
+.swiper-button {
     width: 25px;
     height: 25px;
     background-color: red;
@@ -158,15 +158,15 @@
     z-index: 9999;
 }
 
-.swiper-pagination {
-    bottom: 6em!important;
-}
+// .swiper-pagination {
+//     bottom: 6em!important;
+// }
 
-.swiper-pagination-bullet-active {
-    background-color: white!important;
-    transform: scale(1.5);
-    transition: background-color .5s ease, transform .5s ease;
-}
+// .swiper-pagination-bullet-active {
+//     background-color: white!important;
+//     transform: scale(1.5);
+//     transition: background-color .5s ease, transform .5s ease;
+// }
 
 // Style Classes
 .expanded {
