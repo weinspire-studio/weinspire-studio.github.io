@@ -97,11 +97,11 @@ function mobileCode() {
     hasScrollListener = true;
   }
   jQueryModule.unbindImages();
-  swiper = swiperModule.defineSwiper();
-  swiper.on("init", function() {
-    swiper.params.init = true;
-  });
-  swiper.init();
+  // swiper = swiperModule.defineSwiper();
+  // swiper.on("init", function() {
+  //   swiper.params.init = true;
+  // });
+  // swiper.init();
 }
 
 //adds or removes classes in order to give white styles to the nav.
