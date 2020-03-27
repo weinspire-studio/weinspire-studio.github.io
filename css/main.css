@@ -834,7 +834,6 @@ nav {
   animation: swipe-right 1.25s ease infinite running;
   opacity: 1 !important;
 }
-
 @keyframes swipe-right {
   0% {
     transform: rotate(90deg) scale(1);
