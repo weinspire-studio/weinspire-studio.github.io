@@ -123,11 +123,11 @@ function mobileCode() {
 
 
 function styleNavOnScroll() {
-  console.log('adentro del metnodo');
   var scrolledY = siteWrapper.scrollTop;
   console.log(scrolledY);
 
   if (scrolledY > 0) {
+    console.log('adentro del metnodo');
     navBar.classList.add("nav-white");
     nav.classList.add("nav-no-border");
   } else {
