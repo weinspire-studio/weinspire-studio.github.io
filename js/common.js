@@ -593,14 +593,11 @@ var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100
 
 var last_known_scroll_position = 0;
 document.addEventListener("DOMContentLoaded", function () {
-  _main.siteWrapper.addEventListener("scroll", doSomething, true);
-
+  // siteWrapper.addEventListener("scroll", doSomething, true);
   list.addEventListener("touchstart", function () {
     right_arrows.forEach(function (arrow) {
       return arrow.classList.remove("test-anim");
-    });
-
-    _main.siteWrapper.removeEventListener("scroll", doSomething, true);
+    }); // siteWrapper.removeEventListener("scroll", doSomething, true);
 
     console.log("entra al remove");
   });
