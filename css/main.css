@@ -792,48 +792,60 @@ nav {
   }
 }
 
-.swiper-button-next, .swiper-button-prev {
-  outline: none;
-  width: 25px;
-  height: 25px;
+.right-arrow-container {
   position: absolute;
-  top: 25% !important;
+  top: 50%;
+  right: 0;
+  z-index: 1;
+  transform: translateY(-50%);
 }
-@media screen and (min-width: 801px) {
-  .swiper-button-next, .swiper-button-prev {
-    opacity: 0;
-    pointer-events: none;
+.right-arrow-container svg {
+  height: 40px;
+  width: 40px;
+}
+
+#right-arrow-1 {
+  fill: #003a58;
+  grid-area: arrow;
+  transition: animation 0.5s ease, opacity 0.5s ease;
+  position: relative;
+  right: -40px;
+  opacity: 0;
+}
+
+#right-arrow-2 {
+  fill: #006985;
+  grid-area: arrow;
+  transition: animation 0.5s ease, opacity 0.5s ease;
+  position: relative;
+  right: -20px;
+  opacity: 0;
+}
+
+#right-arrow-3 {
+  fill: #009ba9;
+  grid-area: arrow;
+  transition: animation 0.5s ease, opacity 0.5s ease;
+  position: relative;
+  opacity: 0;
+}
+
+.test-anim {
+  animation: swipe-right 1.25s ease infinite running;
+  opacity: 1 !important;
+}
+
+@keyframes swipe-right {
+  0% {
+    transform: rotate(90deg) scale(1);
+  }
+  25% {
+    transform: rotate(90deg) scale(1.3) translateY(2.5px);
+  }
+  50%, 75%, 100% {
+    transform: rotate(90deg) scale(1);
   }
 }
-
-.swiper-button-next {
-  right: 2em !important;
-}
-
-.swiper-button-prev {
-  left: 2em !important;
-}
-
-.swiper-button {
-  width: 25px;
-  height: 25px;
-  background-color: red;
-  position: absolute;
-  top: 50%;
-  right: 1em;
-  z-index: 9999;
-}
-
-.swiper-button-prev2 {
-  width: 25px;
-  height: 25px;
-  background-color: green;
-  position: absolute;
-  top: 50%;
-  left: 1em;
-  z-index: 9999;
-}
-
 .expanded {
   width: calc(30% - 2px) !important;
 }

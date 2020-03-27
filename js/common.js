@@ -34,6 +34,33 @@ var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const lineEl
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
+// window.addEventListener("DOMContentLoaded", function() {
+//   window.addEventListener("scroll", doSomething);
+// });
+// window.document.documentElement.addEventListener("DOMContentLoaded", event => {
+//   console.log("DOM fully loaded and parsed");
+//   doSomethingElse();
+//   console.log(window.document.documentElement);
+//   // doSomethingElse();
+// });
+// if (document.readyState !== "loading") {
+//   console.log("document is already ready, just execute code here");
+//   doSomethingElse();
+// } else {
+//   doSomethingElse();
+//   document.addEventListener("DOMContentLoaded", function() {
+//     console.log("document was not ready, place code here");
+//     doSomethingElse();
+//   });
+// }
+// function doSomething() {
+//   console.log("adsadas");
+// }
+// function doSomethingElse() {
+//   console.log("ELSE");
+//   document.addEventListener("scroll", doSomething, true);
+//   console.log("ELSE2");
+// }
 
 var hasScrollListener = false;
 var swiper;
@@ -503,10 +530,11 @@ var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
 var navWhite = document.querySelector(".navigation-color-white");
 var navBlack = document.querySelector(".navigation-overlay-black");
-var heroText = document.querySelector(".hero-text");
-var burger = document.querySelector(".burger");
 var navImg = document.querySelector("nav img");
+var burger = document.querySelector(".burger");
+var heroText = document.querySelector(".hero-text");
 var footer = document.querySelector("#footer");
+var designProjectsSection = document.querySelector("#section-projects-design");
 var hasClickListener = false; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
@@ -549,6 +577,52 @@ function toggleNavClasses() {
   heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
 
   footer.classList.toggle("footer-index");
+}
+
+var right_arrows = document.querySelectorAll(".right-arrow-container svg");
+var list = document.querySelector(".swiper-wrapper"); // console.log(window.getComputedStyle(right_arrows[0]));
+// right_arrow_3.classList.add("test-anim");
+// console.log(designProjectsSection.offsetTop);
+// console.log(document.body.clientHeight);
+
+var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100; // console.log(trigger);
+// let flag = true;
+
+var last_known_scroll_position = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  _main.siteWrapper.addEventListener("scroll", doSomething, true);
+
+  list.addEventListener("mousedown", function () {
+    right_arrows.forEach(function (arrow) {
+      return arrow.classList.remove("test-anim");
+    });
+
+    _main.siteWrapper.removeEventListener("scroll", doSomething, true);
+
+    console.log("entra al remove");
+  });
+});
+
+function doSomething() {
+  console.log("listeneeer");
+  last_known_scroll_position = _main.siteWrapper.scrollTop;
+
+  if (last_known_scroll_position > trigger) {
+    right_arrows.forEach(function (arrow) {
+      return arrow.classList.add("test-anim");
+    });
+    right_arrows[0].style.animationDelay = ".25s";
+    right_arrows[1].style.animationDelay = ".125s";
+  } else {
+    right_arrows.forEach(function (arrow) {
+      return arrow.classList.remove("test-anim");
+    });
+  } // doSomethingElse(last_known_scroll_position);
+
+}
+
+function doSomethingElse(last_known_scroll_position) {
+  console.log(last_known_scroll_position);
 }
 
 },{"../main.js":1}],6:[function(require,module,exports){
