@@ -222,6 +222,9 @@ function styleNavOnScroll() {
 // transpilation, es6 sourcemap
 // source map debuggin? just for dev!
 // babel vs babelify? Modules? jquery modules? swiper?
+// content link ?
+// mousedown touch start?
+//
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6}],2:[function(require,module,exports){
 "use strict";

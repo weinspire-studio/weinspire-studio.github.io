@@ -3,7 +3,8 @@
     // height: 100%;
     ul {
         height: 100%;
-        width: 100%;
+        // width: 100%;
+        // width: 375px;
         list-style: none;
         @include media-query ($md){
             background-color: $background-light;
@@ -16,6 +17,7 @@
     }
     li {
         height: 450px;
+        // width: 375px;
         @include media-query ($md) {
             height: 100%;
             position: relative;
@@ -28,7 +30,8 @@
 }
 
 .content-link {
-    width: 100%;
+    // width: 350px;
+    // width: 100%;
     &:first-child {
         background-image: url("https://source.unsplash.com/850x450/?nature,sky");
     };
@@ -73,7 +76,6 @@
             &#overlay-5 {
                 background-color: rgba($blue-theme-lighter, .4);
             }
-
         }
     }
     .link-caption {
@@ -109,7 +111,6 @@
 }
 
 .swiper-container {
-    width: 85%;
     height: 450px;
     z-index: 0!important;
     @include media-query ($md) {

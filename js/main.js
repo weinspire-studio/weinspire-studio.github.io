@@ -219,3 +219,6 @@ export { siteWrapper, nav, navBar };
 // transpilation, es6 sourcemap
 // source map debuggin? just for dev!
 // babel vs babelify? Modules? jquery modules? swiper?
+// content link ?
+// mousedown touch start?
+//
