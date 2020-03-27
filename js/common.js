@@ -591,17 +591,14 @@ var list = document.querySelector(".swiper-wrapper"); // console.log(window.getC
 var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100; // console.log(trigger);
 // let flag = true;
 
-var last_known_scroll_position = 0;
-document.addEventListener("DOMContentLoaded", function () {
-  // siteWrapper.addEventListener("scroll", doSomething, true);
-  list.addEventListener("touchstart", function () {
-    right_arrows.forEach(function (arrow) {
-      return arrow.classList.remove("test-anim");
-    }); // siteWrapper.removeEventListener("scroll", doSomething, true);
-
-    console.log("entra al remove");
-  });
-});
+var last_known_scroll_position = 0; // document.addEventListener("DOMContentLoaded", function() {
+//   siteWrapper.addEventListener("scroll", doSomething, true);
+//   list.addEventListener("touchstart", function() {
+//     right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
+//     siteWrapper.removeEventListener("scroll", doSomething, true);
+//     console.log("entra al remove");
+//   });
+// });
 
 function doSomething() {
   console.log("listeneeer");

@@ -68,14 +68,14 @@ let trigger =
 // let flag = true;
 let last_known_scroll_position = 0;
 
-document.addEventListener("DOMContentLoaded", function() {
-  // siteWrapper.addEventListener("scroll", doSomething, true);
-  list.addEventListener("touchstart", function() {
-    right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
-    // siteWrapper.removeEventListener("scroll", doSomething, true);
-    console.log("entra al remove");
-  });
-});
+// document.addEventListener("DOMContentLoaded", function() {
+//   siteWrapper.addEventListener("scroll", doSomething, true);
+//   list.addEventListener("touchstart", function() {
+//     right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
+//     siteWrapper.removeEventListener("scroll", doSomething, true);
+//     console.log("entra al remove");
+//   });
+// });
 
 function doSomething() {
   console.log("listeneeer");
