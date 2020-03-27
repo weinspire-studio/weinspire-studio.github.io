@@ -111,12 +111,12 @@ function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
   console.log(scrolledY)
   if(scrolledY > 0) {
-    console.log('adentro del metnodo')
+    console.log('adentro del if')
     navBar.classList.add("nav-white");
-    nav.classList.add("nav-no-border");
+    // nav.classList.add("nav-no-border");
   } else {
     navBar.classList.remove("nav-white");
-    nav.classList.remove("nav-no-border");
+    // nav.classList.remove("nav-no-border");
     console.log('entra al esle');
   }
   console.log("asd" + siteWrapper.scrollTop)
