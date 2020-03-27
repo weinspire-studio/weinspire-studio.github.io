@@ -109,6 +109,7 @@ function mobileCode() {
 
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
+    console.log("testt");
     hasScrollListener = true;
   }
 
@@ -122,7 +123,9 @@ function mobileCode() {
 
 
 function styleNavOnScroll() {
+  console.log('adentro del metnodo');
   var scrolledY = siteWrapper.scrollTop;
+  console.log(scrolledY);
 
   if (scrolledY > 0) {
     navBar.classList.add("nav-white");
@@ -130,7 +133,10 @@ function styleNavOnScroll() {
   } else {
     navBar.classList.remove("nav-white");
     nav.classList.remove("nav-no-border");
+    console.log('entra al esle');
   }
+
+  console.log("asd" + siteWrapper.scrollTop);
 } //
 //
 // -----------------
