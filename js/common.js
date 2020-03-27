@@ -592,7 +592,7 @@ var last_known_scroll_position = 0;
 document.addEventListener("DOMContentLoaded", function () {
   _main.siteWrapper.addEventListener("scroll", doSomething, true);
 
-  list.addEventListener("mousedown", function () {
+  list.addEventListener("touchstart", function () {
     right_arrows.forEach(function (arrow) {
       return arrow.classList.remove("test-anim");
     });
