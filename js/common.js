@@ -26,9 +26,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 //VARIABLES
 var siteWrapper = document.querySelector("#site-wrapper");
 exports.siteWrapper = siteWrapper;
-var nav = document.querySelector("nav");
+var nav = document.querySelector("nav"); // const navBar = document.querySelector("#navbar");
+
 exports.nav = nav;
-var navBar = document.querySelector("#navbar");
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
@@ -128,8 +128,7 @@ function styleNavOnScroll() {
 
   if (scrolledY > 0) {
     console.log('adentro del ifFF'); // mobileModule.navBlack.classList.add("nav-white");
-
-    navBar.style.backgroundColor = "pink";
+    // navBar.style.backgroundColor = "pink";
   } else {
     // navBar.style.backgroundColor = "transparent";
     // mobileModule.navBlack.classList.remove("nav-white");
@@ -546,14 +545,14 @@ var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
 var footer = document.querySelector("#footer");
 var designProjectsSection = document.querySelector("#section-projects-design");
-var hasClickListener = false; // const navBar = document.querySelector("#navbar");
-//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var hasClickListener = false;
+var navBar = document.querySelector("#navbar"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList); // navBlack.style.backgroundColor = "blue";
-  // navBar.style.backgroundColor = "red";
-  // navBar.classList.add("nav-white");
+
+  navBar.style.backgroundColor = "violet"; // navBar.classList.add('nav-white');
   // mobile burger and menu
 
   if (!hasClickListener) {
