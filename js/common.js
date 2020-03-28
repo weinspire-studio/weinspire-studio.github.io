@@ -129,10 +129,11 @@ function styleNavOnScroll() {
   if (scrolledY > 0) {
     console.log('adentro del ifFF'); // mobileModule.navBlack.classList.add("nav-white");
 
-    nav.style.backgroundColor = "red";
+    navBar.style.backgroundColor = "pink";
   } else {
-    // mobileModule.navBlack.classList.remove("nav-white");
+    navBar.style.backgroundColor = "transparent"; // mobileModule.navBlack.classList.remove("nav-white");
     // nav.classList.remove("nav-no-border");
+
     console.log('entra al esle');
   }
 
