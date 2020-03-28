@@ -123,17 +123,17 @@ function mobileCode() {
 
 
 function styleNavOnScroll() {
-  navBar.style.backgroundColor = "pink";
   var scrolledY = siteWrapper.scrollTop;
   console.log(scrolledY);
 
   if (scrolledY > 0) {
-    console.log('adentro del ifFF'); // mobileModule.navBlack.classList.add("nav-white");
+    console.log('adentro del ifFF');
+    navBar.style.backgroundColor = "white"; // mobileModule.navBlack.classList.add("nav-white");
     // navBar.style.backgroundColor = "pink";
   } else {
-    // navBar.style.backgroundColor = "transparent";
-    // mobileModule.navBlack.classList.remove("nav-white");
+    navBar.style.backgroundColor = "transparent"; // mobileModule.navBlack.classList.remove("nav-white");
     // nav.classList.remove("nav-no-border");
+
     console.log('entra al esle');
   }
 
