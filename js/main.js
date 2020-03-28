@@ -113,7 +113,7 @@ function styleNavOnScroll() {
   if(scrolledY > 0) {
     console.log('adentro del ifFF')
     // mobileModule.navBlack.classList.add("nav-white");
-    // navBar.style.backgroundColor = "pink";
+    navBar.style.backgroundColor = "pink";
   } else {
     // navBar.style.backgroundColor = "transparent";
     // mobileModule.navBlack.classList.remove("nav-white");

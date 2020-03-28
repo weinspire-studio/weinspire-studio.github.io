@@ -128,7 +128,8 @@ function styleNavOnScroll() {
 
   if (scrolledY > 0) {
     console.log('adentro del ifFF'); // mobileModule.navBlack.classList.add("nav-white");
-    // navBar.style.backgroundColor = "pink";
+
+    navBar.style.backgroundColor = "pink";
   } else {
     // navBar.style.backgroundColor = "transparent";
     // mobileModule.navBlack.classList.remove("nav-white");
@@ -545,16 +546,16 @@ var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
 var footer = document.querySelector("#footer");
 var designProjectsSection = document.querySelector("#section-projects-design");
-var hasClickListener = false;
-var navBar = document.querySelector("#navbar"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var hasClickListener = false; // const navBar = document.querySelector("#navbar");
+//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
-  navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList); // navBlack.style.backgroundColor = "blue";
-
-  navBar.style.backgroundColor = "violet"; // navBar.classList.add('nav-white');
+  // navList.parentNode.removeChild(navList);
+  // navContainer.appendChild(navList);
+  // navBlack.style.backgroundColor = "blue";
+  // navBar.style.backgroundColor = "violet";
+  // navBar.classList.add('nav-white');
   // mobile burger and menu
-
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
       toggleNavClasses();
