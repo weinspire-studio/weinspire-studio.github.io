@@ -67,7 +67,7 @@ jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //on pageload, executes the following code, depending on screen width.
 
-document.addEventListener("load", function () {
+document.addEventListener("DOMContentLoaded", function () {
   if (notMobileScreenMQ.matches) {
     desktopCode();
   } else {
