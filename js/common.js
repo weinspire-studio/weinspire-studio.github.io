@@ -550,9 +550,9 @@ var navBar = document.querySelector("#navbar"); //appends navList to navContaine
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList); // navBlack.style.backgroundColor = "blue";
-  // navBar.style.backgroundColor = "red";
 
-  navBar.classList.add("nav-white"); // mobile burger and menu
+  navBar.style.backgroundColor = "red"; // navBar.classList.add('nav-white');
+  // mobile burger and menu
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {

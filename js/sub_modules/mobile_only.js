@@ -23,8 +23,8 @@ function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
   // navBlack.style.backgroundColor = "blue";
-  // navBar.style.backgroundColor = "red";
-  navBar.classList.add("nav-white");
+  navBar.style.backgroundColor = "red";
+  // navBar.classList.add('nav-white');
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {
