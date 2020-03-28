@@ -20,8 +20,8 @@ let hasClickListener = false;
 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
-  // navList.parentNode.removeChild(navList);
-  // navContainer.appendChild(navList);
+  navList.parentNode.removeChild(navList);
+  navContainer.appendChild(navList);
   // navBlack.style.backgroundColor = "blue";
   // navBar.style.backgroundColor = "violet";
   // navBar.classList.add('nav-white');
