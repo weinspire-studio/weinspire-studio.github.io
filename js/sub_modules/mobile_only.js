@@ -1,6 +1,6 @@
 // jshint esversion: 6
 
-import { siteWrapper, navBar } from "../main.js";
+import { siteWrapper } from "../main.js";
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
@@ -16,11 +16,15 @@ const designProjectsSection = document.querySelector(
 );
 let hasClickListener = false;
 
+const navBar = document.querySelector("#navbar");
+
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
-  navBlack.style.backgroundColor = "blue";
+  // navBlack.style.backgroundColor = "blue";
+  navBar.style.backgroundColor = "red";
+  navBar.classList.add("nav-white");
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {

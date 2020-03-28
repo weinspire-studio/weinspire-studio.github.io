@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.navBar = exports.nav = exports.siteWrapper = void 0;
+exports.nav = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -26,10 +26,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 //VARIABLES
 var siteWrapper = document.querySelector("#site-wrapper");
 exports.siteWrapper = siteWrapper;
-var nav = document.querySelector("nav");
+var nav = document.querySelector("nav"); // const navBar = document.querySelector("#navbar");
+
 exports.nav = nav;
-var navBar = document.querySelector("#navbar");
-exports.navBar = navBar;
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
@@ -546,12 +545,15 @@ var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
 var footer = document.querySelector("#footer");
 var designProjectsSection = document.querySelector("#section-projects-design");
-var hasClickListener = false; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var hasClickListener = false;
+var navBar = document.querySelector("#navbar"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList);
-  navBlack.style.backgroundColor = "blue"; // mobile burger and menu
+  navContainer.appendChild(navList); // navBlack.style.backgroundColor = "blue";
+
+  navBar.style.backgroundColor = "red";
+  navBar.classList.add("nav-white"); // mobile burger and menu
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
@@ -573,8 +575,7 @@ function toggleNavClasses() {
   scrolledYMobile = _main.siteWrapper.scrollTop;
 
   if (scrolledYMobile > 0) {
-    _main.navBar.classList.toggle("nav-white");
-
+    navBar.classList.toggle("nav-white");
     navBlack.classList.toggle("navigation-black");
     navWhite.classList.toggle("navigation-white");
   }

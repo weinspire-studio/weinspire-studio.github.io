@@ -9,7 +9,7 @@ import * as contactModule from "./sub_modules/contact";
 //VARIABLES
 const siteWrapper = document.querySelector("#site-wrapper");
 const nav = document.querySelector("nav");
-const navBar = document.querySelector("#navbar");
+// const navBar = document.querySelector("#navbar");
 const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
@@ -123,7 +123,7 @@ function styleNavOnScroll() {
   console.log("asd" + siteWrapper.scrollTop)
 }
 
-export { siteWrapper, nav, navBar };
+export { siteWrapper, nav };
 
 //
 //
