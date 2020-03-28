@@ -323,15 +323,6 @@ nav {
 
 .nav-white {
   background-color: white;
-  -webkit-background-color: white;
-}
-
-.nav-white nav a {
-  color: black;
-}
-
-.nav-white .burger div {
-  background-color: black;
 }
 
 .navigation-white {
