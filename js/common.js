@@ -128,7 +128,8 @@ function styleNavOnScroll() {
 
   if (scrolledY > 0) {
     console.log('adentro del ifFF'); // mobileModule.navBlack.classList.add("nav-white");
-    // nav.classList.add("nav-no-border");
+
+    nav.style.backgroundColor = "red";
   } else {
     // mobileModule.navBlack.classList.remove("nav-white");
     // nav.classList.remove("nav-no-border");
@@ -548,8 +549,8 @@ var hasClickListener = false; //appends navList to navContainer (because of burg
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList);
-  navBlack.classList.add("nav-white"); // mobile burger and menu
+  navContainer.appendChild(navList); // navBlack.classList.add("nav-white");
+  // mobile burger and menu
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
