@@ -239,7 +239,8 @@ nav {
     opacity: 10%;
 }
 
-.nav-white#navbar {
+.nav-white {
+    -webkit-background-color: white;
     background-color: white;
     // box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
 }

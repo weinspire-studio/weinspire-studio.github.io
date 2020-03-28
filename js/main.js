@@ -220,7 +220,7 @@ export { siteWrapper, nav, navBar };
 // lazy - loading!
 //download swipper only on mobile? conditional script
 // caption background color switched (projects-design)
-// on select input from contact form BUG!
+// on select input from contact form BUG! iphone extra swipe
 // es modules! bundles!
 // svg grunt!
 // transpilation, es6 sourcemap
