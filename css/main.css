@@ -322,8 +322,8 @@ nav {
 }
 
 .nav-white {
-  -webkit-background-color: white;
   background-color: white;
+  -webkit-background-color: white;
 }
 
 .nav-white nav a {
