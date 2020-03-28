@@ -128,9 +128,9 @@ function styleNavOnScroll() {
 
   if (scrolledY > 0) {
     console.log('adentro del ifFF');
-    navBar.classList.add("nav-white"); // nav.classList.add("nav-no-border");
+    mobileModule.navBlack.classList.add("nav-white"); // nav.classList.add("nav-no-border");
   } else {
-    navBar.classList.remove("nav-white"); // nav.classList.remove("nav-no-border");
+    mobileModule.navBlack.classList.remove("nav-white"); // nav.classList.remove("nav-no-border");
 
     console.log('entra al esle');
   }
@@ -525,7 +525,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.navContainer = exports.navElements = exports.navList = void 0;
+exports.navBlack = exports.navContainer = exports.navElements = exports.navList = void 0;
 
 var _main = require("../main.js");
 
@@ -538,6 +538,7 @@ var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
 var navWhite = document.querySelector(".navigation-color-white");
 var navBlack = document.querySelector(".navigation-overlay-black");
+exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");

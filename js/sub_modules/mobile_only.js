@@ -93,4 +93,11 @@ function doSomethingElse(last_known_scroll_position) {
   console.log(last_known_scroll_position);
 }
 
-export { navList, navElements, navContainer, styleMobileNav, toggleNavClasses };
+export {
+  navList,
+  navElements,
+  navContainer,
+  navBlack,
+  styleMobileNav,
+  toggleNavClasses
+};
