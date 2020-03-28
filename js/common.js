@@ -549,7 +549,7 @@ var hasClickListener = false; //appends navList to navContainer (because of burg
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
-  navBlack.classList.add(".nav-white"); // mobile burger and menu
+  navBlack.classList.add("nav-white"); // mobile burger and menu
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
