@@ -26,9 +26,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 //VARIABLES
 var siteWrapper = document.querySelector("#site-wrapper");
 exports.siteWrapper = siteWrapper;
-var nav = document.querySelector("nav"); // const navBar = document.querySelector("#navbar");
-
+var nav = document.querySelector("nav");
 exports.nav = nav;
+var navBar = document.querySelector("#navbar");
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
