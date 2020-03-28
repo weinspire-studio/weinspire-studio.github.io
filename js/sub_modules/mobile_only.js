@@ -20,7 +20,7 @@ let hasClickListener = false;
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
-  // navBlack.classList.add("nav-white");
+  navBlack.style.backgroundColor = "blue";
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {

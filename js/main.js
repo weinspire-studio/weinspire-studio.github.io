@@ -55,13 +55,13 @@ contactModule.validateContactForm();
 contactModule.submitContactForm();
 
 //on pageload, executes the following code, depending on screen width.
-document.addEventListener("load", function() {
-  if (notMobileScreenMQ.matches) {
-    desktopCode();
-  } else {
-    mobileCode();
-  }
-});
+// document.addEventListener("DOMContentLoaded", function() {
+if (notMobileScreenMQ.matches) {
+  desktopCode();
+} else {
+  mobileCode();
+}
+// });
 
 //adds listener that executes code when screen width changes (passing by 801px).
 notMobileScreenMQ.addListener(() => {
@@ -113,9 +113,9 @@ function styleNavOnScroll() {
   if(scrolledY > 0) {
     console.log('adentro del ifFF')
     // mobileModule.navBlack.classList.add("nav-white");
-    navBar.style.backgroundColor = "pink";
+    // navBar.style.backgroundColor = "pink";
   } else {
-    navBar.style.backgroundColor = "transparent";
+    // navBar.style.backgroundColor = "transparent";
     // mobileModule.navBlack.classList.remove("nav-white");
     // nav.classList.remove("nav-no-border");
     console.log('entra al esle');

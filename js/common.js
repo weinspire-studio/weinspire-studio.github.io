@@ -67,14 +67,15 @@ var swiper;
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //on pageload, executes the following code, depending on screen width.
+// document.addEventListener("DOMContentLoaded", function() {
 
-document.addEventListener("load", function () {
-  if (notMobileScreenMQ.matches) {
-    desktopCode();
-  } else {
-    mobileCode();
-  }
-}); //adds listener that executes code when screen width changes (passing by 801px).
+if (notMobileScreenMQ.matches) {
+  desktopCode();
+} else {
+  mobileCode();
+} // });
+//adds listener that executes code when screen width changes (passing by 801px).
+
 
 notMobileScreenMQ.addListener(function () {
   if (notMobileScreenMQ.matches) {
@@ -128,12 +129,11 @@ function styleNavOnScroll() {
 
   if (scrolledY > 0) {
     console.log('adentro del ifFF'); // mobileModule.navBlack.classList.add("nav-white");
-
-    navBar.style.backgroundColor = "pink";
+    // navBar.style.backgroundColor = "pink";
   } else {
-    navBar.style.backgroundColor = "transparent"; // mobileModule.navBlack.classList.remove("nav-white");
+    // navBar.style.backgroundColor = "transparent";
+    // mobileModule.navBlack.classList.remove("nav-white");
     // nav.classList.remove("nav-no-border");
-
     console.log('entra al esle');
   }
 
@@ -550,8 +550,8 @@ var hasClickListener = false; //appends navList to navContainer (because of burg
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList); // navBlack.classList.add("nav-white");
-  // mobile burger and menu
+  navContainer.appendChild(navList);
+  navBlack.style.backgroundColor = "blue"; // mobile burger and menu
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
