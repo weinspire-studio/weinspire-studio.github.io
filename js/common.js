@@ -549,17 +549,15 @@ var designProjectsSection = document.querySelector("#section-projects-design");
 var hasClickListener = false;
 heroText.firstElementChild.classList.add("nav-white");
 var navBar = document.querySelector("#navbar");
-setTimeout(function () {
-  navBar.classList.toggle("nav-white");
-}, 10000); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+navBar.classList.toggle("nav-white"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
-  navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList); // navBlack.style.backgroundColor = "blue";
+  // navList.parentNode.removeChild(navList);
+  // navContainer.appendChild(navList);
+  // navBlack.style.backgroundColor = "blue";
   // navBar.classList.add("nav-white");
   // navBar.classList.add('nav-white');
   // mobile burger and menu
-
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
       toggleNavClasses();
