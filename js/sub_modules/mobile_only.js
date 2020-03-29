@@ -17,7 +17,7 @@ const designProjectsSection = document.querySelector(
 let hasClickListener = false;
 
 const navBar = document.querySelector("#navbar");
-navBar.classList.add("nav-white");
+navBar.classList.toggle("nav-white");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
