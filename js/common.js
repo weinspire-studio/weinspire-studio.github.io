@@ -547,13 +547,14 @@ var heroText = document.querySelector(".hero-text");
 var footer = document.querySelector("#footer");
 var designProjectsSection = document.querySelector("#section-projects-design");
 var hasClickListener = false;
-var navBar = document.querySelector("#navbar"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var navBar = document.querySelector("#navbar");
+navBar.classList.add("nav-white"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList); // navBlack.style.backgroundColor = "blue";
-
-  navBar.classList.add("nav-white"); // navBar.classList.add('nav-white');
+  // navBar.classList.add("nav-white");
+  // navBar.classList.add('nav-white');
   // mobile burger and menu
 
   if (!hasClickListener) {
