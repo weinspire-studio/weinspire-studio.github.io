@@ -9,7 +9,7 @@ import * as contactModule from "./sub_modules/contact";
 //VARIABLES
 const siteWrapper = document.querySelector("#site-wrapper");
 const nav = document.querySelector("nav");
-const navBar = document.querySelector("#navbar");
+// const navBar = document.querySelector("#navbar");
 const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
@@ -112,11 +112,11 @@ function styleNavOnScroll() {
   console.log(scrolledY)
   if(scrolledY > 0) {
     console.log('adentro del ifFF')
-    navBar.style.backgroundColor = "white";
+    // navBar.style.backgroundColor = "white";
     // mobileModule.navBlack.classList.add("nav-white");
     // navBar.style.backgroundColor = "pink";
   } else {
-    navBar.style.backgroundColor = "transparent";
+    // navBar.style.backgroundColor = "transparent";
     // mobileModule.navBlack.classList.remove("nav-white");
     // nav.classList.remove("nav-no-border");
     console.log('entra al esle');
