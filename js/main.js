@@ -55,7 +55,7 @@ contactModule.validateContactForm();
 contactModule.submitContactForm();
 
 //on pageload, executes the following code, depending on screen width.
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("load", function() {
   if (notMobileScreenMQ.matches) {
     desktopCode();
   } else {
