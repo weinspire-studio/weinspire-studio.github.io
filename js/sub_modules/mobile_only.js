@@ -16,6 +16,8 @@ const designProjectsSection = document.querySelector(
 );
 let hasClickListener = false;
 
+heroText.firstElementChild.classList.add("nav-white");
+
 const navBar = document.querySelector("#navbar");
 setTimeout(function() {
   navBar.classList.toggle("nav-white");

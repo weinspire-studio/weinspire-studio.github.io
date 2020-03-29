@@ -547,6 +547,7 @@ var heroText = document.querySelector(".hero-text");
 var footer = document.querySelector("#footer");
 var designProjectsSection = document.querySelector("#section-projects-design");
 var hasClickListener = false;
+heroText.firstElementChild.classList.add("nav-white");
 var navBar = document.querySelector("#navbar");
 setTimeout(function () {
   navBar.classList.toggle("nav-white");
