@@ -550,7 +550,7 @@ var hasClickListener = false;
 var navBar = document.querySelector("#navbar");
 setTimeout(function () {
   navBar.classList.toggle("nav-white");
-}, 5000); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+}, 10000); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
