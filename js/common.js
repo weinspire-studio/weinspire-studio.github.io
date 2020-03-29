@@ -548,7 +548,9 @@ var footer = document.querySelector("#footer");
 var designProjectsSection = document.querySelector("#section-projects-design");
 var hasClickListener = false;
 var navBar = document.querySelector("#navbar");
-navBar.classList.toggle("nav-white"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+setTimeout(function () {
+  navBar.classList.toggle("nav-white");
+}, 5000); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
