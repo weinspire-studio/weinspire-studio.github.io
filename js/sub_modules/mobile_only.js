@@ -19,7 +19,7 @@ let hasClickListener = false;
 heroText.firstElementChild.classList.add("nav-white");
 
 const navBar = document.querySelector("#navbar");
-navBar.classList.toggle("nav-white");
+navBar.classList.add("nav-white");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   // navList.parentNode.removeChild(navList);

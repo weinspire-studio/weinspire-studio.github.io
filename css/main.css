@@ -320,7 +320,7 @@ nav {
   opacity: 10%;
 }
 
-.nav-white {
+section#navbar.nav-white {
   background-color: white;
 }
 
