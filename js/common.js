@@ -103,6 +103,7 @@ function desktopCode() {
 
 
 function mobileCode() {
+  console.log("load event");
   styleNavOnScroll();
   mobileModule.styleMobileNav();
 
