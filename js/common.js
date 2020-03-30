@@ -97,9 +97,9 @@ function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
-    navBar.classList.add("nav-white");
+    navBar.classList.add("nav-white"); // nav.classList.add("nav-no-border");
   } else {
-    navBar.classList.remove("nav-white");
+    navBar.classList.remove("nav-white"); // nav.classList.remove("nav-no-border");
   }
 } //
 //
