@@ -131,7 +131,7 @@ function styleNavOnScroll() {
     navBar.classList.add('nav-white'); // mobileModule.navBlack.classList.add("nav-white");
     // navBar.style.backgroundColor = "pink";
   } else {
-    navBar.classList.add('nav-white'); // mobileModule.navBlack.classList.remove("nav-white");
+    navBar.classList.remove('nav-white'); // mobileModule.navBlack.classList.remove("nav-white");
     // nav.classList.remove("nav-no-border");
 
     console.log('entra al esle');
