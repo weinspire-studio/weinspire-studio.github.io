@@ -104,8 +104,7 @@ function desktopCode() {
 
 function mobileCode() {
   console.log("load event");
-  styleNavOnScroll();
-  mobileModule.styleMobileNav();
+  styleNavOnScroll(); // mobileModule.styleMobileNav();
 
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
@@ -140,63 +139,8 @@ function styleNavOnScroll() {
   console.log("asd" + siteWrapper.scrollTop);
 }
 
-var navList = document.querySelector(".nav-list");
-var navElements = document.querySelectorAll(".nav-list li");
-var navContainer = document.querySelector(".navigation-container");
-var navWhite = document.querySelector(".navigation-color-white");
-var navBlack = document.querySelector(".navigation-overlay-black");
-var navImg = document.querySelector("nav img");
-var burger = document.querySelector(".burger");
-var heroText = document.querySelector(".hero-text");
-var footer = document.querySelector("#footer");
-var designProjectsSection = document.querySelector("#section-projects-design");
-var hasClickListener = false;
-heroText.firstElementChild.classList.add("nav-white");
 var navBar = document.querySelector("#navbar");
-navBar.classList.add("nav-white"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
-
-function styleMobileNav() {
-  navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList); // navBlack.style.backgroundColor = "blue";
-  // navBar.classList.add("nav-white");
-  // navBar.classList.add('nav-white');
-  // mobile burger and menu
-
-  if (!hasClickListener) {
-    burger.addEventListener("click", function () {
-      toggleNavClasses();
-      navElements.forEach(function (navEl, index) {
-        navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
-        navEl.classList.toggle("nav-link-anim");
-        navEl.classList.toggle("invisible");
-      });
-    });
-  }
-
-  hasClickListener = true;
-} // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
-
-
-function toggleNavClasses() {
-  var scrolledYMobile;
-  scrolledYMobile = siteWrapper.scrollTop;
-
-  if (scrolledYMobile > 0) {
-    navBar.classList.toggle("nav-white");
-    navBlack.classList.toggle("navigation-black");
-    navWhite.classList.toggle("navigation-white");
-  }
-
-  siteWrapper.classList.toggle("menu-open");
-  burger.classList.toggle("cross");
-  navList.classList.toggle("open");
-  navList.classList.add("visible");
-  navContainer.classList.toggle("translate");
-  navImg.classList.toggle("logo-index");
-  heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
-
-  footer.classList.toggle("footer-index");
-} //
+navBar.classList.add("nav-white"); //
 //
 // -----------------
 // $("#section-projects-design ul").slick({
@@ -593,9 +537,9 @@ function unbindImages() {
 //   "#section-projects-design"
 // );
 // let hasClickListener = false;
-// heroText.firstElementChild.classList.add("nav-white");
-// const navBar = document.querySelector("#navbar");
-// navBar.classList.add("nav-white");
+// // heroText.firstElementChild.classList.add("nav-white");
+// // const navBar = document.querySelector("#navbar");
+// // navBar.classList.add("nav-white");
 // //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 // function styleMobileNav() {
 //   navList.parentNode.removeChild(navList);
