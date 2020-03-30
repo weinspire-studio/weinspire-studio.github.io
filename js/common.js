@@ -220,7 +220,7 @@ function styleNavOnScroll() {
 // babel vs babelify? Modules? jquery modules? swiper?
 // content link ?
 // mousedown touch start?
-//
+//auto prefixer: prefix animations?
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6}],2:[function(require,module,exports){
 "use strict";
@@ -521,7 +521,7 @@ exports.navBlack = exports.navContainer = exports.navElements = exports.navList 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("test 6");
+console.log("test 7");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -538,8 +538,7 @@ var footer = document.querySelector("#footer"); // const designProjectsSection =
 //   "#section-projects-design"
 // );
 
-var hasClickListener = false; // const navBar = document.querySelector("#navbar");
-//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var hasClickListener = false; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);

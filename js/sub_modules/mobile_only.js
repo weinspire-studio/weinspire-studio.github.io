@@ -2,7 +2,7 @@
 
 import { siteWrapper } from "../main.js";
 
-console.log("test 6");
+console.log("test 7");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
@@ -18,7 +18,6 @@ const footer = document.querySelector("#footer");
 // );
 let hasClickListener = false;
 
-// const navBar = document.querySelector("#navbar");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);

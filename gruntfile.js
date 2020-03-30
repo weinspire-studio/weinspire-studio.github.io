@@ -138,7 +138,7 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load Grunt plugins
+  // Grunt plugins
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-htmlhint");
   grunt.loadNpmTasks("grunt-contrib-cssmin");
@@ -152,7 +152,6 @@ module.exports = function(grunt) {
 
   // Register Grunt tasks
   grunt.registerTask("default", ["watch"]);
-  // grunt.registerTask("default", ['sass:dist', 'babel:dist']);
   // prettier-ignore
   grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "critical", "htmlhint", "jshint", "browserify", "uglify"]);
 };
