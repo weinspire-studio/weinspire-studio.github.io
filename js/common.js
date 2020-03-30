@@ -104,7 +104,8 @@ function desktopCode() {
 
 function mobileCode() {
   console.log("load event");
-  styleNavOnScroll(); // mobileModule.styleMobileNav();
+  styleNavOnScroll();
+  mobileModule.styleMobileNav();
 
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
@@ -137,10 +138,7 @@ function styleNavOnScroll() {
   }
 
   console.log("asd" + siteWrapper.scrollTop);
-}
-
-var navBar = document.querySelector("#navbar");
-navBar.classList.add("nav-white"); //
+} //
 //
 // -----------------
 // $("#section-projects-design ul").slick({
@@ -522,9 +520,12 @@ function unbindImages() {
 }
 
 },{}],5:[function(require,module,exports){
-// // jshint esversion: 6
+"use strict";
+
+// jshint esversion: 6
 // import { siteWrapper } from "../main.js";
-// const navList = document.querySelector(".nav-list");
+var navBar = document.querySelector("#navbar");
+navBar.classList.add("nav-white"); // const navList = document.querySelector(".nav-list");
 // const navElements = document.querySelectorAll(".nav-list li");
 // const navContainer = document.querySelector(".navigation-container");
 // const navWhite = document.querySelector(".navigation-color-white");
@@ -621,7 +622,6 @@ function unbindImages() {
 //   styleMobileNav,
 //   toggleNavClasses
 // };
-"use strict";
 
 },{}],6:[function(require,module,exports){
 "use strict";

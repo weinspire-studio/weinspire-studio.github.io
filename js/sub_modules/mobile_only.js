@@ -1,6 +1,10 @@
-// // jshint esversion: 6
+// jshint esversion: 6
 
 // import { siteWrapper } from "../main.js";
+
+const navBar = document.querySelector("#navbar");
+
+navBar.classList.add("nav-white");
 
 // const navList = document.querySelector(".nav-list");
 // const navElements = document.querySelectorAll(".nav-list li");

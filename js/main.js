@@ -92,7 +92,7 @@ function desktopCode() {
 function mobileCode() {
   console.log("load event");
   styleNavOnScroll();
-  // mobileModule.styleMobileNav();
+  mobileModule.styleMobileNav();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     console.log("testt");
@@ -124,10 +124,6 @@ function styleNavOnScroll() {
   }
   console.log("asd" + siteWrapper.scrollTop)
 }
-
-const navBar = document.querySelector("#navbar");
-
-navBar.classList.add("nav-white");
 
 export { siteWrapper, nav };
 
