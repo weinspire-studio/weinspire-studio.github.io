@@ -527,12 +527,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.navContainer = exports.navElements = exports.navList = void 0;
+exports.navBlack = exports.navContainer = exports.navElements = exports.navList = void 0;
 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("test 3");
+console.log("test 4");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -541,6 +541,7 @@ var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
 var navWhite = document.querySelector(".navigation-color-white");
 var navBlack = document.querySelector(".navigation-overlay-black");
+exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
