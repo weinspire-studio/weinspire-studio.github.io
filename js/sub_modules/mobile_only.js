@@ -2,11 +2,7 @@
 
 import { siteWrapper } from "../main.js";
 
-const navBar = document.querySelector("#navbar");
-
-navBar.classList.add("nav-white");
-
-console.log("test 1");
+console.log("test 2");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
@@ -22,18 +18,14 @@ const burger = document.querySelector(".burger");
 // );
 let hasClickListener = false;
 
-// // heroText.firstElementChild.classList.add("nav-white");
-
-// // const navBar = document.querySelector("#navbar");
+const navBar = document.querySelector("#navbar");
 
 // // navBar.classList.add("nav-white");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
-  // navBlack.style.backgroundColor = "blue";
-  // navBar.classList.add("nav-white");
-  // navBar.classList.add('nav-white');
+  navBar.classList.add("nav-white");
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {
@@ -108,9 +100,9 @@ function styleMobileNav() {
 // }
 
 export {
-  // navList,
-  // navElements,
-  // navContainer,
+  navList,
+  navElements,
+  navContainer,
   // navBlack,
   styleMobileNav
   // toggleNavClasses

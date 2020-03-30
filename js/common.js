@@ -526,36 +526,35 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.styleMobileNav = styleMobileNav;
+exports.navContainer = exports.navElements = exports.navList = void 0;
 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-var navBar = document.querySelector("#navbar");
-navBar.classList.add("nav-white");
-console.log("test 1");
+console.log("test 2");
 var navList = document.querySelector(".nav-list");
+exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
+exports.navElements = navElements;
 var navContainer = document.querySelector(".navigation-container"); // const navWhite = document.querySelector(".navigation-color-white");
 // const navBlack = document.querySelector(".navigation-overlay-black");
 // const navImg = document.querySelector("nav img");
 
+exports.navContainer = navContainer;
 var burger = document.querySelector(".burger"); // const heroText = document.querySelector(".hero-text");
 // const footer = document.querySelector("#footer");
 // const designProjectsSection = document.querySelector(
 //   "#section-projects-design"
 // );
 
-var hasClickListener = false; // // heroText.firstElementChild.classList.add("nav-white");
-// // const navBar = document.querySelector("#navbar");
-// // navBar.classList.add("nav-white");
+var hasClickListener = false;
+var navBar = document.querySelector("#navbar"); // // navBar.classList.add("nav-white");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList); // navBlack.style.backgroundColor = "blue";
-  // navBar.classList.add("nav-white");
-  // navBar.classList.add('nav-white');
-  // mobile burger and menu
+  navContainer.appendChild(navList);
+  navBar.classList.add("nav-white"); // mobile burger and menu
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
