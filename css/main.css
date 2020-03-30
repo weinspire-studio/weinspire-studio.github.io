@@ -324,6 +324,14 @@ nav {
   background-color: white;
 }
 
+.nav-white nav a {
+  color: black;
+}
+
+.nav-white .burger div {
+  background-color: black;
+}
+
 .navigation-white {
   background-color: white;
   z-index: 1;
