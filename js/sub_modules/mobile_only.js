@@ -1,22 +1,22 @@
-// jshint esversion: 6
+// // jshint esversion: 6
 
-import { siteWrapper } from "../main.js";
+// import { siteWrapper } from "../main.js";
 
 // const navList = document.querySelector(".nav-list");
 // const navElements = document.querySelectorAll(".nav-list li");
 // const navContainer = document.querySelector(".navigation-container");
-const navWhite = document.querySelector(".navigation-color-white");
-const navBlack = document.querySelector(".navigation-overlay-black");
-const navImg = document.querySelector("nav img");
+// const navWhite = document.querySelector(".navigation-color-white");
+// const navBlack = document.querySelector(".navigation-overlay-black");
+// const navImg = document.querySelector("nav img");
 // const burger = document.querySelector(".burger");
-const heroText = document.querySelector(".hero-text");
-const footer = document.querySelector("#footer");
-const designProjectsSection = document.querySelector(
-  "#section-projects-design"
-);
-let hasClickListener = false;
+// const heroText = document.querySelector(".hero-text");
+// const footer = document.querySelector("#footer");
+// const designProjectsSection = document.querySelector(
+//   "#section-projects-design"
+// );
+// let hasClickListener = false;
 
-heroText.firstElementChild.classList.add("nav-white");
+// heroText.firstElementChild.classList.add("nav-white");
 
 // const navBar = document.querySelector("#navbar");
 
@@ -42,70 +42,70 @@ heroText.firstElementChild.classList.add("nav-white");
 //   hasClickListener = true;
 // }
 
-// adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
-function toggleNavClasses() {
-  let scrolledYMobile;
-  scrolledYMobile = siteWrapper.scrollTop;
-  if (scrolledYMobile > 0) {
-    navBar.classList.toggle("nav-white");
-    navBlack.classList.toggle("navigation-black");
-    navWhite.classList.toggle("navigation-white");
-  }
-  siteWrapper.classList.toggle("menu-open");
-  burger.classList.toggle("cross");
-  navList.classList.toggle("open");
-  navList.classList.add("visible");
-  navContainer.classList.toggle("translate");
-  navImg.classList.toggle("logo-index");
-  heroText.classList.toggle("hero-text-opacity");
-  // svgBackground.classList.toggle("svg-opacity");
-  footer.classList.toggle("footer-index");
-}
+// // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+// function toggleNavClasses() {
+//   let scrolledYMobile;
+//   scrolledYMobile = siteWrapper.scrollTop;
+//   if (scrolledYMobile > 0) {
+//     navBar.classList.toggle("nav-white");
+//     navBlack.classList.toggle("navigation-black");
+//     navWhite.classList.toggle("navigation-white");
+//   }
+//   siteWrapper.classList.toggle("menu-open");
+//   burger.classList.toggle("cross");
+//   navList.classList.toggle("open");
+//   navList.classList.add("visible");
+//   navContainer.classList.toggle("translate");
+//   navImg.classList.toggle("logo-index");
+//   heroText.classList.toggle("hero-text-opacity");
+//   // svgBackground.classList.toggle("svg-opacity");
+//   footer.classList.toggle("footer-index");
+// }
 
-const right_arrows = document.querySelectorAll(".right-arrow-container svg");
-const list = document.querySelector(".swiper-wrapper");
-// console.log(window.getComputedStyle(right_arrows[0]));
-// right_arrow_3.classList.add("test-anim");
+// const right_arrows = document.querySelectorAll(".right-arrow-container svg");
+// const list = document.querySelector(".swiper-wrapper");
+// // console.log(window.getComputedStyle(right_arrows[0]));
+// // right_arrow_3.classList.add("test-anim");
 
-// console.log(designProjectsSection.offsetTop);
-// console.log(document.body.clientHeight);
+// // console.log(designProjectsSection.offsetTop);
+// // console.log(document.body.clientHeight);
 
-let trigger =
-  designProjectsSection.offsetTop - document.body.clientHeight + 100;
-// console.log(trigger);
-// let flag = true;
-let last_known_scroll_position = 0;
+// let trigger =
+//   designProjectsSection.offsetTop - document.body.clientHeight + 100;
+// // console.log(trigger);
+// // let flag = true;
+// let last_known_scroll_position = 0;
 
-// document.addEventListener("DOMContentLoaded", function() {
-//   siteWrapper.addEventListener("scroll", doSomething, true);
-//   list.addEventListener("touchstart", function() {
+// // document.addEventListener("DOMContentLoaded", function() {
+// //   siteWrapper.addEventListener("scroll", doSomething, true);
+// //   list.addEventListener("touchstart", function() {
+// //     right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
+// //     siteWrapper.removeEventListener("scroll", doSomething, true);
+// //     console.log("entra al remove");
+// //   });
+// // });
+
+// function doSomething() {
+//   console.log("listeneeer");
+//   last_known_scroll_position = siteWrapper.scrollTop;
+//   if (last_known_scroll_position > trigger) {
+//     right_arrows.forEach(arrow => arrow.classList.add("test-anim"));
+//     right_arrows[0].style.animationDelay = ".25s";
+//     right_arrows[1].style.animationDelay = ".125s";
+//   } else {
 //     right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
-//     siteWrapper.removeEventListener("scroll", doSomething, true);
-//     console.log("entra al remove");
-//   });
-// });
+//   }
+//   // doSomethingElse(last_known_scroll_position);
+// }
+// function doSomethingElse(last_known_scroll_position) {
+//   console.log(last_known_scroll_position);
+// }
 
-function doSomething() {
-  console.log("listeneeer");
-  last_known_scroll_position = siteWrapper.scrollTop;
-  if (last_known_scroll_position > trigger) {
-    right_arrows.forEach(arrow => arrow.classList.add("test-anim"));
-    right_arrows[0].style.animationDelay = ".25s";
-    right_arrows[1].style.animationDelay = ".125s";
-  } else {
-    right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
-  }
-  // doSomethingElse(last_known_scroll_position);
-}
-function doSomethingElse(last_known_scroll_position) {
-  console.log(last_known_scroll_position);
-}
-
-export {
-  // navList,
-  // navElements,
-  // navContainer,
-  navBlack,
-  // styleMobileNav,
-  toggleNavClasses
-};
+// export {
+//   navList,
+//   navElements,
+//   navContainer,
+//   navBlack,
+//   styleMobileNav,
+//   toggleNavClasses
+// };

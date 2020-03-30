@@ -8,6 +8,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.nav = exports.siteWrapper = void 0;
 
+var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
+
 var desktopModule = _interopRequireWildcard(require("./sub_modules/desktop_only"));
 
 var swiperModule = _interopRequireWildcard(require("./sub_modules/swiper"));
@@ -21,7 +23,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 // jshint esversion: 6
-// import * as mobileModule from "./sub_modules/mobile_only";
 //VARIABLES
 var siteWrapper = document.querySelector("#site-wrapper");
 exports.siteWrapper = siteWrapper;
@@ -104,7 +105,7 @@ function desktopCode() {
 function mobileCode() {
   console.log("load event");
   styleNavOnScroll();
-  styleMobileNav();
+  mobileModule.styleMobileNav();
 
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
@@ -142,8 +143,15 @@ function styleNavOnScroll() {
 var navList = document.querySelector(".nav-list");
 var navElements = document.querySelectorAll(".nav-list li");
 var navContainer = document.querySelector(".navigation-container");
+var navWhite = document.querySelector(".navigation-color-white");
+var navBlack = document.querySelector(".navigation-overlay-black");
+var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
+var heroText = document.querySelector(".hero-text");
+var footer = document.querySelector("#footer");
+var designProjectsSection = document.querySelector("#section-projects-design");
 var hasClickListener = false;
+heroText.firstElementChild.classList.add("nav-white");
 var navBar = document.querySelector("#navbar");
 navBar.classList.add("nav-white"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
@@ -156,7 +164,7 @@ function styleMobileNav() {
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
-      // toggleNavClasses();
+      toggleNavClasses();
       navElements.forEach(function (navEl, index) {
         navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
         navEl.classList.toggle("nav-link-anim");
@@ -166,6 +174,28 @@ function styleMobileNav() {
   }
 
   hasClickListener = true;
+} // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+
+
+function toggleNavClasses() {
+  var scrolledYMobile;
+  scrolledYMobile = siteWrapper.scrollTop;
+
+  if (scrolledYMobile > 0) {
+    navBar.classList.toggle("nav-white");
+    navBlack.classList.toggle("navigation-black");
+    navWhite.classList.toggle("navigation-white");
+  }
+
+  siteWrapper.classList.toggle("menu-open");
+  burger.classList.toggle("cross");
+  navList.classList.toggle("open");
+  navList.classList.add("visible");
+  navContainer.classList.toggle("translate");
+  navImg.classList.toggle("logo-index");
+  heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
+
+  footer.classList.toggle("footer-index");
 } //
 //
 // -----------------
@@ -261,7 +291,7 @@ function styleMobileNav() {
 // mousedown touch start?
 //
 
-},{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/swiper":6}],2:[function(require,module,exports){
+},{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -548,30 +578,23 @@ function unbindImages() {
 }
 
 },{}],5:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.toggleNavClasses = toggleNavClasses;
-exports.navBlack = void 0;
-
-var _main = require("../main.js");
-
-// jshint esversion: 6
+// // jshint esversion: 6
+// import { siteWrapper } from "../main.js";
 // const navList = document.querySelector(".nav-list");
 // const navElements = document.querySelectorAll(".nav-list li");
 // const navContainer = document.querySelector(".navigation-container");
-var navWhite = document.querySelector(".navigation-color-white");
-var navBlack = document.querySelector(".navigation-overlay-black");
-exports.navBlack = navBlack;
-var navImg = document.querySelector("nav img"); // const burger = document.querySelector(".burger");
-
-var heroText = document.querySelector(".hero-text");
-var footer = document.querySelector("#footer");
-var designProjectsSection = document.querySelector("#section-projects-design");
-var hasClickListener = false;
-heroText.firstElementChild.classList.add("nav-white"); // const navBar = document.querySelector("#navbar");
+// const navWhite = document.querySelector(".navigation-color-white");
+// const navBlack = document.querySelector(".navigation-overlay-black");
+// const navImg = document.querySelector("nav img");
+// const burger = document.querySelector(".burger");
+// const heroText = document.querySelector(".hero-text");
+// const footer = document.querySelector("#footer");
+// const designProjectsSection = document.querySelector(
+//   "#section-projects-design"
+// );
+// let hasClickListener = false;
+// heroText.firstElementChild.classList.add("nav-white");
+// const navBar = document.querySelector("#navbar");
 // navBar.classList.add("nav-white");
 // //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 // function styleMobileNav() {
@@ -593,71 +616,70 @@ heroText.firstElementChild.classList.add("nav-white"); // const navBar = documen
 //   }
 //   hasClickListener = true;
 // }
-// adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
-
-function toggleNavClasses() {
-  var scrolledYMobile;
-  scrolledYMobile = _main.siteWrapper.scrollTop;
-
-  if (scrolledYMobile > 0) {
-    navBar.classList.toggle("nav-white");
-    navBlack.classList.toggle("navigation-black");
-    navWhite.classList.toggle("navigation-white");
-  }
-
-  _main.siteWrapper.classList.toggle("menu-open");
-
-  burger.classList.toggle("cross");
-  navList.classList.toggle("open");
-  navList.classList.add("visible");
-  navContainer.classList.toggle("translate");
-  navImg.classList.toggle("logo-index");
-  heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
-
-  footer.classList.toggle("footer-index");
-}
-
-var right_arrows = document.querySelectorAll(".right-arrow-container svg");
-var list = document.querySelector(".swiper-wrapper"); // console.log(window.getComputedStyle(right_arrows[0]));
-// right_arrow_3.classList.add("test-anim");
-// console.log(designProjectsSection.offsetTop);
-// console.log(document.body.clientHeight);
-
-var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100; // console.log(trigger);
-// let flag = true;
-
-var last_known_scroll_position = 0; // document.addEventListener("DOMContentLoaded", function() {
-//   siteWrapper.addEventListener("scroll", doSomething, true);
-//   list.addEventListener("touchstart", function() {
+// // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+// function toggleNavClasses() {
+//   let scrolledYMobile;
+//   scrolledYMobile = siteWrapper.scrollTop;
+//   if (scrolledYMobile > 0) {
+//     navBar.classList.toggle("nav-white");
+//     navBlack.classList.toggle("navigation-black");
+//     navWhite.classList.toggle("navigation-white");
+//   }
+//   siteWrapper.classList.toggle("menu-open");
+//   burger.classList.toggle("cross");
+//   navList.classList.toggle("open");
+//   navList.classList.add("visible");
+//   navContainer.classList.toggle("translate");
+//   navImg.classList.toggle("logo-index");
+//   heroText.classList.toggle("hero-text-opacity");
+//   // svgBackground.classList.toggle("svg-opacity");
+//   footer.classList.toggle("footer-index");
+// }
+// const right_arrows = document.querySelectorAll(".right-arrow-container svg");
+// const list = document.querySelector(".swiper-wrapper");
+// // console.log(window.getComputedStyle(right_arrows[0]));
+// // right_arrow_3.classList.add("test-anim");
+// // console.log(designProjectsSection.offsetTop);
+// // console.log(document.body.clientHeight);
+// let trigger =
+//   designProjectsSection.offsetTop - document.body.clientHeight + 100;
+// // console.log(trigger);
+// // let flag = true;
+// let last_known_scroll_position = 0;
+// // document.addEventListener("DOMContentLoaded", function() {
+// //   siteWrapper.addEventListener("scroll", doSomething, true);
+// //   list.addEventListener("touchstart", function() {
+// //     right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
+// //     siteWrapper.removeEventListener("scroll", doSomething, true);
+// //     console.log("entra al remove");
+// //   });
+// // });
+// function doSomething() {
+//   console.log("listeneeer");
+//   last_known_scroll_position = siteWrapper.scrollTop;
+//   if (last_known_scroll_position > trigger) {
+//     right_arrows.forEach(arrow => arrow.classList.add("test-anim"));
+//     right_arrows[0].style.animationDelay = ".25s";
+//     right_arrows[1].style.animationDelay = ".125s";
+//   } else {
 //     right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
-//     siteWrapper.removeEventListener("scroll", doSomething, true);
-//     console.log("entra al remove");
-//   });
-// });
+//   }
+//   // doSomethingElse(last_known_scroll_position);
+// }
+// function doSomethingElse(last_known_scroll_position) {
+//   console.log(last_known_scroll_position);
+// }
+// export {
+//   navList,
+//   navElements,
+//   navContainer,
+//   navBlack,
+//   styleMobileNav,
+//   toggleNavClasses
+// };
+"use strict";
 
-function doSomething() {
-  console.log("listeneeer");
-  last_known_scroll_position = _main.siteWrapper.scrollTop;
-
-  if (last_known_scroll_position > trigger) {
-    right_arrows.forEach(function (arrow) {
-      return arrow.classList.add("test-anim");
-    });
-    right_arrows[0].style.animationDelay = ".25s";
-    right_arrows[1].style.animationDelay = ".125s";
-  } else {
-    right_arrows.forEach(function (arrow) {
-      return arrow.classList.remove("test-anim");
-    });
-  } // doSomethingElse(last_known_scroll_position);
-
-}
-
-function doSomethingElse(last_known_scroll_position) {
-  console.log(last_known_scroll_position);
-}
-
-},{"../main.js":1}],6:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
