@@ -1,6 +1,6 @@
 // jshint esversion: 6
 
-import { siteWrapper } from "../main.js";
+import { siteWrapper, navBar } from "../main.js";
 
 console.log("test 7");
 
@@ -41,7 +41,7 @@ function toggleNavClasses() {
   let scrolledYMobile;
   scrolledYMobile = siteWrapper.scrollTop;
   if (scrolledYMobile > 0) {
-    // navBar.classList.toggle("nav-white");
+    navBar.classList.toggle("nav-white");
     navBlack.classList.toggle("navigation-black");
     navWhite.classList.toggle("navigation-white");
   }

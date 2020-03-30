@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.nav = exports.siteWrapper = void 0;
+exports.navBar = exports.nav = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -29,37 +29,11 @@ exports.siteWrapper = siteWrapper;
 var nav = document.querySelector("nav");
 exports.nav = nav;
 var navBar = document.querySelector("#navbar");
+exports.navBar = navBar;
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
-// window.addEventListener("DOMContentLoaded", function() {
-//   window.addEventListener("scroll", doSomething);
-// });
-// window.document.documentElement.addEventListener("DOMContentLoaded", event => {
-//   console.log("DOM fully loaded and parsed");
-//   doSomethingElse();
-//   console.log(window.document.documentElement);
-//   // doSomethingElse();
-// });
-// if (document.readyState !== "loading") {
-//   console.log("document is already ready, just execute code here");
-//   doSomethingElse();
-// } else {
-//   doSomethingElse();
-//   document.addEventListener("DOMContentLoaded", function() {
-//     console.log("document was not ready, place code here");
-//     doSomethingElse();
-//   });
-// }
-// function doSomething() {
-//   console.log("adsadas");
-// }
-// function doSomethingElse() {
-//   console.log("ELSE");
-//   document.addEventListener("scroll", doSomething, true);
-//   console.log("ELSE2");
-// }
 
 var hasScrollListener = false;
 var swiper;
@@ -564,7 +538,8 @@ function toggleNavClasses() {
   scrolledYMobile = _main.siteWrapper.scrollTop;
 
   if (scrolledYMobile > 0) {
-    // navBar.classList.toggle("nav-white");
+    _main.navBar.classList.toggle("nav-white");
+
     navBlack.classList.toggle("navigation-black");
     navWhite.classList.toggle("navigation-white");
   }

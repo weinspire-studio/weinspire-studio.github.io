@@ -16,37 +16,6 @@ const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
 
-// window.addEventListener("DOMContentLoaded", function() {
-//   window.addEventListener("scroll", doSomething);
-// });
-
-// window.document.documentElement.addEventListener("DOMContentLoaded", event => {
-//   console.log("DOM fully loaded and parsed");
-//   doSomethingElse();
-//   console.log(window.document.documentElement);
-//   // doSomethingElse();
-// });
-
-// if (document.readyState !== "loading") {
-//   console.log("document is already ready, just execute code here");
-//   doSomethingElse();
-// } else {
-//   doSomethingElse();
-//   document.addEventListener("DOMContentLoaded", function() {
-//     console.log("document was not ready, place code here");
-//     doSomethingElse();
-//   });
-// }
-
-// function doSomething() {
-//   console.log("adsadas");
-// }
-// function doSomethingElse() {
-//   console.log("ELSE");
-//   document.addEventListener("scroll", doSomething, true);
-//   console.log("ELSE2");
-// }
-
 let hasScrollListener = false;
 let swiper;
 
@@ -114,7 +83,7 @@ function styleNavOnScroll() {
   }
 }
 
-export { siteWrapper, nav };
+export { siteWrapper, nav, navBar };
 
 //
 //
