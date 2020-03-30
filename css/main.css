@@ -169,7 +169,6 @@ nav {
       flex-direction: column;
   -ms-flex-align: center;
       align-items: center;
-  background-color: white;
   transition: transform 1s ease;
   opacity: 0;
 }
@@ -183,7 +182,6 @@ nav {
     height: 100%;
     transform: translateX(0);
     transition-property: none;
-    background-color: transparent;
     opacity: 1;
   }
 }
@@ -273,7 +271,6 @@ nav {
 .navigation-color-white {
   width: 100%;
   height: 3.25em;
-  background-color: transparent;
   position: fixed;
   transition: 0.5s ease;
 }
@@ -282,7 +279,6 @@ nav {
   width: 100%;
   height: 3.25em;
   position: fixed;
-  transition: background-color 0.5s ease;
 }
 
 .open {
@@ -320,7 +316,7 @@ nav {
   opacity: 10%;
 }
 
-section#navbar.nav-white {
+.nav-white {
   background-color: white;
 }
 
@@ -331,7 +327,6 @@ section#navbar.nav-white {
 
 .navigation-black {
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .translate {

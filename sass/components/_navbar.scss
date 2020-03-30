@@ -88,7 +88,7 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    // background-color: white;
     transition: transform 1s ease;
     opacity: 0;
 
@@ -99,7 +99,7 @@ nav {
         height: 100%;
         transform: translateX(0);
         transition-property: none;
-        background-color: transparent;
+        // background-color: transparent;
         opacity: 1;
     }
     & li {
@@ -190,7 +190,7 @@ nav {
 .navigation-color-white {
     width: 100%;
     height: 3.25em;
-    background-color: transparent;
+    // background-color: transparent;
     position: fixed;
     transition: .5s ease;
 }
@@ -199,7 +199,7 @@ nav {
     width: 100%;
     height: 3.25em;
     position: fixed;
-    transition: background-color .5s ease;
+    // transition: background-color .5s ease;
 }
 
 // Style classes
@@ -239,14 +239,14 @@ nav {
     opacity: 10%;
 }
 
-section#navbar.nav-white {
+.nav-white {
     background-color: white;
     // box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
 }
 
-// .nav-no-border {
+.nav-no-border {
     // border-bottom: none;
-// }
+}
 
 // .nav-white nav a {
 //     color: black;
@@ -263,7 +263,7 @@ section#navbar.nav-white {
 
 .navigation-black {
     z-index: 1;
-    background-color: $black-opacity;
+    // background-color: $black-opacity;
 }
 
 .translate {
