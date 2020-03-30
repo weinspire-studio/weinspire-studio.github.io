@@ -526,24 +526,25 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.styleMobileNav = styleMobileNav;
+exports.toggleNavClasses = toggleNavClasses;
 exports.navContainer = exports.navElements = exports.navList = void 0;
 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("test 2");
+console.log("test 3");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
 exports.navElements = navElements;
-var navContainer = document.querySelector(".navigation-container"); // const navWhite = document.querySelector(".navigation-color-white");
-// const navBlack = document.querySelector(".navigation-overlay-black");
-// const navImg = document.querySelector("nav img");
-
+var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
-var burger = document.querySelector(".burger"); // const heroText = document.querySelector(".hero-text");
-// const footer = document.querySelector("#footer");
-// const designProjectsSection = document.querySelector(
+var navWhite = document.querySelector(".navigation-color-white");
+var navBlack = document.querySelector(".navigation-overlay-black");
+var navImg = document.querySelector("nav img");
+var burger = document.querySelector(".burger");
+var heroText = document.querySelector(".hero-text");
+var footer = document.querySelector("#footer"); // const designProjectsSection = document.querySelector(
 //   "#section-projects-design"
 // );
 
@@ -558,7 +559,7 @@ function styleMobileNav() {
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
-      // toggleNavClasses();
+      toggleNavClasses();
       navElements.forEach(function (navEl, index) {
         navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
         navEl.classList.toggle("nav-link-anim");
@@ -568,26 +569,30 @@ function styleMobileNav() {
   }
 
   hasClickListener = true;
-} // // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
-// function toggleNavClasses() {
-//   let scrolledYMobile;
-//   scrolledYMobile = siteWrapper.scrollTop;
-//   if (scrolledYMobile > 0) {
-//     navBar.classList.toggle("nav-white");
-//     navBlack.classList.toggle("navigation-black");
-//     navWhite.classList.toggle("navigation-white");
-//   }
-//   siteWrapper.classList.toggle("menu-open");
-//   burger.classList.toggle("cross");
-//   navList.classList.toggle("open");
-//   navList.classList.add("visible");
-//   navContainer.classList.toggle("translate");
-//   navImg.classList.toggle("logo-index");
-//   heroText.classList.toggle("hero-text-opacity");
-//   // svgBackground.classList.toggle("svg-opacity");
-//   footer.classList.toggle("footer-index");
-// }
-// const right_arrows = document.querySelectorAll(".right-arrow-container svg");
+} // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+
+
+function toggleNavClasses() {
+  var scrolledYMobile;
+  scrolledYMobile = _main.siteWrapper.scrollTop;
+
+  if (scrolledYMobile > 0) {
+    navBar.classList.toggle("nav-white");
+    navBlack.classList.toggle("navigation-black");
+    navWhite.classList.toggle("navigation-white");
+  }
+
+  _main.siteWrapper.classList.toggle("menu-open");
+
+  burger.classList.toggle("cross");
+  navList.classList.toggle("open");
+  navList.classList.add("visible");
+  navContainer.classList.toggle("translate");
+  navImg.classList.toggle("logo-index");
+  heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
+
+  footer.classList.toggle("footer-index");
+} // const right_arrows = document.querySelectorAll(".right-arrow-container svg");
 // const list = document.querySelector(".swiper-wrapper");
 // // console.log(window.getComputedStyle(right_arrows[0]));
 // // right_arrow_3.classList.add("test-anim");
