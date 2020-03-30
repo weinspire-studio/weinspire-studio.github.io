@@ -63,14 +63,14 @@ window.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-//adds listener that executes code when screen width changes (passing by 801px).
-// notMobileScreenMQ.addListener(() => {
-//   if (notMobileScreenMQ.matches) {
-//     desktopCode();
-//   } else {
-//     mobileCode();
-//   }
-// });
+// adds listener that executes code when screen width changes (passing by 801px).
+notMobileScreenMQ.addListener(() => {
+  if (notMobileScreenMQ.matches) {
+    desktopCode();
+  } else {
+    mobileCode();
+  }
+});
 
 //FUNCTIONS
 //code that executes only in desktop and large tablets screens (> 801px).
@@ -90,12 +90,10 @@ function desktopCode() {
 
 //code that executes only in phones and small tablets screens (< 801px).
 function mobileCode() {
-  console.log("load event");
   styleNavOnScroll();
   mobileModule.styleMobileNav();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
-    console.log("testt");
     hasScrollListener = true;
   }
   jQueryModule.unbindImages();
@@ -107,22 +105,13 @@ function mobileCode() {
 }
 
 //adds or removes classes in order to give white styles to the nav.
-// prettier-ignore
 function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
-  console.log(scrolledY)
-  if(scrolledY > 0) {
-    console.log('adentro del ifFF')
-    navBar.classList.add('nav-white');
-    // mobileModule.navBlack.classList.add("nav-white");
-    // navBar.style.backgroundColor = "pink";
+  if (scrolledY > 0) {
+    navBar.classList.add("nav-white");
   } else {
-    navBar.classList.remove('nav-white');
-    // mobileModule.navBlack.classList.remove("nav-white");
-    // nav.classList.remove("nav-no-border");
-    console.log('entra al esle');
+    navBar.classList.remove("nav-white");
   }
-  console.log("asd" + siteWrapper.scrollTop)
 }
 
 export { siteWrapper, nav };

@@ -2,7 +2,7 @@
 
 import { siteWrapper } from "../main.js";
 
-console.log("test 5");
+console.log("test 6");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
@@ -19,13 +19,10 @@ const footer = document.querySelector("#footer");
 let hasClickListener = false;
 
 // const navBar = document.querySelector("#navbar");
-
-// // navBar.classList.add("nav-white");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
-  // navBar.classList.add("nav-white");
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {

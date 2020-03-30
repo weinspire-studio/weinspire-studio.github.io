@@ -73,15 +73,15 @@ window.addEventListener("DOMContentLoaded", function () {
   } else {
     mobileCode();
   }
-}); //adds listener that executes code when screen width changes (passing by 801px).
-// notMobileScreenMQ.addListener(() => {
-//   if (notMobileScreenMQ.matches) {
-//     desktopCode();
-//   } else {
-//     mobileCode();
-//   }
-// });
-//FUNCTIONS
+}); // adds listener that executes code when screen width changes (passing by 801px).
+
+notMobileScreenMQ.addListener(function () {
+  if (notMobileScreenMQ.matches) {
+    desktopCode();
+  } else {
+    mobileCode();
+  }
+}); //FUNCTIONS
 //code that executes only in desktop and large tablets screens (> 801px).
 
 function desktopCode() {
@@ -103,13 +103,11 @@ function desktopCode() {
 
 
 function mobileCode() {
-  console.log("load event");
   styleNavOnScroll();
   mobileModule.styleMobileNav();
 
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
-    console.log("testt");
     hasScrollListener = true;
   }
 
@@ -119,25 +117,16 @@ function mobileCode() {
   // });
   // swiper.init();
 } //adds or removes classes in order to give white styles to the nav.
-// prettier-ignore
 
 
 function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
-  console.log(scrolledY);
 
   if (scrolledY > 0) {
-    console.log('adentro del ifFF');
-    navBar.classList.add('nav-white'); // mobileModule.navBlack.classList.add("nav-white");
-    // navBar.style.backgroundColor = "pink";
+    navBar.classList.add("nav-white");
   } else {
-    navBar.classList.remove('nav-white'); // mobileModule.navBlack.classList.remove("nav-white");
-    // nav.classList.remove("nav-no-border");
-
-    console.log('entra al esle');
+    navBar.classList.remove("nav-white");
   }
-
-  console.log("asd" + siteWrapper.scrollTop);
 } //
 //
 // -----------------
@@ -532,7 +521,7 @@ exports.navBlack = exports.navContainer = exports.navElements = exports.navList 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("test 5");
+console.log("test 6");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -550,13 +539,11 @@ var footer = document.querySelector("#footer"); // const designProjectsSection =
 // );
 
 var hasClickListener = false; // const navBar = document.querySelector("#navbar");
-// // navBar.classList.add("nav-white");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList); // navBar.classList.add("nav-white");
-  // mobile burger and menu
+  navContainer.appendChild(navList); // mobile burger and menu
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
