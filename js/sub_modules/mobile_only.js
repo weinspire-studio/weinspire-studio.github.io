@@ -17,6 +17,7 @@ const footer = document.querySelector("#footer");
 //   "#section-projects-design"
 // );
 let hasClickListener = false;
+let clickOnBurger = false;
 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
@@ -25,6 +26,11 @@ function styleMobileNav() {
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {
+      if (clickOnBurger === false) {
+        clickOnBurger = true;
+      } else {
+        clickOnBurger = false;
+      }
       toggleNavClasses();
       navElements.forEach((navEl, index) => {
         navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
@@ -101,6 +107,7 @@ export {
   navElements,
   navContainer,
   navBlack,
+  clickOnBurger,
   styleMobileNav,
   toggleNavClasses
 };

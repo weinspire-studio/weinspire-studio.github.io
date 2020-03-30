@@ -76,12 +76,16 @@ function mobileCode() {
 //adds or removes classes in order to give white styles to the nav.
 function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
-  if (scrolledY > 0) {
-    navBar.classList.add("nav-white");
-    // nav.classList.add("nav-no-border");
+  if (mobileModule.clickOnBurger === false) {
+    if (scrolledY > 0) {
+      navBar.classList.add("nav-white");
+      // nav.classList.add("nav-no-border");
+    } else {
+      navBar.classList.remove("nav-white");
+      // nav.classList.remove("nav-no-border");
+    }
   } else {
-    navBar.classList.remove("nav-white");
-    // nav.classList.remove("nav-no-border");
+    console.log("entra aca");
   }
 }
 
@@ -192,3 +196,4 @@ export { siteWrapper, nav, navBar };
 // content link ?
 // mousedown touch start?
 //auto prefixer: prefix animations?
+// bug in height 100% on iphone? check on the net

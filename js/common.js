@@ -96,10 +96,14 @@ function mobileCode() {
 function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
 
-  if (scrolledY > 0) {
-    navBar.classList.add("nav-white"); // nav.classList.add("nav-no-border");
+  if (mobileModule.clickOnBurger === false) {
+    if (scrolledY > 0) {
+      navBar.classList.add("nav-white"); // nav.classList.add("nav-no-border");
+    } else {
+      navBar.classList.remove("nav-white"); // nav.classList.remove("nav-no-border");
+    }
   } else {
-    navBar.classList.remove("nav-white"); // nav.classList.remove("nav-no-border");
+    console.log("entra aca");
   }
 } //
 //
@@ -195,6 +199,7 @@ function styleNavOnScroll() {
 // content link ?
 // mousedown touch start?
 //auto prefixer: prefix animations?
+// bug in height 100% on iphone? check on the net
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6}],2:[function(require,module,exports){
 "use strict";
@@ -490,7 +495,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.navBlack = exports.navContainer = exports.navElements = exports.navList = void 0;
+exports.clickOnBurger = exports.navBlack = exports.navContainer = exports.navElements = exports.navList = void 0;
 
 var _main = require("../main.js");
 
@@ -512,7 +517,10 @@ var footer = document.querySelector("#footer"); // const designProjectsSection =
 //   "#section-projects-design"
 // );
 
-var hasClickListener = false; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var hasClickListener = false;
+var clickOnBurger = false; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+
+exports.clickOnBurger = clickOnBurger;
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
@@ -520,6 +528,12 @@ function styleMobileNav() {
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
+      if (clickOnBurger === false) {
+        exports.clickOnBurger = clickOnBurger = true;
+      } else {
+        exports.clickOnBurger = clickOnBurger = false;
+      }
+
       toggleNavClasses();
       navElements.forEach(function (navEl, index) {
         navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
