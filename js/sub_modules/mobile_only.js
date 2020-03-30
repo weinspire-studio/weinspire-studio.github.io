@@ -18,14 +18,14 @@ const footer = document.querySelector("#footer");
 // );
 let hasClickListener = false;
 
-const navBar = document.querySelector("#navbar");
+// const navBar = document.querySelector("#navbar");
 
 // // navBar.classList.add("nav-white");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
-  navBar.classList.add("nav-white");
+  // navBar.classList.add("nav-white");
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {
@@ -45,7 +45,7 @@ function toggleNavClasses() {
   let scrolledYMobile;
   scrolledYMobile = siteWrapper.scrollTop;
   if (scrolledYMobile > 0) {
-    navBar.classList.toggle("nav-white");
+    // navBar.classList.toggle("nav-white");
     navBlack.classList.toggle("navigation-black");
     navWhite.classList.toggle("navigation-white");
   }

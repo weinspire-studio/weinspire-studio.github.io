@@ -26,9 +26,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 //VARIABLES
 var siteWrapper = document.querySelector("#site-wrapper");
 exports.siteWrapper = siteWrapper;
-var nav = document.querySelector("nav"); // const navBar = document.querySelector("#navbar");
-
+var nav = document.querySelector("nav");
 exports.nav = nav;
+var navBar = document.querySelector("#navbar");
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
@@ -127,13 +127,13 @@ function styleNavOnScroll() {
   console.log(scrolledY);
 
   if (scrolledY > 0) {
-    console.log('adentro del ifFF'); // navBar.style.backgroundColor = "white";
-    // mobileModule.navBlack.classList.add("nav-white");
+    console.log('adentro del ifFF');
+    navBar.classList.add('nav-white'); // mobileModule.navBlack.classList.add("nav-white");
     // navBar.style.backgroundColor = "pink";
   } else {
-    // navBar.style.backgroundColor = "transparent";
-    // mobileModule.navBlack.classList.remove("nav-white");
+    navBar.classList.add('nav-white'); // mobileModule.navBlack.classList.remove("nav-white");
     // nav.classList.remove("nav-no-border");
+
     console.log('entra al esle');
   }
 
@@ -549,14 +549,14 @@ var footer = document.querySelector("#footer"); // const designProjectsSection =
 //   "#section-projects-design"
 // );
 
-var hasClickListener = false;
-var navBar = document.querySelector("#navbar"); // // navBar.classList.add("nav-white");
+var hasClickListener = false; // const navBar = document.querySelector("#navbar");
+// // navBar.classList.add("nav-white");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList);
-  navBar.classList.add("nav-white"); // mobile burger and menu
+  navContainer.appendChild(navList); // navBar.classList.add("nav-white");
+  // mobile burger and menu
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
@@ -578,7 +578,7 @@ function toggleNavClasses() {
   scrolledYMobile = _main.siteWrapper.scrollTop;
 
   if (scrolledYMobile > 0) {
-    navBar.classList.toggle("nav-white");
+    // navBar.classList.toggle("nav-white");
     navBlack.classList.toggle("navigation-black");
     navWhite.classList.toggle("navigation-white");
   }
