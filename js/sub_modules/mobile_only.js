@@ -23,6 +23,7 @@ let clickOnBurger = false;
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
+  navWhite.classList.toggle("navigation-white");
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {
@@ -49,8 +50,9 @@ function toggleNavClasses() {
   if (scrolledYMobile > 0) {
     // navBar.style.backgroundColor = "transparent";
     navBar.classList.toggle("nav-white");
-    // navBlack.classList.toggle("navigation-black");
     // navWhite.classList.toggle("navigation-white");
+    // navBar.classList.toggle("nav-back");
+    navBlack.classList.toggle("navigation-black");
   }
   siteWrapper.classList.toggle("menu-open");
   burger.classList.toggle("cross");

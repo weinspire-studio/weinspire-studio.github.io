@@ -50,7 +50,6 @@ h1, h2, h3, h4, h5 {
 
 #section-services {
   min-height: 150%;
-  background-color: lightcyan;
 }
 
 #section-contact {
@@ -97,35 +96,35 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-#navbar {
+#section-navbar {
   position: fixed;
   z-index: 1;
   width: 100%;
   height: 3.25em;
-  transition: background-color 0.75s ease, box-shadow 0.25s ease;
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
 }
 @media screen and (min-width: 0) {
-  #navbar {
+  #section-navbar {
     padding: 0 1em;
   }
 }
 @media screen and (min-width: 0) and (min-width: 479px) {
-  #navbar {
+  #section-navbar {
     padding: 0 1.5em;
   }
 }
 @media screen and (min-width: 0) and (min-width: 801px) {
-  #navbar {
+  #section-navbar {
     padding: 0 2em;
   }
 }
 @media screen and (min-width: 0) and (min-width: 1024px) {
-  #navbar {
+  #section-navbar {
     padding: 0 2.5em;
   }
 }
 @media screen and (min-width: 0) and (min-width: 1200px) {
-  #navbar {
+  #section-navbar {
     padding: 0 3em;
   }
 }
@@ -322,7 +321,11 @@ nav {
 
 .nav-white {
   background-color: white;
-  box-shadow: 12px 2px 8px 0px black;
+}
+
+.nav-back {
+  z-index: 0;
+  box-shadow: none;
 }
 
 .nav-white nav a {
@@ -335,7 +338,7 @@ nav {
 
 .navigation-white {
   background-color: white;
-  z-index: 1;
+  box-shadow: 12px 2px 8px 0px black;
 }
 
 .navigation-black {
@@ -516,7 +519,6 @@ nav {
 }
 
 #section-about {
-  background-color: pink;
   min-height: 50%;
   padding: 1em;
   display: -ms-flexbox;

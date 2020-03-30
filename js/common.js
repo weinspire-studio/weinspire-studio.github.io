@@ -28,7 +28,7 @@ var siteWrapper = document.querySelector("#site-wrapper");
 exports.siteWrapper = siteWrapper;
 var nav = document.querySelector("nav");
 exports.nav = nav;
-var navBar = document.querySelector("#navbar");
+var navBar = document.querySelector("#section-navbar");
 exports.navBar = navBar;
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
@@ -98,6 +98,7 @@ function styleNavOnScroll() {
 
   if (mobileModule.clickOnBurger === false) {
     if (scrolledY > 0) {
+      // navBar.classList.add("navigation-white");
       navBar.classList.add("nav-white"); // nav.classList.add("nav-no-border");
     } else {
       navBar.classList.remove("nav-white"); // nav.classList.remove("nav-no-border");
@@ -177,14 +178,15 @@ function styleNavOnScroll() {
 // shadows
 // Logos and svg background (bottom on mobile)
 // when navbar mobile opens, click everywhere to close it.
+// see navbar classes on burger click (specially on iphone)
+// social network in navbar?
+// navbar mobile open bug (z-index) DONE
+// bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
 // accesibility svg titles - svg sprite
 // inline svg catched?! see css tricks tutorial
 // page loader!!
 // dynamic text! See youtube programming video!!
-// social network in navbar?
 // bugs: button focus blue (in chrome),
-// navbar mobile open bug (z-index) DONE
-// bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
 // green inputs after submit DONE
 // in projects-design: if image stretches more than image witdh: repeat: round or size cover
 // lazy - loading!
@@ -524,7 +526,8 @@ exports.clickOnBurger = clickOnBurger;
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList); // mobile burger and menu
+  navContainer.appendChild(navList);
+  navWhite.classList.toggle("navigation-white"); // mobile burger and menu
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
@@ -553,9 +556,11 @@ function toggleNavClasses() {
 
   if (scrolledYMobile > 0) {
     // navBar.style.backgroundColor = "transparent";
-    _main.navBar.classList.toggle("nav-white"); // navBlack.classList.toggle("navigation-black");
-    // navWhite.classList.toggle("navigation-white");
+    _main.navBar.classList.toggle("nav-white"); // navWhite.classList.toggle("navigation-white");
+    // navBar.classList.toggle("nav-back");
 
+
+    navBlack.classList.toggle("navigation-black");
   }
 
   _main.siteWrapper.classList.toggle("menu-open");
