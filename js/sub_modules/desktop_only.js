@@ -1,6 +1,6 @@
 // jshint esversion: 6
 
-import { siteWrapper } from "../main.js";
+import { siteWrapper, nav } from "../main.js";
 import {
   navList,
   navElements,
@@ -42,7 +42,7 @@ function styleAnchorOnHover() {
 function restoreDesktopNav() {
   if (navContainer.firstChild !== null) {
     navContainer.removeChild(navList);
-    // nav.appendChild(navList);
+    nav.appendChild(navList);
   }
   if (siteWrapper.classList.contains("menu-open")) {
     toggleNavClasses();

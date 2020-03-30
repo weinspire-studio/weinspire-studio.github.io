@@ -1,6 +1,6 @@
 // jshint esversion: 6
 
-import * as mobileModule from "./sub_modules/mobile_only";
+// import * as mobileModule from "./sub_modules/mobile_only";
 import * as desktopModule from "./sub_modules/desktop_only";
 import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
@@ -8,7 +8,7 @@ import * as contactModule from "./sub_modules/contact";
 
 //VARIABLES
 const siteWrapper = document.querySelector("#site-wrapper");
-// const nav = document.querySelector("nav");
+const nav = document.querySelector("nav");
 // const navBar = document.querySelector("#navbar");
 const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 // const lineElements = document.querySelectorAll(".burger div");
@@ -92,7 +92,7 @@ function desktopCode() {
 function mobileCode() {
   console.log("load event");
   styleNavOnScroll();
-  mobileModule.styleMobileNav();
+  styleMobileNav();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     console.log("testt");
@@ -125,7 +125,37 @@ function styleNavOnScroll() {
   console.log("asd" + siteWrapper.scrollTop)
 }
 
-export { siteWrapper };
+const navList = document.querySelector(".nav-list");
+const navElements = document.querySelectorAll(".nav-list li");
+const navContainer = document.querySelector(".navigation-container");
+const burger = document.querySelector(".burger");
+let hasClickListener = false;
+
+const navBar = document.querySelector("#navbar");
+
+navBar.classList.add("nav-white");
+//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+function styleMobileNav() {
+  navList.parentNode.removeChild(navList);
+  navContainer.appendChild(navList);
+  // navBlack.style.backgroundColor = "blue";
+  // navBar.classList.add("nav-white");
+  // navBar.classList.add('nav-white');
+  // mobile burger and menu
+  if (!hasClickListener) {
+    burger.addEventListener("click", () => {
+      // toggleNavClasses();
+      navElements.forEach((navEl, index) => {
+        navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
+        navEl.classList.toggle("nav-link-anim");
+        navEl.classList.toggle("invisible");
+      });
+    });
+  }
+  hasClickListener = true;
+}
+
+export { siteWrapper, nav };
 
 //
 //

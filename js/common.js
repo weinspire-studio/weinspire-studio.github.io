@@ -6,9 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.siteWrapper = void 0;
-
-var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
+exports.nav = exports.siteWrapper = void 0;
 
 var desktopModule = _interopRequireWildcard(require("./sub_modules/desktop_only"));
 
@@ -23,11 +21,13 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 // jshint esversion: 6
+// import * as mobileModule from "./sub_modules/mobile_only";
 //VARIABLES
-var siteWrapper = document.querySelector("#site-wrapper"); // const nav = document.querySelector("nav");
-// const navBar = document.querySelector("#navbar");
-
+var siteWrapper = document.querySelector("#site-wrapper");
 exports.siteWrapper = siteWrapper;
+var nav = document.querySelector("nav"); // const navBar = document.querySelector("#navbar");
+
+exports.nav = nav;
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
@@ -104,7 +104,7 @@ function desktopCode() {
 function mobileCode() {
   console.log("load event");
   styleNavOnScroll();
-  mobileModule.styleMobileNav();
+  styleMobileNav();
 
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
@@ -137,6 +137,35 @@ function styleNavOnScroll() {
   }
 
   console.log("asd" + siteWrapper.scrollTop);
+}
+
+var navList = document.querySelector(".nav-list");
+var navElements = document.querySelectorAll(".nav-list li");
+var navContainer = document.querySelector(".navigation-container");
+var burger = document.querySelector(".burger");
+var hasClickListener = false;
+var navBar = document.querySelector("#navbar");
+navBar.classList.add("nav-white"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+
+function styleMobileNav() {
+  navList.parentNode.removeChild(navList);
+  navContainer.appendChild(navList); // navBlack.style.backgroundColor = "blue";
+  // navBar.classList.add("nav-white");
+  // navBar.classList.add('nav-white');
+  // mobile burger and menu
+
+  if (!hasClickListener) {
+    burger.addEventListener("click", function () {
+      // toggleNavClasses();
+      navElements.forEach(function (navEl, index) {
+        navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
+        navEl.classList.toggle("nav-link-anim");
+        navEl.classList.toggle("invisible");
+      });
+    });
+  }
+
+  hasClickListener = true;
 } //
 //
 // -----------------
@@ -232,7 +261,7 @@ function styleNavOnScroll() {
 // mousedown touch start?
 //
 
-},{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6}],2:[function(require,module,exports){
+},{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/swiper":6}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -448,8 +477,9 @@ function styleAnchorOnHover() {
 
 function restoreDesktopNav() {
   if (_mobile_only.navContainer.firstChild !== null) {
-    _mobile_only.navContainer.removeChild(_mobile_only.navList); // nav.appendChild(navList);
+    _mobile_only.navContainer.removeChild(_mobile_only.navList);
 
+    _main.nav.appendChild(_mobile_only.navList);
   }
 
   if (_main.siteWrapper.classList.contains("menu-open")) {
@@ -523,53 +553,47 @@ function unbindImages() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.navBlack = exports.navContainer = exports.navElements = exports.navList = void 0;
+exports.navBlack = void 0;
 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-var navList = document.querySelector(".nav-list");
-exports.navList = navList;
-var navElements = document.querySelectorAll(".nav-list li");
-exports.navElements = navElements;
-var navContainer = document.querySelector(".navigation-container");
-exports.navContainer = navContainer;
+// const navList = document.querySelector(".nav-list");
+// const navElements = document.querySelectorAll(".nav-list li");
+// const navContainer = document.querySelector(".navigation-container");
 var navWhite = document.querySelector(".navigation-color-white");
 var navBlack = document.querySelector(".navigation-overlay-black");
 exports.navBlack = navBlack;
-var navImg = document.querySelector("nav img");
-var burger = document.querySelector(".burger");
+var navImg = document.querySelector("nav img"); // const burger = document.querySelector(".burger");
+
 var heroText = document.querySelector(".hero-text");
 var footer = document.querySelector("#footer");
 var designProjectsSection = document.querySelector("#section-projects-design");
 var hasClickListener = false;
-heroText.firstElementChild.classList.add("nav-white");
-var navBar = document.querySelector("#navbar");
-navBar.classList.add("nav-white"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
-
-function styleMobileNav() {
-  navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList); // navBlack.style.backgroundColor = "blue";
-  // navBar.classList.add("nav-white");
-  // navBar.classList.add('nav-white');
-  // mobile burger and menu
-
-  if (!hasClickListener) {
-    burger.addEventListener("click", function () {
-      toggleNavClasses();
-      navElements.forEach(function (navEl, index) {
-        navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
-        navEl.classList.toggle("nav-link-anim");
-        navEl.classList.toggle("invisible");
-      });
-    });
-  }
-
-  hasClickListener = true;
-} // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
-
+heroText.firstElementChild.classList.add("nav-white"); // const navBar = document.querySelector("#navbar");
+// navBar.classList.add("nav-white");
+// //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+// function styleMobileNav() {
+//   navList.parentNode.removeChild(navList);
+//   navContainer.appendChild(navList);
+//   // navBlack.style.backgroundColor = "blue";
+//   // navBar.classList.add("nav-white");
+//   // navBar.classList.add('nav-white');
+//   // mobile burger and menu
+//   if (!hasClickListener) {
+//     burger.addEventListener("click", () => {
+//       toggleNavClasses();
+//       navElements.forEach((navEl, index) => {
+//         navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
+//         navEl.classList.toggle("nav-link-anim");
+//         navEl.classList.toggle("invisible");
+//       });
+//     });
+//   }
+//   hasClickListener = true;
+// }
+// adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
 
 function toggleNavClasses() {
   var scrolledYMobile;
