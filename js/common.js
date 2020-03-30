@@ -538,10 +538,10 @@ function toggleNavClasses() {
   scrolledYMobile = _main.siteWrapper.scrollTop;
 
   if (scrolledYMobile > 0) {
-    _main.navBar.classList.toggle("nav-white");
+    // navBar.style.backgroundColor = "transparent";
+    _main.navBar.classList.toggle("nav-white"); // navBlack.classList.toggle("navigation-black");
+    // navWhite.classList.toggle("navigation-white");
 
-    navBlack.classList.toggle("navigation-black");
-    navWhite.classList.toggle("navigation-white");
   }
 
   _main.siteWrapper.classList.toggle("menu-open");
