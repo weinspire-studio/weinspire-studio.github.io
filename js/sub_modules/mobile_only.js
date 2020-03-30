@@ -2,7 +2,7 @@
 
 import { siteWrapper } from "../main.js";
 
-console.log("test 4");
+console.log("test 5");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");

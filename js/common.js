@@ -532,7 +532,7 @@ exports.navBlack = exports.navContainer = exports.navElements = exports.navList 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("test 4");
+console.log("test 5");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
