@@ -1,7 +1,8 @@
 // jshint esversion: 6
 
-import { siteWrapper, nav } from "../main.js";
+import { siteWrapper } from "../main.js";
 import {
+  nav,
   navList,
   navElements,
   navContainer,
@@ -29,7 +30,7 @@ function styleAnchorOnHover() {
         let property = {
           selector: "width"
         };
-        property.selector = "width";
+        // property.selector = "width";
         property.value = `${(anchor.offsetWidth + 5) / 2}` + `px`;
         editStyle(".nav-list a", property);
       });

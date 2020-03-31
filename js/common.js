@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.navBar = exports.nav = exports.siteWrapper = void 0;
+exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -24,13 +24,13 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 // jshint esversion: 6
 //VARIABLES
-var siteWrapper = document.querySelector("#site-wrapper");
+var siteWrapper = document.querySelector("#site-wrapper"); // const nav = document.querySelector("nav");
+
 exports.siteWrapper = siteWrapper;
-var nav = document.querySelector("nav");
-exports.nav = nav;
 var navBar = document.querySelector("#section-navbar");
 exports.navBar = navBar;
-var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const lineElements = document.querySelectorAll(".burger div");
+var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
+var navWhite = document.querySelector(".navigation-color-white"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
@@ -59,14 +59,15 @@ notMobileScreenMQ.addListener(function () {
 //code that executes only in desktop and large tablets screens (> 801px).
 
 function desktopCode() {
-  styleNavOnScroll();
-
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
+  } else {
+    // mobileModule.clickOnBurger = false;
+    desktopModule.restoreDesktopNav();
   }
 
-  desktopModule.restoreDesktopNav();
+  styleNavOnScroll();
   desktopModule.styleAnchorOnHover();
   jQueryModule.animateImages();
 
@@ -95,17 +96,19 @@ function mobileCode() {
 
 function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
+  console.log("stylenav " + mobileModule.clickOnBurger); // if (mobileModule.clickOnBurger === false) {
 
-  if (mobileModule.clickOnBurger === false) {
-    if (scrolledY > 0) {
-      // navBar.classList.add("navigation-white");
-      navBar.classList.add("nav-white"); // nav.classList.add("nav-no-border");
-    } else {
-      navBar.classList.remove("nav-white"); // nav.classList.remove("nav-no-border");
-    }
+  if (scrolledY > 0) {
+    // navBar.classList.add("navigation-white");
+    navBar.classList.add("nav-white");
+    navWhite.classList.add("navigation-white"); // nav.style.borderBottom = "none";
   } else {
-    console.log("entra aca");
-  }
+    navBar.classList.remove("nav-white");
+    navWhite.classList.remove("navigation-white"); // nav.classList.remove("nav-no-border");
+  } // } else {
+  //   console.log("entra aca");
+  // }
+
 } //
 //
 // -----------------
@@ -405,8 +408,8 @@ function styleAnchorOnHover() {
 
         var property = {
           selector: "width"
-        };
-        property.selector = "width";
+        }; // property.selector = "width";
+
         property.value = "".concat((anchor.offsetWidth + 5) / 2) + "px";
         editStyle(".nav-list a", property);
       });
@@ -421,7 +424,7 @@ function restoreDesktopNav() {
   if (_mobile_only.navContainer.firstChild !== null) {
     _mobile_only.navContainer.removeChild(_mobile_only.navList);
 
-    _main.nav.appendChild(_mobile_only.navList);
+    _mobile_only.nav.appendChild(_mobile_only.navList);
   }
 
   if (_main.siteWrapper.classList.contains("menu-open")) {
@@ -497,7 +500,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.clickOnBurger = exports.navBlack = exports.navContainer = exports.navElements = exports.navList = void 0;
+exports.clickOnBurger = exports.navBlack = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
 
 var _main = require("../main.js");
 
@@ -509,7 +512,9 @@ var navElements = document.querySelectorAll(".nav-list li");
 exports.navElements = navElements;
 var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
-var navWhite = document.querySelector(".navigation-color-white");
+var nav = document.querySelector("nav"); // const navWhite = document.querySelector(".navigation-color-white");
+
+exports.nav = nav;
 var navBlack = document.querySelector(".navigation-overlay-black");
 exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
@@ -526,18 +531,16 @@ exports.clickOnBurger = clickOnBurger;
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList);
-  navWhite.classList.toggle("navigation-white"); // mobile burger and menu
+  navContainer.appendChild(navList); // navWhite.classList.toggle("navigation-white");
+  // mobile burger and menu
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
-      if (clickOnBurger === false) {
-        exports.clickOnBurger = clickOnBurger = true;
-      } else {
-        exports.clickOnBurger = clickOnBurger = false;
-      }
+      console.log("clickea" + clickOnBurger);
+      exports.clickOnBurger = clickOnBurger = true;
+      console.log("sale de click" + clickOnBurger);
+      toggleNavClasses(); // nav.classList.toggle("nav-no-border");
 
-      toggleNavClasses();
       navElements.forEach(function (navEl, index) {
         navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
         navEl.classList.toggle("nav-link-anim");
@@ -555,12 +558,13 @@ function toggleNavClasses() {
   scrolledYMobile = _main.siteWrapper.scrollTop;
 
   if (scrolledYMobile > 0) {
-    // navBar.style.backgroundColor = "transparent";
-    _main.navBar.classList.toggle("nav-white"); // navWhite.classList.toggle("navigation-white");
-    // navBar.classList.toggle("nav-back");
+    console.log("togglea en el toggle");
 
+    _main.navBar.classList.toggle("nav-white");
 
     navBlack.classList.toggle("navigation-black");
+    nav.classList.toggle("nav-no-border"); // navWhite.classList.toggle("navigation-white");
+    // navBar.classList.toggle("nav-back");
   }
 
   _main.siteWrapper.classList.toggle("menu-open");

@@ -8,9 +8,10 @@ import * as contactModule from "./sub_modules/contact";
 
 //VARIABLES
 const siteWrapper = document.querySelector("#site-wrapper");
-const nav = document.querySelector("nav");
+// const nav = document.querySelector("nav");
 const navBar = document.querySelector("#section-navbar");
 const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
+const navWhite = document.querySelector(".navigation-color-white");
 // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
@@ -44,12 +45,14 @@ notMobileScreenMQ.addListener(() => {
 //FUNCTIONS
 //code that executes only in desktop and large tablets screens (> 801px).
 function desktopCode() {
-  styleNavOnScroll();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
+  } else {
+    // mobileModule.clickOnBurger = false;
+    desktopModule.restoreDesktopNav();
   }
-  desktopModule.restoreDesktopNav();
+  styleNavOnScroll();
   desktopModule.styleAnchorOnHover();
   jQueryModule.animateImages();
   if (swiper && swiper.params.init === true) {
@@ -76,21 +79,24 @@ function mobileCode() {
 //adds or removes classes in order to give white styles to the nav.
 function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
-  if (mobileModule.clickOnBurger === false) {
-    if (scrolledY > 0) {
-      // navBar.classList.add("navigation-white");
-      navBar.classList.add("nav-white");
-      // nav.classList.add("nav-no-border");
-    } else {
-      navBar.classList.remove("nav-white");
-      // nav.classList.remove("nav-no-border");
-    }
+  console.log("stylenav " + mobileModule.clickOnBurger);
+  // if (mobileModule.clickOnBurger === false) {
+  if (scrolledY > 0) {
+    // navBar.classList.add("navigation-white");
+    navBar.classList.add("nav-white");
+    navWhite.classList.add("navigation-white");
+    // nav.style.borderBottom = "none";
   } else {
-    console.log("entra aca");
+    navBar.classList.remove("nav-white");
+    navWhite.classList.remove("navigation-white");
+    // nav.classList.remove("nav-no-border");
   }
+  // } else {
+  //   console.log("entra aca");
+  // }
 }
 
-export { siteWrapper, nav, navBar };
+export { siteWrapper, navBar };
 
 //
 //

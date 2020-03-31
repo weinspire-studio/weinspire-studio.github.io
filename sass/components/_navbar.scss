@@ -75,6 +75,7 @@ nav {
     border-bottom: .12em solid $nav-light;
     border-bottom-left-radius: 1px;
     border-bottom-right-radius: 1px;
+    transition: border .5s ease;
 }
 
 .nav-list {
@@ -242,14 +243,14 @@ nav {
     background-color: white;
     // box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
 }
-.nav-back {
-    // background-color: white;
-    z-index: 0;
-    box-shadow: none;
-}
+// .nav-back {
+//     // background-color: white;
+//     z-index: 0;
+//     box-shadow: none;
+// }
 
 .nav-no-border {
-    // border-bottom: none;
+    border-bottom-color: transparent;
 }
 
 .nav-white nav a {

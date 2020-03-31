@@ -153,6 +153,7 @@ nav {
   border-bottom: 0.12em solid rgba(255, 255, 255, 0.3);
   border-bottom-left-radius: 1px;
   border-bottom-right-radius: 1px;
+  transition: border 0.5s ease;
 }
 
 .nav-list {
@@ -323,9 +324,8 @@ nav {
   background-color: white;
 }
 
-.nav-back {
-  z-index: 0;
-  box-shadow: none;
+.nav-no-border {
+  border-bottom-color: transparent;
 }
 
 .nav-white nav a {

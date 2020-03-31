@@ -7,7 +7,8 @@ console.log("test 7");
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
 const navContainer = document.querySelector(".navigation-container");
-const navWhite = document.querySelector(".navigation-color-white");
+const nav = document.querySelector("nav");
+// const navWhite = document.querySelector(".navigation-color-white");
 const navBlack = document.querySelector(".navigation-overlay-black");
 const navImg = document.querySelector("nav img");
 const burger = document.querySelector(".burger");
@@ -23,16 +24,15 @@ let clickOnBurger = false;
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
-  navWhite.classList.toggle("navigation-white");
+  // navWhite.classList.toggle("navigation-white");
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {
-      if (clickOnBurger === false) {
-        clickOnBurger = true;
-      } else {
-        clickOnBurger = false;
-      }
+      console.log("clickea" + clickOnBurger);
+      clickOnBurger = true;
+      console.log("sale de click" + clickOnBurger);
       toggleNavClasses();
+      // nav.classList.toggle("nav-no-border");
       navElements.forEach((navEl, index) => {
         navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
         navEl.classList.toggle("nav-link-anim");
@@ -48,11 +48,12 @@ function toggleNavClasses() {
   let scrolledYMobile;
   scrolledYMobile = siteWrapper.scrollTop;
   if (scrolledYMobile > 0) {
-    // navBar.style.backgroundColor = "transparent";
+    console.log("togglea en el toggle");
     navBar.classList.toggle("nav-white");
+    navBlack.classList.toggle("navigation-black");
+    nav.classList.toggle("nav-no-border");
     // navWhite.classList.toggle("navigation-white");
     // navBar.classList.toggle("nav-back");
-    navBlack.classList.toggle("navigation-black");
   }
   siteWrapper.classList.toggle("menu-open");
   burger.classList.toggle("cross");
@@ -105,6 +106,7 @@ function toggleNavClasses() {
 // }
 
 export {
+  nav,
   navList,
   navElements,
   navContainer,
