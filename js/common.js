@@ -63,7 +63,6 @@ function desktopCode() {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
   } else {
-    // mobileModule.clickOnBurger = false;
     desktopModule.restoreDesktopNav();
   }
 
@@ -96,7 +95,6 @@ function mobileCode() {
 
 function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
-  console.log("stylenav " + mobileModule.clickOnBurger);
 
   if (scrolledY > 0) {
     navBar.classList.add("nav-white");
@@ -497,7 +495,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.clickOnBurger = exports.navBlack = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
+exports.navBlack = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
 
 var _main = require("../main.js");
 
@@ -521,41 +519,17 @@ var footer = document.querySelector("#footer"); // const designProjectsSection =
 //   "#section-projects-design"
 // );
 
-var hasClickListener = false;
-var clickOnBurger = false;
-exports.clickOnBurger = clickOnBurger;
-var flag = true; // UA sniffing
+var hasClickListener = false; // UA sniffing
 
-var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; // console.log("22" + isIos2 + " " + navigator.userAgent);
-//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList); // navWhite.classList.toggle("navigation-white");
-  // mobile burger and menu
+  navContainer.appendChild(navList); // mobile burger and menu
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
-      // console.log("clickea" + clickOnBurger);
-      // clickOnBurger = true;
-      //
-      // siteWrapper.scrollTo(0, 500);
-      if (flag === true) {
-        // siteWrapper.style.height = "100%";
-        // siteWrapper.style.overflowY = "hidden";
-        flag = false;
-      } else {
-        // siteWrapper.style.height = "auto";
-        // siteWrapper.style.overflowY = "visible";
-        flag = true;
-      } // window.style.height = "100%";
-      // window.style.overflowY = "hidden";
-      //
-      //
-
-
-      toggleNavClasses(); // nav.classList.toggle("nav-no-border");
-
+      toggleNavClasses();
       navElements.forEach(function (navEl, index) {
         navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
         navEl.classList.toggle("nav-link-anim");

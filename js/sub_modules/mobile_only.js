@@ -18,45 +18,21 @@ const footer = document.querySelector("#footer");
 //   "#section-projects-design"
 // );
 let hasClickListener = false;
-let clickOnBurger = false;
-let flag = true;
 
 // UA sniffing
 let isIos =
   (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
   !window.MSStream;
-// console.log("22" + isIos2 + " " + navigator.userAgent);
 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
-  // navWhite.classList.toggle("navigation-white");
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {
-      // console.log("clickea" + clickOnBurger);
-      // clickOnBurger = true;
-      //
-
-      // siteWrapper.scrollTo(0, 500);
-      if (flag === true) {
-        // siteWrapper.style.height = "100%";
-        // siteWrapper.style.overflowY = "hidden";
-        flag = false;
-      } else {
-        // siteWrapper.style.height = "auto";
-        // siteWrapper.style.overflowY = "visible";
-        flag = true;
-      }
-      // window.style.height = "100%";
-      // window.style.overflowY = "hidden";
-      //
-
-      //
       toggleNavClasses();
-      // nav.classList.toggle("nav-no-border");
       navElements.forEach((navEl, index) => {
         navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
         navEl.classList.toggle("nav-link-anim");
@@ -139,7 +115,6 @@ export {
   navElements,
   navContainer,
   navBlack,
-  clickOnBurger,
   styleMobileNav,
   toggleNavClasses
 };

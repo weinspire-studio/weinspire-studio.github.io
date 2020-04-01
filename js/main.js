@@ -49,7 +49,6 @@ function desktopCode() {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
   } else {
-    // mobileModule.clickOnBurger = false;
     desktopModule.restoreDesktopNav();
   }
   styleNavOnScroll();
@@ -79,7 +78,6 @@ function mobileCode() {
 //adds or removes classes in order to give white styles to the nav.
 function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
-  console.log("stylenav " + mobileModule.clickOnBurger);
   if (scrolledY > 0) {
     navBar.classList.add("nav-white");
     navWhite.classList.add("navigation-white");
