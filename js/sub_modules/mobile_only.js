@@ -39,12 +39,12 @@ function styleMobileNav() {
 
       // siteWrapper.scrollTo(0, 500);
       if (flag === true) {
-        // siteWrapper.style.height = "100%";
-        siteWrapper.style.overflowY = "hidden";
+        window.style.height = "100%";
+        window.style.overflowY = "hidden";
         flag = false;
       } else {
-        // siteWrapper.style.height = "100%";
-        siteWrapper.style.overflowY = "visible";
+        window.style.height = "auto";
+        window.style.overflowY = "visible";
       }
       // window.style.height = "100%";
       // window.style.overflowY = "hidden";
