@@ -540,12 +540,12 @@ function styleMobileNav() {
       //
       // siteWrapper.scrollTo(0, 500);
       if (flag === true) {
-        window.style.height = "100%";
-        window.style.overflowY = "hidden";
+        _main.siteWrapper.style.height = "100%";
+        _main.siteWrapper.style.overflowY = "hidden";
         flag = false;
       } else {
-        window.style.height = "auto";
-        window.style.overflowY = "visible";
+        _main.siteWrapper.style.height = "auto";
+        _main.siteWrapper.style.overflowY = "visible";
       } // window.style.height = "100%";
       // window.style.overflowY = "hidden";
       //
