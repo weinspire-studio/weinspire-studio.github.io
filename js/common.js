@@ -524,15 +524,10 @@ var footer = document.querySelector("#footer"); // const designProjectsSection =
 var hasClickListener = false;
 var clickOnBurger = false;
 exports.clickOnBurger = clickOnBurger;
-var flag = true; // window.addEventListener("touchend", function(e) {
-//   window.scroll(0, window.scrollY);
-// });
-// UA sniffing
+var flag = true; // UA sniffing
 
-var isIos = (/iPad|iPhone|iPod/.test(navigator.platform) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
-console.log(isIos + navigator.platform);
-var isIos2 = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
-console.log("22" + isIos2 + " " + navigator.userAgent); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; // console.log("22" + isIos2 + " " + navigator.userAgent);
+//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
@@ -586,7 +581,11 @@ function toggleNavClasses() {
     // navBar.classList.toggle("nav-back");
   }
 
-  _main.siteWrapper.classList.toggle("menu-open");
+  if (isIos === false) {
+    _main.siteWrapper.classList.toggle("menu-open");
+  } else {
+    _main.siteWrapper.classList.toggle("menu-open-i");
+  }
 
   burger.classList.toggle("cross");
   navList.classList.toggle("open");
