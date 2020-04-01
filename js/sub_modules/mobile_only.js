@@ -2,7 +2,7 @@
 
 import { siteWrapper, navBar } from "../main.js";
 
-console.log("scroll navbar test 2");
+console.log("scroll navbar test 3");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
@@ -30,7 +30,14 @@ function styleMobileNav() {
     burger.addEventListener("click", () => {
       // console.log("clickea" + clickOnBurger);
       // clickOnBurger = true;
-      siteWrapper.scrollTo(0, 500);
+      //
+
+      // siteWrapper.scrollTo(0, 500);
+      siteWrapper.addEventListener("touchend", function(e) {
+        siteWrapper.scroll(0, siteWrapper.scrollY);
+      });
+
+      //
       toggleNavClasses();
       // nav.classList.toggle("nav-no-border");
       navElements.forEach((navEl, index) => {
