@@ -85,7 +85,7 @@ let last_known_scroll_position = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
   siteWrapper.addEventListener("scroll", doSomething, true);
-  list.addEventListener("touchstart", function() {
+  list.addEventListener("touchmove", function() {
     right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
     siteWrapper.removeEventListener("scroll", doSomething, true);
     console.log("entra al remove");
@@ -103,9 +103,6 @@ function doSomething() {
     right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
   }
   // doSomethingElse(last_known_scroll_position);
-}
-function doSomethingElse(last_known_scroll_position) {
-  console.log(last_known_scroll_position);
 }
 
 export {

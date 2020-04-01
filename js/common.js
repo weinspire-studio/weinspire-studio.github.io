@@ -85,11 +85,12 @@ function mobileCode() {
     hasScrollListener = true;
   }
 
-  jQueryModule.unbindImages(); // swiper = swiperModule.defineSwiper();
-  // swiper.on("init", function() {
-  //   swiper.params.init = true;
-  // });
-  // swiper.init();
+  jQueryModule.unbindImages();
+  swiper = swiperModule.defineSwiper();
+  swiper.on("init", function () {
+    swiper.params.init = true;
+  });
+  swiper.init();
 } //adds or removes classes in order to give white styles to the nav.
 
 
@@ -582,7 +583,7 @@ var last_known_scroll_position = 0;
 document.addEventListener("DOMContentLoaded", function () {
   _main.siteWrapper.addEventListener("scroll", doSomething, true);
 
-  list.addEventListener("touchstart", function () {
+  list.addEventListener("touchmove", function () {
     right_arrows.forEach(function (arrow) {
       return arrow.classList.remove("test-anim");
     });
@@ -609,10 +610,6 @@ function doSomething() {
     });
   } // doSomethingElse(last_known_scroll_position);
 
-}
-
-function doSomethingElse(last_known_scroll_position) {
-  console.log(last_known_scroll_position);
 }
 
 },{"../main.js":1}],6:[function(require,module,exports){
