@@ -546,6 +546,7 @@ function styleMobileNav() {
       } else {
         // siteWrapper.style.height = "auto";
         _main.siteWrapper.style.overflowY = "visible";
+        flag = true;
       } // window.style.height = "100%";
       // window.style.overflowY = "hidden";
       //
