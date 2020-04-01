@@ -178,12 +178,12 @@ export { siteWrapper, navBar };
 // social network in navbar?
 // navbar mobile open bug (z-index) DONE
 // bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
+// burger ontap mobile! (see iphone)
 // accesibility svg titles - svg sprite
 // inline svg catched?! see css tricks tutorial
 // page loader!!
 // dynamic text! See youtube programming video!!
 // bugs: button focus blue (in chrome),
-
 // green inputs after submit DONE
 // in projects-design: if image stretches more than image witdh: repeat: round or size cover
 // lazy - loading!

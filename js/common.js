@@ -181,6 +181,7 @@ function styleNavOnScroll() {
 // social network in navbar?
 // navbar mobile open bug (z-index) DONE
 // bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
+// burger ontap mobile! (see iphone)
 // accesibility svg titles - svg sprite
 // inline svg catched?! see css tricks tutorial
 // page loader!!
@@ -541,11 +542,11 @@ function styleMobileNav() {
       // siteWrapper.scrollTo(0, 500);
       if (flag === true) {
         // siteWrapper.style.height = "100%";
-        _main.siteWrapper.style.overflowY = "hidden";
+        // siteWrapper.style.overflowY = "hidden";
         flag = false;
       } else {
         // siteWrapper.style.height = "auto";
-        _main.siteWrapper.style.overflowY = "visible";
+        // siteWrapper.style.overflowY = "visible";
         flag = true;
       } // window.style.height = "100%";
       // window.style.overflowY = "hidden";
