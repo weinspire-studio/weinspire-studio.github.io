@@ -19,6 +19,7 @@ const footer = document.querySelector("#footer");
 // );
 let hasClickListener = false;
 let clickOnBurger = false;
+let flag = true;
 
 // window.addEventListener("touchend", function(e) {
 //   window.scroll(0, window.scrollY);
@@ -37,8 +38,14 @@ function styleMobileNav() {
       //
 
       // siteWrapper.scrollTo(0, 500);
-      siteWrapper.style.height = "100%";
-      siteWrapper.style.overflowY = "hidden";
+      if (flag === true) {
+        // siteWrapper.style.height = "100%";
+        siteWrapper.style.overflowY = "hidden";
+        flag = false;
+      } else {
+        // siteWrapper.style.height = "100%";
+        siteWrapper.style.overflowY = "visible";
+      }
       // window.style.height = "100%";
       // window.style.overflowY = "hidden";
       //

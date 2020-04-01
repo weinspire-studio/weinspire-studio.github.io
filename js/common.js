@@ -521,12 +521,12 @@ var footer = document.querySelector("#footer"); // const designProjectsSection =
 // );
 
 var hasClickListener = false;
-var clickOnBurger = false; // window.addEventListener("touchend", function(e) {
+var clickOnBurger = false;
+exports.clickOnBurger = clickOnBurger;
+var flag = true; // window.addEventListener("touchend", function(e) {
 //   window.scroll(0, window.scrollY);
 // });
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
-
-exports.clickOnBurger = clickOnBurger;
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
@@ -539,11 +539,18 @@ function styleMobileNav() {
       // clickOnBurger = true;
       //
       // siteWrapper.scrollTo(0, 500);
-      _main.siteWrapper.style.height = "100%";
-      _main.siteWrapper.style.overflowY = "hidden"; // window.style.height = "100%";
+      if (flag === true) {
+        // siteWrapper.style.height = "100%";
+        _main.siteWrapper.style.overflowY = "hidden";
+        flag = false;
+      } else {
+        // siteWrapper.style.height = "100%";
+        _main.siteWrapper.style.overflowY = "visible";
+      } // window.style.height = "100%";
       // window.style.overflowY = "hidden";
       //
       //
+
 
       toggleNavClasses(); // nav.classList.toggle("nav-no-border");
 
