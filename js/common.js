@@ -539,7 +539,8 @@ function styleMobileNav() {
       // clickOnBurger = true;
       //
       // siteWrapper.scrollTo(0, 500);
-      _main.siteWrapper.style.height = "100%"; //
+      _main.siteWrapper.style.height = "100%";
+      _main.siteWrapper.style.overflowY = "100%"; //
       //
 
       toggleNavClasses(); // nav.classList.toggle("nav-no-border");
