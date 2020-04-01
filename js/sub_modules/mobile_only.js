@@ -2,7 +2,7 @@
 
 import { siteWrapper, navBar } from "../main.js";
 
-console.log("test 7");
+console.log("scroll navbar test 1");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
@@ -28,10 +28,9 @@ function styleMobileNav() {
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {
-      console.log("clickea" + clickOnBurger);
-      clickOnBurger = true;
-      console.log("sale de click" + clickOnBurger);
-      window.scrollTo(0, siteWrapper.scrollTop);
+      // console.log("clickea" + clickOnBurger);
+      // clickOnBurger = true;
+      siteWrapper.scrollTo(0, siteWrapper.scrollTop);
       toggleNavClasses();
       // nav.classList.toggle("nav-no-border");
       navElements.forEach((navEl, index) => {
@@ -49,7 +48,7 @@ function toggleNavClasses() {
   let scrolledYMobile;
   scrolledYMobile = siteWrapper.scrollTop;
   if (scrolledYMobile > 0) {
-    console.log("togglea en el toggle");
+    // console.log("togglea en el toggle");
     navBar.classList.toggle("nav-white");
     navBlack.classList.toggle("navigation-black");
     nav.classList.toggle("nav-no-border");

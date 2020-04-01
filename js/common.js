@@ -501,7 +501,7 @@ exports.clickOnBurger = exports.navBlack = exports.navContainer = exports.navEle
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("test 7");
+console.log("scroll navbar test 1");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -532,10 +532,10 @@ function styleMobileNav() {
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
-      console.log("clickea" + clickOnBurger);
-      exports.clickOnBurger = clickOnBurger = true;
-      console.log("sale de click" + clickOnBurger);
-      window.scrollTo(0, _main.siteWrapper.scrollTop);
+      // console.log("clickea" + clickOnBurger);
+      // clickOnBurger = true;
+      _main.siteWrapper.scrollTo(0, _main.siteWrapper.scrollTop);
+
       toggleNavClasses(); // nav.classList.toggle("nav-no-border");
 
       navElements.forEach(function (navEl, index) {
@@ -555,8 +555,7 @@ function toggleNavClasses() {
   scrolledYMobile = _main.siteWrapper.scrollTop;
 
   if (scrolledYMobile > 0) {
-    console.log("togglea en el toggle");
-
+    // console.log("togglea en el toggle");
     _main.navBar.classList.toggle("nav-white");
 
     navBlack.classList.toggle("navigation-black");
