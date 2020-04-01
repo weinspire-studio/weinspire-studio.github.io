@@ -85,7 +85,7 @@ h1, h2, h3, h4, h5 {
   width: 70%;
   height: 2.5px;
   margin: 6px 0;
-  background-color: white;
+  background-color: #fff;
   border-radius: 3px;
   transition: 0.3s ease-in-out;
 }
@@ -169,7 +169,7 @@ nav {
       flex-direction: column;
   -ms-flex-align: center;
       align-items: center;
-  background-color: white;
+  background-color: #fff;
   transition: transform 1s ease;
   opacity: 0;
 }
@@ -214,12 +214,12 @@ nav {
 
 .nav-list a {
   text-decoration: none;
-  color: black;
+  color: #000;
   transition: color 0.75s ease, text-shadow 0.75s ease;
 }
 @media screen and (min-width: 801px) {
   .nav-list a {
-    color: white;
+    color: #fff;
     position: relative;
   }
   .nav-list a:hover {
@@ -247,7 +247,7 @@ nav {
 }
 
 .anchor-white:hover {
-  color: black !important;
+  color: #000 !important;
   text-shadow: 1px 1px 1.8px #afafaf !important;
 }
 
@@ -291,7 +291,7 @@ nav {
 
 .cross .line-top {
   transform: rotate(45deg) translate(4.92px, 6.1px);
-  background-color: black;
+  background-color: #000;
 }
 
 .cross .line-middle {
@@ -300,7 +300,7 @@ nav {
 
 .cross .line-bottom {
   transform: rotate(-45deg) translate(6px, -7px);
-  background-color: black;
+  background-color: #000;
 }
 
 .nav-link-anim {
@@ -321,7 +321,7 @@ nav {
 }
 
 .nav-white {
-  background-color: white;
+  background-color: #fff;
 }
 
 .nav-no-border {
@@ -329,15 +329,15 @@ nav {
 }
 
 .nav-white nav a {
-  color: black;
+  color: #000;
 }
 
 .nav-white .burger div {
-  background-color: black;
+  background-color: #000;
 }
 
 .navigation-white {
-  background-color: white;
+  background-color: #fff;
   box-shadow: 12px 2px 8px 0px black;
 }
 

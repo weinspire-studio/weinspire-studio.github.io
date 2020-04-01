@@ -96,19 +96,15 @@ function mobileCode() {
 
 function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
-  console.log("stylenav " + mobileModule.clickOnBurger); // if (mobileModule.clickOnBurger === false) {
+  console.log("stylenav " + mobileModule.clickOnBurger);
 
   if (scrolledY > 0) {
-    // navBar.classList.add("navigation-white");
     navBar.classList.add("nav-white");
-    navWhite.classList.add("navigation-white"); // nav.style.borderBottom = "none";
+    navWhite.classList.add("navigation-white");
   } else {
     navBar.classList.remove("nav-white");
-    navWhite.classList.remove("navigation-white"); // nav.classList.remove("nav-no-border");
-  } // } else {
-  //   console.log("entra aca");
-  // }
-
+    navWhite.classList.remove("navigation-white");
+  }
 } //
 //
 // -----------------
@@ -539,6 +535,7 @@ function styleMobileNav() {
       console.log("clickea" + clickOnBurger);
       exports.clickOnBurger = clickOnBurger = true;
       console.log("sale de click" + clickOnBurger);
+      window.scrollTo(0, _main.siteWrapper.scrollTop);
       toggleNavClasses(); // nav.classList.toggle("nav-no-border");
 
       navElements.forEach(function (navEl, index) {

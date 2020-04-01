@@ -80,20 +80,13 @@ function mobileCode() {
 function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
   console.log("stylenav " + mobileModule.clickOnBurger);
-  // if (mobileModule.clickOnBurger === false) {
   if (scrolledY > 0) {
-    // navBar.classList.add("navigation-white");
     navBar.classList.add("nav-white");
     navWhite.classList.add("navigation-white");
-    // nav.style.borderBottom = "none";
   } else {
     navBar.classList.remove("nav-white");
     navWhite.classList.remove("navigation-white");
-    // nav.classList.remove("nav-no-border");
   }
-  // } else {
-  //   console.log("entra aca");
-  // }
 }
 
 export { siteWrapper, navBar };

@@ -20,7 +20,7 @@
     width: 70%;
     height: 2.5px;
     margin: 6px 0;
-    background-color: white;
+    background-color: #fff;
     border-radius: 3px;
     transition: 0.3s ease-in-out;
 
@@ -88,7 +88,7 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    background-color: #fff;
     transition: transform 1s ease;
     opacity: 0;
 
@@ -127,11 +127,11 @@ nav {
 
 .nav-list a {
     text-decoration: none;
-    color: black;
+    color: #000;
     transition: color .75s ease, text-shadow .75s ease;
 
     @include media-query ($md) {
-        color: white;
+        color: #fff;
         position: relative;
         // text-shadow: 1px 1px 1.8px #515457e8;
 
@@ -163,7 +163,7 @@ nav {
 }
 
 .anchor-white:hover {
-    color: black!important;
+    color: #000!important;
     text-shadow: 1px 1px 1.8px rgb(175, 175, 175)!important;
 }
 
@@ -209,7 +209,7 @@ nav {
 
 .cross .line-top {
     transform: rotate(45deg) translate(4.92px, 6.1px);
-    background-color: black;
+    background-color: #000;
 
 }
 
@@ -219,7 +219,7 @@ nav {
 
 .cross .line-bottom {
     transform: rotate(-45deg) translate(6px, -7px);
-    background-color: black;
+    background-color: #000;
 }
 
 .nav-link-anim {
@@ -240,11 +240,11 @@ nav {
 }
 
 .nav-white {
-    background-color: white;
+    background-color: #fff;
     // box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
 }
 // .nav-back {
-//     // background-color: white;
+//     // background-color: #fff;
 //     z-index: 0;
 //     box-shadow: none;
 // }
@@ -254,15 +254,15 @@ nav {
 }
 
 .nav-white nav a {
-    color: black;
+    color: #000;
 }
 
 .nav-white .burger div {
-    background-color: black;
+    background-color: #000;
 }
 
 .navigation-white {
-    background-color: white;
+    background-color: #fff;
     box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
     // z-index: 0;
 }

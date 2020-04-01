@@ -31,6 +31,7 @@ function styleMobileNav() {
       console.log("clickea" + clickOnBurger);
       clickOnBurger = true;
       console.log("sale de click" + clickOnBurger);
+      window.scrollTo(0, siteWrapper.scrollTop);
       toggleNavClasses();
       // nav.classList.toggle("nav-no-border");
       navElements.forEach((navEl, index) => {
