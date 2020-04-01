@@ -540,7 +540,9 @@ function styleMobileNav() {
       //
       // siteWrapper.scrollTo(0, 500);
       _main.siteWrapper.style.height = "100%";
-      _main.siteWrapper.style.overflowY = "100%"; //
+      _main.siteWrapper.style.overflowY = "hidden";
+      window.style.height = "100%";
+      window.style.overflowY = "hidden"; //
       //
 
       toggleNavClasses(); // nav.classList.toggle("nav-no-border");

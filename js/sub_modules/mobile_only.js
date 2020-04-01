@@ -38,7 +38,9 @@ function styleMobileNav() {
 
       // siteWrapper.scrollTo(0, 500);
       siteWrapper.style.height = "100%";
-      siteWrapper.style.overflowY = "100%";
+      siteWrapper.style.overflowY = "hidden";
+      window.style.height = "100%";
+      window.style.overflowY = "hidden";
       //
 
       //
