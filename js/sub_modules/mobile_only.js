@@ -20,8 +20,8 @@ const footer = document.querySelector("#footer");
 let hasClickListener = false;
 let clickOnBurger = false;
 
-siteWrapper.addEventListener("touchend", function(e) {
-  siteWrapper.scroll(0, siteWrapper.scrollY);
+window.addEventListener("touchend", function(e) {
+  window.scroll(0, window.scrollY);
 });
 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.

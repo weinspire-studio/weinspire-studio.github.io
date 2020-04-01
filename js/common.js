@@ -521,9 +521,11 @@ var footer = document.querySelector("#footer"); // const designProjectsSection =
 // );
 
 var hasClickListener = false;
-var clickOnBurger = false; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
-
+var clickOnBurger = false;
 exports.clickOnBurger = clickOnBurger;
+window.addEventListener("touchend", function (e) {
+  window.scroll(0, window.scrollY);
+}); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
