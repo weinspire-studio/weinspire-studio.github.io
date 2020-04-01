@@ -501,7 +501,7 @@ exports.clickOnBurger = exports.navBlack = exports.navContainer = exports.navEle
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("scroll navbar test 1");
+console.log("scroll navbar test 2");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -534,7 +534,7 @@ function styleMobileNav() {
     burger.addEventListener("click", function () {
       // console.log("clickea" + clickOnBurger);
       // clickOnBurger = true;
-      _main.siteWrapper.scrollTo(0, _main.siteWrapper.scrollTop);
+      _main.siteWrapper.scrollTo(0, 500);
 
       toggleNavClasses(); // nav.classList.toggle("nav-no-border");
 
