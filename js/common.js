@@ -515,10 +515,8 @@ exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
-var footer = document.querySelector("#footer"); // const designProjectsSection = document.querySelector(
-//   "#section-projects-design"
-// );
-
+var footer = document.querySelector("#footer");
+var designProjectsSection = document.querySelector("#section-projects-design");
 var hasClickListener = false; // UA sniffing
 
 var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
@@ -569,40 +567,53 @@ function toggleNavClasses() {
   heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
 
   footer.classList.toggle("footer-index");
-} // const right_arrows = document.querySelectorAll(".right-arrow-container svg");
-// const list = document.querySelector(".swiper-wrapper");
-// // console.log(window.getComputedStyle(right_arrows[0]));
-// // right_arrow_3.classList.add("test-anim");
-// // console.log(designProjectsSection.offsetTop);
-// // console.log(document.body.clientHeight);
-// let trigger =
-//   designProjectsSection.offsetTop - document.body.clientHeight + 100;
-// // console.log(trigger);
-// // let flag = true;
-// let last_known_scroll_position = 0;
-// // document.addEventListener("DOMContentLoaded", function() {
-// //   siteWrapper.addEventListener("scroll", doSomething, true);
-// //   list.addEventListener("touchstart", function() {
-// //     right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
-// //     siteWrapper.removeEventListener("scroll", doSomething, true);
-// //     console.log("entra al remove");
-// //   });
-// // });
-// function doSomething() {
-//   console.log("listeneeer");
-//   last_known_scroll_position = siteWrapper.scrollTop;
-//   if (last_known_scroll_position > trigger) {
-//     right_arrows.forEach(arrow => arrow.classList.add("test-anim"));
-//     right_arrows[0].style.animationDelay = ".25s";
-//     right_arrows[1].style.animationDelay = ".125s";
-//   } else {
-//     right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
-//   }
-//   // doSomethingElse(last_known_scroll_position);
-// }
-// function doSomethingElse(last_known_scroll_position) {
-//   console.log(last_known_scroll_position);
-// }
+}
+
+var right_arrows = document.querySelectorAll(".right-arrow-container svg");
+var list = document.querySelector(".swiper-wrapper"); // console.log(window.getComputedStyle(right_arrows[0]));
+// right_arrow_3.classList.add("test-anim");
+// console.log(designProjectsSection.offsetTop);
+// console.log(document.body.clientHeight);
+
+var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100; // console.log(trigger);
+// let flag = true;
+
+var last_known_scroll_position = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  _main.siteWrapper.addEventListener("scroll", doSomething, true);
+
+  list.addEventListener("touchstart", function () {
+    right_arrows.forEach(function (arrow) {
+      return arrow.classList.remove("test-anim");
+    });
+
+    _main.siteWrapper.removeEventListener("scroll", doSomething, true);
+
+    console.log("entra al remove");
+  });
+});
+
+function doSomething() {
+  console.log("listeneeer");
+  last_known_scroll_position = _main.siteWrapper.scrollTop;
+
+  if (last_known_scroll_position > trigger) {
+    right_arrows.forEach(function (arrow) {
+      return arrow.classList.add("test-anim");
+    });
+    right_arrows[0].style.animationDelay = ".25s";
+    right_arrows[1].style.animationDelay = ".125s";
+  } else {
+    right_arrows.forEach(function (arrow) {
+      return arrow.classList.remove("test-anim");
+    });
+  } // doSomethingElse(last_known_scroll_position);
+
+}
+
+function doSomethingElse(last_known_scroll_position) {
+  console.log(last_known_scroll_position);
+}
 
 },{"../main.js":1}],6:[function(require,module,exports){
 "use strict";
