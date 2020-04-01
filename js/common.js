@@ -536,11 +536,7 @@ function styleMobileNav() {
       // clickOnBurger = true;
       //
       // siteWrapper.scrollTo(0, 500);
-      _main.siteWrapper.addEventListener("touchend", function (e) {
-        _main.siteWrapper.scroll(0, _main.siteWrapper.scrollY);
-      }); //
-
-
+      //
       toggleNavClasses(); // nav.classList.toggle("nav-no-border");
 
       navElements.forEach(function (navEl, index) {

@@ -20,6 +20,10 @@ const footer = document.querySelector("#footer");
 let hasClickListener = false;
 let clickOnBurger = false;
 
+siteWrapper.addEventListener("touchend", function(e) {
+  siteWrapper.scroll(0, siteWrapper.scrollY);
+});
+
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
@@ -33,9 +37,6 @@ function styleMobileNav() {
       //
 
       // siteWrapper.scrollTo(0, 500);
-      siteWrapper.addEventListener("touchend", function(e) {
-        siteWrapper.scroll(0, siteWrapper.scrollY);
-      });
 
       //
       toggleNavClasses();
