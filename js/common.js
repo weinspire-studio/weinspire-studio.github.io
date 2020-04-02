@@ -39,21 +39,20 @@ var hasScrollListener = false;
 var swiper;
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
-contactModule.submitContactForm(); //on pageload, executes the following code, depending on screen width.
+contactModule.submitContactForm();
+navBar.classList.add("nav-white"); //on pageload, executes the following code, depending on screen width.
 
 window.addEventListener("DOMContentLoaded", function () {
   if (notMobileScreenMQ.matches) {
     desktopCode();
-  } else {
-    mobileCode();
+  } else {// mobileCode();
   }
 }); // adds listener that executes code when screen width changes (passing by 801px).
 
 notMobileScreenMQ.addListener(function () {
   if (notMobileScreenMQ.matches) {
     desktopCode();
-  } else {
-    mobileCode();
+  } else {// mobileCode();
   }
 }); //FUNCTIONS
 //code that executes only in desktop and large tablets screens (> 801px).
@@ -77,8 +76,8 @@ function desktopCode() {
 
 
 function mobileCode() {
-  styleNavOnScroll(); // mobileModule.styleMobileNav();
-
+  // styleNavOnScroll();
+  // mobileModule.styleMobileNav();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
@@ -97,16 +96,11 @@ function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
-    console.log("aplicaa");
-
-    if (!navBar.classList.contains("nav-white")) {
-      navBar.classList.add("nav-white");
-      navWhite.classList.add("navigation-white");
+    console.log("aplicaaa"); // navBar.classList.add("nav-white");
+    // navWhite.classList.add("navigation-white");
+  } else {// navBar.classList.remove("nav-white");
+      // navWhite.classList.remove("navigation-white");
     }
-  } else {
-    navBar.classList.remove("nav-white");
-    navWhite.classList.remove("navigation-white");
-  }
 } //
 //
 // -----------------
