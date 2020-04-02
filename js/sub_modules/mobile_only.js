@@ -1,6 +1,6 @@
 // jshint esversion: 6
 
-import { siteWrapper, navBar } from "../main.js";
+import { siteWrapper } from "../main.js";
 
 console.log("scroll navbar again test 2");
 
@@ -24,6 +24,8 @@ let isIos =
   (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
   !window.MSStream;
+
+heroText.classList.add("test-class");
 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {

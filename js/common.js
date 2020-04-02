@@ -520,7 +520,8 @@ var designProjectsSection = document.querySelector("#section-projects-design");
 var scrolledY = 0;
 var hasClickListener = false; // UA sniffing
 
-var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
+heroText.classList.add("test-class"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   // navList.parentNode.removeChild(navList);
