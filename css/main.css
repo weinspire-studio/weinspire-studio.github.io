@@ -344,7 +344,8 @@ nav {
 .test-class {
   font-size: 20px !important;
   height: 150px !important;
-  background-color: violet !important;
+  width: 80% !important;
+  background-color: red !important;
   z-index: 9999 !important;
 }
 
