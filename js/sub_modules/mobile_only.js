@@ -6,10 +6,10 @@ console.log("scroll navbar again test 2");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
-const navContainer = document.querySelector(".navigation-container");
+// const navContainer = document.querySelector(".navigation-container");
 const nav = document.querySelector("nav");
 // const navWhite = document.querySelector(".navigation-color-white");
-const navBlack = document.querySelector(".navigation-overlay-black");
+// const navBlack = document.querySelector(".navigation-overlay-black");
 const navImg = document.querySelector("nav img");
 const burger = document.querySelector(".burger");
 const heroText = document.querySelector(".hero-text");
@@ -54,7 +54,7 @@ function toggleNavClasses() {
   if (scrolledY > 0) {
     // console.log("togglea en el toggle");
     // navBar.classList.toggle("nav-white");
-    navBlack.classList.toggle("navigation-black");
+    // navBlack.classList.toggle("navigation-black");
     nav.classList.toggle("nav-no-border");
     // navWhite.classList.toggle("navigation-white");
     // navBar.classList.toggle("nav-back");
@@ -67,7 +67,7 @@ function toggleNavClasses() {
   burger.classList.toggle("cross");
   navList.classList.toggle("open");
   navList.classList.add("visible");
-  navContainer.classList.toggle("translate");
+  // navContainer.classList.toggle("translate");
   navImg.classList.toggle("logo-index");
   heroText.classList.toggle("hero-text-opacity");
   // svgBackground.classList.toggle("svg-opacity");
@@ -112,8 +112,8 @@ export {
   // nav,
   // navList,
   navElements,
-  navContainer,
-  navBlack,
+  // navContainer,
+  // navBlack,
   styleMobileNav,
   toggleNavClasses
 };

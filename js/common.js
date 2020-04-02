@@ -28,8 +28,8 @@ var siteWrapper = document.querySelector("#site-wrapper"); // const nav = docume
 // const navBar = document.querySelector("#section-navbar");
 
 exports.siteWrapper = siteWrapper;
-var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
-var navWhite = document.querySelector(".navigation-color-white"); // const lineElements = document.querySelectorAll(".burger div");
+var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const navWhite = document.querySelector(".navigation-color-white");
+// const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
@@ -420,10 +420,10 @@ function styleAnchorOnHover() {
 
 
 function restoreDesktopNav() {
-  if (_mobile_only.navContainer.firstChild !== null) {// navContainer.removeChild(navList);
-    // nav.appendChild(navList);
-  }
-
+  // if (navContainer.firstChild !== null) {
+  // navContainer.removeChild(navList);
+  // nav.appendChild(navList);
+  // }
   if (_main.siteWrapper.classList.contains("menu-open")) {
     (0, _mobile_only.toggleNavClasses)();
 
@@ -497,21 +497,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.navBlack = exports.navContainer = exports.navElements = void 0;
+exports.navElements = void 0;
 
 var _main = require("../main.js");
 
 // jshint esversion: 6
 console.log("scroll navbar again test 2");
 var navList = document.querySelector(".nav-list");
-var navElements = document.querySelectorAll(".nav-list li");
-exports.navElements = navElements;
-var navContainer = document.querySelector(".navigation-container");
-exports.navContainer = navContainer;
-var nav = document.querySelector("nav"); // const navWhite = document.querySelector(".navigation-color-white");
+var navElements = document.querySelectorAll(".nav-list li"); // const navContainer = document.querySelector(".navigation-container");
 
-var navBlack = document.querySelector(".navigation-overlay-black");
-exports.navBlack = navBlack;
+exports.navElements = navElements;
+var nav = document.querySelector("nav"); // const navWhite = document.querySelector(".navigation-color-white");
+// const navBlack = document.querySelector(".navigation-overlay-black");
+
 var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
@@ -551,7 +549,7 @@ function toggleNavClasses() {
   if (scrolledY > 0) {
     // console.log("togglea en el toggle");
     // navBar.classList.toggle("nav-white");
-    navBlack.classList.toggle("navigation-black");
+    // navBlack.classList.toggle("navigation-black");
     nav.classList.toggle("nav-no-border"); // navWhite.classList.toggle("navigation-white");
     // navBar.classList.toggle("nav-back");
   }
@@ -564,8 +562,8 @@ function toggleNavClasses() {
 
   burger.classList.toggle("cross");
   navList.classList.toggle("open");
-  navList.classList.add("visible");
-  navContainer.classList.toggle("translate");
+  navList.classList.add("visible"); // navContainer.classList.toggle("translate");
+
   navImg.classList.toggle("logo-index");
   heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
 
