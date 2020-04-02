@@ -52,7 +52,8 @@ window.addEventListener("DOMContentLoaded", function () {
 notMobileScreenMQ.addListener(function () {
   if (notMobileScreenMQ.matches) {
     desktopCode();
-  } else {// mobileCode();
+  } else {
+    mobileCode();
   }
 }); //FUNCTIONS
 //code that executes only in desktop and large tablets screens (> 801px).
@@ -96,7 +97,7 @@ function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
-    console.log("aplica");
+    console.log("aplicaa");
     navBar.classList.add("nav-white");
     navWhite.classList.add("navigation-white");
   } else {// navBar.classList.remove("nav-white");

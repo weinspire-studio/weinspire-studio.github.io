@@ -38,7 +38,7 @@ notMobileScreenMQ.addListener(() => {
   if (notMobileScreenMQ.matches) {
     desktopCode();
   } else {
-    // mobileCode();
+    mobileCode();
   }
 });
 
@@ -79,7 +79,7 @@ function mobileCode() {
 function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
   if (scrolledY > 0) {
-    console.log("aplica");
+    console.log("aplicaa");
     navBar.classList.add("nav-white");
     navWhite.classList.add("navigation-white");
   } else {
