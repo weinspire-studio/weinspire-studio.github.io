@@ -40,8 +40,9 @@ jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //
 //
+// navBar.style.backgroundColor = "blue";
 
-navBar.style.backgroundColor = "blue"; // window.addEventListener("load", function() {
+navBar.classList.add("test-class"); // window.addEventListener("load", function() {
 //   navBar.classList.add("nav-white");
 //   console.log("asddd");
 // });

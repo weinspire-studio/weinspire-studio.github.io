@@ -26,7 +26,9 @@ contactModule.submitContactForm();
 //
 //
 
-navBar.style.backgroundColor = "blue";
+// navBar.style.backgroundColor = "blue";
+
+navBar.classList.add("test-class");
 
 // window.addEventListener("load", function() {
 //   navBar.classList.add("nav-white");

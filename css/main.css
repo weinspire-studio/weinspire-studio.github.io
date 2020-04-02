@@ -341,6 +341,12 @@ nav {
   background-color: #000;
 }
 
+.test-class {
+  font-size: 20px !important;
+  height: 150px !important;
+  background-color: violet !important;
+}
+
 .navigation-white {
   background-color: #fff;
   box-shadow: 12px 2px 8px 0px black;
