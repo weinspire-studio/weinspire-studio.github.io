@@ -39,7 +39,10 @@ var swiper;
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
-navBar.classList.add("nav-white"); //on pageload, executes the following code, depending on screen width.
+window.addEventListener("DOMContentLoaded", function () {
+  navBar.classList.add("nav-white");
+  console.log("asd");
+}); //on pageload, executes the following code, depending on screen width.
 
 window.addEventListener("DOMContentLoaded", function () {
   if (notMobileScreenMQ.matches) {
