@@ -25,9 +25,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // jshint esversion: 6
 //VARIABLES
 var siteWrapper = document.querySelector("#site-wrapper"); // const nav = document.querySelector("nav");
+// const navBar = document.querySelector("#section-navbar");
 
 exports.siteWrapper = siteWrapper;
-var navBar = document.querySelector("#section-navbar");
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 var navWhite = document.querySelector(".navigation-color-white"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
@@ -41,8 +41,8 @@ contactModule.validateContactForm();
 contactModule.submitContactForm(); //
 //
 // navBar.style.backgroundColor = "blue";
-
-navBar.classList.add("test-class"); // window.addEventListener("load", function() {
+// navBar.classList.add("test-class");
+// window.addEventListener("load", function() {
 //   navBar.classList.add("nav-white");
 //   console.log("asddd");
 // });
@@ -521,7 +521,9 @@ var scrolledY = 0;
 var hasClickListener = false; // UA sniffing
 
 var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
-heroText.classList.add("test-class"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var navBar = document.querySelector("#section-navbar");
+heroText.classList.add("test-class");
+navBar.classList.add("test-class"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   // navList.parentNode.removeChild(navList);

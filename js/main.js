@@ -9,7 +9,7 @@ import * as contactModule from "./sub_modules/contact";
 //VARIABLES
 const siteWrapper = document.querySelector("#site-wrapper");
 // const nav = document.querySelector("nav");
-const navBar = document.querySelector("#section-navbar");
+// const navBar = document.querySelector("#section-navbar");
 const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 const navWhite = document.querySelector(".navigation-color-white");
 // const lineElements = document.querySelectorAll(".burger div");
@@ -28,7 +28,7 @@ contactModule.submitContactForm();
 
 // navBar.style.backgroundColor = "blue";
 
-navBar.classList.add("test-class");
+// navBar.classList.add("test-class");
 
 // window.addEventListener("load", function() {
 //   navBar.classList.add("nav-white");

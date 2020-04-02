@@ -345,6 +345,7 @@ nav {
   font-size: 20px !important;
   height: 150px !important;
   background-color: violet !important;
+  z-index: 9999 !important;
 }
 
 .navigation-white {
