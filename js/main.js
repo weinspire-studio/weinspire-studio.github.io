@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", function() {
   if (notMobileScreenMQ.matches) {
     desktopCode();
   } else {
-    // mobileCode();
+    mobileCode();
   }
 });
 
@@ -38,7 +38,7 @@ notMobileScreenMQ.addListener(() => {
   if (notMobileScreenMQ.matches) {
     desktopCode();
   } else {
-    mobileCode();
+    // mobileCode();
   }
 });
 

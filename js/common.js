@@ -44,15 +44,15 @@ contactModule.submitContactForm(); //on pageload, executes the following code, d
 window.addEventListener("DOMContentLoaded", function () {
   if (notMobileScreenMQ.matches) {
     desktopCode();
-  } else {// mobileCode();
+  } else {
+    mobileCode();
   }
 }); // adds listener that executes code when screen width changes (passing by 801px).
 
 notMobileScreenMQ.addListener(function () {
   if (notMobileScreenMQ.matches) {
     desktopCode();
-  } else {
-    mobileCode();
+  } else {// mobileCode();
   }
 }); //FUNCTIONS
 //code that executes only in desktop and large tablets screens (> 801px).
