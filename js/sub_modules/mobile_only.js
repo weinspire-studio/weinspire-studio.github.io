@@ -105,8 +105,8 @@ function slideRightArrows() {
 }
 
 export {
-  nav,
-  navList,
+  // nav,
+  // navList,
   navElements,
   navContainer,
   navBlack,

@@ -420,10 +420,8 @@ function styleAnchorOnHover() {
 
 
 function restoreDesktopNav() {
-  if (_mobile_only.navContainer.firstChild !== null) {
-    _mobile_only.navContainer.removeChild(_mobile_only.navList);
-
-    _mobile_only.nav.appendChild(_mobile_only.navList);
+  if (_mobile_only.navContainer.firstChild !== null) {// navContainer.removeChild(navList);
+    // nav.appendChild(navList);
   }
 
   if (_main.siteWrapper.classList.contains("menu-open")) {
@@ -499,21 +497,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.navBlack = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
+exports.navBlack = exports.navContainer = exports.navElements = void 0;
 
 var _main = require("../main.js");
 
 // jshint esversion: 6
 console.log("scroll navbar again test 2");
 var navList = document.querySelector(".nav-list");
-exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
 exports.navElements = navElements;
 var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
 var nav = document.querySelector("nav"); // const navWhite = document.querySelector(".navigation-color-white");
 
-exports.nav = nav;
 var navBlack = document.querySelector(".navigation-overlay-black");
 exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
