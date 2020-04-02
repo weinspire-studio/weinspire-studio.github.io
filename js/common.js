@@ -420,10 +420,12 @@ function styleAnchorOnHover() {
 
 
 function restoreDesktopNav() {
-  // if (navContainer.firstChild !== null) {
-  // navContainer.removeChild(navList);
-  // nav.appendChild(navList);
-  // }
+  if (_mobile_only.navContainer.firstChild !== null) {
+    _mobile_only.navContainer.removeChild(_mobile_only.navList);
+
+    _mobile_only.nav.appendChild(_mobile_only.navList);
+  }
+
   if (_main.siteWrapper.classList.contains("menu-open")) {
     (0, _mobile_only.toggleNavClasses)();
 
@@ -497,19 +499,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.navElements = void 0;
+exports.navBlack = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
 
 var _main = require("../main.js");
 
 // jshint esversion: 6
 console.log("scroll navbar again test 2");
 var navList = document.querySelector(".nav-list");
-var navElements = document.querySelectorAll(".nav-list li"); // const navContainer = document.querySelector(".navigation-container");
-
+exports.navList = navList;
+var navElements = document.querySelectorAll(".nav-list li");
 exports.navElements = navElements;
+var navContainer = document.querySelector(".navigation-container");
+exports.navContainer = navContainer;
 var nav = document.querySelector("nav"); // const navWhite = document.querySelector(".navigation-color-white");
-// const navBlack = document.querySelector(".navigation-overlay-black");
 
+exports.nav = nav;
+var navBlack = document.querySelector(".navigation-overlay-black");
+exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
@@ -549,7 +555,7 @@ function toggleNavClasses() {
   if (scrolledY > 0) {
     // console.log("togglea en el toggle");
     // navBar.classList.toggle("nav-white");
-    // navBlack.classList.toggle("navigation-black");
+    navBlack.classList.toggle("navigation-black");
     nav.classList.toggle("nav-no-border"); // navWhite.classList.toggle("navigation-white");
     // navBar.classList.toggle("nav-back");
   }
@@ -562,8 +568,8 @@ function toggleNavClasses() {
 
   burger.classList.toggle("cross");
   navList.classList.toggle("open");
-  navList.classList.add("visible"); // navContainer.classList.toggle("translate");
-
+  navList.classList.add("visible");
+  navContainer.classList.toggle("translate");
   navImg.classList.toggle("logo-index");
   heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
 

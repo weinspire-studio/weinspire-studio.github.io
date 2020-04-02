@@ -2,10 +2,10 @@
 
 import { siteWrapper } from "../main.js";
 import {
-  // nav,
-  // navList,
+  nav,
+  navList,
   navElements,
-  // navContainer,
+  navContainer,
   toggleNavClasses
 } from "./mobile_only.js";
 
@@ -41,10 +41,10 @@ function styleAnchorOnHover() {
 
 // called when resizing from mobile to large screens, and when loading page on large resolutions, adds or removes nav classes for styling (calling) and append navList to child if resizing.
 function restoreDesktopNav() {
-  // if (navContainer.firstChild !== null) {
-  // navContainer.removeChild(navList);
-  // nav.appendChild(navList);
-  // }
+  if (navContainer.firstChild !== null) {
+    navContainer.removeChild(navList);
+    nav.appendChild(navList);
+  }
   if (siteWrapper.classList.contains("menu-open")) {
     toggleNavClasses();
     navElements.forEach(navEl => {

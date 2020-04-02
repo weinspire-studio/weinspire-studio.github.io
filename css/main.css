@@ -188,7 +188,6 @@ nav {
     height: 100%;
     transform: translateX(0);
     transition-property: none;
-    background-color: transparent;
     opacity: 1;
   }
 }
@@ -278,7 +277,6 @@ nav {
 .navigation-color-white {
   width: 100%;
   height: 3.25em;
-  background-color: transparent;
   position: fixed;
   transition: 0.5s ease;
 }
@@ -287,7 +285,6 @@ nav {
   width: 100%;
   height: 3.25em;
   position: fixed;
-  transition: background-color 0.5s ease;
 }
 
 .open {
@@ -347,16 +344,6 @@ nav {
   width: 80% !important;
   background-color: red !important;
   z-index: 9999 !important;
-}
-
-.navigation-white {
-  background-color: #fff;
-  box-shadow: 12px 2px 8px 0px black;
-}
-
-.navigation-black {
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .translate {
