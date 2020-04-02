@@ -2,7 +2,7 @@
 
 import { siteWrapper, navBar } from "../main.js";
 
-console.log("scroll navbar again test 1");
+console.log("scroll navbar again test 2");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
@@ -49,7 +49,7 @@ function toggleNavClasses() {
   scrolledY = siteWrapper.scrollTop;
   if (scrolledY > 0) {
     // console.log("togglea en el toggle");
-    navBar.classList.toggle("nav-white");
+    // navBar.classList.toggle("nav-white");
     navBlack.classList.toggle("navigation-black");
     nav.classList.toggle("nav-no-border");
     // navWhite.classList.toggle("navigation-white");

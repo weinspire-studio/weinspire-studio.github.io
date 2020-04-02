@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.navBar = exports.siteWrapper = void 0;
+exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -28,7 +28,6 @@ var siteWrapper = document.querySelector("#site-wrapper"); // const nav = docume
 
 exports.siteWrapper = siteWrapper;
 var navBar = document.querySelector("#section-navbar");
-exports.navBar = navBar;
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 var navWhite = document.querySelector(".navigation-color-white"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
@@ -498,7 +497,7 @@ exports.navBlack = exports.navContainer = exports.navElements = exports.navList 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("scroll navbar again test 1");
+console.log("scroll navbar again test 2");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -545,8 +544,7 @@ function toggleNavClasses() {
 
   if (scrolledY > 0) {
     // console.log("togglea en el toggle");
-    _main.navBar.classList.toggle("nav-white");
-
+    // navBar.classList.toggle("nav-white");
     navBlack.classList.toggle("navigation-black");
     nav.classList.toggle("nav-no-border"); // navWhite.classList.toggle("navigation-white");
     // navBar.classList.toggle("nav-back");

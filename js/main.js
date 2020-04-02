@@ -90,7 +90,10 @@ function styleNavOnScroll() {
   }
 }
 
-export { siteWrapper, navBar };
+export {
+  siteWrapper
+  //  navBar
+};
 
 //
 //
