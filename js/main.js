@@ -61,7 +61,7 @@ function desktopCode() {
 
 //code that executes only in phones and small tablets screens (< 801px).
 function mobileCode() {
-  styleNavOnScroll();
+  // styleNavOnScroll();
   // mobileModule.styleMobileNav();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);

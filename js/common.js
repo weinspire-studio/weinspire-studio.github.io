@@ -77,8 +77,8 @@ function desktopCode() {
 
 
 function mobileCode() {
-  styleNavOnScroll(); // mobileModule.styleMobileNav();
-
+  // styleNavOnScroll();
+  // mobileModule.styleMobileNav();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
