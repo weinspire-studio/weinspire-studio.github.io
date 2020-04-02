@@ -25,6 +25,8 @@ let isIos =
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
   !window.MSStream;
 
+heroText.classList.add("test-class");
+
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
