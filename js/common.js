@@ -77,8 +77,8 @@ function desktopCode() {
 
 
 function mobileCode() {
-  // styleNavOnScroll();
-  // mobileModule.styleMobileNav();
+  styleNavOnScroll(); // mobileModule.styleMobileNav();
+
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
@@ -98,10 +98,14 @@ function styleNavOnScroll() {
 
   if (scrolledY > 0) {
     console.log("aplicaa");
-    navBar.classList.add("nav-white");
-    navWhite.classList.add("navigation-white");
-  } else {// navBar.classList.remove("nav-white");
-    // navWhite.classList.remove("navigation-white");
+
+    if (!navBar.classList.contains("nav-white")) {
+      navBar.classList.add("nav-white");
+      navWhite.classList.add("navigation-white");
+    }
+  } else {
+    navBar.classList.remove("nav-white");
+    navWhite.classList.remove("navigation-white");
   }
 } //
 //
