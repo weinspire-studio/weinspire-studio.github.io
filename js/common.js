@@ -77,8 +77,7 @@ function desktopCode() {
 
 
 function mobileCode() {
-  styleNavOnScroll();
-  mobileModule.styleMobileNav();
+  styleNavOnScroll(); // mobileModule.styleMobileNav();
 
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
@@ -97,8 +96,9 @@ function mobileCode() {
 function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
 
-  if (scrolledY > 0) {// navBar.classList.add("nav-white");
-    // navWhite.classList.add("navigation-white");
+  if (scrolledY > 0) {
+    navBar.classList.add("nav-white");
+    navWhite.classList.add("navigation-white");
   } else {
     navBar.classList.remove("nav-white");
     navWhite.classList.remove("navigation-white");
