@@ -23,9 +23,9 @@ let swiper;
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("load", function() {
   navBar.classList.add("nav-white");
-  console.log("asd");
+  console.log("asddd");
 });
 
 //on pageload, executes the following code, depending on screen width.
