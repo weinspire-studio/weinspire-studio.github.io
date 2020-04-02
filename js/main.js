@@ -195,5 +195,5 @@ export { siteWrapper, navBar };
 // babel vs babelify? Modules? jquery modules? swiper?
 // content link ?
 // mousedown touch start?
-//auto prefixer: prefix animations?
+//auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
 // bug in height 100% on iphone? check on the net

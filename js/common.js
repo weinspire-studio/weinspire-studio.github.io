@@ -199,7 +199,7 @@ function styleNavOnScroll() {
 // babel vs babelify? Modules? jquery modules? swiper?
 // content link ?
 // mousedown touch start?
-//auto prefixer: prefix animations?
+//auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
 // bug in height 100% on iphone? check on the net
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6}],2:[function(require,module,exports){
@@ -518,6 +518,7 @@ var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
 var footer = document.querySelector("#footer");
 var designProjectsSection = document.querySelector("#section-projects-design");
+var scrolledY = 0;
 var hasClickListener = false; // UA sniffing
 
 var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
@@ -530,7 +531,7 @@ function styleMobileNav() {
     burger.addEventListener("click", function () {
       toggleNavClasses();
       navElements.forEach(function (navEl, index) {
-        navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
+        navEl.style.animationDelay = "".concat(300 + index / 15500, "ms");
         navEl.classList.toggle("nav-link-anim");
         navEl.classList.toggle("invisible");
       });
@@ -542,10 +543,10 @@ function styleMobileNav() {
 
 
 function toggleNavClasses() {
-  var scrolledYMobile;
-  scrolledYMobile = _main.siteWrapper.scrollTop;
+  // let scrolledY;
+  scrolledY = _main.siteWrapper.scrollTop;
 
-  if (scrolledYMobile > 0) {
+  if (scrolledY > 0) {
     // console.log("togglea en el toggle");
     _main.navBar.classList.toggle("nav-white");
 
@@ -570,46 +571,50 @@ function toggleNavClasses() {
   footer.classList.toggle("footer-index");
 }
 
-var right_arrows = document.querySelectorAll(".right-arrow-container svg");
-var list = document.querySelector(".swiper-wrapper"); // console.log(window.getComputedStyle(right_arrows[0]));
-// right_arrow_3.classList.add("test-anim");
-// console.log(designProjectsSection.offsetTop);
-// console.log(document.body.clientHeight);
-
-var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100; // console.log(trigger);
-// let flag = true;
-
-var last_known_scroll_position = 0;
+var rightArrowsContainer = document.querySelector(".right-arrow-container");
+var rightArrows = document.querySelectorAll(".right-arrow-container svg");
+var list = document.querySelector(".swiper-wrapper");
+var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100;
 document.addEventListener("DOMContentLoaded", function () {
-  _main.siteWrapper.addEventListener("scroll", doSomething, true);
+  _main.siteWrapper.addEventListener("scroll", showRightArrows, true);
 
+  rightArrowsContainer.addEventListener("click", slideRightArrows);
   list.addEventListener("touchmove", function () {
-    right_arrows.forEach(function (arrow) {
-      return arrow.classList.remove("test-anim");
+    rightArrows.forEach(function (arrow) {
+      return arrow.classList.remove("arrow-wave");
     });
 
-    _main.siteWrapper.removeEventListener("scroll", doSomething, true);
+    _main.siteWrapper.removeEventListener("scroll", showRightArrows, true);
 
-    console.log("entra al remove");
+    rightArrowsContainer.removeEventListener("click", slideRightArrows);
   });
 });
 
-function doSomething() {
+function showRightArrows() {
   console.log("listeneeer");
-  last_known_scroll_position = _main.siteWrapper.scrollTop;
+  scrolledY = _main.siteWrapper.scrollTop;
 
-  if (last_known_scroll_position > trigger) {
-    right_arrows.forEach(function (arrow) {
-      return arrow.classList.add("test-anim");
+  if (scrolledY > trigger) {
+    rightArrows.forEach(function (arrow) {
+      return arrow.classList.add("arrow-wave");
     });
-    right_arrows[0].style.animationDelay = ".25s";
-    right_arrows[1].style.animationDelay = ".125s";
+    rightArrows[0].style.animationDelay = "250ms";
+    rightArrows[1].style.animationDelay = "125ms";
   } else {
-    right_arrows.forEach(function (arrow) {
-      return arrow.classList.remove("test-anim");
+    rightArrows.forEach(function (arrow) {
+      return arrow.classList.remove("arrow-wave");
     });
-  } // doSomethingElse(last_known_scroll_position);
+  }
+}
 
+function slideRightArrows() {
+  rightArrows.forEach(function (arrow) {
+    return arrow.classList.add("arrow-slide");
+  });
+
+  _main.siteWrapper.removeEventListener("scroll", showRightArrows, true);
+
+  rightArrowsContainer.removeEventListener("click", slideRightArrows);
 }
 
 },{"../main.js":1}],6:[function(require,module,exports){

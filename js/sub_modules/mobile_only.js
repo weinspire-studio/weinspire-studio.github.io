@@ -17,6 +17,7 @@ const footer = document.querySelector("#footer");
 const designProjectsSection = document.querySelector(
   "#section-projects-design"
 );
+let scrolledY = 0;
 let hasClickListener = false;
 // UA sniffing
 let isIos =
@@ -33,7 +34,7 @@ function styleMobileNav() {
     burger.addEventListener("click", () => {
       toggleNavClasses();
       navElements.forEach((navEl, index) => {
-        navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
+        navEl.style.animationDelay = `${300 + index / 15500}ms`;
         navEl.classList.toggle("nav-link-anim");
         navEl.classList.toggle("invisible");
       });
@@ -44,9 +45,9 @@ function styleMobileNav() {
 
 // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
 function toggleNavClasses() {
-  let scrolledYMobile;
-  scrolledYMobile = siteWrapper.scrollTop;
-  if (scrolledYMobile > 0) {
+  // let scrolledY;
+  scrolledY = siteWrapper.scrollTop;
+  if (scrolledY > 0) {
     // console.log("togglea en el toggle");
     navBar.classList.toggle("nav-white");
     navBlack.classList.toggle("navigation-black");
@@ -69,40 +70,38 @@ function toggleNavClasses() {
   footer.classList.toggle("footer-index");
 }
 
-const right_arrows = document.querySelectorAll(".right-arrow-container svg");
+const rightArrowsContainer = document.querySelector(".right-arrow-container");
+const rightArrows = document.querySelectorAll(".right-arrow-container svg");
 const list = document.querySelector(".swiper-wrapper");
-// console.log(window.getComputedStyle(right_arrows[0]));
-// right_arrow_3.classList.add("test-anim");
-
-// console.log(designProjectsSection.offsetTop);
-// console.log(document.body.clientHeight);
-
 let trigger =
   designProjectsSection.offsetTop - document.body.clientHeight + 100;
-// console.log(trigger);
-// let flag = true;
-let last_known_scroll_position = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
-  siteWrapper.addEventListener("scroll", doSomething, true);
+  siteWrapper.addEventListener("scroll", showRightArrows, true);
+  rightArrowsContainer.addEventListener("click", slideRightArrows);
   list.addEventListener("touchmove", function() {
-    right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
-    siteWrapper.removeEventListener("scroll", doSomething, true);
-    console.log("entra al remove");
+    rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
+    siteWrapper.removeEventListener("scroll", showRightArrows, true);
+    rightArrowsContainer.removeEventListener("click", slideRightArrows);
   });
 });
 
-function doSomething() {
+function showRightArrows() {
   console.log("listeneeer");
-  last_known_scroll_position = siteWrapper.scrollTop;
-  if (last_known_scroll_position > trigger) {
-    right_arrows.forEach(arrow => arrow.classList.add("test-anim"));
-    right_arrows[0].style.animationDelay = ".25s";
-    right_arrows[1].style.animationDelay = ".125s";
+  scrolledY = siteWrapper.scrollTop;
+  if (scrolledY > trigger) {
+    rightArrows.forEach(arrow => arrow.classList.add("arrow-wave"));
+    rightArrows[0].style.animationDelay = "250ms";
+    rightArrows[1].style.animationDelay = "125ms";
   } else {
-    right_arrows.forEach(arrow => arrow.classList.remove("test-anim"));
+    rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
   }
-  // doSomethingElse(last_known_scroll_position);
+}
+
+function slideRightArrows() {
+  rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
+  siteWrapper.removeEventListener("scroll", showRightArrows, true);
+  rightArrowsContainer.removeEventListener("click", slideRightArrows);
 }
 
 export {
