@@ -38,11 +38,14 @@ var hasScrollListener = false;
 var swiper;
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
-contactModule.submitContactForm();
-window.addEventListener("load", function () {
-  navBar.classList.add("nav-white");
-  console.log("asddd");
-}); //on pageload, executes the following code, depending on screen width.
+contactModule.submitContactForm(); //
+//
+
+navBar.style.backgroundColor = "blue"; // window.addEventListener("load", function() {
+//   navBar.classList.add("nav-white");
+//   console.log("asddd");
+// });
+//on pageload, executes the following code, depending on screen width.
 
 window.addEventListener("DOMContentLoaded", function () {
   if (notMobileScreenMQ.matches) {
@@ -98,7 +101,7 @@ function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
-    console.log("aplicaaa"); // navBar.classList.add("nav-white");
+    console.log("aplica"); // navBar.classList.add("nav-white");
     // navWhite.classList.add("navigation-white");
   } else {// navBar.classList.remove("nav-white");
       // navWhite.classList.remove("navigation-white");
