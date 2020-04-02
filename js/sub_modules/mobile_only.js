@@ -34,7 +34,7 @@ function styleMobileNav() {
     burger.addEventListener("click", () => {
       toggleNavClasses();
       navElements.forEach((navEl, index) => {
-        navEl.style.animationDelay = `${300 + index / 15500}ms`;
+        navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
         navEl.classList.toggle("nav-link-anim");
         navEl.classList.toggle("invisible");
       });
