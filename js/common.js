@@ -97,11 +97,11 @@ function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
+    console.log("aplica");
     navBar.classList.add("nav-white");
     navWhite.classList.add("navigation-white");
-  } else {
-    navBar.classList.remove("nav-white");
-    navWhite.classList.remove("navigation-white");
+  } else {// navBar.classList.remove("nav-white");
+    // navWhite.classList.remove("navigation-white");
   }
 } //
 //
@@ -500,7 +500,7 @@ exports.navBlack = exports.navContainer = exports.navElements = exports.navList 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("scroll navbar test 3");
+console.log("scroll navbar again test 1");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");

@@ -2,7 +2,7 @@
 
 import { siteWrapper, navBar } from "../main.js";
 
-console.log("scroll navbar test 3");
+console.log("scroll navbar again test 1");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");

@@ -79,11 +79,12 @@ function mobileCode() {
 function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
   if (scrolledY > 0) {
+    console.log("aplica");
     navBar.classList.add("nav-white");
     navWhite.classList.add("navigation-white");
   } else {
-    navBar.classList.remove("nav-white");
-    navWhite.classList.remove("navigation-white");
+    // navBar.classList.remove("nav-white");
+    // navWhite.classList.remove("navigation-white");
   }
 }
 
