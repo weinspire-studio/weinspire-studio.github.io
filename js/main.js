@@ -175,7 +175,7 @@ function styleNavOnScroll() {
 //   footer.classList.toggle("footer-index");
 // }
 
-export { siteWrapper, navBar, navWhite, clientHeight };
+export { siteWrapper, navBar, clientHeight };
 
 //
 //

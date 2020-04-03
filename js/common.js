@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
+exports.clientHeight = exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -35,7 +35,6 @@ var navWhite = document.querySelector(".navigation-color-white"); // const lineE
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
 
-exports.navWhite = navWhite;
 var hasScrollListener = false;
 var swiper;
 var clientHeight = document.body.clientHeight;
@@ -637,8 +636,7 @@ function toggleNavClasses() {
 
     navBlack.classList.toggle("navigation-black");
     nav.classList.toggle("nav-no-border");
-
-    _main.navWhite.classList.toggle("navigation-white");
+    navWhite.classList.toggle("navigation-white");
 
     _main.navBar.classList.toggle("nav-back");
   }

@@ -1,6 +1,6 @@
 // jshint esversion: 6
 
-import { siteWrapper, navBar, navWhite, clientHeight } from "../main.js";
+import { siteWrapper, navBar, clientHeight } from "../main.js";
 
 console.log("scroll navbar again test 2");
 
