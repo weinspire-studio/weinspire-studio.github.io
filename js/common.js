@@ -663,7 +663,7 @@ var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper"); // let trigger = designProjectsSection.offsetTop - 667 + 100;
 
-var trigger = 700;
+var trigger = 700 + _main.clientHeight;
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {
