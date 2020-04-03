@@ -11,7 +11,7 @@ const siteWrapper = document.querySelector("#site-wrapper");
 // const nav = document.querySelector("nav");
 // const navBar = document.querySelector("#section-navbar");
 const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
-// const navWhite = document.querySelector(".navigation-color-white");
+const navWhite = document.querySelector(".navigation-color-white");
 // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", function() {
   if (notMobileScreenMQ.matches) {
     desktopCode();
   } else {
-    // mobileCode();
+    mobileCode();
   }
 });
 
@@ -49,7 +49,7 @@ notMobileScreenMQ.addListener(() => {
   if (notMobileScreenMQ.matches) {
     desktopCode();
   } else {
-    // mobileCode();
+    mobileCode();
   }
 });
 
@@ -126,8 +126,8 @@ const navBar = document.querySelector("#section-navbar");
 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
-  // navList.parentNode.removeChild(navList);
-  // navContainer.appendChild(navList);
+  navList.parentNode.removeChild(navList);
+  navContainer.appendChild(navList);
   // mobile burger and menu
   if (!hasClickListener) {
     burger.addEventListener("click", () => {

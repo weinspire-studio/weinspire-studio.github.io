@@ -28,8 +28,8 @@ var siteWrapper = document.querySelector("#site-wrapper"); // const nav = docume
 // const navBar = document.querySelector("#section-navbar");
 
 exports.siteWrapper = siteWrapper;
-var notMobileScreenMQ = window.matchMedia("(min-width: 801px)"); // const navWhite = document.querySelector(".navigation-color-white");
-// const lineElements = document.querySelectorAll(".burger div");
+var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
+var navWhite = document.querySelector(".navigation-color-white"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
@@ -51,14 +51,16 @@ contactModule.submitContactForm(); //
 window.addEventListener("DOMContentLoaded", function () {
   if (notMobileScreenMQ.matches) {
     desktopCode();
-  } else {// mobileCode();
+  } else {
+    mobileCode();
   }
 }); // adds listener that executes code when screen width changes (passing by 801px).
 
 notMobileScreenMQ.addListener(function () {
   if (notMobileScreenMQ.matches) {
     desktopCode();
-  } else {// mobileCode();
+  } else {
+    mobileCode();
   }
 }); //FUNCTIONS
 //code that executes only in desktop and large tablets screens (> 801px).
@@ -132,9 +134,9 @@ var navBar = document.querySelector("#section-navbar"); // heroText.classList.ad
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
-  // navList.parentNode.removeChild(navList);
-  // navContainer.appendChild(navList);
-  // mobile burger and menu
+  navList.parentNode.removeChild(navList);
+  navContainer.appendChild(navList); // mobile burger and menu
+
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
       toggleNavClasses();
