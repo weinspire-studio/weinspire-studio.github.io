@@ -72,8 +72,8 @@ function desktopCode() {
 
 //code that executes only in phones and small tablets screens (< 801px).
 function mobileCode() {
-  // styleNavOnScroll();
-  // mobileModule.styleMobileNav();
+  styleNavOnScroll();
+  styleMobileNav();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
@@ -91,11 +91,11 @@ function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
   if (scrolledY > 0) {
     console.log("aplica");
-    // navBar.classList.add("nav-white");
-    // navWhite.classList.add("navigation-white");
+    navBar.classList.add("nav-white");
+    navWhite.classList.add("navigation-white");
   } else {
-    // navBar.classList.remove("nav-white");
-    // navWhite.classList.remove("navigation-white");
+    navBar.classList.remove("nav-white");
+    navWhite.classList.remove("navigation-white");
   }
 }
 
@@ -121,8 +121,8 @@ let isIos =
   !window.MSStream;
 
 const navBar = document.querySelector("#section-navbar");
-heroText.classList.add("test-class");
-navBar.classList.add("test-class");
+// heroText.classList.add("test-class");
+// navBar.classList.add("test-class");
 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
@@ -145,28 +145,28 @@ function styleMobileNav() {
 // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
 function toggleNavClasses() {
   // let scrolledY;
-  // scrolledY = siteWrapper.scrollTop;
-  // if (scrolledY > 0) {
-  //   // console.log("togglea en el toggle");
-  //   // navBar.classList.toggle("nav-white");
-  //   navBlack.classList.toggle("navigation-black");
-  //   nav.classList.toggle("nav-no-border");
-  //   // navWhite.classList.toggle("navigation-white");
-  //   // navBar.classList.toggle("nav-back");
-  // }
-  // if (isIos === false) {
-  //   siteWrapper.classList.toggle("menu-open");
-  // } else {
-  //   siteWrapper.classList.toggle("menu-open-i");
-  // }
-  // burger.classList.toggle("cross");
-  // navList.classList.toggle("open");
-  // navList.classList.add("visible");
-  // navContainer.classList.toggle("translate");
-  // navImg.classList.toggle("logo-index");
-  // heroText.classList.toggle("hero-text-opacity");
-  // // svgBackground.classList.toggle("svg-opacity");
-  // footer.classList.toggle("footer-index");
+  scrolledY = siteWrapper.scrollTop;
+  if (scrolledY > 0) {
+    // console.log("togglea en el toggle");
+    // navBar.classList.toggle("nav-white");
+    navBlack.classList.toggle("navigation-black");
+    nav.classList.toggle("nav-no-border");
+    // navWhite.classList.toggle("navigation-white");
+    // navBar.classList.toggle("nav-back");
+  }
+  if (isIos === false) {
+    siteWrapper.classList.toggle("menu-open");
+  } else {
+    siteWrapper.classList.toggle("menu-open-i");
+  }
+  burger.classList.toggle("cross");
+  navList.classList.toggle("open");
+  navList.classList.add("visible");
+  navContainer.classList.toggle("translate");
+  navImg.classList.toggle("logo-index");
+  heroText.classList.toggle("hero-text-opacity");
+  // svgBackground.classList.toggle("svg-opacity");
+  footer.classList.toggle("footer-index");
 }
 
 export {
