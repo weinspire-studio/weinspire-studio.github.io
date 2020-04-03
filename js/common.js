@@ -591,10 +591,8 @@ exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
-var footer = document.querySelector("#footer"); // const designProjectsSection = document.querySelector(
-//   "#section-projects-design"
-// );
-
+var footer = document.querySelector("#footer");
+var designProjectsSection = document.querySelector("#section-projects-design");
 var scrolledY = 0;
 var hasClickListener = false; // UA sniffing
 

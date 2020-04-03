@@ -14,9 +14,9 @@ const navImg = document.querySelector("nav img");
 const burger = document.querySelector(".burger");
 const heroText = document.querySelector(".hero-text");
 const footer = document.querySelector("#footer");
-// const designProjectsSection = document.querySelector(
-//   "#section-projects-design"
-// );
+const designProjectsSection = document.querySelector(
+  "#section-projects-design"
+);
 let scrolledY = 0;
 let hasClickListener = false;
 // UA sniffing
