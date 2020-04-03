@@ -575,7 +575,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.listenToArrow = listenToArrow;
 exports.navBlack = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
 
 var _main = require("../main.js");
@@ -654,48 +653,37 @@ function toggleNavClasses() {
   heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
 
   footer.classList.toggle("footer-index");
-}
-
-var rightArrowsContainer = document.querySelector(".right-arrow-container");
-var rightArrows = document.querySelectorAll(".right-arrow-container svg");
-var list = document.querySelector(".swiper-wrapper");
-var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100; // window.addEventListener("DOMContentLoaded", listenToArrow);
-
-function listenToArrow() {// siteWrapper.addEventListener("scroll", showRightArrows);
-  // rightArrowsContainer.addEventListener("click", slideRightArrows);
-  // list.addEventListener("touchmove", function() {
-  //   rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-  //   siteWrapper.removeEventListener("scroll", showRightArrows);
-  //   rightArrowsContainer.removeEventListener("click", slideRightArrows);
-  // });
-}
-
-function showRightArrows() {
-  console.log("listeneeer");
-  scrolledY = _main.siteWrapper.scrollTop;
-
-  if (scrolledY > trigger) {
-    rightArrows.forEach(function (arrow) {
-      return arrow.classList.add("arrow-wave");
-    });
-    rightArrows[0].style.animationDelay = "250ms";
-    rightArrows[1].style.animationDelay = "125ms";
-  } else {
-    rightArrows.forEach(function (arrow) {
-      return arrow.classList.remove("arrow-wave");
-    });
-  }
-}
-
-function slideRightArrows() {
-  rightArrows.forEach(function (arrow) {
-    return arrow.classList.add("arrow-slide");
-  });
-
-  _main.siteWrapper.removeEventListener("scroll", showRightArrows);
-
-  rightArrowsContainer.removeEventListener("click", slideRightArrows);
-}
+} // const rightArrowsContainer = document.querySelector(".right-arrow-container");
+// const rightArrows = document.querySelectorAll(".right-arrow-container svg");
+// const list = document.querySelector(".swiper-wrapper");
+// let trigger =
+//   designProjectsSection.offsetTop - document.body.clientHeight + 100;
+// // window.addEventListener("DOMContentLoaded", listenToArrow);
+// function listenToArrow() {
+//   // siteWrapper.addEventListener("scroll", showRightArrows);
+//   // rightArrowsContainer.addEventListener("click", slideRightArrows);
+//   // list.addEventListener("touchmove", function() {
+//   //   rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
+//   //   siteWrapper.removeEventListener("scroll", showRightArrows);
+//   //   rightArrowsContainer.removeEventListener("click", slideRightArrows);
+//   // });
+// }
+// function showRightArrows() {
+//   console.log("listeneeer");
+//   scrolledY = siteWrapper.scrollTop;
+//   if (scrolledY > trigger) {
+//     rightArrows.forEach(arrow => arrow.classList.add("arrow-wave"));
+//     rightArrows[0].style.animationDelay = "250ms";
+//     rightArrows[1].style.animationDelay = "125ms";
+//   } else {
+//     rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
+//   }
+// }
+// function slideRightArrows() {
+//   rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
+//   siteWrapper.removeEventListener("scroll", showRightArrows);
+//   rightArrowsContainer.removeEventListener("click", slideRightArrows);
+// }
 
 },{"../main.js":1}],6:[function(require,module,exports){
 "use strict";
