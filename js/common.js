@@ -590,10 +590,8 @@ exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
-var footer = document.querySelector("#footer"); // const designProjectsSection = document.querySelector(
-//   "#section-projects-design"
-// );
-
+var footer = document.querySelector("#footer");
+var designProjectsSection = document.querySelector("#section-projects-design");
 var scrolledY = 0;
 var hasClickListener = false; // UA sniffing
 
@@ -650,36 +648,55 @@ function toggleNavClasses() {
   heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
 
   footer.classList.toggle("footer-index");
-} // const rightArrowsContainer = document.querySelector(".right-arrow-container");
-// const rightArrows = document.querySelectorAll(".right-arrow-container svg");
-// const list = document.querySelector(".swiper-wrapper");
-// let trigger =
-//   designProjectsSection.offsetTop - document.body.clientHeight + 100;
-// document.addEventListener("DOMContentLoaded", function() {
-//   siteWrapper.addEventListener("scroll", showRightArrows, true);
-//   rightArrowsContainer.addEventListener("click", slideRightArrows);
-//   list.addEventListener("touchmove", function() {
-//     rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-//     siteWrapper.removeEventListener("scroll", showRightArrows, true);
-//     rightArrowsContainer.removeEventListener("click", slideRightArrows);
-//   });
-// });
-// function showRightArrows() {
-//   console.log("listeneeer");
-//   scrolledY = siteWrapper.scrollTop;
-//   if (scrolledY > trigger) {
-//     rightArrows.forEach(arrow => arrow.classList.add("arrow-wave"));
-//     rightArrows[0].style.animationDelay = "250ms";
-//     rightArrows[1].style.animationDelay = "125ms";
-//   } else {
-//     rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-//   }
-// }
-// function slideRightArrows() {
-//   rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
-//   siteWrapper.removeEventListener("scroll", showRightArrows, true);
-//   rightArrowsContainer.removeEventListener("click", slideRightArrows);
-// }
+}
+
+var rightArrowsContainer = document.querySelector(".right-arrow-container");
+var rightArrows = document.querySelectorAll(".right-arrow-container svg");
+var list = document.querySelector(".swiper-wrapper");
+var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100;
+document.addEventListener("DOMContentLoaded", listenToArrow);
+
+function listenToArrow() {
+  _main.siteWrapper.addEventListener("scroll", showRightArrows, true);
+
+  rightArrowsContainer.addEventListener("click", slideRightArrows);
+  list.addEventListener("touchmove", function () {
+    rightArrows.forEach(function (arrow) {
+      return arrow.classList.remove("arrow-wave");
+    });
+
+    _main.siteWrapper.removeEventListener("scroll", showRightArrows, true);
+
+    rightArrowsContainer.removeEventListener("click", slideRightArrows);
+  });
+}
+
+function showRightArrows() {
+  console.log("listeneeer");
+  scrolledY = _main.siteWrapper.scrollTop;
+
+  if (scrolledY > trigger) {
+    rightArrows.forEach(function (arrow) {
+      return arrow.classList.add("arrow-wave");
+    });
+    rightArrows[0].style.animationDelay = "250ms";
+    rightArrows[1].style.animationDelay = "125ms";
+  } else {
+    rightArrows.forEach(function (arrow) {
+      return arrow.classList.remove("arrow-wave");
+    });
+  }
+}
+
+function slideRightArrows() {
+  rightArrows.forEach(function (arrow) {
+    return arrow.classList.add("arrow-slide");
+  });
+
+  _main.siteWrapper.removeEventListener("scroll", showRightArrows, true);
+
+  rightArrowsContainer.removeEventListener("click", slideRightArrows);
+}
 
 },{"../main.js":1}],6:[function(require,module,exports){
 "use strict";
