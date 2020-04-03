@@ -9,7 +9,7 @@ import * as contactModule from "./sub_modules/contact";
 //VARIABLES
 const siteWrapper = document.querySelector("#site-wrapper");
 // const nav = document.querySelector("nav");
-// const navBar = document.querySelector("#section-navbar");
+const navBar = document.querySelector("#section-navbar");
 const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 const navWhite = document.querySelector(".navigation-color-white");
 // const lineElements = document.querySelectorAll(".burger div");
@@ -119,8 +119,7 @@ function styleNavOnScroll() {
 // (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
 // !window.MSStream;
 
-let hasClickListener = false;
-const navBar = document.querySelector("#section-navbar");
+// let hasClickListener = false;
 // heroText.classList.add("test-class");
 // navBar.classList.add("test-class");
 
@@ -169,10 +168,7 @@ const navBar = document.querySelector("#section-navbar");
 //   footer.classList.toggle("footer-index");
 // }
 
-export {
-  siteWrapper
-  //  navBar
-};
+export { siteWrapper, navBar };
 
 //
 //

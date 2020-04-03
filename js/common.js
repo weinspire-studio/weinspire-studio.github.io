@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.siteWrapper = void 0;
+exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -25,9 +25,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // jshint esversion: 6
 //VARIABLES
 var siteWrapper = document.querySelector("#site-wrapper"); // const nav = document.querySelector("nav");
-// const navBar = document.querySelector("#section-navbar");
 
 exports.siteWrapper = siteWrapper;
+var navBar = document.querySelector("#section-navbar");
+exports.navBar = navBar;
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 var navWhite = document.querySelector(".navigation-color-white"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
@@ -131,10 +132,8 @@ function styleNavOnScroll() {
 // (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
 // (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
 // !window.MSStream;
-
-
-var hasClickListener = false;
-var navBar = document.querySelector("#section-navbar"); // heroText.classList.add("test-class");
+// let hasClickListener = false;
+// heroText.classList.add("test-class");
 // navBar.classList.add("test-class");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 // function styleMobileNav() {
@@ -628,11 +627,13 @@ function toggleNavClasses() {
 
   if (scrolledY > 0) {
     // console.log("togglea en el toggle");
-    navBar.classList.toggle("nav-white");
+    _main.navBar.classList.toggle("nav-white");
+
     navBlack.classList.toggle("navigation-black");
     nav.classList.toggle("nav-no-border");
     navWhite.classList.toggle("navigation-white");
-    navBar.classList.toggle("nav-back");
+
+    _main.navBar.classList.toggle("nav-back");
   }
 
   if (isIos === false) {
