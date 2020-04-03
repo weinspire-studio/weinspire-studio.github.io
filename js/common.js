@@ -575,7 +575,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.listenToArrow = listenToArrow;
 exports.navBlack = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
 
 var _main = require("../main.js");
@@ -659,23 +658,18 @@ function toggleNavClasses() {
 
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
-var list = document.querySelector(".swiper-wrapper");
-var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100; // window.addEventListener("DOMContentLoaded", listenToArrow);
-
-function listenToArrow() {
-  _main.siteWrapper.addEventListener("scroll", showRightArrows);
-
-  rightArrowsContainer.addEventListener("click", slideRightArrows);
-  list.addEventListener("touchmove", function () {
-    rightArrows.forEach(function (arrow) {
-      return arrow.classList.remove("arrow-wave");
-    });
-
-    _main.siteWrapper.removeEventListener("scroll", showRightArrows);
-
-    rightArrowsContainer.removeEventListener("click", slideRightArrows);
-  });
-}
+var list = document.querySelector(".swiper-wrapper"); // let trigger =
+//   designProjectsSection.offsetTop - document.body.clientHeight + 100;
+// // window.addEventListener("DOMContentLoaded", listenToArrow);
+// function listenToArrow() {
+//   siteWrapper.addEventListener("scroll", showRightArrows);
+//   rightArrowsContainer.addEventListener("click", slideRightArrows);
+//   list.addEventListener("touchmove", function() {
+//     rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
+//     siteWrapper.removeEventListener("scroll", showRightArrows);
+//     rightArrowsContainer.removeEventListener("click", slideRightArrows);
+//   });
+// }
 
 function showRightArrows() {
   console.log("listeneeer");
