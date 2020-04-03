@@ -8,7 +8,7 @@ const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
 const navContainer = document.querySelector(".navigation-container");
 const nav = document.querySelector("nav");
-// // const navWhite = document.querySelector(".navigation-color-white");
+const navWhite = document.querySelector(".navigation-color-white");
 const navBlack = document.querySelector(".navigation-overlay-black");
 const navImg = document.querySelector("nav img");
 const burger = document.querySelector(".burger");
@@ -53,11 +53,11 @@ function toggleNavClasses() {
   scrolledY = siteWrapper.scrollTop;
   if (scrolledY > 0) {
     // console.log("togglea en el toggle");
-    // navBar.classList.toggle("nav-white");
+    navBar.classList.toggle("nav-white");
     navBlack.classList.toggle("navigation-black");
     nav.classList.toggle("nav-no-border");
-    // navWhite.classList.toggle("navigation-white");
-    // navBar.classList.toggle("nav-back");
+    navWhite.classList.toggle("navigation-white");
+    navBar.classList.toggle("nav-back");
   }
   if (isIos === false) {
     siteWrapper.classList.toggle("menu-open");

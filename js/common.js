@@ -583,9 +583,9 @@ var navElements = document.querySelectorAll(".nav-list li");
 exports.navElements = navElements;
 var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
-var nav = document.querySelector("nav"); // // const navWhite = document.querySelector(".navigation-color-white");
-
+var nav = document.querySelector("nav");
 exports.nav = nav;
+var navWhite = document.querySelector(".navigation-color-white");
 var navBlack = document.querySelector(".navigation-overlay-black");
 exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
@@ -628,10 +628,11 @@ function toggleNavClasses() {
 
   if (scrolledY > 0) {
     // console.log("togglea en el toggle");
-    // navBar.classList.toggle("nav-white");
+    navBar.classList.toggle("nav-white");
     navBlack.classList.toggle("navigation-black");
-    nav.classList.toggle("nav-no-border"); // navWhite.classList.toggle("navigation-white");
-    // navBar.classList.toggle("nav-back");
+    nav.classList.toggle("nav-no-border");
+    navWhite.classList.toggle("navigation-white");
+    navBar.classList.toggle("nav-back");
   }
 
   if (isIos === false) {
