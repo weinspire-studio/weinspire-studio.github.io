@@ -572,8 +572,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
 exports.navBlack = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
+
+var _main = require("../main.js");
+
 // jshint esversion: 6
-// import { siteWrapper } from "../main.js";
 console.log("scroll navbar again test 2");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
@@ -622,7 +624,7 @@ function styleMobileNav() {
 
 function toggleNavClasses() {
   // let scrolledY;
-  scrolledY = siteWrapper.scrollTop;
+  scrolledY = _main.siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
     // console.log("togglea en el toggle");
@@ -633,9 +635,9 @@ function toggleNavClasses() {
   }
 
   if (isIos === false) {
-    siteWrapper.classList.toggle("menu-open");
+    _main.siteWrapper.classList.toggle("menu-open");
   } else {
-    siteWrapper.classList.toggle("menu-open-i");
+    _main.siteWrapper.classList.toggle("menu-open-i");
   }
 
   burger.classList.toggle("cross");
@@ -677,7 +679,7 @@ function toggleNavClasses() {
 //   rightArrowsContainer.removeEventListener("click", slideRightArrows);
 // }
 
-},{}],6:[function(require,module,exports){
+},{"../main.js":1}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
