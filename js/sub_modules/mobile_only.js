@@ -83,11 +83,11 @@ let trigger =
 // window.addEventListener("load", listenToArrow);
 
 function listenToArrow() {
-  siteWrapper.addEventListener("scroll", showRightArrows, true);
+  siteWrapper.addEventListener("scroll", showRightArrows);
   rightArrowsContainer.addEventListener("click", slideRightArrows);
   list.addEventListener("touchmove", function() {
     rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-    siteWrapper.removeEventListener("scroll", showRightArrows, true);
+    siteWrapper.removeEventListener("scroll", showRightArrows);
     rightArrowsContainer.removeEventListener("click", slideRightArrows);
   });
 }
@@ -106,7 +106,7 @@ function showRightArrows() {
 
 function slideRightArrows() {
   rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
-  siteWrapper.removeEventListener("scroll", showRightArrows, true);
+  siteWrapper.removeEventListener("scroll", showRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
 }
 

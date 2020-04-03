@@ -661,7 +661,7 @@ var list = document.querySelector(".swiper-wrapper");
 var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100; // window.addEventListener("load", listenToArrow);
 
 function listenToArrow() {
-  _main.siteWrapper.addEventListener("scroll", showRightArrows, true);
+  _main.siteWrapper.addEventListener("scroll", showRightArrows);
 
   rightArrowsContainer.addEventListener("click", slideRightArrows);
   list.addEventListener("touchmove", function () {
@@ -669,7 +669,7 @@ function listenToArrow() {
       return arrow.classList.remove("arrow-wave");
     });
 
-    _main.siteWrapper.removeEventListener("scroll", showRightArrows, true);
+    _main.siteWrapper.removeEventListener("scroll", showRightArrows);
 
     rightArrowsContainer.removeEventListener("click", slideRightArrows);
   });
@@ -697,7 +697,7 @@ function slideRightArrows() {
     return arrow.classList.add("arrow-slide");
   });
 
-  _main.siteWrapper.removeEventListener("scroll", showRightArrows, true);
+  _main.siteWrapper.removeEventListener("scroll", showRightArrows);
 
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
 }
