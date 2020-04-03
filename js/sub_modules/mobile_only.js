@@ -2,7 +2,7 @@
 
 import { siteWrapper, navBar, navWhite, clientHeight } from "../main.js";
 
-console.log("scroll navbar again test 4");
+console.log("scroll navbar again test 5");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
@@ -79,7 +79,7 @@ const rightArrows = document.querySelectorAll(".right-arrow-container svg");
 const list = document.querySelector(".swiper-wrapper");
 // let trigger = designProjectsSection.offsetTop - 667 + 100;
 let trigger = 700 + clientHeight;
-console.log(designProjectsSection);
+
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {

@@ -583,7 +583,7 @@ exports.navBlack = exports.navContainer = exports.navElements = exports.navList 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("scroll navbar again test 4");
+console.log("scroll navbar again test 5");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -664,7 +664,6 @@ var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper"); // let trigger = designProjectsSection.offsetTop - 667 + 100;
 
 var trigger = 700 + _main.clientHeight;
-console.log(designProjectsSection);
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {
