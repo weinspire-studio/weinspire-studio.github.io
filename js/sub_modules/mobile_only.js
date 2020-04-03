@@ -1,6 +1,6 @@
 // jshint esversion: 6
 
-import { siteWrapper, navBar, clientHeight } from "../main.js";
+import { siteWrapper, navBar } from "../main.js";
 
 console.log("scroll navbar again test 2");
 
@@ -77,7 +77,7 @@ function toggleNavClasses() {
 const rightArrowsContainer = document.querySelector(".right-arrow-container");
 const rightArrows = document.querySelectorAll(".right-arrow-container svg");
 const list = document.querySelector(".swiper-wrapper");
-let trigger = designProjectsSection.offsetTop - clientHeight + 100;
+let trigger = designProjectsSection.offsetTop - 667 + 100;
 
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
