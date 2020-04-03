@@ -50,6 +50,7 @@ contactModule.submitContactForm(); //
 //on pageload, executes the following code, depending on screen width.
 
 window.addEventListener("DOMContentLoaded", test);
+window.addEventListener("DOMContentLoaded", mobileModule.listenToArrow);
 
 function test() {
   if (notMobileScreenMQ.matches) {
@@ -573,6 +574,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
+exports.listenToArrow = listenToArrow;
 exports.navBlack = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
 
 var _main = require("../main.js");
@@ -656,8 +658,7 @@ function toggleNavClasses() {
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper");
-var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100;
-window.addEventListener("load", listenToArrow);
+var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100; // window.addEventListener("load", listenToArrow);
 
 function listenToArrow() {
   _main.siteWrapper.addEventListener("scroll", showRightArrows, true);

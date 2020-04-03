@@ -80,7 +80,7 @@ const list = document.querySelector(".swiper-wrapper");
 let trigger =
   designProjectsSection.offsetTop - document.body.clientHeight + 100;
 
-window.addEventListener("load", listenToArrow);
+// window.addEventListener("load", listenToArrow);
 
 function listenToArrow() {
   siteWrapper.addEventListener("scroll", showRightArrows, true);
@@ -117,5 +117,6 @@ export {
   navContainer,
   navBlack,
   styleMobileNav,
-  toggleNavClasses
+  toggleNavClasses,
+  listenToArrow
 };
