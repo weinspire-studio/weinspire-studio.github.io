@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.navBar = exports.siteWrapper = void 0;
+exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -35,9 +35,11 @@ var navWhite = document.querySelector(".navigation-color-white"); // const lineE
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
 
+exports.navWhite = navWhite;
 var hasScrollListener = false;
-var swiper; // let clientHeight = document.body.clientHeight;
-
+var swiper;
+var clientHeight = document.body.clientHeight;
+exports.clientHeight = clientHeight;
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //
@@ -581,7 +583,7 @@ exports.navBlack = exports.navContainer = exports.navElements = exports.navList 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("scroll navbar again test 3");
+console.log("scroll navbar again test 4");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
