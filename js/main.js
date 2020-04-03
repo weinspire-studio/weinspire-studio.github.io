@@ -36,8 +36,11 @@ contactModule.submitContactForm();
 // });
 
 //on pageload, executes the following code, depending on screen width.
-window.addEventListener("DOMContentLoaded", test);
-window.addEventListener("DOMContentLoaded", mobileModule.listenToArrow);
+window.addEventListener("DOMContentLoaded", function() {
+  test();
+  mobileModule.listenToArrow();
+});
+// window.addEventListener("DOMContentLoaded", mobileModule.listenToArrow);
 
 function test() {
   if (notMobileScreenMQ.matches) {
