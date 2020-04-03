@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.navBar = exports.siteWrapper = void 0;
+exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -35,8 +35,11 @@ var navWhite = document.querySelector(".navigation-color-white"); // const lineE
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
 
+exports.navWhite = navWhite;
 var hasScrollListener = false;
 var swiper;
+var clientHeight = document.body.clientHeight;
+exports.clientHeight = clientHeight;
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //
@@ -659,8 +662,7 @@ function toggleNavClasses() {
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper");
-var trigger = 1500; //   designProjectsSection.offsetTop - document.body.clientHeight + 100;
-
+var trigger = designProjectsSection.offsetTop - _main.clientHeight + 100;
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {

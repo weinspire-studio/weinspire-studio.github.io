@@ -19,6 +19,7 @@ const navWhite = document.querySelector(".navigation-color-white");
 
 let hasScrollListener = false;
 let swiper;
+let clientHeight = document.body.clientHeight;
 
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
@@ -174,7 +175,7 @@ function styleNavOnScroll() {
 //   footer.classList.toggle("footer-index");
 // }
 
-export { siteWrapper, navBar };
+export { siteWrapper, navBar, navWhite, clientHeight };
 
 //
 //
