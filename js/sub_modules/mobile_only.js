@@ -108,12 +108,12 @@ function toggleNavClasses() {
 //   rightArrowsContainer.removeEventListener("click", slideRightArrows);
 // }
 
-// export {
-// nav,
-// navList,
-// navElements,
-// navContainer,
-// navBlack,
-// styleMobileNav,
-// toggleNavClasses
-// };
+export {
+  // nav,
+  // navList,
+  // navElements,
+  // navContainer,
+  // navBlack,
+  styleMobileNav
+  // toggleNavClasses
+};

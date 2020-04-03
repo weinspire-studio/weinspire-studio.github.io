@@ -562,6 +562,10 @@ function unbindImages() {
 },{}],5:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.styleMobileNav = styleMobileNav;
 // jshint esversion: 6
 // import { siteWrapper } from "../main.js";
 console.log("scroll navbar again test 2");
@@ -661,15 +665,6 @@ function toggleNavClasses() {
 //   siteWrapper.removeEventListener("scroll", showRightArrows, true);
 //   rightArrowsContainer.removeEventListener("click", slideRightArrows);
 // }
-// export {
-// nav,
-// navList,
-// navElements,
-// navContainer,
-// navBlack,
-// styleMobileNav,
-// toggleNavClasses
-// };
 
 },{}],6:[function(require,module,exports){
 "use strict";
