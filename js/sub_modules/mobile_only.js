@@ -77,7 +77,7 @@ function toggleNavClasses() {
 const rightArrowsContainer = document.querySelector(".right-arrow-container");
 const rightArrows = document.querySelectorAll(".right-arrow-container svg");
 const list = document.querySelector(".swiper-wrapper");
-// let trigger =
+let trigger = 1500;
 //   designProjectsSection.offsetTop - document.body.clientHeight + 100;
 
 window.addEventListener("DOMContentLoaded", listenToArrow);
