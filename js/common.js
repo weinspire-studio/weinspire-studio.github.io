@@ -49,8 +49,7 @@ contactModule.submitContactForm(); //
 // });
 //on pageload, executes the following code, depending on screen width.
 
-window.addEventListener("DOMContentLoaded", test);
-window.addEventListener("DOMContentLoaded", mobileModule.listenToArrow);
+window.addEventListener("DOMContentLoaded", test); // window.addEventListener("DOMContentLoaded", mobileModule.listenToArrow);
 
 function test() {
   if (notMobileScreenMQ.matches) {
@@ -658,7 +657,8 @@ function toggleNavClasses() {
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper");
-var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100; // window.addEventListener("load", listenToArrow);
+var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100;
+window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {
   _main.siteWrapper.addEventListener("scroll", showRightArrows);
