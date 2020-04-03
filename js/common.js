@@ -661,15 +661,21 @@ var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper"); // let trigger =
 //   designProjectsSection.offsetTop - document.body.clientHeight + 100;
 // // window.addEventListener("DOMContentLoaded", listenToArrow);
-// function listenToArrow() {
-//   siteWrapper.addEventListener("scroll", showRightArrows);
-//   rightArrowsContainer.addEventListener("click", slideRightArrows);
-//   list.addEventListener("touchmove", function() {
-//     rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-//     siteWrapper.removeEventListener("scroll", showRightArrows);
-//     rightArrowsContainer.removeEventListener("click", slideRightArrows);
-//   });
-// }
+
+function listenToArrow() {
+  _main.siteWrapper.addEventListener("scroll", showRightArrows);
+
+  rightArrowsContainer.addEventListener("click", slideRightArrows);
+  list.addEventListener("touchmove", function () {
+    rightArrows.forEach(function (arrow) {
+      return arrow.classList.remove("arrow-wave");
+    });
+
+    _main.siteWrapper.removeEventListener("scroll", showRightArrows);
+
+    rightArrowsContainer.removeEventListener("click", slideRightArrows);
+  });
+}
 
 function showRightArrows() {
   console.log("listeneeer");

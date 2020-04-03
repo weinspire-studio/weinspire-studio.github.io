@@ -82,15 +82,15 @@ const list = document.querySelector(".swiper-wrapper");
 
 // // window.addEventListener("DOMContentLoaded", listenToArrow);
 
-// function listenToArrow() {
-//   siteWrapper.addEventListener("scroll", showRightArrows);
-//   rightArrowsContainer.addEventListener("click", slideRightArrows);
-//   list.addEventListener("touchmove", function() {
-//     rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-//     siteWrapper.removeEventListener("scroll", showRightArrows);
-//     rightArrowsContainer.removeEventListener("click", slideRightArrows);
-//   });
-// }
+function listenToArrow() {
+  siteWrapper.addEventListener("scroll", showRightArrows);
+  rightArrowsContainer.addEventListener("click", slideRightArrows);
+  list.addEventListener("touchmove", function() {
+    rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
+    siteWrapper.removeEventListener("scroll", showRightArrows);
+    rightArrowsContainer.removeEventListener("click", slideRightArrows);
+  });
+}
 
 function showRightArrows() {
   console.log("listeneeer");
