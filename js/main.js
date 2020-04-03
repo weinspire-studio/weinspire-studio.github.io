@@ -40,10 +40,8 @@ window.addEventListener("DOMContentLoaded", test);
 
 function test() {
   if (notMobileScreenMQ.matches) {
-    window.removeEventListener("DOMContentLoaded", test);
     desktopCode();
   } else {
-    window.removeEventListener("DOMContentLoaded", test);
     mobileCode();
   }
 }

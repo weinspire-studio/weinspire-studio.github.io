@@ -53,10 +53,8 @@ window.addEventListener("DOMContentLoaded", test);
 
 function test() {
   if (notMobileScreenMQ.matches) {
-    window.removeEventListener("DOMContentLoaded", test);
     desktopCode();
   } else {
-    window.removeEventListener("DOMContentLoaded", test);
     mobileCode();
   }
 } // adds listener that executes code when screen width changes (passing by 801px).
@@ -659,7 +657,7 @@ var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper");
 var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100;
-window.addEventListener("DOMContentLoaded", listenToArrow);
+window.addEventListener("load", listenToArrow);
 
 function listenToArrow() {
   _main.siteWrapper.addEventListener("scroll", showRightArrows, true);
