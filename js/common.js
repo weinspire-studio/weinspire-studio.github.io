@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
+exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -37,8 +37,11 @@ var navWhite = document.querySelector(".navigation-color-white"); // const lineE
 
 exports.navWhite = navWhite;
 var hasScrollListener = false;
-var swiper; // let clientHeight = document.body.clientHeight;
-
+var swiper;
+var clientHeight = document.body.clientHeight;
+exports.clientHeight = clientHeight;
+var designProjectsSection = document.querySelector("#section-projects-design");
+console.log(designProjectsSection.scrollTop);
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //
@@ -582,7 +585,7 @@ exports.navBlack = exports.navContainer = exports.navElements = exports.navList 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("scroll navbar again test 6");
+console.log("scroll navbar again test 7");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -598,7 +601,6 @@ var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
 var footer = document.querySelector("#footer");
-var designProjectsSection = document.querySelector("#section-projects-design");
 var scrolledY = 0;
 var hasClickListener = false; // UA sniffing
 
@@ -662,8 +664,7 @@ var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper"); // let trigger = designProjectsSection.offsetTop - 667 + 100;
 
-var clientHeight = document.body.clientHeight;
-var trigger = 700 + clientHeight;
+var trigger = 700 + _main.clientHeight;
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {
