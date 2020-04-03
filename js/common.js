@@ -660,7 +660,8 @@ var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper"); // let trigger =
 //   designProjectsSection.offsetTop - document.body.clientHeight + 100;
-// // window.addEventListener("DOMContentLoaded", listenToArrow);
+
+window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {
   _main.siteWrapper.addEventListener("scroll", showRightArrows);
