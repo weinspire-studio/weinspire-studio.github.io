@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.designProjectsSection = exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
+exports.designOffset = exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -40,9 +40,10 @@ var hasScrollListener = false;
 var swiper;
 var clientHeight = document.body.clientHeight;
 exports.clientHeight = clientHeight;
-var designProjectsSection = document.querySelector("#section-projects-design").offsetTop; // console.log(designProjectsSection.offsetTop);
-
-exports.designProjectsSection = designProjectsSection;
+var designProjectsSection = document.querySelector("#section-projects-design");
+var designOffset = designProjectsSection.offsetTop;
+exports.designOffset = designOffset;
+console.log(designOffset);
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //
@@ -666,8 +667,8 @@ function toggleNavClasses() {
 
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
-var list = document.querySelector(".swiper-wrapper");
-var trigger = _main.designProjectsSection - _main.clientHeight + 100; // let trigger = 700 + clientHeight;
+var list = document.querySelector(".swiper-wrapper"); // let trigger = 700 + clientHeight;
+// console.log(designOffset);
 
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
@@ -689,6 +690,7 @@ function listenToArrow() {
 function showRightArrows() {
   console.log("listeneeer");
   scrolledY = _main.siteWrapper.scrollTop;
+  var trigger = _main.designOffset - _main.clientHeight + 100;
 
   if (scrolledY > trigger) {
     rightArrows.forEach(function (arrow) {

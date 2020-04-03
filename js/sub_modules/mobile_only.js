@@ -5,7 +5,7 @@ import {
   navBar,
   navWhite,
   clientHeight,
-  designProjectsSection
+  designOffset
 } from "../main.js";
 
 console.log("scroll navbar again test 8");
@@ -83,8 +83,10 @@ function toggleNavClasses() {
 const rightArrowsContainer = document.querySelector(".right-arrow-container");
 const rightArrows = document.querySelectorAll(".right-arrow-container svg");
 const list = document.querySelector(".swiper-wrapper");
-let trigger = designProjectsSection - clientHeight + 100;
+
 // let trigger = 700 + clientHeight;
+
+// console.log(designOffset);
 
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
@@ -101,6 +103,7 @@ function listenToArrow() {
 function showRightArrows() {
   console.log("listeneeer");
   scrolledY = siteWrapper.scrollTop;
+  let trigger = designOffset - clientHeight + 100;
   if (scrolledY > trigger) {
     rightArrows.forEach(arrow => arrow.classList.add("arrow-wave"));
     rightArrows[0].style.animationDelay = "250ms";

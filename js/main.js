@@ -20,9 +20,11 @@ const navWhite = document.querySelector(".navigation-color-white");
 let hasScrollListener = false;
 let swiper;
 let clientHeight = document.body.clientHeight;
-let designProjectsSection = document.querySelector("#section-projects-design")
-  .offsetTop;
-// console.log(designProjectsSection.offsetTop);
+const designProjectsSection = document.querySelector(
+  "#section-projects-design"
+);
+let designOffset = designProjectsSection.offsetTop;
+console.log(designOffset);
 
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
@@ -178,7 +180,7 @@ function styleNavOnScroll() {
 //   footer.classList.toggle("footer-index");
 // }
 
-export { siteWrapper, navBar, navWhite, clientHeight, designProjectsSection };
+export { siteWrapper, navBar, navWhite, clientHeight, designOffset };
 
 //
 //
