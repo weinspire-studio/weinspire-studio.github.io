@@ -74,41 +74,41 @@ function toggleNavClasses() {
   footer.classList.toggle("footer-index");
 }
 
-const rightArrowsContainer = document.querySelector(".right-arrow-container");
-const rightArrows = document.querySelectorAll(".right-arrow-container svg");
-const list = document.querySelector(".swiper-wrapper");
-let trigger =
-  designProjectsSection.offsetTop - document.body.clientHeight + 100;
+// const rightArrowsContainer = document.querySelector(".right-arrow-container");
+// const rightArrows = document.querySelectorAll(".right-arrow-container svg");
+// const list = document.querySelector(".swiper-wrapper");
+// let trigger =
+//   designProjectsSection.offsetTop - document.body.clientHeight + 100;
 
-document.addEventListener("DOMContentLoaded", listenToArrow);
+// document.addEventListener("DOMContentLoaded", listenToArrow);
 
-function listenToArrow() {
-  siteWrapper.addEventListener("scroll", showRightArrows, true);
-  rightArrowsContainer.addEventListener("click", slideRightArrows);
-  list.addEventListener("touchmove", function() {
-    rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-    siteWrapper.removeEventListener("scroll", showRightArrows, true);
-    rightArrowsContainer.removeEventListener("click", slideRightArrows);
-  });
-}
+// function listenToArrow() {
+//   siteWrapper.addEventListener("scroll", showRightArrows, true);
+//   rightArrowsContainer.addEventListener("click", slideRightArrows);
+//   list.addEventListener("touchmove", function() {
+//     rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
+//     siteWrapper.removeEventListener("scroll", showRightArrows, true);
+//     rightArrowsContainer.removeEventListener("click", slideRightArrows);
+//   });
+// }
 
-function showRightArrows() {
-  console.log("listeneeer");
-  scrolledY = siteWrapper.scrollTop;
-  if (scrolledY > trigger) {
-    rightArrows.forEach(arrow => arrow.classList.add("arrow-wave"));
-    rightArrows[0].style.animationDelay = "250ms";
-    rightArrows[1].style.animationDelay = "125ms";
-  } else {
-    rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-  }
-}
+// function showRightArrows() {
+//   console.log("listeneeer");
+//   scrolledY = siteWrapper.scrollTop;
+//   if (scrolledY > trigger) {
+//     rightArrows.forEach(arrow => arrow.classList.add("arrow-wave"));
+//     rightArrows[0].style.animationDelay = "250ms";
+//     rightArrows[1].style.animationDelay = "125ms";
+//   } else {
+//     rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
+//   }
+// }
 
-function slideRightArrows() {
-  rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
-  siteWrapper.removeEventListener("scroll", showRightArrows, true);
-  rightArrowsContainer.removeEventListener("click", slideRightArrows);
-}
+// function slideRightArrows() {
+//   rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
+//   siteWrapper.removeEventListener("scroll", showRightArrows, true);
+//   rightArrowsContainer.removeEventListener("click", slideRightArrows);
+// }
 
 export {
   nav,
