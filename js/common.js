@@ -455,7 +455,7 @@ exports.styleAnchorOnHover = styleAnchorOnHover;
 
 var _main = require("../main.js");
 
-require("./mobile_only.js");
+var _mobile_only = require("./mobile_only.js");
 
 // jshint esversion: 6
 var navAnchors = document.querySelectorAll(".nav-list a");
@@ -492,16 +492,20 @@ function styleAnchorOnHover() {
 
 
 function restoreDesktopNav() {
-  if (navContainer.firstChild !== null) {// navContainer.removeChild(navList);
-    // nav.appendChild(navList);
+  if (_mobile_only.navContainer.firstChild !== null) {
+    _mobile_only.navContainer.removeChild(_mobile_only.navList);
+
+    _mobile_only.nav.appendChild(_mobile_only.navList);
   }
 
-  if (_main.siteWrapper.classList.contains("menu-open")) {// toggleNavClasses();
-    // navElements.forEach(navEl => {
-    //   navEl.style.animationDelay = "";
-    //   navEl.classList.remove("nav-link-anim");
-    //   navEl.classList.remove("invisible");
-    // });
+  if (_main.siteWrapper.classList.contains("menu-open")) {
+    (0, _mobile_only.toggleNavClasses)();
+
+    _mobile_only.navElements.forEach(function (navEl) {
+      navEl.style.animationDelay = "";
+      navEl.classList.remove("nav-link-anim");
+      navEl.classList.remove("invisible");
+    });
   }
 } //adds a custom property to an existing pseudo-class. Used to define width of underlines, according to nav anchors length.
 
@@ -566,15 +570,22 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.styleMobileNav = styleMobileNav;
+exports.toggleNavClasses = toggleNavClasses;
+exports.navBlack = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
 // jshint esversion: 6
 // import { siteWrapper } from "../main.js";
 console.log("scroll navbar again test 2");
 var navList = document.querySelector(".nav-list");
+exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
+exports.navElements = navElements;
 var navContainer = document.querySelector(".navigation-container");
+exports.navContainer = navContainer;
 var nav = document.querySelector("nav"); // // const navWhite = document.querySelector(".navigation-color-white");
 
+exports.nav = nav;
 var navBlack = document.querySelector(".navigation-overlay-black");
+exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
@@ -591,9 +602,9 @@ var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
-  // navList.parentNode.removeChild(navList);
-  // navContainer.appendChild(navList);
-  // mobile burger and menu
+  navList.parentNode.removeChild(navList);
+  navContainer.appendChild(navList); // mobile burger and menu
+
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
       toggleNavClasses();

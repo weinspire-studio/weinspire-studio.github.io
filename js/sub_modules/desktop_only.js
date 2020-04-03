@@ -1,12 +1,13 @@
 // jshint esversion: 6
 
 import { siteWrapper } from "../main.js";
-import // nav,
-// navList,
-// navElements,
-// navContainer,
-// toggleNavClasses
-"./mobile_only.js";
+import {
+  nav,
+  navList,
+  navElements,
+  navContainer,
+  toggleNavClasses
+} from "./mobile_only.js";
 
 const navAnchors = document.querySelectorAll(".nav-list a");
 let hasHoverListener = false;
@@ -41,16 +42,16 @@ function styleAnchorOnHover() {
 // called when resizing from mobile to large screens, and when loading page on large resolutions, adds or removes nav classes for styling (calling) and append navList to child if resizing.
 function restoreDesktopNav() {
   if (navContainer.firstChild !== null) {
-    // navContainer.removeChild(navList);
-    // nav.appendChild(navList);
+    navContainer.removeChild(navList);
+    nav.appendChild(navList);
   }
   if (siteWrapper.classList.contains("menu-open")) {
-    // toggleNavClasses();
-    // navElements.forEach(navEl => {
-    //   navEl.style.animationDelay = "";
-    //   navEl.classList.remove("nav-link-anim");
-    //   navEl.classList.remove("invisible");
-    // });
+    toggleNavClasses();
+    navElements.forEach(navEl => {
+      navEl.style.animationDelay = "";
+      navEl.classList.remove("nav-link-anim");
+      navEl.classList.remove("invisible");
+    });
   }
 }
 
