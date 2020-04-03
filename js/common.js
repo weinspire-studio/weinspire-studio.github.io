@@ -588,9 +588,9 @@ var navElements = document.querySelectorAll(".nav-list li");
 exports.navElements = navElements;
 var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
-var nav = document.querySelector("nav");
+var nav = document.querySelector("nav"); // const navWhite = document.querySelector(".navigation-color-white");
+
 exports.nav = nav;
-var navWhite = document.querySelector(".navigation-color-white");
 var navBlack = document.querySelector(".navigation-overlay-black");
 exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
@@ -635,7 +635,8 @@ function toggleNavClasses() {
 
     navBlack.classList.toggle("navigation-black");
     nav.classList.toggle("nav-no-border");
-    navWhite.classList.toggle("navigation-white");
+
+    _main.navWhite.classList.toggle("navigation-white");
 
     _main.navBar.classList.toggle("nav-back");
   }

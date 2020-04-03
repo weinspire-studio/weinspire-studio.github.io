@@ -1,6 +1,6 @@
 // jshint esversion: 6
 
-import { siteWrapper, navBar } from "../main.js";
+import { siteWrapper, navBar, navWhite } from "../main.js";
 
 console.log("scroll navbar again test 2");
 
@@ -8,7 +8,7 @@ const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
 const navContainer = document.querySelector(".navigation-container");
 const nav = document.querySelector("nav");
-const navWhite = document.querySelector(".navigation-color-white");
+// const navWhite = document.querySelector(".navigation-color-white");
 const navBlack = document.querySelector(".navigation-overlay-black");
 const navImg = document.querySelector("nav img");
 const burger = document.querySelector(".burger");
