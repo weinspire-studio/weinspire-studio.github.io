@@ -38,7 +38,7 @@ contactModule.submitContactForm();
 //on pageload, executes the following code, depending on screen width.
 window.addEventListener("DOMContentLoaded", function() {
   test();
-  mobileModule.listenToArrow();
+  // mobileModule.listenToArrow();
 });
 // window.addEventListener("DOMContentLoaded", mobileModule.listenToArrow);
 
