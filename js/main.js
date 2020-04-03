@@ -73,7 +73,7 @@ function desktopCode() {
 //code that executes only in phones and small tablets screens (< 801px).
 function mobileCode() {
   styleNavOnScroll();
-  styleMobileNav();
+  mobileModule.styleMobileNav();
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
     hasScrollListener = true;
@@ -99,10 +99,10 @@ function styleNavOnScroll() {
   }
 }
 
-const navList = document.querySelector(".nav-list");
-const navElements = document.querySelectorAll(".nav-list li");
-const navContainer = document.querySelector(".navigation-container");
-const burger = document.querySelector(".burger");
+// const navList = document.querySelector(".nav-list");
+// const navElements = document.querySelectorAll(".nav-list li");
+// const navContainer = document.querySelector(".navigation-container");
+// const burger = document.querySelector(".burger");
 // const navWhite = document.querySelector(".navigation-color-white");
 // const nav = document.querySelector("nav");
 // const navBlack = document.querySelector(".navigation-overlay-black");
@@ -125,22 +125,22 @@ const navBar = document.querySelector("#section-navbar");
 // navBar.classList.add("test-class");
 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
-function styleMobileNav() {
-  navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList);
-  // mobile burger and menu
-  if (!hasClickListener) {
-    burger.addEventListener("click", () => {
-      mobileModule.toggleNavClasses();
-      navElements.forEach((navEl, index) => {
-        navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
-        navEl.classList.toggle("nav-link-anim");
-        navEl.classList.toggle("invisible");
-      });
-    });
-  }
-  hasClickListener = true;
-}
+// function styleMobileNav() {
+//   navList.parentNode.removeChild(navList);
+//   navContainer.appendChild(navList);
+//   // mobile burger and menu
+//   if (!hasClickListener) {
+//     burger.addEventListener("click", () => {
+//       mobileModule.toggleNavClasses();
+//       navElements.forEach((navEl, index) => {
+//         navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
+//         navEl.classList.toggle("nav-link-anim");
+//         navEl.classList.toggle("invisible");
+//       });
+//     });
+//   }
+//   hasClickListener = true;
+// }
 
 // // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
 // function toggleNavClasses() {

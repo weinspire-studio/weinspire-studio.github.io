@@ -5,7 +5,7 @@
 console.log("scroll navbar again test 2");
 
 const navList = document.querySelector(".nav-list");
-// const navElements = document.querySelectorAll(".nav-list li");
+const navElements = document.querySelectorAll(".nav-list li");
 const navContainer = document.querySelector(".navigation-container");
 const nav = document.querySelector("nav");
 // // const navWhite = document.querySelector(".navigation-color-white");
@@ -18,34 +18,34 @@ const footer = document.querySelector("#footer");
 //   "#section-projects-design"
 // );
 let scrolledY = 0;
-// let hasClickListener = false;
-// // UA sniffing
-// let isIos =
-//   (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
-//     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
-//   !window.MSStream;
+let hasClickListener = false;
+// UA sniffing
+let isIos =
+  (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
+  !window.MSStream;
 
 // const navBar = document.querySelector("#section-navbar");
 // heroText.classList.add("test-class");
 // navBar.classList.add("test-class");
 
-// //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
-// function styleMobileNav() {
-//   // navList.parentNode.removeChild(navList);
-//   // navContainer.appendChild(navList);
-//   // mobile burger and menu
-//   if (!hasClickListener) {
-//     burger.addEventListener("click", () => {
-//       toggleNavClasses();
-//       navElements.forEach((navEl, index) => {
-//         navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
-//         navEl.classList.toggle("nav-link-anim");
-//         navEl.classList.toggle("invisible");
-//       });
-//     });
-//   }
-//   hasClickListener = true;
-// }
+//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+function styleMobileNav() {
+  // navList.parentNode.removeChild(navList);
+  // navContainer.appendChild(navList);
+  // mobile burger and menu
+  if (!hasClickListener) {
+    burger.addEventListener("click", () => {
+      toggleNavClasses();
+      navElements.forEach((navEl, index) => {
+        navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
+        navEl.classList.toggle("nav-link-anim");
+        navEl.classList.toggle("invisible");
+      });
+    });
+  }
+  hasClickListener = true;
+}
 
 // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
 function toggleNavClasses() {

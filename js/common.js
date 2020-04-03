@@ -85,7 +85,7 @@ function desktopCode() {
 
 function mobileCode() {
   styleNavOnScroll();
-  styleMobileNav();
+  mobileModule.styleMobileNav();
 
   if (!hasScrollListener) {
     siteWrapper.addEventListener("scroll", styleNavOnScroll);
@@ -112,12 +112,11 @@ function styleNavOnScroll() {
     navBar.classList.remove("nav-white");
     navWhite.classList.remove("navigation-white");
   }
-}
-
-var navList = document.querySelector(".nav-list");
-var navElements = document.querySelectorAll(".nav-list li");
-var navContainer = document.querySelector(".navigation-container");
-var burger = document.querySelector(".burger"); // const navWhite = document.querySelector(".navigation-color-white");
+} // const navList = document.querySelector(".nav-list");
+// const navElements = document.querySelectorAll(".nav-list li");
+// const navContainer = document.querySelector(".navigation-container");
+// const burger = document.querySelector(".burger");
+// const navWhite = document.querySelector(".navigation-color-white");
 // const nav = document.querySelector("nav");
 // const navBlack = document.querySelector(".navigation-overlay-black");
 // const navImg = document.querySelector("nav img");
@@ -133,28 +132,28 @@ var burger = document.querySelector(".burger"); // const navWhite = document.que
 // (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
 // !window.MSStream;
 
+
 var hasClickListener = false;
 var navBar = document.querySelector("#section-navbar"); // heroText.classList.add("test-class");
 // navBar.classList.add("test-class");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
-
-function styleMobileNav() {
-  navList.parentNode.removeChild(navList);
-  navContainer.appendChild(navList); // mobile burger and menu
-
-  if (!hasClickListener) {
-    burger.addEventListener("click", function () {
-      mobileModule.toggleNavClasses();
-      navElements.forEach(function (navEl, index) {
-        navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
-        navEl.classList.toggle("nav-link-anim");
-        navEl.classList.toggle("invisible");
-      });
-    });
-  }
-
-  hasClickListener = true;
-} // // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+// function styleMobileNav() {
+//   navList.parentNode.removeChild(navList);
+//   navContainer.appendChild(navList);
+//   // mobile burger and menu
+//   if (!hasClickListener) {
+//     burger.addEventListener("click", () => {
+//       mobileModule.toggleNavClasses();
+//       navElements.forEach((navEl, index) => {
+//         navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
+//         navEl.classList.toggle("nav-link-anim");
+//         navEl.classList.toggle("invisible");
+//       });
+//     });
+//   }
+//   hasClickListener = true;
+// }
+// // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
 // function toggleNavClasses() {
 //   // let scrolledY;
 //   scrolledY = siteWrapper.scrollTop;
@@ -566,8 +565,8 @@ function unbindImages() {
 // jshint esversion: 6
 // import { siteWrapper } from "../main.js";
 console.log("scroll navbar again test 2");
-var navList = document.querySelector(".nav-list"); // const navElements = document.querySelectorAll(".nav-list li");
-
+var navList = document.querySelector(".nav-list");
+var navElements = document.querySelectorAll(".nav-list li");
 var navContainer = document.querySelector(".navigation-container");
 var nav = document.querySelector("nav"); // // const navWhite = document.querySelector(".navigation-color-white");
 
@@ -579,33 +578,32 @@ var footer = document.querySelector("#footer"); // const designProjectsSection =
 //   "#section-projects-design"
 // );
 
-var scrolledY = 0; // let hasClickListener = false;
-// // UA sniffing
-// let isIos =
-//   (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
-//     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
-//   !window.MSStream;
-// const navBar = document.querySelector("#section-navbar");
+var scrolledY = 0;
+var hasClickListener = false; // UA sniffing
+
+var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; // const navBar = document.querySelector("#section-navbar");
 // heroText.classList.add("test-class");
 // navBar.classList.add("test-class");
-// //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
-// function styleMobileNav() {
-//   // navList.parentNode.removeChild(navList);
-//   // navContainer.appendChild(navList);
-//   // mobile burger and menu
-//   if (!hasClickListener) {
-//     burger.addEventListener("click", () => {
-//       toggleNavClasses();
-//       navElements.forEach((navEl, index) => {
-//         navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
-//         navEl.classList.toggle("nav-link-anim");
-//         navEl.classList.toggle("invisible");
-//       });
-//     });
-//   }
-//   hasClickListener = true;
-// }
-// adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+
+function styleMobileNav() {
+  // navList.parentNode.removeChild(navList);
+  // navContainer.appendChild(navList);
+  // mobile burger and menu
+  if (!hasClickListener) {
+    burger.addEventListener("click", function () {
+      toggleNavClasses();
+      navElements.forEach(function (navEl, index) {
+        navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
+        navEl.classList.toggle("nav-link-anim");
+        navEl.classList.toggle("invisible");
+      });
+    });
+  }
+
+  hasClickListener = true;
+} // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+
 
 function toggleNavClasses() {
   // let scrolledY;
