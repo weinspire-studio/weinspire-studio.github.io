@@ -637,7 +637,8 @@ function toggleNavClasses() {
 
     navBlack.classList.toggle("navigation-black");
     nav.classList.toggle("nav-no-border");
-    navWhite.classList.toggle("navigation-white");
+
+    _main.navWhite.classList.toggle("navigation-white");
 
     _main.navBar.classList.toggle("nav-back");
   }
