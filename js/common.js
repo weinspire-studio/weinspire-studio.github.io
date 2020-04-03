@@ -36,8 +36,8 @@ var navWhite = document.querySelector(".navigation-color-white"); // const lineE
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
 
 var hasScrollListener = false;
-var swiper;
-var clientHeight = document.body.clientHeight;
+var swiper; // let clientHeight = document.body.clientHeight;
+
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //
@@ -581,7 +581,7 @@ exports.navBlack = exports.navContainer = exports.navElements = exports.navList 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("scroll navbar again test 2");
+console.log("scroll navbar again test 3");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -658,8 +658,9 @@ function toggleNavClasses() {
 
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
-var list = document.querySelector(".swiper-wrapper");
-var trigger = designProjectsSection.offsetTop - 667 + 100;
+var list = document.querySelector(".swiper-wrapper"); // let trigger = designProjectsSection.offsetTop - 667 + 100;
+
+var trigger = 700;
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {
