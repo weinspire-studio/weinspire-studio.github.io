@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
+exports.designProjectsSection = exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -40,8 +40,9 @@ var hasScrollListener = false;
 var swiper;
 var clientHeight = document.body.clientHeight;
 exports.clientHeight = clientHeight;
-var designProjectsSection = document.querySelector("#section-projects-design");
-console.log(designProjectsSection.scrollTop);
+var designProjectsSection = document.querySelector("#section-projects-design").offsetTop; // console.log(designProjectsSection.offsetTop);
+
+exports.designProjectsSection = designProjectsSection;
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //
@@ -585,7 +586,7 @@ exports.navBlack = exports.navContainer = exports.navElements = exports.navList 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("scroll navbar again test 7");
+console.log("scroll navbar again test 8");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -600,7 +601,10 @@ exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
-var footer = document.querySelector("#footer");
+var footer = document.querySelector("#footer"); // const designProjectsSection = document.querySelector(
+//   "#section-projects-design"
+// );
+
 var scrolledY = 0;
 var hasClickListener = false; // UA sniffing
 
@@ -662,9 +666,9 @@ function toggleNavClasses() {
 
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
-var list = document.querySelector(".swiper-wrapper"); // let trigger = designProjectsSection.offsetTop - 667 + 100;
+var list = document.querySelector(".swiper-wrapper");
+var trigger = _main.designProjectsSection - _main.clientHeight + 100; // let trigger = 700 + clientHeight;
 
-var trigger = 700 + _main.clientHeight;
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {
