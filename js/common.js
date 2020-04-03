@@ -282,7 +282,7 @@ function styleNavOnScroll() {
 // content link ?
 // mousedown touch start?
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
-// bug in height 100% on iphone? check on the net
+// bug in height 100% on iphone? check on the net (maybe min height in pixels?)
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6}],2:[function(require,module,exports){
 "use strict";
@@ -664,6 +664,7 @@ var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper"); // let trigger = designProjectsSection.offsetTop - 667 + 100;
 
 var trigger = 700 + _main.clientHeight;
+console.log(designProjectsSection);
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {

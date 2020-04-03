@@ -284,4 +284,4 @@ export { siteWrapper, navBar, navWhite, clientHeight };
 // content link ?
 // mousedown touch start?
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
-// bug in height 100% on iphone? check on the net
+// bug in height 100% on iphone? check on the net (maybe min height in pixels?)
