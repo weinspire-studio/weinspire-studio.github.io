@@ -4,20 +4,20 @@
 
 console.log("scroll navbar again test 2");
 
-// const navList = document.querySelector(".nav-list");
+const navList = document.querySelector(".nav-list");
 // const navElements = document.querySelectorAll(".nav-list li");
-// const navContainer = document.querySelector(".navigation-container");
-// const nav = document.querySelector("nav");
+const navContainer = document.querySelector(".navigation-container");
+const nav = document.querySelector("nav");
 // // const navWhite = document.querySelector(".navigation-color-white");
-// const navBlack = document.querySelector(".navigation-overlay-black");
-// const navImg = document.querySelector("nav img");
-// const burger = document.querySelector(".burger");
-// const heroText = document.querySelector(".hero-text");
-// const footer = document.querySelector("#footer");
+const navBlack = document.querySelector(".navigation-overlay-black");
+const navImg = document.querySelector("nav img");
+const burger = document.querySelector(".burger");
+const heroText = document.querySelector(".hero-text");
+const footer = document.querySelector("#footer");
 // const designProjectsSection = document.querySelector(
 //   "#section-projects-design"
 // );
-// let scrolledY = 0;
+let scrolledY = 0;
 // let hasClickListener = false;
 // // UA sniffing
 // let isIos =
@@ -47,32 +47,32 @@ console.log("scroll navbar again test 2");
 //   hasClickListener = true;
 // }
 
-// // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
-// function toggleNavClasses() {
-//   // let scrolledY;
-//   scrolledY = siteWrapper.scrollTop;
-//   if (scrolledY > 0) {
-//     // console.log("togglea en el toggle");
-//     // navBar.classList.toggle("nav-white");
-//     navBlack.classList.toggle("navigation-black");
-//     nav.classList.toggle("nav-no-border");
-//     // navWhite.classList.toggle("navigation-white");
-//     // navBar.classList.toggle("nav-back");
-//   }
-//   if (isIos === false) {
-//     siteWrapper.classList.toggle("menu-open");
-//   } else {
-//     siteWrapper.classList.toggle("menu-open-i");
-//   }
-//   burger.classList.toggle("cross");
-//   navList.classList.toggle("open");
-//   navList.classList.add("visible");
-//   navContainer.classList.toggle("translate");
-//   navImg.classList.toggle("logo-index");
-//   heroText.classList.toggle("hero-text-opacity");
-//   // svgBackground.classList.toggle("svg-opacity");
-//   footer.classList.toggle("footer-index");
-// }
+// adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+function toggleNavClasses() {
+  // let scrolledY;
+  scrolledY = siteWrapper.scrollTop;
+  if (scrolledY > 0) {
+    // console.log("togglea en el toggle");
+    // navBar.classList.toggle("nav-white");
+    navBlack.classList.toggle("navigation-black");
+    nav.classList.toggle("nav-no-border");
+    // navWhite.classList.toggle("navigation-white");
+    // navBar.classList.toggle("nav-back");
+  }
+  if (isIos === false) {
+    siteWrapper.classList.toggle("menu-open");
+  } else {
+    siteWrapper.classList.toggle("menu-open-i");
+  }
+  burger.classList.toggle("cross");
+  navList.classList.toggle("open");
+  navList.classList.add("visible");
+  navContainer.classList.toggle("translate");
+  navImg.classList.toggle("logo-index");
+  heroText.classList.toggle("hero-text-opacity");
+  // svgBackground.classList.toggle("svg-opacity");
+  footer.classList.toggle("footer-index");
+}
 
 // const rightArrowsContainer = document.querySelector(".right-arrow-container");
 // const rightArrows = document.querySelectorAll(".right-arrow-container svg");

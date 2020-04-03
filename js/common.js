@@ -117,18 +117,23 @@ function styleNavOnScroll() {
 var navList = document.querySelector(".nav-list");
 var navElements = document.querySelectorAll(".nav-list li");
 var navContainer = document.querySelector(".navigation-container");
-var nav = document.querySelector("nav"); // const navWhite = document.querySelector(".navigation-color-white");
+var burger = document.querySelector(".burger"); // const navWhite = document.querySelector(".navigation-color-white");
+// const nav = document.querySelector("nav");
+// const navBlack = document.querySelector(".navigation-overlay-black");
+// const navImg = document.querySelector("nav img");
+// const heroText = document.querySelector(".hero-text");
+// const footer = document.querySelector("#footer");
+// const designProjectsSection = document.querySelector(
+//   "#section-projects-design"
+// );
+// let scrolledY = 0;
+// UA sniffing
+// let isIos =
+// (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+// (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
+// !window.MSStream;
 
-var navBlack = document.querySelector(".navigation-overlay-black");
-var navImg = document.querySelector("nav img");
-var burger = document.querySelector(".burger");
-var heroText = document.querySelector(".hero-text");
-var footer = document.querySelector("#footer");
-var designProjectsSection = document.querySelector("#section-projects-design");
-var scrolledY = 0;
-var hasClickListener = false; // UA sniffing
-
-var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
+var hasClickListener = false;
 var navBar = document.querySelector("#section-navbar"); // heroText.classList.add("test-class");
 // navBar.classList.add("test-class");
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
@@ -139,7 +144,7 @@ function styleMobileNav() {
 
   if (!hasClickListener) {
     burger.addEventListener("click", function () {
-      toggleNavClasses();
+      mobileModule.toggleNavClasses();
       navElements.forEach(function (navEl, index) {
         navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
         navEl.classList.toggle("nav-link-anim");
@@ -149,36 +154,33 @@ function styleMobileNav() {
   }
 
   hasClickListener = true;
-} // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
-
-
-function toggleNavClasses() {
-  // let scrolledY;
-  scrolledY = siteWrapper.scrollTop;
-
-  if (scrolledY > 0) {
-    // console.log("togglea en el toggle");
-    // navBar.classList.toggle("nav-white");
-    navBlack.classList.toggle("navigation-black");
-    nav.classList.toggle("nav-no-border"); // navWhite.classList.toggle("navigation-white");
-    // navBar.classList.toggle("nav-back");
-  }
-
-  if (isIos === false) {
-    siteWrapper.classList.toggle("menu-open");
-  } else {
-    siteWrapper.classList.toggle("menu-open-i");
-  }
-
-  burger.classList.toggle("cross");
-  navList.classList.toggle("open");
-  navList.classList.add("visible");
-  navContainer.classList.toggle("translate");
-  navImg.classList.toggle("logo-index");
-  heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
-
-  footer.classList.toggle("footer-index");
-} //
+} // // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+// function toggleNavClasses() {
+//   // let scrolledY;
+//   scrolledY = siteWrapper.scrollTop;
+//   if (scrolledY > 0) {
+//     // console.log("togglea en el toggle");
+//     // navBar.classList.toggle("nav-white");
+//     navBlack.classList.toggle("navigation-black");
+//     nav.classList.toggle("nav-no-border");
+//     // navWhite.classList.toggle("navigation-white");
+//     // navBar.classList.toggle("nav-back");
+//   }
+//   if (isIos === false) {
+//     siteWrapper.classList.toggle("menu-open");
+//   } else {
+//     siteWrapper.classList.toggle("menu-open-i");
+//   }
+//   burger.classList.toggle("cross");
+//   navList.classList.toggle("open");
+//   navList.classList.add("visible");
+//   navContainer.classList.toggle("translate");
+//   navImg.classList.toggle("logo-index");
+//   heroText.classList.toggle("hero-text-opacity");
+//   // svgBackground.classList.toggle("svg-opacity");
+//   footer.classList.toggle("footer-index");
+// }
+//
 //
 // -----------------
 // $("#section-projects-design ul").slick({
@@ -563,21 +565,21 @@ function unbindImages() {
 
 // jshint esversion: 6
 // import { siteWrapper } from "../main.js";
-console.log("scroll navbar again test 2"); // const navList = document.querySelector(".nav-list");
-// const navElements = document.querySelectorAll(".nav-list li");
-// const navContainer = document.querySelector(".navigation-container");
-// const nav = document.querySelector("nav");
-// // const navWhite = document.querySelector(".navigation-color-white");
-// const navBlack = document.querySelector(".navigation-overlay-black");
-// const navImg = document.querySelector("nav img");
-// const burger = document.querySelector(".burger");
-// const heroText = document.querySelector(".hero-text");
-// const footer = document.querySelector("#footer");
-// const designProjectsSection = document.querySelector(
+console.log("scroll navbar again test 2");
+var navList = document.querySelector(".nav-list"); // const navElements = document.querySelectorAll(".nav-list li");
+
+var navContainer = document.querySelector(".navigation-container");
+var nav = document.querySelector("nav"); // // const navWhite = document.querySelector(".navigation-color-white");
+
+var navBlack = document.querySelector(".navigation-overlay-black");
+var navImg = document.querySelector("nav img");
+var burger = document.querySelector(".burger");
+var heroText = document.querySelector(".hero-text");
+var footer = document.querySelector("#footer"); // const designProjectsSection = document.querySelector(
 //   "#section-projects-design"
 // );
-// let scrolledY = 0;
-// let hasClickListener = false;
+
+var scrolledY = 0; // let hasClickListener = false;
 // // UA sniffing
 // let isIos =
 //   (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
@@ -603,33 +605,35 @@ console.log("scroll navbar again test 2"); // const navList = document.querySele
 //   }
 //   hasClickListener = true;
 // }
-// // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
-// function toggleNavClasses() {
-//   // let scrolledY;
-//   scrolledY = siteWrapper.scrollTop;
-//   if (scrolledY > 0) {
-//     // console.log("togglea en el toggle");
-//     // navBar.classList.toggle("nav-white");
-//     navBlack.classList.toggle("navigation-black");
-//     nav.classList.toggle("nav-no-border");
-//     // navWhite.classList.toggle("navigation-white");
-//     // navBar.classList.toggle("nav-back");
-//   }
-//   if (isIos === false) {
-//     siteWrapper.classList.toggle("menu-open");
-//   } else {
-//     siteWrapper.classList.toggle("menu-open-i");
-//   }
-//   burger.classList.toggle("cross");
-//   navList.classList.toggle("open");
-//   navList.classList.add("visible");
-//   navContainer.classList.toggle("translate");
-//   navImg.classList.toggle("logo-index");
-//   heroText.classList.toggle("hero-text-opacity");
-//   // svgBackground.classList.toggle("svg-opacity");
-//   footer.classList.toggle("footer-index");
-// }
-// const rightArrowsContainer = document.querySelector(".right-arrow-container");
+// adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+
+function toggleNavClasses() {
+  // let scrolledY;
+  scrolledY = siteWrapper.scrollTop;
+
+  if (scrolledY > 0) {
+    // console.log("togglea en el toggle");
+    // navBar.classList.toggle("nav-white");
+    navBlack.classList.toggle("navigation-black");
+    nav.classList.toggle("nav-no-border"); // navWhite.classList.toggle("navigation-white");
+    // navBar.classList.toggle("nav-back");
+  }
+
+  if (isIos === false) {
+    siteWrapper.classList.toggle("menu-open");
+  } else {
+    siteWrapper.classList.toggle("menu-open-i");
+  }
+
+  burger.classList.toggle("cross");
+  navList.classList.toggle("open");
+  navList.classList.add("visible");
+  navContainer.classList.toggle("translate");
+  navImg.classList.toggle("logo-index");
+  heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
+
+  footer.classList.toggle("footer-index");
+} // const rightArrowsContainer = document.querySelector(".right-arrow-container");
 // const rightArrows = document.querySelectorAll(".right-arrow-container svg");
 // const list = document.querySelector(".swiper-wrapper");
 // let trigger =
