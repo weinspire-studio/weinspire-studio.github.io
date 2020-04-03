@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
+exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -37,9 +37,8 @@ var navWhite = document.querySelector(".navigation-color-white"); // const lineE
 
 exports.navWhite = navWhite;
 var hasScrollListener = false;
-var swiper;
-var clientHeight = document.body.clientHeight;
-exports.clientHeight = clientHeight;
+var swiper; // let clientHeight = document.body.clientHeight;
+
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //
@@ -583,7 +582,7 @@ exports.navBlack = exports.navContainer = exports.navElements = exports.navList 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-console.log("scroll navbar again test 5");
+console.log("scroll navbar again test 6");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -663,7 +662,8 @@ var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper"); // let trigger = designProjectsSection.offsetTop - 667 + 100;
 
-var trigger = 700 + _main.clientHeight;
+var clientHeight = document.body.clientHeight;
+var trigger = 700 + clientHeight;
 window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {

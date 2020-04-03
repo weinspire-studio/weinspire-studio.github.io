@@ -1,8 +1,8 @@
 // jshint esversion: 6
 
-import { siteWrapper, navBar, navWhite, clientHeight } from "../main.js";
+import { siteWrapper, navBar, navWhite } from "../main.js";
 
-console.log("scroll navbar again test 5");
+console.log("scroll navbar again test 6");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
@@ -78,6 +78,7 @@ const rightArrowsContainer = document.querySelector(".right-arrow-container");
 const rightArrows = document.querySelectorAll(".right-arrow-container svg");
 const list = document.querySelector(".swiper-wrapper");
 // let trigger = designProjectsSection.offsetTop - 667 + 100;
+let clientHeight = document.body.clientHeight;
 let trigger = 700 + clientHeight;
 
 window.addEventListener("DOMContentLoaded", listenToArrow);
