@@ -657,8 +657,7 @@ function toggleNavClasses() {
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper");
-var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100;
-window.addEventListener("DOMContentLoaded", listenToArrow);
+var trigger = designProjectsSection.offsetTop - document.body.clientHeight + 100; // window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {// siteWrapper.addEventListener("scroll", showRightArrows);
   // rightArrowsContainer.addEventListener("click", slideRightArrows);

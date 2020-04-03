@@ -80,7 +80,7 @@ const list = document.querySelector(".swiper-wrapper");
 let trigger =
   designProjectsSection.offsetTop - document.body.clientHeight + 100;
 
-window.addEventListener("DOMContentLoaded", listenToArrow);
+// window.addEventListener("DOMContentLoaded", listenToArrow);
 
 function listenToArrow() {
   // siteWrapper.addEventListener("scroll", showRightArrows);
