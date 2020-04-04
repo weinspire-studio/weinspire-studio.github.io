@@ -838,7 +838,6 @@ nav {
 
 .arrow-slide {
   animation: 500ms arrow-slide-anim ease forwards;
-  opacity: 0 !important;
 }
 @keyframes arrow-wave-anim {
   0% {
