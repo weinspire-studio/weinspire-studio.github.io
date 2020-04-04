@@ -126,7 +126,7 @@
     position: absolute;
     top: 50%;
     right: 2em;
-    z-index: 1;
+    z-index: 9999;
     transform: translateY(-50%);
     svg {
         height: 40px;
