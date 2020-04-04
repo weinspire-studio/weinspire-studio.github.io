@@ -184,46 +184,57 @@
     -o-animation: 500ms arrow-slide-anim ease forwards;
     animation: 500ms arrow-slide-anim ease forwards;
     opacity: 1!important;
+    // aca va cero TODO
 }
 
 @-webkit-keyframes arrow-wave-anim {
     0% {
-        transform: rotate(90deg) scale(1);
+        -webkit-transform: rotate3d(90deg, 0, 0) scale3d(1, 0, 0);
+        transform: rotate3d(90deg, 0, 0) scale3d(1, 0, 0);
     }
     25% {
-        transform: rotate(90deg) scale(1.3) translateY(2.5px);
+        -webkit-transform: rotate3d(90deg, 0, 0) scale3d(1.3, 0, 0) translate3d(0, 2.5px, 0);
+        transform: rotate3d(90deg, 0, 0) scale3d(1.3, 0, 0) translate3d(0, 2.5px, 0);
     }
     50%, 75%, 100% {
-        transform: rotate(90deg) scale(1);
+        -webkit-transform: rotate3d(90deg, 0, 0) scale3d(1, 0, 0);
+        transform: rotate3d(90deg, 0, 0) scale3d(1, 0, 0);
     }
 }
 
 @keyframes arrow-wave-anim {
     0% {
-        transform: rotate(90deg) scale(1);
+        -webkit-transform: rotate3d(90deg, 0, 0) scale3d(1, 0, 0);
+        transform: rotate3d(90deg, 0, 0) scale3d(1, 0, 0);
     }
     25% {
-        transform: rotate(90deg) scale(1.3) translateY(2.5px);
+        -webkit-transform: rotate3d(90deg, 0, 0) scale3d(1.3, 0, 0) translate3d(0, 2.5px, 0);
+        transform: rotate3d(90deg, 0, 0) scale3d(1.3, 0, 0) translate3d(0, 2.5px, 0);
     }
     50%, 75%, 100% {
-        transform: rotate(90deg) scale(1);
+        -webkit-transform: rotate3d(90deg, 0, 0) scale3d(1, 0, 0);
+        transform: rotate3d(90deg, 0, 0) scale3d(1, 0, 0);
     }
 }
 
 @-webkit-keyframes arrow-slide-anim {
     0% {
-        transform: translate3d(0%);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
     }
     100% {
-        transform: translate3d(200%);
+        -webkit-transform: translate3d(200%, 0, 0);
+        transform: translate3d(200%, 0, 0);
     }
 }
 
 @keyframes arrow-slide-anim {
     0% {
-        transform: translate3d(0%);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
     }
     100% {
+        -webkit-transform: translate3d(200%, 0, 0);
         transform: translate3d(200%, 0, 0);
     }
 }
