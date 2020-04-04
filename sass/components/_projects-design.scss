@@ -274,11 +274,11 @@
 
 
 .swiper-pagination {
-    bottom: 6em!important;
-    position: relative;
-    -moz-transform: translate3d(0px, -50%, 1px);
-    -webkit-transform: translate3d(0px, -50%, 1px);
-    transform: translate3d(0px, -50%, 1px);
+    // right: 10px;
+    bottom: -5px!important;
+    -moz-transform: translate3d(0px, -50%, 1px)!important;
+    -webkit-transform: translate3d(0px, -50%, 1px)!important;
+    transform: translate3d(0px, -50%, 1px)!important;
 }
 
 // .swiper-pagination-bullet-active {
