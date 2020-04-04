@@ -93,11 +93,7 @@ window.addEventListener("DOMContentLoaded", listenToArrow);
 function listenToArrow() {
   siteWrapper.addEventListener("scroll", showRightArrows);
   rightArrowsContainer.addEventListener("click", slideRightArrows);
-  list.addEventListener("touchmove", function() {
-    rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-    siteWrapper.removeEventListener("scroll", showRightArrows);
-    rightArrowsContainer.removeEventListener("click", slideRightArrows);
-  });
+  list.addEventListener("touchmove", slideRightArrows);
 }
 
 function showRightArrows() {
@@ -114,10 +110,19 @@ function showRightArrows() {
 }
 
 function slideRightArrows() {
+  rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
   rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
   siteWrapper.removeEventListener("scroll", showRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
+  rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
 }
+
+// function slideRightArrowsOnSlide () {
+//   rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
+//   rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
+//   siteWrapper.removeEventListener("scroll", showRightArrows);
+//   rightArrowsContainer.removeEventListener("click", slideRightArrows);
+// }
 
 export {
   nav,

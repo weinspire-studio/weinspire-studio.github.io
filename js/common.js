@@ -676,15 +676,7 @@ function listenToArrow() {
   _main.siteWrapper.addEventListener("scroll", showRightArrows);
 
   rightArrowsContainer.addEventListener("click", slideRightArrows);
-  list.addEventListener("touchmove", function () {
-    rightArrows.forEach(function (arrow) {
-      return arrow.classList.remove("arrow-wave");
-    });
-
-    _main.siteWrapper.removeEventListener("scroll", showRightArrows);
-
-    rightArrowsContainer.removeEventListener("click", slideRightArrows);
-  });
+  list.addEventListener("touchmove", slideRightArrows);
 }
 
 function showRightArrows() {
@@ -707,13 +699,22 @@ function showRightArrows() {
 
 function slideRightArrows() {
   rightArrows.forEach(function (arrow) {
+    return arrow.classList.remove("arrow-wave");
+  });
+  rightArrows.forEach(function (arrow) {
     return arrow.classList.add("arrow-slide");
   });
 
   _main.siteWrapper.removeEventListener("scroll", showRightArrows);
 
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
-}
+  rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
+} // function slideRightArrowsOnSlide () {
+//   rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
+//   rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
+//   siteWrapper.removeEventListener("scroll", showRightArrows);
+//   rightArrowsContainer.removeEventListener("click", slideRightArrows);
+// }
 
 },{"../main.js":1}],6:[function(require,module,exports){
 "use strict";
