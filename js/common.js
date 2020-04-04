@@ -266,7 +266,7 @@ function styleNavOnScroll() {
 // social network in navbar?
 // navbar mobile open bug (z-index) DONE
 // bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
-// burger ontap mobile! (see iphone, selection squere)
+// burger ontap mobile! (see iphone, selection square)
 // accesibility svg titles - svg sprite
 // inline svg catched?! see css tricks tutorial
 // page loader!!
@@ -739,6 +739,7 @@ var defineSwiper = function defineSwiper() {
     // slidesPerView: "auto",
     // paginationClickable: true,
     // spaceBetween: 0
+    direction: "vertical",
     effect: "cube",
     grabCursor: true,
     cubeEffect: {

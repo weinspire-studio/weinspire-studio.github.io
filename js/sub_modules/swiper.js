@@ -16,6 +16,7 @@ var defineSwiper = function() {
     // slidesPerView: "auto",
     // paginationClickable: true,
     // spaceBetween: 0
+    direction: "vertical",
     effect: "cube",
     grabCursor: true,
     cubeEffect: {
