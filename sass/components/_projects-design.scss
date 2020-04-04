@@ -183,7 +183,7 @@
     -moz-animation: 500ms arrow-slide-anim ease forwards;
     -o-animation: 500ms arrow-slide-anim ease forwards;
     animation: 500ms arrow-slide-anim ease forwards;
-    // opacity: 0!important;
+    opacity: 1!important;
 }
 
 @-webkit-keyframes arrow-wave-anim {
