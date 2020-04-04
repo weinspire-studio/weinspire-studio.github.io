@@ -186,17 +186,17 @@
     opacity: 0!important;
 }
 
-// @-webkit-keyframes arrow-wave-anim {
-//     0% {
-//         transform: rotate(90deg) scale(1);
-//     }
-//     25% {
-//         transform: rotate(90deg) scale(1.3) translateY(2.5px);
-//     }
-//     50%, 75%, 100% {
-//         transform: rotate(90deg) scale(1);
-//     }
-// }
+@-webkit-keyframes arrow-wave-anim {
+    0% {
+        transform: rotate(90deg) scale(1);
+    }
+    25% {
+        transform: rotate(90deg) scale(1.3) translateY(2.5px);
+    }
+    50%, 75%, 100% {
+        transform: rotate(90deg) scale(1);
+    }
+}
 
 @keyframes arrow-wave-anim {
     0% {

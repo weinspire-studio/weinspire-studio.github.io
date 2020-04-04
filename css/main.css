@@ -341,14 +341,6 @@ nav {
   background-color: #000;
 }
 
-.test-class {
-  font-size: 20px !important;
-  height: 150px !important;
-  width: 80% !important;
-  background-color: red !important;
-  z-index: 9999 !important;
-}
-
 .navigation-white {
   background-color: #fff;
   box-shadow: 12px 2px 8px 0px black;
@@ -848,7 +840,6 @@ nav {
   animation: 500ms arrow-slide-anim ease forwards;
   opacity: 0 !important;
 }
-
 @keyframes arrow-wave-anim {
   0% {
     transform: rotate(90deg) scale(1);
