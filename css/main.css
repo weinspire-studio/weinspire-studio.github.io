@@ -859,6 +859,12 @@ nav {
     transform: translate3d(200%, 0, 0);
   }
 }
+.swiper-pagination {
+  bottom: 6em !important;
+  position: relative;
+  transform: translate3d(0px, -50%, 1px);
+}
+
 .expanded {
   width: calc(30% - 2px) !important;
 }

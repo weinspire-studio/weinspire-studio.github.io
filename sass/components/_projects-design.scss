@@ -272,9 +272,14 @@
 //     z-index: 9999;
 // }
 
-// .swiper-pagination {
-//     bottom: 6em!important;
-// }
+
+.swiper-pagination {
+    bottom: 6em!important;
+    position: relative;
+    -moz-transform: translate3d(0px, -50%, 1px);
+    -webkit-transform: translate3d(0px, -50%, 1px);
+    transform: translate3d(0px, -50%, 1px);
+}
 
 // .swiper-pagination-bullet-active {
 //     background-color: white!important;
