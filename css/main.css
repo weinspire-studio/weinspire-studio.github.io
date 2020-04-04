@@ -860,8 +860,13 @@ nav {
   }
 }
 .swiper-pagination {
-  bottom: -5px !important;
-  transform: translate3d(0px, -50%, 1px) !important;
+  bottom: -2.25em !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: blue !important;
+  transform: scale(1.75) !important;
+  transition: transform 0.5s ease;
 }
 
 .expanded {

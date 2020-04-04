@@ -274,18 +274,14 @@
 
 
 .swiper-pagination {
-    // right: 10px;
-    bottom: -5px!important;
-    -moz-transform: translate3d(0px, -50%, 1px)!important;
-    -webkit-transform: translate3d(0px, -50%, 1px)!important;
-    transform: translate3d(0px, -50%, 1px)!important;
+    bottom: -2.25em!important;
 }
 
-// .swiper-pagination-bullet-active {
-//     background-color: white!important;
-//     transform: scale(1.5);
-//     transition: background-color .5s ease, transform .5s ease;
-// }
+.swiper-pagination-bullet-active {
+    background-color: blue!important;
+    transform: scale(1.75)!important;
+    transition: transform .5s ease;
+}
 
 // Style Classes
 .expanded {
