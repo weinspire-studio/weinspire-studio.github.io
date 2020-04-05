@@ -103,7 +103,7 @@ modifySwiperForIos();
 function listenToArrow() {
   siteWrapper.addEventListener("scroll", showRightArrows);
   rightArrowsContainer.addEventListener("click", slideRightArrows);
-  list.addEventListener("touchmove", slideRightArrows);
+  rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
 }
 
 function showRightArrows() {
@@ -114,6 +114,10 @@ function showRightArrows() {
     rightArrows.forEach(arrow => arrow.classList.add("arrow-wave"));
     rightArrows[0].style.animationDelay = "250ms";
     rightArrows[1].style.animationDelay = "125ms";
+    setTimeout(function() {
+      rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
+      rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
+    }, 5000);
   } else {
     rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
   }

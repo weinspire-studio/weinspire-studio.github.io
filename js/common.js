@@ -687,7 +687,7 @@ function listenToArrow() {
   _main.siteWrapper.addEventListener("scroll", showRightArrows);
 
   rightArrowsContainer.addEventListener("click", slideRightArrows);
-  list.addEventListener("touchmove", slideRightArrows);
+  rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
 }
 
 function showRightArrows() {
@@ -701,6 +701,14 @@ function showRightArrows() {
     });
     rightArrows[0].style.animationDelay = "250ms";
     rightArrows[1].style.animationDelay = "125ms";
+    setTimeout(function () {
+      rightArrows.forEach(function (arrow) {
+        return arrow.classList.remove("arrow-wave");
+      });
+      rightArrows.forEach(function (arrow) {
+        return arrow.classList.add("arrow-slide");
+      });
+    }, 5000);
   } else {
     rightArrows.forEach(function (arrow) {
       return arrow.classList.remove("arrow-wave");
