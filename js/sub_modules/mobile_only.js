@@ -83,12 +83,22 @@ function toggleNavClasses() {
 const rightArrowsContainer = document.querySelector(".right-arrow-container");
 const rightArrows = document.querySelectorAll(".right-arrow-container svg");
 const list = document.querySelector(".swiper-wrapper");
-
 // let trigger = 700 + clientHeight;
-
 // console.log(designOffset);
+// window.addEventListener("DOMContentLoaded", listenToArrow);
 
-window.addEventListener("DOMContentLoaded", listenToArrow);
+const swiperPagination = document.querySelector(".swiper-pagination");
+function asd() {
+  // console.log(swiperPagination.firstChild);
+  // console.log(swiperPagination.childNodes);
+  // console.log(swiperPagination);
+  // swiperPagination.firstChild.style.backgroundColor = "red!important";
+  // swiperPagination.lastChild.classList.add("dot-5");
+}
+
+window.addEventListener("load", asd);
+
+modifySwiperForIos();
 
 function listenToArrow() {
   siteWrapper.addEventListener("scroll", showRightArrows);
@@ -115,14 +125,20 @@ function slideRightArrows() {
   siteWrapper.removeEventListener("scroll", showRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
+  window.removeEventListener("DOMContentLoaded", listenToArrow);
 }
 
-// function slideRightArrowsOnSlide () {
-//   rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-//   rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
-//   siteWrapper.removeEventListener("scroll", showRightArrows);
-//   rightArrowsContainer.removeEventListener("click", slideRightArrows);
-// }
+// const swiperPagination = document.querySelector(".swiper-pagination");
+
+function modifySwiperForIos() {
+  if (isIos) {
+    swiperPagination.classList.add("pagination-bottom");
+    window.removeEventListener("DOMContentLoaded", listenToArrow);
+  } else {
+    swiperPagination.classList.add("pagination-middle");
+    window.addEventListener("DOMContentLoaded", listenToArrow);
+  }
+}
 
 export {
   nav,

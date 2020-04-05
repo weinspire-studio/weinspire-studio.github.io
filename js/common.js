@@ -669,8 +669,19 @@ var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var list = document.querySelector(".swiper-wrapper"); // let trigger = 700 + clientHeight;
 // console.log(designOffset);
+// window.addEventListener("DOMContentLoaded", listenToArrow);
 
-window.addEventListener("DOMContentLoaded", listenToArrow);
+var swiperPagination = document.querySelector(".swiper-pagination");
+
+function asd() {// console.log(swiperPagination.firstChild);
+  // console.log(swiperPagination.childNodes);
+  // console.log(swiperPagination);
+  // swiperPagination.firstChild.style.backgroundColor = "red!important";
+  // swiperPagination.lastChild.classList.add("dot-5");
+}
+
+window.addEventListener("load", asd);
+modifySwiperForIos();
 
 function listenToArrow() {
   _main.siteWrapper.addEventListener("scroll", showRightArrows);
@@ -709,12 +720,19 @@ function slideRightArrows() {
 
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
-} // function slideRightArrowsOnSlide () {
-//   rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-//   rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
-//   siteWrapper.removeEventListener("scroll", showRightArrows);
-//   rightArrowsContainer.removeEventListener("click", slideRightArrows);
-// }
+  window.removeEventListener("DOMContentLoaded", listenToArrow);
+} // const swiperPagination = document.querySelector(".swiper-pagination");
+
+
+function modifySwiperForIos() {
+  if (isIos) {
+    swiperPagination.classList.add("pagination-bottom");
+    window.removeEventListener("DOMContentLoaded", listenToArrow);
+  } else {
+    swiperPagination.classList.add("pagination-middle");
+    window.addEventListener("DOMContentLoaded", listenToArrow);
+  }
+}
 
 },{"../main.js":1}],6:[function(require,module,exports){
 "use strict";

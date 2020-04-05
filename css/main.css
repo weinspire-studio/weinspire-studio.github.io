@@ -842,31 +842,41 @@ nav {
 }
 @keyframes arrow-wave-anim {
   0% {
-    transform: rotate3d(90deg, 0, 0) scale3d(1, 0, 0);
+    transform: rotate(90deg) scale(1);
   }
   25% {
-    transform: rotate3d(90deg, 0, 0) scale3d(1.3, 0, 0) translate3d(0, 2.5px, 0);
+    transform: rotate(90deg) scale(1.3);
   }
   50%, 75%, 100% {
-    transform: rotate3d(90deg, 0, 0) scale3d(1, 0, 0);
+    transform: rotate(90deg) scale(1);
   }
 }
 @keyframes arrow-slide-anim {
   0% {
-    transform: translate3d(0, 0, 0);
+    transform: translate(0);
   }
   100% {
-    transform: translate3d(200%, 0, 0);
+    transform: translate(300%);
   }
 }
-.swiper-pagination {
-  bottom: -2.25em !important;
-}
-
 .swiper-pagination-bullet-active {
-  background-color: blue !important;
   transform: scale(1.75) !important;
   transition: transform 0.5s ease;
+}
+.swiper-pagination-bullet-active:nth-child(1) {
+  background-color: #001029 !important;
+}
+.swiper-pagination-bullet-active:nth-child(2) {
+  background-color: #003a58 !important;
+}
+.swiper-pagination-bullet-active:nth-child(3) {
+  background-color: #006985 !important;
+}
+.swiper-pagination-bullet-active:nth-child(4) {
+  background-color: #009ba9 !important;
+}
+.swiper-pagination-bullet-active:nth-child(5) {
+  background-color: #43cfc3 !important;
 }
 
 .expanded {
@@ -883,6 +893,34 @@ nav {
 
 .contracted {
   width: calc(17.5% - 2px) !important;
+}
+
+.pagination-bottom {
+  bottom: -2.25em !important;
+}
+
+.pagination-middle {
+  bottom: 5em !important;
+}
+
+.dot-1 {
+  background-color: #001029 !important;
+}
+
+.dot-2 {
+  background-color: #003a58 !important;
+}
+
+.dot-3 {
+  background-color: #006985 !important;
+}
+
+.dot-4 {
+  background-color: #009ba9 !important;
+}
+
+.dot-5 {
+  background-color: #43cfc3 !important;
 }
 
 @media screen and (min-width: 801px) {
