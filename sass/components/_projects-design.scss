@@ -83,32 +83,60 @@
         bottom: 0;
         width: 100%;
         color: white;
-        padding: 1.25em 2em;
+        padding: 1.25em 2.25em;
         &#caption-1 {
             background-color: $blue-theme-darker;
+            &:after {
+                background-color: lighten($blue-theme-lighter, 5%);
+            }
         };
         &#caption-2 {
             background-color: $blue-theme-dark;
+            &:after {
+                background-color: lighten($blue-theme-light, 5%);
+            }
         };
         &#caption-3 {
             background-color: $blue-theme-middle;
+            &:after {
+                background-color: lighten($blue-theme-light, 5%);
+            }
         };
         &#caption-4 {
             background-color: darken($blue-theme-light, 5%);
+            &:after {
+                background-color: lighten($blue-theme-dark, 2.5%);
+            }
         };
         &#caption-5 {
             background-color: darken($blue-theme-lighter, 12.5%);
+            &:after {
+                background-color: lighten($blue-theme-darker, 5%);
+            }
         }
         h6 {
             font-weight: 400;
             padding-top: .2em;
         }
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: 1.5em;
+            bottom: 1em;
+            top: 1em;
+            // height: 2em;
+            width: .25em;
+        }
+
         @include media-query ($md) {
             transform: translateY(100%);
             transition: transform 500ms ease;
         }
     }
 }
+
+.link
 
 .swiper-container {
     height: 450px;

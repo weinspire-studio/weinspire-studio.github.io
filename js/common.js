@@ -287,6 +287,12 @@ function styleNavOnScroll() {
 // mousedown touch start?
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
 // bug in height 100% on iphone? check on the net (maybe min height in pixels?)
+// 1navbar shadow
+// 2zoom when tab on input
+// 3timeout scroll listeners
+// 4jquery modules
+// link caption and overlay can be replaced by nth-child
+// BUG check arrows on window resize
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6}],2:[function(require,module,exports){
 "use strict";

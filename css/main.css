@@ -755,26 +755,49 @@ nav {
   bottom: 0;
   width: 100%;
   color: white;
-  padding: 1.25em 2em;
+  padding: 1.25em 2.25em;
 }
 .content-link .link-caption#caption-1 {
   background-color: #001029;
 }
+.content-link .link-caption#caption-1:after {
+  background-color: #57d4c9;
+}
 .content-link .link-caption#caption-2 {
   background-color: #003a58;
+}
+.content-link .link-caption#caption-2:after {
+  background-color: #00b2c3;
 }
 .content-link .link-caption#caption-3 {
   background-color: #006985;
 }
+.content-link .link-caption#caption-3:after {
+  background-color: #00b2c3;
+}
 .content-link .link-caption#caption-4 {
   background-color: #008490;
+}
+.content-link .link-caption#caption-4:after {
+  background-color: #004265;
 }
 .content-link .link-caption#caption-5 {
   background-color: #2ba79d;
 }
+.content-link .link-caption#caption-5:after {
+  background-color: #001a43;
+}
 .content-link .link-caption h6 {
   font-weight: 400;
   padding-top: 0.2em;
+}
+.content-link .link-caption:after {
+  content: "";
+  position: absolute;
+  left: 1.5em;
+  bottom: 1em;
+  top: 1em;
+  width: 0.25em;
 }
 @media screen and (min-width: 801px) {
   .content-link .link-caption {
@@ -783,12 +806,12 @@ nav {
   }
 }
 
-.swiper-container {
+.link .swiper-container {
   height: 450px;
   z-index: 0 !important;
 }
 @media screen and (min-width: 801px) {
-  .swiper-container {
+  .link .swiper-container {
     width: 95%;
   }
 }
