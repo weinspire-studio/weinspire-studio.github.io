@@ -24,6 +24,8 @@ const footer = document.querySelector("#footer");
 const designProjectsSection = document.querySelector(
   "#section-projects-design"
 );
+const contactSection = document.querySelector("#section-contact");
+const servicesSection = document.querySelector("#section-services");
 let designOffset = designProjectsSection.offsetTop;
 let scrolledY = 0;
 let hasClickListener = false;
@@ -74,6 +76,11 @@ function toggleNavClasses() {
     siteWrapper.classList.toggle("menu-open-i");
   }
   designProjectsSection.classList.toggle("lower-design-projects");
+  contactSection.style.position = "relative";
+  contactSection.style.zIndex = "-1";
+  servicesSection.style.position = "relative";
+  servicesSection.style.zIndex = "-1";
+
   // overlay.classList.toggle("overlay-active");
   // overlay.style.zIndex = 10;
   // overlay.style.opacity = 1;

@@ -509,6 +509,8 @@ var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
 var footer = document.querySelector("#footer");
 var designProjectsSection = document.querySelector("#section-projects-design");
+var contactSection = document.querySelector("#section-contact");
+var servicesSection = document.querySelector("#section-services");
 var designOffset = designProjectsSection.offsetTop;
 var scrolledY = 0;
 var hasClickListener = false; // UA sniffing
@@ -558,7 +560,11 @@ function toggleNavClasses() {
     _main.siteWrapper.classList.toggle("menu-open-i");
   }
 
-  designProjectsSection.classList.toggle("lower-design-projects"); // overlay.classList.toggle("overlay-active");
+  designProjectsSection.classList.toggle("lower-design-projects");
+  contactSection.style.position = "relative";
+  contactSection.style.zIndex = "-1";
+  servicesSection.style.position = "relative";
+  servicesSection.style.zIndex = "-1"; // overlay.classList.toggle("overlay-active");
   // overlay.style.zIndex = 10;
   // overlay.style.opacity = 1;
 
