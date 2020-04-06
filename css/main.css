@@ -57,6 +57,10 @@ h1, h2, h3, h4, h5 {
   min-height: 100%;
 }
 
+.menu-open-i {
+  overflow-y: hidden;
+}
+
 .burger {
   height: 40px;
   width: 40px;
@@ -350,7 +354,10 @@ nav {
 .overlay-active-i {
   z-index: 2;
   opacity: 1;
-  overflow-y: hidden;
+}
+
+.lower-design-projects {
+  z-index: 0;
 }
 
 .navigation-white {

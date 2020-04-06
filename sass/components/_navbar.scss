@@ -275,7 +275,11 @@ nav {
 .overlay-active-i {
     z-index: 2;
     opacity: 1;
-    overflow-y: hidden;
+    // overflow-y: hidden;
+}
+
+.lower-design-projects {
+    z-index: 0;
 }
 
 .navigation-white {

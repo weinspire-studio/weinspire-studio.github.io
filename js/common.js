@@ -553,7 +553,8 @@ function toggleNavClasses() {
     // siteWrapper.classList.toggle("menu-open");
     overlay.classList.toggle("overlay-active");
   } else {
-    // siteWrapper.classList.toggle("menu-open-i");
+    _main.siteWrapper.classList.toggle("menu-open-i");
+
     overlay.classList.toggle("overlay-active-i");
   }
 
