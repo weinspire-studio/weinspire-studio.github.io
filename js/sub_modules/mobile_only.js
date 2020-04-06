@@ -70,8 +70,8 @@ function toggleNavClasses() {
     // siteWrapper.classList.toggle("menu-open");
     overlay.classList.toggle("overlay-active");
   } else {
+    overlay.classList.toggle("overlay-active");
     siteWrapper.classList.toggle("menu-open-i");
-    overlay.classList.toggle("overlay-active-i");
   }
   designProjectsSection.classList.toggle("lower-design-projects");
   // overlay.classList.toggle("overlay-active");

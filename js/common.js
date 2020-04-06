@@ -553,9 +553,9 @@ function toggleNavClasses() {
     // siteWrapper.classList.toggle("menu-open");
     overlay.classList.toggle("overlay-active");
   } else {
-    _main.siteWrapper.classList.toggle("menu-open-i");
+    overlay.classList.toggle("overlay-active");
 
-    overlay.classList.toggle("overlay-active-i");
+    _main.siteWrapper.classList.toggle("menu-open-i");
   }
 
   designProjectsSection.classList.toggle("lower-design-projects"); // overlay.classList.toggle("overlay-active");
