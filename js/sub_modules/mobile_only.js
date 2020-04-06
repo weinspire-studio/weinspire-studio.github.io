@@ -3,42 +3,37 @@
 import {
   siteWrapper,
   navBar,
-  navWhite,
   clientHeight,
+  // navWhite,
   // designOffset,
 } from "../main.js";
 
 console.log("scroll navbar again test 8");
-const overlay = document.querySelector(".overlay");
-
+const overlay = document.querySelector(".site-overlay");
+const servicesSection = document.querySelector("#section-services");
+const contactSection = document.querySelector("#section-contact");
+const designProjectsSection = document.querySelector(
+  "#section-projects-design"
+);
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
 const navContainer = document.querySelector(".navigation-container");
 const nav = document.querySelector("nav");
-// const navWhite = document.querySelector(".navigation-color-white");
-const navBlack = document.querySelector(".navigation-overlay-black");
-const navImg = document.querySelector("nav img");
 const burger = document.querySelector(".burger");
-const heroText = document.querySelector(".hero-text");
-const footer = document.querySelector("#footer");
-const designProjectsSection = document.querySelector(
-  "#section-projects-design"
-);
-const contactSection = document.querySelector("#section-contact");
-const servicesSection = document.querySelector("#section-services");
+// const navImg = document.querySelector("nav img");
+// const heroText = document.querySelector(".hero-text");
+// const navWhite = document.querySelector(".navigation-color-white");
+// const navBlack = document.querySelector(".navigation-overlay-black");
+// const footer = document.querySelector("#footer");
 let designOffset = designProjectsSection.offsetTop;
 let scrolledY = 0;
+let toggleDelay = 0;
 let hasClickListener = false;
 // UA sniffing
 let isIos =
   (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
   !window.MSStream;
-
-// const navBar = document.querySelector("#section-navbar");
-// heroText.classList.add("test-class");
-// navBar.classList.add("test-class");
-
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
@@ -62,30 +57,33 @@ function toggleNavClasses() {
   // let scrolledY;
   scrolledY = siteWrapper.scrollTop;
   if (scrolledY > 0) {
-    // console.log("togglea en el toggle");
     navBar.classList.toggle("nav-white");
-    // navBlack.classList.toggle("navigation-black");
-    // nav.classList.toggle("nav-no-border");
-    // navWhite.classList.toggle("lower-navigation-white");
+    nav.classList.toggle("nav-no-border");
   }
   if (isIos === false) {
-    // siteWrapper.classList.toggle("menu-open");
     overlay.classList.toggle("overlay-active");
   } else {
     overlay.classList.toggle("overlay-active");
     siteWrapper.classList.toggle("menu-open-i");
   }
-  designProjectsSection.classList.toggle("lower-section");
-  contactSection.classList.toggle("lower-section");
-  servicesSection.classList.toggle("lower-section");
+
+  setTimeout(function () {
+    designProjectsSection.classList.toggle("lower-section");
+    contactSection.classList.toggle("lower-section");
+    servicesSection.classList.toggle("lower-section");
+  }, toggleDelay);
+  if (toggleDelay === 0) {
+    toggleDelay = 400;
+  } else {
+    toggleDelay = 0;
+  }
   burger.classList.toggle("cross");
   navList.classList.toggle("open");
   navList.classList.add("visible");
   navContainer.classList.toggle("translate");
-  navImg.classList.toggle("logo-index");
-  heroText.classList.toggle("hero-text-opacity");
-  // svgBackground.classList.toggle("svg-opacity");
-  footer.classList.toggle("footer-index");
+  // navImg.classList.toggle("logo-index");
+  // heroText.classList.toggle("hero-text-opacity");
+  // footer.classList.toggle("footer-index");
 }
 
 const rightArrowsContainer = document.querySelector(".right-arrow-container");
@@ -143,7 +141,7 @@ export {
   navList,
   navElements,
   navContainer,
-  navBlack,
+  // navBlack,
   styleMobileNav,
   toggleNavClasses,
   // listenToArrow

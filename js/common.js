@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
+exports.clientHeight = exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -30,12 +30,12 @@ exports.siteWrapper = siteWrapper;
 var navBar = document.querySelector("#section-navbar");
 exports.navBar = navBar;
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
-var navWhite = document.querySelector(".navigation-color-white"); // const lineElements = document.querySelectorAll(".burger div");
+var navWhiteBack = document.querySelector(".navigation-white-back"); // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
 
-exports.navWhite = navWhite;
+var navShadow = document.querySelector(".navigation-shadow");
 var hasScrollListener = false;
 var swiper;
 var clientHeight = document.body.clientHeight; // const designProjectsSection = document.querySelector(
@@ -121,76 +121,14 @@ function styleNavOnScroll() {
   if (scrolledY > 0) {
     console.log("aplica");
     navBar.classList.add("nav-white");
-    navWhite.classList.add("navigation-white");
+    navWhiteBack.classList.add("nav-white-back");
+    navShadow.classList.add("nav-shadow");
   } else {
     navBar.classList.remove("nav-white");
-    navWhite.classList.remove("navigation-white");
+    navWhiteBack.classList.remove("nav-white-back");
+    navShadow.classList.remove("nav-shadow");
   }
-} // const navList = document.querySelector(".nav-list");
-// const navElements = document.querySelectorAll(".nav-list li");
-// const navContainer = document.querySelector(".navigation-container");
-// const burger = document.querySelector(".burger");
-// const navWhite = document.querySelector(".navigation-color-white");
-// const nav = document.querySelector("nav");
-// const navBlack = document.querySelector(".navigation-overlay-black");
-// const navImg = document.querySelector("nav img");
-// const heroText = document.querySelector(".hero-text");
-// const footer = document.querySelector("#footer");
-// const designProjectsSection = document.querySelector(
-//   "#section-projects-design"
-// );
-// let scrolledY = 0;
-// UA sniffing
-// let isIos =
-// (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
-// (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
-// !window.MSStream;
-// let hasClickListener = false;
-// heroText.classList.add("test-class");
-// navBar.classList.add("test-class");
-//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
-// function styleMobileNav() {
-//   navList.parentNode.removeChild(navList);
-//   navContainer.appendChild(navList);
-//   // mobile burger and menu
-//   if (!hasClickListener) {
-//     burger.addEventListener("click", () => {
-//       mobileModule.toggleNavClasses();
-//       navElements.forEach((navEl, index) => {
-//         navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
-//         navEl.classList.toggle("nav-link-anim");
-//         navEl.classList.toggle("invisible");
-//       });
-//     });
-//   }
-//   hasClickListener = true;
-// }
-// // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
-// function toggleNavClasses() {
-//   // let scrolledY;
-//   scrolledY = siteWrapper.scrollTop;
-//   if (scrolledY > 0) {
-//     // console.log("togglea en el toggle");
-//     // navBar.classList.toggle("nav-white");
-//     navBlack.classList.toggle("navigation-black");
-//     nav.classList.toggle("nav-no-border");
-//     // navWhite.classList.toggle("navigation-white");
-//     // navBar.classList.toggle("nav-back");
-//   }
-//   if (isIos === false) {
-//     siteWrapper.classList.toggle("menu-open");
-//   } else {
-//     siteWrapper.classList.toggle("menu-open-i");
-//   }
-//   burger.classList.toggle("cross");
-//   navList.classList.toggle("open");
-//   navList.classList.add("visible");
-//   navContainer.classList.toggle("translate");
-//   navImg.classList.toggle("logo-index");
-//   heroText.classList.toggle("hero-text-opacity");
-//   // svgBackground.classList.toggle("svg-opacity");
-//   footer.classList.toggle("footer-index");
-// }
+}
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6}],2:[function(require,module,exports){
 "use strict";
@@ -486,39 +424,36 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.navBlack = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
+exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
 
 var _main = require("../main.js");
 
 // jshint esversion: 6
 console.log("scroll navbar again test 8");
-var overlay = document.querySelector(".overlay");
+var overlay = document.querySelector(".site-overlay");
+var servicesSection = document.querySelector("#section-services");
+var contactSection = document.querySelector("#section-contact");
+var designProjectsSection = document.querySelector("#section-projects-design");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
 exports.navElements = navElements;
 var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
-var nav = document.querySelector("nav"); // const navWhite = document.querySelector(".navigation-color-white");
-
+var nav = document.querySelector("nav");
 exports.nav = nav;
-var navBlack = document.querySelector(".navigation-overlay-black");
-exports.navBlack = navBlack;
-var navImg = document.querySelector("nav img");
-var burger = document.querySelector(".burger");
-var heroText = document.querySelector(".hero-text");
-var footer = document.querySelector("#footer");
-var designProjectsSection = document.querySelector("#section-projects-design");
-var contactSection = document.querySelector("#section-contact");
-var servicesSection = document.querySelector("#section-services");
+var burger = document.querySelector(".burger"); // const navImg = document.querySelector("nav img");
+// const heroText = document.querySelector(".hero-text");
+// const navWhite = document.querySelector(".navigation-color-white");
+// const navBlack = document.querySelector(".navigation-overlay-black");
+// const footer = document.querySelector("#footer");
+
 var designOffset = designProjectsSection.offsetTop;
 var scrolledY = 0;
+var toggleDelay = 0;
 var hasClickListener = false; // UA sniffing
 
-var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; // const navBar = document.querySelector("#section-navbar");
-// heroText.classList.add("test-class");
-// navBar.classList.add("test-class");
-//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
@@ -544,15 +479,12 @@ function toggleNavClasses() {
   scrolledY = _main.siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
-    // console.log("togglea en el toggle");
-    _main.navBar.classList.toggle("nav-white"); // navBlack.classList.toggle("navigation-black");
-    // nav.classList.toggle("nav-no-border");
-    // navWhite.classList.toggle("lower-navigation-white");
+    _main.navBar.classList.toggle("nav-white");
 
+    nav.classList.toggle("nav-no-border");
   }
 
   if (isIos === false) {
-    // siteWrapper.classList.toggle("menu-open");
     overlay.classList.toggle("overlay-active");
   } else {
     overlay.classList.toggle("overlay-active");
@@ -560,17 +492,24 @@ function toggleNavClasses() {
     _main.siteWrapper.classList.toggle("menu-open-i");
   }
 
-  designProjectsSection.classList.toggle("lower-section");
-  contactSection.classList.toggle("lower-section");
-  servicesSection.classList.toggle("lower-section");
+  setTimeout(function () {
+    designProjectsSection.classList.toggle("lower-section");
+    contactSection.classList.toggle("lower-section");
+    servicesSection.classList.toggle("lower-section");
+  }, toggleDelay);
+
+  if (toggleDelay === 0) {
+    toggleDelay = 400;
+  } else {
+    toggleDelay = 0;
+  }
+
   burger.classList.toggle("cross");
   navList.classList.toggle("open");
   navList.classList.add("visible");
-  navContainer.classList.toggle("translate");
-  navImg.classList.toggle("logo-index");
-  heroText.classList.toggle("hero-text-opacity"); // svgBackground.classList.toggle("svg-opacity");
-
-  footer.classList.toggle("footer-index");
+  navContainer.classList.toggle("translate"); // navImg.classList.toggle("logo-index");
+  // heroText.classList.toggle("hero-text-opacity");
+  // footer.classList.toggle("footer-index");
 }
 
 var rightArrowsContainer = document.querySelector(".right-arrow-container");

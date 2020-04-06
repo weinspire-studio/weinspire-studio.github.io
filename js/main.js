@@ -11,11 +11,12 @@ const siteWrapper = document.querySelector("#site-wrapper");
 // const nav = document.querySelector("nav");
 const navBar = document.querySelector("#section-navbar");
 const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
-const navWhite = document.querySelector(".navigation-color-white");
+const navWhiteBack = document.querySelector(".navigation-white-back");
 // const lineElements = document.querySelectorAll(".burger div");
 // const svgArrow = document.querySelector("#footer #up-arrow");
 // const svgBackground = document.querySelector("#svg-background");
 // const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
+const navShadow = document.querySelector(".navigation-shadow");
 
 let hasScrollListener = false;
 let swiper;
@@ -104,86 +105,18 @@ function styleNavOnScroll() {
   if (scrolledY > 0) {
     console.log("aplica");
     navBar.classList.add("nav-white");
-    navWhite.classList.add("navigation-white");
+    navWhiteBack.classList.add("nav-white-back");
+    navShadow.classList.add("nav-shadow");
   } else {
     navBar.classList.remove("nav-white");
-    navWhite.classList.remove("navigation-white");
+    navWhiteBack.classList.remove("nav-white-back");
+    navShadow.classList.remove("nav-shadow");
   }
 }
-
-// const navList = document.querySelector(".nav-list");
-// const navElements = document.querySelectorAll(".nav-list li");
-// const navContainer = document.querySelector(".navigation-container");
-// const burger = document.querySelector(".burger");
-// const navWhite = document.querySelector(".navigation-color-white");
-// const nav = document.querySelector("nav");
-// const navBlack = document.querySelector(".navigation-overlay-black");
-// const navImg = document.querySelector("nav img");
-// const heroText = document.querySelector(".hero-text");
-// const footer = document.querySelector("#footer");
-// const designProjectsSection = document.querySelector(
-//   "#section-projects-design"
-// );
-// let scrolledY = 0;
-// UA sniffing
-// let isIos =
-// (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
-// (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
-// !window.MSStream;
-
-// let hasClickListener = false;
-// heroText.classList.add("test-class");
-// navBar.classList.add("test-class");
-
-//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
-// function styleMobileNav() {
-//   navList.parentNode.removeChild(navList);
-//   navContainer.appendChild(navList);
-//   // mobile burger and menu
-//   if (!hasClickListener) {
-//     burger.addEventListener("click", () => {
-//       mobileModule.toggleNavClasses();
-//       navElements.forEach((navEl, index) => {
-//         navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
-//         navEl.classList.toggle("nav-link-anim");
-//         navEl.classList.toggle("invisible");
-//       });
-//     });
-//   }
-//   hasClickListener = true;
-// }
-
-// // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
-// function toggleNavClasses() {
-//   // let scrolledY;
-//   scrolledY = siteWrapper.scrollTop;
-//   if (scrolledY > 0) {
-//     // console.log("togglea en el toggle");
-//     // navBar.classList.toggle("nav-white");
-//     navBlack.classList.toggle("navigation-black");
-//     nav.classList.toggle("nav-no-border");
-//     // navWhite.classList.toggle("navigation-white");
-//     // navBar.classList.toggle("nav-back");
-//   }
-//   if (isIos === false) {
-//     siteWrapper.classList.toggle("menu-open");
-//   } else {
-//     siteWrapper.classList.toggle("menu-open-i");
-//   }
-//   burger.classList.toggle("cross");
-//   navList.classList.toggle("open");
-//   navList.classList.add("visible");
-//   navContainer.classList.toggle("translate");
-//   navImg.classList.toggle("logo-index");
-//   heroText.classList.toggle("hero-text-opacity");
-//   // svgBackground.classList.toggle("svg-opacity");
-//   footer.classList.toggle("footer-index");
-// }
 
 export {
   siteWrapper,
   navBar,
-  navWhite,
   clientHeight,
   // designOffset
 };

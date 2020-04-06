@@ -66,6 +66,21 @@ h1, h2, h3, h4, h5 {
   position: relative;
 }
 
+.site-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease, z-index 0.5s ease;
+}
+
+.overlay-active {
+  z-index: 2;
+  opacity: 1;
+}
+
 .burger {
   height: 40px;
   width: 40px;
@@ -275,7 +290,7 @@ nav {
   position: fixed;
 }
 
-.navigation-color-white {
+.navigation-white-back {
   width: 100%;
   height: 3.25em;
   background-color: transparent;
@@ -283,11 +298,11 @@ nav {
   transition: 0.5s ease;
 }
 
-.navigation-overlay-black {
+.navigation-shadow {
   width: 100%;
   height: 3.25em;
   position: fixed;
-  transition: background-color 0.5s ease;
+  z-index: 1;
 }
 
 .open {
@@ -329,10 +344,6 @@ nav {
   background-color: #fff;
 }
 
-.nav-no-border {
-  border-bottom-color: transparent;
-}
-
 .nav-white nav a {
   color: #000;
 }
@@ -341,35 +352,17 @@ nav {
   background-color: #000;
 }
 
-.overlay {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 0;
-  opacity: 0;
-  transition: opacity 0.5s ease, z-index 0.5s ease;
+.nav-no-border {
+  border-bottom-color: transparent;
 }
 
-.overlay-active {
-  z-index: 2;
-  opacity: 1;
-}
-
-.overlay-active-i {
-  z-index: 2;
-  opacity: 1;
-}
-
-.navigation-white {
+.nav-white-back {
   background-color: #fff;
-  box-shadow: 12px 2px 8px 0px black;
   z-index: 0;
 }
 
-.navigation-black {
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.7);
+.nav-shadow {
+  box-shadow: 12px 2px 8px 0px black;
 }
 
 .translate {

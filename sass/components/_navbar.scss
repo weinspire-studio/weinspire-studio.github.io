@@ -187,7 +187,7 @@ nav {
     position: fixed;
 }
 
-.navigation-color-white {
+.navigation-white-back {
     width: 100%;
     height: 3.25em;
     background-color: transparent;
@@ -195,11 +195,13 @@ nav {
     transition: .5s ease;
 }
 
-.navigation-overlay-black {
+.navigation-shadow {
     width: 100%;
     height: 3.25em;
     position: fixed;
-    transition: background-color .5s ease;
+    // transition: background-color .5s ease;
+    // box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
+    z-index: 1;
 }
 
 // Style classes
@@ -241,12 +243,6 @@ nav {
 
 .nav-white {
     background-color: #fff;
-    // z-index: 1;
-    // box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
-}
-
-.nav-no-border {
-    border-bottom-color: transparent;
 }
 
 .nav-white nav a {
@@ -256,37 +252,24 @@ nav {
 .nav-white .burger div {
     background-color: #000;
 }
- 
-.overlay {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: $black-opacity;
-    z-index: 0;
-    opacity: 0;
-    transition: opacity .5s ease, z-index .5s ease;
+
+.nav-no-border {
+    border-bottom-color: transparent;
 }
 
-.overlay-active {
-    z-index: 2;
-    opacity: 1;
-}
-
-.overlay-active-i {
-    z-index: 2;
-    opacity: 1;
-    // overflow-y: hidden;
-}
-
-.navigation-white {
+.nav-white-back {
     background-color: #fff;
-    box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
+    // box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
     z-index: 0;
 }
 
-.navigation-black {
-    z-index: 2;
-    background-color: $black-opacity;
+// .navigation-black {
+//     z-index: 2;
+//     background-color: $black-opacity;
+// }
+
+.nav-shadow {
+    box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
 }
 
 .translate {

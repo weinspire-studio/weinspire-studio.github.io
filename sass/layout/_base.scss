@@ -39,16 +39,26 @@ h1, h2, h3, h4, h5 {
 }
 
 //Style Classes
-.menu-open {
-    // background-color: $black-opacity;
-}
-
 .menu-open-i {
-    // background-color: $black-opacity;
     overflow-y: hidden;
 }
 
 .lower-section {
     z-index: -1;
     position: relative;
+}
+
+.site-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: $black-opacity;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity .5s ease, z-index .5s ease;
+}
+
+.overlay-active {
+    z-index: 2;
+    opacity: 1;
 }
