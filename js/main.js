@@ -20,11 +20,11 @@ const navWhite = document.querySelector(".navigation-color-white");
 let hasScrollListener = false;
 let swiper;
 let clientHeight = document.body.clientHeight;
-const designProjectsSection = document.querySelector(
-  "#section-projects-design"
-);
-let designOffset = designProjectsSection.offsetTop;
-console.log(designOffset);
+// const designProjectsSection = document.querySelector(
+//   "#section-projects-design"
+// );
+// let designOffset = designProjectsSection.offsetTop;
+// console.log(designOffset);
 
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
@@ -42,7 +42,7 @@ contactModule.submitContactForm();
 // });
 
 //on pageload, executes the following code, depending on screen width.
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("DOMContentLoaded", function () {
   test();
   // mobileModule.listenToArrow();
 });
@@ -92,7 +92,7 @@ function mobileCode() {
   }
   jQueryModule.unbindImages();
   swiper = swiperModule.defineSwiper();
-  swiper.on("init", function() {
+  swiper.on("init", function () {
     swiper.params.init = true;
   });
   swiper.init();
@@ -180,7 +180,13 @@ function styleNavOnScroll() {
 //   footer.classList.toggle("footer-index");
 // }
 
-export { siteWrapper, navBar, navWhite, clientHeight, designOffset };
+export {
+  siteWrapper,
+  navBar,
+  navWhite,
+  clientHeight,
+  // designOffset
+};
 
 //
 //
@@ -295,5 +301,4 @@ export { siteWrapper, navBar, navWhite, clientHeight, designOffset };
 // 3timeout scroll listeners
 // 4jquery modules
 
-// link caption and overlay can be replaced by nth-child
 // BUG check arrows on window resize

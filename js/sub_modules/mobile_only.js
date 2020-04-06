@@ -5,10 +5,11 @@ import {
   navBar,
   navWhite,
   clientHeight,
-  designOffset
+  // designOffset,
 } from "../main.js";
 
 console.log("scroll navbar again test 8");
+const overlay = document.querySelector(".overlay");
 
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
@@ -20,9 +21,10 @@ const navImg = document.querySelector("nav img");
 const burger = document.querySelector(".burger");
 const heroText = document.querySelector(".hero-text");
 const footer = document.querySelector("#footer");
-// const designProjectsSection = document.querySelector(
-//   "#section-projects-design"
-// );
+const designProjectsSection = document.querySelector(
+  "#section-projects-design"
+);
+let designOffset = designProjectsSection.offsetTop;
 let scrolledY = 0;
 let hasClickListener = false;
 // UA sniffing
@@ -60,16 +62,19 @@ function toggleNavClasses() {
   if (scrolledY > 0) {
     // console.log("togglea en el toggle");
     navBar.classList.toggle("nav-white");
-    navBlack.classList.toggle("navigation-black");
-    nav.classList.toggle("nav-no-border");
-    navWhite.classList.toggle("navigation-white");
-    navBar.classList.toggle("nav-back");
+    // navBlack.classList.toggle("navigation-black");
+    // nav.classList.toggle("nav-no-border");
+    // navWhite.classList.toggle("lower-navigation-white");
   }
   if (isIos === false) {
     siteWrapper.classList.toggle("menu-open");
   } else {
     siteWrapper.classList.toggle("menu-open-i");
   }
+  overlay.classList.toggle("overlay-active");
+  // designProjectsSection.classList.toggle("lower-design-projects");
+  // overlay.style.zIndex = 10;
+  // overlay.style.opacity = 1;
   burger.classList.toggle("cross");
   navList.classList.toggle("open");
   navList.classList.add("visible");
@@ -82,21 +87,7 @@ function toggleNavClasses() {
 
 const rightArrowsContainer = document.querySelector(".right-arrow-container");
 const rightArrows = document.querySelectorAll(".right-arrow-container svg");
-const list = document.querySelector(".swiper-wrapper");
-// let trigger = 700 + clientHeight;
-// console.log(designOffset);
-// window.addEventListener("DOMContentLoaded", listenToArrow);
-
 const swiperPagination = document.querySelector(".swiper-pagination");
-function asd() {
-  // console.log(swiperPagination.firstChild);
-  // console.log(swiperPagination.childNodes);
-  // console.log(swiperPagination);
-  // swiperPagination.firstChild.style.backgroundColor = "red!important";
-  // swiperPagination.lastChild.classList.add("dot-5");
-}
-
-window.addEventListener("load", asd);
 
 modifySwiperForIos();
 
@@ -111,21 +102,21 @@ function showRightArrows() {
   scrolledY = siteWrapper.scrollTop;
   let trigger = designOffset - clientHeight + 100;
   if (scrolledY > trigger) {
-    rightArrows.forEach(arrow => arrow.classList.add("arrow-wave"));
+    rightArrows.forEach((arrow) => arrow.classList.add("arrow-wave"));
     rightArrows[0].style.animationDelay = "250ms";
     rightArrows[1].style.animationDelay = "125ms";
-    setTimeout(function() {
-      rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-      rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
+    setTimeout(function () {
+      rightArrows.forEach((arrow) => arrow.classList.remove("arrow-wave"));
+      rightArrows.forEach((arrow) => arrow.classList.add("arrow-slide"));
     }, 5000);
   } else {
-    rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
+    rightArrows.forEach((arrow) => arrow.classList.remove("arrow-wave"));
   }
 }
 
 function slideRightArrows() {
-  rightArrows.forEach(arrow => arrow.classList.remove("arrow-wave"));
-  rightArrows.forEach(arrow => arrow.classList.add("arrow-slide"));
+  rightArrows.forEach((arrow) => arrow.classList.remove("arrow-wave"));
+  rightArrows.forEach((arrow) => arrow.classList.add("arrow-slide"));
   siteWrapper.removeEventListener("scroll", showRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
@@ -151,6 +142,6 @@ export {
   navContainer,
   navBlack,
   styleMobileNav,
-  toggleNavClasses
+  toggleNavClasses,
   // listenToArrow
 };

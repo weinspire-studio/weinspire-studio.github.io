@@ -136,8 +136,6 @@
     }
 }
 
-.link
-
 .swiper-container {
     height: 450px;
     z-index: 0!important;
@@ -211,8 +209,7 @@
     -moz-animation: 500ms arrow-slide-anim ease forwards;
     -o-animation: 500ms arrow-slide-anim ease forwards;
     animation: 500ms arrow-slide-anim ease forwards;
-    opacity: 1!important;
-    // aca va cero TODO
+    opacity: 0!important;
 }
 
 @-webkit-keyframes arrow-wave-anim {

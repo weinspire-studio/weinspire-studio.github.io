@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.designOffset = exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
+exports.clientHeight = exports.navWhite = exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -38,12 +38,13 @@ var navWhite = document.querySelector(".navigation-color-white"); // const lineE
 exports.navWhite = navWhite;
 var hasScrollListener = false;
 var swiper;
-var clientHeight = document.body.clientHeight;
+var clientHeight = document.body.clientHeight; // const designProjectsSection = document.querySelector(
+//   "#section-projects-design"
+// );
+// let designOffset = designProjectsSection.offsetTop;
+// console.log(designOffset);
+
 exports.clientHeight = clientHeight;
-var designProjectsSection = document.querySelector("#section-projects-design");
-var designOffset = designProjectsSection.offsetTop;
-exports.designOffset = designOffset;
-console.log(designOffset);
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //
@@ -190,109 +191,6 @@ function styleNavOnScroll() {
 //   // svgBackground.classList.toggle("svg-opacity");
 //   footer.classList.toggle("footer-index");
 // }
-//
-//
-// -----------------
-// $("#section-projects-design ul").slick({
-//   slide: "li"
-// });
-// $("#section-projects-design ul").slick({
-//   autoplay: true,
-//   autoplaySpeed: 2000,
-//   fade: true,
-//   arrows: false
-// });
-// Plain JS way (projects-design).
-// const list = document.querySelectorAll("#section-projects-design li");
-// // console.log(list);
-// list.forEach(l => {
-//   l.addEventListener("mouseover", expand);
-//   l.addEventListener("mouseleave", contract);
-// });
-// list[0].addEventListener("mouseover", () => {
-//   console.log("expandedasd");
-// });
-// function expand() {
-//   if (this.nextElementSibling !== null) {
-//     this.classList.remove("contracted");
-//     this.classList.add("expanded");
-//     this.lastElementChild.classList.add("show-caption");
-//     let siblings = getAllSiblings(this, this.parentElement);
-//     siblings.forEach(el => {
-//       el.classList.remove("expanded");
-//       el.classList.add("contracted");
-//     });
-//   }
-// }
-// function contract() {
-//   this.classList.remove("expanded");
-//   this.lastElementChild.classList.remove("show-caption");
-//   let siblings = getAllSiblings(this, this.parentElement);
-//   siblings.forEach(el => {
-//     el.classList.remove("contracted");
-//   });
-// }
-// function getAllSiblings(element, parent) {
-//   const children = [...parent.children];
-//   children.length = 5;
-//   return children.filter(child => child !== element);
-// }
-//// /////////// /////
-// changes the href of a navLink depending on whether the site is in home or in another page.
-// const anchorHome = document.querySelector(".nav-home");
-// const anchorContact = document.querySelector(".nav-contact");
-// console.log(anchorHome);
-// console.log(window.location.href);
-// console.log(anchorHome.href);
-// if (
-//   window.location.href === "https://weinspire-studio.github.io/home" ||
-//   window.location.href === "https://weinspire-studio.github.io/home/"
-// ) {
-//   anchorHome.href = "/home/#home";
-//   console.log("home");
-// }
-// function styleDesktopNav() {
-// let scro = siteWrapper.scrollHeight;
-// console.log("height" + scro);
-// console.log(window.innerHeight);
-// let scrolledY = siteWrapper.scrollTop;
-// console.log(scrolledY);
-// }
-// TODO:
-// shadows
-// Logos and svg background (bottom on mobile)
-// when navbar mobile opens, click everywhere to close it.
-// see navbar classes on burger click (specially on iphone)
-// social network in navbar?
-// navbar mobile open bug (z-index) DONE
-// bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
-// burger ontap mobile! (see iphone, selection square)
-// accesibility svg titles - svg sprite
-// inline svg catched?! see css tricks tutorial
-// page loader!!
-// dynamic text! See youtube programming video!!
-// bugs: button focus blue (in chrome),
-// green inputs after submit DONE
-// in projects-design: if image stretches more than image witdh: repeat: round or size cover
-// lazy - loading!
-//download swipper only on mobile? conditional script
-// caption background color switched (projects-design)
-// on select input from contact form BUG! iphone extra swipe
-// es modules! bundles!
-// svg grunt!
-// transpilation, es6 sourcemap
-// source map debuggin? just for dev!
-// babel vs babelify? Modules? jquery modules? swiper?
-// content link ?
-// mousedown touch start?
-//auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
-// bug in height 100% on iphone? check on the net (maybe min height in pixels?)
-// 1navbar shadow
-// 2zoom when tab on input
-// 3timeout scroll listeners
-// 4jquery modules
-// link caption and overlay can be replaced by nth-child
-// BUG check arrows on window resize
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6}],2:[function(require,module,exports){
 "use strict";
@@ -594,6 +492,7 @@ var _main = require("../main.js");
 
 // jshint esversion: 6
 console.log("scroll navbar again test 8");
+var overlay = document.querySelector(".overlay");
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
@@ -608,10 +507,9 @@ exports.navBlack = navBlack;
 var navImg = document.querySelector("nav img");
 var burger = document.querySelector(".burger");
 var heroText = document.querySelector(".hero-text");
-var footer = document.querySelector("#footer"); // const designProjectsSection = document.querySelector(
-//   "#section-projects-design"
-// );
-
+var footer = document.querySelector("#footer");
+var designProjectsSection = document.querySelector("#section-projects-design");
+var designOffset = designProjectsSection.offsetTop;
 var scrolledY = 0;
 var hasClickListener = false; // UA sniffing
 
@@ -645,14 +543,10 @@ function toggleNavClasses() {
 
   if (scrolledY > 0) {
     // console.log("togglea en el toggle");
-    _main.navBar.classList.toggle("nav-white");
+    _main.navBar.classList.toggle("nav-white"); // navBlack.classList.toggle("navigation-black");
+    // nav.classList.toggle("nav-no-border");
+    // navWhite.classList.toggle("lower-navigation-white");
 
-    navBlack.classList.toggle("navigation-black");
-    nav.classList.toggle("nav-no-border");
-
-    _main.navWhite.classList.toggle("navigation-white");
-
-    _main.navBar.classList.toggle("nav-back");
   }
 
   if (isIos === false) {
@@ -660,6 +554,10 @@ function toggleNavClasses() {
   } else {
     _main.siteWrapper.classList.toggle("menu-open-i");
   }
+
+  overlay.classList.toggle("overlay-active"); // designProjectsSection.classList.toggle("lower-design-projects");
+  // overlay.style.zIndex = 10;
+  // overlay.style.opacity = 1;
 
   burger.classList.toggle("cross");
   navList.classList.toggle("open");
@@ -673,20 +571,7 @@ function toggleNavClasses() {
 
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
-var list = document.querySelector(".swiper-wrapper"); // let trigger = 700 + clientHeight;
-// console.log(designOffset);
-// window.addEventListener("DOMContentLoaded", listenToArrow);
-
 var swiperPagination = document.querySelector(".swiper-pagination");
-
-function asd() {// console.log(swiperPagination.firstChild);
-  // console.log(swiperPagination.childNodes);
-  // console.log(swiperPagination);
-  // swiperPagination.firstChild.style.backgroundColor = "red!important";
-  // swiperPagination.lastChild.classList.add("dot-5");
-}
-
-window.addEventListener("load", asd);
 modifySwiperForIos();
 
 function listenToArrow() {
@@ -699,7 +584,7 @@ function listenToArrow() {
 function showRightArrows() {
   console.log("listeneeer");
   scrolledY = _main.siteWrapper.scrollTop;
-  var trigger = _main.designOffset - _main.clientHeight + 100;
+  var trigger = designOffset - _main.clientHeight + 100;
 
   if (scrolledY > trigger) {
     rightArrows.forEach(function (arrow) {
