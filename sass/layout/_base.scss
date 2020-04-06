@@ -47,3 +47,8 @@ h1, h2, h3, h4, h5 {
     // background-color: $black-opacity;
     overflow-y: hidden;
 }
+
+.lower-section {
+    z-index: -1;
+    position: relative;
+}

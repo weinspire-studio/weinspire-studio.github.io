@@ -75,15 +75,9 @@ function toggleNavClasses() {
     overlay.classList.toggle("overlay-active");
     siteWrapper.classList.toggle("menu-open-i");
   }
-  designProjectsSection.classList.toggle("lower-design-projects");
-  contactSection.style.position = "relative";
-  contactSection.style.zIndex = "-1";
-  servicesSection.style.position = "relative";
-  servicesSection.style.zIndex = "-1";
-
-  // overlay.classList.toggle("overlay-active");
-  // overlay.style.zIndex = 10;
-  // overlay.style.opacity = 1;
+  designProjectsSection.classList.toggle("lower-section");
+  contactSection.classList.toggle("lower-section");
+  servicesSection.classList.toggle("lower-section");
   burger.classList.toggle("cross");
   navList.classList.toggle("open");
   navList.classList.add("visible");
