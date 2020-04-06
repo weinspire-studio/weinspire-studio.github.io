@@ -550,12 +550,14 @@ function toggleNavClasses() {
   }
 
   if (isIos === false) {
-    _main.siteWrapper.classList.toggle("menu-open");
+    // siteWrapper.classList.toggle("menu-open");
+    overlay.classList.toggle("overlay-active");
   } else {
-    _main.siteWrapper.classList.toggle("menu-open-i");
+    // siteWrapper.classList.toggle("menu-open-i");
+    overlay.classList.toggle("overlay-active-i");
   }
 
-  overlay.classList.toggle("overlay-active"); // designProjectsSection.classList.toggle("lower-design-projects");
+  designProjectsSection.classList.toggle("lower-design-projects"); // overlay.classList.toggle("overlay-active");
   // overlay.style.zIndex = 10;
   // overlay.style.opacity = 1;
 

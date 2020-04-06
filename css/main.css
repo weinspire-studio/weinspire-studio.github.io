@@ -347,6 +347,12 @@ nav {
   opacity: 1;
 }
 
+.overlay-active-i {
+  z-index: 2;
+  opacity: 1;
+  overflow-y: hidden;
+}
+
 .navigation-white {
   background-color: #fff;
   box-shadow: 12px 2px 8px 0px black;
