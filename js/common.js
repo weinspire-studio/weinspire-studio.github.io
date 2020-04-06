@@ -6,7 +6,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.clientHeight = exports.navBar = exports.siteWrapper = void 0;
+exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -37,14 +37,13 @@ var navWhiteBack = document.querySelector(".navigation-white-back"); // const li
 
 var navShadow = document.querySelector(".navigation-shadow");
 var hasScrollListener = false;
-var swiper;
-var clientHeight = document.body.clientHeight; // const designProjectsSection = document.querySelector(
+var swiper; // let clientHeight = document.body.clientHeight;
+// const designProjectsSection = document.querySelector(
 //   "#section-projects-design"
 // );
 // let designOffset = designProjectsSection.offsetTop;
 // console.log(designOffset);
 
-exports.clientHeight = clientHeight;
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm(); //
@@ -429,6 +428,8 @@ exports.navContainer = exports.navElements = exports.navList = exports.nav = voi
 var _main = require("../main.js");
 
 // jshint esversion: 6
+var clientHeight = document.body.clientHeight;
+console.log(clientHeight);
 console.log("scroll navbar again test 8");
 var overlay = document.querySelector(".site-overlay");
 var servicesSection = document.querySelector("#section-services");
@@ -527,7 +528,7 @@ function listenToArrow() {
 function showRightArrows() {
   console.log("listeneeer");
   scrolledY = _main.siteWrapper.scrollTop;
-  var trigger = designOffset - _main.clientHeight + 100;
+  var trigger = designOffset - clientHeight + 100;
 
   if (scrolledY > trigger) {
     rightArrows.forEach(function (arrow) {

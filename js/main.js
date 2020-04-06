@@ -20,7 +20,7 @@ const navShadow = document.querySelector(".navigation-shadow");
 
 let hasScrollListener = false;
 let swiper;
-let clientHeight = document.body.clientHeight;
+// let clientHeight = document.body.clientHeight;
 // const designProjectsSection = document.querySelector(
 //   "#section-projects-design"
 // );
@@ -117,7 +117,7 @@ function styleNavOnScroll() {
 export {
   siteWrapper,
   navBar,
-  clientHeight,
+  // clientHeight,
   // designOffset
 };
 

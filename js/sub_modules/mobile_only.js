@@ -3,10 +3,13 @@
 import {
   siteWrapper,
   navBar,
-  clientHeight,
+  // clientHeight,
   // navWhite,
   // designOffset,
 } from "../main.js";
+
+let clientHeight = document.body.clientHeight;
+console.log(clientHeight);
 
 console.log("scroll navbar again test 8");
 const overlay = document.querySelector(".site-overlay");
