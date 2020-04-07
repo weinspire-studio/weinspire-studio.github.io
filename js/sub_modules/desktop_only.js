@@ -6,7 +6,7 @@ import {
   navList,
   navElements,
   navContainer,
-  toggleNavClasses
+  toggleNavClasses,
 } from "./mobile_only.js";
 
 const navAnchors = document.querySelectorAll(".nav-list a");
@@ -15,8 +15,8 @@ let hasHoverListener = false;
 // animation effect (underline) for desktop nav anchors.
 function styleAnchorOnHover() {
   if (!hasHoverListener) {
-    navAnchors.forEach(anchor => {
-      anchor.addEventListener("mouseover", function() {
+    navAnchors.forEach((anchor) => {
+      anchor.addEventListener("mouseover", function () {
         let scrolledY = siteWrapper.scrollTop;
         if (scrolledY === 0) {
           anchor.classList.remove("anchor-white");
@@ -28,7 +28,7 @@ function styleAnchorOnHover() {
           anchor.classList.remove("underline-white");
         }
         let property = {
-          selector: "width"
+          selector: "width",
         };
         // property.selector = "width";
         property.value = `${(anchor.offsetWidth + 5) / 2}` + `px`;
@@ -45,9 +45,9 @@ function restoreDesktopNav() {
     navContainer.removeChild(navList);
     nav.appendChild(navList);
   }
-  if (siteWrapper.classList.contains("menu-open")) {
+  if (navContainer.classList.contains("translate")) {
     toggleNavClasses();
-    navElements.forEach(navEl => {
+    navElements.forEach((navEl) => {
       navEl.style.animationDelay = "";
       navEl.classList.remove("nav-link-anim");
       navEl.classList.remove("invisible");

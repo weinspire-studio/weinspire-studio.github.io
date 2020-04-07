@@ -12,7 +12,7 @@ let clientHeight = document.body.clientHeight;
 console.log(clientHeight);
 
 console.log("scroll navbar again test 8");
-const overlay = document.querySelector(".site-overlay");
+const siteOverlay = document.querySelector(".site-overlay");
 const servicesSection = document.querySelector("#section-services");
 const contactSection = document.querySelector("#section-contact");
 const designProjectsSection = document.querySelector(
@@ -64,9 +64,9 @@ function toggleNavClasses() {
     nav.classList.toggle("nav-no-border");
   }
   if (isIos === false) {
-    overlay.classList.toggle("overlay-active");
+    siteOverlay.classList.toggle("overlay-active");
   } else {
-    overlay.classList.toggle("overlay-active");
+    siteOverlay.classList.toggle("overlay-active");
     siteWrapper.classList.toggle("menu-open-i");
   }
 

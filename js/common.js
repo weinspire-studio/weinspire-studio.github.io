@@ -350,7 +350,7 @@ function restoreDesktopNav() {
     _mobile_only.nav.appendChild(_mobile_only.navList);
   }
 
-  if (_main.siteWrapper.classList.contains("menu-open")) {
+  if (_mobile_only.navContainer.classList.contains("translate")) {
     (0, _mobile_only.toggleNavClasses)();
 
     _mobile_only.navElements.forEach(function (navEl) {
@@ -431,7 +431,7 @@ var _main = require("../main.js");
 var clientHeight = document.body.clientHeight;
 console.log(clientHeight);
 console.log("scroll navbar again test 8");
-var overlay = document.querySelector(".site-overlay");
+var siteOverlay = document.querySelector(".site-overlay");
 var servicesSection = document.querySelector("#section-services");
 var contactSection = document.querySelector("#section-contact");
 var designProjectsSection = document.querySelector("#section-projects-design");
@@ -486,9 +486,9 @@ function toggleNavClasses() {
   }
 
   if (isIos === false) {
-    overlay.classList.toggle("overlay-active");
+    siteOverlay.classList.toggle("overlay-active");
   } else {
-    overlay.classList.toggle("overlay-active");
+    siteOverlay.classList.toggle("overlay-active");
 
     _main.siteWrapper.classList.toggle("menu-open-i");
   }
