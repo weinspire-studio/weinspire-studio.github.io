@@ -6,6 +6,8 @@ import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
 import * as contactModule from "./sub_modules/contact";
 
+import debounce from "lodash/debounce";
+
 //VARIABLES
 const siteWrapper = document.querySelector("#site-wrapper");
 // const nav = document.querySelector("nav");
@@ -30,24 +32,11 @@ let swiper;
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
-//
-//
-
-// navBar.style.backgroundColor = "blue";
-
-// navBar.classList.add("test-class");
-
-// window.addEventListener("load", function() {
-//   navBar.classList.add("nav-white");
-//   console.log("asddd");
-// });
 
 //on pageload, executes the following code, depending on screen width.
-window.addEventListener("DOMContentLoaded", function () {
-  test();
-  // mobileModule.listenToArrow();
-});
-// window.addEventListener("DOMContentLoaded", mobileModule.listenToArrow);
+// window.addEventListener("DOMContentLoaded", function () {
+test();
+// });
 
 function test() {
   if (notMobileScreenMQ.matches) {
@@ -69,15 +58,18 @@ notMobileScreenMQ.addListener(() => {
 //FUNCTIONS
 //code that executes only in desktop and large tablets screens (> 801px).
 function desktopCode() {
+  styleNavOnScroll();
+  desktopModule.styleAnchorOnHover();
+  jQueryModule.animateImages();
   if (!hasScrollListener) {
-    siteWrapper.addEventListener("scroll", styleNavOnScroll);
+    siteWrapper.addEventListener(
+      "scroll",
+      debounce(styleNavOnScroll, 200, { leading: true, trailing: true })
+    );
     hasScrollListener = true;
   } else {
     desktopModule.restoreDesktopNav();
   }
-  styleNavOnScroll();
-  desktopModule.styleAnchorOnHover();
-  jQueryModule.animateImages();
   if (swiper && swiper.params.init === true) {
     swiper.destroy();
   }
@@ -87,11 +79,16 @@ function desktopCode() {
 function mobileCode() {
   styleNavOnScroll();
   mobileModule.styleMobileNav();
+  mobileModule.modifySwiperForIos();
+  mobileModule.listenToArrow();
+  jQueryModule.unbindImages();
   if (!hasScrollListener) {
-    siteWrapper.addEventListener("scroll", styleNavOnScroll);
+    siteWrapper.addEventListener(
+      "scroll",
+      debounce(styleNavOnScroll, 200, { leading: true, trailing: true })
+    );
     hasScrollListener = true;
   }
-  jQueryModule.unbindImages();
   swiper = swiperModule.defineSwiper();
   swiper.on("init", function () {
     swiper.params.init = true;
@@ -103,7 +100,6 @@ function mobileCode() {
 function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
   if (scrolledY > 0) {
-    console.log("aplica");
     navBar.classList.add("nav-white");
     navWhiteBack.classList.add("nav-white-back");
     navShadow.classList.add("nav-shadow");
@@ -114,12 +110,7 @@ function styleNavOnScroll() {
   }
 }
 
-export {
-  siteWrapper,
-  navBar,
-  // clientHeight,
-  // designOffset
-};
+export { siteWrapper, navBar, debounce };
 
 //
 //
@@ -229,8 +220,11 @@ export {
 // mousedown touch start?
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
 // bug in height 100% on iphone? check on the net (maybe min height in pixels?) (caption due to img from unsplash)
-// 2zoom when tab on input
 // 3timeout scroll listeners
 // 4jquery modules
 
-// BUG check arrows on window resize
+// clear timeout
+//main load or DOMloaded event listener?
+
+// test right arrows listener on android
+//

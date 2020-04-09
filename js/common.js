@@ -6,6 +6,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+Object.defineProperty(exports, "debounce", {
+  enumerable: true,
+  get: function get() {
+    return _debounce["default"];
+  }
+});
 exports.navBar = exports.siteWrapper = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
@@ -17,6 +23,10 @@ var swiperModule = _interopRequireWildcard(require("./sub_modules/swiper"));
 var jQueryModule = _interopRequireWildcard(require("./sub_modules/jquery"));
 
 var contactModule = _interopRequireWildcard(require("./sub_modules/contact"));
+
+var _debounce = _interopRequireDefault(require("lodash/debounce"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
@@ -46,19 +56,10 @@ var swiper; // let clientHeight = document.body.clientHeight;
 
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
-contactModule.submitContactForm(); //
-//
-// navBar.style.backgroundColor = "blue";
-// navBar.classList.add("test-class");
-// window.addEventListener("load", function() {
-//   navBar.classList.add("nav-white");
-//   console.log("asddd");
-// });
-//on pageload, executes the following code, depending on screen width.
+contactModule.submitContactForm(); //on pageload, executes the following code, depending on screen width.
+// window.addEventListener("DOMContentLoaded", function () {
 
-window.addEventListener("DOMContentLoaded", function () {
-  test(); // mobileModule.listenToArrow();
-}); // window.addEventListener("DOMContentLoaded", mobileModule.listenToArrow);
+test(); // });
 
 function test() {
   if (notMobileScreenMQ.matches) {
@@ -79,16 +80,19 @@ notMobileScreenMQ.addListener(function () {
 //code that executes only in desktop and large tablets screens (> 801px).
 
 function desktopCode() {
+  styleNavOnScroll();
+  desktopModule.styleAnchorOnHover();
+  jQueryModule.animateImages();
+
   if (!hasScrollListener) {
-    siteWrapper.addEventListener("scroll", styleNavOnScroll);
+    siteWrapper.addEventListener("scroll", (0, _debounce["default"])(styleNavOnScroll, 200, {
+      leading: true,
+      trailing: true
+    }));
     hasScrollListener = true;
   } else {
     desktopModule.restoreDesktopNav();
   }
-
-  styleNavOnScroll();
-  desktopModule.styleAnchorOnHover();
-  jQueryModule.animateImages();
 
   if (swiper && swiper.params.init === true) {
     swiper.destroy();
@@ -99,13 +103,18 @@ function desktopCode() {
 function mobileCode() {
   styleNavOnScroll();
   mobileModule.styleMobileNav();
+  mobileModule.modifySwiperForIos();
+  mobileModule.listenToArrow();
+  jQueryModule.unbindImages();
 
   if (!hasScrollListener) {
-    siteWrapper.addEventListener("scroll", styleNavOnScroll);
+    siteWrapper.addEventListener("scroll", (0, _debounce["default"])(styleNavOnScroll, 200, {
+      leading: true,
+      trailing: true
+    }));
     hasScrollListener = true;
   }
 
-  jQueryModule.unbindImages();
   swiper = swiperModule.defineSwiper();
   swiper.on("init", function () {
     swiper.params.init = true;
@@ -118,7 +127,6 @@ function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
-    console.log("aplica");
     navBar.classList.add("nav-white");
     navWhiteBack.classList.add("nav-white-back");
     navShadow.classList.add("nav-shadow");
@@ -127,9 +135,111 @@ function styleNavOnScroll() {
     navWhiteBack.classList.remove("nav-white-back");
     navShadow.classList.remove("nav-shadow");
   }
-}
+} //
+//
+// -----------------
+// $("#section-projects-design ul").slick({
+//   slide: "li"
+// });
+// $("#section-projects-design ul").slick({
+//   autoplay: true,
+//   autoplaySpeed: 2000,
+//   fade: true,
+//   arrows: false
+// });
+// Plain JS way (projects-design).
+// const list = document.querySelectorAll("#section-projects-design li");
+// // console.log(list);
+// list.forEach(l => {
+//   l.addEventListener("mouseover", expand);
+//   l.addEventListener("mouseleave", contract);
+// });
+// list[0].addEventListener("mouseover", () => {
+//   console.log("expandedasd");
+// });
+// function expand() {
+//   if (this.nextElementSibling !== null) {
+//     this.classList.remove("contracted");
+//     this.classList.add("expanded");
+//     this.lastElementChild.classList.add("show-caption");
+//     let siblings = getAllSiblings(this, this.parentElement);
+//     siblings.forEach(el => {
+//       el.classList.remove("expanded");
+//       el.classList.add("contracted");
+//     });
+//   }
+// }
+// function contract() {
+//   this.classList.remove("expanded");
+//   this.lastElementChild.classList.remove("show-caption");
+//   let siblings = getAllSiblings(this, this.parentElement);
+//   siblings.forEach(el => {
+//     el.classList.remove("contracted");
+//   });
+// }
+// function getAllSiblings(element, parent) {
+//   const children = [...parent.children];
+//   children.length = 5;
+//   return children.filter(child => child !== element);
+// }
+//// /////////// /////
+// changes the href of a navLink depending on whether the site is in home or in another page.
+// const anchorHome = document.querySelector(".nav-home");
+// const anchorContact = document.querySelector(".nav-contact");
+// console.log(anchorHome);
+// console.log(window.location.href);
+// console.log(anchorHome.href);
+// if (
+//   window.location.href === "https://weinspire-studio.github.io/home" ||
+//   window.location.href === "https://weinspire-studio.github.io/home/"
+// ) {
+//   anchorHome.href = "/home/#home";
+//   console.log("home");
+// }
+// function styleDesktopNav() {
+// let scro = siteWrapper.scrollHeight;
+// console.log("height" + scro);
+// console.log(window.innerHeight);
+// let scrolledY = siteWrapper.scrollTop;
+// console.log(scrolledY);
+// }
+// TODO:
+// shadows
+// Logos and svg background (bottom on mobile)
+// when navbar mobile opens, click everywhere to close it.
+// see navbar classes on burger click (specially on iphone)
+// social network in navbar?
+// navbar mobile open bug (z-index) DONE
+// bug in navbar when page reloads in desktop? (see nav-white and nav-no-border classes) DONE
+// burger ontap mobile! (see iphone, selection square)
+// accesibility svg titles - svg sprite
+// inline svg catched?! see css tricks tutorial
+// page loader!!
+// dynamic text! See youtube programming video!!
+// bugs: button focus blue (in chrome),
+// green inputs after submit DONE
+// in projects-design: if image stretches more than image witdh: repeat: round or size cover
+// lazy - loading!
+//download swipper only on mobile? conditional script
+// caption background color switched (projects-design)
+// on select input from contact form BUG! iphone extra swipe
+// es modules! bundles!
+// svg grunt!
+// transpilation, es6 sourcemap
+// source map debuggin? just for dev!
+// babel vs babelify? Modules? jquery modules? swiper?
+// content link ?
+// mousedown touch start?
+//auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
+// bug in height 100% on iphone? check on the net (maybe min height in pixels?) (caption due to img from unsplash)
+// 3timeout scroll listeners
+// 4jquery modules
+// clear timeout
+//main load or DOMloaded event listener?
+// test right arrows listener on android
+//
 
-},{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6}],2:[function(require,module,exports){
+},{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6,"lodash/debounce":17}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -423,14 +533,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
+exports.modifySwiperForIos = modifySwiperForIos;
+exports.listenToArrow = listenToArrow;
 exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-var clientHeight = document.body.clientHeight;
-console.log(clientHeight);
-console.log("scroll navbar again test 8");
+// console.log("scroll navbar again test 8");
 var siteOverlay = document.querySelector(".site-overlay");
 var servicesSection = document.querySelector("#section-services");
 var contactSection = document.querySelector("#section-contact");
@@ -449,10 +559,15 @@ var burger = document.querySelector(".burger"); // const navImg = document.query
 // const navBlack = document.querySelector(".navigation-overlay-black");
 // const footer = document.querySelector("#footer");
 
+var rightArrowsContainer = document.querySelector(".right-arrow-container");
+var rightArrows = document.querySelectorAll(".right-arrow-container svg");
+var swiperPagination = document.querySelector(".swiper-pagination");
 var designOffset = designProjectsSection.offsetTop;
+var clientHeight = document.body.clientHeight;
 var scrolledY = 0;
 var toggleDelay = 0;
-var hasClickListener = false; // UA sniffing
+var hasClickListener = false;
+var debouncedRightArrows; // UA sniffing
 
 var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
@@ -476,7 +591,6 @@ function styleMobileNav() {
 
 
 function toggleNavClasses() {
-  // let scrolledY;
   scrolledY = _main.siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
@@ -511,45 +625,44 @@ function toggleNavClasses() {
   navContainer.classList.toggle("translate"); // navImg.classList.toggle("logo-index");
   // heroText.classList.toggle("hero-text-opacity");
   // footer.classList.toggle("footer-index");
-}
+} // adds a listener to rightArrowsContainer that triggers the animation.
 
-var rightArrowsContainer = document.querySelector(".right-arrow-container");
-var rightArrows = document.querySelectorAll(".right-arrow-container svg");
-var swiperPagination = document.querySelector(".swiper-pagination");
-modifySwiperForIos();
 
 function listenToArrow() {
-  _main.siteWrapper.addEventListener("scroll", showRightArrows);
+  if (!isIos) {
+    debouncedRightArrows = (0, _main.debounce)(showRightArrows, 200, {
+      leading: true,
+      trailing: true
+    });
 
-  rightArrowsContainer.addEventListener("click", slideRightArrows);
-  rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
-}
+    _main.siteWrapper.addEventListener("scroll", debouncedRightArrows);
+
+    rightArrowsContainer.addEventListener("click", slideRightArrows);
+    rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
+  }
+} // shows arrows when passing through threshold.
+
 
 function showRightArrows() {
-  console.log("listeneeer");
   scrolledY = _main.siteWrapper.scrollTop;
-  var trigger = designOffset - clientHeight + 100;
+  var threshold = designOffset - clientHeight + 100;
 
-  if (scrolledY > trigger) {
+  if (scrolledY > threshold) {
     rightArrows.forEach(function (arrow) {
       return arrow.classList.add("arrow-wave");
     });
     rightArrows[0].style.animationDelay = "250ms";
     rightArrows[1].style.animationDelay = "125ms";
     setTimeout(function () {
-      rightArrows.forEach(function (arrow) {
-        return arrow.classList.remove("arrow-wave");
-      });
-      rightArrows.forEach(function (arrow) {
-        return arrow.classList.add("arrow-slide");
-      });
+      slideRightArrows();
     }, 5000);
   } else {
     rightArrows.forEach(function (arrow) {
       return arrow.classList.remove("arrow-wave");
     });
   }
-}
+} // adds animation to arrow and removes listeners.
+
 
 function slideRightArrows() {
   rightArrows.forEach(function (arrow) {
@@ -559,12 +672,11 @@ function slideRightArrows() {
     return arrow.classList.add("arrow-slide");
   });
 
-  _main.siteWrapper.removeEventListener("scroll", showRightArrows);
+  _main.siteWrapper.removeEventListener("scroll", debouncedRightArrows);
 
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
-  rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
-  window.removeEventListener("DOMContentLoaded", listenToArrow);
-} // const swiperPagination = document.querySelector(".swiper-pagination");
+  rightArrowsContainer.removeEventListener("touchmove", slideRightArrows); // window.removeEventListener("DOMContentLoaded", listenToArrow);
+} // styles Swiper (arrows and pagination) depending on mobile OS
 
 
 function modifySwiperForIos() {
@@ -5191,7 +5303,7 @@ if (typeof Swiper.use === 'undefined') {
 
 Swiper.use(components);
 
-},{"dom7/dist/dom7.modular":10,"ssr-window":11}],9:[function(require,module,exports){
+},{"dom7/dist/dom7.modular":10,"ssr-window":23}],9:[function(require,module,exports){
 'use strict'; // For more information about browser field, check out the browser field at https://github.com/substack/browserify-handbook#browser-field.
 
 var styleElementsInsertedAtTop = [];
@@ -7154,7 +7266,561 @@ function scroll() {
   return eventShortcut.bind(this).apply(void 0, ['scroll'].concat(args));
 }
 
-},{"ssr-window":11}],11:[function(require,module,exports){
+},{"ssr-window":23}],11:[function(require,module,exports){
+"use strict";
+
+var root = require('./_root');
+/** Built-in value references. */
+
+
+var _Symbol = root.Symbol;
+module.exports = _Symbol;
+
+},{"./_root":16}],12:[function(require,module,exports){
+"use strict";
+
+var _Symbol = require('./_Symbol'),
+    getRawTag = require('./_getRawTag'),
+    objectToString = require('./_objectToString');
+/** `Object#toString` result references. */
+
+
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+/** Built-in value references. */
+
+var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+
+  return symToStringTag && symToStringTag in Object(value) ? getRawTag(value) : objectToString(value);
+}
+
+module.exports = baseGetTag;
+
+},{"./_Symbol":11,"./_getRawTag":14,"./_objectToString":15}],13:[function(require,module,exports){
+(function (global){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = (typeof global === "undefined" ? "undefined" : _typeof(global)) == 'object' && global && global.Object === Object && global;
+module.exports = freeGlobal;
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],14:[function(require,module,exports){
+"use strict";
+
+var _Symbol = require('./_Symbol');
+/** Used for built-in method references. */
+
+
+var objectProto = Object.prototype;
+/** Used to check objects for own properties. */
+
+var hasOwnProperty = objectProto.hasOwnProperty;
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+
+var nativeObjectToString = objectProto.toString;
+/** Built-in value references. */
+
+var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+
+  return result;
+}
+
+module.exports = getRawTag;
+
+},{"./_Symbol":11}],15:[function(require,module,exports){
+"use strict";
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+
+var nativeObjectToString = objectProto.toString;
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+module.exports = objectToString;
+
+},{}],16:[function(require,module,exports){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var freeGlobal = require('./_freeGlobal');
+/** Detect free variable `self`. */
+
+
+var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof(self)) == 'object' && self && self.Object === Object && self;
+/** Used as a reference to the global object. */
+
+var root = freeGlobal || freeSelf || Function('return this')();
+module.exports = root;
+
+},{"./_freeGlobal":13}],17:[function(require,module,exports){
+"use strict";
+
+var isObject = require('./isObject'),
+    now = require('./now'),
+    toNumber = require('./toNumber');
+/** Error message constants. */
+
+
+var FUNC_ERROR_TEXT = 'Expected a function';
+/* Built-in method references for those with the same name as other `lodash` methods. */
+
+var nativeMax = Math.max,
+    nativeMin = Math.min;
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+
+function debounce(func, wait, options) {
+  var lastArgs,
+      lastThis,
+      maxWait,
+      result,
+      timerId,
+      lastCallTime,
+      lastInvokeTime = 0,
+      leading = false,
+      maxing = false,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+
+  wait = toNumber(wait) || 0;
+
+  if (isObject(options)) {
+    leading = !!options.leading;
+    maxing = 'maxWait' in options;
+    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+
+  function invokeFunc(time) {
+    var args = lastArgs,
+        thisArg = lastThis;
+    lastArgs = lastThis = undefined;
+    lastInvokeTime = time;
+    result = func.apply(thisArg, args);
+    return result;
+  }
+
+  function leadingEdge(time) {
+    // Reset any `maxWait` timer.
+    lastInvokeTime = time; // Start the timer for the trailing edge.
+
+    timerId = setTimeout(timerExpired, wait); // Invoke the leading edge.
+
+    return leading ? invokeFunc(time) : result;
+  }
+
+  function remainingWait(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime,
+        timeWaiting = wait - timeSinceLastCall;
+    return maxing ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke) : timeWaiting;
+  }
+
+  function shouldInvoke(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime; // Either this is the first call, activity has stopped and we're at the
+    // trailing edge, the system time has gone backwards and we're treating
+    // it as the trailing edge, or we've hit the `maxWait` limit.
+
+    return lastCallTime === undefined || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
+  }
+
+  function timerExpired() {
+    var time = now();
+
+    if (shouldInvoke(time)) {
+      return trailingEdge(time);
+    } // Restart the timer.
+
+
+    timerId = setTimeout(timerExpired, remainingWait(time));
+  }
+
+  function trailingEdge(time) {
+    timerId = undefined; // Only invoke if we have `lastArgs` which means `func` has been
+    // debounced at least once.
+
+    if (trailing && lastArgs) {
+      return invokeFunc(time);
+    }
+
+    lastArgs = lastThis = undefined;
+    return result;
+  }
+
+  function cancel() {
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+
+    lastInvokeTime = 0;
+    lastArgs = lastCallTime = lastThis = timerId = undefined;
+  }
+
+  function flush() {
+    return timerId === undefined ? result : trailingEdge(now());
+  }
+
+  function debounced() {
+    var time = now(),
+        isInvoking = shouldInvoke(time);
+    lastArgs = arguments;
+    lastThis = this;
+    lastCallTime = time;
+
+    if (isInvoking) {
+      if (timerId === undefined) {
+        return leadingEdge(lastCallTime);
+      }
+
+      if (maxing) {
+        // Handle invocations in a tight loop.
+        clearTimeout(timerId);
+        timerId = setTimeout(timerExpired, wait);
+        return invokeFunc(lastCallTime);
+      }
+    }
+
+    if (timerId === undefined) {
+      timerId = setTimeout(timerExpired, wait);
+    }
+
+    return result;
+  }
+
+  debounced.cancel = cancel;
+  debounced.flush = flush;
+  return debounced;
+}
+
+module.exports = debounce;
+
+},{"./isObject":18,"./now":21,"./toNumber":22}],18:[function(require,module,exports){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = _typeof(value);
+
+  return value != null && (type == 'object' || type == 'function');
+}
+
+module.exports = isObject;
+
+},{}],19:[function(require,module,exports){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && _typeof(value) == 'object';
+}
+
+module.exports = isObjectLike;
+
+},{}],20:[function(require,module,exports){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var baseGetTag = require('./_baseGetTag'),
+    isObjectLike = require('./isObjectLike');
+/** `Object#toString` result references. */
+
+
+var symbolTag = '[object Symbol]';
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+
+function isSymbol(value) {
+  return _typeof(value) == 'symbol' || isObjectLike(value) && baseGetTag(value) == symbolTag;
+}
+
+module.exports = isSymbol;
+
+},{"./_baseGetTag":12,"./isObjectLike":19}],21:[function(require,module,exports){
+"use strict";
+
+var root = require('./_root');
+/**
+ * Gets the timestamp of the number of milliseconds that have elapsed since
+ * the Unix epoch (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Date
+ * @returns {number} Returns the timestamp.
+ * @example
+ *
+ * _.defer(function(stamp) {
+ *   console.log(_.now() - stamp);
+ * }, _.now());
+ * // => Logs the number of milliseconds it took for the deferred invocation.
+ */
+
+
+var now = function now() {
+  return root.Date.now();
+};
+
+module.exports = now;
+
+},{"./_root":16}],22:[function(require,module,exports){
+"use strict";
+
+var isObject = require('./isObject'),
+    isSymbol = require('./isSymbol');
+/** Used as references for various `Number` constants. */
+
+
+var NAN = 0 / 0;
+/** Used to match leading and trailing whitespace. */
+
+var reTrim = /^\s+|\s+$/g;
+/** Used to detect bad signed hexadecimal string values. */
+
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+/** Used to detect binary string values. */
+
+var reIsBinary = /^0b[01]+$/i;
+/** Used to detect octal string values. */
+
+var reIsOctal = /^0o[0-7]+$/i;
+/** Built-in method references without a dependency on `root`. */
+
+var freeParseInt = parseInt;
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
+  }
+
+  if (isSymbol(value)) {
+    return NAN;
+  }
+
+  if (isObject(value)) {
+    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    value = isObject(other) ? other + '' : other;
+  }
+
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
+}
+
+module.exports = toNumber;
+
+},{"./isObject":18,"./isSymbol":20}],23:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }

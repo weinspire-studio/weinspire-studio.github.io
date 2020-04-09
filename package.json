@@ -23,6 +23,7 @@
     "load-grunt-tasks": "^5.1.0"
   },
   "dependencies": {
+    "lodash.debounce": "^4.0.8",
     "swiper": "^5.3.6"
   }
 }
