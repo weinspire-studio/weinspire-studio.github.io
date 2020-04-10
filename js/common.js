@@ -34,50 +34,41 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 // jshint esversion: 6
 //VARIABLES
-var siteWrapper = document.querySelector("#site-wrapper"); // const nav = document.querySelector("nav");
-
+var siteWrapper = document.getElementById("site-wrapper");
 exports.siteWrapper = siteWrapper;
-var navBar = document.querySelector("#section-navbar");
+var navBar = document.getElementById("section-navbar");
 exports.navBar = navBar;
-var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
-var navWhiteBack = document.querySelector(".navigation-white-back"); // const lineElements = document.querySelectorAll(".burger div");
-// const svgArrow = document.querySelector("#footer #up-arrow");
-// const svgBackground = document.querySelector("#svg-background");
-// const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
-
+var navWhiteBack = document.querySelector(".navigation-white-back");
 var navShadow = document.querySelector(".navigation-shadow");
+var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 var hasScrollListener = false;
-var swiper; // let clientHeight = document.body.clientHeight;
-// const designProjectsSection = document.querySelector(
-//   "#section-projects-design"
-// );
-// let designOffset = designProjectsSection.offsetTop;
-// console.log(designOffset);
-
+var swiper;
+init();
+initOnWidthChange();
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
-contactModule.submitContactForm(); //on pageload, executes the following code, depending on screen width.
-// window.addEventListener("DOMContentLoaded", function () {
+contactModule.submitContactForm(); //FUNCTIONS
+//on pageload, executes the following code, depending on screen width.
 
-test(); // });
-
-function test() {
+function init() {
   if (notMobileScreenMQ.matches) {
     desktopCode();
   } else {
     mobileCode();
   }
-} // adds listener that executes code when screen width changes (passing by 801px).
+} // adds listener that executes when screen width changes (passing by 801px).
 
 
-notMobileScreenMQ.addListener(function () {
-  if (notMobileScreenMQ.matches) {
-    desktopCode();
-  } else {
-    mobileCode();
-  }
-}); //FUNCTIONS
-//code that executes only in desktop and large tablets screens (> 801px).
+function initOnWidthChange() {
+  notMobileScreenMQ.addListener(function () {
+    if (notMobileScreenMQ.matches) {
+      desktopCode();
+    } else {
+      mobileCode();
+    }
+  });
+} //code that executes only in desktop and large tablets screens (> 801px).
+
 
 function desktopCode() {
   styleNavOnScroll();
@@ -232,12 +223,7 @@ function styleNavOnScroll() {
 // mousedown touch start?
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
 // bug in height 100% on iphone? check on the net (maybe min height in pixels?) (caption due to img from unsplash)
-// 3timeout scroll listeners
 // 4jquery modules
-// clear timeout
-//main load or DOMloaded event listener?
-// test right arrows listener on android
-//
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6,"lodash/debounce":17}],2:[function(require,module,exports){
 "use strict";
@@ -542,23 +528,18 @@ var _main = require("../main.js");
 // jshint esversion: 6
 // console.log("scroll navbar again test 8");
 var siteOverlay = document.querySelector(".site-overlay");
-var servicesSection = document.querySelector("#section-services");
-var contactSection = document.querySelector("#section-contact");
-var designProjectsSection = document.querySelector("#section-projects-design");
+var servicesSection = document.getElementById("section-services");
+var contactSection = document.getElementById("section-contact");
+var designProjectsSection = document.getElementById("section-projects-design");
+var nav = document.getElementById("home");
+exports.nav = nav;
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
 exports.navElements = navElements;
 var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
-var nav = document.querySelector("nav");
-exports.nav = nav;
-var burger = document.querySelector(".burger"); // const navImg = document.querySelector("nav img");
-// const heroText = document.querySelector(".hero-text");
-// const navWhite = document.querySelector(".navigation-color-white");
-// const navBlack = document.querySelector(".navigation-overlay-black");
-// const footer = document.querySelector("#footer");
-
+var burger = document.querySelector(".burger");
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var swiperPagination = document.querySelector(".swiper-pagination");
@@ -656,10 +637,6 @@ function showRightArrows() {
     setTimeout(function () {
       slideRightArrows();
     }, 5000);
-  } else {
-    rightArrows.forEach(function (arrow) {
-      return arrow.classList.remove("arrow-wave");
-    });
   }
 } // adds animation to arrow and removes listeners.
 
@@ -675,7 +652,7 @@ function slideRightArrows() {
   _main.siteWrapper.removeEventListener("scroll", debouncedRightArrows);
 
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
-  rightArrowsContainer.removeEventListener("touchmove", slideRightArrows); // window.removeEventListener("DOMContentLoaded", listenToArrow);
+  rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
 } // styles Swiper (arrows and pagination) depending on mobile OS
 
 

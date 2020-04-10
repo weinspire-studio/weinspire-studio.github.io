@@ -1,64 +1,59 @@
 #section-projects-design {
-    // @include padding-map ($content-wrap-sm);
-    // height: 100%;
     ul {
         height: 100%;
-        // width: 100%;
-        // width: 375px;
         list-style: none;
         @include media-query ($md){
             background-color: $background-light;
             overflow: hidden;
             width: 100%;
             height: 450px;
-            // padding: 1em;
-            // margin-left: -.38em;
+            box-shadow: -1px 4px 4px -2px #0e0e0ead;
+            margin-left: 2px;
         }
     }
     li {
         height: 450px;
-        // width: 375px;
         @include media-query ($md) {
             height: 100%;
             position: relative;
-            width: calc(20% - 2px);
-            // float: right;
-            // display: inline-block;
+            width: calc(20% - 1px);
             overflow-y: hidden;
+            transition: width 450ms ease!important;
+            border-left: 2px solid #000;
+            box-shadow: 3px 4px 8px 1px #424242;;
         }
     }
 }
 
 .content-link {
-    // width: 350px;
-    // width: 100%;
     &:first-child {
         background-image: url("https://source.unsplash.com/850x450/?nature,sky");
+        z-index: 4;
+        border-left-color: #404040;
     };
     &:nth-child(2) {
         background-image: url("https://source.unsplash.com/850x450/?nature,fire");
+        z-index: 3;
     };
     &:nth-child(3) {
         background-image: url("https://source.unsplash.com/850x450/?nature,stone");
+        z-index: 2;
     };
     &:nth-child(4) {
         background-image: url("https://source.unsplash.com/850x450/?nature,tree");
+        z-index: 1;
     };
     &:last-child {
         background-image: url("https://source.unsplash.com/850x450/?nature,light");
-        border-left-color: #5c5c5c;
-    }
-    @include media-query ($md) {
-        // background-image: url("https://source.unsplash.com/850x450/?nature,water");
-        transition: width 450ms ease!important;
-        border-left: 2px solid #808080b7;
-        box-shadow: 3px 4px 8px 1px #2b2b2b;
+        z-index: 0;
+        @include media-query ($md) {
+            box-shadow: 3px 7px 5px -2.75px #0e0e0e!important;
+        }
     }
     .link-overlay {
         @include media-query ($md) {
             width:100%;
             height:100%;
-            // background-color: rgba(0, 128, 255, 0.459);
             transition: .55s ease background-color;
 
             &#overlay-1 {
@@ -83,7 +78,7 @@
         bottom: 0;
         width: 100%;
         color: white;
-        padding: 1.25em 2.25em;
+        padding: 1.25em 2.25em; 
         &#caption-1 {
             background-color: $blue-theme-darker;
             &:after {
@@ -125,7 +120,6 @@
             left: 1.5em;
             bottom: 1em;
             top: 1em;
-            // height: 2em;
             width: .25em;
         }
 
@@ -140,11 +134,11 @@
     height: 450px;
     z-index: 0!important;
     @include media-query ($md) {
-        width: 95%;
+        width: 99%;
+        height: 460px;
     }
 }
 
-// 
 .right-arrow-container {
     position: absolute;
     top: 50%;
@@ -154,7 +148,6 @@
     svg {
         height: 40px;
         width: 40px;
-        // transform: rotate(90deg);
     }
     @include media-query ($md) {
         display: none;
@@ -164,36 +157,91 @@
 #right-arrow-1 {
     fill: $blue-theme-dark;
     grid-area: arrow;
-    // margin: auto;
     transition: animation 500ms ease, opacity 500ms ease;
     position: relative;
     right: -40px;
     opacity: 0;
-    // animation: swipe-right 1.25s ease infinite running .25s;
 }
 
 
 #right-arrow-2 {
     fill: $blue-theme-middle;
     grid-area: arrow;
-    // margin: auto;
     transition: animation 500ms ease, opacity 500ms ease;
     position: relative;
     right: -20px;
     opacity: 0;
-    // animation: swipe-right 1.25s ease infinite running .125s;
 }
 
 
 #right-arrow-3 {
     fill: $blue-theme-light;
     grid-area: arrow;
-    // margin: auto;
-    transition: animation 500ms ease, opacity 500ms ease;
     position: relative;
-    // right: 15px;
-    // animation: swipe-right 1.25s ease infinite running;
     opacity: 0;
+    transition: animation 500ms ease, opacity 500ms ease;
+}
+
+.swiper-pagination-bullet-active {
+    transform: scale(1.75)!important;
+    transition: transform .5s ease;
+
+    &:nth-child(1) {
+        background-color: $blue-theme-darker!important;
+    }
+    &:nth-child(2) {
+        background-color: $blue-theme-dark!important;
+    }
+    &:nth-child(3) {
+        background-color: $blue-theme-middle!important;
+    }
+    &:nth-child(4) {
+        background-color: $blue-theme-light!important;
+    }
+    &:nth-child(5) {
+        background-color: $blue-theme-lighter!important;
+    }
+}
+
+// Style Classes
+.expanded {
+    width: calc(30% - 1px)!important;
+}
+
+.expanded .link-overlay {
+    background-color: transparent!important;
+}
+
+.show-caption {
+    transform: translateY(0%)!important;
+}
+
+.contracted {
+    width: calc(17.5% - 1px)!important;
+}
+
+.pagination-bottom {
+    bottom: -2.25em!important;
+}
+
+.pagination-middle {
+    bottom: 5em!important;
+}
+
+.dot-1 {
+    background-color: $blue-theme-darker!important;
+}
+.dot-2 {
+    background-color: $blue-theme-dark!important;
+}
+.dot-3 {
+    background-color: $blue-theme-middle!important;
+}
+.dot-4 {
+    background-color: $blue-theme-light!important;
+}
+.dot-5 {
+    background-color: $blue-theme-lighter!important;
 }
 
 .arrow-wave {
@@ -212,6 +260,7 @@
     opacity: 0!important;
 }
 
+//Animations
 @-webkit-keyframes arrow-wave-anim {
     0% {
         -webkit-transform: rotate(90deg) scale(1);
@@ -263,136 +312,3 @@
         transform: translate(300%);
     }
 }
-
-// .swiper-button-next, .swiper-button-prev {
-    //     outline: none;
-    //     width: 25px;
-    //     height: 25px;
-    //     // background-color: red;
-    //     position: absolute;
-    //     top: 25%!important;
-    //     // left: 100%;
-    //     @include media-query ($md) {
-    //         opacity: 0;
-    //         pointer-events: none;
-    //     }
-    // }
-    
-
-
-// .swiper-button-next {
-//     right: 2em!important;
-// }
-// .swiper-button-prev {
-//     left: 2em!important;
-// }
-
-// .swiper-button-prev2 {
-//     width: 25px;
-//     height: 25px;
-//     background-color: green;
-//     position: absolute;
-//     top: 50%;
-//     left: 1em;
-//     z-index: 9999;
-// }
-
-
-// .swiper-pagination {
-//     bottom: -2.25em!important;
-// }
-
-.swiper-pagination-bullet-active {
-    transform: scale(1.75)!important;
-    transition: transform .5s ease;
-
-    &:nth-child(1) {
-        background-color: $blue-theme-darker!important;
-    }
-    &:nth-child(2) {
-        background-color: $blue-theme-dark!important;
-    }
-    &:nth-child(3) {
-        background-color: $blue-theme-middle!important;
-    }
-    &:nth-child(4) {
-        background-color: $blue-theme-light!important;
-    }
-    &:nth-child(5) {
-        background-color: $blue-theme-lighter!important;
-    }
-}
-
-// Style Classes
-.expanded {
-    width: calc(30% - 2px)!important;
-}
-
-.expanded .link-overlay {
-    background-color: transparent!important;
-}
-
-.show-caption {
-    transform: translateY(0%)!important;
-}
-
-.contracted {
-    width: calc(17.5% - 2px)!important;
-}
-
-.pagination-bottom {
-    bottom: -2.25em!important;
-}
-
-.pagination-middle {
-    bottom: 5em!important;
-}
-
-.dot-1 {
-    background-color: $blue-theme-darker!important;
-}
-.dot-2 {
-    background-color: $blue-theme-dark!important;
-}
-.dot-3 {
-    background-color: $blue-theme-middle!important;
-}
-.dot-4 {
-    background-color: $blue-theme-light!important;
-}
-.dot-5 {
-    background-color: $blue-theme-lighter!important;
-}
-
-// 
-// 
-
-// .destaques {
-//     height: 425px;
-//     margin: 0;
-//     padding: 0;
-//     color: #fff;
-//     white-space: nowrap;
-//     overflow: hidden;
-//     width: 100%;
-//     font-size: 0;
-//     background: #ffffff;
-//   }
-//   .destaques-item {
-//     transition: width 400ms, background-size 400ms;
-//     display: inline-block;
-//     vertical-align: top;
-//     background: #ccc;
-//     position: relative;
-//     background-position: 50%;
-//     width: 25%;
-//     height: 100%;
-//     overflow: hidden;
-//   }
-  
-//   .destaques-item-highlight {
-//     width: 40%;
-//   }
-//   .destaques-item-lowlight {
-//     width: 20%;
-//   }

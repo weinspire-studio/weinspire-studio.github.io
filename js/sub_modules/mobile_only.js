@@ -5,21 +5,16 @@ import { siteWrapper, navBar, debounce } from "../main.js";
 // console.log("scroll navbar again test 8");
 
 const siteOverlay = document.querySelector(".site-overlay");
-const servicesSection = document.querySelector("#section-services");
-const contactSection = document.querySelector("#section-contact");
-const designProjectsSection = document.querySelector(
-  "#section-projects-design"
+const servicesSection = document.getElementById("section-services");
+const contactSection = document.getElementById("section-contact");
+const designProjectsSection = document.getElementById(
+  "section-projects-design"
 );
+const nav = document.getElementById("home");
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
 const navContainer = document.querySelector(".navigation-container");
-const nav = document.querySelector("nav");
 const burger = document.querySelector(".burger");
-// const navImg = document.querySelector("nav img");
-// const heroText = document.querySelector(".hero-text");
-// const navWhite = document.querySelector(".navigation-color-white");
-// const navBlack = document.querySelector(".navigation-overlay-black");
-// const footer = document.querySelector("#footer");
 const rightArrowsContainer = document.querySelector(".right-arrow-container");
 const rightArrows = document.querySelectorAll(".right-arrow-container svg");
 const swiperPagination = document.querySelector(".swiper-pagination");
@@ -99,7 +94,6 @@ function listenToArrow() {
     rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
   }
 }
-
 // shows arrows when passing through threshold.
 function showRightArrows() {
   scrolledY = siteWrapper.scrollTop;
@@ -111,8 +105,6 @@ function showRightArrows() {
     setTimeout(function () {
       slideRightArrows();
     }, 5000);
-  } else {
-    rightArrows.forEach((arrow) => arrow.classList.remove("arrow-wave"));
   }
 }
 
@@ -123,7 +115,6 @@ function slideRightArrows() {
   siteWrapper.removeEventListener("scroll", debouncedRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
-  // window.removeEventListener("DOMContentLoaded", listenToArrow);
 }
 
 // styles Swiper (arrows and pagination) depending on mobile OS

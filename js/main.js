@@ -5,40 +5,26 @@ import * as desktopModule from "./sub_modules/desktop_only";
 import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
 import * as contactModule from "./sub_modules/contact";
-
 import debounce from "lodash/debounce";
 
 //VARIABLES
-const siteWrapper = document.querySelector("#site-wrapper");
-// const nav = document.querySelector("nav");
-const navBar = document.querySelector("#section-navbar");
-const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
+const siteWrapper = document.getElementById("site-wrapper");
+const navBar = document.getElementById("section-navbar");
 const navWhiteBack = document.querySelector(".navigation-white-back");
-// const lineElements = document.querySelectorAll(".burger div");
-// const svgArrow = document.querySelector("#footer #up-arrow");
-// const svgBackground = document.querySelector("#svg-background");
-// const notMobileScreenMQ = window.matchMedia("(min-width: 600px)");
 const navShadow = document.querySelector(".navigation-shadow");
-
+const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 let hasScrollListener = false;
 let swiper;
-// let clientHeight = document.body.clientHeight;
-// const designProjectsSection = document.querySelector(
-//   "#section-projects-design"
-// );
-// let designOffset = designProjectsSection.offsetTop;
-// console.log(designOffset);
 
+init();
+initOnWidthChange();
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
 
+//FUNCTIONS
 //on pageload, executes the following code, depending on screen width.
-// window.addEventListener("DOMContentLoaded", function () {
-test();
-// });
-
-function test() {
+function init() {
   if (notMobileScreenMQ.matches) {
     desktopCode();
   } else {
@@ -46,16 +32,17 @@ function test() {
   }
 }
 
-// adds listener that executes code when screen width changes (passing by 801px).
-notMobileScreenMQ.addListener(() => {
-  if (notMobileScreenMQ.matches) {
-    desktopCode();
-  } else {
-    mobileCode();
-  }
-});
+// adds listener that executes when screen width changes (passing by 801px).
+function initOnWidthChange() {
+  notMobileScreenMQ.addListener(() => {
+    if (notMobileScreenMQ.matches) {
+      desktopCode();
+    } else {
+      mobileCode();
+    }
+  });
+}
 
-//FUNCTIONS
 //code that executes only in desktop and large tablets screens (> 801px).
 function desktopCode() {
   styleNavOnScroll();
@@ -220,11 +207,4 @@ export { siteWrapper, navBar, debounce };
 // mousedown touch start?
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
 // bug in height 100% on iphone? check on the net (maybe min height in pixels?) (caption due to img from unsplash)
-// 3timeout scroll listeners
 // 4jquery modules
-
-// clear timeout
-//main load or DOMloaded event listener?
-
-// test right arrows listener on android
-//
