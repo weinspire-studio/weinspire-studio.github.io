@@ -87,6 +87,7 @@ h1, h2, h3, h4, h5 {
   padding: 0 10px;
   margin-right: -15px;
   cursor: pointer;
+  outline: none;
 }
 @media screen and (min-width: 801px) {
   .burger {

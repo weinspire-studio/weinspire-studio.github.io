@@ -5,6 +5,7 @@
     padding: 0 10px;
     margin-right: -15px;
     cursor: pointer;
+    outline: none;
     @include media-query ($md) {
         display: none;
   }
