@@ -38,7 +38,7 @@ function animateImages() {
 // unbinds listeners to desktop component (for mobile cube)
 function unbindImages() {
   if (hasHoverListenerOnPortolio) {
-    $("#section-projects-design li").unbind("mouseenter mouseleave");
+    $("#section-projects-design li").off("mouseenter mouseleave");
   }
 }
 

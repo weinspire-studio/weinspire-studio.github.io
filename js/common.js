@@ -43,6 +43,7 @@ var navShadow = document.querySelector(".navigation-shadow");
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 var hasScrollListener = false;
 var swiper;
+var asd = document.querySelector("#brand-mobile-svg");
 init();
 initOnWidthChange();
 jQueryModule.smoothScroll();
@@ -111,21 +112,69 @@ function mobileCode() {
     swiper.params.init = true;
   });
   swiper.init();
-} //adds or removes classes in order to give white styles to the nav.
+} // let asd = document.querySelector("#brand-mobile-svg");
+// console.log(asd);
+//adds or removes classes in order to give white styles to the nav.
 
 
 function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
+    styleMobileBrand();
     navBar.classList.add("nav-white");
     navWhiteBack.classList.add("nav-white-back");
     navShadow.classList.add("nav-shadow");
   } else {
+    restoreMobileBrand();
     navBar.classList.remove("nav-white");
     navWhiteBack.classList.remove("nav-white-back");
     navShadow.classList.remove("nav-shadow");
   }
+} // styleMobileBrand();
+// changes mobile svg brand colors.
+
+
+function styleMobileBrand() {
+  // let z = document.documentElement.style;
+  // z.setProperty("-moz-transition", "all 2s ease");
+  // z.setProperty("transition", "2s all 2s ease");
+  // // z.transition = "1s all 5s ease";
+  // z.setProperty("--letter-w", "skyblue");
+  // z.setProperty("--letter-e", "skyblue");
+  // z.setProperty("--shape-left", "skyblue");
+  // z.setProperty("--shape-right", "skyblue");
+  // svg styling! used another approach, jic!
+  // let x = getComputedStyle(document.documentElement);
+  // let y = x.getPropertyValue("--color-1");
+  // let asd = document.querySelector("#brand-mobile-svg");
+  // console.log(asd.firstElementChild);
+  var sheet = document.styleSheets[0];
+  console.log(sheet);
+  var classes = sheet.rules || sheet.cssRules;
+  classes[23].style.setProperty("--letter-w", "skyblue");
+  console.log(classes[23]);
+  console.log(asd); // let asd = document.querySelector("#brand-mobile-svg");
+  // asd.style.setProperty("-moz-transition", "all 5s ease");
+  // asd.style.setProperty("transition", "5s all 5s ease");
+
+  asd.style.setProperty("--letter-w", "skyblue");
+  asd.style.setProperty("--letter-e", "skyblue");
+  asd.style.setProperty("--shape-left", "skyblue");
+  asd.style.setProperty("--shape-right", "skyblue"); // asd.style.setProperty("transition", "all 1s ease");
+}
+
+function restoreMobileBrand() {
+  var asdd = asd.style.getPropertyValue("--letter-w");
+  console.log(asdd);
+  asd.style.removeProperty("--letter-w");
+  asd.style.removeProperty("--letter-e");
+  asd.style.removeProperty("--shape-left");
+  asd.style.removeProperty("--shape-right"); // asd.style.setProperty("--letter-w", "skyblue");
+  // if (typeof asd.style.getPropertyValue("height") === "undefined") {
+  //   console.log("consolame");
+  // }
+  // console.log(asd.getPropertyValue("--letter-w"));
 } //
 //
 // -----------------
@@ -194,6 +243,15 @@ function styleNavOnScroll() {
 // let scrolledY = siteWrapper.scrollTop;
 // console.log(scrolledY);
 // }
+// svg styling! used another approach, jic!
+// let x = getComputedStyle(document.documentElement);
+// let y = x.getPropertyValue("--color-1");
+// let asd = document.querySelector("#brand-mobile-svg");
+// console.log(asd.firstElementChild);
+// let sheet = document.styleSheets[0];
+// console.log(sheet);
+// let classes = sheet.rules || sheet.cssRules;
+// console.log(classes[23]);
 // TODO:
 // shadows
 // Logos and svg background (bottom on mobile)
@@ -223,7 +281,7 @@ function styleNavOnScroll() {
 // mousedown touch start?
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
 // bug in height 100% on iphone? check on the net (maybe min height in pixels?) (caption due to img from unsplash)
-// 4jquery modules
+// outline on burger div?
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6,"lodash/debounce":18}],2:[function(require,module,exports){
 "use strict";
@@ -515,7 +573,7 @@ function animateImages() {
 
 function unbindImages() {
   if (hasHoverListenerOnPortolio) {
-    (0, _jqueryMin["default"])("#section-projects-design li").unbind("mouseenter mouseleave");
+    (0, _jqueryMin["default"])("#section-projects-design li").off("mouseenter mouseleave");
   }
 }
 
@@ -661,7 +719,7 @@ function slideRightArrows() {
 
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
-} // styles Swiper (arrows and pagination) depending on mobile OS
+} // styles Swiper (arrows and pagination) depending on mobile OS.
 
 
 function modifySwiperForIos() {

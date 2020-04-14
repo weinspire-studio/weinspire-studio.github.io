@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./dist/css/main.min.css?v={1/b}" />
+    <link rel="stylesheet" href="./dist/css/main.min.css" />
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" /> -->
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
@@ -29,6 +29,8 @@
       }
     </style>
     <title>Inspire Studio</title>
+    <!-- <script src="https://jonneal.dev/svg4everybody/svg4everybody.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg4everybody/2.1.9/svg4everybody.min.js"></script>
   </head>
   <body>
     <div class="site-overlay"></div>
@@ -75,14 +77,15 @@
       <div class="navigation-container"></div>
       <section id="section-navbar">
         <nav id="home">
-          <img
-            id="brand-desktop"
-            src="./assets/brand-new-negative11.svg"
-            alt="weInspire"
-          />
+          <svg id="brand-mobile-svg">
+            <use
+              class="use-brand"
+              xlink:href="../assets/svg-defs-block.svg#brand-mobile"
+            ></use>
+          </svg>
           <!-- <img
             id="brand-mobile"
-            src="./assets/brand-mobile.svg"
+            src="./assets/weinspire-color-lightgrey-curve.svg"
             alt="weInspire"
           /> -->
           <div class="burger">
@@ -646,7 +649,10 @@
       defer
       src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
     ></script> -->
-    <!-- JS file -->
+    <!-- JS script files -->
+    <script>
+      svg4everybody();
+    </script>
     <script type="module" src="./dist/js/all.min.js"></script>
     <script defer nomodule src="./dist/js/all.min.js"></script>
   </body>

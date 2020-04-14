@@ -86,8 +86,9 @@ h1, h2, h3, h4, h5 {
   width: 65px;
   padding: 0 10px;
   margin-right: -15px;
-  cursor: pointer;
+  outline: 0;
   outline: none;
+  cursor: pointer;
 }
 @media screen and (min-width: 801px) {
   .burger {
@@ -155,6 +156,20 @@ nav img {
   #brand-desktop {
     width: 150px;
   }
+}
+
+#svg-definitions {
+  transition: 1s all 5s ease;
+}
+
+#brand-mobile-svg {
+  width: 3.5em;
+  height: 3.5em;
+  --letter-w: lightgreen;
+  --letter-e: lightgreen;
+  --shape-left: green;
+  --shape-right: green;
+  transition: 2s all 5s ease;
 }
 
 nav {

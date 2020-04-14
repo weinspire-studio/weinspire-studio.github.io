@@ -117,7 +117,7 @@ function slideRightArrows() {
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
 }
 
-// styles Swiper (arrows and pagination) depending on mobile OS
+// styles Swiper (arrows and pagination) depending on mobile OS.
 function modifySwiperForIos() {
   if (isIos) {
     swiperPagination.classList.add("pagination-bottom");

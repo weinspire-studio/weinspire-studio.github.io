@@ -16,6 +16,8 @@ const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 let hasScrollListener = false;
 let swiper;
 
+const asd = document.querySelector("#brand-mobile-svg");
+
 init();
 initOnWidthChange();
 jQueryModule.smoothScroll();
@@ -83,18 +85,73 @@ function mobileCode() {
   swiper.init();
 }
 
+// let asd = document.querySelector("#brand-mobile-svg");
+// console.log(asd);
+
 //adds or removes classes in order to give white styles to the nav.
 function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
   if (scrolledY > 0) {
+    styleMobileBrand();
     navBar.classList.add("nav-white");
     navWhiteBack.classList.add("nav-white-back");
     navShadow.classList.add("nav-shadow");
   } else {
+    restoreMobileBrand();
     navBar.classList.remove("nav-white");
     navWhiteBack.classList.remove("nav-white-back");
     navShadow.classList.remove("nav-shadow");
   }
+}
+
+// styleMobileBrand();
+// changes mobile svg brand colors.
+function styleMobileBrand() {
+  // let z = document.documentElement.style;
+  // z.setProperty("-moz-transition", "all 2s ease");
+  // z.setProperty("transition", "2s all 2s ease");
+  // // z.transition = "1s all 5s ease";
+  // z.setProperty("--letter-w", "skyblue");
+  // z.setProperty("--letter-e", "skyblue");
+  // z.setProperty("--shape-left", "skyblue");
+  // z.setProperty("--shape-right", "skyblue");
+
+  // svg styling! used another approach, jic!
+  // let x = getComputedStyle(document.documentElement);
+  // let y = x.getPropertyValue("--color-1");
+
+  // let asd = document.querySelector("#brand-mobile-svg");
+  // console.log(asd.firstElementChild);
+
+  let sheet = document.styleSheets[0];
+  console.log(sheet);
+  let classes = sheet.rules || sheet.cssRules;
+  classes[23].style.setProperty("--letter-w", "skyblue");
+  console.log(classes[23]);
+  console.log(asd);
+  // let asd = document.querySelector("#brand-mobile-svg");
+  // asd.style.setProperty("-moz-transition", "all 5s ease");
+  // asd.style.setProperty("transition", "5s all 5s ease");
+  asd.style.setProperty("--letter-w", "skyblue");
+  asd.style.setProperty("--letter-e", "skyblue");
+  asd.style.setProperty("--shape-left", "skyblue");
+  asd.style.setProperty("--shape-right", "skyblue");
+  // asd.style.setProperty("transition", "all 1s ease");
+}
+
+function restoreMobileBrand() {
+  let asdd = asd.style.getPropertyValue("--letter-w");
+  console.log(asdd);
+  asd.style.removeProperty("--letter-w");
+  asd.style.removeProperty("--letter-e");
+  asd.style.removeProperty("--shape-left");
+  asd.style.removeProperty("--shape-right");
+
+  // asd.style.setProperty("--letter-w", "skyblue");
+  // if (typeof asd.style.getPropertyValue("height") === "undefined") {
+  //   console.log("consolame");
+  // }
+  // console.log(asd.getPropertyValue("--letter-w"));
 }
 
 export { siteWrapper, navBar, debounce };
@@ -178,6 +235,18 @@ export { siteWrapper, navBar, debounce };
 // console.log(scrolledY);
 // }
 
+// svg styling! used another approach, jic!
+// let x = getComputedStyle(document.documentElement);
+// let y = x.getPropertyValue("--color-1");
+
+// let asd = document.querySelector("#brand-mobile-svg");
+// console.log(asd.firstElementChild);
+
+// let sheet = document.styleSheets[0];
+// console.log(sheet);
+// let classes = sheet.rules || sheet.cssRules;
+// console.log(classes[23]);
+
 // TODO:
 // shadows
 // Logos and svg background (bottom on mobile)
@@ -207,4 +276,5 @@ export { siteWrapper, navBar, debounce };
 // mousedown touch start?
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
 // bug in height 100% on iphone? check on the net (maybe min height in pixels?) (caption due to img from unsplash)
-// 4jquery modules
+
+// outline on burger div?
