@@ -33,13 +33,15 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 // jshint esversion: 6
+// import svg4everybody from "./sub_modules/svg4everybody";
+// svg4everybody({ polyfill: true });
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
-}
+} // console.log(window);
+// console.log(window.NodeList);
+// console.log(NodeList.prototype.forEach);
+//VARIABLES
 
-console.log(window);
-console.log(window.NodeList);
-console.log(NodeList.prototype.forEach); //VARIABLES
 
 var siteWrapper = document.getElementById("site-wrapper");
 exports.siteWrapper = siteWrapper;
@@ -128,12 +130,12 @@ function styleNavOnScroll() {
   var scrolledY = siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
-    styleMobileBrand();
+    // styleMobileBrand();
     navBar.classList.add("nav-white");
     navWhiteBack.classList.add("nav-white-back");
     navShadow.classList.add("nav-shadow");
   } else {
-    restoreMobileBrand();
+    // restoreMobileBrand();
     navBar.classList.remove("nav-white");
     navWhiteBack.classList.remove("nav-white-back");
     navShadow.classList.remove("nav-shadow");

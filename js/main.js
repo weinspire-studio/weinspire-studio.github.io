@@ -6,14 +6,16 @@ import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
 import * as contactModule from "./sub_modules/contact";
 import debounce from "lodash/debounce";
+// import svg4everybody from "./sub_modules/svg4everybody";
+// svg4everybody({ polyfill: true });
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
-console.log(window);
-console.log(window.NodeList);
-console.log(NodeList.prototype.forEach);
+// console.log(window);
+// console.log(window.NodeList);
+// console.log(NodeList.prototype.forEach);
 
 //VARIABLES
 const siteWrapper = document.getElementById("site-wrapper");
@@ -100,12 +102,12 @@ function mobileCode() {
 function styleNavOnScroll() {
   let scrolledY = siteWrapper.scrollTop;
   if (scrolledY > 0) {
-    styleMobileBrand();
+    // styleMobileBrand();
     navBar.classList.add("nav-white");
     navWhiteBack.classList.add("nav-white-back");
     navShadow.classList.add("nav-shadow");
   } else {
-    restoreMobileBrand();
+    // restoreMobileBrand();
     navBar.classList.remove("nav-white");
     navWhiteBack.classList.remove("nav-white-back");
     navShadow.classList.remove("nav-shadow");
