@@ -118,7 +118,7 @@ h1, h2, h3, h4, h5 {
   z-index: 2;
   width: 100%;
   height: 3.25em;
-  transition: background-color 0.5s ease, box-shadow 0.5s ease;
+  transition: background-color 0.35s ease-in, box-shadow 0.35s ease-in;
 }
 @media screen and (min-width: 0) {
   #section-navbar {
@@ -146,30 +146,38 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-nav img {
-  height: 100%;
-  transition: opacity 0.5s ease;
-  width: 120px;
-}
-
-@media screen and (min-width: 801px) {
-  #brand-desktop {
-    width: 150px;
-  }
-}
-
-#svg-definitions {
-  transition: 1s all 5s ease;
-}
-
 #brand-mobile-svg {
   width: 3.5em;
   height: 3.5em;
-  --letter-w: lightgreen;
-  --letter-e: lightgreen;
-  --shape-left: green;
-  --shape-right: green;
-  transition: 2s all 5s ease;
+}
+#brand-mobile-svg path {
+  transition: fill 0.35s ease-in;
+}
+
+.brand-mobile-color #letter-w {
+  fill: red;
+}
+.brand-mobile-color #letter-e {
+  fill: red;
+}
+.brand-mobile-color #shape-left {
+  fill: pink;
+}
+.brand-mobile-color #shape-right {
+  fill: pink;
+}
+
+.brand-mobile-negative #letter-w {
+  fill: green;
+}
+.brand-mobile-negative #letter-e {
+  fill: green;
+}
+.brand-mobile-negative #shape-left {
+  fill: lightgreen;
+}
+.brand-mobile-negative #shape-right {
+  fill: lightgreen;
 }
 
 nav {
@@ -306,14 +314,14 @@ nav {
   height: 3.25em;
   background-color: transparent;
   position: fixed;
-  transition: 0.5s ease;
+  transition: 0.5s ease-in;
 }
 
 .navigation-shadow {
   width: 100%;
   height: 3.25em;
   position: fixed;
-  transition: box-shadow 0.5s ease;
+  transition: box-shadow 0.35s ease;
   z-index: 1;
 }
 

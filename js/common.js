@@ -49,10 +49,10 @@ var navBar = document.getElementById("section-navbar");
 exports.navBar = navBar;
 var navWhiteBack = document.querySelector(".navigation-white-back");
 var navShadow = document.querySelector(".navigation-shadow");
+var brandMobile = document.querySelector("#brand-mobile-svg");
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
-var hasScrollListener = false;
 var swiper;
-var asd = document.querySelector("#brand-mobile-svg");
+var hasScrollListener = false;
 init();
 initOnWidthChange();
 jQueryModule.smoothScroll();
@@ -81,7 +81,7 @@ function initOnWidthChange() {
 
 
 function desktopCode() {
-  styleNavOnScroll();
+  styleNavOnScroll(false);
   desktopModule.styleAnchorOnHover();
   jQueryModule.animateImages();
 
@@ -102,6 +102,7 @@ function desktopCode() {
 
 
 function mobileCode() {
+  addClassesToSvgs();
   styleNavOnScroll();
   mobileModule.styleMobileNav();
   mobileModule.modifySwiperForIos();
@@ -121,69 +122,47 @@ function mobileCode() {
     swiper.params.init = true;
   });
   swiper.init();
-} // let asd = document.querySelector("#brand-mobile-svg");
-// console.log(asd);
+} // let brandMobile = document.querySelector("#brand-mobile-svg");
+// console.log(brandMobile);
 //adds or removes classes in order to give white styles to the nav.
 
 
 function styleNavOnScroll() {
+  var isMobile = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
   var scrolledY = siteWrapper.scrollTop;
 
   if (scrolledY > 0) {
-    // styleMobileBrand();
+    if (isMobile) {
+      styleMobileBrand();
+    }
+
     navBar.classList.add("nav-white");
     navWhiteBack.classList.add("nav-white-back");
     navShadow.classList.add("nav-shadow");
   } else {
-    // restoreMobileBrand();
+    if (isMobile) {
+      restoreMobileBrand();
+    }
+
     navBar.classList.remove("nav-white");
     navWhiteBack.classList.remove("nav-white-back");
     navShadow.classList.remove("nav-shadow");
   }
-} // styleMobileBrand();
-// changes mobile svg brand colors.
+}
+
+function addClassesToSvgs() {
+  brandMobile.classList.add("brand-mobile-color");
+} // changes mobile svg brand colors.
 
 
 function styleMobileBrand() {
-  // let z = document.documentElement.style;
-  // z.setProperty("-moz-transition", "all 2s ease");
-  // z.setProperty("transition", "2s all 2s ease");
-  // // z.transition = "1s all 5s ease";
-  // z.setProperty("--letter-w", "skyblue");
-  // z.setProperty("--letter-e", "skyblue");
-  // z.setProperty("--shape-left", "skyblue");
-  // z.setProperty("--shape-right", "skyblue");
-  // svg styling! used another approach, jic!
-  // let x = getComputedStyle(document.documentElement);
-  // let y = x.getPropertyValue("--color-1");
-  // let asd = document.querySelector("#brand-mobile-svg");
-  // console.log(asd.firstElementChild);
-  var sheet = document.styleSheets[0];
-  console.log(sheet);
-  var classes = sheet.rules || sheet.cssRules;
-  classes[23].style.setProperty("--letter-w", "skyblue");
-  console.log(classes[23]);
-  console.log(asd); // let asd = document.querySelector("#brand-mobile-svg");
-  // asd.style.setProperty("-moz-transition", "all 5s ease");
-  // asd.style.setProperty("transition", "5s all 5s ease");
-
-  asd.style.setProperty("--letter-w", "skyblue");
-  asd.style.setProperty("--letter-e", "skyblue");
-  asd.style.setProperty("--shape-left", "skyblue");
-  asd.style.setProperty("--shape-right", "skyblue"); // asd.style.setProperty("transition", "all 1s ease");
+  brandMobile.classList.remove("brand-mobile-color");
+  brandMobile.classList.add("brand-mobile-negative");
 }
 
 function restoreMobileBrand() {
-  var asdd = asd.style.getPropertyValue("--letter-w");
-  console.log(asdd);
-  asd.style.removeProperty("--letter-w");
-  asd.style.removeProperty("--letter-e");
-  asd.style.removeProperty("--shape-left");
-  asd.style.removeProperty("--shape-right"); // asd.style.setProperty("--letter-w", "skyblue");
-  // if (typeof asd.style.getPropertyValue("height") === "undefined") {
-  //   console.log("consolame");
-  // }
-  // console.log(asd.getPropertyValue("--letter-w"));
+  brandMobile.classList.add("brand-mobile-color");
+  brandMobile.classList.remove("brand-mobile-negative");
 } //
 //
 // -----------------

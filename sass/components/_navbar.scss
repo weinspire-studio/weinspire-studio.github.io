@@ -35,100 +35,53 @@
     z-index: 2;
     width: 100%;
     height: 3.25em;
-    transition: background-color .5s ease, box-shadow .5s ease;
+    transition: background-color .35s ease-in, box-shadow .35s ease-in;
 
     @include media-query (){
         @include padding-map($content-wrap-hr);
     }
 }
 
-// svg brand img
-nav img {
-    height: 100%;
-    transition: opacity .5s ease;
-    width: 120px;
-}
-
-#brand-desktop {
-    // display: none;
-    @include media-query ($md) {
-        // display: initial;
-        width: 150px;
-    }
-}
-
-// :root {
-    // --letter-w: lightgreen;
-    // --letter-e: lightgreen;
-    // --shape-left: green;
-    // --shape-right: green;
-    // transition: 2s all 1s ease!important;
-//   }
-
-#svg-definitions {
-    transition: 1s all 5s ease;
-}
-
 #brand-mobile-svg {
     width: 3.5em;
     height: 3.5em;
-    --letter-w: lightgreen;
-    --letter-e: lightgreen;
-    --shape-left: green;
-    --shape-right: green;
-    transition: 2s all 5s ease;
-    // animation: test 1250ms ease infinite running;
+    path {
+        transition: fill .35s ease-in;
+    }
 }
 
-// .use-brand {
-//     --letter-w: lightgreen;
-//     --letter-e: lightgreen;
-//     --shape-left: green;
-//     --shape-right: green;
-// }
-
-
-// @keyframes test {
-//     0% {
-//         // --letter-w: lightgreen!important;
-//         fill: red!important;
-//     }
-//     25% {
-//         // --letter-w: green!important;
-//         fill: red!important;
-//     }
-//     50%, 75%, 100% {
-//         // --letter-w: blue!important;
-//         fill: blue;
-//     }
-// }
-
-
-// works
-    // #brand-mobile {
-        // #letter-w {
-        //     fill: red;
-        // }
-        // #letter-e {
-        //     fill: blue;
-        // }
-        // #form-left {
-        //     fill: #2adad4;
-        // }
-        // #form-right {
-        //     fill: #2adad4;
-        // }
-        // -moz-transition: 1s all 5s ease;
-        // transition: 1s all 5s ease;
-    // }
-// path#letter-w {
-//     fill: green;
-// }
+.brand-mobile-color {
+    #letter-w {
+        fill: red;
+    }
+    #letter-e {
+        fill: red;
+    }
+    #shape-left {
+        fill: pink;
+    }
+    #shape-right {
+        fill: pink;
+    }
+}
+.brand-mobile-negative {
+    #letter-w {
+        fill: green;
+    }
+    #letter-e {
+        fill: green;
+    }
+    #shape-left {
+        fill: lightgreen;
+    }
+    #shape-right {
+        fill: lightgreen;
+    }
+}
 
 nav {
     display: flex;
     justify-content: space-between;
-    // width: 95%;
     padding: 0 1.2em;
     height: 100%;
     align-items: center;
@@ -252,14 +205,14 @@ nav {
     height: 3.25em;
     background-color: transparent;
     position: fixed;
-    transition: .5s ease;
+    transition: .5s ease-in;
 }
 
 .navigation-shadow {
     width: 100%;
     height: 3.25em;
     position: fixed;
-    transition: box-shadow .5s ease;
+    transition: box-shadow .35s ease;
     z-index: 1;
 }
 
