@@ -7,6 +7,14 @@ import * as jQueryModule from "./sub_modules/jquery";
 import * as contactModule from "./sub_modules/contact";
 import debounce from "lodash/debounce";
 
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach;
+}
+
+console.log(window);
+console.log(window.NodeList);
+console.log(NodeList.prototype.forEach);
+
 //VARIABLES
 const siteWrapper = document.getElementById("site-wrapper");
 const navBar = document.getElementById("section-navbar");
