@@ -12,6 +12,10 @@ html, body, #site-wrapper {
     height: 100%;
 }
 
+html, body {
+    // overflow: auto;
+}
+
 body {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
@@ -19,7 +23,7 @@ body {
 }
 
 #site-wrapper {
-    overflow-x: hidden;
+    // overflow-x: hidden;
     position: relative;
     transition: background-color .5s ease;
 }
@@ -56,9 +60,21 @@ h1, h2, h3, h4, h5 {
     z-index: 0;
     opacity: 0;
     transition: opacity .5s ease, z-index .5s ease;
+
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    // overflow-y: hidden;
+    // overflow-x: hidden;
 }
 
 .overlay-active {
     z-index: 2;
     opacity: 1;
+}
+
+.body-fixed {
+    overflow: hidden;
 }

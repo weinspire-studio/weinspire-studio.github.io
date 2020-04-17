@@ -1,6 +1,6 @@
 // jshint esversion: 6
 
-import { siteWrapper, navBar, debounce } from "../main.js";
+import { navBar, debounce } from "../main.js";
 
 // console.log("scroll navbar again test 8");
 
@@ -51,7 +51,7 @@ function styleMobileNav() {
 
 // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
 function toggleNavClasses() {
-  scrolledY = siteWrapper.scrollTop;
+  scrolledY = window.pageYOffset;
   if (scrolledY > 0) {
     navBar.classList.toggle("nav-white");
     nav.classList.toggle("nav-no-border");
@@ -60,9 +60,8 @@ function toggleNavClasses() {
     siteOverlay.classList.toggle("overlay-active");
   } else {
     siteOverlay.classList.toggle("overlay-active");
-    siteWrapper.classList.toggle("menu-open-i");
+    // window.classList.toggle("menu-open-i");
   }
-
   setTimeout(function () {
     designProjectsSection.classList.toggle("lower-section");
     contactSection.classList.toggle("lower-section");
@@ -73,10 +72,11 @@ function toggleNavClasses() {
   } else {
     toggleDelay = 0;
   }
-  burger.classList.toggle("cross");
-  navList.classList.toggle("open");
   navList.classList.add("visible");
+  navList.classList.toggle("open");
+  burger.classList.toggle("cross");
   navContainer.classList.toggle("translate");
+  document.body.classList.toggle("body-fixed");
   // navImg.classList.toggle("logo-index");
   // heroText.classList.toggle("hero-text-opacity");
   // footer.classList.toggle("footer-index");
@@ -89,14 +89,14 @@ function listenToArrow() {
       leading: true,
       trailing: true,
     });
-    siteWrapper.addEventListener("scroll", debouncedRightArrows);
+    window.addEventListener("scroll", debouncedRightArrows);
     rightArrowsContainer.addEventListener("click", slideRightArrows);
     rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
   }
 }
 // shows arrows when passing through threshold.
 function showRightArrows() {
-  scrolledY = siteWrapper.scrollTop;
+  scrolledY = window.pageYOffset;
   let threshold = designOffset - clientHeight + 100;
   if (scrolledY > threshold) {
     rightArrows.forEach((arrow) => arrow.classList.add("arrow-wave"));
@@ -112,7 +112,7 @@ function showRightArrows() {
 function slideRightArrows() {
   rightArrows.forEach((arrow) => arrow.classList.remove("arrow-wave"));
   rightArrows.forEach((arrow) => arrow.classList.add("arrow-slide"));
-  siteWrapper.removeEventListener("scroll", debouncedRightArrows);
+  window.removeEventListener("scroll", debouncedRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
 }
@@ -133,7 +133,6 @@ export {
   navList,
   navElements,
   navContainer,
-  // navBlack,
   styleMobileNav,
   toggleNavClasses,
   modifySwiperForIos,

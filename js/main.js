@@ -18,7 +18,7 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 // console.log(NodeList.prototype.forEach);
 
 //VARIABLES
-const siteWrapper = document.getElementById("site-wrapper");
+// const siteWrapper = document.getElementById("site-wrapper");
 const navBar = document.getElementById("section-navbar");
 const navWhiteBack = document.querySelector(".navigation-white-back");
 const navShadow = document.querySelector(".navigation-shadow");
@@ -27,13 +27,34 @@ const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 let swiper;
 let hasScrollListener = false;
 
+//FUNCTIONS INVOCATIONS
 init();
 initOnWidthChange();
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
 
-//FUNCTIONS
+// console.log(mobileModule.siteOverlay);
+
+// window.addEventListener(
+//   "scroll",
+//   function () {
+//     let scroll = window.pageYOffset;
+//     console.log(scroll);
+//   },
+//   false
+// );
+
+// const siteOffset = document.getElementById("site-offset");
+// console.log(siteOffset);
+
+// siteOffset.addEventListener("scroll", function () {
+//   let scroll = siteOffset.scrollTop;
+//   console.log(scroll);
+//   console.log("asd");
+// });
+
+//FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 function init() {
   if (notMobileScreenMQ.matches) {
@@ -60,7 +81,7 @@ function desktopCode() {
   desktopModule.styleAnchorOnHover();
   jQueryModule.animateImages();
   if (!hasScrollListener) {
-    siteWrapper.addEventListener(
+    window.addEventListener(
       "scroll",
       debounce(styleNavOnScroll, 200, { leading: true, trailing: true })
     );
@@ -82,7 +103,7 @@ function mobileCode() {
   mobileModule.listenToArrow();
   jQueryModule.unbindImages();
   if (!hasScrollListener) {
-    siteWrapper.addEventListener(
+    window.addEventListener(
       "scroll",
       debounce(styleNavOnScroll, 200, { leading: true, trailing: true })
     );
@@ -100,7 +121,7 @@ function mobileCode() {
 
 //adds or removes classes in order to give white styles to the nav.
 function styleNavOnScroll(isMobile = true) {
-  let scrolledY = siteWrapper.scrollTop;
+  let scrolledY = window.pageYOffset;
   if (scrolledY > 0) {
     if (isMobile) {
       styleMobileBrand();
@@ -133,7 +154,7 @@ function restoreMobileBrand() {
   brandMobile.classList.remove("brand-mobile-negative");
 }
 
-export { siteWrapper, navBar, debounce };
+export { navBar, debounce };
 
 //
 //
@@ -257,3 +278,9 @@ export { siteWrapper, navBar, debounce };
 // bug in height 100% on iphone? check on the net (maybe min height in pixels?) (caption due to img from unsplash)
 
 // outline on burger div?
+
+// scroll anchoring onwidthchange init?
+// on burger click? see elements index, classes, etc
+// window.pageYoffset calls, variable ?
+// test foreach in win 11, and other compatibility issues.
+// menu open mobile

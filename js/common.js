@@ -12,7 +12,7 @@ Object.defineProperty(exports, "debounce", {
     return _debounce["default"];
   }
 });
-exports.navBar = exports.siteWrapper = void 0;
+exports.navBar = void 0;
 
 var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
 
@@ -41,10 +41,9 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 // console.log(window.NodeList);
 // console.log(NodeList.prototype.forEach);
 //VARIABLES
+// const siteWrapper = document.getElementById("site-wrapper");
 
 
-var siteWrapper = document.getElementById("site-wrapper");
-exports.siteWrapper = siteWrapper;
 var navBar = document.getElementById("section-navbar");
 exports.navBar = navBar;
 var navWhiteBack = document.querySelector(".navigation-white-back");
@@ -52,12 +51,29 @@ var navShadow = document.querySelector(".navigation-shadow");
 var brandMobile = document.querySelector("#brand-mobile-svg");
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 var swiper;
-var hasScrollListener = false;
+var hasScrollListener = false; //FUNCTIONS INVOCATIONS
+
 init();
 initOnWidthChange();
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
-contactModule.submitContactForm(); //FUNCTIONS
+contactModule.submitContactForm(); // console.log(mobileModule.siteOverlay);
+// window.addEventListener(
+//   "scroll",
+//   function () {
+//     let scroll = window.pageYOffset;
+//     console.log(scroll);
+//   },
+//   false
+// );
+// const siteOffset = document.getElementById("site-offset");
+// console.log(siteOffset);
+// siteOffset.addEventListener("scroll", function () {
+//   let scroll = siteOffset.scrollTop;
+//   console.log(scroll);
+//   console.log("asd");
+// });
+//FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 
 function init() {
@@ -86,7 +102,7 @@ function desktopCode() {
   jQueryModule.animateImages();
 
   if (!hasScrollListener) {
-    siteWrapper.addEventListener("scroll", (0, _debounce["default"])(styleNavOnScroll, 200, {
+    window.addEventListener("scroll", (0, _debounce["default"])(styleNavOnScroll, 200, {
       leading: true,
       trailing: true
     }));
@@ -110,7 +126,7 @@ function mobileCode() {
   jQueryModule.unbindImages();
 
   if (!hasScrollListener) {
-    siteWrapper.addEventListener("scroll", (0, _debounce["default"])(styleNavOnScroll, 200, {
+    window.addEventListener("scroll", (0, _debounce["default"])(styleNavOnScroll, 200, {
       leading: true,
       trailing: true
     }));
@@ -129,7 +145,7 @@ function mobileCode() {
 
 function styleNavOnScroll() {
   var isMobile = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-  var scrolledY = siteWrapper.scrollTop;
+  var scrolledY = window.pageYOffset;
 
   if (scrolledY > 0) {
     if (isMobile) {
@@ -270,6 +286,11 @@ function restoreMobileBrand() {
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
 // bug in height 100% on iphone? check on the net (maybe min height in pixels?) (caption due to img from unsplash)
 // outline on burger div?
+// scroll anchoring onwidthchange init?
+// on burger click? see elements index, classes, etc
+// window.pageYoffset calls, variable ?
+// test foreach in win 11, and other compatibility issues.
+// menu open mobile
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6,"lodash/debounce":18}],2:[function(require,module,exports){
 "use strict";
@@ -447,8 +468,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.restoreDesktopNav = restoreDesktopNav;
 exports.styleAnchorOnHover = styleAnchorOnHover;
 
-var _main = require("../main.js");
-
 var _mobile_only = require("./mobile_only.js");
 
 // jshint esversion: 6
@@ -459,7 +478,7 @@ function styleAnchorOnHover() {
   if (!hasHoverListener) {
     navAnchors.forEach(function (anchor) {
       anchor.addEventListener("mouseover", function () {
-        var scrolledY = _main.siteWrapper.scrollTop;
+        var scrolledY = window.pageYOffset;
 
         if (scrolledY === 0) {
           anchor.classList.remove("anchor-white");
@@ -517,7 +536,7 @@ function editStyle(className, property) {
   }
 }
 
-},{"../main.js":1,"./mobile_only.js":5}],4:[function(require,module,exports){
+},{"./mobile_only.js":5}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -537,9 +556,8 @@ var hasHoverListenerOnPortolio = false; // jQuery for animated scroll
 
 function smoothScroll() {
   (0, _jqueryMin["default"])("#up-arrow").on("click", function () {
-    var siteWrapperTop = (0, _jqueryMin["default"])("#site-wrapper").position().top;
-    (0, _jqueryMin["default"])("#site-wrapper").animate({
-      scrollTop: siteWrapperTop
+    (0, _jqueryMin["default"])("html").animate({
+      scrollTop: 0
     }, 750);
   });
 } // adds hover effect on desktop
@@ -626,7 +644,7 @@ function styleMobileNav() {
 
 
 function toggleNavClasses() {
-  scrolledY = _main.siteWrapper.scrollTop;
+  scrolledY = window.pageYOffset;
 
   if (scrolledY > 0) {
     _main.navBar.classList.toggle("nav-white");
@@ -637,9 +655,7 @@ function toggleNavClasses() {
   if (isIos === false) {
     siteOverlay.classList.toggle("overlay-active");
   } else {
-    siteOverlay.classList.toggle("overlay-active");
-
-    _main.siteWrapper.classList.toggle("menu-open-i");
+    siteOverlay.classList.toggle("overlay-active"); // window.classList.toggle("menu-open-i");
   }
 
   setTimeout(function () {
@@ -654,10 +670,11 @@ function toggleNavClasses() {
     toggleDelay = 0;
   }
 
-  burger.classList.toggle("cross");
-  navList.classList.toggle("open");
   navList.classList.add("visible");
-  navContainer.classList.toggle("translate"); // navImg.classList.toggle("logo-index");
+  navList.classList.toggle("open");
+  burger.classList.toggle("cross");
+  navContainer.classList.toggle("translate");
+  document.body.classList.toggle("body-fixed"); // navImg.classList.toggle("logo-index");
   // heroText.classList.toggle("hero-text-opacity");
   // footer.classList.toggle("footer-index");
 } // adds a listener to rightArrowsContainer that triggers the animation.
@@ -669,9 +686,7 @@ function listenToArrow() {
       leading: true,
       trailing: true
     });
-
-    _main.siteWrapper.addEventListener("scroll", debouncedRightArrows);
-
+    window.addEventListener("scroll", debouncedRightArrows);
     rightArrowsContainer.addEventListener("click", slideRightArrows);
     rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
   }
@@ -679,7 +694,7 @@ function listenToArrow() {
 
 
 function showRightArrows() {
-  scrolledY = _main.siteWrapper.scrollTop;
+  scrolledY = window.pageYOffset;
   var threshold = designOffset - clientHeight + 100;
 
   if (scrolledY > threshold) {
@@ -702,9 +717,7 @@ function slideRightArrows() {
   rightArrows.forEach(function (arrow) {
     return arrow.classList.add("arrow-slide");
   });
-
-  _main.siteWrapper.removeEventListener("scroll", debouncedRightArrows);
-
+  window.removeEventListener("scroll", debouncedRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
 } // styles Swiper (arrows and pagination) depending on mobile OS.

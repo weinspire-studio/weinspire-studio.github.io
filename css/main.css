@@ -39,7 +39,6 @@ body {
 }
 
 #site-wrapper {
-  overflow-x: hidden;
   position: relative;
   transition: background-color 0.5s ease;
 }
@@ -74,11 +73,20 @@ h1, h2, h3, h4, h5 {
   z-index: 0;
   opacity: 0;
   transition: opacity 0.5s ease, z-index 0.5s ease;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .overlay-active {
   z-index: 2;
   opacity: 1;
+}
+
+.body-fixed {
+  overflow: hidden;
 }
 
 .burger {

@@ -8,10 +8,9 @@ let hasHoverListenerOnPortolio = false;
 // jQuery for animated scroll
 function smoothScroll() {
   $("#up-arrow").on("click", function () {
-    const siteWrapperTop = $("#site-wrapper").position().top;
-    $("#site-wrapper").animate(
+    $("html").animate(
       {
-        scrollTop: siteWrapperTop,
+        scrollTop: 0,
       },
       750
     );

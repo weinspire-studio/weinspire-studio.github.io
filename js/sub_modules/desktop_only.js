@@ -1,6 +1,5 @@
 // jshint esversion: 6
 
-import { siteWrapper } from "../main.js";
 import {
   nav,
   navList,
@@ -17,7 +16,7 @@ function styleAnchorOnHover() {
   if (!hasHoverListener) {
     navAnchors.forEach((anchor) => {
       anchor.addEventListener("mouseover", function () {
-        let scrolledY = siteWrapper.scrollTop;
+        let scrolledY = window.pageYOffset;
         if (scrolledY === 0) {
           anchor.classList.remove("anchor-white");
           anchor.classList.remove("underline-black");
