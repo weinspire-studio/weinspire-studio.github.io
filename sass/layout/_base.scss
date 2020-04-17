@@ -20,6 +20,7 @@ body {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
     background-color: $background-light;
+    overflow-x: hidden;
 }
 
 #site-wrapper {
@@ -62,10 +63,10 @@ h1, h2, h3, h4, h5 {
     transition: opacity .5s ease, z-index .5s ease;
 
     position: fixed;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
+    // right: 0;
+    // left: 0;
+    // top: 0;
+    // bottom: 0;
     // overflow-y: hidden;
     // overflow-x: hidden;
 }

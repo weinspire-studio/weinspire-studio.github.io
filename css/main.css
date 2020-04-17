@@ -36,6 +36,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   background-color: whitesmoke;
+  overflow-x: hidden;
 }
 
 #site-wrapper {
@@ -74,10 +75,6 @@ h1, h2, h3, h4, h5 {
   opacity: 0;
   transition: opacity 0.5s ease, z-index 0.5s ease;
   position: fixed;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
 }
 
 .overlay-active {

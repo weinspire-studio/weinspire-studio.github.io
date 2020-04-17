@@ -673,8 +673,8 @@ function toggleNavClasses() {
   navList.classList.add("visible");
   navList.classList.toggle("open");
   burger.classList.toggle("cross");
-  navContainer.classList.toggle("translate");
-  document.body.classList.toggle("body-fixed"); // navImg.classList.toggle("logo-index");
+  navContainer.classList.toggle("translate"); // document.body.classList.toggle("body-fixed");
+  // navImg.classList.toggle("logo-index");
   // heroText.classList.toggle("hero-text-opacity");
   // footer.classList.toggle("footer-index");
 } // adds a listener to rightArrowsContainer that triggers the animation.
