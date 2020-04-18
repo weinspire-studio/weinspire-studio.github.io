@@ -9,6 +9,7 @@ import {
 } from "./mobile_only.js";
 
 const navAnchors = document.querySelectorAll(".nav-list a");
+const brandDesktop = document.querySelector("#brand-desktop-svg");
 let hasHoverListener = false;
 
 // animation effect (underline) for desktop nav anchors.
@@ -73,4 +74,35 @@ function editStyle(className, property) {
   }
 }
 
-export { restoreDesktopNav, styleAnchorOnHover };
+// changes mobile svg brand colors.
+function styleDesktopBrand() {
+  brandDesktop.classList.add("brand-desktop-color");
+  brandDesktop.classList.remove("brand-desktop-negative");
+}
+
+// restores mobile svg brand color to init.
+function restoreDesktopBrand() {
+  brandDesktop.classList.remove("brand-desktop-color");
+  brandDesktop.classList.add("brand-desktop-negative");
+}
+
+// inits mobile brand svg colors.
+function setDesktopBrand() {
+  brandDesktop.classList.add("brand-desktop-negative");
+  if (brandDesktop.style.display === "none") {
+    brandDesktop.style.display = "initial";
+  }
+}
+// inits mobile brand svg colors.
+function unsetDesktopBrand() {
+  brandDesktop.style.display = "none";
+}
+
+export {
+  restoreDesktopNav,
+  styleAnchorOnHover,
+  styleDesktopBrand,
+  restoreDesktopBrand,
+  setDesktopBrand,
+  unsetDesktopBrand,
+};

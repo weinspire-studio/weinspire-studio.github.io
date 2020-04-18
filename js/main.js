@@ -18,11 +18,9 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 // console.log(NodeList.prototype.forEach);
 
 //VARIABLES
-// const siteWrapper = document.getElementById("site-wrapper");
 const navBar = document.getElementById("section-navbar");
 const navWhiteBack = document.querySelector(".navigation-white-back");
 const navShadow = document.querySelector(".navigation-shadow");
-const brandMobile = document.querySelector("#brand-mobile-svg");
 const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 let swiper;
 let hasScrollListener = false;
@@ -33,26 +31,6 @@ initOnWidthChange();
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
-
-// console.log(mobileModule.siteOverlay);
-
-// window.addEventListener(
-//   "scroll",
-//   function () {
-//     let scroll = window.pageYOffset;
-//     console.log(scroll);
-//   },
-//   false
-// );
-
-// const siteOffset = document.getElementById("site-offset");
-// console.log(siteOffset);
-
-// siteOffset.addEventListener("scroll", function () {
-//   let scroll = siteOffset.scrollTop;
-//   console.log(scroll);
-//   console.log("asd");
-// });
 
 //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
@@ -77,13 +55,20 @@ function initOnWidthChange() {
 
 //code that executes only in desktop and large tablets screens (> 801px).
 function desktopCode() {
+  addClassesToSvgs(false);
   styleNavOnScroll(false);
   desktopModule.styleAnchorOnHover();
   jQueryModule.animateImages();
   if (!hasScrollListener) {
     window.addEventListener(
       "scroll",
-      debounce(styleNavOnScroll, 200, { leading: true, trailing: true })
+      debounce(
+        function () {
+          styleNavOnScroll(false);
+        },
+        200,
+        { leading: true, trailing: true }
+      )
     );
     hasScrollListener = true;
   } else {
@@ -116,22 +101,23 @@ function mobileCode() {
   swiper.init();
 }
 
-// let brandMobile = document.querySelector("#brand-mobile-svg");
-// console.log(brandMobile);
-
 //adds or removes classes in order to give white styles to the nav.
 function styleNavOnScroll(isMobile = true) {
   let scrolledY = window.pageYOffset;
   if (scrolledY > 0) {
     if (isMobile) {
-      styleMobileBrand();
+      mobileModule.styleMobileBrand();
+    } else {
+      desktopModule.styleDesktopBrand();
     }
     navBar.classList.add("nav-white");
     navWhiteBack.classList.add("nav-white-back");
     navShadow.classList.add("nav-shadow");
   } else {
     if (isMobile) {
-      restoreMobileBrand();
+      mobileModule.restoreMobileBrand();
+    } else {
+      desktopModule.restoreDesktopBrand();
     }
     navBar.classList.remove("nav-white");
     navWhiteBack.classList.remove("nav-white-back");
@@ -139,19 +125,14 @@ function styleNavOnScroll(isMobile = true) {
   }
 }
 
-function addClassesToSvgs() {
-  brandMobile.classList.add("brand-mobile-color");
-}
-
-// changes mobile svg brand colors.
-function styleMobileBrand() {
-  brandMobile.classList.remove("brand-mobile-color");
-  brandMobile.classList.add("brand-mobile-negative");
-}
-
-function restoreMobileBrand() {
-  brandMobile.classList.add("brand-mobile-color");
-  brandMobile.classList.remove("brand-mobile-negative");
+function addClassesToSvgs(isMobile = true) {
+  if (isMobile) {
+    mobileModule.setMobileBrand();
+    desktopModule.unsetDesktopBrand();
+  } else {
+    desktopModule.setDesktopBrand();
+    mobileModule.unsetMobileBrand();
+  }
 }
 
 export { navBar, debounce };
@@ -280,7 +261,4 @@ export { navBar, debounce };
 // outline on burger div?
 
 // scroll anchoring onwidthchange init?
-// on burger click? see elements index, classes, etc
-// window.pageYoffset calls, variable ?
 // test foreach in win 11, and other compatibility issues.
-// menu open mobile

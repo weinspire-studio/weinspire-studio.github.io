@@ -2,8 +2,6 @@
 
 import { navBar, debounce } from "../main.js";
 
-// console.log("scroll navbar again test 8");
-
 const siteOverlay = document.querySelector(".site-overlay");
 const servicesSection = document.getElementById("section-services");
 const contactSection = document.getElementById("section-contact");
@@ -15,10 +13,10 @@ const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
 const navContainer = document.querySelector(".navigation-container");
 const burger = document.querySelector(".burger");
+const brandMobile = document.querySelector("#brand-mobile-svg");
 const rightArrowsContainer = document.querySelector(".right-arrow-container");
 const rightArrows = document.querySelectorAll(".right-arrow-container svg");
 const swiperPagination = document.querySelector(".swiper-pagination");
-
 let designOffset = designProjectsSection.offsetTop;
 let clientHeight = document.body.clientHeight;
 let scrolledY = 0;
@@ -56,30 +54,24 @@ function toggleNavClasses() {
     navBar.classList.toggle("nav-white");
     nav.classList.toggle("nav-no-border");
   }
-  if (isIos === false) {
-    siteOverlay.classList.toggle("overlay-active");
-  } else {
-    siteOverlay.classList.toggle("overlay-active");
-    // window.classList.toggle("menu-open-i");
-  }
   setTimeout(function () {
-    designProjectsSection.classList.toggle("lower-section");
-    contactSection.classList.toggle("lower-section");
-    servicesSection.classList.toggle("lower-section");
+    designProjectsSection.classList.toggle("section-low");
+    contactSection.classList.toggle("section-low");
+    servicesSection.classList.toggle("section-low");
   }, toggleDelay);
   if (toggleDelay === 0) {
     toggleDelay = 400;
+    restoreMobileBrand();
   } else {
     toggleDelay = 0;
+    styleMobileBrand();
   }
+  document.body.classList.toggle("body-fixed");
+  siteOverlay.classList.toggle("overlay-active");
+  navContainer.classList.toggle("translate");
   navList.classList.add("visible");
   navList.classList.toggle("open");
   burger.classList.toggle("cross");
-  navContainer.classList.toggle("translate");
-  // document.body.classList.toggle("body-fixed");
-  // navImg.classList.toggle("logo-index");
-  // heroText.classList.toggle("hero-text-opacity");
-  // footer.classList.toggle("footer-index");
 }
 
 // adds a listener to rightArrowsContainer that triggers the animation.
@@ -128,6 +120,30 @@ function modifySwiperForIos() {
   }
 }
 
+// changes mobile svg brand colors.
+function styleMobileBrand() {
+  brandMobile.classList.add("brand-mobile-color");
+  brandMobile.classList.remove("brand-mobile-negative");
+}
+
+// restores mobile svg brand color to init.
+function restoreMobileBrand() {
+  brandMobile.classList.remove("brand-mobile-color");
+  brandMobile.classList.add("brand-mobile-negative");
+}
+
+// inits mobile brand svg colors.
+function setMobileBrand() {
+  brandMobile.classList.add("brand-mobile-negative");
+  if (brandMobile.style.display === "none") {
+    brandMobile.style.display = "initial";
+  }
+}
+// inits mobile brand svg colors.
+function unsetMobileBrand() {
+  brandMobile.style.display = "none";
+}
+
 export {
   nav,
   navList,
@@ -137,4 +153,8 @@ export {
   toggleNavClasses,
   modifySwiperForIos,
   listenToArrow,
+  styleMobileBrand,
+  restoreMobileBrand,
+  setMobileBrand,
+  unsetMobileBrand,
 };

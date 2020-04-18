@@ -41,14 +41,12 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 // console.log(window.NodeList);
 // console.log(NodeList.prototype.forEach);
 //VARIABLES
-// const siteWrapper = document.getElementById("site-wrapper");
 
 
 var navBar = document.getElementById("section-navbar");
 exports.navBar = navBar;
 var navWhiteBack = document.querySelector(".navigation-white-back");
 var navShadow = document.querySelector(".navigation-shadow");
-var brandMobile = document.querySelector("#brand-mobile-svg");
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 var swiper;
 var hasScrollListener = false; //FUNCTIONS INVOCATIONS
@@ -57,23 +55,7 @@ init();
 initOnWidthChange();
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
-contactModule.submitContactForm(); // console.log(mobileModule.siteOverlay);
-// window.addEventListener(
-//   "scroll",
-//   function () {
-//     let scroll = window.pageYOffset;
-//     console.log(scroll);
-//   },
-//   false
-// );
-// const siteOffset = document.getElementById("site-offset");
-// console.log(siteOffset);
-// siteOffset.addEventListener("scroll", function () {
-//   let scroll = siteOffset.scrollTop;
-//   console.log(scroll);
-//   console.log("asd");
-// });
-//FUNCTIONS DEFINITIONS
+contactModule.submitContactForm(); //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 
 function init() {
@@ -97,12 +79,15 @@ function initOnWidthChange() {
 
 
 function desktopCode() {
+  addClassesToSvgs(false);
   styleNavOnScroll(false);
   desktopModule.styleAnchorOnHover();
   jQueryModule.animateImages();
 
   if (!hasScrollListener) {
-    window.addEventListener("scroll", (0, _debounce["default"])(styleNavOnScroll, 200, {
+    window.addEventListener("scroll", (0, _debounce["default"])(function () {
+      styleNavOnScroll(false);
+    }, 200, {
       leading: true,
       trailing: true
     }));
@@ -138,9 +123,7 @@ function mobileCode() {
     swiper.params.init = true;
   });
   swiper.init();
-} // let brandMobile = document.querySelector("#brand-mobile-svg");
-// console.log(brandMobile);
-//adds or removes classes in order to give white styles to the nav.
+} //adds or removes classes in order to give white styles to the nav.
 
 
 function styleNavOnScroll() {
@@ -149,7 +132,9 @@ function styleNavOnScroll() {
 
   if (scrolledY > 0) {
     if (isMobile) {
-      styleMobileBrand();
+      mobileModule.styleMobileBrand();
+    } else {
+      desktopModule.styleDesktopBrand();
     }
 
     navBar.classList.add("nav-white");
@@ -157,7 +142,9 @@ function styleNavOnScroll() {
     navShadow.classList.add("nav-shadow");
   } else {
     if (isMobile) {
-      restoreMobileBrand();
+      mobileModule.restoreMobileBrand();
+    } else {
+      desktopModule.restoreDesktopBrand();
     }
 
     navBar.classList.remove("nav-white");
@@ -167,18 +154,15 @@ function styleNavOnScroll() {
 }
 
 function addClassesToSvgs() {
-  brandMobile.classList.add("brand-mobile-color");
-} // changes mobile svg brand colors.
+  var isMobile = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
-
-function styleMobileBrand() {
-  brandMobile.classList.remove("brand-mobile-color");
-  brandMobile.classList.add("brand-mobile-negative");
-}
-
-function restoreMobileBrand() {
-  brandMobile.classList.add("brand-mobile-color");
-  brandMobile.classList.remove("brand-mobile-negative");
+  if (isMobile) {
+    mobileModule.setMobileBrand();
+    desktopModule.unsetDesktopBrand();
+  } else {
+    desktopModule.setDesktopBrand();
+    mobileModule.unsetMobileBrand();
+  }
 } //
 //
 // -----------------
@@ -287,10 +271,7 @@ function restoreMobileBrand() {
 // bug in height 100% on iphone? check on the net (maybe min height in pixels?) (caption due to img from unsplash)
 // outline on burger div?
 // scroll anchoring onwidthchange init?
-// on burger click? see elements index, classes, etc
-// window.pageYoffset calls, variable ?
 // test foreach in win 11, and other compatibility issues.
-// menu open mobile
 
 },{"./sub_modules/contact":2,"./sub_modules/desktop_only":3,"./sub_modules/jquery":4,"./sub_modules/mobile_only":5,"./sub_modules/swiper":6,"lodash/debounce":18}],2:[function(require,module,exports){
 "use strict";
@@ -467,11 +448,16 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.restoreDesktopNav = restoreDesktopNav;
 exports.styleAnchorOnHover = styleAnchorOnHover;
+exports.styleDesktopBrand = styleDesktopBrand;
+exports.restoreDesktopBrand = restoreDesktopBrand;
+exports.setDesktopBrand = setDesktopBrand;
+exports.unsetDesktopBrand = unsetDesktopBrand;
 
 var _mobile_only = require("./mobile_only.js");
 
 // jshint esversion: 6
 var navAnchors = document.querySelectorAll(".nav-list a");
+var brandDesktop = document.querySelector("#brand-desktop-svg");
 var hasHoverListener = false; // animation effect (underline) for desktop nav anchors.
 
 function styleAnchorOnHover() {
@@ -534,6 +520,32 @@ function editStyle(className, property) {
       sheet.insertRule("".concat(className, ":hover:after { ").concat(property.selector, ": ").concat(property.value, "; }"), sheetLength);
     }
   }
+} // changes mobile svg brand colors.
+
+
+function styleDesktopBrand() {
+  brandDesktop.classList.add("brand-desktop-color");
+  brandDesktop.classList.remove("brand-desktop-negative");
+} // restores mobile svg brand color to init.
+
+
+function restoreDesktopBrand() {
+  brandDesktop.classList.remove("brand-desktop-color");
+  brandDesktop.classList.add("brand-desktop-negative");
+} // inits mobile brand svg colors.
+
+
+function setDesktopBrand() {
+  brandDesktop.classList.add("brand-desktop-negative");
+
+  if (brandDesktop.style.display === "none") {
+    brandDesktop.style.display = "initial";
+  }
+} // inits mobile brand svg colors.
+
+
+function unsetDesktopBrand() {
+  brandDesktop.style.display = "none";
 }
 
 },{"./mobile_only.js":5}],4:[function(require,module,exports){
@@ -556,7 +568,7 @@ var hasHoverListenerOnPortolio = false; // jQuery for animated scroll
 
 function smoothScroll() {
   (0, _jqueryMin["default"])("#up-arrow").on("click", function () {
-    (0, _jqueryMin["default"])("html").animate({
+    (0, _jqueryMin["default"])("html, body").animate({
       scrollTop: 0
     }, 750);
   });
@@ -593,12 +605,15 @@ exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
 exports.modifySwiperForIos = modifySwiperForIos;
 exports.listenToArrow = listenToArrow;
+exports.styleMobileBrand = styleMobileBrand;
+exports.restoreMobileBrand = restoreMobileBrand;
+exports.setMobileBrand = setMobileBrand;
+exports.unsetMobileBrand = unsetMobileBrand;
 exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
 
 var _main = require("../main.js");
 
 // jshint esversion: 6
-// console.log("scroll navbar again test 8");
 var siteOverlay = document.querySelector(".site-overlay");
 var servicesSection = document.getElementById("section-services");
 var contactSection = document.getElementById("section-contact");
@@ -612,6 +627,7 @@ exports.navElements = navElements;
 var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
 var burger = document.querySelector(".burger");
+var brandMobile = document.querySelector("#brand-mobile-svg");
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
 var rightArrows = document.querySelectorAll(".right-arrow-container svg");
 var swiperPagination = document.querySelector(".swiper-pagination");
@@ -652,31 +668,26 @@ function toggleNavClasses() {
     nav.classList.toggle("nav-no-border");
   }
 
-  if (isIos === false) {
-    siteOverlay.classList.toggle("overlay-active");
-  } else {
-    siteOverlay.classList.toggle("overlay-active"); // window.classList.toggle("menu-open-i");
-  }
-
   setTimeout(function () {
-    designProjectsSection.classList.toggle("lower-section");
-    contactSection.classList.toggle("lower-section");
-    servicesSection.classList.toggle("lower-section");
+    designProjectsSection.classList.toggle("section-low");
+    contactSection.classList.toggle("section-low");
+    servicesSection.classList.toggle("section-low");
   }, toggleDelay);
 
   if (toggleDelay === 0) {
     toggleDelay = 400;
+    restoreMobileBrand();
   } else {
     toggleDelay = 0;
+    styleMobileBrand();
   }
 
+  document.body.classList.toggle("body-fixed");
+  siteOverlay.classList.toggle("overlay-active");
+  navContainer.classList.toggle("translate");
   navList.classList.add("visible");
   navList.classList.toggle("open");
   burger.classList.toggle("cross");
-  navContainer.classList.toggle("translate"); // document.body.classList.toggle("body-fixed");
-  // navImg.classList.toggle("logo-index");
-  // heroText.classList.toggle("hero-text-opacity");
-  // footer.classList.toggle("footer-index");
 } // adds a listener to rightArrowsContainer that triggers the animation.
 
 
@@ -731,6 +742,32 @@ function modifySwiperForIos() {
     swiperPagination.classList.add("pagination-middle");
     window.addEventListener("DOMContentLoaded", listenToArrow);
   }
+} // changes mobile svg brand colors.
+
+
+function styleMobileBrand() {
+  brandMobile.classList.add("brand-mobile-color");
+  brandMobile.classList.remove("brand-mobile-negative");
+} // restores mobile svg brand color to init.
+
+
+function restoreMobileBrand() {
+  brandMobile.classList.remove("brand-mobile-color");
+  brandMobile.classList.add("brand-mobile-negative");
+} // inits mobile brand svg colors.
+
+
+function setMobileBrand() {
+  brandMobile.classList.add("brand-mobile-negative");
+
+  if (brandMobile.style.display === "none") {
+    brandMobile.style.display = "initial";
+  }
+} // inits mobile brand svg colors.
+
+
+function unsetMobileBrand() {
+  brandMobile.style.display = "none";
 }
 
 },{"../main.js":1}],6:[function(require,module,exports){

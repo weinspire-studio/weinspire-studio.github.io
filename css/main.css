@@ -61,20 +61,19 @@ h1, h2, h3, h4, h5 {
   overflow-y: hidden;
 }
 
-.lower-section {
+.section-low {
   z-index: -1;
   position: relative;
 }
 
 .site-overlay {
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 0;
   opacity: 0;
   transition: opacity 0.5s ease, z-index 0.5s ease;
-  position: fixed;
 }
 
 .overlay-active {
@@ -86,36 +85,31 @@ h1, h2, h3, h4, h5 {
   overflow: hidden;
 }
 
-.burger {
+.navigation-container {
   height: 100%;
-  width: 65px;
-  padding: 0 10px;
-  margin-right: -15px;
-  outline: 0;
-  outline: none;
-  cursor: pointer;
+  width: 100%;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s ease;
+  transform: translateX(100%);
+  position: fixed;
 }
-@media screen and (min-width: 801px) {
-  .burger {
-    display: none;
-  }
+
+.navigation-white-back {
+  width: 100%;
+  height: 3.25em;
+  background-color: transparent;
+  position: fixed;
+  transition: 0.5s ease-in;
 }
-.burger div {
-  position: relative;
-  top: 11.2%;
-  left: 16%;
-  width: 70%;
-  height: 2.5px;
-  margin: 6px 0;
-  background-color: #fff;
-  border-radius: 3px;
-  transition: 0.3s ease-in-out;
-}
-@media screen and (min-width: 479px) and (max-width: 801px) {
-  .burger div {
-    top: 15%;
-    left: 15%;
-  }
+
+.navigation-shadow {
+  width: 100%;
+  height: 3.25em;
+  position: fixed;
+  transition: box-shadow 0.35s ease;
+  z-index: 1;
 }
 
 #section-navbar {
@@ -149,40 +143,6 @@ h1, h2, h3, h4, h5 {
   #section-navbar {
     padding: 0 3em;
   }
-}
-
-#brand-mobile-svg {
-  width: 3.5em;
-  height: 3.5em;
-}
-#brand-mobile-svg path {
-  transition: fill 0.35s ease-in;
-}
-
-.brand-mobile-color #letter-w {
-  fill: red;
-}
-.brand-mobile-color #letter-e {
-  fill: red;
-}
-.brand-mobile-color #shape-left {
-  fill: pink;
-}
-.brand-mobile-color #shape-right {
-  fill: pink;
-}
-
-.brand-mobile-negative #letter-w {
-  fill: green;
-}
-.brand-mobile-negative #letter-e {
-  fill: green;
-}
-.brand-mobile-negative #shape-left {
-  fill: lightgreen;
-}
-.brand-mobile-negative #shape-right {
-  fill: lightgreen;
 }
 
 nav {
@@ -303,31 +263,51 @@ nav {
   background-color: black;
 }
 
-.navigation-container {
+.burger {
   height: 100%;
-  width: 100%;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  transition: transform 0.5s ease;
-  transform: translateX(100%);
-  position: fixed;
+  width: 65px;
+  padding: 0 10px;
+  margin-right: -15px;
+  outline: 0;
+  outline: none;
+  cursor: pointer;
+}
+@media screen and (min-width: 801px) {
+  .burger {
+    display: none;
+  }
+}
+.burger div {
+  position: relative;
+  top: 11.2%;
+  left: 16%;
+  width: 70%;
+  height: 2.5px;
+  margin: 6px 0;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: 0.3s ease-in-out;
+}
+@media screen and (min-width: 479px) and (max-width: 801px) {
+  .burger div {
+    top: 15%;
+    left: 15%;
+  }
 }
 
-.navigation-white-back {
-  width: 100%;
-  height: 3.25em;
-  background-color: transparent;
-  position: fixed;
-  transition: 0.5s ease-in;
+#brand-mobile-svg {
+  width: 3.5em;
+  height: 3.5em;
+}
+#brand-mobile-svg path {
+  transition: fill 0.35s ease-in;
 }
 
-.navigation-shadow {
-  width: 100%;
-  height: 3.25em;
-  position: fixed;
-  transition: box-shadow 0.35s ease;
-  z-index: 1;
+#brand-desktop-svg {
+  width: 10em;
+}
+#brand-desktop-svg path {
+  transition: fill 0.35s ease-in;
 }
 
 .open {
@@ -396,6 +376,64 @@ nav {
 
 .translate .nav-list {
   transform: translateX(0%);
+}
+
+.brand-mobile-color #letter-w {
+  fill: #00416B;
+}
+.brand-mobile-color #letter-e {
+  fill: #00416B;
+}
+.brand-mobile-color #shape-left {
+  fill: #009889;
+}
+.brand-mobile-color #shape-right {
+  fill: #009889;
+}
+
+.brand-mobile-negative #letter-w {
+  fill: #fff;
+}
+.brand-mobile-negative #letter-e {
+  fill: #fff;
+}
+.brand-mobile-negative #shape-left {
+  fill: #2fc0bb;
+}
+.brand-mobile-negative #shape-right {
+  fill: #2fc0bb;
+}
+
+.brand-desktop-color #letter-w {
+  fill: #00416B;
+}
+.brand-desktop-color #letter-e {
+  fill: #00416B;
+}
+.brand-desktop-color #shape-left {
+  fill: #009889;
+}
+.brand-desktop-color #shape-right {
+  fill: #009889;
+}
+.brand-desktop-color #test-path {
+  fill: #00416B;
+}
+
+.brand-desktop-negative #letter-w {
+  fill: #fff;
+}
+.brand-desktop-negative #letter-e {
+  fill: #fff;
+}
+.brand-desktop-negative #shape-left {
+  fill: #2fc0bb;
+}
+.brand-desktop-negative #shape-right {
+  fill: #2fc0bb;
+}
+.brand-desktop-negative #test-path {
+  fill: white;
 }
 
 @keyframes navLinksAnim {
@@ -542,7 +580,7 @@ nav {
   }
 }
 
-#bg-image {
+#section-background {
   height: 98%;
   width: 100%;
   position: absolute;

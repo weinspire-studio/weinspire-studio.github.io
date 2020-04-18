@@ -48,27 +48,19 @@ h1, h2, h3, h4, h5 {
     overflow-y: hidden;
 }
 
-.lower-section {
+.section-low {
     z-index: -1;
     position: relative;
 }
 
 .site-overlay {
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 100%;
     background-color: $black-opacity;
     z-index: 0;
     opacity: 0;
     transition: opacity .5s ease, z-index .5s ease;
-
-    position: fixed;
-    // right: 0;
-    // left: 0;
-    // top: 0;
-    // bottom: 0;
-    // overflow-y: hidden;
-    // overflow-x: hidden;
 }
 
 .overlay-active {
