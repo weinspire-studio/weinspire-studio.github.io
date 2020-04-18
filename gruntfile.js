@@ -11,7 +11,10 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         reporter: require("jshint-stylish"),
-        ignores: ["./js/sub_modules/svg4everybody.js"],
+        ignores: [
+          "./js/sub_modules/svg4everybody.js",
+          "./js/sub_modules/classList.js",
+        ],
       },
       build: ["gruntfile.js", "./js/sub_modules/*.js"],
     },

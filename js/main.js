@@ -6,9 +6,11 @@ import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
 import * as contactModule from "./sub_modules/contact";
 import debounce from "lodash/debounce";
+import "./sub_modules/classList";
 // import svg4everybody from "./sub_modules/svg4everybody";
 // svg4everybody({ polyfill: true });
 
+// polyfill forEach IE.
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
 }
