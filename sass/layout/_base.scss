@@ -6,6 +6,7 @@
 
 html {
     @include font-size-map($document-font-size);
+    // overflow-x: auto;
 }
 
 html, body, #site-wrapper {
@@ -44,9 +45,9 @@ h1, h2, h3, h4, h5 {
 }
 
 //Style Classes
-.menu-open-i {
-    overflow-y: hidden;
-}
+// .menu-open-i {
+//     overflow-y: hidden;
+// }
 
 .section-low {
     z-index: -1;
@@ -70,4 +71,7 @@ h1, h2, h3, h4, h5 {
 
 .body-fixed {
     overflow: hidden;
+}
+.html-fixed {
+    overflow-x: auto;
 }

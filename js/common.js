@@ -14,9 +14,9 @@ Object.defineProperty(exports, "debounce", {
 });
 exports.navBar = void 0;
 
-var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile_only"));
+var mobileModule = _interopRequireWildcard(require("./sub_modules/mobile"));
 
-var desktopModule = _interopRequireWildcard(require("./sub_modules/desktop_only"));
+var desktopModule = _interopRequireWildcard(require("./sub_modules/desktop"));
 
 var swiperModule = _interopRequireWildcard(require("./sub_modules/swiper"));
 
@@ -37,13 +37,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // jshint esversion: 6
 // import svg4everybody from "./sub_modules/svg4everybody";
 // svg4everybody({ polyfill: true });
-// polyfill forEach IE.
+// polyfill forEach IE11.
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
-} // console.log(window);
-// console.log(window.NodeList);
-// console.log(NodeList.prototype.forEach);
-//VARIABLES
+} //VARIABLES
 
 
 var navBar = document.getElementById("section-navbar");
@@ -52,7 +49,10 @@ var navWhiteBack = document.querySelector(".navigation-white-back");
 var navShadow = document.querySelector(".navigation-shadow");
 var notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 var swiper;
-var hasScrollListener = false; //FUNCTIONS INVOCATIONS
+var hasScrollListenerMobile = false;
+var hasScrollListenerDesktop = false;
+var debouncedNavDesktop;
+var debouncedNavMobile; //FUNCTIONS INVOCATIONS
 
 init();
 initOnWidthChange();
@@ -86,17 +86,18 @@ function desktopCode() {
   styleNavOnScroll(false);
   desktopModule.styleAnchorOnHover();
   jQueryModule.animateImages();
+  debouncedNavDesktop = (0, _debounce["default"])(styleNavOnScroll, 200, {
+    leading: true,
+    trailing: true
+  });
+  debouncedNavDesktop(false);
+  window.addEventListener("scroll", debouncedNavDesktop);
+  hasScrollListenerDesktop = true;
 
-  if (!hasScrollListener) {
-    window.addEventListener("scroll", (0, _debounce["default"])(function () {
-      styleNavOnScroll(false);
-    }, 200, {
-      leading: true,
-      trailing: true
-    }));
-    hasScrollListener = true;
-  } else {
+  if (hasScrollListenerMobile === true) {
     desktopModule.restoreDesktopNav();
+    window.removeEventListener("scroll", debouncedNavMobile);
+    hasScrollListenerMobile = false;
   }
 
   if (swiper && swiper.params.init === true) {
@@ -109,16 +110,18 @@ function mobileCode() {
   addClassesToSvgs();
   styleNavOnScroll();
   mobileModule.styleMobileNav();
-  mobileModule.modifySwiperForIos();
-  mobileModule.listenToArrow();
   jQueryModule.unbindImages();
+  mobileModule.initSwiper();
+  debouncedNavMobile = (0, _debounce["default"])(styleNavOnScroll, 200, {
+    leading: true,
+    trailing: true
+  });
+  window.addEventListener("scroll", debouncedNavMobile);
+  hasScrollListenerMobile = true;
 
-  if (!hasScrollListener) {
-    window.addEventListener("scroll", (0, _debounce["default"])(styleNavOnScroll, 200, {
-      leading: true,
-      trailing: true
-    }));
-    hasScrollListener = true;
+  if (hasScrollListenerDesktop === true) {
+    window.removeEventListener("scroll", debouncedNavDesktop);
+    hasScrollListenerDesktop = false;
   }
 
   swiper = swiperModule.defineSwiper();
@@ -276,7 +279,7 @@ function addClassesToSvgs() {
 // scroll anchoring onwidthchange init?
 // test foreach in win 11, and other compatibility issues.
 
-},{"./sub_modules/classList":2,"./sub_modules/contact":3,"./sub_modules/desktop_only":4,"./sub_modules/jquery":5,"./sub_modules/mobile_only":6,"./sub_modules/swiper":7,"lodash/debounce":19}],2:[function(require,module,exports){
+},{"./sub_modules/classList":2,"./sub_modules/contact":3,"./sub_modules/desktop":4,"./sub_modules/jquery":5,"./sub_modules/mobile":6,"./sub_modules/swiper":7,"lodash/debounce":19}],2:[function(require,module,exports){
 "use strict";
 
 "document" in self && ("classList" in document.createElement("_") && (!document.createElementNS || "classList" in document.createElementNS("http://www.w3.org/2000/svg", "g")) || !function (t) {
@@ -590,7 +593,7 @@ exports.restoreDesktopBrand = restoreDesktopBrand;
 exports.setDesktopBrand = setDesktopBrand;
 exports.unsetDesktopBrand = unsetDesktopBrand;
 
-var _mobile_only = require("./mobile_only.js");
+var _mobile = require("./mobile.js");
 
 // jshint esversion: 6
 var navAnchors = document.querySelectorAll(".nav-list a");
@@ -615,8 +618,7 @@ function styleAnchorOnHover() {
 
         var property = {
           selector: "width"
-        }; // property.selector = "width";
-
+        };
         property.value = "".concat((anchor.offsetWidth + 5) / 2) + "px";
         editStyle(".nav-list a", property);
       });
@@ -628,16 +630,16 @@ function styleAnchorOnHover() {
 
 
 function restoreDesktopNav() {
-  if (_mobile_only.navContainer.firstChild !== null) {
-    _mobile_only.navContainer.removeChild(_mobile_only.navList);
+  if (_mobile.navContainer.firstChild !== null) {
+    _mobile.navContainer.removeChild(_mobile.navList);
 
-    _mobile_only.nav.appendChild(_mobile_only.navList);
+    _mobile.nav.appendChild(_mobile.navList);
   }
 
-  if (_mobile_only.navContainer.classList.contains("translate")) {
-    (0, _mobile_only.toggleNavClasses)();
+  if (_mobile.navContainer.classList.contains("translate")) {
+    (0, _mobile.toggleNavClasses)();
 
-    _mobile_only.navElements.forEach(function (navEl) {
+    _mobile.navElements.forEach(function (navEl) {
       navEl.style.animationDelay = "";
       navEl.classList.remove("nav-link-anim");
       navEl.classList.remove("invisible");
@@ -662,13 +664,13 @@ function editStyle(className, property) {
 
 function styleDesktopBrand() {
   brandDesktop.classList.add("brand-desktop-color");
-  brandDesktop.classList.remove("brand-desktop-negative");
+  brandDesktop.classList.remove("brand-desktop-negative"); // console.log("me llaman");
 } // restores mobile svg brand color to init.
 
 
 function restoreDesktopBrand() {
   brandDesktop.classList.remove("brand-desktop-color");
-  brandDesktop.classList.add("brand-desktop-negative");
+  brandDesktop.classList.add("brand-desktop-negative"); // console.log("a mime llaman");
 } // inits mobile brand svg colors.
 
 
@@ -685,7 +687,7 @@ function unsetDesktopBrand() {
   brandDesktop.style.display = "none";
 }
 
-},{"./mobile_only.js":6}],5:[function(require,module,exports){
+},{"./mobile.js":6}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -740,8 +742,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
-exports.modifySwiperForIos = modifySwiperForIos;
-exports.listenToArrow = listenToArrow;
+exports.initSwiper = initSwiper;
 exports.styleMobileBrand = styleMobileBrand;
 exports.restoreMobileBrand = restoreMobileBrand;
 exports.setMobileBrand = setMobileBrand;
@@ -813,18 +814,35 @@ function toggleNavClasses() {
 
   if (toggleDelay === 0) {
     toggleDelay = 400;
-    restoreMobileBrand();
+
+    if (scrolledY > 0) {
+      restoreMobileBrand();
+    }
   } else {
     toggleDelay = 0;
-    styleMobileBrand();
+
+    if (scrolledY > 0) {
+      styleMobileBrand();
+    }
   }
 
-  document.body.classList.toggle("body-fixed");
+  document.body.classList.toggle("body-fixed"); // document.documentElement.classList.toggle("html-fixed");
+
   siteOverlay.classList.toggle("overlay-active");
   navContainer.classList.toggle("translate");
   navList.classList.add("visible");
   navList.classList.toggle("open");
   burger.classList.toggle("cross");
+} // styles Swiper (arrows and pagination) depending on mobile OS.
+
+
+function initSwiper() {
+  if (isIos) {
+    swiperPagination.classList.add("pagination-bottom"); // window.removeEventListener("DOMContentLoaded", listenToArrow);
+  } else {
+    swiperPagination.classList.add("pagination-middle");
+    window.addEventListener("DOMContentLoaded", listenToArrow);
+  }
 } // adds a listener to rightArrowsContainer that triggers the animation.
 
 
@@ -853,6 +871,7 @@ function showRightArrows() {
     rightArrows[1].style.animationDelay = "125ms";
     setTimeout(function () {
       slideRightArrows();
+      console.log("timeout");
     }, 5000);
   }
 } // adds animation to arrow and removes listeners.
@@ -868,17 +887,6 @@ function slideRightArrows() {
   window.removeEventListener("scroll", debouncedRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
-} // styles Swiper (arrows and pagination) depending on mobile OS.
-
-
-function modifySwiperForIos() {
-  if (isIos) {
-    swiperPagination.classList.add("pagination-bottom");
-    window.removeEventListener("DOMContentLoaded", listenToArrow);
-  } else {
-    swiperPagination.classList.add("pagination-middle");
-    window.addEventListener("DOMContentLoaded", listenToArrow);
-  }
 } // changes mobile svg brand colors.
 
 

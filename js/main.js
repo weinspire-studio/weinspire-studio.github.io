@@ -1,7 +1,7 @@
 // jshint esversion: 6
 
-import * as mobileModule from "./sub_modules/mobile_only";
-import * as desktopModule from "./sub_modules/desktop_only";
+import * as mobileModule from "./sub_modules/mobile";
+import * as desktopModule from "./sub_modules/desktop";
 import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
 import * as contactModule from "./sub_modules/contact";
@@ -10,14 +10,10 @@ import "./sub_modules/classList";
 // import svg4everybody from "./sub_modules/svg4everybody";
 // svg4everybody({ polyfill: true });
 
-// polyfill forEach IE.
+// polyfill forEach IE11.
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
 }
-
-// console.log(window);
-// console.log(window.NodeList);
-// console.log(NodeList.prototype.forEach);
 
 //VARIABLES
 const navBar = document.getElementById("section-navbar");
@@ -25,7 +21,11 @@ const navWhiteBack = document.querySelector(".navigation-white-back");
 const navShadow = document.querySelector(".navigation-shadow");
 const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 let swiper;
-let hasScrollListener = false;
+let hasScrollListenerMobile = false;
+let hasScrollListenerDesktop = false;
+
+let debouncedNavDesktop;
+let debouncedNavMobile;
 
 //FUNCTIONS INVOCATIONS
 init();
@@ -61,20 +61,17 @@ function desktopCode() {
   styleNavOnScroll(false);
   desktopModule.styleAnchorOnHover();
   jQueryModule.animateImages();
-  if (!hasScrollListener) {
-    window.addEventListener(
-      "scroll",
-      debounce(
-        function () {
-          styleNavOnScroll(false);
-        },
-        200,
-        { leading: true, trailing: true }
-      )
-    );
-    hasScrollListener = true;
-  } else {
+  debouncedNavDesktop = debounce(styleNavOnScroll, 200, {
+    leading: true,
+    trailing: true,
+  });
+  debouncedNavDesktop(false);
+  window.addEventListener("scroll", debouncedNavDesktop);
+  hasScrollListenerDesktop = true;
+  if (hasScrollListenerMobile === true) {
     desktopModule.restoreDesktopNav();
+    window.removeEventListener("scroll", debouncedNavMobile);
+    hasScrollListenerMobile = false;
   }
   if (swiper && swiper.params.init === true) {
     swiper.destroy();
@@ -86,15 +83,17 @@ function mobileCode() {
   addClassesToSvgs();
   styleNavOnScroll();
   mobileModule.styleMobileNav();
-  mobileModule.modifySwiperForIos();
-  mobileModule.listenToArrow();
   jQueryModule.unbindImages();
-  if (!hasScrollListener) {
-    window.addEventListener(
-      "scroll",
-      debounce(styleNavOnScroll, 200, { leading: true, trailing: true })
-    );
-    hasScrollListener = true;
+  mobileModule.initSwiper();
+  debouncedNavMobile = debounce(styleNavOnScroll, 200, {
+    leading: true,
+    trailing: true,
+  });
+  window.addEventListener("scroll", debouncedNavMobile);
+  hasScrollListenerMobile = true;
+  if (hasScrollListenerDesktop === true) {
+    window.removeEventListener("scroll", debouncedNavDesktop);
+    hasScrollListenerDesktop = false;
   }
   swiper = swiperModule.defineSwiper();
   swiper.on("init", function () {

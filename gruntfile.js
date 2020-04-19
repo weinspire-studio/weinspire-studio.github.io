@@ -113,8 +113,8 @@ module.exports = function (grunt) {
     uglify: {
       all_src: {
         options: {
-          // sourceMap: true,
-          // sourceMapName: "./dist/js/sourceMap.map"
+          sourceMap: true,
+          sourceMapName: "./dist/js/sourceMap.map",
         },
         src: "./js/common.js",
         dest: "./dist/js/all.min.js",
