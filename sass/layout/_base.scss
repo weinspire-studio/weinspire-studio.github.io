@@ -6,7 +6,9 @@
 
 html {
     @include font-size-map($document-font-size);
-    // overflow-x: hidden;
+    // overflow-x: auto;
+    overflow-y: visible;
+    min-height: 100%;
 }
 
 html, body, #site-wrapper {
@@ -14,14 +16,19 @@ html, body, #site-wrapper {
 }
 
 html, body {
-    overflow: auto;
+    overflow-x: visible;
+    overflow-x: auto;
+    // overflow-y: scroll;
+    // z-index: -10;
 }
 
 body {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
     background-color: $background-light;
-    overflow-x: hidden;
+    // overflow-x: auto;
+    overflow-y: visible;
+    min-height: 100vh;
 }
 
 #site-wrapper {
