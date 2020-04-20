@@ -27,6 +27,11 @@ let hasScrollListenerDesktop = false;
 let debouncedNavDesktop;
 let debouncedNavMobile;
 
+// const siteWrapper = document.getElementById("site-wrapper");
+// siteWrapper.addEventListener("scroll", function () {
+//   console.log("scroll");
+// });
+
 //FUNCTIONS INVOCATIONS
 init();
 initOnWidthChange();

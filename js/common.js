@@ -52,7 +52,11 @@ var swiper;
 var hasScrollListenerMobile = false;
 var hasScrollListenerDesktop = false;
 var debouncedNavDesktop;
-var debouncedNavMobile; //FUNCTIONS INVOCATIONS
+var debouncedNavMobile; // const siteWrapper = document.getElementById("site-wrapper");
+// siteWrapper.addEventListener("scroll", function () {
+//   console.log("scroll");
+// });
+//FUNCTIONS INVOCATIONS
 
 init();
 initOnWidthChange();
@@ -826,9 +830,10 @@ function toggleNavClasses() {
     }
   }
 
-  document.body.classList.toggle("body-fixed"); // document.documentElement.classList.toggle("html-fixed");
+  document.body.classList.toggle("body-fixed");
+  siteOverlay.classList.toggle("overlay-active"); // document.documentElement.classList.toggle("html-fixed");
+  // siteOverlay.nextElementSibling.classList.toggle("html-fixed");
 
-  siteOverlay.classList.toggle("overlay-active");
   navContainer.classList.toggle("translate");
   navList.classList.add("visible");
   navList.classList.toggle("open");
@@ -838,7 +843,7 @@ function toggleNavClasses() {
 
 function initSwiper() {
   if (isIos) {
-    swiperPagination.classList.add("pagination-bottom"); // window.removeEventListener("DOMContentLoaded", listenToArrow);
+    swiperPagination.classList.add("pagination-bottom");
   } else {
     swiperPagination.classList.add("pagination-middle");
     window.addEventListener("DOMContentLoaded", listenToArrow);

@@ -32,6 +32,10 @@ html, body, #site-wrapper {
   height: 100%;
 }
 
+html, body {
+  overflow: auto;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -82,7 +86,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .html-fixed {
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 .navigation-container {
@@ -113,6 +117,7 @@ h1, h2, h3, h4, h5 {
 }
 
 #section-navbar {
+  overflow: hidden;
   position: fixed;
   z-index: 2;
   width: 100%;

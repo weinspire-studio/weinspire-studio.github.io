@@ -6,7 +6,7 @@
 
 html {
     @include font-size-map($document-font-size);
-    // overflow-x: auto;
+    // overflow-x: hidden;
 }
 
 html, body, #site-wrapper {
@@ -14,7 +14,7 @@ html, body, #site-wrapper {
 }
 
 html, body {
-    // overflow: auto;
+    overflow: auto;
 }
 
 body {
@@ -73,5 +73,5 @@ h1, h2, h3, h4, h5 {
     overflow: hidden;
 }
 .html-fixed {
-    overflow-x: auto;
+    overflow-x: hidden;
 }

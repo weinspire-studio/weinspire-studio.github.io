@@ -9,6 +9,9 @@
     transition: transform .5s ease;
     transform: translateX(100%);
     position: fixed;
+    // overflow: hidden;
+    // margin-left: 0;
+    // margin-right: 0;
 }
 
 .navigation-white-back {
@@ -17,6 +20,9 @@
     background-color: transparent;
     position: fixed;
     transition: .5s ease-in;
+    // overflow: hidden;
+    // margin-left: 0;
+    // margin-right: 0;
 }
 
 .navigation-shadow {
@@ -25,10 +31,21 @@
     position: fixed;
     transition: box-shadow .35s ease;
     z-index: 1;
+    // overflow: hidden;
+    // margin-left: 0;
+    // margin-right: 0;
+}
+
+#section-navigation {
+    // overflow: hidden;
+    // position: relative;
+    // height: 3.25em;
+    // width: 100%;
 }
 
 //section navbar
 #section-navbar {
+    overflow: hidden;
     position: fixed;
     z-index: 2;
     width: 100%;
