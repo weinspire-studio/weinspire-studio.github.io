@@ -6,6 +6,7 @@
 
 html {
   font-size: 0.9em;
+  overflow-x: hidden;
 }
 @media screen and (min-width: 479px) {
   html {
@@ -34,7 +35,6 @@ html, body, #site-wrapper {
 
 html, body {
   overflow-y: visible;
-  overflow-x: hidden;
 }
 
 body {

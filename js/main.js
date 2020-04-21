@@ -27,14 +27,24 @@ let hasScrollListenerDesktop = false;
 let debouncedNavDesktop;
 let debouncedNavMobile;
 
-// const siteWrapper = document.getElementById("site-wrapper");
-// siteWrapper.addEventListener("scroll", function () {
-//   console.log("scroll");
-// });
+const siteWrapper = document.getElementById("site-wrapper");
+siteWrapper.addEventListener("scroll", function () {
+  console.log("scroll");
+});
 
-// document.body.addEventListener("scroll", function () {
-//   console.log("scrollasddas");
-// });
+document.body.addEventListener("scroll", function () {
+  console.log(document.body.scrollTop);
+  console.log(document.documentElement.scrollTop);
+  console.log("window " + window.scrollY);
+});
+
+window.addEventListener("scroll", function () {
+  console.log(window.scrollY);
+});
+
+document.documentElement.addEventListener("scroll", function () {
+  console.log(document.documentElement.scrollTop);
+});
 
 //FUNCTIONS INVOCATIONS
 init();
@@ -277,3 +287,88 @@ export { navBar, debounce };
 
 // swiper on safari mac
 // inline css repeated
+
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+// }
+
+// html {
+//   @include font-size-map($document-font-size);
+//   // overflow-x: auto;
+//   // overflow-y: visible;
+//   // min-height: 100%;
+// }
+
+// html, body, #site-wrapper {
+//   height: 100%;
+// }
+
+// html, body {
+//   overflow-y: visible;
+//   overflow-x: hidden;
+//   // overflow-y: scroll;
+//   // z-index: -10;
+// }
+
+// body {
+//   font-family: "Montserrat", sans-serif;
+//   font-weight: 400;
+//   background-color: $background-light;
+//   // overflow-x: auto;
+//   // overflow-y: visible;
+//   // min-height: 100%;
+// }
+
+// #site-wrapper {
+//   // overflow-x: hidden;
+//   position: relative;
+//   transition: background-color .5s ease;
+// }
+
+// h1, h2, h3, h4, h5 {
+//   font-weight: 500;
+// }
+
+// #section-services {
+//   min-height: 150%;
+//   // background-color: lightcyan;
+// }
+
+// #section-contact {
+//   margin-top: 10%;
+//   min-height: 100%;
+// }
+
+// //Style Classes
+// // .menu-open-i {
+// //     overflow-y: hidden;
+// // }
+
+// .section-low {
+//   z-index: -1;
+//   position: relative;
+// }
+
+// .site-overlay {
+//   position: fixed;
+//   height: 100%;
+//   width: 100%;
+//   background-color: $black-opacity;
+//   z-index: 0;
+//   opacity: 0;
+//   transition: opacity .5s ease, z-index .5s ease;
+// }
+
+// .overlay-active {
+//   z-index: 2;
+//   opacity: 1;
+// }
+
+// .body-fixed {
+//   // overflow: hidden;
+// }
+// .html-fixed {
+//   overflow-x: hidden;
+// }
