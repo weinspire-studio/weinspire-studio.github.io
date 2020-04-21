@@ -6,8 +6,6 @@
 
 html {
   font-size: 0.9em;
-  overflow-y: visible;
-  min-height: 100%;
 }
 @media screen and (min-width: 479px) {
   html {
@@ -35,7 +33,7 @@ html, body, #site-wrapper {
 }
 
 html, body {
-  overflow-x: visible;
+  overflow-y: visible;
   overflow-x: auto;
 }
 
@@ -43,8 +41,6 @@ body {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   background-color: whitesmoke;
-  overflow-y: visible;
-  min-height: 100vh;
 }
 
 #site-wrapper {
@@ -83,10 +79,6 @@ h1, h2, h3, h4, h5 {
 .overlay-active {
   z-index: 2;
   opacity: 1;
-}
-
-.body-fixed {
-  overflow: hidden;
 }
 
 .html-fixed {
