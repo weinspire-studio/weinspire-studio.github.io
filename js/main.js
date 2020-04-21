@@ -32,6 +32,10 @@ let debouncedNavMobile;
 //   console.log("scroll");
 // });
 
+// document.body.addEventListener("scroll", function () {
+//   console.log("scrollasddas");
+// });
+
 //FUNCTIONS INVOCATIONS
 init();
 initOnWidthChange();
@@ -71,11 +75,11 @@ function desktopCode() {
     trailing: true,
   });
   debouncedNavDesktop(false);
-  window.addEventListener("scroll", debouncedNavDesktop);
+  document.body.addEventListener("scroll", debouncedNavDesktop);
   hasScrollListenerDesktop = true;
   if (hasScrollListenerMobile === true) {
     desktopModule.restoreDesktopNav();
-    window.removeEventListener("scroll", debouncedNavMobile);
+    document.body.removeEventListener("scroll", debouncedNavMobile);
     hasScrollListenerMobile = false;
   }
   if (swiper && swiper.params.init === true) {
@@ -94,10 +98,10 @@ function mobileCode() {
     leading: true,
     trailing: true,
   });
-  window.addEventListener("scroll", debouncedNavMobile);
+  document.body.addEventListener("scroll", debouncedNavMobile);
   hasScrollListenerMobile = true;
   if (hasScrollListenerDesktop === true) {
-    window.removeEventListener("scroll", debouncedNavDesktop);
+    document.body.removeEventListener("scroll", debouncedNavDesktop);
     hasScrollListenerDesktop = false;
   }
   swiper = swiperModule.defineSwiper();
@@ -109,7 +113,9 @@ function mobileCode() {
 
 //adds or removes classes in order to give white styles to the nav.
 function styleNavOnScroll(isMobile = true) {
-  let scrolledY = window.pageYOffset;
+  // let scrolledY = window.pageYOffset;
+  let scrolledY = document.body.scrollTop;
+  console.log(scrolledY);
   if (scrolledY > 0) {
     if (isMobile) {
       mobileModule.styleMobileBrand();
@@ -268,3 +274,6 @@ export { navBar, debounce };
 
 // scroll anchoring onwidthchange init?
 // test foreach in win 11, and other compatibility issues.
+
+// swiper on safari mac
+// inline css repeated

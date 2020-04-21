@@ -49,7 +49,7 @@ function styleMobileNav() {
 
 // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
 function toggleNavClasses() {
-  scrolledY = window.pageYOffset;
+  scrolledY = document.body.scrollTop;
   if (scrolledY > 0) {
     navBar.classList.toggle("nav-white");
     nav.classList.toggle("nav-no-border");
@@ -70,10 +70,10 @@ function toggleNavClasses() {
       styleMobileBrand();
     }
   }
-  document.body.classList.toggle("body-fixed");
-  siteOverlay.classList.toggle("overlay-active");
+  // document.body.classList.toggle("body-fixed");
   // document.documentElement.classList.toggle("html-fixed");
   // siteOverlay.nextElementSibling.classList.toggle("html-fixed");
+  siteOverlay.classList.toggle("overlay-active");
   navContainer.classList.toggle("translate");
   navList.classList.add("visible");
   navList.classList.toggle("open");
@@ -97,14 +97,14 @@ function listenToArrow() {
       leading: true,
       trailing: true,
     });
-    window.addEventListener("scroll", debouncedRightArrows);
+    document.body.addEventListener("scroll", debouncedRightArrows);
     rightArrowsContainer.addEventListener("click", slideRightArrows);
     rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
   }
 }
 // shows arrows when passing through threshold.
 function showRightArrows() {
-  scrolledY = window.pageYOffset;
+  scrolledY = document.body.scrollTop;
   let threshold = designOffset - clientHeight + 100;
   if (scrolledY > threshold) {
     rightArrows.forEach((arrow) => arrow.classList.add("arrow-wave"));
@@ -112,7 +112,7 @@ function showRightArrows() {
     rightArrows[1].style.animationDelay = "125ms";
     setTimeout(function () {
       slideRightArrows();
-      console.log("timeout");
+      console.log("timeout"); //todo: check if on width changes, the listener leaves!
     }, 5000);
   }
 }
@@ -121,7 +121,7 @@ function showRightArrows() {
 function slideRightArrows() {
   rightArrows.forEach((arrow) => arrow.classList.remove("arrow-wave"));
   rightArrows.forEach((arrow) => arrow.classList.add("arrow-slide"));
-  window.removeEventListener("scroll", debouncedRightArrows);
+  document.body.removeEventListener("scroll", debouncedRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
 }

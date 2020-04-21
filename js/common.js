@@ -56,6 +56,9 @@ var debouncedNavMobile; // const siteWrapper = document.getElementById("site-wra
 // siteWrapper.addEventListener("scroll", function () {
 //   console.log("scroll");
 // });
+// document.body.addEventListener("scroll", function () {
+//   console.log("scrollasddas");
+// });
 //FUNCTIONS INVOCATIONS
 
 init();
@@ -95,12 +98,12 @@ function desktopCode() {
     trailing: true
   });
   debouncedNavDesktop(false);
-  window.addEventListener("scroll", debouncedNavDesktop);
+  document.body.addEventListener("scroll", debouncedNavDesktop);
   hasScrollListenerDesktop = true;
 
   if (hasScrollListenerMobile === true) {
     desktopModule.restoreDesktopNav();
-    window.removeEventListener("scroll", debouncedNavMobile);
+    document.body.removeEventListener("scroll", debouncedNavMobile);
     hasScrollListenerMobile = false;
   }
 
@@ -120,11 +123,11 @@ function mobileCode() {
     leading: true,
     trailing: true
   });
-  window.addEventListener("scroll", debouncedNavMobile);
+  document.body.addEventListener("scroll", debouncedNavMobile);
   hasScrollListenerMobile = true;
 
   if (hasScrollListenerDesktop === true) {
-    window.removeEventListener("scroll", debouncedNavDesktop);
+    document.body.removeEventListener("scroll", debouncedNavDesktop);
     hasScrollListenerDesktop = false;
   }
 
@@ -138,7 +141,9 @@ function mobileCode() {
 
 function styleNavOnScroll() {
   var isMobile = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-  var scrolledY = window.pageYOffset;
+  // let scrolledY = window.pageYOffset;
+  var scrolledY = document.body.scrollTop;
+  console.log(scrolledY);
 
   if (scrolledY > 0) {
     if (isMobile) {
@@ -282,6 +287,8 @@ function addClassesToSvgs() {
 // outline on burger div?
 // scroll anchoring onwidthchange init?
 // test foreach in win 11, and other compatibility issues.
+// swiper on safari mac
+// inline css repeated
 
 },{"./sub_modules/classList":2,"./sub_modules/contact":3,"./sub_modules/desktop":4,"./sub_modules/jquery":5,"./sub_modules/mobile":6,"./sub_modules/swiper":7,"lodash/debounce":19}],2:[function(require,module,exports){
 "use strict";
@@ -802,7 +809,7 @@ function styleMobileNav() {
 
 
 function toggleNavClasses() {
-  scrolledY = window.pageYOffset;
+  scrolledY = document.body.scrollTop;
 
   if (scrolledY > 0) {
     _main.navBar.classList.toggle("nav-white");
@@ -828,12 +835,12 @@ function toggleNavClasses() {
     if (scrolledY > 0) {
       styleMobileBrand();
     }
-  }
-
-  document.body.classList.toggle("body-fixed");
-  siteOverlay.classList.toggle("overlay-active"); // document.documentElement.classList.toggle("html-fixed");
+  } // document.body.classList.toggle("body-fixed");
+  // document.documentElement.classList.toggle("html-fixed");
   // siteOverlay.nextElementSibling.classList.toggle("html-fixed");
 
+
+  siteOverlay.classList.toggle("overlay-active");
   navContainer.classList.toggle("translate");
   navList.classList.add("visible");
   navList.classList.toggle("open");
@@ -857,7 +864,7 @@ function listenToArrow() {
       leading: true,
       trailing: true
     });
-    window.addEventListener("scroll", debouncedRightArrows);
+    document.body.addEventListener("scroll", debouncedRightArrows);
     rightArrowsContainer.addEventListener("click", slideRightArrows);
     rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
   }
@@ -865,7 +872,7 @@ function listenToArrow() {
 
 
 function showRightArrows() {
-  scrolledY = window.pageYOffset;
+  scrolledY = document.body.scrollTop;
   var threshold = designOffset - clientHeight + 100;
 
   if (scrolledY > threshold) {
@@ -876,7 +883,7 @@ function showRightArrows() {
     rightArrows[1].style.animationDelay = "125ms";
     setTimeout(function () {
       slideRightArrows();
-      console.log("timeout");
+      console.log("timeout"); //todo: check if on width changes, the listener leaves!
     }, 5000);
   }
 } // adds animation to arrow and removes listeners.
@@ -889,7 +896,7 @@ function slideRightArrows() {
   rightArrows.forEach(function (arrow) {
     return arrow.classList.add("arrow-slide");
   });
-  window.removeEventListener("scroll", debouncedRightArrows);
+  document.body.removeEventListener("scroll", debouncedRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
 } // changes mobile svg brand colors.
