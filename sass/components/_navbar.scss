@@ -36,13 +36,6 @@
     // margin-right: 0;
 }
 
-#section-navigation {
-    // overflow: hidden;
-    // position: relative;
-    // height: 3.25em;
-    // width: 100%;
-}
-
 //section navbar
 #section-navbar {
     overflow: hidden;
@@ -272,68 +265,62 @@ nav {
     transform: translateX(0%);
 }
 
-.brand-mobile-color {
-    #letter-w {
+.brand-color {
+    .brand-blue {
         fill: #00416B;
     }
-    #letter-e {
+    .brand-blue {
         fill: #00416B;
     }
-    #shape-left {
+    .brand-green {
         fill: #009889;
     }
-    #shape-right {
+    .brand-green {
         fill: #009889;
     }
 }
-.brand-mobile-negative {
-    #letter-w {
+.brand-negative {
+    .brand-blue {
         fill: #fff;
     }
-    #letter-e {
+    .brand-blue {
         fill: #fff;
     }
-    #shape-left {
+    .brand-green {
         fill: #2fc0bb;
     }
-    #shape-right {
+    .brand-green {
         fill: #2fc0bb;
     }
 }
-.brand-desktop-color {
-    #letter-w {
-        fill: #00416B;
-    }
-    #letter-e {
-        fill: #00416B;
-    }
-    #shape-left {
-        fill: #009889;
-    }
-    #shape-right {
-        fill: #009889;
-    }
-    #test-path {
-        fill: #00416B;
-    }
-}
-.brand-desktop-negative {
-    #letter-w {
-        fill: #fff;
-    }
-    #letter-e {
-        fill: #fff;
-    }
-    #shape-left {
-        fill: #2fc0bb;
-    }
-    #shape-right {
-        fill: #2fc0bb;
-    }
-    #test-path {
-        fill: white;
-    }
-}
+// .brand-desktop-color {
+//     .brand-blue {
+//         fill: #00416B;
+//     }
+//     .brand-blue {
+//         fill: #00416B;
+//     }
+//     .brand-green {
+//         fill: #009889;
+//     }
+//     .brand-green {
+//         fill: #009889;
+//     }
+// }
+// .brand-desktop-negative {
+//     .brand-blue {
+//         fill: #fff;
+//     }
+//     .brand-blue {
+//         fill: #fff;
+//     }
+//     .brand-green {
+//         fill: #2fc0bb;
+//     }
+//     .brand-green {
+//         fill: #2fc0bb;
+//     }
+// }
 
 // Animations
 @keyframes navLinksAnim {

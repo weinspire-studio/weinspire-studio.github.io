@@ -23,7 +23,6 @@ const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
 let swiper;
 let hasScrollListenerMobile = false;
 let hasScrollListenerDesktop = false;
-
 let debouncedNavDesktop;
 let debouncedNavMobile;
 
@@ -65,8 +64,7 @@ function desktopCode() {
     leading: true,
     trailing: true,
   });
-  debouncedNavDesktop(false);
-  window.addEventListener("scroll", debouncedNavDesktop);
+  window.addEventListener("scroll", debouncedNavDesktop.bind(null, false));
   hasScrollListenerDesktop = true;
   if (hasScrollListenerMobile === true) {
     desktopModule.restoreDesktopNav();

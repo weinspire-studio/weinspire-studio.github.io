@@ -127,19 +127,19 @@ function slideRightArrows() {
 
 // changes mobile svg brand colors.
 function styleMobileBrand() {
-  brandMobile.classList.add("brand-mobile-color");
-  brandMobile.classList.remove("brand-mobile-negative");
+  brandMobile.classList.add("brand-color");
+  brandMobile.classList.remove("brand-negative");
 }
 
 // restores mobile svg brand color to init.
 function restoreMobileBrand() {
-  brandMobile.classList.remove("brand-mobile-color");
-  brandMobile.classList.add("brand-mobile-negative");
+  brandMobile.classList.remove("brand-color");
+  brandMobile.classList.add("brand-negative");
 }
 
 // inits mobile brand svg colors.
 function setMobileBrand() {
-  brandMobile.classList.add("brand-mobile-negative");
+  brandMobile.classList.add("brand-negative");
   if (brandMobile.style.display === "none") {
     brandMobile.style.display = "initial";
   }

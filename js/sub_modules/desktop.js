@@ -75,21 +75,20 @@ function editStyle(className, property) {
 
 // changes mobile svg brand colors.
 function styleDesktopBrand() {
-  brandDesktop.classList.add("brand-desktop-color");
-  brandDesktop.classList.remove("brand-desktop-negative");
-  // console.log("me llaman");
+  brandDesktop.classList.add("brand-color");
+  brandDesktop.classList.remove("brand-negative");
 }
 
 // restores mobile svg brand color to init.
 function restoreDesktopBrand() {
-  brandDesktop.classList.remove("brand-desktop-color");
-  brandDesktop.classList.add("brand-desktop-negative");
+  brandDesktop.classList.remove("brand-color");
+  brandDesktop.classList.add("brand-negative");
   // console.log("a mime llaman");
 }
 
 // inits mobile brand svg colors.
 function setDesktopBrand() {
-  brandDesktop.classList.add("brand-desktop-negative");
+  brandDesktop.classList.add("brand-negative");
   if (brandDesktop.style.display === "none") {
     brandDesktop.style.display = "initial";
   }

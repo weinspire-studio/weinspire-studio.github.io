@@ -102,7 +102,7 @@
     grid-area: copyright;
     align-self: center;
     text-align: center;
-    padding-bottom: .25em;
+    padding-bottom: .5em;
     & h5, & h6 {
         color: white;
         @include media-query ($md) {

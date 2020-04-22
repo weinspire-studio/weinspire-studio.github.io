@@ -379,62 +379,30 @@ nav {
   transform: translateX(0%);
 }
 
-.brand-mobile-color #letter-w {
+.brand-color .brand-blue {
   fill: #00416B;
 }
-.brand-mobile-color #letter-e {
+.brand-color .brand-blue {
   fill: #00416B;
 }
-.brand-mobile-color #shape-left {
+.brand-color .brand-green {
   fill: #009889;
 }
-.brand-mobile-color #shape-right {
+.brand-color .brand-green {
   fill: #009889;
 }
 
-.brand-mobile-negative #letter-w {
+.brand-negative .brand-blue {
   fill: #fff;
 }
-.brand-mobile-negative #letter-e {
+.brand-negative .brand-blue {
   fill: #fff;
 }
-.brand-mobile-negative #shape-left {
+.brand-negative .brand-green {
   fill: #2fc0bb;
 }
-.brand-mobile-negative #shape-right {
+.brand-negative .brand-green {
   fill: #2fc0bb;
-}
-
-.brand-desktop-color #letter-w {
-  fill: #00416B;
-}
-.brand-desktop-color #letter-e {
-  fill: #00416B;
-}
-.brand-desktop-color #shape-left {
-  fill: #009889;
-}
-.brand-desktop-color #shape-right {
-  fill: #009889;
-}
-.brand-desktop-color #test-path {
-  fill: #00416B;
-}
-
-.brand-desktop-negative #letter-w {
-  fill: #fff;
-}
-.brand-desktop-negative #letter-e {
-  fill: #fff;
-}
-.brand-desktop-negative #shape-left {
-  fill: #2fc0bb;
-}
-.brand-desktop-negative #shape-right {
-  fill: #2fc0bb;
-}
-.brand-desktop-negative #test-path {
-  fill: white;
 }
 
 @keyframes navLinksAnim {
@@ -1585,7 +1553,7 @@ nav {
   -ms-flex-item-align: center;
       align-self: center;
   text-align: center;
-  padding-bottom: 0.25em;
+  padding-bottom: 0.5em;
 }
 .footer-info h5, .footer-info h6 {
   color: white;

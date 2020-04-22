@@ -90,8 +90,7 @@ function desktopCode() {
     leading: true,
     trailing: true
   });
-  debouncedNavDesktop(false);
-  window.addEventListener("scroll", debouncedNavDesktop);
+  window.addEventListener("scroll", debouncedNavDesktop.bind(null, false));
   hasScrollListenerDesktop = true;
 
   if (hasScrollListenerMobile === true) {
@@ -736,19 +735,19 @@ function editStyle(className, property) {
 
 
 function styleDesktopBrand() {
-  brandDesktop.classList.add("brand-desktop-color");
-  brandDesktop.classList.remove("brand-desktop-negative"); // console.log("me llaman");
+  brandDesktop.classList.add("brand-color");
+  brandDesktop.classList.remove("brand-negative");
 } // restores mobile svg brand color to init.
 
 
 function restoreDesktopBrand() {
-  brandDesktop.classList.remove("brand-desktop-color");
-  brandDesktop.classList.add("brand-desktop-negative"); // console.log("a mime llaman");
+  brandDesktop.classList.remove("brand-color");
+  brandDesktop.classList.add("brand-negative"); // console.log("a mime llaman");
 } // inits mobile brand svg colors.
 
 
 function setDesktopBrand() {
-  brandDesktop.classList.add("brand-desktop-negative");
+  brandDesktop.classList.add("brand-negative");
 
   if (brandDesktop.style.display === "none") {
     brandDesktop.style.display = "initial";
@@ -964,19 +963,19 @@ function slideRightArrows() {
 
 
 function styleMobileBrand() {
-  brandMobile.classList.add("brand-mobile-color");
-  brandMobile.classList.remove("brand-mobile-negative");
+  brandMobile.classList.add("brand-color");
+  brandMobile.classList.remove("brand-negative");
 } // restores mobile svg brand color to init.
 
 
 function restoreMobileBrand() {
-  brandMobile.classList.remove("brand-mobile-color");
-  brandMobile.classList.add("brand-mobile-negative");
+  brandMobile.classList.remove("brand-color");
+  brandMobile.classList.add("brand-negative");
 } // inits mobile brand svg colors.
 
 
 function setMobileBrand() {
-  brandMobile.classList.add("brand-mobile-negative");
+  brandMobile.classList.add("brand-negative");
 
   if (brandMobile.style.display === "none") {
     brandMobile.style.display = "initial";
