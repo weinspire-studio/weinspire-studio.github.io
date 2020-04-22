@@ -1,147 +1,146 @@
-// // svg4everybody({ polyfill: true });
+!(function (root, factory) {
+  "function" == typeof define && define.amd
+    ? define([], function () {
+        return (root.svg4everybody = factory());
+      })
+    : "object" == typeof module && module.exports
+    ? (module.exports = factory())
+    : (root.svg4everybody = factory());
+})(this, function () {
+  function embed(parent, svg, target, use) {
+    if (target) {
+      var fragment = document.createDocumentFragment(),
+        viewBox =
+          !svg.hasAttribute("viewBox") && target.getAttribute("viewBox");
+      viewBox && svg.setAttribute("viewBox", viewBox);
+      for (
+        // clone the target
+        var clone = document.importNode
+            ? document.importNode(target, !0)
+            : target.cloneNode(!0),
+          g = document.createElementNS(
+            svg.namespaceURI || "http://www.w3.org/2000/svg",
+            "g"
+          );
+        clone.childNodes.length;
 
-// !(function (a, b) {
-//   "function" == typeof define && define.amd
-//     ? define([], function () {
-//         return (a.svg4everybody = b());
-//       })
-//     : "object" == typeof exports
-//     ? (module.exports = b())
-//     : (a.svg4everybody = b());
-// })(this, function () {
-//   /*! svg4everybody v2.0.0 | github.com/jonathantneal/svg4everybody */ function a(
-//     a,
-//     b
-//   ) {
-//     if (b) {
-//       var c = !a.getAttribute("viewBox") && b.getAttribute("viewBox"),
-//         d = document.createDocumentFragment(),
-//         e = b.cloneNode(!0);
-//       for (c && a.setAttribute("viewBox", c); e.childNodes.length; )
-//         d.appendChild(e.firstChild);
-//       a.appendChild(d);
-//     }
-//   }
-//   function b(b) {
-//     (b.onreadystatechange = function () {
-//       if (4 === b.readyState) {
-//         var c = document.createElement("x");
-//         (c.innerHTML = b.responseText),
-//           b.s.splice(0).map(function (b) {
-//             a(b[0], c.querySelector("#" + b[1].replace(/(\W)/g, "\\$1")));
-//           });
-//       }
-//     }),
-//       b.onreadystatechange();
-//   }
-//   function c(c) {
-//     function d() {
-//       for (var c; (c = e[0]); ) {
-//         var j = c.parentNode;
-//         if (j && /svg/i.test(j.nodeName)) {
-//           var k = c.getAttribute("xlink:href");
-//           if (f && (!g || g(k, j, c))) {
-//             var l = k.split("#"),
-//               m = l[0],
-//               n = l[1];
-//             if ((j.removeChild(c), m.length)) {
-//               var o = (i[m] = i[m] || new XMLHttpRequest());
-//               o.s || ((o.s = []), o.open("GET", m), o.send()),
-//                 o.s.push([j, n]),
-//                 b(o);
-//             } else a(j, document.getElementById(n));
-//           }
-//         }
-//       }
-//       h(d, 17);
-//     }
-//     c = c || {};
-//     var e = document.getElementsByTagName("use"),
-//       f =
-//         "shim" in c
-//           ? c.shim
-//           : /\bEdge\/12\b|\bTrident\/[567]\b|\bVersion\/7.0 Safari\b/.test(
-//               navigator.userAgent
-//             ) ||
-//             (navigator.userAgent.match(/AppleWebKit\/(\d+)/) || [])[1] < 537,
-//       g = c.validate,
-//       h = window.requestAnimationFrame || setTimeout,
-//       i = {};
-//     f && d();
-//   }
-//   return c;
-// });
+      ) {
+        g.appendChild(clone.firstChild);
+      }
+      if (use) {
+        for (var i = 0; use.attributes.length > i; i++) {
+          var attr = use.attributes[i];
+          "xlink:href" !== attr.name &&
+            "href" !== attr.name &&
+            g.setAttribute(attr.name, attr.value);
+        }
+      }
+      fragment.appendChild(g), parent.appendChild(fragment);
+    }
+  }
+  function loadreadystatechange(xhr, use) {
+    (xhr.onreadystatechange = function () {
+      if (4 === xhr.readyState) {
+        var cachedDocument = xhr._cachedDocument;
+        cachedDocument ||
+          ((cachedDocument = xhr._cachedDocument = document.implementation.createHTMLDocument(
+            ""
+          )),
+          (cachedDocument.body.innerHTML = xhr.responseText),
+          cachedDocument.domain !== document.domain &&
+            (cachedDocument.domain = document.domain),
+          (xhr._cachedTarget = {})),
+          xhr._embeds.splice(0).map(function (item) {
+            var target = xhr._cachedTarget[item.id];
+            target ||
+              (target = xhr._cachedTarget[
+                item.id
+              ] = cachedDocument.getElementById(item.id)),
+              embed(item.parent, item.svg, target, use);
+          });
+      }
+    }),
+      xhr.onreadystatechange();
+  }
+  function svg4everybody(rawopts) {
+    function oninterval() {
+      if (
+        numberOfSvgUseElementsToBypass &&
+        uses.length - numberOfSvgUseElementsToBypass <= 0
+      ) {
+        return void requestAnimationFrame(oninterval, 67);
+      }
+      numberOfSvgUseElementsToBypass = 0;
+      for (var index = 0; index < uses.length; ) {
+        var use = uses[index],
+          parent = use.parentNode,
+          svg = getSVGAncestor(parent),
+          src = use.getAttribute("xlink:href") || use.getAttribute("href");
+        if (
+          (!src &&
+            opts.attributeName &&
+            (src = use.getAttribute(opts.attributeName)),
+          svg && src)
+        ) {
+          if (polyfill) {
+            if (!opts.validate || opts.validate(src, svg, use)) {
+              parent.removeChild(use);
+              var srcSplit = src.split("#"),
+                url = srcSplit.shift(),
+                id = srcSplit.join("#");
+              if (url.length) {
+                var xhr = requests[url];
+                xhr ||
+                  ((xhr = requests[url] = new XMLHttpRequest()),
+                  xhr.open("GET", url),
+                  xhr.send(),
+                  (xhr._embeds = [])),
+                  xhr._embeds.push({
+                    parent: parent,
+                    svg: svg,
+                    id: id,
+                  }),
+                  loadreadystatechange(xhr, use);
+              } else {
+                embed(parent, svg, document.getElementById(id), use);
+              }
+            } else {
+              ++index, ++numberOfSvgUseElementsToBypass;
+            }
+          }
+        } else {
+          ++index;
+        }
+      }
+      requestAnimationFrame(oninterval, 67);
+    }
+    var polyfill,
+      opts = Object(rawopts),
+      newerIEUA = /\bTrident\/[567]\b|\bMSIE (?:9|10)\.0\b/,
+      webkitUA = /\bAppleWebKit\/(\d+)\b/,
+      olderEdgeUA = /\bEdge\/12\.(\d+)\b/,
+      edgeUA = /\bEdge\/.(\d+)\b/,
+      inIframe = window.top !== window.self;
+    polyfill =
+      "polyfill" in opts
+        ? opts.polyfill
+        : newerIEUA.test(navigator.userAgent) ||
+          (navigator.userAgent.match(olderEdgeUA) || [])[1] < 10547 ||
+          (navigator.userAgent.match(webkitUA) || [])[1] < 537 ||
+          (edgeUA.test(navigator.userAgent) && inIframe);
+    var requests = {},
+      requestAnimationFrame = window.requestAnimationFrame || setTimeout,
+      uses = document.getElementsByTagName("use"),
+      numberOfSvgUseElementsToBypass = 0;
+    polyfill && oninterval();
+  }
+  function getSVGAncestor(node) {
+    for (
+      var svg = node;
+      "svg" !== svg.nodeName.toLowerCase() && (svg = svg.parentNode);
 
-// // svg4everybody({ polyfill: true });
-
-// // !(function (a, b) {
-// //   "function" == typeof define && define.amd
-// //     ? define([], function () {
-// //         return (a.svg4everybody = b());
-// //       })
-// //     : "object" == typeof exports
-// //     ? (module.exports = b())
-// //     : (a.svg4everybody = b());
-// // })(this, function () {
-// //   /*! svg4everybody v2.0.0 | github.com/jonathantneal/svg4everybody */ function a(
-// //     a,
-// //     b
-// //   ) {
-// //     if (b) {
-// //       var c = !a.getAttribute("viewBox") && b.getAttribute("viewBox"),
-// //         d = document.createDocumentFragment(),
-// //         e = b.cloneNode(!0);
-// //       for (c && a.setAttribute("viewBox", c); e.childNodes.length; )
-// //         d.appendChild(e.firstChild);
-// //       a.appendChild(d);
-// //     }
-// //   }
-// //   function b(b) {
-// //     (b.onreadystatechange = function () {
-// //       if (4 === b.readyState) {
-// //         var c = document.createElement("x");
-// //         (c.innerHTML = b.responseText),
-// //           b.s.splice(0).map(function (b) {
-// //             a(b[0], c.querySelector("#" + b[1].replace(/(\W)/g, "\\$1")));
-// //           });
-// //       }
-// //     }),
-// //       b.onreadystatechange();
-// //   }
-// //   function c(c) {
-// //     function d() {
-// //       for (var c; (c = e[0]); ) {
-// //         var j = c.parentNode;
-// //         if (j && /svg/i.test(j.nodeName)) {
-// //           var k = c.getAttribute("xlink:href");
-// //           if (f && (!g || g(k, j, c))) {
-// //             var l = k.split("#"),
-// //               m = l[0],
-// //               n = l[1];
-// //             if ((j.removeChild(c), m.length)) {
-// //               var o = (i[m] = i[m] || new XMLHttpRequest());
-// //               o.s || ((o.s = []), o.open("GET", m), o.send()),
-// //                 o.s.push([j, n]),
-// //                 b(o);
-// //             } else a(j, document.getElementById(n));
-// //           }
-// //         }
-// //       }
-// //       h(d, 17);
-// //     }
-// //     c = c || {};
-// //     var e = document.getElementsByTagName("use"),
-// //       f =
-// //         "shim" in c
-// //           ? c.shim
-// //           : /\bEdge\/12\b|\bTrident\/[567]\b|\bVersion\/7.0 Safari\b/.test(
-// //               navigator.userAgent
-// //             ) ||
-// //             (navigator.userAgent.match(/AppleWebKit\/(\d+)/) || [])[1] < 537,
-// //       g = c.validate,
-// //       h = window.requestAnimationFrame || setTimeout,
-// //       i = {};
-// //     f && d();
-// //   }
-// //   return c;
-// // });
+    ) {}
+    return svg;
+  }
+  return svg4everybody;
+});

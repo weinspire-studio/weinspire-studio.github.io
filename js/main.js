@@ -6,9 +6,8 @@ import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
 import * as contactModule from "./sub_modules/contact";
 import debounce from "lodash/debounce";
+import svg4everybody from "./sub_modules/svg4everybody";
 import "./sub_modules/classList";
-// import svg4everybody from "./sub_modules/svg4everybody";
-// svg4everybody({ polyfill: true });
 
 // polyfill forEach IE11.
 if (window.NodeList && !NodeList.prototype.forEach) {
@@ -25,10 +24,12 @@ let hasScrollListenerMobile = false;
 let hasScrollListenerDesktop = false;
 let debouncedNavDesktop;
 let debouncedNavMobile;
+let bindedDebouncedNavDesktop;
 
 //FUNCTIONS INVOCATIONS
 init();
 initOnWidthChange();
+svg4everybody({ polyfill: true });
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
@@ -64,7 +65,8 @@ function desktopCode() {
     leading: true,
     trailing: true,
   });
-  window.addEventListener("scroll", debouncedNavDesktop.bind(null, false));
+  bindedDebouncedNavDesktop = debouncedNavDesktop.bind(null, false);
+  window.addEventListener("scroll", bindedDebouncedNavDesktop);
   hasScrollListenerDesktop = true;
   if (hasScrollListenerMobile === true) {
     desktopModule.restoreDesktopNav();
@@ -90,7 +92,7 @@ function mobileCode() {
   window.addEventListener("scroll", debouncedNavMobile);
   hasScrollListenerMobile = true;
   if (hasScrollListenerDesktop === true) {
-    window.removeEventListener("scroll", debouncedNavDesktop);
+    window.removeEventListener("scroll", bindedDebouncedNavDesktop);
     hasScrollListenerDesktop = false;
   }
   swiper = swiperModule.defineSwiper();
@@ -260,92 +262,9 @@ export { navBar, debounce };
 // outline on burger div?
 
 // scroll anchoring onwidthchange init?
-// test foreach in win 11, and other compatibility issues.
+// test foreach in win 11, and other compatibility issues. GRID! height 100%
 
 // swiper on safari mac
 // inline css repeated
 
-// * {
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: border-box;
-// }
-
-// html {
-//   @include font-size-map($document-font-size);
-//   // overflow-x: auto;
-//   // overflow-y: visible;
-//   // min-height: 100%;
-// }
-
-// html, body, #site-wrapper {
-//   height: 100%;
-// }
-
-// html, body {
-//   overflow-y: visible;
-//   overflow-x: hidden;
-//   // overflow-y: scroll;
-//   // z-index: -10;
-// }
-
-// body {
-//   font-family: "Montserrat", sans-serif;
-//   font-weight: 400;
-//   background-color: $background-light;
-//   // overflow-x: auto;
-//   // overflow-y: visible;
-//   // min-height: 100%;
-// }
-
-// #site-wrapper {
-//   // overflow-x: hidden;
-//   position: relative;
-//   transition: background-color .5s ease;
-// }
-
-// h1, h2, h3, h4, h5 {
-//   font-weight: 500;
-// }
-
-// #section-services {
-//   min-height: 150%;
-//   // background-color: lightcyan;
-// }
-
-// #section-contact {
-//   margin-top: 10%;
-//   min-height: 100%;
-// }
-
-// //Style Classes
-// // .menu-open-i {
-// //     overflow-y: hidden;
-// // }
-
-// .section-low {
-//   z-index: -1;
-//   position: relative;
-// }
-
-// .site-overlay {
-//   position: fixed;
-//   height: 100%;
-//   width: 100%;
-//   background-color: $black-opacity;
-//   z-index: 0;
-//   opacity: 0;
-//   transition: opacity .5s ease, z-index .5s ease;
-// }
-
-// .overlay-active {
-//   z-index: 2;
-//   opacity: 1;
-// }
-
-// .body-fixed {
-//   // overflow: hidden;
-// }
-// .html-fixed {
-//   overflow-x: hidden;
-// }
+// us, newsletter (and footer), bootloader, svgs in menu!

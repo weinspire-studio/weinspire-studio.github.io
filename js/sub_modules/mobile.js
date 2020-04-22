@@ -22,6 +22,7 @@ let clientHeight = document.body.clientHeight;
 let scrolledY = 0;
 let toggleDelay = 0;
 let hasClickListener = false;
+let rightArrowsFlag = true;
 let debouncedRightArrows;
 // UA sniffing
 let isIos =
@@ -111,18 +112,20 @@ function showRightArrows() {
     rightArrows[1].style.animationDelay = "125ms";
     setTimeout(function () {
       slideRightArrows();
-      console.log("timeout"); //todo: check if on width changes, the listener leaves!
     }, 5000);
   }
 }
 
 // adds animation to arrow and removes listeners.
 function slideRightArrows() {
-  rightArrows.forEach((arrow) => arrow.classList.remove("arrow-wave"));
-  rightArrows.forEach((arrow) => arrow.classList.add("arrow-slide"));
-  window.removeEventListener("scroll", debouncedRightArrows);
-  rightArrowsContainer.removeEventListener("click", slideRightArrows);
-  rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
+  if (rightArrowsFlag) {
+    rightArrows.forEach((arrow) => arrow.classList.remove("arrow-wave"));
+    rightArrows.forEach((arrow) => arrow.classList.add("arrow-slide"));
+    window.removeEventListener("scroll", debouncedRightArrows);
+    rightArrowsContainer.removeEventListener("click", slideRightArrows);
+    rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
+    rightArrowsFlag = false;
+  }
 }
 
 // changes mobile svg brand colors.
@@ -157,7 +160,6 @@ export {
   styleMobileNav,
   toggleNavClasses,
   initSwiper,
-  // listenToArrow,
   styleMobileBrand,
   restoreMobileBrand,
   setMobileBrand,

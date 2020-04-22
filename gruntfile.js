@@ -87,6 +87,7 @@ module.exports = function (grunt) {
         src: [
           "./js/main.js",
           "./js/sub_modules/swiper.js",
+          // "./js/sub_modules/svg4everybody.js",
           // "./custom_modules/swiper/js/swiper.esm.js"
         ],
         dest: "./js/common.js",
