@@ -27,25 +27,6 @@ let hasScrollListenerDesktop = false;
 let debouncedNavDesktop;
 let debouncedNavMobile;
 
-const siteWrapper = document.getElementById("site-wrapper");
-siteWrapper.addEventListener("scroll", function () {
-  console.log("scroll");
-});
-
-document.body.addEventListener("scroll", function () {
-  console.log(document.body.scrollTop);
-  console.log(document.documentElement.scrollTop);
-  console.log("window " + window.scrollY);
-});
-
-window.addEventListener("scroll", function () {
-  console.log(window.scrollY);
-});
-
-document.documentElement.addEventListener("scroll", function () {
-  console.log(document.documentElement.scrollTop);
-});
-
 //FUNCTIONS INVOCATIONS
 init();
 initOnWidthChange();
@@ -85,11 +66,11 @@ function desktopCode() {
     trailing: true,
   });
   debouncedNavDesktop(false);
-  document.body.addEventListener("scroll", debouncedNavDesktop);
+  window.addEventListener("scroll", debouncedNavDesktop);
   hasScrollListenerDesktop = true;
   if (hasScrollListenerMobile === true) {
     desktopModule.restoreDesktopNav();
-    document.body.removeEventListener("scroll", debouncedNavMobile);
+    window.removeEventListener("scroll", debouncedNavMobile);
     hasScrollListenerMobile = false;
   }
   if (swiper && swiper.params.init === true) {
@@ -108,10 +89,10 @@ function mobileCode() {
     leading: true,
     trailing: true,
   });
-  document.body.addEventListener("scroll", debouncedNavMobile);
+  window.addEventListener("scroll", debouncedNavMobile);
   hasScrollListenerMobile = true;
   if (hasScrollListenerDesktop === true) {
-    document.body.removeEventListener("scroll", debouncedNavDesktop);
+    window.removeEventListener("scroll", debouncedNavDesktop);
     hasScrollListenerDesktop = false;
   }
   swiper = swiperModule.defineSwiper();
@@ -123,9 +104,7 @@ function mobileCode() {
 
 //adds or removes classes in order to give white styles to the nav.
 function styleNavOnScroll(isMobile = true) {
-  // let scrolledY = window.pageYOffset;
-  let scrolledY = document.body.scrollTop;
-  console.log(scrolledY);
+  let scrolledY = window.pageYOffset;
   if (scrolledY > 0) {
     if (isMobile) {
       mobileModule.styleMobileBrand();

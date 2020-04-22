@@ -28,6 +28,7 @@ let isIos =
   (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
   !window.MSStream;
+let isSafari = window.safari !== undefined;
 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
@@ -49,7 +50,7 @@ function styleMobileNav() {
 
 // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
 function toggleNavClasses() {
-  scrolledY = document.body.scrollTop;
+  scrolledY = window.pageYOffset;
   if (scrolledY > 0) {
     navBar.classList.toggle("nav-white");
     nav.classList.toggle("nav-no-border");
@@ -70,7 +71,7 @@ function toggleNavClasses() {
       styleMobileBrand();
     }
   }
-  // document.body.classList.toggle("body-fixed");
+  // window.classList.toggle("body-fixed");
   // document.documentElement.classList.toggle("html-fixed");
   // siteOverlay.nextElementSibling.classList.toggle("html-fixed");
   siteOverlay.classList.toggle("overlay-active");
@@ -82,7 +83,7 @@ function toggleNavClasses() {
 
 // styles Swiper (arrows and pagination) depending on mobile OS.
 function initSwiper() {
-  if (isIos) {
+  if (isIos || isSafari) {
     swiperPagination.classList.add("pagination-bottom");
   } else {
     swiperPagination.classList.add("pagination-middle");
@@ -92,19 +93,17 @@ function initSwiper() {
 
 // adds a listener to rightArrowsContainer that triggers the animation.
 function listenToArrow() {
-  if (!isIos) {
-    debouncedRightArrows = debounce(showRightArrows, 200, {
-      leading: true,
-      trailing: true,
-    });
-    document.body.addEventListener("scroll", debouncedRightArrows);
-    rightArrowsContainer.addEventListener("click", slideRightArrows);
-    rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
-  }
+  debouncedRightArrows = debounce(showRightArrows, 200, {
+    leading: true,
+    trailing: true,
+  });
+  window.addEventListener("scroll", debouncedRightArrows);
+  rightArrowsContainer.addEventListener("click", slideRightArrows);
+  rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
 }
 // shows arrows when passing through threshold.
 function showRightArrows() {
-  scrolledY = document.body.scrollTop;
+  scrolledY = window.pageYOffset;
   let threshold = designOffset - clientHeight + 100;
   if (scrolledY > threshold) {
     rightArrows.forEach((arrow) => arrow.classList.add("arrow-wave"));
@@ -121,7 +120,7 @@ function showRightArrows() {
 function slideRightArrows() {
   rightArrows.forEach((arrow) => arrow.classList.remove("arrow-wave"));
   rightArrows.forEach((arrow) => arrow.classList.add("arrow-slide"));
-  document.body.removeEventListener("scroll", debouncedRightArrows);
+  window.removeEventListener("scroll", debouncedRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
 }

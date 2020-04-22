@@ -52,22 +52,7 @@ var swiper;
 var hasScrollListenerMobile = false;
 var hasScrollListenerDesktop = false;
 var debouncedNavDesktop;
-var debouncedNavMobile;
-var siteWrapper = document.getElementById("site-wrapper");
-siteWrapper.addEventListener("scroll", function () {
-  console.log("scroll");
-});
-document.body.addEventListener("scroll", function () {
-  console.log(document.body.scrollTop);
-  console.log(document.documentElement.scrollTop);
-  console.log("window " + window.scrollY);
-});
-window.addEventListener("scroll", function () {
-  console.log(window.scrollY);
-});
-document.documentElement.addEventListener("scroll", function () {
-  console.log(document.documentElement.scrollTop);
-}); //FUNCTIONS INVOCATIONS
+var debouncedNavMobile; //FUNCTIONS INVOCATIONS
 
 init();
 initOnWidthChange();
@@ -106,12 +91,12 @@ function desktopCode() {
     trailing: true
   });
   debouncedNavDesktop(false);
-  document.body.addEventListener("scroll", debouncedNavDesktop);
+  window.addEventListener("scroll", debouncedNavDesktop);
   hasScrollListenerDesktop = true;
 
   if (hasScrollListenerMobile === true) {
     desktopModule.restoreDesktopNav();
-    document.body.removeEventListener("scroll", debouncedNavMobile);
+    window.removeEventListener("scroll", debouncedNavMobile);
     hasScrollListenerMobile = false;
   }
 
@@ -131,11 +116,11 @@ function mobileCode() {
     leading: true,
     trailing: true
   });
-  document.body.addEventListener("scroll", debouncedNavMobile);
+  window.addEventListener("scroll", debouncedNavMobile);
   hasScrollListenerMobile = true;
 
   if (hasScrollListenerDesktop === true) {
-    document.body.removeEventListener("scroll", debouncedNavDesktop);
+    window.removeEventListener("scroll", debouncedNavDesktop);
     hasScrollListenerDesktop = false;
   }
 
@@ -149,9 +134,7 @@ function mobileCode() {
 
 function styleNavOnScroll() {
   var isMobile = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-  // let scrolledY = window.pageYOffset;
-  var scrolledY = document.body.scrollTop;
-  console.log(scrolledY);
+  var scrolledY = window.pageYOffset;
 
   if (scrolledY > 0) {
     if (isMobile) {
@@ -866,7 +849,8 @@ var toggleDelay = 0;
 var hasClickListener = false;
 var debouncedRightArrows; // UA sniffing
 
-var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
+var isSafari = window.safari !== undefined; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
@@ -888,7 +872,7 @@ function styleMobileNav() {
 
 
 function toggleNavClasses() {
-  scrolledY = document.body.scrollTop;
+  scrolledY = window.pageYOffset;
 
   if (scrolledY > 0) {
     _main.navBar.classList.toggle("nav-white");
@@ -914,7 +898,7 @@ function toggleNavClasses() {
     if (scrolledY > 0) {
       styleMobileBrand();
     }
-  } // document.body.classList.toggle("body-fixed");
+  } // window.classList.toggle("body-fixed");
   // document.documentElement.classList.toggle("html-fixed");
   // siteOverlay.nextElementSibling.classList.toggle("html-fixed");
 
@@ -928,7 +912,7 @@ function toggleNavClasses() {
 
 
 function initSwiper() {
-  if (isIos) {
+  if (isIos || isSafari) {
     swiperPagination.classList.add("pagination-bottom");
   } else {
     swiperPagination.classList.add("pagination-middle");
@@ -938,20 +922,18 @@ function initSwiper() {
 
 
 function listenToArrow() {
-  if (!isIos) {
-    debouncedRightArrows = (0, _main.debounce)(showRightArrows, 200, {
-      leading: true,
-      trailing: true
-    });
-    document.body.addEventListener("scroll", debouncedRightArrows);
-    rightArrowsContainer.addEventListener("click", slideRightArrows);
-    rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
-  }
+  debouncedRightArrows = (0, _main.debounce)(showRightArrows, 200, {
+    leading: true,
+    trailing: true
+  });
+  window.addEventListener("scroll", debouncedRightArrows);
+  rightArrowsContainer.addEventListener("click", slideRightArrows);
+  rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
 } // shows arrows when passing through threshold.
 
 
 function showRightArrows() {
-  scrolledY = document.body.scrollTop;
+  scrolledY = window.pageYOffset;
   var threshold = designOffset - clientHeight + 100;
 
   if (scrolledY > threshold) {
@@ -975,7 +957,7 @@ function slideRightArrows() {
   rightArrows.forEach(function (arrow) {
     return arrow.classList.add("arrow-slide");
   });
-  document.body.removeEventListener("scroll", debouncedRightArrows);
+  window.removeEventListener("scroll", debouncedRightArrows);
   rightArrowsContainer.removeEventListener("click", slideRightArrows);
   rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
 } // changes mobile svg brand colors.
