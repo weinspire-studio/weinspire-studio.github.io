@@ -15,8 +15,8 @@
 
 
 //breakpoint variables
-$xs: 351px; //large cells
-$sm: 479px; // landscape cells
+$xs: 351px; //large cellphones
+$sm: 479px; // landscape cellphones
 $md: 801px; // tablets
 $lg: 1024px; // desktops
 $xl: 1200px; // large desktops
@@ -35,6 +35,10 @@ $blue-theme-dark: #003a58;
 $blue-theme-middle: #006985;
 $blue-theme-light: #009ba9;
 $blue-theme-lighter: #43cfc3;
+
+$brand-color-blue: #00416B;
+$brand-color-green: #009889;
+$brand-negative-green: #2fc0bb;
 
 // wrap sm (for margin or padding)
 $wrap-sm-mobile-small: 1em;

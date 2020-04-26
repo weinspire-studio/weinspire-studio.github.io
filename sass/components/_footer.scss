@@ -44,7 +44,12 @@
 
 .footer-design {
     grid-area: design-services;
-    // margin-left: 25%;
+    @include media-query ($md, $lg) {
+        margin-left: -1em;
+    }
+    @include media-query ($lg) {
+        margin-left: -3em;
+    }
 }
 
 .footer-dev {
@@ -57,13 +62,30 @@
 
 .footer-contact {
     grid-area: contact;
+    padding-right: .75em;
 }
 
 .footer-newsletter {
     grid-area: newsletter;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items:center;
+    @include media-query ($md) {
+        display: block;
+        align-self: auto;
+    }
+    h4 {
+        font-size: .8em;
+        width: max-content;
+        @include media-query ($md) {
+            max-width: 347.5px;
+            color: $white-opacity;
+        }
+    }
 }
 
-.footer-design, .footer-dev, .footer-newsletter, .footer-contact .footer-title, .footer-site .footer-title {
+.footer-design, .footer-dev, .footer-contact, .footer-site .footer-title {
     display: none;
     @include media-query ($md) {
         display: block;
@@ -91,11 +113,94 @@
     }
 }
 
+.newsletter-container {
+    width: 100%;
+    max-width: 18em;
+    height: 45px;
+    background: #f1f1f199;
+    border-radius: 40px;
+    position: relative;
+    margin: 1em 0 3em;
 
-.footer-newsletter h4 {
-    // color: white;
-    color: $white-opacity;
-    font-size: .8em;
+    @include media-query ($md) {
+        margin: 2em 0;
+        height: 60px;
+    }
+    input {
+        width: 100%;
+        height: 45px;
+        border-radius: inherit;
+        border: 0;
+        background: none;
+        outline: none;
+        font-size: .8em;
+        padding: 0 52.5px 2px 17.5px;
+        @include media-query ($md) {
+            height: 60px;
+        }
+        @include media-query ($lg) {
+            padding-left: 22.5px;
+        }
+    }
+    button {
+        position: absolute;
+        right: 4px;
+        top: 3.75px;
+        width: 37.5px;
+        height: 37.5px;
+        outline: none;
+        border: 0;
+        border-radius: 50%;
+        background-color: $brand-color-blue;
+        cursor: pointer;
+        color: #fff;
+        transition: 0.4s ease-out;
+        overflow: hidden;
+        @include media-query ($md) {
+            right: 7.5px;
+            top: 7.5px;
+            width: 45px;
+            height: 45px;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: $brand-color-green;
+            transition: background-color .75s ease-in-out, transform .5s ease-in-out;
+        }
+    }
+    button:hover {
+        opacity: 0.75;
+        &:after {
+            transform: translateX(100%);
+            background-color: $brand-color-blue;
+        }
+    }
+    #news-field-status {
+        opacity: 0;
+        pointer-events: none;
+        // width: 100%;
+        // height: 60px;
+        transition: opacity 1s ease-in;
+    }
+    #news-form-status {
+        // background-color: grey;
+        text-align: center;
+        padding: 1em;
+        margin: 1em;
+        // box-shadow: 5px 5px 5px #4b4b4bf6;
+    }
+    // i {
+    //     position: absolute;
+    //     top: 25px;
+    //     right: 10px;
+    //     transform: translate(-125%, 10%);
+    //     pointer-events: none;
+    // }
 }
 
 .footer-info {
@@ -103,22 +208,22 @@
     align-self: center;
     text-align: center;
     padding-bottom: .5em;
-    & h5, & h6 {
+    h5 {
+        padding-top: 1.25em;
+        @include media-query ($md) {
+            // padding-top: 0;
+        }
+    }
+    h5, h6 {
         color: white;
         @include media-query ($md) {
             display: inline-block !important;
             font-size: .75em;
         }
     }
-    & .info-separator {
+    .info-separator {
         display: none;
-
     }
-}
-
-.footer-index {
-    z-index: -1;
-    position: inherit;
 }
   
 @keyframes enlarge {

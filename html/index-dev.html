@@ -434,12 +434,12 @@
                 <button
                   type="submit"
                   id="contact-form-button"
-                  class="button-inactive disabled"
+                  class="button-inactive"
                 >
                   Send
                 </button>
               </div>
-              <div class="field-status">
+              <div id="field-status">
                 <p id="contact-form-status"></p>
               </div>
               <div class="form-info">
@@ -588,10 +588,27 @@
             Monthly Newsletter
           </h3>
           <h4>
-            Keep updated with our most recent projects using the latest
-            technologies!
+            Keep updated with our latest projects!
           </h4>
-          <div class="newsletter-container"></div>
+          <div class="newsletter-container">
+            <form
+              novalidate
+              id="news-form"
+              action="https://formspree.io/xwkngjbo"
+              method="POST"
+            >
+              <input
+                name="news-email"
+                type="text"
+                placeholder="Please enter your email."
+              />
+              <button type="submit"></button>
+            </form>
+            <!-- <i class="fas fa-arrow-right"></i> -->
+            <div id="news-field-status">
+              <p id="news-form-status"></p>
+            </div>
+          </div>
         </div>
         <div class="footer-info">
           <h5>

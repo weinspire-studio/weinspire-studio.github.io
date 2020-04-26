@@ -18,13 +18,13 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 const navBar = document.getElementById("section-navbar");
 const navWhiteBack = document.querySelector(".navigation-white-back");
 const navShadow = document.querySelector(".navigation-shadow");
-const notMobileScreenMQ = window.matchMedia("(min-width: 801px)");
-let swiper;
+const mobileScreenMQ = window.matchMedia("(max-width: 800px)");
 let hasScrollListenerMobile = false;
 let hasScrollListenerDesktop = false;
 let debouncedNavDesktop;
 let debouncedNavMobile;
 let bindedDebouncedNavDesktop;
+let swiper;
 
 //FUNCTIONS INVOCATIONS
 init();
@@ -33,24 +33,25 @@ svg4everybody({ polyfill: true });
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
+contactModule.submitNewsForm();
 
 //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 function init() {
-  if (notMobileScreenMQ.matches) {
-    desktopCode();
-  } else {
+  if (mobileScreenMQ.matches) {
     mobileCode();
+  } else {
+    desktopCode();
   }
 }
 
 // adds listener that executes when screen width changes (passing by 801px).
 function initOnWidthChange() {
-  notMobileScreenMQ.addListener(() => {
-    if (notMobileScreenMQ.matches) {
-      desktopCode();
-    } else {
+  mobileScreenMQ.addListener(() => {
+    if (mobileScreenMQ.matches) {
       mobileCode();
+    } else {
+      desktopCode();
     }
   });
 }
@@ -268,3 +269,4 @@ export { navBar, debounce };
 // inline css repeated
 
 // us, newsletter (and footer), bootloader, svgs in menu!
+// scroll on menu open?

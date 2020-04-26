@@ -117,7 +117,7 @@ form {
     transition: background-color 1s ease, color 1s ease;
 }
 
-.field-status {
+#field-status {
     grid-area: status;
     // margin-bottom: -1em;
     display: flex;
@@ -351,8 +351,8 @@ form {
 }
 
 .visible {
-  opacity: 1;
-  pointer-events: all;
+  opacity: 1!important;
+  pointer-events: all!important;
 }
 
 .button-shake {
