@@ -148,9 +148,14 @@ function styleNavOnScroll() {
       desktopModule.styleDesktopBrand();
     }
 
-    navBar.classList.add("nav-white");
-    navWhiteBack.classList.add("nav-white-back");
-    navShadow.classList.add("nav-shadow");
+    if (!mobileModule.isOpen_Menu) {
+      navBar.classList.add("nav-white");
+      navWhiteBack.classList.add("nav-white-back");
+      navShadow.classList.add("nav-shadow");
+      console.log("entra");
+    } else {
+      console.log("else");
+    }
   } else {
     if (isMobile) {
       mobileModule.restoreMobileBrand();
@@ -795,7 +800,7 @@ exports.styleMobileBrand = styleMobileBrand;
 exports.restoreMobileBrand = restoreMobileBrand;
 exports.setMobileBrand = setMobileBrand;
 exports.unsetMobileBrand = unsetMobileBrand;
-exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
+exports.isOpen_Menu = exports.navContainer = exports.navElements = exports.navList = exports.nav = void 0;
 
 var _main = require("../main.js");
 
@@ -826,7 +831,10 @@ var rightArrowsFlag = true;
 var debouncedRightArrows; // UA sniffing
 
 var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
-var isSafari = window.safari !== undefined; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var isSafari = window.safari !== undefined;
+var isOpen_Menu = false; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+
+exports.isOpen_Menu = isOpen_Menu;
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
@@ -862,13 +870,15 @@ function toggleNavClasses() {
     servicesSection.classList.toggle("section-low");
   }, toggleDelay);
 
-  if (toggleDelay === 0) {
+  if (!isOpen_Menu) {
+    exports.isOpen_Menu = isOpen_Menu = true;
     toggleDelay = 400;
 
     if (scrolledY > 0) {
       restoreMobileBrand();
     }
   } else {
+    exports.isOpen_Menu = isOpen_Menu = false;
     toggleDelay = 0;
 
     if (scrolledY > 0) {

@@ -112,9 +112,14 @@ function styleNavOnScroll(isMobile = true) {
     } else {
       desktopModule.styleDesktopBrand();
     }
-    navBar.classList.add("nav-white");
-    navWhiteBack.classList.add("nav-white-back");
-    navShadow.classList.add("nav-shadow");
+    if (!mobileModule.isOpen_Menu) {
+      navBar.classList.add("nav-white");
+      navWhiteBack.classList.add("nav-white-back");
+      navShadow.classList.add("nav-shadow");
+      console.log("entra");
+    } else {
+      console.log("else");
+    }
   } else {
     if (isMobile) {
       mobileModule.restoreMobileBrand();

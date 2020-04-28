@@ -234,7 +234,7 @@
     grid-area: copyright;
     align-self: center;
     text-align: center;
-    padding-bottom: .5em;
+    padding-bottom: .75em;
     @include media-query ($md) {
         padding-bottom: .2em;
         align-self: flex-end;

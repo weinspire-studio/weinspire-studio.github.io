@@ -31,6 +31,8 @@ let isIos =
   !window.MSStream;
 let isSafari = window.safari !== undefined;
 
+let isOpen_Menu = false;
+
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
@@ -61,12 +63,14 @@ function toggleNavClasses() {
     contactSection.classList.toggle("section-low");
     servicesSection.classList.toggle("section-low");
   }, toggleDelay);
-  if (toggleDelay === 0) {
+  if (!isOpen_Menu) {
+    isOpen_Menu = true;
     toggleDelay = 400;
     if (scrolledY > 0) {
       restoreMobileBrand();
     }
   } else {
+    isOpen_Menu = false;
     toggleDelay = 0;
     if (scrolledY > 0) {
       styleMobileBrand();
@@ -157,6 +161,7 @@ export {
   navList,
   navElements,
   navContainer,
+  isOpen_Menu,
   styleMobileNav,
   toggleNavClasses,
   initSwiper,
