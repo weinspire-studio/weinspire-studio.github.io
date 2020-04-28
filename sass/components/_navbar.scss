@@ -19,7 +19,7 @@
     height: 3.25em;
     background-color: transparent;
     position: fixed;
-    transition: .5s ease-in;
+    transition: background-color .5s ease;
     // overflow: hidden;
     // margin-left: 0;
     // margin-right: 0;
@@ -43,7 +43,7 @@
     z-index: 2;
     width: 100%;
     height: 3.25em;
-    transition: background-color .35s ease-in, box-shadow .35s ease-in;
+    transition: background-color .35s ease, box-shadow .35s ease;
     @include media-query (){
         @include padding-map($content-wrap-hr);
     }
@@ -62,7 +62,6 @@ nav {
 }
 
 .nav-list {
-    list-style-type: none;
     position: absolute;
     top: 0;
     right: 0;
@@ -71,6 +70,8 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: .25em;
+    list-style-type: none;
     background-color: #fff;
     transition: transform 1s ease;
     opacity: 0;
@@ -105,6 +106,7 @@ nav {
 }
 
 .nav-list a {
+    font-size: .95em;
     text-decoration: none;
     color: #000;
     transition: color .75s ease, text-shadow .75s ease;
@@ -153,7 +155,7 @@ nav {
 .burger {
     height: 100%;
     width: 65px;
-    padding: 0 10px;
+    padding: .4em 10px 0;
     margin-right: -15px;
     outline: 0;
     outline: none;
@@ -164,10 +166,10 @@ nav {
   & div {
     position: relative;
     top: 11.2%;
-    left: 16%;
-    width: 70%;
-    height: 2.5px;
-    margin: 6px 0;
+    // left: 16%;
+    width: 55%;
+    height: 2px;
+    margin: 5px auto;
     background-color: #fff;
     border-radius: 3px;
     transition: 0.3s ease-in-out;
@@ -183,14 +185,15 @@ nav {
     width: 3.5em;
     height: 3.5em;
     path {
-        transition: fill .35s ease-in;
+        transition: fill .5s ease;
     }
 }
 
 #brand-desktop-svg {
-    width: 10em;
+    width: 8.5em;
+    padding-top: .25em;
     path {
-        transition: fill .35s ease-in;
+        transition: fill .5s ease;
     }
 }
 
@@ -249,7 +252,6 @@ nav {
 
 .nav-white-back {
     background-color: #fff;
-    // box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
     z-index: 0;
 }
 
@@ -281,34 +283,6 @@ nav {
         fill: #2fc0bb;
     }
 }
-// .brand-desktop-color {
-//     .brand-blue {
-//         fill: #00416B;
-//     }
-//     .brand-blue {
-//         fill: #00416B;
-//     }
-//     .brand-green {
-//         fill: #009889;
-//     }
-//     .brand-green {
-//         fill: #009889;
-//     }
-// }
-// .brand-desktop-negative {
-//     .brand-blue {
-//         fill: #fff;
-//     }
-//     .brand-blue {
-//         fill: #fff;
-//     }
-//     .brand-green {
-//         fill: #2fc0bb;
-//     }
-//     .brand-green {
-//         fill: #2fc0bb;
-//     }
-// }
 
 // Animations
 @keyframes navLinksAnim {

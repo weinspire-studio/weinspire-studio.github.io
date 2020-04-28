@@ -101,7 +101,7 @@ h1, h2, h3, h4, h5 {
   height: 3.25em;
   background-color: transparent;
   position: fixed;
-  transition: 0.5s ease-in;
+  transition: background-color 0.5s ease;
 }
 
 .navigation-shadow {
@@ -118,7 +118,7 @@ h1, h2, h3, h4, h5 {
   z-index: 2;
   width: 100%;
   height: 3.25em;
-  transition: background-color 0.35s ease-in, box-shadow 0.35s ease-in;
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
 }
 @media screen and (min-width: 0) {
   #section-navbar {
@@ -162,7 +162,6 @@ nav {
 }
 
 .nav-list {
-  list-style-type: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -174,6 +173,8 @@ nav {
       flex-direction: column;
   -ms-flex-align: center;
       align-items: center;
+  padding-top: 0.25em;
+  list-style-type: none;
   background-color: #fff;
   transition: transform 1s ease;
   opacity: 0;
@@ -218,6 +219,7 @@ nav {
 }
 
 .nav-list a {
+  font-size: 0.95em;
   text-decoration: none;
   color: #000;
   transition: color 0.75s ease, text-shadow 0.75s ease;
@@ -267,7 +269,7 @@ nav {
 .burger {
   height: 100%;
   width: 65px;
-  padding: 0 10px;
+  padding: 0.4em 10px 0;
   margin-right: -15px;
   outline: 0;
   outline: none;
@@ -281,10 +283,9 @@ nav {
 .burger div {
   position: relative;
   top: 11.2%;
-  left: 16%;
-  width: 70%;
-  height: 2.5px;
-  margin: 6px 0;
+  width: 55%;
+  height: 2px;
+  margin: 5px auto;
   background-color: #fff;
   border-radius: 3px;
   transition: 0.3s ease-in-out;
@@ -301,14 +302,15 @@ nav {
   height: 3.5em;
 }
 #brand-mobile-svg path {
-  transition: fill 0.35s ease-in;
+  transition: fill 0.5s ease;
 }
 
 #brand-desktop-svg {
-  width: 10em;
+  width: 8.5em;
+  padding-top: 0.25em;
 }
 #brand-desktop-svg path {
-  transition: fill 0.35s ease-in;
+  transition: fill 0.5s ease;
 }
 
 .open {
