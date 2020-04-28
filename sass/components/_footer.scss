@@ -10,7 +10,7 @@
         // height: 50%;
         display: grid;
         justify-items: center;
-        grid-template-rows: 1fr 5fr 1fr;
+        grid-template-rows: 1fr 4fr 1fr;
         grid-template-columns: 2fr 2fr 1.5fr 1.5fr 3fr;
         grid-template-areas: 
         'arrow arrow arrow arrow arrow'
@@ -20,6 +20,9 @@
 
     & p {
         font-size: .8em;
+        @include media-query ($md) {
+            line-height: 1.375em;
+        }
     }
 }
 
@@ -28,7 +31,7 @@
     width: 35px;
     fill: rgba(177, 177, 177, 0.904);
     grid-area: arrow;
-    margin: auto;
+    margin: .5em auto;
     transition: animation 500ms ease-in;
     animation: enlarge 500ms ease infinite alternate;
     @include media-query ($md) {
@@ -85,39 +88,12 @@
     }
 }
 
-.footer-design, .footer-dev, .footer-contact, .footer-site .footer-title {
-    display: none;
-    @include media-query ($md) {
-        display: block;
-    }
-}
-
-.footer-title {
-    padding: .7em 0;
-    color: white;
-    font-size: 1.1em;
-}
-
-.footer-site p {
-    color: white;
-    font-size: 1.2em !important;
-    text-transform: uppercase;
-    border-bottom: 1px solid $white-opacity;
-    line-height: 2.5;
-    @include media-query($md) {
-        color: $white-opacity;
-        font-size: .8em !important;
-        border: none;
-        text-transform: initial;
-        line-height: initial;
-    }
-}
-
 .newsletter-container {
     width: 100%;
     max-width: 18em;
     height: 45px;
-    background: #f1f1f199;
+    background-color: #c2c2c2;
+    color: black;
     border-radius: 40px;
     position: relative;
     margin: 1em 0 3em;
@@ -132,6 +108,7 @@
         border-radius: inherit;
         border: 0;
         background: none;
+        color: #000;
         outline: none;
         font-size: .8em;
         padding: 0 52.5px 2px 17.5px;
@@ -140,6 +117,26 @@
         }
         @include media-query ($lg) {
             padding-left: 22.5px;
+        }
+        &::-webkit-input-placeholder {
+            color:    #555;
+        }
+        &:-moz-placeholder {
+           color:    #555;
+           opacity:  1;
+        }
+        &::-moz-placeholder {
+           color:    #555;
+           opacity:  1;
+        }
+        &:-ms-input-placeholder {
+           color:    #555;
+        }
+        &::-ms-input-placeholder {
+           color:    #555;
+        }
+        &::placeholder {
+           color:    #555;
         }
     }
     button {
@@ -153,8 +150,8 @@
         border-radius: 50%;
         background-color: $brand-color-blue;
         cursor: pointer;
-        color: #fff;
-        transition: 0.4s ease-out;
+        // color: #fff;
+        transition: opacity 0.75s ease-out;
         overflow: hidden;
         @include media-query ($md) {
             right: 7.5px;
@@ -176,6 +173,8 @@
     button:hover {
         opacity: 0.75;
         &:after {
+            -webkit-transform: translateX(100%);
+            -ms-transform: translateX(100%);
             transform: translateX(100%);
             background-color: $brand-color-blue;
         }
@@ -203,11 +202,43 @@
     // }
 }
 
+.footer-design, .footer-dev, .footer-contact, .footer-site .footer-title {
+    display: none;
+    @include media-query ($md) {
+        display: block;
+    }
+}
+
+.footer-title {
+    padding-bottom: .7em;
+    color: white;
+    font-size: 1.1em;
+}
+
+.footer-site p {
+    color: white;
+    font-size: 1.2em !important;
+    text-transform: uppercase;
+    border-bottom: 1px solid $white-opacity;
+    line-height: 2.5;
+    @include media-query($md) {
+        color: $white-opacity;
+        font-size: .8em !important;
+        border: none;
+        text-transform: initial;
+        line-height: initial;
+    }
+}
+
 .footer-info {
     grid-area: copyright;
     align-self: center;
     text-align: center;
     padding-bottom: .5em;
+    @include media-query ($md) {
+        padding-bottom: .2em;
+        align-self: flex-end;
+    }
     h5 {
         padding-top: 1.25em;
         @include media-query ($md) {
@@ -228,9 +259,13 @@
   
 @keyframes enlarge {
     0% {
+        -webkit-transform: scale(1) translateY(2.5px);
+        -ms-transform: scale(1) translateY(2.5px);
         transform: scale(1) translateY(2.5px);
     }
     100% {
+        -webkit-transform: scale(1.2) translateY(-1.5px);
+        -ms-transform: scale(1.2) translateY(-1.5px);
         transform: scale(1.2) translateY(-1.5px);
     }
 }
