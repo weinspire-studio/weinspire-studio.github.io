@@ -107,18 +107,15 @@ function mobileCode() {
 function styleNavOnScroll(isMobile = true) {
   let scrolledY = window.pageYOffset;
   if (scrolledY > 0) {
-    if (isMobile) {
-      mobileModule.styleMobileBrand();
-    } else {
-      desktopModule.styleDesktopBrand();
-    }
     if (!mobileModule.isOpen_Menu) {
+      if (isMobile) {
+        mobileModule.styleMobileBrand();
+      } else {
+        desktopModule.styleDesktopBrand();
+      }
       navBar.classList.add("nav-white");
       navWhiteBack.classList.add("nav-white-back");
       navShadow.classList.add("nav-shadow");
-      console.log("entra");
-    } else {
-      console.log("else");
     }
   } else {
     if (isMobile) {

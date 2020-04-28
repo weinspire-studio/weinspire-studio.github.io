@@ -1694,7 +1694,7 @@ nav {
   -ms-flex-item-align: center;
       align-self: center;
   text-align: center;
-  padding-bottom: 0.75em;
+  padding-bottom: 0.875em;
 }
 @media screen and (min-width: 801px) {
   .footer-info {
