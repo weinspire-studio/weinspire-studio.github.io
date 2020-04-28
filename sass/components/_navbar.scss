@@ -155,8 +155,8 @@ nav {
 .burger {
     height: 100%;
     width: 65px;
-    padding: .4em 10px 0;
-    margin-right: -15px;
+    padding: .18em 10px 0;
+    margin-right: -20px;
     outline: 0;
     outline: none;
     cursor: pointer;
@@ -165,7 +165,7 @@ nav {
   }
   & div {
     position: relative;
-    top: 11.2%;
+    top: 17.5%;
     // left: 16%;
     width: 55%;
     height: 2px;
@@ -203,7 +203,7 @@ nav {
 }
 
 .cross .line-top {
-    transform: rotate(45deg) translate(4.92px, 6.1px);
+    transform: rotate(45deg) translate(4.92px, 6.5px);
     background-color: #000;
 
 }
@@ -213,7 +213,7 @@ nav {
 }
 
 .cross .line-bottom {
-    transform: rotate(-45deg) translate(6px, -7px);
+    transform: rotate(-45deg) translate(3.75px,-5px);
     background-color: #000;
 }
 
