@@ -61,6 +61,10 @@ h1, h2, h3, h4, h5 {
   min-height: 100%;
 }
 
+.menu-open {
+  overflow-y: hidden;
+}
+
 .section-low {
   z-index: -1;
   position: relative;
@@ -79,10 +83,6 @@ h1, h2, h3, h4, h5 {
 .overlay-active {
   z-index: 2;
   opacity: 1;
-}
-
-.html-fixed {
-  overflow-x: hidden;
 }
 
 .navigation-container {

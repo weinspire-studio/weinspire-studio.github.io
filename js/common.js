@@ -875,10 +875,10 @@ function toggleNavClasses() {
       styleMobileBrand();
     }
   } // window.classList.toggle("body-fixed");
-  // document.documentElement.classList.toggle("html-fixed");
   // siteOverlay.nextElementSibling.classList.toggle("html-fixed");
 
 
+  document.documentElement.classList.toggle("menu-open");
   siteOverlay.classList.toggle("overlay-active");
   navContainer.classList.toggle("translate");
   navList.classList.add("visible");
