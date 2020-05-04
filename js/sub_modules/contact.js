@@ -18,6 +18,8 @@ formElements.push(textArea);
 textArea.value = "";
 newsForm[0].value = "";
 
+let isShowingStatus = false;
+
 function validateContactForm() {
   formElements.forEach((formEl) => {
     let visitedFlag = false;
@@ -75,8 +77,8 @@ function validateContactForm() {
 
 // handle the form submission event
 function submitContactForm() {
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
     formFlag = true;
     var data = new FormData(form);
     if (!formButton.classList.contains("button-inactive")) {
@@ -87,16 +89,19 @@ function submitContactForm() {
 
 // handle the newsForm submission event
 function submitNewsForm() {
-  newsForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+  newsForm.addEventListener("submit", (event) => {
+    event.preventDefault();
     formFlag = false;
     var data = new FormData(newsForm);
     if (validateEmail(newsForm[0])) {
       ajax(newsForm.method, newsForm.action, data, success, error);
     } else {
-      newsFormStatus.style.backgroundColor = "red";
-      newsFormStatus.innerHTML = "Wrong email address.";
-      showMessage(newsStatusContainer);
+      if (!isShowingStatus) {
+        newsFormStatus.classList.remove("message-success");
+        newsFormStatus.classList.add("message-error-news");
+        newsFormStatus.innerHTML = "Wrong email address.";
+        showMessage(newsStatusContainer);
+      }
     }
   });
 }
@@ -109,27 +114,33 @@ function success() {
       formEl.classList.remove("input-correct");
     });
     formButton.classList.remove("button-active");
+    formStatus.classList.remove("message-error-contact");
     formButton.classList.add("button-inactive");
+    formStatus.classList.add("message-success");
     formStatus.innerHTML =
       "Thank you for your message! We will get in touch with you as soon as possible.";
     showMessage(statusContainer);
   } else {
     newsForm.reset();
+    newsFormStatus.classList.remove("message-error-news");
     newsFormButton.classList.add("news-button-inactive");
+    newsFormStatus.classList.add("message-success");
     newsFormStatus.innerHTML = "Thanks for subscribing!";
-    newsFormStatus.style.backgroundColor = "green";
     showMessage(newsStatusContainer);
   }
 }
 
 function error() {
   if (formFlag) {
+    newsFormStatus.classList.remove("message-success");
+    formStatus.classList.add("message-error-contact");
     formStatus.innerHTML =
-      "We are sorry! The message could not be sent, please try again. If the problem persists, you can reach to us by our social networks!";
+      "The message could not be sent. If the problem persists, you can reach to us by our social networks!";
     showMessage(statusContainer);
   } else {
     newsForm.reset();
-    newsFormStatus.style.backgroundColor = "red";
+    newsFormStatus.classList.remove("message-success");
+    newsFormStatus.classList.add("message-error-news");
     newsFormStatus.innerHTML = "Ups, something went wrong!";
     showMessage(newsStatusContainer);
   }
@@ -180,10 +191,20 @@ function validateText(element) {
 }
 
 function showMessage(statusContainer) {
+  let delay;
+  if (statusContainer.id === "news-field-status") {
+    delay = 4000;
+  } else {
+    delay = 8000;
+  }
+  isShowingStatus = true;
+  console.log(isShowingStatus);
   statusContainer.classList.toggle("visible");
   setTimeout(() => {
     statusContainer.classList.toggle("visible");
-  }, 8000);
+    isShowingStatus = false;
+    console.log(isShowingStatus);
+  }, delay);
 }
 
 export { validateContactForm, submitContactForm, submitNewsForm };

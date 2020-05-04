@@ -40,6 +40,15 @@ $brand-color-blue: #00416B;
 $brand-color-green: #009889;
 $brand-negative-green: #2fc0bb;
 
+$error: #ee6d6d;
+$success: $blue-theme-lighter;
+$selected: $brand-color-blue;
+$footer: #001828;
+
+// shadows
+$message-light: 3px 3px 3px 0px rgba(107,124,141,.45);
+$message-strong: 2px 2px 2px 0 rgba(89, 101, 113, 0.83);
+
 // wrap sm (for margin or padding)
 $wrap-sm-mobile-small: 1em;
 $wrap-sm-mobile: 1.5em;

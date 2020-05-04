@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-      *{margin:0;padding:0;box-sizing:border-box}html{font-size:.9em;overflow-x:hidden}@media screen and (min-width:479px){html{font-size:.95em}}@media screen and (min-width:801px){html{font-size:1.05em}}@media screen and (min-width:1024px){html{font-size:1.1em}}@media screen and (min-width:1200px){html{font-size:1.15em}}#site-wrapper,body,html{height:100%}body,html{overflow-y:visible}body{font-family:Montserrat,sans-serif;font-weight:400;background-color:#f5f5f5}#site-wrapper{position:relative}h1,h2{font-weight:500}#section-services{min-height:150%}.site-overlay{position:fixed;height:100%;width:100%;background-color:rgba(0,0,0,.7);z-index:0;opacity:0}.navigation-container{height:100%;width:100%;z-index:2;top:0;left:0;transform:translateX(100%);position:fixed}.navigation-white-back{width:100%;height:3.25em;background-color:transparent;position:fixed}.navigation-shadow{width:100%;height:3.25em;position:fixed;z-index:1}#section-navbar{overflow:hidden;position:fixed;z-index:2;width:100%;height:3.25em}@media screen and (min-width:0){#section-navbar{padding:0 1em}}@media screen and (min-width:0) and (min-width:479px){#section-navbar{padding:0 1.5em}}@media screen and (min-width:0) and (min-width:801px){#section-navbar{padding:0 2em}}@media screen and (min-width:0) and (min-width:1024px){#section-navbar{padding:0 2.5em}}@media screen and (min-width:0) and (min-width:1200px){#section-navbar{padding:0 3em}}nav{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0 1.2em;height:100%;-ms-flex-align:center;align-items:center;border-bottom:.12em solid rgba(255,255,255,.3);border-bottom-left-radius:1px;border-bottom-right-radius:1px}.nav-list{position:absolute;top:0;right:0;height:100%;width:70%;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-align:center;align-items:center;padding-top:.25em;list-style-type:none;background-color:#fff;opacity:0}@media screen and (min-width:801px){.nav-list{position:initial;-ms-flex-pack:end;justify-content:flex-end;-ms-flex-direction:row;flex-direction:row;height:100%;transform:translateX(0);background-color:transparent;opacity:1}}.nav-list li{text-transform:uppercase;margin:1.5em 1.5em;padding:.75em}@media screen and (min-width:479px){.nav-list li{margin:.5em 1em}}@media screen and (min-width:801px){.nav-list li{margin:.75em;padding:0}}.nav-list li:first-child{margin-top:2.5em}@media screen and (min-width:801px){.nav-list li:first-child{margin:.75em}}.nav-list a{font-size:.95em;text-decoration:none;color:#000}@media screen and (min-width:801px){.nav-list a{color:#fff;position:relative}.nav-list a:before{content:"";position:absolute;width:0;height:1.75px;bottom:-7.5%;right:50%}.nav-list a:after{content:"";position:absolute;width:0;height:1.75px;bottom:-7.5%;left:50%}}.burger{height:100%;width:65px;padding:.18em 10px 0;margin-right:-20px;outline:0;outline:0}@media screen and (min-width:801px){.burger{display:none}}.burger div{position:relative;top:17.5%;width:55%;height:2px;margin:5px auto;background-color:#fff;border-radius:3px}@media screen and (min-width:479px) and (max-width:801px){.burger div{top:15%;left:15%}}#brand-mobile-svg{width:3.5em;height:3.5em}#brand-desktop-svg{width:8.5em;padding-top:.25em}#hero-grid{min-height:100%;text-align:center;padding:1em;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:distribute;justify-content:space-around}@media screen and (min-width:479px){#hero-grid{padding:1.5em}}@media screen and (min-width:801px){#hero-grid{padding:2em}}@media screen and (min-width:1024px){#hero-grid{padding:2.5em}}@media screen and (min-width:1200px){#hero-grid{padding:3em}}@media screen and (min-width:0) and (max-width:801px){#hero-grid{padding-top:3.25em!important}}@media screen and (min-width:801px){#hero-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"hero-left hero-right";text-align:left;-ms-flex-align:center;align-items:center;grid-area:hero-left;grid-area:hero-right}}@media screen and (min-width:1024px){#hero-grid{grid-area:hero-left;grid-area:hero-right}}@media screen and (min-width:1200px){#hero-grid{grid-area:hero-left;grid-area:hero-right}}.hero{color:#fff;border:2px solid #000}@media screen and (min-width:801px){.hero{width:90%;justify-self:center}}.hero-text{grid-area:hero-left}.hero-text h1{padding-bottom:1em;font-size:1.3em}@media screen and (min-width:479px){.hero-text h1{font-size:1.5em}}@media screen and (min-width:801px){.hero-text h1{font-size:1.8em}}@media screen and (min-width:1024px){.hero-text h1{font-size:2.2em}}@media screen and (min-width:1200px){.hero-text h1{font-size:2.5em}}.hero-img{grid-area:hero-right;text-align:center;z-index:-1;position:relative}.hero-img .icon-facebook{height:200px;width:200px;fill:pink}#svg-background{position:absolute;bottom:-2px;left:0;z-index:-1;overflow-x:hidden}@media screen and (min-width:801px){#svg-background{height:auto;bottom:-5px}}#section-background{height:98%;width:100%;position:absolute;background-image:linear-gradient(155deg,#001029,#003a58,#006985,#009ba9,#43cfc3);z-index:-1}.cls-1,.cls-2,.cls-3{fill:#f5f5f5}.cls-2{opacity:.75}.cls-3{opacity:.5}#section-about{min-height:50%;padding:1em;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center}@media screen and (min-width:479px){#section-about{padding:1.5em}}@media screen and (min-width:801px){#section-about{padding:2em}}@media screen and (min-width:1024px){#section-about{padding:2.5em}}@media screen and (min-width:1200px){#section-about{padding:3em}}#section-about .section-title{padding-top:0;margin-top:-10%}#services-grid{min-height:100%;text-align:center;padding:1em}@media screen and (min-width:479px){#services-grid{padding:1.5em}}@media screen and (min-width:801px){#services-grid{padding:2em}}@media screen and (min-width:1024px){#services-grid{padding:2.5em}}@media screen and (min-width:1200px){#services-grid{padding:3em}}@media screen and (min-width:801px){#services-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);grid-template-areas:"info-top icon-top" "icon-mid info-mid" "info-btm icon-btm";justify-items:center;min-height:1200px}}#services-grid p{padding:0 1em}@media screen and (min-width:479px){#services-grid p{padding:0 1.5em}}@media screen and (min-width:801px){#services-grid p{padding:0 2em}}@media screen and (min-width:1024px){#services-grid p{padding:0 2.5em}}@media screen and (min-width:1200px){#services-grid p{padding:0 3em}}@media screen and (min-width:801px) and (max-width:1024px){#services-grid p{padding:0}}#grid-top-info{grid-area:info-top}#grid-top-info h2{padding-top:0}@media screen and (min-width:801px){#grid-top-info h2{padding-top:3em}}#grid-top-icon{grid-area:icon-top}#grid-mid-icon{grid-area:icon-mid}#grid-mid-info{grid-area:info-mid}#grid-btm-info{grid-area:info-btm}#grid-btm-icon{grid-area:icon-btm}.section-title{text-align:center;padding:2em 0 1em;text-transform:uppercase}.service-title{padding:3em 0 1em}#right-arrow-1{fill:#003a58;grid-area:arrow;position:relative;right:-40px;opacity:0}#right-arrow-2{fill:#006985;grid-area:arrow;position:relative;right:-20px;opacity:0}#right-arrow-3{fill:#009ba9;grid-area:arrow;position:relative;opacity:0}@media screen and (min-width:801px){.form-title{grid-area:title;margin-bottom:2em!important}}.field-name{grid-area:name}.field-email{grid-area:email}.field-message{grid-area:subject}.field-button{grid-area:button;-ms-flex-item-align:end;align-self:flex-end;text-align:center;margin-bottom:-1.25em}#field-status{grid-area:status;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;width:100%;height:100px;border-radius:5px;margin-bottom:50px;opacity:0}@media screen and (min-width:801px){.form-info{display:block;background-color:pink;grid-area:right;justify-self:right;min-width:200px;max-width:330px;border-top-right-radius:50%;border-bottom-left-radius:50%;height:100%;width:90%}}#up-arrow{height:35px;width:35px;fill:rgba(177,177,177,.904);grid-area:arrow;margin:.5em auto;animation:enlarge .5s ease infinite alternate}.footer-design{grid-area:design-services}.footer-dev{grid-area:dev-services}.footer-site{grid-area:site}.footer-contact{grid-area:contact;padding-right:.75em}.footer-newsletter{grid-area:newsletter;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-item-align:center;align-self:center;-ms-flex-align:center;align-items:center}.footer-info{grid-area:copyright;-ms-flex-item-align:center;align-self:center;text-align:center;padding-bottom:.875em}@keyframes enlarge{0%{transform:scale(1) translateY(2.5px)}100%{transform:scale(1.2) translateY(-1.5px)}}
+      *{margin:0;padding:0;box-sizing:border-box}html{font-size:.9em;overflow-x:hidden}#site-wrapper,body,html{height:100%}body,html{overflow-y:visible}body{font-family:Montserrat,sans-serif;font-weight:400;background-color:#f5f5f5}#site-wrapper{position:relative}h1{font-weight:500}.site-overlay{position:fixed;height:100%;width:100%;background-color:rgba(0,0,0,.7);z-index:0;opacity:0}.navigation-container{height:100%;width:100%;z-index:2;top:0;left:0;transform:translateX(100%);position:fixed}.navigation-white-back{width:100%;height:3.25em;background-color:transparent;position:fixed}.navigation-shadow{width:100%;height:3.25em;position:fixed;z-index:1}#section-navbar{overflow:hidden;position:fixed;z-index:2;width:100%;height:3.25em}@media screen and (min-width:0){#section-navbar{padding:0 1em}}@media screen and (min-width:0) and (min-width:479px){#section-navbar{padding:0 1.5em}}@media screen and (min-width:0) and (min-width:801px){#section-navbar{padding:0 2em}}@media screen and (min-width:0) and (min-width:1024px){#section-navbar{padding:0 2.5em}}@media screen and (min-width:0) and (min-width:1200px){#section-navbar{padding:0 3em}}#home{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0 1.2em;height:100%;-ms-flex-align:center;align-items:center;border-bottom:.12em solid rgba(255,255,255,.3);border-bottom-left-radius:1px;border-bottom-right-radius:1px}#home #brand-mobile-svg{width:3.5em;height:3.5em}#home #brand-desktop-svg{width:8.5em;padding-top:.25em}.nav-list{position:absolute;top:0;right:0;height:100%;width:70%;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-align:center;align-items:center;padding-top:.25em;list-style-type:none;background-color:#fff;opacity:0}.nav-list li{text-transform:uppercase;margin:1.5em 1.5em;padding:.75em}.nav-list li:first-child{margin-top:2.5em}.nav-list a{font-size:.95em;text-decoration:none;color:#000}.burger{height:100%;width:65px;padding:.18em 10px 0;margin-right:-20px;outline:0;outline:0}.burger div{position:relative;top:17.5%;width:55%;height:2px;margin:5px auto;background-color:#fff;border-radius:3px}@media screen and (min-width:479px) and (max-width:801px){.burger div{top:15%;left:15%}}#hero-grid{min-height:100%;text-align:center;padding:1em;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:distribute;justify-content:space-around}@media screen and (min-width:0) and (max-width:801px){#hero-grid{padding-top:3.25em!important}}.hero{color:#fff;border:2px solid #000}.hero-text{grid-area:hero-left}.hero-text h1{padding-bottom:1em;font-size:1.3em}.hero-img{grid-area:hero-right;text-align:center;z-index:-1;position:relative}.hero-img .icon-facebook{height:200px;width:200px;fill:pink}#svg-background{position:absolute;bottom:-2px;left:0;z-index:-1;overflow-x:hidden}#section-background{height:98%;width:100%;position:absolute;background-image:linear-gradient(155deg,#001029,#003a58,#006985,#009ba9,#43cfc3);z-index:-1}.cls-1,.cls-2,.cls-3{fill:#f5f5f5}.cls-2{opacity:.75}.cls-3{opacity:.5}#section-about{min-height:50%;padding:1em;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center}#section-about .section-title{padding-top:0;margin-top:-10%}#grid-top-info{grid-area:info-top}#grid-top-icon{grid-area:icon-top}#grid-mid-icon{grid-area:icon-mid}#grid-mid-info{grid-area:info-mid}#grid-btm-info{grid-area:info-btm}#grid-btm-icon{grid-area:icon-btm}.section-title{text-align:center;padding:2em 0 1em;text-transform:uppercase}#right-arrow-1{fill:#003a58;grid-area:arrow;position:relative;right:-40px;opacity:0}#right-arrow-2{fill:#006985;grid-area:arrow;position:relative;right:-20px;opacity:0}#right-arrow-3{fill:#009ba9;grid-area:arrow;position:relative;opacity:0}.field-name{grid-area:name}.field-email{grid-area:email}.field-message{grid-area:subject}.field-button{grid-area:button;-ms-flex-item-align:end;align-self:flex-end;text-align:center;margin-bottom:0}#field-status{grid-area:status;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;width:100%;height:75px;border-radius:5px;opacity:1}#up-arrow{height:15px;width:15px;fill:rgba(177,177,177,.904);grid-area:arrow;margin:.5em auto;animation:enlarge .5s ease infinite alternate}.footer-design{grid-area:design-services}.footer-dev{grid-area:dev-services}.footer-site{grid-area:site}.footer-newsletter{grid-area:newsletter;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-item-align:center;align-self:center;-ms-flex-align:center;align-items:center;padding-top:1.5em}.footer-info{grid-area:info;-ms-flex-item-align:center;align-self:center;text-align:center;padding-bottom:.875em;width:100%}@keyframes enlarge{0%{transform:scale(1) translateY(2.5px)}100%{transform:scale(1.2) translateY(-1.5px)}}
     </style>
-    <link rel="preload" href="./dist/css/main.min.css?v={2/a}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="./dist/css/main.min.css?v={2/a}"></noscript>
+    <link rel="preload" href="./dist/css/main.min.css?v={1/a}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="./dist/css/main.min.css?v={1/a}"></noscript>
     <script>!function(n){"use strict";n.loadCSS||(n.loadCSS=function(){});var o=loadCSS.relpreload={};if(o.support=function(){var e;try{e=n.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),o.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},o.poly=function(){if(!o.support())for(var t=n.document.getElementsByTagName("link"),e=0;e<t.length;e++){var a=t[e];"preload"!==a.rel||"style"!==a.getAttribute("as")||a.getAttribute("data-loadcss")||(a.setAttribute("data-loadcss",!0),o.bindMediaToggle(a))}},!o.support()){o.poly();var t=n.setInterval(o.poly,500);n.addEventListener?n.addEventListener("load",function(){o.poly(),n.clearInterval(t)}):n.attachEvent&&n.attachEvent("onload",function(){o.poly(),n.clearInterval(t)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:n.loadCSS=loadCSS}("undefined"!=typeof global?global:this);</script>
-    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" /> -->
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WdhyyTh89ZNpQ.woff2" as="font" crossorigin>
     <style>
@@ -26,8 +25,6 @@
       }
     </style>
     <title>Inspire Studio</title>
-    <!-- <script src="https://jonneal.dev/svg4everybody/svg4everybody.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/svg4everybody/2.1.9/svg4everybody.min.js"></script> -->
   </head>
   <body>
     <div class="site-overlay"></div>
@@ -77,26 +74,21 @@
       <section id="section-navbar">
         <nav id="home">
           <svg id="brand-mobile-svg">
-            <use xlink:href="../assets/svg-defs-block.svg#brand-mobile"></use>
+            <use
+              xlink:href="../assets/sprites/svg-sprite.svg#brand-mobile"
+            ></use>
           </svg>
           <svg id="brand-desktop-svg">
-            <use xlink:href="../assets/svg-defs-block.svg#brand-desktop"></use>
+            <use
+              xlink:href="../assets/sprites/svg-sprite.svg#brand-desktop"
+            ></use>
           </svg>
-          <!-- <img
-            id="brand-mobile"
-            src="./assets/weinspire-color-lightgrey-curve.svg"
-            alt="weInspire"
-          /> -->
           <div class="burger">
             <div class="line-top"></div>
             <div class="line-middle"></div>
             <div class="line-bottom"></div>
           </div>
           <ul class="nav-list">
-            <!-- href="https://weinspire-studio.github.io/home" -->
-            <!-- <li>
-              <a class="nav-home" href="#home">Home</a>
-            </li> -->
             <li>
               <a href="https://weinspire-studio.github.io/home/projects.html">Projects</a>
             </li>
@@ -122,7 +114,7 @@
         </div>
         <div class="hero hero-img">
           <svg class="icon-facebook">
-            <use xlink:href="../assets/svg-defs-block.svg#icon-facebook"></use>
+            <use xlink:href="../assets/sprites/svg-sprite.svg#facebook"></use>
           </svg>
         </div>
       </main>
@@ -159,9 +151,7 @@
           </div>
           <div id="grid-top-icon" class="service-icon">
             <svg class="icon-facebook">
-              <use
-                xlink:href="../assets/svg-defs-block.svg#icon-facebook"
-              ></use>
+              <use xlink:href="../assets/sprites/svg-sprite.svg#facebook"></use>
             </svg>
           </div>
           <div id="grid-mid-info" class="service-info">
@@ -174,9 +164,7 @@
           </div>
           <div id="grid-mid-icon" class="service-icon">
             <svg class="icon-facebook">
-              <use
-                xlink:href="../assets/svg-defs-block.svg#icon-facebook"
-              ></use>
+              <use xlink:href="../assets/sprites/svg-sprite.svg#facebook"></use>
             </svg>
           </div>
           <div id="grid-btm-info" class="service-info">
@@ -189,9 +177,7 @@
           </div>
           <div id="grid-btm-icon" class="service-icon">
             <svg class="icon-facebook">
-              <use
-                xlink:href="../assets/svg-defs-block.svg#icon-facebook"
-              ></use>
+              <use xlink:href="../assets/sprites/svg-sprite.svg#facebook"></use>
             </svg>
           </div>
         </div>
@@ -402,7 +388,7 @@
                 <div class="info-container">
                   <svg class="info-icon icon-email">
                     <use
-                      xlink:href="../assets/svg-defs-block.svg#icon-email"
+                      xlink:href="../assets/sprites/svg-sprite.svg#whatsapp-circle"
                     ></use>
                   </svg>
                   <p class="info-data">
@@ -412,7 +398,7 @@
                 <div class="info-container">
                   <svg class="info-icon icon-email">
                     <use
-                      xlink:href="../assets/svg-defs-block.svg#icon-email"
+                      xlink:href="../assets/sprites/svg-sprite.svg#email"
                     ></use>
                   </svg>
                   <p class="info-data">
@@ -422,7 +408,7 @@
                 <div class="info-container">
                   <svg class="info-icon icon-email">
                     <use
-                      xlink:href="../assets/svg-defs-block.svg#icon-email"
+                      xlink:href="../assets/sprites/svg-sprite.svg#whatsapp"
                     ></use>
                   </svg>
                   <p class="info-data">+54 911 36 91 2183</p>
@@ -430,12 +416,12 @@
                 <div class="info-social">
                   <svg class="info-icon icon-email">
                     <use
-                      xlink:href="../assets/svg-defs-block.svg#icon-face"
+                      xlink:href="../assets/sprites/svg-sprite.svg#linkedin"
                     ></use>
                   </svg>
                   <svg class="info-icon icon-email">
                     <use
-                      xlink:href="../assets/svg-defs-block.svg#icon-email"
+                      xlink:href="../assets/sprites/svg-sprite.svg#behance"
                     ></use>
                   </svg>
                 </div>
@@ -529,14 +515,22 @@
           <p>About</p>
           <p>Contact</p>
         </div>
-        <div class="footer-contact">
-          <h3 class="footer-title">
+        <div class="footer-social">
+          <!-- <h3 class="footer-title">
             Stay In Touch
-          </h3>
-          <p>Facebook</p>
-          <p>Instagram</p>
-          <p>Cell</p>
-          <p>E-mail</p>
+          </h3> -->
+          <svg class="footer-icon">
+            <use xlink:href="../assets/sprites/svg-sprite.svg#whatsapp"></use>
+          </svg>
+          <svg class="footer-icon">
+            <use xlink:href="../assets/sprites/svg-sprite.svg#whatsapp"></use>
+          </svg>
+          <svg class="footer-icon">
+            <use xlink:href="../assets/sprites/svg-sprite.svg#email"></use>
+          </svg>
+          <svg class="footer-icon">
+            <use xlink:href="../assets/sprites/svg-sprite.svg#email"></use>
+          </svg>
         </div>
         <div class="footer-newsletter">
           <h3 class="footer-title">
@@ -556,6 +550,18 @@
             </div>
           </div>
         </div>
+        <div class="footer-logo">
+          <div class="logo-brand">
+            <svg id="brand-desktop-svg">
+              <use
+                xlink:href="../assets/sprites/svg-sprite.svg#brand-desktop"
+              ></use>
+            </svg>
+          </div>
+        </div>
+        <div class="footer-map">
+          <img src="./assets/world.png" alt>
+        </div>
         <div class="footer-info">
           <h5>
             Privacy Policy | Sitemap
@@ -567,57 +573,16 @@
             © weInspire Studio 2020. All rights reserved.
           </h6>
         </div>
+        <!-- <div id="hr-separator"></div> -->
       </section>
       <!-- eof footer -->
-
-      <!-- <ul class="destaques">
-        <li
-          class="destaques-item"
-          style="background-image:url('https://olimoveis.com.br/userfiles/empreendimentos/destaque/b7103a4a8251c83c2615199d59b6c07f1fc4d5c0.jpg')"
-        ></li>
-        <li
-          class="destaques-item"
-          style="background-image:url('https://olimoveis.com.br/userfiles/empreendimentos/destaque/359064ed5554638de0254d124823e1b667b3c3fd.jpg')"
-        ></li>
-        <li
-          class="destaques-item"
-          style="background-image:url('https://olimoveis.com.br/userfiles/empreendimentos/destaque/23752a72ebcc59d73c4cd9a7ea7f849b93c8203a.jpg')"
-        ></li>
-        <li
-          class="destaques-item"
-          style="background-image:url('https://olimoveis.com.br/userfiles/empreendimentos/destaque/8107a7932294b9b7e104da1e97cda3578b65dfc4.jpg')"
-        ></li>
-      </ul> -->
     </div>
     <!-- eof site-wrapper-->
     <!-- jquery -->
     <!-- <script
       defer
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script> -->
-    <!-- <script
-      defer
-      src="https://code.jquery.com/jquery-2.2.4.min.js"
-      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-      crossorigin="anonymous"
-    ></script> -->
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
-    <!-- <script
-      defer
-      type="text/javascript"
-      src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-    ></script> -->
-    <!-- <script defer src="https://unpkg.com/swiper/js/swiper.min.js"></script> -->
-    <!-- <script
-      defer
       src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
     ></script> -->
-    <!-- JS script files -->
-    <!-- <script>
-      svg4everybody({ polyfill: true });
-    </script> -->
     <script type="module" src="./dist/js/all.min.js"></script>
     <script defer nomodule src="./dist/js/all.min.js"></script>
   </body>

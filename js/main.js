@@ -260,7 +260,8 @@ export { navBar, debounce };
 // content link ?
 // mousedown touch start?
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
-// bug in height 100% on iphone? check on the net (maybe min height in pixels?) (caption due to img from unsplash)
+// (caption onpageload in above-the-fold due to img from unsplash)
+// // CRITICAL: for the final, critical inline, and the REST in the main.css.min (erase inlined from main.css),
 
 // outline on burger div?
 
@@ -272,3 +273,5 @@ export { navBar, debounce };
 
 // us, newsletter (and footer), bootloader, svgs in menu!
 // scroll on menu open?
+
+// postcss? autoprefixer? html min? jquery as an external link? npm audit!

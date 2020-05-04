@@ -281,7 +281,8 @@ function addClassesToSvgs() {
 // content link ?
 // mousedown touch start?
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
-// bug in height 100% on iphone? check on the net (maybe min height in pixels?) (caption due to img from unsplash)
+// (caption onpageload in above-the-fold due to img from unsplash)
+// // CRITICAL: for the final, critical inline, and the REST in the main.css.min (erase inlined from main.css),
 // outline on burger div?
 // scroll anchoring onwidthchange init?
 // test foreach in win 11, and other compatibility issues. GRID! height 100%
@@ -289,6 +290,7 @@ function addClassesToSvgs() {
 // inline css repeated
 // us, newsletter (and footer), bootloader, svgs in menu!
 // scroll on menu open?
+// postcss? autoprefixer? html min? jquery as an external link? npm audit!
 
 },{"./sub_modules/classList":2,"./sub_modules/contact":3,"./sub_modules/desktop":4,"./sub_modules/jquery":5,"./sub_modules/mobile":6,"./sub_modules/svg4everybody":7,"./sub_modules/swiper":8,"lodash/debounce":20}],2:[function(require,module,exports){
 "use strict";
@@ -452,6 +454,7 @@ var formFlag = true;
 formElements.push(textArea);
 textArea.value = "";
 newsForm[0].value = "";
+var isShowingStatus = false;
 
 function validateContactForm() {
   formElements.forEach(function (formEl) {
@@ -520,8 +523,8 @@ function validateContactForm() {
 
 
 function submitContactForm() {
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
     formFlag = true;
     var data = new FormData(form);
 
@@ -533,17 +536,20 @@ function submitContactForm() {
 
 
 function submitNewsForm() {
-  newsForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+  newsForm.addEventListener("submit", function (event) {
+    event.preventDefault();
     formFlag = false;
     var data = new FormData(newsForm);
 
     if (validateEmail(newsForm[0])) {
       ajax(newsForm.method, newsForm.action, data, success, error);
     } else {
-      newsFormStatus.style.backgroundColor = "red";
-      newsFormStatus.innerHTML = "Wrong email address.";
-      showMessage(newsStatusContainer);
+      if (!isShowingStatus) {
+        newsFormStatus.classList.remove("message-success");
+        newsFormStatus.classList.add("message-error-news");
+        newsFormStatus.innerHTML = "Wrong email address.";
+        showMessage(newsStatusContainer);
+      }
     }
   });
 } // Success and Error functions for after the form is submitted
@@ -556,25 +562,31 @@ function success() {
       formEl.classList.remove("input-correct");
     });
     formButton.classList.remove("button-active");
+    formStatus.classList.remove("message-error-contact");
     formButton.classList.add("button-inactive");
+    formStatus.classList.add("message-success");
     formStatus.innerHTML = "Thank you for your message! We will get in touch with you as soon as possible.";
     showMessage(statusContainer);
   } else {
     newsForm.reset();
+    newsFormStatus.classList.remove("message-error-news");
     newsFormButton.classList.add("news-button-inactive");
+    newsFormStatus.classList.add("message-success");
     newsFormStatus.innerHTML = "Thanks for subscribing!";
-    newsFormStatus.style.backgroundColor = "green";
     showMessage(newsStatusContainer);
   }
 }
 
 function error() {
   if (formFlag) {
-    formStatus.innerHTML = "We are sorry! The message could not be sent, please try again. If the problem persists, you can reach to us by our social networks!";
+    newsFormStatus.classList.remove("message-success");
+    formStatus.classList.add("message-error-contact");
+    formStatus.innerHTML = "The message could not be sent. If the problem persists, you can reach to us by our social networks!";
     showMessage(statusContainer);
   } else {
     newsForm.reset();
-    newsFormStatus.style.backgroundColor = "red";
+    newsFormStatus.classList.remove("message-success");
+    newsFormStatus.classList.add("message-error-news");
     newsFormStatus.innerHTML = "Ups, something went wrong!";
     showMessage(newsStatusContainer);
   }
@@ -624,10 +636,22 @@ function validateText(element) {
 }
 
 function showMessage(statusContainer) {
+  var delay;
+
+  if (statusContainer.id === "news-field-status") {
+    delay = 4000;
+  } else {
+    delay = 8000;
+  }
+
+  isShowingStatus = true;
+  console.log(isShowingStatus);
   statusContainer.classList.toggle("visible");
   setTimeout(function () {
     statusContainer.classList.toggle("visible");
-  }, 8000);
+    isShowingStatus = false;
+    console.log(isShowingStatus);
+  }, delay);
 }
 
 },{}],4:[function(require,module,exports){

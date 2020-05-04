@@ -7,8 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./dist/css/main.min.css?v={2/a}" />
-    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" /> -->
+    <link rel="stylesheet" href="./dist/css/main.min.css?v={1/a}" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
       rel="preload"
@@ -29,8 +28,6 @@
       }
     </style>
     <title>Inspire Studio</title>
-    <!-- <script src="https://jonneal.dev/svg4everybody/svg4everybody.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/svg4everybody/2.1.9/svg4everybody.min.js"></script> -->
   </head>
   <body>
     <div class="site-overlay"></div>
@@ -80,26 +77,21 @@
       <section id="section-navbar">
         <nav id="home">
           <svg id="brand-mobile-svg">
-            <use xlink:href="../assets/svg-defs-block.svg#brand-mobile"></use>
+            <use
+              xlink:href="../assets/sprites/svg-sprite.svg#brand-mobile"
+            ></use>
           </svg>
           <svg id="brand-desktop-svg">
-            <use xlink:href="../assets/svg-defs-block.svg#brand-desktop"></use>
+            <use
+              xlink:href="../assets/sprites/svg-sprite.svg#brand-desktop"
+            ></use>
           </svg>
-          <!-- <img
-            id="brand-mobile"
-            src="./assets/weinspire-color-lightgrey-curve.svg"
-            alt="weInspire"
-          /> -->
           <div class="burger">
             <div class="line-top"></div>
             <div class="line-middle"></div>
             <div class="line-bottom"></div>
           </div>
           <ul class="nav-list">
-            <!-- href="https://weinspire-studio.github.io/home" -->
-            <!-- <li>
-              <a class="nav-home" href="#home">Home</a>
-            </li> -->
             <li>
               <a href="https://weinspire-studio.github.io/home/projects.html"
                 >Projects</a
@@ -133,7 +125,7 @@
         </div>
         <div class="hero hero-img">
           <svg class="icon-facebook">
-            <use xlink:href="../assets/svg-defs-block.svg#icon-facebook"></use>
+            <use xlink:href="../assets/sprites/svg-sprite.svg#facebook"></use>
           </svg>
         </div>
       </main>
@@ -170,9 +162,7 @@
           </div>
           <div id="grid-top-icon" class="service-icon">
             <svg class="icon-facebook">
-              <use
-                xlink:href="../assets/svg-defs-block.svg#icon-facebook"
-              ></use>
+              <use xlink:href="../assets/sprites/svg-sprite.svg#facebook"></use>
             </svg>
           </div>
           <div id="grid-mid-info" class="service-info">
@@ -185,9 +175,7 @@
           </div>
           <div id="grid-mid-icon" class="service-icon">
             <svg class="icon-facebook">
-              <use
-                xlink:href="../assets/svg-defs-block.svg#icon-facebook"
-              ></use>
+              <use xlink:href="../assets/sprites/svg-sprite.svg#facebook"></use>
             </svg>
           </div>
           <div id="grid-btm-info" class="service-info">
@@ -200,9 +188,7 @@
           </div>
           <div id="grid-btm-icon" class="service-icon">
             <svg class="icon-facebook">
-              <use
-                xlink:href="../assets/svg-defs-block.svg#icon-facebook"
-              ></use>
+              <use xlink:href="../assets/sprites/svg-sprite.svg#facebook"></use>
             </svg>
           </div>
         </div>
@@ -447,7 +433,7 @@
                 <div class="info-container">
                   <svg class="info-icon icon-email">
                     <use
-                      xlink:href="../assets/svg-defs-block.svg#icon-email"
+                      xlink:href="../assets/sprites/svg-sprite.svg#whatsapp-circle"
                     ></use>
                   </svg>
                   <p class="info-data">
@@ -457,7 +443,7 @@
                 <div class="info-container">
                   <svg class="info-icon icon-email">
                     <use
-                      xlink:href="../assets/svg-defs-block.svg#icon-email"
+                      xlink:href="../assets/sprites/svg-sprite.svg#email"
                     ></use>
                   </svg>
                   <p class="info-data">
@@ -467,7 +453,7 @@
                 <div class="info-container">
                   <svg class="info-icon icon-email">
                     <use
-                      xlink:href="../assets/svg-defs-block.svg#icon-email"
+                      xlink:href="../assets/sprites/svg-sprite.svg#whatsapp"
                     ></use>
                   </svg>
                   <p class="info-data">+54 911 36 91 2183</p>
@@ -475,12 +461,12 @@
                 <div class="info-social">
                   <svg class="info-icon icon-email">
                     <use
-                      xlink:href="../assets/svg-defs-block.svg#icon-face"
+                      xlink:href="../assets/sprites/svg-sprite.svg#linkedin"
                     ></use>
                   </svg>
                   <svg class="info-icon icon-email">
                     <use
-                      xlink:href="../assets/svg-defs-block.svg#icon-email"
+                      xlink:href="../assets/sprites/svg-sprite.svg#behance"
                     ></use>
                   </svg>
                 </div>
@@ -574,14 +560,22 @@
           <p>About</p>
           <p>Contact</p>
         </div>
-        <div class="footer-contact">
-          <h3 class="footer-title">
+        <div class="footer-social">
+          <!-- <h3 class="footer-title">
             Stay In Touch
-          </h3>
-          <p>Facebook</p>
-          <p>Instagram</p>
-          <p>Cell</p>
-          <p>E-mail</p>
+          </h3> -->
+          <svg class="footer-icon">
+            <use xlink:href="../assets/sprites/svg-sprite.svg#whatsapp"></use>
+          </svg>
+          <svg class="footer-icon">
+            <use xlink:href="../assets/sprites/svg-sprite.svg#whatsapp"></use>
+          </svg>
+          <svg class="footer-icon">
+            <use xlink:href="../assets/sprites/svg-sprite.svg#email"></use>
+          </svg>
+          <svg class="footer-icon">
+            <use xlink:href="../assets/sprites/svg-sprite.svg#email"></use>
+          </svg>
         </div>
         <div class="footer-newsletter">
           <h3 class="footer-title">
@@ -611,6 +605,18 @@
             </div>
           </div>
         </div>
+        <div class="footer-logo">
+          <div class="logo-brand">
+            <svg id="brand-desktop-svg">
+              <use
+                xlink:href="../assets/sprites/svg-sprite.svg#brand-desktop"
+              ></use>
+            </svg>
+          </div>
+        </div>
+        <div class="footer-map">
+          <img src="./assets/world.png" alt="" />
+        </div>
         <div class="footer-info">
           <h5>
             Privacy Policy | Sitemap
@@ -622,57 +628,16 @@
             © weInspire Studio 2020. All rights reserved.
           </h6>
         </div>
+        <!-- <div id="hr-separator"></div> -->
       </section>
       <!-- eof footer -->
-
-      <!-- <ul class="destaques">
-        <li
-          class="destaques-item"
-          style="background-image:url('https://olimoveis.com.br/userfiles/empreendimentos/destaque/b7103a4a8251c83c2615199d59b6c07f1fc4d5c0.jpg')"
-        ></li>
-        <li
-          class="destaques-item"
-          style="background-image:url('https://olimoveis.com.br/userfiles/empreendimentos/destaque/359064ed5554638de0254d124823e1b667b3c3fd.jpg')"
-        ></li>
-        <li
-          class="destaques-item"
-          style="background-image:url('https://olimoveis.com.br/userfiles/empreendimentos/destaque/23752a72ebcc59d73c4cd9a7ea7f849b93c8203a.jpg')"
-        ></li>
-        <li
-          class="destaques-item"
-          style="background-image:url('https://olimoveis.com.br/userfiles/empreendimentos/destaque/8107a7932294b9b7e104da1e97cda3578b65dfc4.jpg')"
-        ></li>
-      </ul> -->
     </div>
     <!-- eof site-wrapper-->
     <!-- jquery -->
     <!-- <script
       defer
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script> -->
-    <!-- <script
-      defer
-      src="https://code.jquery.com/jquery-2.2.4.min.js"
-      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-      crossorigin="anonymous"
-    ></script> -->
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
-    <!-- <script
-      defer
-      type="text/javascript"
-      src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-    ></script> -->
-    <!-- <script defer src="https://unpkg.com/swiper/js/swiper.min.js"></script> -->
-    <!-- <script
-      defer
       src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"
     ></script> -->
-    <!-- JS script files -->
-    <!-- <script>
-      svg4everybody({ polyfill: true });
-    </script> -->
     <script type="module" src="./dist/js/all.min.js"></script>
     <script defer nomodule src="./dist/js/all.min.js"></script>
   </body>

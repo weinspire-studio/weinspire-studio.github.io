@@ -19,6 +19,8 @@
     "grunt-contrib-watch": "latest",
     "grunt-critical": "^1.1.2",
     "grunt-htmlhint": "latest",
+    "grunt-svg-sprite": "^1.5.0",
+    "grunt-svgmin": "^6.0.0",
     "jshint-stylish": "latest",
     "load-grunt-tasks": "^5.1.0"
   },

@@ -49,16 +49,18 @@ module.exports = function (grunt) {
       },
     },
     // critical css inlined. The rest is wrapped in async js function, with noscript (for js disabled browsers).
+    // extract does not work, have to do it manually. (see critical-grunt file)
     critical: {
       test: {
         options: {
           base: "./",
-          css: ["./dist/css/main.min.css"],
+          css: ["css/main.css"],
+          width: 450,
+          height: 900,
         },
-        src: "./html/index-dev.html",
-        dest: "./index.html",
-        uncritical: "./css/main-uncritical.css",
-        extract: true,
+        src: "html/index-dev.html",
+        dest: "index.html",
+        // dest: "css/critical-grunt.css",
       },
     },
     // Uglify only works with ES5. Same config to cssmin
@@ -82,14 +84,10 @@ module.exports = function (grunt) {
         dest: "<%= conf.main_css %>",
       },
     },
+    // js bundler
     browserify: {
       development: {
-        src: [
-          "./js/main.js",
-          "./js/sub_modules/swiper.js",
-          // "./js/sub_modules/svg4everybody.js",
-          // "./custom_modules/swiper/js/swiper.esm.js"
-        ],
+        src: ["./js/main.js", "./js/sub_modules/swiper.js"],
         dest: "./js/common.js",
         options: {
           // browserifyOptions: { debug: true },
@@ -111,6 +109,7 @@ module.exports = function (grunt) {
         },
       },
     },
+    // js minifier
     uglify: {
       all_src: {
         options: {
@@ -120,6 +119,68 @@ module.exports = function (grunt) {
         src: "./js/common.js",
         dest: "./dist/js/all.min.js",
         // src: "./js/*-es5.js",
+      },
+    },
+    // svg optimizer and minifier
+    svgmin: {
+      options: {
+        plugins: [
+          {
+            removeViewBox: false,
+          },
+          {
+            removeUselessStrokeAndFill: false,
+          },
+          {
+            removeTitle: false,
+          },
+          {
+            removeDesc: false,
+          },
+          {
+            cleanupIDs: false,
+          },
+          {
+            removeAttrs: {
+              attrs: ["xmlns"],
+            },
+          },
+        ],
+      },
+      dist: {
+        files: {
+          "./assets/optimized/brand-mobile.svg": "./assets/brand-mobile.svg",
+          "./assets/optimized/brand-desktop.svg": "./assets/brand-desktop.svg",
+          "./assets/optimized/email.svg": "./assets/email.svg",
+          "./assets/optimized/email-circle.svg": "./assets/email-circle.svg",
+          "./assets/optimized/whatsapp.svg": "./assets/whatsapp.svg",
+          "./assets/optimized/whatsapp-circle.svg": "./assets/whatsapp-circle.svg", // prettier-ignore
+          "./assets/optimized/facebook.svg": "./assets/facebook.svg",
+          "./assets/optimized/behance.svg": "./assets/behance.svg",
+          "./assets/optimized/linkedin.svg": "./assets/linkedin.svg",
+        },
+      },
+    },
+    // svg sprites builder
+    svg_sprite: {
+      target: {
+        expand: true,
+        cwd: "./assets/optimized/",
+        src: ["*.svg"],
+        dest: "./assets/",
+      },
+      options: {
+        mode: {
+          symbol: {
+            dest: "sprites",
+            sprite: "svg-sprite.svg",
+          },
+        },
+        svg: {
+          xmlDeclaration: false,
+          namespaceClassnames: false,
+          namespaceIDs: true,
+        },
       },
     },
     // Compile everything into one task with Watch Plugin
@@ -155,8 +216,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-critical");
   grunt.loadNpmTasks("grunt-browserify");
 
+  grunt.loadNpmTasks("grunt-svg-sprite");
+  grunt.loadNpmTasks("grunt-svgmin");
+
   // Register Grunt tasks
   grunt.registerTask("default", ["watch"]);
+  grunt.registerTask("svg-os", ["svgmin", "svg_sprite"]);
   // prettier-ignore
   grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "critical", "htmlhint", "jshint", "browserify", "uglify"]);
 };

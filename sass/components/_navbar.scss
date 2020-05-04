@@ -9,9 +9,6 @@
     transition: transform .5s ease;
     transform: translateX(100%);
     position: fixed;
-    // overflow: hidden;
-    // margin-left: 0;
-    // margin-right: 0;
 }
 
 .navigation-white-back {
@@ -20,9 +17,6 @@
     background-color: transparent;
     position: fixed;
     transition: background-color .5s ease;
-    // overflow: hidden;
-    // margin-left: 0;
-    // margin-right: 0;
 }
 
 .navigation-shadow {
@@ -31,9 +25,6 @@
     position: fixed;
     transition: box-shadow .35s ease;
     z-index: 1;
-    // overflow: hidden;
-    // margin-left: 0;
-    // margin-right: 0;
 }
 
 //section navbar
@@ -49,7 +40,7 @@
     }
 }
 
-nav {
+#home {
     display: flex;
     justify-content: space-between;
     padding: 0 1.2em;
@@ -59,6 +50,21 @@ nav {
     border-bottom-left-radius: 1px;
     border-bottom-right-radius: 1px;
     transition: border .5s ease;
+        // brand
+    #brand-mobile-svg {
+        width: 3.5em;
+        height: 3.5em;
+        path {
+            transition: fill .5s ease;
+        }
+    }
+    #brand-desktop-svg {
+        width: 8.5em;
+        padding-top: .25em;
+        path {
+            transition: fill .5s ease;
+        }
+    }
 }
 
 .nav-list {
@@ -180,23 +186,6 @@ nav {
   }
 }
 
-// brand
-#brand-mobile-svg {
-    width: 3.5em;
-    height: 3.5em;
-    path {
-        transition: fill .5s ease;
-    }
-}
-
-#brand-desktop-svg {
-    width: 8.5em;
-    padding-top: .25em;
-    path {
-        transition: fill .5s ease;
-    }
-}
-
 // Style classes
 .open {
     pointer-events: all;
@@ -247,7 +236,7 @@ nav {
 }
 
 .nav-no-border {
-    border-bottom-color: transparent;
+    border-bottom-color: transparent!important;
 }
 
 .nav-white-back {
@@ -256,7 +245,9 @@ nav {
 }
 
 .nav-shadow {
-    box-shadow: 12px 2px 8px 0px rgb(0, 0, 0);
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.5);
+    // box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
+    // box-shadow: 8px -2px 14px rgba(0,0,0,.35);
 }
 
 .translate {

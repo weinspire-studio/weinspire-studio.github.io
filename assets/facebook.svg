@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31"><path d="M15.5,0A15.5,15.5,0,1,0,31,15.5,15.5,15.5,0,0,0,15.5,0Zm4,10.3H17.8c-.7,0-.8.3-.8,1v1.6h2.6l-.3,2.6H17v9H13.1v-9H10.5V12.9h2.6v-3c0-2.3,1.2-3.5,3.9-3.5h2.5Z" fill="#231f20"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31" id="facebook" aria-labelledby="title, description">
+    <title>Facebook Icon</title>
+    <desc>Facebook Social Media Platform Icon</desc>
+    <path d="M15.5,0A15.5,15.5,0,1,0,31,15.5,15.5,15.5,0,0,0,15.5,0Zm4,10.3H17.8c-.7,0-.8.3-.8,1v1.6h2.6l-.3,2.6H17v9H13.1v-9H10.5V12.9h2.6v-3c0-2.3,1.2-3.5,3.9-3.5h2.5Z"/>
+</svg>

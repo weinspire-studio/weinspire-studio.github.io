@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31"><path d="M15.5,0A15.5,15.5,0,1,0,31,15.5,15.5,15.5,0,0,0,15.5,0ZM11.9,22.3h-3v-11h3ZM10.4,10a1.8,1.8,0,1,1,1.8-1.8A1.8,1.8,0,0,1,10.4,10ZM23.9,22.3h-3V16.7c0-3.4-4-3.1-4,0v5.6h-3v-11h3v1.8c1.4-2.6,7-2.8,7,2.5Z" fill="#231f20"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31" id="linkedin" aria-labelledby="title, description">
+    <title>Linkedin Icon</title>
+    <desc>Linkedin Social Media Platform Icon</desc>
+    <path d="M15.5,0A15.5,15.5,0,1,0,31,15.5,15.5,15.5,0,0,0,15.5,0ZM11.9,22.3h-3v-11h3ZM10.4,10a1.8,1.8,0,1,1,1.8-1.8A1.8,1.8,0,0,1,10.4,10ZM23.9,22.3h-3V16.7c0-3.4-4-3.1-4,0v5.6h-3v-11h3v1.8c1.4-2.6,7-2.8,7,2.5Z"/>
+</svg>
