@@ -37,6 +37,8 @@ contactModule.validateContactForm();
 contactModule.submitContactForm();
 contactModule.submitNewsForm();
 
+heroModule.initWriter();
+
 //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 function init() {
@@ -62,7 +64,7 @@ function initOnWidthChange() {
 function desktopCode() {
   addClassesToSvgs(false);
   styleNavOnScroll(false);
-  heroModule.initWriter();
+  // heroModule.initWriter();
   desktopModule.styleAnchorOnHover();
   if (isSafari) {
     desktopModule.animateImagesSafari();

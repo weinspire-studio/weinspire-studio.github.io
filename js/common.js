@@ -66,7 +66,8 @@ initOnWidthChange();
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
-contactModule.submitNewsForm(); //FUNCTIONS DEFINITIONS
+contactModule.submitNewsForm();
+heroModule.initWriter(); //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 
 function init() {
@@ -91,8 +92,8 @@ function initOnWidthChange() {
 
 function desktopCode() {
   addClassesToSvgs(false);
-  styleNavOnScroll(false);
-  heroModule.initWriter();
+  styleNavOnScroll(false); // heroModule.initWriter();
+
   desktopModule.styleAnchorOnHover();
 
   if (isSafari) {
