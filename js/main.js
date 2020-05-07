@@ -2,6 +2,7 @@
 
 import * as mobileModule from "./sub_modules/mobile";
 import * as desktopModule from "./sub_modules/desktop";
+import * as heroModule from "./sub_modules/hero";
 import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
 import * as contactModule from "./sub_modules/contact";
@@ -19,8 +20,9 @@ const navBar = document.getElementById("section-navbar");
 const navWhiteBack = document.querySelector(".navigation-white-back");
 const navShadow = document.querySelector(".navigation-shadow");
 const mobileScreenMQ = window.matchMedia("(max-width: 800px)");
+let isSafari = window.safari !== undefined;
 let hasScrollListenerMobile = false;
-let hasScrollListenerDesktop = false;
+let hasListenersDesktop = false;
 let debouncedNavDesktop;
 let debouncedNavMobile;
 let bindedDebouncedNavDesktop;
@@ -61,15 +63,19 @@ function desktopCode() {
   addClassesToSvgs(false);
   styleNavOnScroll(false);
   desktopModule.styleAnchorOnHover();
-  jQueryModule.animateImages();
+  if (isSafari) {
+    desktopModule.animateImagesSafari();
+  } else {
+    jQueryModule.animateImages();
+  }
   debouncedNavDesktop = debounce(styleNavOnScroll, 200, {
     leading: true,
     trailing: true,
   });
   bindedDebouncedNavDesktop = debouncedNavDesktop.bind(null, false);
   window.addEventListener("scroll", bindedDebouncedNavDesktop);
-  hasScrollListenerDesktop = true;
-  if (hasScrollListenerMobile === true) {
+  hasListenersDesktop = true;
+  if (hasScrollListenerMobile) {
     desktopModule.restoreDesktopNav();
     window.removeEventListener("scroll", debouncedNavMobile);
     hasScrollListenerMobile = false;
@@ -92,9 +98,12 @@ function mobileCode() {
   });
   window.addEventListener("scroll", debouncedNavMobile);
   hasScrollListenerMobile = true;
-  if (hasScrollListenerDesktop === true) {
+  if (hasListenersDesktop) {
     window.removeEventListener("scroll", bindedDebouncedNavDesktop);
-    hasScrollListenerDesktop = false;
+    if (isSafari) {
+      desktopModule.removeImagesListeners();
+    }
+    hasListenersDesktop = false;
   }
   swiper = swiperModule.defineSwiper();
   swiper.on("init", function () {
@@ -250,28 +259,20 @@ export { navBar, debounce };
 // in projects-design: if image stretches more than image witdh: repeat: round or size cover
 // lazy - loading!
 //download swipper only on mobile? conditional script
-// caption background color switched (projects-design)
 // on select input from contact form BUG! iphone extra swipe
-// es modules! bundles!
-// svg grunt!
-// transpilation, es6 sourcemap
-// source map debuggin? just for dev!
-// babel vs babelify? Modules? jquery modules? swiper?
 // content link ?
 // mousedown touch start?
 //auto prefixer: prefix animations? maybe extend sass or something? Each keyframe with different prefix!
 // (caption onpageload in above-the-fold due to img from unsplash)
-// // CRITICAL: for the final, critical inline, and the REST in the main.css.min (erase inlined from main.css),
 
 // outline on burger div?
 
 // scroll anchoring onwidthchange init?
 // test foreach in win 11, and other compatibility issues. GRID! height 100%
 
-// swiper on safari mac
 // inline css repeated
 
 // us, newsletter (and footer), bootloader, svgs in menu!
-// scroll on menu open?
+// scroll on menu open? menu icons!
 
 // postcss? autoprefixer? html min? jquery as an external link? npm audit!

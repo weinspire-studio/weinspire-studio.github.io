@@ -405,7 +405,7 @@ h1, h2, h3, h4, h5 {
     transform: translateX(0);
   }
 }
-#hero-grid {
+#section-hero {
   min-height: 100%;
   text-align: center;
   padding: 1em;
@@ -417,32 +417,32 @@ h1, h2, h3, h4, h5 {
       justify-content: space-around;
 }
 @media screen and (min-width: 479px) {
-  #hero-grid {
+  #section-hero {
     padding: 1.5em;
   }
 }
 @media screen and (min-width: 801px) {
-  #hero-grid {
+  #section-hero {
     padding: 2em;
   }
 }
 @media screen and (min-width: 1024px) {
-  #hero-grid {
+  #section-hero {
     padding: 2.5em;
   }
 }
 @media screen and (min-width: 1200px) {
-  #hero-grid {
+  #section-hero {
     padding: 3em;
   }
 }
 @media screen and (min-width: 0) and (max-width: 801px) {
-  #hero-grid {
+  #section-hero {
     padding-top: 3.25em !important;
   }
 }
 @media screen and (min-width: 801px) {
-  #hero-grid {
+  #section-hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "hero-left hero-right";
@@ -454,13 +454,13 @@ h1, h2, h3, h4, h5 {
   }
 }
 @media screen and (min-width: 1024px) {
-  #hero-grid {
+  #section-hero {
     grid-area: hero-left;
     grid-area: hero-right;
   }
 }
 @media screen and (min-width: 1200px) {
-  #hero-grid {
+  #section-hero {
     grid-area: hero-left;
     grid-area: hero-right;
   }
@@ -481,27 +481,30 @@ h1, h2, h3, h4, h5 {
   grid-area: hero-left;
   transition: 0.55s color ease;
 }
-.hero-text h1 {
+.hero-text span {
+  font-size: 4rem;
+}
+.hero-text h2 {
   padding-bottom: 1em;
   font-size: 1.3em;
 }
 @media screen and (min-width: 479px) {
-  .hero-text h1 {
+  .hero-text h2 {
     font-size: 1.5em;
   }
 }
 @media screen and (min-width: 801px) {
-  .hero-text h1 {
+  .hero-text h2 {
     font-size: 1.8em;
   }
 }
 @media screen and (min-width: 1024px) {
-  .hero-text h1 {
+  .hero-text h2 {
     font-size: 2.2em;
   }
 }
 @media screen and (min-width: 1200px) {
-  .hero-text h1 {
+  .hero-text h2 {
     font-size: 2.5em;
   }
 }
@@ -518,10 +521,26 @@ h1, h2, h3, h4, h5 {
   fill: pink;
 }
 
+#span-we {
+  padding-right: 0.8rem;
+}
+
+.inner-span {
+  border-right: 0.05em solid #000;
+  animation: blink-anim 1000ms ease infinite running;
+}
+
 .hero-text-opacity {
   color: rgba(0, 0, 0, 0.7);
 }
-
+@keyframes blink-anim {
+  0% {
+    border-right-color: #000;
+  }
+  100% {
+    border-right-color: transparent;
+  }
+}
 #svg-background {
   position: absolute;
   bottom: -2px;
@@ -737,43 +756,39 @@ h1, h2, h3, h4, h5 {
     position: relative;
     width: calc(20% - 1px);
     overflow-y: hidden;
-    transition: width 450ms ease !important;
+    transition: width 450ms ease;
+    -moz-transition: width 450ms ease;
+    -webkit-transition: width 450ms ease;
+    -o-transition: width 450ms ease;
     border-left: 2px solid #000;
-    box-shadow: 3px 4px 8px 1px #424242;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
   }
 }
 
 .content-link:first-child {
   background-image: url("https://source.unsplash.com/850x450/?nature,sky");
-  z-index: 4;
   border-left-color: #404040;
 }
 .content-link:nth-child(2) {
   background-image: url("https://source.unsplash.com/850x450/?nature,fire");
-  z-index: 3;
 }
 .content-link:nth-child(3) {
   background-image: url("https://source.unsplash.com/850x450/?nature,stone");
-  z-index: 2;
 }
 .content-link:nth-child(4) {
   background-image: url("https://source.unsplash.com/850x450/?nature,tree");
-  z-index: 1;
 }
 .content-link:last-child {
   background-image: url("https://source.unsplash.com/850x450/?nature,light");
-  z-index: 0;
-}
-@media screen and (min-width: 801px) {
-  .content-link:last-child {
-    box-shadow: 3px 7px 5px -2.75px #0e0e0e !important;
-  }
 }
 @media screen and (min-width: 801px) {
   .content-link .link-overlay {
     width: 100%;
     height: 100%;
     transition: 0.55s ease background-color;
+    -moz-transition: 0.55s ease background-color;
+    -webkit-transition: 0.55s ease background-color;
+    -o-transition: 0.55s ease background-color;
   }
   .content-link .link-overlay#overlay-1 {
     background-color: rgba(0, 16, 41, 0.4);
@@ -796,7 +811,7 @@ h1, h2, h3, h4, h5 {
   bottom: 0;
   width: 100%;
   color: white;
-  padding: 1.25em 2.25em;
+  padding: 1.25em 0 1.25em 1.5em;
 }
 .content-link .link-caption#caption-1 {
   background-color: #001029;
@@ -835,7 +850,7 @@ h1, h2, h3, h4, h5 {
 .content-link .link-caption:after {
   content: "";
   position: absolute;
-  left: 1.5em;
+  left: 1em;
   bottom: 1em;
   top: 1em;
   width: 0.25em;
@@ -844,6 +859,9 @@ h1, h2, h3, h4, h5 {
   .content-link .link-caption {
     transform: translateY(100%);
     transition: transform 500ms ease;
+    -moz-transition: transform 500ms ease;
+    -webkit-transition: transform 500ms ease;
+    -o-transition: transform 500ms ease;
   }
 }
 
@@ -879,6 +897,9 @@ h1, h2, h3, h4, h5 {
   fill: #003a58;
   grid-area: arrow;
   transition: animation 500ms ease, opacity 500ms ease;
+  -moz-transition: animation 500ms ease, opacity 500ms ease;
+  -webkit-transition: animation 500ms ease, opacity 500ms ease;
+  -o-transition: animation 500ms ease, opacity 500ms ease;
   position: relative;
   right: -40px;
   opacity: 0;
@@ -888,6 +909,9 @@ h1, h2, h3, h4, h5 {
   fill: #006985;
   grid-area: arrow;
   transition: animation 500ms ease, opacity 500ms ease;
+  -moz-transition: animation 500ms ease, opacity 500ms ease;
+  -webkit-transition: animation 500ms ease, opacity 500ms ease;
+  -o-transition: animation 500ms ease, opacity 500ms ease;
   position: relative;
   right: -20px;
   opacity: 0;
@@ -899,11 +923,17 @@ h1, h2, h3, h4, h5 {
   position: relative;
   opacity: 0;
   transition: animation 500ms ease, opacity 500ms ease;
+  -moz-transition: animation 500ms ease, opacity 500ms ease;
+  -webkit-transition: animation 500ms ease, opacity 500ms ease;
+  -o-transition: animation 500ms ease, opacity 500ms ease;
 }
 
 .swiper-pagination-bullet-active {
   transform: scale(1.75) !important;
   transition: transform 0.5s ease;
+  -moz-transition: transform 0.5s ease;
+  -webkit-transition: transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
 }
 .swiper-pagination-bullet-active:nth-child(1) {
   background-color: #001029 !important;
@@ -926,6 +956,10 @@ h1, h2, h3, h4, h5 {
 }
 
 .expanded .link-overlay {
+  background-color: transparent !important;
+}
+
+.overlay-transparent .link-overlay {
   background-color: transparent !important;
 }
 

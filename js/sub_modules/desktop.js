@@ -10,6 +10,8 @@ import {
 
 const navAnchors = document.querySelectorAll(".nav-list a");
 const brandDesktop = document.querySelector("#brand-desktop-svg");
+const list = document.querySelector(".swiper-wrapper");
+const links = document.querySelectorAll(".swiper-slide");
 let hasHoverListener = false;
 
 // animation effect (underline) for desktop nav anchors.
@@ -73,6 +75,42 @@ function editStyle(className, property) {
   }
 }
 
+function animateImagesSafari() {
+  list.addEventListener("mouseover", styleLink);
+  list.addEventListener("mouseleave", restoreLink);
+}
+
+function styleLink() {
+  links.forEach((link) => {
+    if (link.matches(":hover")) {
+      // console.log(link.id);
+      link.style.width = "36%";
+      // console.log(link);
+      link.classList.add("overlay-transparent");
+      link.firstElementChild.nextElementSibling.classList.add("show-caption");
+    } else {
+      link.style.width = "18%";
+      link.classList.remove("overlay-transparent");
+      link.firstElementChild.nextElementSibling.classList.remove(
+        "show-caption"
+      );
+    }
+  });
+}
+
+function restoreLink() {
+  links.forEach((link) => {
+    link.style.width = "20%";
+    link.classList.remove("overlay-transparent");
+    link.firstElementChild.nextElementSibling.classList.remove("show-caption");
+  });
+}
+
+function removeImagesListeners() {
+  list.removeEventListener("mouseover", styleLink);
+  list.removeEventListener("mouseleave", restoreLink);
+}
+
 // changes mobile svg brand colors.
 function styleDesktopBrand() {
   brandDesktop.classList.add("brand-color");
@@ -105,4 +143,6 @@ export {
   restoreDesktopBrand,
   setDesktopBrand,
   unsetDesktopBrand,
+  animateImagesSafari,
+  removeImagesListeners,
 };

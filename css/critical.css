@@ -235,7 +235,7 @@ nav {
   width: 8.5em;
   padding-top: 0.25em;
 }
-#hero-grid {
+#section-hero {
   min-height: 100%;
   text-align: center;
   padding: 1em;
@@ -247,7 +247,7 @@ nav {
   justify-content: space-around;
 }
 @media screen and (min-width: 0) and (max-width: 801px) {
-  #hero-grid {
+  #section-hero {
     padding-top: 3.25em !important;
   }
 }

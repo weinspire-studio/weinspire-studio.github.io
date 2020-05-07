@@ -1,4 +1,4 @@
-#hero-grid {
+#section-hero {
     min-height: 100%;
     // height: calc(100% - 3.25em);
     text-align: center;
@@ -27,8 +27,10 @@
     grid-area: hero-left;
     transition: .55s color ease;
     // z-index: -1;
-
-    & h1 {
+    span {
+        font-size: 4rem;
+    }
+    h2 {
         padding-bottom: 1em;
         @include font-size-map($title-font-size);
     }
@@ -39,16 +41,46 @@
     text-align: center;
     z-index: -1;
     position: relative;
-    
-    & .icon-facebook {
+    .icon-facebook {
         height: 200px;
         width: 200px;
         fill: pink;
     }
 }
 
+#span-we {
+    padding-right: .8rem;
+}
+
+.inner-span {
+    border-right: .05em solid #000;
+    -webkit-animation: blink-anim 1000ms ease infinite running;
+    -moz-animation: blink-anim 1000ms ease infinite running;
+    -o-animation: blink-anim 1000ms ease infinite running;
+    animation: blink-anim 1000ms ease infinite running;
+}
+
 
 .hero-text-opacity {
     color: $black-opacity;
     // z-index: -1;
+}
+
+
+@-webkit-keyframes blink-anim {
+    0% {
+        border-right-color: #000;
+    }
+    100% {
+        border-right-color: transparent;
+    }
+}
+
+@keyframes blink-anim {
+    0% {
+        border-right-color: #000;
+    }
+    100% {
+        border-right-color: transparent;
+    }
 }

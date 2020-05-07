@@ -22,6 +22,7 @@ let clientHeight = document.body.clientHeight;
 let scrolledY = 0;
 let toggleDelay = 0;
 let hasClickListener = false;
+let isOpen_Menu = false;
 let rightArrowsFlag = true;
 let debouncedRightArrows;
 // UA sniffing
@@ -29,9 +30,9 @@ let isIos =
   (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
   !window.MSStream;
-let isSafari = window.safari !== undefined;
+// let isSafari = window.safari !== undefined;
 
-let isOpen_Menu = false;
+// console.log(isSafari);
 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
@@ -88,7 +89,7 @@ function toggleNavClasses() {
 
 // styles Swiper (arrows and pagination) depending on mobile OS.
 function initSwiper() {
-  if (isIos || isSafari) {
+  if (isIos) {
     swiperPagination.classList.add("pagination-bottom");
   } else {
     swiperPagination.classList.add("pagination-middle");

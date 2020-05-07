@@ -34,7 +34,7 @@ module.exports = function (grunt) {
         src: ["index-dev.html"],
       },
     },
-    // compiles to sass
+    // compiles sass to css
     sass: {
       dist: {
         files: [
