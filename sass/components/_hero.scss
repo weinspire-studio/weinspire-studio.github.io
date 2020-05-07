@@ -54,10 +54,10 @@
 
 .inner-span {
     border-right: .05em solid #000;
-    -webkit-animation: blink-anim 1000ms ease infinite running;
-    -moz-animation: blink-anim 1000ms ease infinite running;
-    -o-animation: blink-anim 1000ms ease infinite running;
-    animation: blink-anim 1000ms ease infinite running;
+    -webkit-animation: blink-anim 1000ms ease infinite running 200ms;
+    -moz-animation: blink-anim 1000ms ease infinite running 200ms;
+    -o-animation: blink-anim 1000ms ease infinite running 200ms;
+    animation: blink-anim 1000ms ease infinite running 200ms;
 }
 
 

@@ -1,8 +1,5 @@
 // jshint esversion: 6
-
-// import "../../node_custom_modules/jquery/jquery.min.js";
 // import $ from "../../node_custom_modules/jquery/jquery.min.js";
-
 let hasHoverListenerOnPortolio = false;
 
 // jQuery for animated scroll

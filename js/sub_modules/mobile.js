@@ -30,9 +30,6 @@ let isIos =
   (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
   !window.MSStream;
-// let isSafari = window.safari !== undefined;
-
-// console.log(isSafari);
 
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
@@ -77,8 +74,6 @@ function toggleNavClasses() {
       styleMobileBrand();
     }
   }
-  // window.classList.toggle("body-fixed");
-  // siteOverlay.nextElementSibling.classList.toggle("html-fixed");
   document.documentElement.classList.toggle("menu-open");
   siteOverlay.classList.toggle("overlay-active");
   navContainer.classList.toggle("translate");
@@ -107,6 +102,7 @@ function listenToArrow() {
   rightArrowsContainer.addEventListener("click", slideRightArrows);
   rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
 }
+
 // shows arrows when passing through threshold.
 function showRightArrows() {
   scrolledY = window.pageYOffset;

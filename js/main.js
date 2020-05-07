@@ -62,6 +62,7 @@ function initOnWidthChange() {
 function desktopCode() {
   addClassesToSvgs(false);
   styleNavOnScroll(false);
+  heroModule.initWriter();
   desktopModule.styleAnchorOnHover();
   if (isSafari) {
     desktopModule.animateImagesSafari();
@@ -100,6 +101,7 @@ function mobileCode() {
   hasScrollListenerMobile = true;
   if (hasListenersDesktop) {
     window.removeEventListener("scroll", bindedDebouncedNavDesktop);
+    // heroModule.destroyWriter();
     if (isSafari) {
       desktopModule.removeImagesListeners();
     }

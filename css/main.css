@@ -527,7 +527,7 @@ h1, h2, h3, h4, h5 {
 
 .inner-span {
   border-right: 0.05em solid #000;
-  animation: blink-anim 1000ms ease infinite running;
+  animation: blink-anim 1000ms ease infinite running 200ms;
 }
 
 .hero-text-opacity {

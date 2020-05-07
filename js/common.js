@@ -92,6 +92,7 @@ function initOnWidthChange() {
 function desktopCode() {
   addClassesToSvgs(false);
   styleNavOnScroll(false);
+  heroModule.initWriter();
   desktopModule.styleAnchorOnHover();
 
   if (isSafari) {
@@ -134,7 +135,7 @@ function mobileCode() {
   hasScrollListenerMobile = true;
 
   if (hasListenersDesktop) {
-    window.removeEventListener("scroll", bindedDebouncedNavDesktop);
+    window.removeEventListener("scroll", bindedDebouncedNavDesktop); // heroModule.destroyWriter();
 
     if (isSafari) {
       desktopModule.removeImagesListeners();
@@ -808,61 +809,88 @@ function unsetDesktopBrand() {
 },{"./mobile.js":7}],5:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.initWriter = initWriter;
+exports.destroyWriter = destroyWriter;
 // jshint esversion: 6
-function typeWriter(spanContainer, words) {
-  var wait = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3000;
-  this.spanContainer = spanContainer;
-  this.words = words;
-  this.text = "";
-  this.wordCounter = 0;
-  this.wait = parseInt(wait, 10);
-  this.type();
-  this.isDeleting = false;
+var spanContainer = document.getElementById("span-words");
+var words = spanContainer.getAttribute("data-words").split(", ");
+var text = "";
+var wordCounter = 0;
+var wait = 1350;
+var isWriting = true;
+var isDeleting = false;
+var threshold = document.body.clientHeight / 2;
+var timer;
+var scrolledY; // window.addEventListener("scroll", setWriter);
+
+function setWriter() {
+  scrolledY = window.pageYOffset;
+
+  if (scrolledY > threshold) {
+    if (isWriting) {
+      isWriting = false;
+      clearWriter();
+    }
+  } else {
+    if (scrolledY < threshold - threshold / 4) {
+      if (!isWriting) {
+        text = "";
+        wordCounter = 0;
+        isDeleting = false;
+        isWriting = true;
+        typeWriter();
+      }
+    }
+  }
 }
 
-typeWriter.prototype.type = function () {
-  var _this = this;
-
-  var wordIndex = this.wordCounter % this.words.length;
-  var currentWord = this.words[wordIndex];
+function typeWriter() {
+  var wordIndex = wordCounter % words.length;
+  var currentWord = words[wordIndex];
   var typeSpeed = 175;
 
-  if (this.isDeleting) {
-    this.text = currentWord.substring(0, this.text.length - 1);
+  if (isDeleting) {
+    text = currentWord.substring(0, text.length - 1);
     typeSpeed = typeSpeed / 2;
   } else {
-    this.text = currentWord.substring(0, this.text.length + 1);
+    text = currentWord.substring(0, text.length + 1);
   }
 
-  if (!this.isDeleting && this.text === currentWord) {
+  if (!isDeleting && text === currentWord) {
     if (currentWord === "inspire") {
       typeSpeed = 3400;
     } else {
-      typeSpeed = this.wait;
+      typeSpeed = wait;
     }
 
-    this.isDeleting = true;
-  } else if (this.isDeleting && this.text === "") {
-    this.isDeleting = false;
-    this.wordCounter++;
+    isDeleting = true;
+  } else if (isDeleting && text === "") {
+    isDeleting = false;
+    wordCounter++;
     typeSpeed = 500;
   }
 
-  this.spanContainer.innerHTML = "<span class=\"inner-span\">".concat(this.text, "</span>");
-  setTimeout(function () {
-    return _this.type();
+  spanContainer.innerHTML = "<span class=\"inner-span\">".concat(text, "</span>");
+  timer = setTimeout(function () {
+    return typeWriter();
   }, typeSpeed);
-};
+}
 
-document.addEventListener("DOMContentLoaded", init);
+function initWriter() {
+  typeWriter();
+  window.addEventListener("scroll", setWriter);
+}
 
-function init() {
-  var spanContainer = document.getElementById("span-words");
-  console.log(spanContainer.getAttribute("data-words"));
-  var wordsArray = spanContainer.getAttribute("data-words").split(", ");
-  console.log(wordsArray);
-  var wait = 1250;
-  new typeWriter(spanContainer, wordsArray, wait);
+function clearWriter() {
+  clearTimeout(timer);
+}
+
+function destroyWriter() {
+  window.removeEventListener("scroll", setWriter);
+  clearTimeout(timer);
 }
 
 },{}],6:[function(require,module,exports){
@@ -875,7 +903,6 @@ exports.smoothScroll = smoothScroll;
 exports.animateImages = animateImages;
 exports.unbindImages = unbindImages;
 // jshint esversion: 6
-// import "../../node_custom_modules/jquery/jquery.min.js";
 // import $ from "../../node_custom_modules/jquery/jquery.min.js";
 var hasHoverListenerOnPortolio = false; // jQuery for animated scroll
 
@@ -953,9 +980,7 @@ exports.isOpen_Menu = isOpen_Menu;
 var rightArrowsFlag = true;
 var debouncedRightArrows; // UA sniffing
 
-var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; // let isSafari = window.safari !== undefined;
-// console.log(isSafari);
-//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   navList.parentNode.removeChild(navList);
@@ -1005,9 +1030,7 @@ function toggleNavClasses() {
     if (scrolledY > 0) {
       styleMobileBrand();
     }
-  } // window.classList.toggle("body-fixed");
-  // siteOverlay.nextElementSibling.classList.toggle("html-fixed");
-
+  }
 
   document.documentElement.classList.toggle("menu-open");
   siteOverlay.classList.toggle("overlay-active");
