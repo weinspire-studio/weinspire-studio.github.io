@@ -819,23 +819,29 @@ function unsetDesktopBrand() {
 // TweenLite.defaultEase = Linear.easeNone;
 var controller = new ScrollMagic.Controller();
 var tl = new TimelineMax();
-var svgBg = document.getElementById("svg-background");
-console.log(svgBg.firstElementChild); // document.addEventListener("DOMContentLoaded", () => {
-//   const path = document.querySelector("#path-1");
-//   const path2 = document.getElementById("#path-1");
-//   console.log(path, path2);
-// });
+var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/svg-background.svg";
+var sectionBg = document.getElementById("section-background");
+var xhr = new XMLHttpRequest();
 
-var response = "";
-$.ajax({
-  type: "GET",
-  url: "http://www.google.de",
-  async: false,
-  success: function success(text) {
-    response = text;
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.status === 200) {
+      var parser = new DOMParser();
+      var xmlDoc = parser.parseFromString(xhr.responseText, "image/svg+xml");
+      var svg = xmlDoc.documentElement;
+      sectionBg.append(svg);
+    } else {
+      alert("There was a problem with the request.");
+    }
   }
-});
-console.log(response);
+};
+
+xhr.open("GET", url);
+xhr.send(); // jQuery way
+// $.get(url, function (xmlDoc) {
+//   let svg = $(xmlDoc).find("svg")[0];
+//   sectionBg.append(svg);
+// });
 
 },{}],6:[function(require,module,exports){
 "use strict";

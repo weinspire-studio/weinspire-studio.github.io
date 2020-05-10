@@ -3,24 +3,28 @@
 // TweenLite.defaultEase = Linear.easeNone;
 let controller = new ScrollMagic.Controller();
 let tl = new TimelineMax();
+const url =
+  "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/svg-background.svg";
+const sectionBg = document.getElementById("section-background");
 
-const svgBg = document.getElementById("svg-background");
-console.log(svgBg.firstElementChild);
+let xhr = new XMLHttpRequest();
+xhr.onreadystatechange = () => {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.status === 200) {
+      let parser = new DOMParser();
+      let xmlDoc = parser.parseFromString(xhr.responseText, "image/svg+xml");
+      let svg = xmlDoc.documentElement;
+      sectionBg.append(svg);
+    } else {
+      alert("There was a problem with the request.");
+    }
+  }
+};
+xhr.open("GET", url);
+xhr.send();
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const path = document.querySelector("#path-1");
-//   const path2 = document.getElementById("#path-1");
-//   console.log(path, path2);
+// jQuery way
+// $.get(url, function (xmlDoc) {
+//   let svg = $(xmlDoc).find("svg")[0];
+//   sectionBg.append(svg);
 // });
-
-var response = "";
-$.ajax({
-  type: "GET",
-  url: "http://www.google.de",
-  async: false,
-  success: function (text) {
-    response = text;
-  },
-});
-
-console.log(response);
