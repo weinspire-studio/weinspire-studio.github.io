@@ -3,6 +3,7 @@
 import * as mobileModule from "./sub_modules/mobile";
 import * as desktopModule from "./sub_modules/desktop";
 import * as heroModule from "./sub_modules/hero";
+import * as animationsModule from "./sub_modules/gsap-scrollmagic";
 import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
 import * as contactModule from "./sub_modules/contact";
@@ -31,7 +32,7 @@ let swiper;
 //FUNCTIONS INVOCATIONS
 init();
 initOnWidthChange();
-svg4everybody({ polyfill: true });
+svg4everybody({ attributeName: "data-href", polyfill: true });
 jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
@@ -280,3 +281,5 @@ export { navBar, debounce };
 // scroll on menu open? menu icons!
 
 // postcss? autoprefixer? html min? jquery as an external link? npm audit!
+// ::selection background-color
+// svg sprite loading twice?

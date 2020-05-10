@@ -1,7 +1,8 @@
 // jshint esversion: 6
 
-const spanContainer = document.getElementById("span-words");
-let words = spanContainer.getAttribute("data-words").split(", ");
+const spanWords = document.getElementById("span-words");
+const spanWe = document.getElementById("span-we");
+let words = spanWords.getAttribute("data-words").split(", ");
 let text = "";
 let wordCounter = 0;
 let wait = 1350;
@@ -11,6 +12,7 @@ let threshold = document.body.clientHeight / 2;
 let timer;
 let scrolledY;
 
+let spanClass;
 // window.addEventListener("scroll", setWriter);
 
 function setWriter() {
@@ -55,7 +57,14 @@ function typeWriter() {
     wordCounter++;
     typeSpeed = 500;
   }
-  spanContainer.innerHTML = `<span class="inner-span">${text}</span>`;
+  if (currentWord === "inspire") {
+    spanClass = "inner-span text-highlight";
+    spanWe.classList.add("text-highlight");
+  } else {
+    spanClass = "inner-span";
+    spanWe.classList.remove("text-highlight");
+  }
+  spanWords.innerHTML = `<span class="${spanClass}">${text}</span>`;
   timer = setTimeout(() => typeWriter(), typeSpeed);
 }
 

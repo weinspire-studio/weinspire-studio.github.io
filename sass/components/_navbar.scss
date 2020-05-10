@@ -121,7 +121,7 @@
         position: relative;
         &:hover {
            color: rgb(255, 255, 255);
-           text-shadow: 1px 1px 1.8px rgb(0, 0, 0);
+           text-shadow: 1px 1px 1.8px #000;
         }
         &:before {
             content: "";

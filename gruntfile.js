@@ -158,6 +158,7 @@ module.exports = function (grunt) {
           "./assets/optimized/facebook.svg": "./assets/facebook.svg",
           "./assets/optimized/behance.svg": "./assets/behance.svg",
           "./assets/optimized/linkedin.svg": "./assets/linkedin.svg",
+          "./assets/optimized/svg-background.svg": "./assets/svg-background.svg" // prettier-ignore
         },
       },
     },
@@ -179,7 +180,7 @@ module.exports = function (grunt) {
         svg: {
           xmlDeclaration: false,
           namespaceClassnames: false,
-          namespaceIDs: true,
+          namespaceIDs: false,
         },
       },
     },
@@ -221,7 +222,7 @@ module.exports = function (grunt) {
 
   // Register Grunt tasks
   grunt.registerTask("default", ["watch"]);
-  grunt.registerTask("svg-os", ["svgmin", "svg_sprite"]);
+  grunt.registerTask("svg-tasks", ["svgmin", "svg_sprite"]);
   // prettier-ignore
   grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "critical", "htmlhint", "jshint", "browserify", "uglify"]);
 };
