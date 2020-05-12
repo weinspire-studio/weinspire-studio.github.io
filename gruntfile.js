@@ -159,30 +159,49 @@ module.exports = function (grunt) {
           "./assets/optimized/behance.svg": "./assets/behance.svg",
           "./assets/optimized/linkedin.svg": "./assets/linkedin.svg",
           "./assets/optimized/arrow-up.svg": "./assets/arrow-up.svg",
-          // "./assets/optimized_ajax/design.svg": "./assets/design.svg", // uncomment (along with removeAttrs) and manually optimize svgs for ajax
-          // "./assets/optimized_ajax/svg-background.svg": "./assets/svg-background.svg" // prettier-ignore
+          "./assets/optimized_ajax/design.svg": "./assets/design.svg", // uncomment (along with removeAttrs) and manually optimize svgs for ajax
+          "./assets/optimized_ajax/svg-background.svg": "./assets/svg-background.svg" // prettier-ignore
         },
       },
     },
     // svg sprites builder
     svg_sprite: {
-      target: {
+      default: {
         expand: true,
         cwd: "./assets/optimized/",
         src: ["*.svg"],
         dest: "./assets/",
-      },
-      options: {
-        mode: {
-          symbol: {
-            dest: "sprites",
-            sprite: "svg-sprite.svg",
+        options: {
+          mode: {
+            symbol: {
+              dest: "sprites",
+              sprite: "svg-sprite.svg",
+            },
+          },
+          svg: {
+            xmlDeclaration: false,
+            namespaceClassnames: false,
+            namespaceIDs: false,
           },
         },
-        svg: {
-          xmlDeclaration: false,
-          namespaceClassnames: false,
-          namespaceIDs: false,
+      },
+      ajax: {
+        expand: true,
+        cwd: "./assets/optimized_ajax/",
+        src: ["*.svg"],
+        dest: "./assets/",
+        options: {
+          mode: {
+            symbol: {
+              dest: "sprites",
+              sprite: "svg-sprite-ajax.svg",
+            },
+          },
+          svg: {
+            xmlDeclaration: false,
+            namespaceClassnames: false,
+            namespaceIDs: false,
+          },
         },
       },
     },
@@ -224,7 +243,7 @@ module.exports = function (grunt) {
 
   // Register Grunt tasks
   grunt.registerTask("default", ["watch"]);
-  grunt.registerTask("svg-tasks", ["svgmin", "svg_sprite"]);
+  grunt.registerTask("svg-tasks", ["svgmin", "svg_sprite:default"]);
 
   // prettier-ignore
   grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "critical", "htmlhint", "jshint", "browserify", "uglify"]);

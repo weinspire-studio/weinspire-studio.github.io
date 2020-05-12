@@ -1,45 +1,53 @@
 // jshint esversion: 6
 
 // TweenLite.defaultEase = Linear.easeNone;
-// let controller = new ScrollMagic.Controller();
-// let tl = new TimelineMax();
-// https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/svg-background.svg
-const url =
-  "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized/svg-background.svg";
-const url2 =
-  "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized/design.svg";
+const url = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/svg-background.svg`;
+const url2 = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/design.svg`;
+const url3 =
+  "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/sprites/svg-defs-block.svg";
 const sectionBg = document.getElementById("section-background");
+
+const divContainer = document.getElementById("grid-btm-icon");
 
 const controller = new ScrollMagic.Controller();
 let tl = new TimelineMax();
 
 let xhr = new XMLHttpRequest();
-let parser = new DOMParser();
+let xhr2 = new XMLHttpRequest();
 
 xhr.onreadystatechange = () => {
   if (xhr.readyState === XMLHttpRequest.DONE) {
     if (xhr.status === 200) {
-      let xmlDoc = parser.parseFromString(xhr.responseText, "image/svg+xml");
-      console.log(xmlDoc);
-      console.log(xhr.responseText);
-      let svg = xmlDoc.documentElement;
-      sectionBg.append(svg);
-      // animateBackground();
+      sectionBg.append(xhr.responseXML.documentElement);
+      animateBackground();
     } else {
-      alert("There was a problem with the request.");
+      console.log("There was a problem with the request.");
     }
   }
 };
 xhr.open("GET", url);
 xhr.send();
 
+xhr2.onreadystatechange = () => {
+  if (xhr2.readyState === XMLHttpRequest.DONE) {
+    if (xhr2.status === 200) {
+      let div = document.createElement("div");
+      div.innerHTML = xhr2.responseText;
+      document.body.insertBefore(div, document.body.childNodes[0]);
+      // divContainer.append(xhr2.responseXML.documentElement);
+    } else {
+      console.log("There was a problem with the request.");
+    }
+  }
+};
+xhr2.open("GET", url3);
+xhr2.send();
+
 function animateBackground() {
-  const svgNode = document.getElementById("svg-background");
+  // const svgNode = document.getElementById("svg-background");
   const svgPaths = document.querySelectorAll("#svg-background path");
   const heroDivs = document.querySelectorAll("#section-hero .hero");
-  // console.log(heroDivs);
-  console.log(svgNode);
-  console.log(svgPaths);
+
   // tl.to(sectionBg, 1, { y: 120, ease: Linear.easeNone })
   tl.to(svgPaths[5], 1, { y: 80, ease: Linear.easeNone }, 0)
     .to(svgPaths[6], 1, { y: 140, ease: Linear.easeNone }, 0)
@@ -73,8 +81,8 @@ const drawScene = new ScrollMagic.Scene({
   .addIndicators()
   .addTo(controller);
 
-// const svg = document.getElementById("svg-background");
-// console.log(svg);
+// let parser = new DOMParser();
+// let xmlDoc = parser.parseFromString(xhr.responseText, "image/svg+xml");
 
 // jQuery way
 // $.get(url, function (xmlDoc) {
