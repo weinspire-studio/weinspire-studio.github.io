@@ -4,7 +4,7 @@ let hasHoverListenerOnPortolio = false;
 
 // jQuery for animated scroll
 function smoothScroll() {
-  $("#up-arrow").on("click", function () {
+  $(".arrow-up").on("click", function () {
     $("html, body").animate(
       {
         scrollTop: 0,

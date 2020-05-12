@@ -817,19 +817,22 @@ function unsetDesktopBrand() {
 
 // jshint esversion: 6
 // TweenLite.defaultEase = Linear.easeNone;
-var controller = new ScrollMagic.Controller();
-var tl = new TimelineMax();
+// let controller = new ScrollMagic.Controller();
+// let tl = new TimelineMax();
 var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/svg-background.svg";
 var sectionBg = document.getElementById("section-background");
+var controller = new ScrollMagic.Controller();
+var tl = new TimelineMax();
+var parser = new DOMParser();
 var xhr = new XMLHttpRequest();
 
 xhr.onreadystatechange = function () {
   if (xhr.readyState === XMLHttpRequest.DONE) {
     if (xhr.status === 200) {
-      var parser = new DOMParser();
       var xmlDoc = parser.parseFromString(xhr.responseText, "image/svg+xml");
       var svg = xmlDoc.documentElement;
       sectionBg.append(svg);
+      animateBackground();
     } else {
       alert("There was a problem with the request.");
     }
@@ -837,7 +840,56 @@ xhr.onreadystatechange = function () {
 };
 
 xhr.open("GET", url);
-xhr.send(); // jQuery way
+xhr.send();
+
+function animateBackground() {
+  var svgNode = document.getElementById("svg-background");
+  var svgPaths = document.querySelectorAll("#svg-background path");
+  var heroDivs = document.querySelectorAll("#section-hero .hero");
+  console.log(heroDivs);
+  console.log(svgNode);
+  console.log(svgPaths[0]); // tl.to(sectionBg, 1, { y: 120, ease: Linear.easeNone })
+
+  tl.to(svgPaths[5], 1, {
+    y: 80,
+    ease: Linear.easeNone
+  }, 0).to(svgPaths[6], 1, {
+    y: 140,
+    ease: Linear.easeNone
+  }, 0).to(svgPaths[4], 1, {
+    y: 135,
+    ease: Linear.easeNone
+  }, 0).to(svgPaths[2], 1, {
+    y: 25,
+    ease: Linear.easeNone
+  }, 0).to(heroDivs[0], 1, {
+    y: "50%",
+    ease: Linear.easeNone
+  }, 0).to(heroDivs[1], 1, {
+    y: "50%",
+    ease: Linear.easeNone
+  }, 0); // .to(svgPaths[8], 1, { y: -100, ease: Linear.easeNone }, 0.6)
+  // .to(svgPaths[3], 1, { y: 60, ease: Linear.easeNone }, 0.8)
+  // .to(svgPaths[7], 1, { y: -100, ease: Linear.easeNone }, 0.8);
+
+  var ParallaxScene = new ScrollMagic.Scene({
+    triggerElement: this,
+    triggerHook: 0,
+    duration: "100%"
+  }).setTween(tl).addIndicators().addTo(controller);
+}
+
+var iconDesign = document.querySelectorAll(".icon-design path");
+console.log(iconDesign);
+var tl2 = new TimelineMax(); // tl2.to(, 1, {}, 0);
+
+var drawScene = new ScrollMagic.Scene({
+  triggerElement: iconDesign,
+  triggerHook: 1,
+  duration: "65%"
+}).addIndicators().addTo(controller); // const svg = document.getElementById("svg-background");
+// console.log(svg);
+// jQuery way
 // $.get(url, function (xmlDoc) {
 //   let svg = $(xmlDoc).find("svg")[0];
 //   sectionBg.append(svg);
@@ -954,7 +1006,7 @@ exports.unbindImages = unbindImages;
 var hasHoverListenerOnPortolio = false; // jQuery for animated scroll
 
 function smoothScroll() {
-  $("#up-arrow").on("click", function () {
+  $(".arrow-up").on("click", function () {
     $("html, body").animate({
       scrollTop: 0
     }, 750);

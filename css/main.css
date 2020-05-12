@@ -619,7 +619,6 @@ h1, h2, h3, h4, h5 {
 }
 
 #services-grid {
-  min-height: 100%;
   text-align: center;
   padding: 1em;
 }
@@ -650,7 +649,6 @@ h1, h2, h3, h4, h5 {
     grid-template-rows: repeat(3, 1fr);
     grid-template-areas: "info-top icon-top" "icon-mid info-mid" "info-btm icon-btm";
     justify-items: center;
-    min-height: 1200px;
   }
 }
 
@@ -729,6 +727,10 @@ h1, h2, h3, h4, h5 {
   .service-icon {
     padding-top: 0;
   }
+}
+
+.icon-design {
+  max-width: 500px;
 }
 
 .section-title {
@@ -1506,7 +1508,7 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-#up-arrow {
+.arrow-up {
   height: 15px;
   width: 15px;
   fill: rgba(177, 177, 177, 0.904);
@@ -1516,13 +1518,13 @@ h1, h2, h3, h4, h5 {
   animation: enlarge 500ms ease infinite alternate;
 }
 @media screen and (min-width: 801px) {
-  #up-arrow {
+  .arrow-up {
     height: 25px;
     width: 25px;
   }
 }
 
-#up-arrow:hover {
+.arrow-up:hover {
   cursor: pointer;
   fill: white;
 }
