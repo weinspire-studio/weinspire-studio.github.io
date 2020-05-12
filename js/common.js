@@ -820,11 +820,12 @@ function unsetDesktopBrand() {
 // let controller = new ScrollMagic.Controller();
 // let tl = new TimelineMax();
 var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/svg-background.svg";
+var url2 = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized/design.svg";
 var sectionBg = document.getElementById("section-background");
 var controller = new ScrollMagic.Controller();
 var tl = new TimelineMax();
-var parser = new DOMParser();
 var xhr = new XMLHttpRequest();
+var parser = new DOMParser();
 
 xhr.onreadystatechange = function () {
   if (xhr.readyState === XMLHttpRequest.DONE) {

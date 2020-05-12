@@ -5,14 +5,16 @@
 // let tl = new TimelineMax();
 const url =
   "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/svg-background.svg";
+const url2 =
+  "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized/design.svg";
 const sectionBg = document.getElementById("section-background");
 
 const controller = new ScrollMagic.Controller();
 let tl = new TimelineMax();
 
+let xhr = new XMLHttpRequest();
 let parser = new DOMParser();
 
-let xhr = new XMLHttpRequest();
 xhr.onreadystatechange = () => {
   if (xhr.readyState === XMLHttpRequest.DONE) {
     if (xhr.status === 200) {

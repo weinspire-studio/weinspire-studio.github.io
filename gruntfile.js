@@ -160,7 +160,7 @@ module.exports = function (grunt) {
           "./assets/optimized/linkedin.svg": "./assets/linkedin.svg",
           "./assets/optimized/design.svg": "./assets/design.svg",
           "./assets/optimized/arrow-up.svg": "./assets/arrow-up.svg",
-          // "./assets/optimized/svg-background.svg": "./assets/svg-background.svg" // prettier-ignore
+          "./assets/optimized/svg-background.svg": "./assets/svg-background.svg" // prettier-ignore
         },
       },
     },
