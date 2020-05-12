@@ -819,7 +819,8 @@ function unsetDesktopBrand() {
 // TweenLite.defaultEase = Linear.easeNone;
 // let controller = new ScrollMagic.Controller();
 // let tl = new TimelineMax();
-var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/svg-background.svg";
+// https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/svg-background.svg
+var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized/svg-background.svg";
 var url2 = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized/design.svg";
 var sectionBg = document.getElementById("section-background");
 var controller = new ScrollMagic.Controller();
@@ -831,9 +832,10 @@ xhr.onreadystatechange = function () {
   if (xhr.readyState === XMLHttpRequest.DONE) {
     if (xhr.status === 200) {
       var xmlDoc = parser.parseFromString(xhr.responseText, "image/svg+xml");
+      console.log(xmlDoc);
+      console.log(xhr.responseText);
       var svg = xmlDoc.documentElement;
-      sectionBg.append(svg);
-      animateBackground();
+      sectionBg.append(svg); // animateBackground();
     } else {
       alert("There was a problem with the request.");
     }
@@ -846,10 +848,10 @@ xhr.send();
 function animateBackground() {
   var svgNode = document.getElementById("svg-background");
   var svgPaths = document.querySelectorAll("#svg-background path");
-  var heroDivs = document.querySelectorAll("#section-hero .hero");
-  console.log(heroDivs);
+  var heroDivs = document.querySelectorAll("#section-hero .hero"); // console.log(heroDivs);
+
   console.log(svgNode);
-  console.log(svgPaths[0]); // tl.to(sectionBg, 1, { y: 120, ease: Linear.easeNone })
+  console.log(svgPaths); // tl.to(sectionBg, 1, { y: 120, ease: Linear.easeNone })
 
   tl.to(svgPaths[5], 1, {
     y: 80,
@@ -880,8 +882,8 @@ function animateBackground() {
   }).setTween(tl).addIndicators().addTo(controller);
 }
 
-var iconDesign = document.querySelectorAll(".icon-design path");
-console.log(iconDesign);
+var iconDesign = document.querySelectorAll(".icon-design path"); // console.log(iconDesign);
+
 var tl2 = new TimelineMax(); // tl2.to(, 1, {}, 0);
 
 var drawScene = new ScrollMagic.Scene({

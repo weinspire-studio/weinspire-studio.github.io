@@ -3,8 +3,9 @@
 // TweenLite.defaultEase = Linear.easeNone;
 // let controller = new ScrollMagic.Controller();
 // let tl = new TimelineMax();
+// https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/svg-background.svg
 const url =
-  "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/svg-background.svg";
+  "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized/svg-background.svg";
 const url2 =
   "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized/design.svg";
 const sectionBg = document.getElementById("section-background");
@@ -19,9 +20,11 @@ xhr.onreadystatechange = () => {
   if (xhr.readyState === XMLHttpRequest.DONE) {
     if (xhr.status === 200) {
       let xmlDoc = parser.parseFromString(xhr.responseText, "image/svg+xml");
+      console.log(xmlDoc);
+      console.log(xhr.responseText);
       let svg = xmlDoc.documentElement;
       sectionBg.append(svg);
-      animateBackground();
+      // animateBackground();
     } else {
       alert("There was a problem with the request.");
     }
@@ -34,9 +37,9 @@ function animateBackground() {
   const svgNode = document.getElementById("svg-background");
   const svgPaths = document.querySelectorAll("#svg-background path");
   const heroDivs = document.querySelectorAll("#section-hero .hero");
-  console.log(heroDivs);
+  // console.log(heroDivs);
   console.log(svgNode);
-  console.log(svgPaths[0]);
+  console.log(svgPaths);
   // tl.to(sectionBg, 1, { y: 120, ease: Linear.easeNone })
   tl.to(svgPaths[5], 1, { y: 80, ease: Linear.easeNone }, 0)
     .to(svgPaths[6], 1, { y: 140, ease: Linear.easeNone }, 0)
@@ -58,7 +61,7 @@ function animateBackground() {
 }
 
 const iconDesign = document.querySelectorAll(".icon-design path");
-console.log(iconDesign);
+// console.log(iconDesign);
 
 let tl2 = new TimelineMax();
 // tl2.to(, 1, {}, 0);

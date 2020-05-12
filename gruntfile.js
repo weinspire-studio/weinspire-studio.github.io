@@ -158,9 +158,9 @@ module.exports = function (grunt) {
           "./assets/optimized/facebook.svg": "./assets/facebook.svg",
           "./assets/optimized/behance.svg": "./assets/behance.svg",
           "./assets/optimized/linkedin.svg": "./assets/linkedin.svg",
-          "./assets/optimized/design.svg": "./assets/design.svg",
           "./assets/optimized/arrow-up.svg": "./assets/arrow-up.svg",
-          "./assets/optimized/svg-background.svg": "./assets/svg-background.svg" // prettier-ignore
+          // "./assets/optimized_ajax/design.svg": "./assets/design.svg", // uncomment (along with removeAttrs) and manually optimize svgs for ajax
+          // "./assets/optimized_ajax/svg-background.svg": "./assets/svg-background.svg" // prettier-ignore
         },
       },
     },
@@ -225,6 +225,7 @@ module.exports = function (grunt) {
   // Register Grunt tasks
   grunt.registerTask("default", ["watch"]);
   grunt.registerTask("svg-tasks", ["svgmin", "svg_sprite"]);
+
   // prettier-ignore
   grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "critical", "htmlhint", "jshint", "browserify", "uglify"]);
 };
