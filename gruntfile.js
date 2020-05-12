@@ -159,8 +159,8 @@ module.exports = function (grunt) {
           "./assets/optimized/behance.svg": "./assets/behance.svg",
           "./assets/optimized/linkedin.svg": "./assets/linkedin.svg",
           "./assets/optimized/arrow-up.svg": "./assets/arrow-up.svg",
-          "./assets/optimized_ajax/design.svg": "./assets/design.svg", // uncomment (along with removeAttrs) and manually optimize svgs for ajax
-          "./assets/optimized_ajax/svg-background.svg": "./assets/svg-background.svg" // prettier-ignore
+          // "./assets/optimized_ajax/design.svg": "./assets/design.svg", // uncomment (along with removeAttrs) and manually optimize svgs for ajax
+          // "./assets/optimized_ajax/svg-background.svg": "./assets/svg-background.svg" // prettier-ignore
         },
       },
     },

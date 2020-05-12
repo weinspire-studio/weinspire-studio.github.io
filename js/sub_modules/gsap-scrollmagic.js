@@ -3,8 +3,6 @@
 // TweenLite.defaultEase = Linear.easeNone;
 const url = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/svg-background.svg`;
 const url2 = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/design.svg`;
-const url3 =
-  "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/sprites/svg-defs-block.svg";
 const sectionBg = document.getElementById("section-background");
 
 const divContainer = document.getElementById("grid-btm-icon");
@@ -31,16 +29,13 @@ xhr.send();
 xhr2.onreadystatechange = () => {
   if (xhr2.readyState === XMLHttpRequest.DONE) {
     if (xhr2.status === 200) {
-      let div = document.createElement("div");
-      div.innerHTML = xhr2.responseText;
-      document.body.insertBefore(div, document.body.childNodes[0]);
-      // divContainer.append(xhr2.responseXML.documentElement);
+      divContainer.append(xhr2.responseXML.documentElement);
     } else {
       console.log("There was a problem with the request.");
     }
   }
 };
-xhr2.open("GET", url3);
+xhr2.open("GET", url2);
 xhr2.send();
 
 function animateBackground() {
