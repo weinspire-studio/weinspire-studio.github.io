@@ -1,5 +1,6 @@
 // jshint esversion: 6
 
+import * as preloaderModule from "./sub_modules/preloader";
 import * as mobileModule from "./sub_modules/mobile";
 import * as desktopModule from "./sub_modules/desktop";
 import * as heroModule from "./sub_modules/hero";

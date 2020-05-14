@@ -84,6 +84,110 @@ h1, h2, h3, h4, h5 {
   opacity: 1;
 }
 
+#preloader {
+  width: 65px;
+  background-color: #f0f2f5;
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  transition: transform 0.5s ease-in-out;
+}
+#preloader span {
+  position: relative;
+  display: block;
+  top: 50%;
+  bottom: 0;
+  width: 9px;
+  height: 5px;
+  border-radius: 5px;
+  background: gray;
+  transform: translateY(-50%);
+  animation: preloader-anim 1.5s infinite ease-in-out;
+}
+#preloader span:nth-child(2) {
+  left: 5px;
+  animation-delay: 125ms;
+}
+#preloader span:nth-child(3) {
+  left: 10px;
+  animation-delay: 250ms;
+}
+#preloader span:nth-child(4) {
+  left: 15px;
+  animation-delay: 375ms;
+}
+#preloader span:nth-child(5) {
+  left: 20px;
+  animation-delay: 500ms;
+}
+#preloader span:nth-child(1) {
+  background-color: #001029;
+}
+#preloader span:nth-child(2) {
+  background-color: #003a58;
+}
+#preloader span:nth-child(3) {
+  background-color: #006985;
+}
+#preloader span:nth-child(4) {
+  background-color: #009ba9;
+}
+#preloader span:nth-child(5) {
+  background-color: #43cfc3;
+}
+
+#preloader-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  width: 50%;
+  height: 200px;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.translate-preloader {
+  transform: translateX(-100%);
+}
+
+.fade-preloader {
+  animation: fade-preloader-anim 1s forwards ease-in-out;
+}
+
+@keyframes preloader-anim {
+  0% {
+    height: 5px;
+  }
+  25% {
+    height: 25px;
+  }
+  50%, 100% {
+    height: 5px;
+  }
+}
+@keyframes fade-preloader-anim {
+  0% {
+    scale: 1;
+  }
+  25% {
+    scale: 0.9;
+  }
+  50% {
+    scale: 0.7;
+  }
+  75% {
+    scale: 0.3;
+  }
+  100% {
+    scale: 0.1;
+  }
+}
 .navigation-container {
   height: 100%;
   width: 100%;

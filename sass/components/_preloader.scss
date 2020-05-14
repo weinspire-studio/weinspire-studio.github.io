@@ -1,0 +1,112 @@
+// $initColor: rgba(0,0,0,0.1);
+$colorEnd: #3498db;
+$initColor: gray;
+
+#preloader {
+//   position: relative;
+//   margin: 6em auto;
+  width: 65px;
+//   background-color: rgb(133, 133, 133);
+  background-color: #f0f2f5;
+
+z-index: 9999;
+position: fixed;
+width: 100%;
+height: 100vh;
+display: flex;
+justify-content: center;
+transition: transform .5s ease-in-out;
+
+  span {
+    position: relative;
+    display: block;
+    top: 50%;
+    bottom: 0;
+    width: 9px;
+    height: 5px;
+    border-radius: 5px;
+    background: $initColor;
+    transform: translateY(-50%);
+    animation: preloader-anim 1.5s infinite ease-in-out;
+    
+    @for $i from 1 to 5 {
+      &:nth-child(#{$i + 1}) {
+        left: 5 * $i +px;
+        animation-delay: 125 * $i +ms;
+      }
+    }
+
+    &:nth-child(1) {
+        background-color: $blue-theme-darker;
+    }
+    &:nth-child(2) {
+        background-color: $blue-theme-dark;
+    }
+    &:nth-child(3) {
+        background-color: $blue-theme-middle;
+    }
+    &:nth-child(4) {
+        background-color: $blue-theme-light;
+    }
+    &:nth-child(5) {
+        background-color: $blue-theme-lighter;
+    }
+
+  }
+}
+
+#preloader-container {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    // height: 100%;
+    height: 200px;
+    align-self: center;
+}
+
+
+.translate-preloader {
+    transform: translateX(-100%);
+}
+
+.fade-preloader {
+    animation: fade-preloader-anim 1s forwards ease-in-out;
+}
+
+@keyframes preloader-anim {
+  0% {
+    height: 5px;
+    // transform: translateY(0);
+    // background-color: transparent;
+  }
+  25% {
+    height: 25px;
+    // transform: translateY(15px);
+    // background: $colorEnd;
+    // background-color: inherit;
+  }
+  50%,100% {
+    height: 5px;
+    // transform: translateY(0);
+    // background: $initColor;
+    // background-color: inherit;
+  }
+}
+
+@keyframes fade-preloader-anim {
+    0% {
+        scale: 1;
+    }
+    25% {
+        scale: 0.9;
+    }
+    50% {
+        scale: 0.7;
+    }
+    75% {
+        scale: 0.3;
+    }
+    100% {
+        scale: 0.1;
+    }
+}
