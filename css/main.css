@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5 {
   margin-top: 10%;
 }
 
-.menu-open {
+.overflow-hidden {
   overflow-y: hidden;
 }
 
@@ -95,7 +95,7 @@ h1, h2, h3, h4, h5 {
   display: flex;
   -ms-flex-pack: center;
       justify-content: center;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.75s ease-in-out;
 }
 #preloader span {
   position: relative;
@@ -153,11 +153,27 @@ h1, h2, h3, h4, h5 {
 }
 
 .translate-preloader {
-  transform: translateX(-100%);
+  transform: translateY(-100%);
 }
 
 .fade-preloader {
   animation: fade-preloader-anim 1s forwards ease-in-out;
+}
+
+.test-class {
+  animation: test-anim 1s forwards ease-in-out;
+}
+
+.test-class-svg {
+  animation: test-anim-svg 1s backwards ease-in-out 0.1s;
+}
+
+.test-class-svg-2 {
+  animation: test-anim-svg-2 1s forwards ease-in-out;
+}
+
+.test-class-svg-3 {
+  animation: test-anim-svg-3 1.5s backwards ease-in-out 0.2s;
 }
 
 @keyframes preloader-anim {
@@ -186,6 +202,38 @@ h1, h2, h3, h4, h5 {
   }
   100% {
     scale: 0.1;
+  }
+}
+@keyframes test-anim {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes test-anim-svg {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes test-anim-svg-2 {
+  0% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes test-anim-svg-3 {
+  0% {
+    transform: scale(1.1) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
   }
 }
 .navigation-container {

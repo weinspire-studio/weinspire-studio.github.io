@@ -819,15 +819,18 @@ function unsetDesktopBrand() {
 
 // jshint esversion: 6
 // TweenLite.defaultEase = Linear.easeNone;
-var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/svg-background.svg"; // const url2 = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/design.svg`;
-
+var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/svg-background.svg";
 var url2 = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/design.svg";
-var sectionBg = document.getElementById("section-background");
-var divContainer = document.getElementById("grid-btm-icon");
 var controller = new ScrollMagic.Controller();
 var tl = new TimelineMax();
-makeRequest(url, sectionBg, animateBackground);
-makeRequest(url2, divContainer, animateIconDesign);
+prepareRequests();
+
+function prepareRequests() {
+  var sectionBg = document.getElementById("section-background");
+  var divContainer = document.getElementById("grid-btm-icon");
+  makeRequest(url, sectionBg, animateBackground);
+  makeRequest(url2, divContainer, animateIconDesign);
+}
 
 function makeRequest(url, section, callback) {
   var xhr = new XMLHttpRequest();
@@ -848,10 +851,8 @@ function makeRequest(url, section, callback) {
 }
 
 function animateBackground() {
-  // const svgNode = document.getElementById("svg-background");
   var svgPaths = document.querySelectorAll("#svg-background path");
-  var heroDivs = document.querySelectorAll("#section-hero .hero"); // tl.to(sectionBg, 1, { y: 120, ease: Linear.easeNone })
-
+  var heroDivs = document.querySelectorAll("#section-hero .hero");
   tl.to(svgPaths[5], 1, {
     y: 80,
     ease: Linear.easeNone
@@ -885,8 +886,6 @@ function animateIconDesign() {
   var iconDesign = document.getElementById("design");
   var iconDesignPaths = document.querySelectorAll("#design path");
   var iconDesignCircles = document.querySelectorAll("#design circle");
-  console.log(iconDesignCircles);
-  console.log(iconDesignPaths);
   var pathsArray = Array.prototype.slice.call(iconDesignPaths);
   var circlesArray = Array.prototype.slice.call(iconDesignCircles);
   pathsArray.push.apply(pathsArray, circlesArray);
@@ -1186,7 +1185,7 @@ function toggleNavClasses() {
     }
   }
 
-  document.documentElement.classList.toggle("menu-open");
+  document.documentElement.classList.toggle("overflow-hidden");
   siteOverlay.classList.toggle("overlay-active");
   navContainer.classList.toggle("translate");
   navList.classList.add("visible");
@@ -1281,22 +1280,44 @@ function unsetMobileBrand() {
 var preloader = document.getElementById("preloader");
 var preloaderContainer = document.getElementById("preloader-container");
 window.addEventListener("load", function () {
-  //   $("#preloader").fadeOut();
   hidePreloader();
 });
 
 function hidePreloader() {
-  //   $("#preloader-container").fadeOut();
   preloaderContainer.classList.add("fade-preloader");
   setTimeout(slidePreloader, 1100);
 }
 
 function slidePreloader() {
-  console.log("slide");
   preloader.classList.add("translate-preloader");
+  document.documentElement.classList.remove("overflow-hidden");
+  window.scrollTo(0, 0);
+  testFunction();
   setTimeout(function () {
     preloader.style.display = "none";
   }, 1000);
+}
+
+function testFunction() {
+  var heroDivs = document.querySelectorAll("#section-hero .hero");
+  heroDivs.forEach(function (heroDiv) {
+    heroDiv.classList.add("test-class");
+    heroDiv.addEventListener("animationend", function () {
+      heroDiv.classList.remove("test-class");
+    });
+  });
+  var svgPaths = document.querySelectorAll("#svg-background path");
+  svgPaths.forEach(function (svgPath) {
+    console.log(svgPath);
+
+    if (svgPath.id !== "path-8" && svgPath.id !== "path-3" && svgPath.id !== "path-7") {
+      svgPath.classList.add("test-class-svg");
+    } else if (svgPath.id === "path-3") {
+      svgPath.classList.add("test-class-svg-2");
+    } else if (svgPath.id === "path-7") {
+      svgPath.classList.add("test-class-svg-3");
+    }
+  });
 }
 
 },{}],10:[function(require,module,exports){

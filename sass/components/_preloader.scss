@@ -15,7 +15,7 @@ width: 100%;
 height: 100vh;
 display: flex;
 justify-content: center;
-transition: transform .5s ease-in-out;
+transition: transform .75s ease-in-out;
 
   span {
     position: relative;
@@ -64,13 +64,27 @@ transition: transform .5s ease-in-out;
     align-self: center;
 }
 
-
 .translate-preloader {
-    transform: translateX(-100%);
+    transform: translateY(-100%);
 }
 
 .fade-preloader {
     animation: fade-preloader-anim 1s forwards ease-in-out;
+}
+
+.test-class {
+  animation: test-anim 1s forwards ease-in-out;
+}
+
+.test-class-svg {
+  animation: test-anim-svg 1s backwards ease-in-out .1s;
+}
+
+.test-class-svg-2 {
+  animation: test-anim-svg-2 1s forwards ease-in-out;
+}
+.test-class-svg-3 {
+  animation: test-anim-svg-3 1.5s backwards ease-in-out .2s;
 }
 
 @keyframes preloader-anim {
@@ -110,3 +124,37 @@ transition: transform .5s ease-in-out;
         scale: 0.1;
     }
 }
+
+@keyframes test-anim {
+  0% {
+    transform: scale(1.1);
+   }
+   100% {
+    transform: scale(1);
+   }
+ }
+
+ @keyframes test-anim-svg {
+  0% {
+    transform: scale(1.1);
+   }
+   100% {
+    transform: scale(1);
+   }
+ }
+ @keyframes test-anim-svg-2 {
+  0% {
+    transform: scale(1.03);
+   }
+   100% {
+    transform: scale(1);
+   }
+ }
+ @keyframes test-anim-svg-3 {
+  0% {
+    transform: scale(1.1) rotate(10deg);
+   }
+   100% {
+    transform: scale(1) rotate(0deg);
+   }
+ }

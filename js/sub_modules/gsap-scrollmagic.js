@@ -2,16 +2,19 @@
 
 // TweenLite.defaultEase = Linear.easeNone;
 const url = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/svg-background.svg`;
-// const url2 = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/design.svg`;
 const url2 = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/design.svg`;
-const sectionBg = document.getElementById("section-background");
-const divContainer = document.getElementById("grid-btm-icon");
 
 const controller = new ScrollMagic.Controller();
 const tl = new TimelineMax();
 
-makeRequest(url, sectionBg, animateBackground);
-makeRequest(url2, divContainer, animateIconDesign);
+prepareRequests();
+
+function prepareRequests() {
+  const sectionBg = document.getElementById("section-background");
+  const divContainer = document.getElementById("grid-btm-icon");
+  makeRequest(url, sectionBg, animateBackground);
+  makeRequest(url2, divContainer, animateIconDesign);
+}
 
 function makeRequest(url, section, callback) {
   let xhr = new XMLHttpRequest();
@@ -30,11 +33,9 @@ function makeRequest(url, section, callback) {
 }
 
 function animateBackground() {
-  // const svgNode = document.getElementById("svg-background");
   const svgPaths = document.querySelectorAll("#svg-background path");
   const heroDivs = document.querySelectorAll("#section-hero .hero");
 
-  // tl.to(sectionBg, 1, { y: 120, ease: Linear.easeNone })
   tl.to(svgPaths[5], 1, { y: 80, ease: Linear.easeNone }, 0)
     .to(svgPaths[6], 1, { y: 140, ease: Linear.easeNone }, 0)
     .to(svgPaths[4], 1, { y: 135, ease: Linear.easeNone }, 0)
@@ -58,14 +59,10 @@ function animateIconDesign() {
   const iconDesign = document.getElementById("design");
   const iconDesignPaths = document.querySelectorAll("#design path");
   const iconDesignCircles = document.querySelectorAll("#design circle");
-  console.log(iconDesignCircles);
-  console.log(iconDesignPaths);
-
   let pathsArray = Array.prototype.slice.call(iconDesignPaths);
   let circlesArray = Array.prototype.slice.call(iconDesignCircles);
 
   pathsArray.push.apply(pathsArray, circlesArray);
-
   pathsArray.forEach((path) => {
     preparePath(path);
   });

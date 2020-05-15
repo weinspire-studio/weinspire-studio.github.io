@@ -74,7 +74,7 @@ function toggleNavClasses() {
       styleMobileBrand();
     }
   }
-  document.documentElement.classList.toggle("menu-open");
+  document.documentElement.classList.toggle("overflow-hidden");
   siteOverlay.classList.toggle("overlay-active");
   navContainer.classList.toggle("translate");
   navList.classList.add("visible");
