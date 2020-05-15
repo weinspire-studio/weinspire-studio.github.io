@@ -852,26 +852,14 @@ function makeRequest(url, section, callback) {
 
 function animateBackground() {
   var svgPaths = document.querySelectorAll("#svg-background path");
-  var heroDivs = document.querySelectorAll("#section-hero .hero");
-  tl.to(svgPaths[5], 1, {
-    y: 80,
-    ease: Linear.easeNone
-  }, 0).to(svgPaths[6], 1, {
-    y: 140,
-    ease: Linear.easeNone
-  }, 0).to(svgPaths[4], 1, {
-    y: 135,
-    ease: Linear.easeNone
-  }, 0).to(svgPaths[2], 1, {
-    y: 25,
-    ease: Linear.easeNone
-  }, 0).to(heroDivs[0], 1, {
-    y: "50%",
-    ease: Linear.easeNone
-  }, 0).to(heroDivs[1], 1, {
-    y: "50%",
-    ease: Linear.easeNone
-  }, 0); // .to(svgPaths[8], 1, { y: -100, ease: Linear.easeNone }, 0.6)
+  console.log(svgPaths);
+  var heroDivs = document.querySelectorAll("#section-hero .hero"); // tl.to(svgPaths[3], 1, { y: 80, ease: Linear.easeNone }, 0)
+  //   .to(svgPaths[2], 1, { y: 140, ease: Linear.easeNone }, 0)
+  //   .to(svgPaths[1], 1, { y: 135, ease: Linear.easeNone }, 0)
+  //   .to(svgPaths[0], 1, { y: 25, ease: Linear.easeNone }, 0)
+  //   .to(heroDivs[0], 1, { y: "50%", ease: Linear.easeNone }, 0)
+  //   .to(heroDivs[1], 1, { y: "50%", ease: Linear.easeNone }, 0);
+  // .to(svgPaths[8], 1, { y: -100, ease: Linear.easeNone }, 0.6)
   // .to(svgPaths[3], 1, { y: 60, ease: Linear.easeNone }, 0.8)
   // .to(svgPaths[7], 1, { y: -100, ease: Linear.easeNone }, 0.8);
 
