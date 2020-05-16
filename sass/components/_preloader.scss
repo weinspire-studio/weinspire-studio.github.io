@@ -1,41 +1,30 @@
-// $initColor: rgba(0,0,0,0.1);
-$colorEnd: #3498db;
-$initColor: gray;
-
 #preloader {
-//   position: relative;
-//   margin: 6em auto;
-  width: 65px;
-//   background-color: rgb(133, 133, 133);
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
   background-color: #f0f2f5;
-
-z-index: 9999;
-position: fixed;
-width: 100%;
-height: 100vh;
-display: flex;
-justify-content: center;
-transition: transform .75s ease-in-out;
+  z-index: 9999;
+  transition: transform .775s ease-in-out;
 
   span {
     position: relative;
     display: block;
     top: 50%;
     bottom: 0;
-    width: 9px;
+    width: 10px;
     height: 5px;
     border-radius: 5px;
-    background: $initColor;
     transform: translateY(-50%);
-    animation: preloader-anim 1.5s infinite ease-in-out;
+    animation: preloader-anim 1.45s infinite ease-in-out;
     
     @for $i from 1 to 5 {
       &:nth-child(#{$i + 1}) {
-        left: 5 * $i +px;
-        animation-delay: 125 * $i +ms;
+        left: 5 * $i + px;
+        animation-delay: 125 * $i + ms;
       }
     }
-
     &:nth-child(1) {
         background-color: $blue-theme-darker;
     }
@@ -51,110 +40,72 @@ transition: transform .75s ease-in-out;
     &:nth-child(5) {
         background-color: $blue-theme-lighter;
     }
-
   }
 }
 
 #preloader-container {
-    display: flex;
-    justify-content: center;
-    width: 50%;
-    // height: 100%;
-    height: 200px;
-    align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  width: 75%;
+  height: 70px;
 }
 
+#brand-preloader {
+  width: 200px;
+  flex: 1;
+  .brand-blue {
+      fill: #00416B;
+  }
+  .brand-green {
+      fill: #009889;
+  }
+}
+
+.span-container {
+  display: flex;
+  flex: 1;
+}
+
+// Style Classes
 .translate-preloader {
-    transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 
 .fade-preloader {
-    animation: fade-preloader-anim 1s forwards ease-in-out;
-}
-
-.test-class {
-  animation: test-anim 1s forwards ease-in-out;
-}
-
-.test-class-svg {
-  animation: test-anim-svg 1s backwards ease-in-out .1s;
-}
-
-.test-class-svg-2 {
-  animation: test-anim-svg-2 1s forwards ease-in-out;
-}
-.test-class-svg-3 {
-  animation: test-anim-svg-3 1.5s backwards ease-in-out .2s;
+  animation: fade-preloader-anim .75s forwards ease-in-out;
 }
 
 @keyframes preloader-anim {
   0% {
     height: 5px;
-    // transform: translateY(0);
-    // background-color: transparent;
   }
   25% {
     height: 25px;
-    // transform: translateY(15px);
-    // background: $colorEnd;
-    // background-color: inherit;
   }
   50%,100% {
     height: 5px;
-    // transform: translateY(0);
-    // background: $initColor;
-    // background-color: inherit;
   }
 }
 
 @keyframes fade-preloader-anim {
     0% {
-        scale: 1;
+        scale: (1);
+        transform: skew(0);
     }
     25% {
-        scale: 0.9;
+        scale: (0.5, 0.9);
     }
     50% {
-        scale: 0.7;
+        scale: (0.1, 0.7);
     }
     75% {
-        scale: 0.3;
+        scale: (0, 0.3);
     }
     100% {
-        scale: 0.1;
+        scale: (0);
+        transform: skew(-6deg, 12deg);
     }
 }
-
-@keyframes test-anim {
-  0% {
-    transform: scale(1.1);
-   }
-   100% {
-    transform: scale(1);
-   }
- }
-
- @keyframes test-anim-svg {
-  0% {
-    transform: scale(1.1);
-   }
-   100% {
-    transform: scale(1);
-   }
- }
- @keyframes test-anim-svg-2 {
-  0% {
-    transform: scale(1.03);
-   }
-   100% {
-    transform: scale(1);
-   }
- }
- @keyframes test-anim-svg-3 {
-  0% {
-    transform: scale(1.1) rotate(10deg);
-   }
-   100% {
-    transform: scale(1) rotate(0deg);
-   }
- }

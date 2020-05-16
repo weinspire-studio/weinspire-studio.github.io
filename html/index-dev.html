@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="overflow-hidden">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -32,11 +32,16 @@
   <body>
     <div id="preloader">
       <div id="preloader-container">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <svg id="brand-preloader">
+          <use data-href="../assets/sprites/svg-sprite.svg#brand-desktop"></use>
+        </svg>
+        <div class="span-container">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
     <div class="site-overlay"></div>

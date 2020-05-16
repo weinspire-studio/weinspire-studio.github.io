@@ -68,10 +68,8 @@ form {
 .field {
   position: relative;
   margin: 3em 0;
-  // width: 90%;
   @include media-query($md) {
     margin: 0;
-    // width: 100%;
   }
 }
 
@@ -104,8 +102,7 @@ form {
   align-self: flex-end;
   text-align: center;
   margin-bottom: 0;
-  // margin-bottom: -1.25em;
-    // margin-top: 7.5%;
+  outline: none;
 }
 
 #contact-form-button {

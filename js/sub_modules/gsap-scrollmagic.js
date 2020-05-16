@@ -1,13 +1,12 @@
 // jshint esversion: 6
 
-// TweenLite.defaultEase = Linear.easeNone;
 const url = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/svg-background.svg`;
 const url2 = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/design.svg`;
-
 const controller = new ScrollMagic.Controller();
 const tl = new TimelineMax();
-
-prepareRequests();
+const tl2 = new TimelineMax();
+const tl3 = new TimelineMax();
+const tl4 = new TimelineMax();
 
 function prepareRequests() {
   const sectionBg = document.getElementById("section-background");
@@ -34,18 +33,15 @@ function makeRequest(url, section, callback) {
 
 function animateBackground() {
   const svgPaths = document.querySelectorAll("#svg-background path");
-  console.log(svgPaths);
   const heroDivs = document.querySelectorAll("#section-hero .hero");
+  console.log(svgPaths);
 
-  tl.to(svgPaths[3], 1, { y: 80, ease: Linear.easeNone }, 0)
+  tl.to(svgPaths[0], 1, { y: 95, ease: Linear.easeNone }, 0)
+    .to(svgPaths[1], 1, { y: 175, ease: Linear.easeNone }, 0)
     .to(svgPaths[2], 1, { y: 140, ease: Linear.easeNone }, 0)
-    .to(svgPaths[1], 1, { y: 135, ease: Linear.easeNone }, 0)
-    .to(svgPaths[0], 1, { y: 25, ease: Linear.easeNone }, 0)
+    .to(svgPaths[3], 1, { y: 25, ease: Linear.easeNone }, 0)
     .to(heroDivs[0], 1, { y: "50%", ease: Linear.easeNone }, 0)
     .to(heroDivs[1], 1, { y: "50%", ease: Linear.easeNone }, 0);
-  // .to(svgPaths[8], 1, { y: -100, ease: Linear.easeNone }, 0.6)
-  // .to(svgPaths[3], 1, { y: 60, ease: Linear.easeNone }, 0.8)
-  // .to(svgPaths[7], 1, { y: -100, ease: Linear.easeNone }, 0.8);
   const ParallaxScene = new ScrollMagic.Scene({
     triggerElement: this,
     triggerHook: 0,
@@ -67,9 +63,6 @@ function animateIconDesign() {
   pathsArray.forEach((path) => {
     preparePath(path);
   });
-
-  const tl2 = new TimelineMax();
-  // prettier-ignore
   tl2
     .to(pathsArray[0], 1, { strokeDashoffset: 5, ease: Linear.easeNone }, 0)
     .to(pathsArray[1], 1, { strokeDashoffset: 1, ease: Linear.easeNone }, 0)
@@ -98,6 +91,30 @@ function preparePath(path) {
   path.style.strokeDashoffset = pathLength;
   path.style.strokeDasharray = pathLength;
 }
+
+function animateAssets() {
+  zoomHeroDivs();
+  animateSvgPaths();
+}
+
+function zoomHeroDivs() {
+  const heroDivs = document.querySelectorAll("#section-hero .hero");
+  tl3
+    .from(heroDivs[0], 1.25, { scale: 1.35 })
+    .from(heroDivs[1], 1.25, { scale: 1.35 }, 0);
+}
+
+function animateSvgPaths() {
+  const svgPaths = document.querySelectorAll("#svg-background path");
+  // prettier-ignore
+  tl4
+    .from(svgPaths[0], 1, { opacity: 0, scale: 1.25 }, 0.4)
+    .from(svgPaths[1], 1.25, { opacity: 0, scale: 1.25 }, 0.2)
+    .from(svgPaths[2], 1.25, { opacity: 0, scaleX: 1.25, scaleY: 0.9, rotation: "5deg" }, 0.3)
+    .from(svgPaths[3], 1.5, { opacity: 0, scale: 1.03 }, 0);
+}
+
+export { prepareRequests, animateAssets };
 
 // let parser = new DOMParser();
 // let xmlDoc = parser.parseFromString(xhr.responseText, "image/svg+xml");

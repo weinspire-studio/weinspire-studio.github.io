@@ -3,7 +3,7 @@
 import * as preloaderModule from "./sub_modules/preloader";
 import * as mobileModule from "./sub_modules/mobile";
 import * as desktopModule from "./sub_modules/desktop";
-import * as heroModule from "./sub_modules/hero";
+import * as typewriterModule from "./sub_modules/typewriter";
 import * as animationsModule from "./sub_modules/gsap-scrollmagic";
 import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
@@ -38,8 +38,12 @@ jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
 contactModule.submitNewsForm();
+animationsModule.prepareRequests();
 
-heroModule.initWriter();
+let timer = setTimeout(() => {
+  typewriterModule.initWriter();
+  clearTimeout(timer);
+}, 450);
 
 //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
