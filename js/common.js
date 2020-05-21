@@ -843,6 +843,7 @@ exports.animateAssets = animateAssets;
 // jshint esversion: 6
 var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/svg-background.svg";
 var url2 = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/design.svg";
+var url3 = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/software.svg";
 var controller = new ScrollMagic.Controller();
 var tl = new TimelineMax();
 var tl2 = new TimelineMax();
@@ -851,9 +852,11 @@ var tl4 = new TimelineMax();
 
 function prepareRequests(isSafari) {
   var sectionBg = document.getElementById("section-background");
-  var divContainer = document.getElementById("grid-btm-icon");
+  var designContainer = document.getElementById("grid-btm-icon");
+  var softwareContainer = document.getElementById("grid-mid-icon");
   makeRequest(url, sectionBg, animateBackground.bind(null, isSafari));
-  makeRequest(url2, divContainer, animateIconDesign);
+  makeRequest(url2, designContainer, animateIconDesign);
+  makeRequest(url3, softwareContainer, animateIconSoftware);
 }
 
 function makeRequest(url, section, callback) {
@@ -929,13 +932,13 @@ function animateIconDesign() {
   }, 0).to(pathsArray[5], 3, {
     strokeDashoffset: 0,
     ease: Linear.easeNone
-  }, 0).to(pathsArray[8], 1, {
+  }, 0).to(pathsArray[6], 1, {
     strokeDashoffset: 0,
     ease: Linear.easeNone
   }, 0).to(pathsArray[7], 1, {
     strokeDashoffset: 0,
     ease: Linear.easeNone
-  }, ">").to(pathsArray[6], 1, {
+  }, ">").to(pathsArray[8], 1, {
     strokeDashoffset: 0,
     ease: Linear.easeNone
   }, ">").to(pathsArray[10], 1, {
@@ -957,9 +960,14 @@ function animateIconDesign() {
   var drawScene = new ScrollMagic.Scene({
     triggerElement: iconDesign,
     triggerHook: 0.75,
-    duration: "60%",
-    tweenChanges: true
+    duration: "60%" // tweenChanges: true,
+
   }).setTween(tl2).addIndicators().addTo(controller);
+}
+
+function animateIconSoftware() {
+  var iconSoftware = document.getElementById("software");
+  console.log(iconSoftware);
 }
 
 function preparePath(path) {

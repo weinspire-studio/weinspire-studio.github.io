@@ -2,6 +2,7 @@
 
 const url = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/svg-background.svg`;
 const url2 = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/design.svg`;
+const url3 = `https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/software.svg`;
 const controller = new ScrollMagic.Controller();
 const tl = new TimelineMax();
 const tl2 = new TimelineMax();
@@ -10,9 +11,11 @@ const tl4 = new TimelineMax();
 
 function prepareRequests(isSafari) {
   const sectionBg = document.getElementById("section-background");
-  const divContainer = document.getElementById("grid-btm-icon");
+  const designContainer = document.getElementById("grid-btm-icon");
+  const softwareContainer = document.getElementById("grid-mid-icon");
   makeRequest(url, sectionBg, animateBackground.bind(null, isSafari));
-  makeRequest(url2, divContainer, animateIconDesign);
+  makeRequest(url2, designContainer, animateIconDesign);
+  makeRequest(url3, softwareContainer, animateIconSoftware);
 }
 
 function makeRequest(url, section, callback) {
@@ -71,9 +74,9 @@ function animateIconDesign() {
     .to(pathsArray[3], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
     .to(pathsArray[4], 3, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
     .to(pathsArray[5], 3, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
-    .to(pathsArray[8], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
+    .to(pathsArray[6], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
     .to(pathsArray[7], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
-    .to(pathsArray[6], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+    .to(pathsArray[8], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
     .to(pathsArray[10], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
     .to(pathsArray[9], 2, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
     .to(pathsArray[11], 2, { strokeDashoffset: 0, ease: Linear.easeNone }, 2.5)
@@ -83,11 +86,16 @@ function animateIconDesign() {
     triggerElement: iconDesign,
     triggerHook: 0.75,
     duration: "60%",
-    tweenChanges: true,
+    // tweenChanges: true,
   })
     .setTween(tl2)
     .addIndicators()
     .addTo(controller);
+}
+
+function animateIconSoftware() {
+  const iconSoftware = document.getElementById("software");
+  console.log(iconSoftware);
 }
 
 function preparePath(path) {
