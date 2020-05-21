@@ -949,10 +949,10 @@ function animateIconDesign() {
   }, 0);
   var drawScene = new ScrollMagic.Scene({
     triggerElement: iconDesign,
-    triggerHook: 0.5,
+    triggerHook: 0.75,
     duration: "60%",
     tweenChanges: true
-  }).setTween(tl2).addTo(controller);
+  }).setTween(tl2).addIndicators().addTo(controller);
 }
 
 function preparePath(path) {

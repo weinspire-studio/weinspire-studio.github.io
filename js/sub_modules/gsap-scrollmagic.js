@@ -80,11 +80,12 @@ function animateIconDesign() {
     .to(pathsArray, 1, { stroke: "#33629c", ease: Linear.easeNone }, 0);
   const drawScene = new ScrollMagic.Scene({
     triggerElement: iconDesign,
-    triggerHook: 0.5,
+    triggerHook: 0.75,
     duration: "60%",
     tweenChanges: true,
   })
     .setTween(tl2)
+    .addIndicators()
     .addTo(controller);
 }
 

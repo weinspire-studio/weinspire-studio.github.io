@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5 {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 0;
+  z-index: -1;
   opacity: 0;
   transition: opacity 0.5s ease, z-index 0.5s ease;
 }
@@ -655,7 +655,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .inner-span {
-  border-right: 0.05em solid #000;
+  border-right: 0.035em solid #000;
   min-width: 2px;
   animation: blink-anim 1000ms ease infinite running 200ms;
 }
