@@ -8,12 +8,12 @@ let wordCounter = 0;
 let wait = 1350;
 let isWriting = true;
 let isDeleting = false;
-let threshold = document.body.clientHeight / 2;
 let timer;
 let scrolledY;
-
 let spanClass;
-// window.addEventListener("scroll", setWriter);
+let threshold = document.body.clientHeight / 2;
+let projectWidth = spanWords.clientWidth;
+let calculatedWidth;
 
 function setWriter() {
   scrolledY = window.pageYOffset;
@@ -68,9 +68,16 @@ function typeWriter() {
   timer = setTimeout(() => typeWriter(), typeSpeed);
 }
 
-function initWriter() {
+function initWriter(isMobile) {
   typeWriter();
   window.addEventListener("scroll", setWriter);
+  if (isMobile) {
+    calculatedWidth = spanWe.clientWidth + projectWidth + 27.5;
+    spanWe.parentElement.style.width = `${calculatedWidth}px`;
+  }
+  // console.log(spanWe, spanWe.style.width);
+  // console.log(spanWords);
+  // console.log(spanWe.clientWidth, spanWords.clientWidth, projectWidth);
 }
 
 function clearWriter() {
@@ -82,4 +89,13 @@ function destroyWriter() {
   clearTimeout(timer);
 }
 
-export { initWriter, destroyWriter };
+function reviewWidth(isMobile) {
+  if (isMobile) {
+    calculatedWidth = spanWe.clientWidth + projectWidth + 27.5;
+    spanWe.parentElement.style.width = `${calculatedWidth}px`;
+  } else {
+    spanWe.parentElement.style.width = "100%";
+  }
+}
+
+export { initWriter, destroyWriter, reviewWidth };

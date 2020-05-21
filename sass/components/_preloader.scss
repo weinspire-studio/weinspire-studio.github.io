@@ -75,7 +75,7 @@
 }
 
 .fade-preloader {
-  animation: fade-preloader-anim .75s forwards ease-in-out;
+  animation: fade-preloader-anim .5s forwards ease-in-out;
 }
 
 @-webkit-keyframes preloader-anim {
@@ -102,46 +102,24 @@
   }
 }
 
-
 @-webkit-keyframes fade-preloader-anim {
-    0% {
-        -webkit-transform: skew(0) scale(1);
-        transform: skew(0) scale(1);
-    }
-    25% {
-        -webkit-transform: scale(0.5, 0.9);
-        transform: scale(0.5, 0.9);
-    }
-    50% {
-        -webkit-transform: scale(0.1, 0.7);
-        transform: scale(0.1, 0.7);
-    }
-    75% {
-        -webkit-transform: scale(0, 0.3);
-        transform: scale(0, 0.3);
-    }
-    100% {
-        -webkit-transform: skew(-6deg, 12deg) scale(1);
-        transform: skew(-6deg, 12deg) scale(1);
-    }
+  0% {
+    -webkit-transform: skew(0, 0) scale(1, 1);
+    transform: skew(0, 0) scale(1, 1);
+  }
+100% {
+    -webkit-transform: skew(-5deg, 5deg) scale(0);
+    transform: skew(-5deg, 5deg) scale(0);
+  }
 }
 
 @keyframes fade-preloader-anim {
-    0% {
-        scale: (1);
-        transform: skew(0);
-    }
-    25% {
-        scale: (0.5, 0.9);
-    }
-    50% {
-        scale: (0.1, 0.7);
-    }
-    75% {
-        scale: (0, 0.3);
-    }
-    100% {
-        scale: (0);
-        transform: skew(-6deg, 12deg);
-    }
+  0% {
+    -webkit-transform: skew(0, 0) scale(1, 1);
+    transform: skew(0, 0) scale(1, 1);
+  }
+100% {
+    -webkit-transform: skew(-5deg, 5deg) scale(0);
+    transform: skew(-5deg, 5deg) scale(0);
+  }
 }

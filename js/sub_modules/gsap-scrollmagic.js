@@ -8,10 +8,10 @@ const tl2 = new TimelineMax();
 const tl3 = new TimelineMax();
 const tl4 = new TimelineMax();
 
-function prepareRequests() {
+function prepareRequests(isSafari) {
   const sectionBg = document.getElementById("section-background");
   const divContainer = document.getElementById("grid-btm-icon");
-  makeRequest(url, sectionBg, animateBackground);
+  makeRequest(url, sectionBg, animateBackground.bind(null, isSafari));
   makeRequest(url2, divContainer, animateIconDesign);
 }
 
@@ -31,24 +31,27 @@ function makeRequest(url, section, callback) {
   xhr.send();
 }
 
-function animateBackground() {
+function animateBackground(isSafari) {
   const svgPaths = document.querySelectorAll("#svg-background path");
   const heroDivs = document.querySelectorAll("#section-hero .hero");
-  console.log(svgPaths);
 
-  tl.to(svgPaths[0], 1, { y: 95, ease: Linear.easeNone }, 0)
-    .to(svgPaths[1], 1, { y: 175, ease: Linear.easeNone }, 0)
-    .to(svgPaths[2], 1, { y: 140, ease: Linear.easeNone }, 0)
-    .to(svgPaths[3], 1, { y: 25, ease: Linear.easeNone }, 0)
-    .to(heroDivs[0], 1, { y: "50%", ease: Linear.easeNone }, 0)
-    .to(heroDivs[1], 1, { y: "50%", ease: Linear.easeNone }, 0);
+  tl.to(svgPaths[0], 1, { y: 95, ease: Linear.easeNone }, 0.4)
+    .to(svgPaths[1], 1, { y: 175, ease: Linear.easeNone }, 0.2)
+    .to(svgPaths[2], 1, { y: 140, ease: Linear.easeNone }, 0.3)
+    .to(svgPaths[3], 1, { y: 25, ease: Linear.easeNone }, 0);
+  // prettier-ignore
+  if(!isSafari) {
+      // tl.to(heroDivs[0], 1, { y: "50%", ease: Linear.easeNone }, 0)
+      //   .to(heroDivs[1], 1, { y: "50%", ease: Linear.easeNone }, 0);
+    }
+
   const ParallaxScene = new ScrollMagic.Scene({
-    triggerElement: this,
+    // triggerElement: this,
     triggerHook: 0,
     duration: "100%",
+    // tweenChanges: true,
   })
     .setTween(tl)
-    .addIndicators()
     .addTo(controller);
 }
 
@@ -82,7 +85,6 @@ function animateIconDesign() {
     tweenChanges: true,
   })
     .setTween(tl2)
-    .addIndicators()
     .addTo(controller);
 }
 
@@ -110,7 +112,7 @@ function animateSvgPaths() {
   tl4
     .from(svgPaths[0], 1, { opacity: 0, scale: 1.25 }, 0.4)
     .from(svgPaths[1], 1.25, { opacity: 0, scale: 1.25 }, 0.2)
-    .from(svgPaths[2], 1.25, { opacity: 0, scaleX: 1.25, scaleY: 0.9, rotation: "5deg" }, 0.3)
+    .from(svgPaths[2], 1.25, { opacity: 0, scaleX: 1.25, scaleY: 0.9, rotation: "1deg" }, 0.3)
     .from(svgPaths[3], 1.5, { opacity: 0, scale: 1.03 }, 0);
 }
 

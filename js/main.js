@@ -29,6 +29,7 @@ let debouncedNavDesktop;
 let debouncedNavMobile;
 let bindedDebouncedNavDesktop;
 let swiper;
+let isMobile;
 
 //FUNCTIONS INVOCATIONS
 init();
@@ -38,19 +39,17 @@ jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
 contactModule.submitNewsForm();
-animationsModule.prepareRequests();
-
-let timer = setTimeout(() => {
-  typewriterModule.initWriter();
-  clearTimeout(timer);
-}, 450);
+animationsModule.prepareRequests(isSafari);
+window.addEventListener("load", initLanding);
 
 //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 function init() {
   if (mobileScreenMQ.matches) {
+    isMobile = true;
     mobileCode();
   } else {
+    isMobile = false;
     desktopCode();
   }
 }
@@ -59,11 +58,22 @@ function init() {
 function initOnWidthChange() {
   mobileScreenMQ.addListener(() => {
     if (mobileScreenMQ.matches) {
+      isMobile = true;
       mobileCode();
     } else {
+      isMobile = false;
       desktopCode();
     }
   });
+}
+
+// hides preloader, animate assets and inits typeWriter.
+function initLanding() {
+  preloaderModule.hidePreloader();
+  let timer = setTimeout(() => {
+    typewriterModule.initWriter(isMobile);
+    clearTimeout(timer);
+  }, 1050);
 }
 
 //code that executes only in desktop and large tablets screens (> 801px).
@@ -87,6 +97,7 @@ function desktopCode() {
   if (hasScrollListenerMobile) {
     desktopModule.restoreDesktopNav();
     window.removeEventListener("scroll", debouncedNavMobile);
+    typewriterModule.reviewWidth(false);
     hasScrollListenerMobile = false;
   }
   if (swiper && swiper.params.init === true) {
@@ -100,7 +111,7 @@ function mobileCode() {
   styleNavOnScroll();
   mobileModule.styleMobileNav();
   jQueryModule.unbindImages();
-  mobileModule.initSwiper();
+  mobileModule.initSwiper(isSafari);
   debouncedNavMobile = debounce(styleNavOnScroll, 200, {
     leading: true,
     trailing: true,
@@ -110,6 +121,7 @@ function mobileCode() {
   if (hasListenersDesktop) {
     window.removeEventListener("scroll", bindedDebouncedNavDesktop);
     // heroModule.destroyWriter();
+    typewriterModule.reviewWidth(true);
     if (isSafari) {
       desktopModule.removeImagesListeners();
     }
@@ -123,11 +135,11 @@ function mobileCode() {
 }
 
 //adds or removes classes in order to give white styles to the nav.
-function styleNavOnScroll(isMobile = true) {
+function styleNavOnScroll(inMobile = true) {
   let scrolledY = window.pageYOffset;
-  if (scrolledY > 0) {
+  if (scrolledY !== 0) {
     if (!mobileModule.isOpen_Menu) {
-      if (isMobile) {
+      if (inMobile) {
         mobileModule.styleMobileBrand();
       } else {
         desktopModule.styleDesktopBrand();
@@ -137,7 +149,7 @@ function styleNavOnScroll(isMobile = true) {
       navShadow.classList.add("nav-shadow");
     }
   } else {
-    if (isMobile) {
+    if (inMobile) {
       mobileModule.restoreMobileBrand();
     } else {
       desktopModule.restoreDesktopBrand();
@@ -148,8 +160,8 @@ function styleNavOnScroll(isMobile = true) {
   }
 }
 
-function addClassesToSvgs(isMobile = true) {
-  if (isMobile) {
+function addClassesToSvgs(inMobile = true) {
+  if (inMobile) {
     mobileModule.setMobileBrand();
     desktopModule.unsetDesktopBrand();
   } else {

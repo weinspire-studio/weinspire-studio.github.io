@@ -24,7 +24,7 @@
 
 #grid-top-info {
     grid-area: info-top;
-    & h2 {
+    h2 {
         padding-top: 0;
         @include media-query ($md) {
                 padding-top: 3em;
@@ -45,12 +45,13 @@
 }
 #grid-btm-icon {
     grid-area: icon-btm;
+    // position: relative;
 }
 
 .service-icon {
     align-self: center;
     padding-top: 2em;
-    & .icon-facebook {
+    .icon-facebook {
         height: 200px;
         width: 200px;
         fill: pink;
@@ -60,8 +61,8 @@
     }
 }
 
-.icon-design {
-    max-width: 500px;
+#design {
+    max-width: 400px;
 }
 
 // TODO: section title, and other common elements in base with same class.
@@ -74,4 +75,3 @@
 .service-title {
     padding: 3em 0 1em;
 }
-

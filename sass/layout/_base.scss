@@ -12,21 +12,20 @@ html {
     overflow-x: hidden;
 }
 
-html, body, #site-wrapper {
-    height: 100%;
-}
-
 html, body {
     overflow-y: visible;
+    height: 100%;
     // overflow-x: hidden;
     // overflow-y: scroll;
     // z-index: -10;
+    // overflow: auto;
 }
 
 body {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
     background-color: #f0f2f5;
+    // overflow-x: hidden;
     // background-color: $background-light;
     // background-color: #bdc3cc52;
     // #c5d4d526
@@ -41,21 +40,10 @@ body {
     // min-height: 100%;
 }
 
-// html, body {
-    //     // overflow: auto;
-    // }
-    
-    // body {
-    //     font-family: "Montserrat", sans-serif;
-    //     font-weight: 400;
-    //     background-color: $background-light;
-    //     overflow-x: hidden;
-    // }
-    
-
 #site-wrapper {
     // overflow-x: hidden;
-    position: relative;
+    // position: relative;
+    height: 100%;
     transition: background-color .5s ease;
 }
 
@@ -64,7 +52,7 @@ h1, h2, h3, h4, h5 {
 }
 
 #section-services {
-    min-height: 150%;
+    // min-height: 150%;
     // background-color: lightcyan;
 }
 

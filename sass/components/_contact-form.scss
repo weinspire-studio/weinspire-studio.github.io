@@ -86,15 +86,15 @@ form {
 }
   
 .form-fields textarea {
-    width: 100%;
-    height: 3.5em;
-    font-family: inherit;
-    font-size: .8em;
-    border-radius: 5px;
-    border-style: hidden;
-    outline: none;
-    resize: none;
-    background-color: transparent;
+  width: 100%;
+  height: 3.5em;
+  font-family: inherit;
+  font-size: .8em;
+  border-radius: 5px;
+  border-style: hidden;
+  outline: none;
+  resize: none;
+  background-color: transparent;
 }
 
 .field-button {
@@ -106,30 +106,31 @@ form {
 }
 
 #contact-form-button {
-    height: 40px;
-    width: 40%;
-    font-size: 1em;
-    box-shadow: 4px 4px 7px rgba(107,124,141,.225);
-    border-style: none;
-    border-radius: 2px;
-    transition: background-color 1s ease, color 1s ease;
+  outline: none;
+  height: 40px;
+  width: 40%;
+  font-size: 1em;
+  box-shadow: 4px 4px 7px rgba(107,124,141,.225);
+  border-style: none;
+  border-radius: 2px;
+  transition: background-color 1s ease, color 1s ease;
 }
 
 #field-status {
-    grid-area: status;
-    display: flex;
-    justify-content: center;
-    // margin-bottom: -1em;
-    width: 100%;
-    height: 75px;
-    border-radius: 5px;
-    transition: opacity 1s ease-in;
-    // margin-bottom: 50px;
-    opacity: 1;
-    pointer-events: none;
-    @include media-query ($md) {
-      // margin-bottom: 0;
-    }
+  grid-area: status;
+  display: flex;
+  justify-content: center;
+  // margin-bottom: -1em;
+  width: 100%;
+  height: 75px;
+  border-radius: 5px;
+  transition: opacity 1s ease-in;
+  // margin-bottom: 50px;
+  opacity: 1;
+  pointer-events: none;
+  @include media-query ($md) {
+    // margin-bottom: 0;
+  }
 }
 
 #contact-form-status {
@@ -149,13 +150,13 @@ form {
 }
 
 .form-fields input {
-    height: 2.5em;
-    width: 100%;
-    border-radius: 5px;
-    border-style: none;
-    font-size: 0.8rem;
-    outline: none;
-    background-color: transparent;
+  height: 2.5em;
+  width: 100%;
+  border-radius: 5px;
+  border-style: none;
+  font-size: 0.8rem;
+  outline: none;
+  background-color: transparent;
 }
 
 .form-fields .input-label {

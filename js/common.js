@@ -60,7 +60,8 @@ var hasListenersDesktop = false;
 var debouncedNavDesktop;
 var debouncedNavMobile;
 var bindedDebouncedNavDesktop;
-var swiper; //FUNCTIONS INVOCATIONS
+var swiper;
+var isMobile; //FUNCTIONS INVOCATIONS
 
 init();
 initOnWidthChange();
@@ -72,17 +73,16 @@ jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
 contactModule.submitNewsForm();
-animationsModule.prepareRequests();
-var timer = setTimeout(function () {
-  typewriterModule.initWriter();
-  clearTimeout(timer);
-}, 450); //FUNCTIONS DEFINITIONS
+animationsModule.prepareRequests(isSafari);
+window.addEventListener("load", initLanding); //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 
 function init() {
   if (mobileScreenMQ.matches) {
+    isMobile = true;
     mobileCode();
   } else {
+    isMobile = false;
     desktopCode();
   }
 } // adds listener that executes when screen width changes (passing by 801px).
@@ -91,11 +91,22 @@ function init() {
 function initOnWidthChange() {
   mobileScreenMQ.addListener(function () {
     if (mobileScreenMQ.matches) {
+      isMobile = true;
       mobileCode();
     } else {
+      isMobile = false;
       desktopCode();
     }
   });
+} // hides preloader, animate assets and inits typeWriter.
+
+
+function initLanding() {
+  preloaderModule.hidePreloader();
+  var timer = setTimeout(function () {
+    typewriterModule.initWriter(isMobile);
+    clearTimeout(timer);
+  }, 1050);
 } //code that executes only in desktop and large tablets screens (> 801px).
 
 
@@ -122,6 +133,7 @@ function desktopCode() {
   if (hasScrollListenerMobile) {
     desktopModule.restoreDesktopNav();
     window.removeEventListener("scroll", debouncedNavMobile);
+    typewriterModule.reviewWidth(false);
     hasScrollListenerMobile = false;
   }
 
@@ -136,7 +148,7 @@ function mobileCode() {
   styleNavOnScroll();
   mobileModule.styleMobileNav();
   jQueryModule.unbindImages();
-  mobileModule.initSwiper();
+  mobileModule.initSwiper(isSafari);
   debouncedNavMobile = (0, _debounce["default"])(styleNavOnScroll, 200, {
     leading: true,
     trailing: true
@@ -146,6 +158,8 @@ function mobileCode() {
 
   if (hasListenersDesktop) {
     window.removeEventListener("scroll", bindedDebouncedNavDesktop); // heroModule.destroyWriter();
+
+    typewriterModule.reviewWidth(true);
 
     if (isSafari) {
       desktopModule.removeImagesListeners();
@@ -163,12 +177,12 @@ function mobileCode() {
 
 
 function styleNavOnScroll() {
-  var isMobile = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+  var inMobile = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
   var scrolledY = window.pageYOffset;
 
-  if (scrolledY > 0) {
+  if (scrolledY !== 0) {
     if (!mobileModule.isOpen_Menu) {
-      if (isMobile) {
+      if (inMobile) {
         mobileModule.styleMobileBrand();
       } else {
         desktopModule.styleDesktopBrand();
@@ -179,7 +193,7 @@ function styleNavOnScroll() {
       navShadow.classList.add("nav-shadow");
     }
   } else {
-    if (isMobile) {
+    if (inMobile) {
       mobileModule.restoreMobileBrand();
     } else {
       desktopModule.restoreDesktopBrand();
@@ -192,9 +206,9 @@ function styleNavOnScroll() {
 }
 
 function addClassesToSvgs() {
-  var isMobile = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+  var inMobile = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
-  if (isMobile) {
+  if (inMobile) {
     mobileModule.setMobileBrand();
     desktopModule.unsetDesktopBrand();
   } else {
@@ -835,10 +849,10 @@ var tl2 = new TimelineMax();
 var tl3 = new TimelineMax();
 var tl4 = new TimelineMax();
 
-function prepareRequests() {
+function prepareRequests(isSafari) {
   var sectionBg = document.getElementById("section-background");
   var divContainer = document.getElementById("grid-btm-icon");
-  makeRequest(url, sectionBg, animateBackground);
+  makeRequest(url, sectionBg, animateBackground.bind(null, isSafari));
   makeRequest(url2, divContainer, animateIconDesign);
 }
 
@@ -860,34 +874,33 @@ function makeRequest(url, section, callback) {
   xhr.send();
 }
 
-function animateBackground() {
+function animateBackground(isSafari) {
   var svgPaths = document.querySelectorAll("#svg-background path");
   var heroDivs = document.querySelectorAll("#section-hero .hero");
-  console.log(svgPaths);
   tl.to(svgPaths[0], 1, {
     y: 95,
     ease: Linear.easeNone
-  }, 0).to(svgPaths[1], 1, {
+  }, 0.4).to(svgPaths[1], 1, {
     y: 175,
     ease: Linear.easeNone
-  }, 0).to(svgPaths[2], 1, {
+  }, 0.2).to(svgPaths[2], 1, {
     y: 140,
     ease: Linear.easeNone
-  }, 0).to(svgPaths[3], 1, {
+  }, 0.3).to(svgPaths[3], 1, {
     y: 25,
     ease: Linear.easeNone
-  }, 0).to(heroDivs[0], 1, {
-    y: "50%",
-    ease: Linear.easeNone
-  }, 0).to(heroDivs[1], 1, {
-    y: "50%",
-    ease: Linear.easeNone
-  }, 0);
+  }, 0); // prettier-ignore
+
+  if (!isSafari) {// tl.to(heroDivs[0], 1, { y: "50%", ease: Linear.easeNone }, 0)
+    //   .to(heroDivs[1], 1, { y: "50%", ease: Linear.easeNone }, 0);
+  }
+
   var ParallaxScene = new ScrollMagic.Scene({
-    triggerElement: this,
+    // triggerElement: this,
     triggerHook: 0,
-    duration: "100%"
-  }).setTween(tl).addIndicators().addTo(controller);
+    duration: "100%" // tweenChanges: true,
+
+  }).setTween(tl).addTo(controller);
 }
 
 function animateIconDesign() {
@@ -939,7 +952,7 @@ function animateIconDesign() {
     triggerHook: 0.5,
     duration: "60%",
     tweenChanges: true
-  }).setTween(tl2).addIndicators().addTo(controller);
+  }).setTween(tl2).addTo(controller);
 }
 
 function preparePath(path) {
@@ -975,7 +988,7 @@ function animateSvgPaths() {
     opacity: 0,
     scaleX: 1.25,
     scaleY: 0.9,
-    rotation: "5deg"
+    rotation: "1deg"
   }, 0.3).from(svgPaths[3], 1.5, {
     opacity: 0,
     scale: 1.03
@@ -1000,7 +1013,8 @@ exports.animateImages = animateImages;
 exports.unbindImages = unbindImages;
 // jshint esversion: 6
 // import $ from "../../node_custom_modules/jquery/jquery.min.js";
-var hasHoverListenerOnPortolio = false; // jQuery for animated scroll
+var hasHoverListenerOnPortolio = false;
+var isExpanded = false; // jQuery for animated scroll
 
 function smoothScroll() {
   $(".arrow-up").on("click", function () {
@@ -1016,10 +1030,12 @@ function animateImages() {
     $(this).addClass("expanded");
     $(this).siblings().addClass("contracted");
     $(this).children().eq(1).addClass("show-caption");
+    isExpanded = true;
   }, function () {
     $(this).removeClass("expanded");
     $(this).siblings().removeClass("contracted");
     $(this).children().eq(1).removeClass("show-caption");
+    isExpanded = false;
   });
   hasHoverListenerOnPortolio = true;
 } // unbinds listeners to desktop component (for mobile cube)
@@ -1028,6 +1044,14 @@ function animateImages() {
 function unbindImages() {
   if (hasHoverListenerOnPortolio) {
     $("#section-projects-design li").off("mouseenter mouseleave");
+
+    if (isExpanded) {
+      $(".arrow-up").css("background-color, blue");
+      $("#section-projects-design li").removeClass("expanded");
+      $("#section-projects-design li").removeClass("contracted");
+      $(".link-caption").removeClass("show-caption");
+      isExpanded = false;
+    }
   }
 }
 
@@ -1137,8 +1161,8 @@ function toggleNavClasses() {
 } // styles Swiper (arrows and pagination) depending on mobile OS.
 
 
-function initSwiper() {
-  if (isIos) {
+function initSwiper(isSafari) {
+  if (isIos || isSafari) {
     swiperPagination.classList.add("pagination-bottom");
   } else {
     swiperPagination.classList.add("pagination-middle");
@@ -1219,22 +1243,30 @@ function unsetMobileBrand() {
 },{"../main.js":1}],8:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hidePreloader = hidePreloader;
+
 var _gsapScrollmagic = require("../sub_modules/gsap-scrollmagic");
 
 // jshint esversion: 6
 var preloader = document.getElementById("preloader");
-var preloaderContainer = document.getElementById("preloader-container");
-window.addEventListener("load", hidePreloader);
+var preloaderContainer = document.getElementById("preloader-container"); // window.addEventListener("load", hidePreloader);
 
 function hidePreloader() {
   preloaderContainer.classList.add("fade-preloader");
-  preloaderContainer.addEventListener("animationend", slidePreloader);
+  preloaderContainer.addEventListener("animationend", setLanding);
+}
+
+function setLanding() {
+  slidePreloader();
+  (0, _gsapScrollmagic.animateAssets)();
+  removeListeners();
 }
 
 function slidePreloader() {
   preloader.classList.add("translate-preloader");
-  removeListeners();
-  (0, _gsapScrollmagic.animateAssets)();
   var timer = setTimeout(function () {
     preloader.style.display = "none";
     clearTimeout(timer);
@@ -1243,7 +1275,7 @@ function slidePreloader() {
 
 function removeListeners() {
   window.removeEventListener("load", hidePreloader);
-  preloaderContainer.removeEventListener("animationend", slidePreloader);
+  preloaderContainer.removeEventListener("animationend", setLanding);
 }
 
 },{"../sub_modules/gsap-scrollmagic":5}],9:[function(require,module,exports){
@@ -1404,6 +1436,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.initWriter = initWriter;
 exports.destroyWriter = destroyWriter;
+exports.reviewWidth = reviewWidth;
 // jshint esversion: 6
 var spanWords = document.getElementById("span-words");
 var spanWe = document.getElementById("span-we");
@@ -1413,10 +1446,12 @@ var wordCounter = 0;
 var wait = 1350;
 var isWriting = true;
 var isDeleting = false;
-var threshold = document.body.clientHeight / 2;
 var timer;
 var scrolledY;
-var spanClass; // window.addEventListener("scroll", setWriter);
+var spanClass;
+var threshold = document.body.clientHeight / 2;
+var projectWidth = spanWords.clientWidth;
+var calculatedWidth;
 
 function setWriter() {
   scrolledY = window.pageYOffset;
@@ -1479,9 +1514,17 @@ function typeWriter() {
   }, typeSpeed);
 }
 
-function initWriter() {
+function initWriter(isMobile) {
   typeWriter();
   window.addEventListener("scroll", setWriter);
+
+  if (isMobile) {
+    calculatedWidth = spanWe.clientWidth + projectWidth + 27.5;
+    spanWe.parentElement.style.width = "".concat(calculatedWidth, "px");
+  } // console.log(spanWe, spanWe.style.width);
+  // console.log(spanWords);
+  // console.log(spanWe.clientWidth, spanWords.clientWidth, projectWidth);
+
 }
 
 function clearWriter() {
@@ -1491,6 +1534,15 @@ function clearWriter() {
 function destroyWriter() {
   window.removeEventListener("scroll", setWriter);
   clearTimeout(timer);
+}
+
+function reviewWidth(isMobile) {
+  if (isMobile) {
+    calculatedWidth = spanWe.clientWidth + projectWidth + 27.5;
+    spanWe.parentElement.style.width = "".concat(calculatedWidth, "px");
+  } else {
+    spanWe.parentElement.style.width = "100%";
+  }
 }
 
 },{}],12:[function(require,module,exports){

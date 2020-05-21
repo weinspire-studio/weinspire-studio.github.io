@@ -29,12 +29,9 @@ html {
   }
 }
 
-html, body, #site-wrapper {
-  height: 100%;
-}
-
 html, body {
   overflow-y: visible;
+  height: 100%;
 }
 
 body {
@@ -44,16 +41,12 @@ body {
 }
 
 #site-wrapper {
-  position: relative;
+  height: 100%;
   transition: background-color 0.5s ease;
 }
 
 h1, h2, h3, h4, h5 {
   font-weight: 500;
-}
-
-#section-services {
-  min-height: 150%;
 }
 
 #section-contact {
@@ -178,7 +171,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .fade-preloader {
-  animation: fade-preloader-anim 0.75s forwards ease-in-out;
+  animation: fade-preloader-anim 0.5s forwards ease-in-out;
 }
 @keyframes preloader-anim {
   0% {
@@ -193,21 +186,10 @@ h1, h2, h3, h4, h5 {
 }
 @keyframes fade-preloader-anim {
   0% {
-    scale: 1;
-    transform: skew(0);
-  }
-  25% {
-    scale: 0.5, 0.9;
-  }
-  50% {
-    scale: 0.1, 0.7;
-  }
-  75% {
-    scale: 0, 0.3;
+    transform: skew(0, 0) scale(1, 1);
   }
   100% {
-    scale: 0;
-    transform: skew(-6deg, 12deg);
+    transform: skew(-5deg, 5deg) scale(0);
   }
 }
 .navigation-container {
@@ -612,6 +594,13 @@ h1, h2, h3, h4, h5 {
 }
 .hero-text h1 {
   padding: 1em 0;
+  margin: 0 auto;
+  text-align: left;
+}
+@media screen and (min-width: 801px) {
+  .hero-text h1 {
+    margin: 0;
+  }
 }
 .hero-text h2 {
   padding-bottom: 1em;
@@ -651,12 +640,23 @@ h1, h2, h3, h4, h5 {
 }
 
 #span-we {
-  padding-right: 0.8rem;
+  padding: 0 0.875rem;
   transition: text-shadow 500ms ease;
+  display: inline-block;
+}
+@media screen and (min-width: 801px) {
+  #span-we {
+    padding-left: 0;
+  }
+}
+
+#span-words {
+  display: inline-block;
 }
 
 .inner-span {
   border-right: 0.05em solid #000;
+  min-width: 2px;
   animation: blink-anim 1000ms ease infinite running 200ms;
 }
 
@@ -843,8 +843,8 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-.icon-design {
-  max-width: 500px;
+#design {
+  max-width: 400px;
 }
 
 .section-title {
@@ -1289,6 +1289,7 @@ h1, h2, h3, h4, h5 {
 }
 
 #contact-form-button {
+  outline: none;
   height: 40px;
   width: 40%;
   font-size: 1em;
@@ -1624,8 +1625,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .arrow-up {
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 20px;
   fill: rgba(177, 177, 177, 0.904);
   grid-area: arrow;
   margin: 0.5em auto;
