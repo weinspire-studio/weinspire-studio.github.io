@@ -9,6 +9,7 @@ const tl = new TimelineMax();
 const tl2 = new TimelineMax();
 const tl3 = new TimelineMax();
 const tl4 = new TimelineMax();
+const tl5 = new TimelineMax();
 
 function prepareRequests() {
   const sectionBg = document.getElementById("section-background");
@@ -62,59 +63,79 @@ function animateBackground() {
 function animateIconDesign() {
   const iconDesign = document.getElementById("design");
   const iconDesignPaths = document.querySelectorAll("#design path");
-  console.log(iconDesign);
+  // console.log(iconDesign);
 
   let pathsArray = Array.prototype.slice.call(iconDesignPaths);
   pathsArray.forEach((path) => {
     preparePath(path);
   });
-  // .to(pathsArray[0], 2, { strokeDashoffset: 5, ease: Linear.easeNone }, 0)
-  // .to(pathsArray[1], 2, { strokeDashoffset: 1, ease: Linear.easeNone }, 0)
-  // .to(pathsArray[2], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 1)
-  // .to(pathsArray[3], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
-  // .to(pathsArray[4], 3, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
-  // .to(pathsArray[5], 3, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
-  // .to(pathsArray[6], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
-  // .to(pathsArray[7], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
-  // .to(pathsArray[8], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
-  // .to(pathsArray[10], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
-  // .to(pathsArray[9], 2, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
-  // .to(pathsArray[11], 2, { strokeDashoffset: 0, ease: Linear.easeNone }, 2.5)
-  // .to(pathsArray[12], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, "<")
   // prettier-ignore
   tl2
-    .to(pathsArray[0], 1, { strokeDashoffset: 5, ease: Linear.easeNone }, 0)
-    .to(pathsArray[1], 1, { strokeDashoffset: 1, ease: Linear.easeNone }, 0)
-    .to(pathsArray[2], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 1)
-    .to(pathsArray[3], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
-    .to(pathsArray[4], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
-    .to(pathsArray[5], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
-    .to(pathsArray[6], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
-    .to(pathsArray[7], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
-    .to(pathsArray[8], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
-    .to(pathsArray[10], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
-    .to(pathsArray[9], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
-    .to(pathsArray[11], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 2.5)
-    .to(pathsArray[12], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, "<")
+    .to(pathsArray[0], 0.5, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
+    .to(pathsArray[1], 0.5, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
+    .to(pathsArray[2], 0.25, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
+    .to(pathsArray[3], 0.35, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+    .to(pathsArray[4], 0.35, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.35)
+    .to(pathsArray[5], 0.4, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.15)
+    .to(pathsArray[6], 0.2, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.1)
+    .to(pathsArray[7], 0.17, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+    .to(pathsArray[8], 0.14, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+    .to(pathsArray[10], 0.2, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.1)
+    .to(pathsArray[9], 0.85, { strokeDashoffset: 0, ease: Linear.easeNone }, ">-0.15")
+    .to(pathsArray[11], 0.7, { strokeDashoffset: 0, ease: Linear.easeNone }, "<")
+    .to(pathsArray[12], 0.3, { strokeDashoffset: 0, ease: Linear.easeNone }, "<")
     .to(pathsArray, 1, { stroke: "#33629c", ease: Linear.easeNone }, 0);
   const drawScene = new ScrollMagic.Scene({
     triggerElement: iconDesign,
-    triggerHook: 0.75,
-    duration: "100%",
+    triggerHook: 1,
+    duration: "110%",
     // tweenChanges: true,
   })
     .setTween(tl2)
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller);
 }
 
 function animateIconSoftware() {
   const iconSoftware = document.getElementById("software");
-  // console.log(iconSoftware);
+  const iconSoftwarePaths = document.querySelectorAll("#software path");
+
+  let pathsArray = Array.prototype.slice.call(iconSoftwarePaths);
+  pathsArray.forEach((path) => {
+    preparePath(path);
+  });
+  // prettier-ignore
+  tl5
+    .to(pathsArray[0], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.3) //monitor out blue
+    .to(pathsArray[1], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.4) //monitor in blue
+    .to(pathsArray[2], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5) //monitor rect up green
+    .to(pathsArray[3], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[4], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[5], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[6], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[7], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[8], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[9], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[10], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[11], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[12], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[13], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[14], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray[15], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+    .to(pathsArray, 1, { stroke: "#33629c", ease: Linear.easeNone }, 0);
+  // .to(greenPathsArray, 1, { stroke: "#33629c", ease: Linear.easeNone }, 0);
+  const drawScene = new ScrollMagic.Scene({
+    triggerElement: iconSoftware,
+    triggerHook: 1,
+    duration: "60%",
+    // tweenChanges: true,
+  })
+    .setTween(tl5)
+    .addIndicators()
+    .addTo(controller);
 }
 
 function preparePath(path) {
-  console.log(path);
   let pathLength = path.getTotalLength();
   path.style.strokeDashoffset = pathLength;
   path.style.strokeDasharray = pathLength;
