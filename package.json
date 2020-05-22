@@ -4,8 +4,8 @@
   "author": "Matias Lopez",
   "private": true,
   "devDependencies": {
-    "@babel/core": "^7.8.6",
-    "@babel/preset-env": "^7.8.6",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "babelify": "^10.0.0",
     "browserify-css": "^0.15.0",
     "grunt": "^1.1.0",
@@ -25,7 +25,8 @@
     "load-grunt-tasks": "^5.1.0"
   },
   "dependencies": {
+    "diff": "^4.0.2",
     "lodash.debounce": "^4.0.8",
-    "swiper": "^5.3.6"
+    "swiper": "^5.4.1"
   }
 }

@@ -142,7 +142,7 @@ module.exports = function (grunt) {
           },
           {
             removeAttrs: {
-              attrs: ["xmlns"],
+              // attrs: ["xmlns"],
             },
           },
         ],

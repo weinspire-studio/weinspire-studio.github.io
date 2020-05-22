@@ -62,11 +62,25 @@ function animateBackground() {
 function animateIconDesign() {
   const iconDesign = document.getElementById("design");
   const iconDesignPaths = document.querySelectorAll("#design path");
+  console.log(iconDesign);
 
   let pathsArray = Array.prototype.slice.call(iconDesignPaths);
   pathsArray.forEach((path) => {
     preparePath(path);
   });
+  // .to(pathsArray[0], 2, { strokeDashoffset: 5, ease: Linear.easeNone }, 0)
+  // .to(pathsArray[1], 2, { strokeDashoffset: 1, ease: Linear.easeNone }, 0)
+  // .to(pathsArray[2], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 1)
+  // .to(pathsArray[3], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+  // .to(pathsArray[4], 3, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
+  // .to(pathsArray[5], 3, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
+  // .to(pathsArray[6], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
+  // .to(pathsArray[7], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+  // .to(pathsArray[8], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+  // .to(pathsArray[10], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+  // .to(pathsArray[9], 2, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+  // .to(pathsArray[11], 2, { strokeDashoffset: 0, ease: Linear.easeNone }, 2.5)
+  // .to(pathsArray[12], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, "<")
   // prettier-ignore
   tl2
     .to(pathsArray[0], 1, { strokeDashoffset: 5, ease: Linear.easeNone }, 0)
@@ -96,10 +110,11 @@ function animateIconDesign() {
 
 function animateIconSoftware() {
   const iconSoftware = document.getElementById("software");
-  console.log(iconSoftware);
+  // console.log(iconSoftware);
 }
 
 function preparePath(path) {
+  console.log(path);
   let pathLength = path.getTotalLength();
   path.style.strokeDashoffset = pathLength;
   path.style.strokeDasharray = pathLength;

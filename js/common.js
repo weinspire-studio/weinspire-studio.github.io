@@ -908,10 +908,24 @@ function animateBackground() {
 function animateIconDesign() {
   var iconDesign = document.getElementById("design");
   var iconDesignPaths = document.querySelectorAll("#design path");
+  console.log(iconDesign);
   var pathsArray = Array.prototype.slice.call(iconDesignPaths);
   pathsArray.forEach(function (path) {
     preparePath(path);
-  }); // prettier-ignore
+  }); // .to(pathsArray[0], 2, { strokeDashoffset: 5, ease: Linear.easeNone }, 0)
+  // .to(pathsArray[1], 2, { strokeDashoffset: 1, ease: Linear.easeNone }, 0)
+  // .to(pathsArray[2], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 1)
+  // .to(pathsArray[3], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+  // .to(pathsArray[4], 3, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
+  // .to(pathsArray[5], 3, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
+  // .to(pathsArray[6], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0)
+  // .to(pathsArray[7], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+  // .to(pathsArray[8], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+  // .to(pathsArray[10], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, 0.5)
+  // .to(pathsArray[9], 2, { strokeDashoffset: 0, ease: Linear.easeNone }, ">")
+  // .to(pathsArray[11], 2, { strokeDashoffset: 0, ease: Linear.easeNone }, 2.5)
+  // .to(pathsArray[12], 1, { strokeDashoffset: 0, ease: Linear.easeNone }, "<")
+  // prettier-ignore
 
   tl2.to(pathsArray[0], 1, {
     strokeDashoffset: 5,
@@ -965,11 +979,11 @@ function animateIconDesign() {
 }
 
 function animateIconSoftware() {
-  var iconSoftware = document.getElementById("software");
-  console.log(iconSoftware);
+  var iconSoftware = document.getElementById("software"); // console.log(iconSoftware);
 }
 
 function preparePath(path) {
+  console.log(path);
   var pathLength = path.getTotalLength();
   path.style.strokeDashoffset = pathLength;
   path.style.strokeDasharray = pathLength;
@@ -1573,25 +1587,33 @@ var _dom = require("dom7/dist/dom7.modular");
 
 var _ssrWindow = require("ssr-window");
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4917,6 +4939,8 @@ var extendedDefaults = {};
 var Swiper = /*#__PURE__*/function (_SwiperClass) {
   _inherits(Swiper, _SwiperClass);
 
+  var _super = _createSuper(Swiper);
+
   function Swiper() {
     var _this;
 
@@ -4939,7 +4963,7 @@ var Swiper = /*#__PURE__*/function (_SwiperClass) {
     if (!params) params = {};
     params = Utils.extend({}, params);
     if (el && !params.el) params.el = el;
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Swiper).call(this, params));
+    _this = _super.call(this, params);
     Object.keys(prototypes).forEach(function (prototypeGroup) {
       Object.keys(prototypes[prototypeGroup]).forEach(function (protoMethod) {
         if (!Swiper.prototype[protoMethod]) {
@@ -8647,22 +8671,44 @@ module.exports = toNumber;
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /**
- * SSR Window 1.0.1
+ * SSR Window 2.0.0
  * Better handling for window object in SSR environment
  * https://github.com/nolimits4web/ssr-window
  *
- * Copyright 2018, Vladimir Kharlampidi
+ * Copyright 2020, Vladimir Kharlampidi
  *
  * Licensed under MIT
  *
- * Released on: July 18, 2018
+ * Released on: May 12, 2020
  */
 (function (global, factory) {
-  (typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? factory(exports) : typeof define === 'function' && define.amd ? define(['exports'], factory) : factory(global.ssrWindow = {});
+  (typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? factory(exports) : typeof define === 'function' && define.amd ? define(['exports'], factory) : (global = global || self, factory(global.ssrWindow = {}));
 })(void 0, function (exports) {
   'use strict';
+  /* eslint-disable no-param-reassign */
 
-  var doc = typeof document === 'undefined' ? {
+  function isObject(obj) {
+    return obj !== null && _typeof(obj) === 'object' && 'constructor' in obj && obj.constructor === Object;
+  }
+
+  function extend(target, src) {
+    if (target === void 0) {
+      target = {};
+    }
+
+    if (src === void 0) {
+      src = {};
+    }
+
+    Object.keys(src).forEach(function (key) {
+      if (typeof target[key] === 'undefined') target[key] = src[key];else if (isObject(src[key]) && isObject(target[key]) && Object.keys(src[key]).length > 0) {
+        extend(target[key], src[key]);
+      }
+    });
+  }
+
+  var doc = typeof document !== 'undefined' ? document : {};
+  var ssrDocument = {
     body: {},
     addEventListener: function addEventListener() {},
     removeEventListener: function removeEventListener() {},
@@ -8695,18 +8741,46 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
       };
     },
+    createElementNS: function createElementNS() {
+      return {};
+    },
+    importNode: function importNode() {
+      return null;
+    },
     location: {
-      hash: ''
+      hash: '',
+      host: '',
+      hostname: '',
+      href: '',
+      origin: '',
+      pathname: '',
+      protocol: '',
+      search: ''
     }
-  } : document; // eslint-disable-line
-
-  var win = typeof window === 'undefined' ? {
-    document: doc,
+  };
+  extend(doc, ssrDocument);
+  var win = typeof window !== 'undefined' ? window : {};
+  var ssrWindow = {
+    document: ssrDocument,
     navigator: {
       userAgent: ''
     },
-    location: {},
-    history: {},
+    location: {
+      hash: '',
+      host: '',
+      hostname: '',
+      href: '',
+      origin: '',
+      pathname: '',
+      protocol: '',
+      search: ''
+    },
+    history: {
+      replaceState: function replaceState() {},
+      pushState: function pushState() {},
+      go: function go() {},
+      back: function back() {}
+    },
     CustomEvent: function CustomEvent() {
       return this;
     },
@@ -8723,11 +8797,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     Date: function Date() {},
     screen: {},
     setTimeout: function setTimeout() {},
-    clearTimeout: function clearTimeout() {}
-  } : window; // eslint-disable-line
-
-  exports.window = win;
+    clearTimeout: function clearTimeout() {},
+    matchMedia: function matchMedia() {
+      return {};
+    }
+  };
+  extend(win, ssrWindow);
   exports.document = doc;
+  exports.extend = extend;
+  exports.window = win;
   Object.defineProperty(exports, '__esModule', {
     value: true
   });
