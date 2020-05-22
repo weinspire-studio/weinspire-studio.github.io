@@ -39,7 +39,7 @@ jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
 contactModule.submitNewsForm();
-animationsModule.prepareRequests(isSafari);
+animationsModule.prepareRequests();
 window.addEventListener("load", initLanding);
 
 //FUNCTIONS DEFINITIONS

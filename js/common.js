@@ -73,7 +73,7 @@ jQueryModule.smoothScroll();
 contactModule.validateContactForm();
 contactModule.submitContactForm();
 contactModule.submitNewsForm();
-animationsModule.prepareRequests(isSafari);
+animationsModule.prepareRequests();
 window.addEventListener("load", initLanding); //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 
@@ -841,22 +841,21 @@ Object.defineProperty(exports, "__esModule", {
 exports.prepareRequests = prepareRequests;
 exports.animateAssets = animateAssets;
 // jshint esversion: 6
-var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/svg-background.svg";
-var url2 = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/design.svg";
-var url3 = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/software.svg";
+var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/";
+var targets = ["svg-background.svg", "design.svg", "software.svg"];
 var controller = new ScrollMagic.Controller();
 var tl = new TimelineMax();
 var tl2 = new TimelineMax();
 var tl3 = new TimelineMax();
 var tl4 = new TimelineMax();
 
-function prepareRequests(isSafari) {
+function prepareRequests() {
   var sectionBg = document.getElementById("section-background");
   var designContainer = document.getElementById("grid-btm-icon");
   var softwareContainer = document.getElementById("grid-mid-icon");
-  makeRequest(url, sectionBg, animateBackground.bind(null, isSafari));
-  makeRequest(url2, designContainer, animateIconDesign);
-  makeRequest(url3, softwareContainer, animateIconSoftware);
+  makeRequest(url + targets[0], sectionBg, animateBackground);
+  makeRequest(url + targets[1], designContainer, animateIconDesign);
+  makeRequest(url + targets[2], softwareContainer, animateIconSoftware);
 }
 
 function makeRequest(url, section, callback) {
@@ -877,7 +876,7 @@ function makeRequest(url, section, callback) {
   xhr.send();
 }
 
-function animateBackground(isSafari) {
+function animateBackground() {
   var svgPaths = document.querySelectorAll("#svg-background path");
   var heroDivs = document.querySelectorAll("#section-hero .hero");
   tl.to(svgPaths[0], 1, {
@@ -893,10 +892,10 @@ function animateBackground(isSafari) {
     y: 25,
     ease: Linear.easeNone
   }, 0); // prettier-ignore
-
-  if (!isSafari) {// tl.to(heroDivs[0], 1, { y: "50%", ease: Linear.easeNone }, 0)
-    //   .to(heroDivs[1], 1, { y: "50%", ease: Linear.easeNone }, 0);
-  }
+  // if(!isSafari) {
+  // tl.to(heroDivs[0], 1, { y: "50%", ease: Linear.easeNone }, 0)
+  //   .to(heroDivs[1], 1, { y: "50%", ease: Linear.easeNone }, 0);
+  // }
 
   var ParallaxScene = new ScrollMagic.Scene({
     // triggerElement: this,
@@ -914,10 +913,10 @@ function animateIconDesign() {
     preparePath(path);
   }); // prettier-ignore
 
-  tl2.to(pathsArray[0], 2, {
+  tl2.to(pathsArray[0], 1, {
     strokeDashoffset: 5,
     ease: Linear.easeNone
-  }, 0).to(pathsArray[1], 2, {
+  }, 0).to(pathsArray[1], 1, {
     strokeDashoffset: 1,
     ease: Linear.easeNone
   }, 0).to(pathsArray[2], 1, {
@@ -926,10 +925,10 @@ function animateIconDesign() {
   }, 1).to(pathsArray[3], 1, {
     strokeDashoffset: 0,
     ease: Linear.easeNone
-  }, ">").to(pathsArray[4], 3, {
+  }, ">").to(pathsArray[4], 1, {
     strokeDashoffset: 0,
     ease: Linear.easeNone
-  }, 0).to(pathsArray[5], 3, {
+  }, 0).to(pathsArray[5], 1, {
     strokeDashoffset: 0,
     ease: Linear.easeNone
   }, 0).to(pathsArray[6], 1, {
@@ -944,10 +943,10 @@ function animateIconDesign() {
   }, ">").to(pathsArray[10], 1, {
     strokeDashoffset: 0,
     ease: Linear.easeNone
-  }, 0.5).to(pathsArray[9], 2, {
+  }, 0.5).to(pathsArray[9], 1, {
     strokeDashoffset: 0,
     ease: Linear.easeNone
-  }, ">").to(pathsArray[11], 2, {
+  }, ">").to(pathsArray[11], 1, {
     strokeDashoffset: 0,
     ease: Linear.easeNone
   }, 2.5).to(pathsArray[12], 1, {
@@ -960,7 +959,7 @@ function animateIconDesign() {
   var drawScene = new ScrollMagic.Scene({
     triggerElement: iconDesign,
     triggerHook: 0.75,
-    duration: "60%" // tweenChanges: true,
+    duration: "100%" // tweenChanges: true,
 
   }).setTween(tl2).addIndicators().addTo(controller);
 }
