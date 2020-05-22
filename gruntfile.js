@@ -145,6 +145,9 @@ module.exports = function (grunt) {
               // attrs: ["xmlns"],
             },
           },
+          {
+            mergePaths: false,
+          },
         ],
       },
       dist: {
