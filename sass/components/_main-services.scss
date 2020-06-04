@@ -61,10 +61,19 @@
     }
 }
 
-#design, #software {
-    width: 30em;
+#marketing {
+    width: 11em;
+}
+
+#software {
+    width: 20em;
+}
+
+#design {
+    width: 20em;
     max-width: 400px;
 }
+
 
 // TODO: section title, and other common elements in base with same class.
 .section-title {

@@ -842,21 +842,24 @@ exports.prepareRequests = prepareRequests;
 exports.animateAssets = animateAssets;
 // jshint esversion: 6
 var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/";
-var targets = ["svg-background.svg", "design.svg", "software.svg"];
+var targets = ["svg-background.svg", "design.svg", "software.svg", "marketing.svg"];
 var controller = new ScrollMagic.Controller();
 var tl = new TimelineMax();
 var tl2 = new TimelineMax();
 var tl3 = new TimelineMax();
 var tl4 = new TimelineMax();
 var tl5 = new TimelineMax();
+var tl6 = new TimelineMax();
 
 function prepareRequests() {
   var sectionBg = document.getElementById("section-background");
   var designContainer = document.getElementById("grid-btm-icon");
   var softwareContainer = document.getElementById("grid-mid-icon");
+  var marketingContainer = document.getElementById("grid-top-icon");
   makeRequest(url + targets[0], sectionBg, animateBackground);
   makeRequest(url + targets[1], designContainer, animateIconDesign);
   makeRequest(url + targets[2], softwareContainer, animateIconSoftware);
+  makeRequest(url + targets[3], marketingContainer, animateIconMarketing);
 }
 
 function makeRequest(url, section, callback) {
@@ -912,10 +915,7 @@ function animateIconDesign() {
   var pathsArray = Array.prototype.slice.call(iconDesignPaths);
   pathsArray.forEach(function (path) {
     preparePath(path);
-  }); // console.log(pathsArray);
-  // pathsArray[7].style.strokeDashoffset = 0;
-  // pathsArray[7].style.strokeDasharray = 0;
-
+  });
   var bluePathsArray = [];
   var greenPathsArray = [];
   bluePathsArray.push(pathsArray[0], pathsArray[3], pathsArray[4], pathsArray[6], pathsArray[7], pathsArray[8], pathsArray[10]);
@@ -983,7 +983,7 @@ function animateIconDesign() {
   var drawScene = new ScrollMagic.Scene({
     triggerElement: iconDesign,
     triggerHook: 1,
-    duration: "100%" // tweenChanges: true,
+    duration: "98%" // tweenChanges: true,
 
   }).setTween(tl2).addTo(controller);
 }
@@ -1086,6 +1086,106 @@ function animateIconSoftware() {
     duration: "75%" // tweenChanges: true,
 
   }).setTween(tl5).addTo(controller);
+}
+
+function animateIconMarketing() {
+  var iconMarketing = document.getElementById("marketing");
+  var iconMarketingPaths = document.querySelectorAll("#marketing path");
+  var pathsArray = Array.prototype.slice.call(iconMarketingPaths);
+  pathsArray.forEach(function (path) {
+    preparePath(path);
+  });
+  console.log(iconMarketingPaths);
+  var bluePathsArray = [];
+  var greenPathsArray = [];
+  bluePathsArray.push(pathsArray[0], pathsArray[1], pathsArray[2], pathsArray[3], pathsArray[8], pathsArray[9], pathsArray[10], pathsArray[11], pathsArray[14], pathsArray[16], pathsArray[17]);
+  greenPathsArray.push(pathsArray[4], pathsArray[5], pathsArray[6], pathsArray[7], pathsArray[12], pathsArray[13], pathsArray[15]); // prettier-ignore
+
+  tl6.to(pathsArray[0], 2.5, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0.5) //blue
+  .to(pathsArray[1], 2.5, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0.5) //blue
+  .to(pathsArray[2], 1, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 1) //blue
+  .to(pathsArray[3], 1.75, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0) //blue
+  .to(pathsArray[4], 0.6, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0.3) //green
+  .to(pathsArray[5], 0.5, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, ">") //green
+  .to(pathsArray[6], 0.5, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, ">") //green
+  .to(pathsArray[7], 2, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0) //green
+  .to(pathsArray[8], 2, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0) //blue
+  .to(pathsArray[9], 2, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0) //blue
+  .to(pathsArray[10], 2, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0) //blue
+  .to(pathsArray[11], 2, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0) //blue
+  .to(pathsArray[12], 1.5, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0) //green
+  .to(pathsArray[13], 1.5, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0.5) //green
+  .to(pathsArray[14], 1.5, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0.5) //blue
+  .to(pathsArray[15], 1.5, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0.5) //green
+  .to(pathsArray[16], 2, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0) //blue
+  .to(pathsArray[17], 2, {
+    strokeDashoffset: 0,
+    ease: Linear.easeNone
+  }, 0) //blue
+  .to(bluePathsArray, 2, {
+    stroke: "#33629c",
+    ease: Linear.easeNone
+  }, 0).to(greenPathsArray, 2, {
+    stroke: "#009889",
+    ease: Linear.easeNone
+  }, 0);
+  var drawScene = new ScrollMagic.Scene({
+    triggerElement: iconMarketing,
+    triggerHook: 1,
+    duration: "92.5%" // tweenChanges: true,
+
+  }).setTween(tl6).addTo(controller);
 }
 
 function preparePath(path) {

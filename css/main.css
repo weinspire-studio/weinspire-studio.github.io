@@ -843,8 +843,16 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-#design, #software {
-  width: 30em;
+#marketing {
+  width: 11em;
+}
+
+#software {
+  width: 20em;
+}
+
+#design {
+  width: 20em;
   max-width: 400px;
 }
 
