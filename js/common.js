@@ -325,7 +325,7 @@ function addClassesToSvgs() {
 // ::selection background-color
 // svg sprite loading twice?
 
-},{"./sub_modules/classList":2,"./sub_modules/contact":3,"./sub_modules/desktop":4,"./sub_modules/gsap-scrollmagic":5,"./sub_modules/jquery":6,"./sub_modules/mobile":7,"./sub_modules/preloader":8,"./sub_modules/svg4everybody":9,"./sub_modules/swiper":10,"./sub_modules/typewriter":11,"lodash/debounce":22}],2:[function(require,module,exports){
+},{"./sub_modules/classList":2,"./sub_modules/contact":3,"./sub_modules/desktop":4,"./sub_modules/gsap-scrollmagic":5,"./sub_modules/jquery":7,"./sub_modules/mobile":8,"./sub_modules/preloader":9,"./sub_modules/svg4everybody":10,"./sub_modules/swiper":11,"./sub_modules/typewriter":12,"lodash/debounce":24}],2:[function(require,module,exports){
 "use strict";
 
 "document" in self && ("classList" in document.createElement("_") && (!document.createElementNS || "classList" in document.createElementNS("http://www.w3.org/2000/svg", "g")) || !function (t) {
@@ -704,6 +704,8 @@ exports.removeImagesListeners = removeImagesListeners;
 
 var _mobile = require("./mobile.js");
 
+var _http = require("../sub_modules/http");
+
 // jshint esversion: 6
 var navAnchors = document.querySelectorAll(".nav-list a");
 var brandDesktop = document.querySelector("#brand-desktop-svg");
@@ -777,12 +779,15 @@ function animateImagesSafari() {
   list.addEventListener("mouseleave", restoreLink);
 }
 
+function removeImagesListeners() {
+  list.removeEventListener("mouseover", styleLink);
+  list.removeEventListener("mouseleave", restoreLink);
+}
+
 function styleLink() {
   links.forEach(function (link) {
     if (link.matches(":hover")) {
-      // console.log(link.id);
-      link.style.width = "36%"; // console.log(link);
-
+      link.style.width = "36%";
       link.classList.add("overlay-transparent");
       link.firstElementChild.nextElementSibling.classList.add("show-caption");
     } else {
@@ -801,9 +806,65 @@ function restoreLink() {
   });
 }
 
-function removeImagesListeners() {
-  list.removeEventListener("mouseover", styleLink);
-  list.removeEventListener("mouseleave", restoreLink);
+var modal = document.getElementById("modal");
+var modalImage = document.getElementById("modal-image");
+var modalCaption = document.getElementById("modal-caption");
+var cross = document.querySelector("span.close");
+var leftArrow = document.getElementById("left-arrow");
+var rightArrow = document.getElementById("right-arrow");
+var hasRequested = false;
+initModal();
+
+function initModal() {
+  if (!hasRequested) {
+    list.addEventListener("click", function showModal(e) {
+      var imageTarget; // console.log(e.target);
+
+      if (e.target.tagName === "DIV") imageTarget = e.target.previousElementSibling;else if (e.target.tagName === "H4" || e.target.tagName === "H6") imageTarget = e.target.parentNode.previousElementSibling.previousElementSibling;else return;
+      (0, _http.loadHDImages)(imageTarget, modalImage, modalCaption);
+      animateEntry();
+      slideImages(imageTarget.parentNode);
+    });
+    cross.addEventListener("click", function modalClose() {
+      modal.classList.remove("visible");
+      cross.classList.remove("emerge");
+      leftArrow.classList.remove("emerge", "not-allowed");
+      rightArrow.classList.remove("emerge", "not-allowed");
+      modalImage.style.animation = "";
+      modalCaption.style.animation = "";
+    });
+    hasRequested = true;
+  }
+}
+
+function animateEntry() {
+  modal.classList.add("visible");
+  modalImage.style.animation = "1s emerge-anim";
+  modalCaption.style.animation = "1s emerge-anim";
+  cross.classList.add("emerge");
+  leftArrow.classList.add("emerge");
+  rightArrow.classList.add("emerge");
+}
+
+function slideImages(link) {
+  if (!link.previousElementSibling) {
+    leftArrow.classList.add("not-allowed");
+  } else if (!link.nextElementSibling) {
+    rightArrow.classList.add("not-allowed");
+  }
+
+  leftArrow.addEventListener("click", function () {
+    if (link.previousElementSibling) {
+      if (!link.previousElementSibling.previousElementSibling) leftArrow.classList.add("not-allowed");else if (rightArrow.classList.contains("not-allowed")) rightArrow.classList.remove("not-allowed");
+      link = link.previousElementSibling;
+    }
+  });
+  rightArrow.addEventListener("click", function () {
+    if (link.nextElementSibling) {
+      if (!link.nextElementSibling.nextElementSibling) rightArrow.classList.add("not-allowed");else if (leftArrow.classList.contains("not-allowed")) leftArrow.classList.remove("not-allowed");
+      link = link.nextElementSibling;
+    }
+  });
 } // changes mobile svg brand colors.
 
 
@@ -832,7 +893,7 @@ function unsetDesktopBrand() {
   brandDesktop.style.display = "none";
 }
 
-},{"./mobile.js":7}],5:[function(require,module,exports){
+},{"../sub_modules/http":6,"./mobile.js":8}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -840,6 +901,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.prepareRequests = prepareRequests;
 exports.animateAssets = animateAssets;
+
+var _http = require("../sub_modules/http");
+
 // jshint esversion: 6
 var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/";
 var targets = ["svg-background.svg", "design.svg", "software.svg", "marketing.svg"];
@@ -856,33 +920,15 @@ function prepareRequests() {
   var designContainer = document.getElementById("grid-btm-icon");
   var softwareContainer = document.getElementById("grid-mid-icon");
   var marketingContainer = document.getElementById("grid-top-icon");
-  makeRequest(url + targets[0], sectionBg, animateBackground);
-  makeRequest(url + targets[1], designContainer, animateIconDesign);
-  makeRequest(url + targets[2], softwareContainer, animateIconSoftware);
-  makeRequest(url + targets[3], marketingContainer, animateIconMarketing);
-}
-
-function makeRequest(url, section, callback) {
-  var xhr = new XMLHttpRequest();
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.status === 200) {
-        section.append(xhr.responseXML.documentElement);
-        callback();
-      } else {
-        console.log("There was a problem with the request.");
-      }
-    }
-  };
-
-  xhr.open("GET", url);
-  xhr.send();
+  (0, _http.makeRequest)(url + targets[0], sectionBg, animateBackground);
+  (0, _http.makeRequest)(url + targets[1], designContainer, animateIconDesign);
+  (0, _http.makeRequest)(url + targets[2], softwareContainer, animateIconSoftware);
+  (0, _http.makeRequest)(url + targets[3], marketingContainer, animateIconMarketing);
 }
 
 function animateBackground() {
-  var svgPaths = document.querySelectorAll("#svg-background path");
-  var heroDivs = document.querySelectorAll("#section-hero .hero");
+  var svgPaths = document.querySelectorAll("#svg-background path"); // const heroDivs = document.querySelectorAll("#section-hero .hero");
+
   tl.to(svgPaths[0], 1, {
     y: 95,
     ease: Linear.easeNone
@@ -1095,7 +1141,6 @@ function animateIconMarketing() {
   pathsArray.forEach(function (path) {
     preparePath(path);
   });
-  console.log(iconMarketingPaths);
   var bluePathsArray = [];
   var greenPathsArray = [];
   bluePathsArray.push(pathsArray[0], pathsArray[1], pathsArray[2], pathsArray[3], pathsArray[8], pathsArray[9], pathsArray[10], pathsArray[11], pathsArray[14], pathsArray[16], pathsArray[17]);
@@ -1235,7 +1280,112 @@ function animateSvgPaths() {
 // });
 // fill="none" stroke="#000000" stroke-width="1"
 
-},{}],6:[function(require,module,exports){
+},{"../sub_modules/http":6}],6:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.makeRequest = makeRequest;
+exports.loadHDImages = loadHDImages;
+
+require("../../node_modules/objectFitPolyfill/dist/objectFitPolyfill.basic.min.js");
+
+require("intersection-observer");
+
+var _vanillaLazyload = _interopRequireDefault(require("vanilla-lazyload"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+// jshint esversion: 6
+var baseUrl = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/";
+
+function makeRequest(url, section) {
+  var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        section.append(xhr.responseXML.documentElement);
+
+        if (callback) {
+          callback();
+        } else {
+          console.log("no call");
+        }
+      } else {
+        console.log("There was a problem with the request.");
+      }
+    }
+  };
+
+  xhr.open("GET", url);
+  xhr.send();
+}
+
+var lazyLoadInstance = new _vanillaLazyload["default"]({
+  elements_selector: ".swiper-wrapper img.lazy"
+});
+
+function loadHDImages(clickedImage, modalImage, modalCaption) {
+  var images = document.querySelectorAll(".swiper-wrapper img");
+  var caption = clickedImage.nextElementSibling.nextElementSibling;
+  var newSource;
+  var h4 = document.createElement("h4");
+  var h6 = document.createElement("h6");
+  images.forEach(function (img) {
+    if (img.src === clickedImage.src) {
+      newSource = clickedImage.src.replace("-min", "");
+      modalImage.src = newSource;
+      if (modalCaption.textContent !== "") modalCaption.textContent = "";
+      modalCaption.appendChild(h4);
+      modalCaption.appendChild(h6);
+      modalCaption.firstElementChild.textContent = caption.firstElementChild.textContent;
+      modalCaption.lastElementChild.textContent = caption.lastElementChild.textContent; // modalCaption.innerText = caption.innerText;
+
+      img.src = newSource;
+    }
+  });
+  setTimeout(function () {
+    images.forEach(function (img) {
+      if (img.src !== clickedImage.src) {
+        img.src = newSource;
+      }
+    });
+  }, 100);
+} // lazyLoadInstance.update();
+
+
+objectFitPolyfill(); // function makeRequest2(url, section, callback = null) {
+//   let xhr = new XMLHttpRequest();
+//   xhr.onreadystatechange = () => {
+//     if (xhr.readyState === XMLHttpRequest.DONE) {
+//       if (xhr.status === 200) {
+//         console.log(xhr);
+//         section.appendChild(img);
+//         if (callback) {
+//           callback();
+//         } else {
+//           console.log("no call");
+//         }
+//       } else {
+//         console.log("There was a problem with the request.");
+//       }
+//     }
+//   };
+//   xhr.open("GET", url);
+//   xhr.send();
+// }
+// function prepareRequests() {
+//   const containers = document.querySelectorAll(".content-link");
+//   makeRequest2(url, containers[1], testCallback);
+// }
+// function testCallback() {
+//   console.log(document.querySelectorAll(".content-link"));
+// }
+
+},{"../../node_modules/objectFitPolyfill/dist/objectFitPolyfill.basic.min.js":30,"intersection-observer":17,"vanilla-lazyload":32}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1262,12 +1412,12 @@ function animateImages() {
   $("#section-projects-design li").hover(function () {
     $(this).addClass("expanded");
     $(this).siblings().addClass("contracted");
-    $(this).children().eq(1).addClass("show-caption");
+    $(this).children().eq(2).addClass("show-caption");
     isExpanded = true;
   }, function () {
     $(this).removeClass("expanded");
     $(this).siblings().removeClass("contracted");
-    $(this).children().eq(1).removeClass("show-caption");
+    $(this).children().eq(2).removeClass("show-caption");
     isExpanded = false;
   });
   hasHoverListenerOnPortolio = true;
@@ -1288,7 +1438,7 @@ function unbindImages() {
   }
 }
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1473,7 +1623,7 @@ function unsetMobileBrand() {
   brandMobile.style.display = "none";
 }
 
-},{"../main.js":1}],8:[function(require,module,exports){
+},{"../main.js":1}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1511,7 +1661,7 @@ function removeListeners() {
   preloaderContainer.removeEventListener("animationend", setLanding);
 }
 
-},{"../sub_modules/gsap-scrollmagic":5}],9:[function(require,module,exports){
+},{"../sub_modules/gsap-scrollmagic":5}],10:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1623,7 +1773,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return svg4everybody;
 });
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1661,7 +1811,7 @@ var defineSwiper = function defineSwiper() {
 
 exports.defineSwiper = defineSwiper;
 
-},{"../../node_custom_modules/swiper/css/swiper.min.css":12,"../../node_custom_modules/swiper/js/swiper.esm.js":13}],11:[function(require,module,exports){
+},{"../../node_custom_modules/swiper/css/swiper.min.css":13,"../../node_custom_modules/swiper/js/swiper.esm.js":14}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1778,9 +1928,9 @@ function reviewWidth(isMobile) {
   }
 }
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var css = "/**\n * Swiper 5.3.6\n * Most modern mobile touch slider and framework with hardware accelerated transitions\n * http://swiperjs.com\n *\n * Copyright 2014-2020 Vladimir Kharlampidi\n *\n * Released under the MIT License\n *\n * Released on: April 4, 2020\n */\n@font-face {\n  font-family: swiper-icons;\n  src: url(\"data:application/font-woff;charset=utf-8;base64, d09GRgABAAAAAAZgABAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAGRAAAABoAAAAci6qHkUdERUYAAAWgAAAAIwAAACQAYABXR1BPUwAABhQAAAAuAAAANuAY7+xHU1VCAAAFxAAAAFAAAABm2fPczU9TLzIAAAHcAAAASgAAAGBP9V5RY21hcAAAAkQAAACIAAABYt6F0cBjdnQgAAACzAAAAAQAAAAEABEBRGdhc3AAAAWYAAAACAAAAAj//wADZ2x5ZgAAAywAAADMAAAD2MHtryVoZWFkAAABbAAAADAAAAA2E2+eoWhoZWEAAAGcAAAAHwAAACQC9gDzaG10eAAAAigAAAAZAAAArgJkABFsb2NhAAAC0AAAAFoAAABaFQAUGG1heHAAAAG8AAAAHwAAACAAcABAbmFtZQAAA/gAAAE5AAACXvFdBwlwb3N0AAAFNAAAAGIAAACE5s74hXjaY2BkYGAAYpf5Hu/j+W2+MnAzMYDAzaX6QjD6/4//Bxj5GA8AuRwMYGkAPywL13jaY2BkYGA88P8Agx4j+/8fQDYfA1AEBWgDAIB2BOoAeNpjYGRgYNBh4GdgYgABEMnIABJzYNADCQAACWgAsQB42mNgYfzCOIGBlYGB0YcxjYGBwR1Kf2WQZGhhYGBiYGVmgAFGBiQQkOaawtDAoMBQxXjg/wEGPcYDDA4wNUA2CCgwsAAAO4EL6gAAeNpj2M0gyAACqxgGNWBkZ2D4/wMA+xkDdgAAAHjaY2BgYGaAYBkGRgYQiAHyGMF8FgYHIM3DwMHABGQrMOgyWDLEM1T9/w8UBfEMgLzE////P/5//f/V/xv+r4eaAAeMbAxwIUYmIMHEgKYAYjUcsDAwsLKxc3BycfPw8jEQA/gZBASFhEVExcQlJKWkZWTl5BUUlZRVVNXUNTQZBgMAAMR+E+gAEQFEAAAAKgAqACoANAA+AEgAUgBcAGYAcAB6AIQAjgCYAKIArAC2AMAAygDUAN4A6ADyAPwBBgEQARoBJAEuATgBQgFMAVYBYAFqAXQBfgGIAZIBnAGmAbIBzgHsAAB42u2NMQ6CUAyGW568x9AneYYgm4MJbhKFaExIOAVX8ApewSt4Bic4AfeAid3VOBixDxfPYEza5O+Xfi04YADggiUIULCuEJK8VhO4bSvpdnktHI5QCYtdi2sl8ZnXaHlqUrNKzdKcT8cjlq+rwZSvIVczNiezsfnP/uznmfPFBNODM2K7MTQ45YEAZqGP81AmGGcF3iPqOop0r1SPTaTbVkfUe4HXj97wYE+yNwWYxwWu4v1ugWHgo3S1XdZEVqWM7ET0cfnLGxWfkgR42o2PvWrDMBSFj/IHLaF0zKjRgdiVMwScNRAoWUoH78Y2icB/yIY09An6AH2Bdu/UB+yxopYshQiEvnvu0dURgDt8QeC8PDw7Fpji3fEA4z/PEJ6YOB5hKh4dj3EvXhxPqH/SKUY3rJ7srZ4FZnh1PMAtPhwP6fl2PMJMPDgeQ4rY8YT6Gzao0eAEA409DuggmTnFnOcSCiEiLMgxCiTI6Cq5DZUd3Qmp10vO0LaLTd2cjN4fOumlc7lUYbSQcZFkutRG7g6JKZKy0RmdLY680CDnEJ+UMkpFFe1RN7nxdVpXrC4aTtnaurOnYercZg2YVmLN/d/gczfEimrE/fs/bOuq29Zmn8tloORaXgZgGa78yO9/cnXm2BpaGvq25Dv9S4E9+5SIc9PqupJKhYFSSl47+Qcr1mYNAAAAeNptw0cKwkAAAMDZJA8Q7OUJvkLsPfZ6zFVERPy8qHh2YER+3i/BP83vIBLLySsoKimrqKqpa2hp6+jq6RsYGhmbmJqZSy0sraxtbO3sHRydnEMU4uR6yx7JJXveP7WrDycAAAAAAAH//wACeNpjYGRgYOABYhkgZgJCZgZNBkYGLQZtIJsFLMYAAAw3ALgAeNolizEKgDAQBCchRbC2sFER0YD6qVQiBCv/H9ezGI6Z5XBAw8CBK/m5iQQVauVbXLnOrMZv2oLdKFa8Pjuru2hJzGabmOSLzNMzvutpB3N42mNgZGBg4GKQYzBhYMxJLMlj4GBgAYow/P/PAJJhLM6sSoWKfWCAAwDAjgbRAAB42mNgYGBkAIIbCZo5IPrmUn0hGA0AO8EFTQAA\") format(\"woff\");\n  font-weight: 400;\n  font-style: normal;\n}\n:root {\n  --swiper-theme-color: #007aff;\n}\n.swiper-container {\n  margin-left: auto;\n  margin-right: auto;\n  position: relative;\n  overflow: hidden;\n  list-style: none;\n  padding: 0;\n  z-index: 1;\n}\n.swiper-container-vertical>.swiper-wrapper {\n  flex-direction: column;\n}\n.swiper-wrapper {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  z-index: 1;\n  display: flex;\n  transition-property: transform;\n  box-sizing: content-box;\n}\n.swiper-container-android .swiper-slide,\n.swiper-wrapper {\n  transform: translate3d(0px,0,0);\n}\n.swiper-container-multirow>.swiper-wrapper {\n  flex-wrap: wrap;\n}\n.swiper-container-multirow-column>.swiper-wrapper {\n  flex-wrap: wrap;\n  flex-direction: column;\n}\n.swiper-container-free-mode>.swiper-wrapper {\n  transition-timing-function: ease-out;\n  margin: 0 auto;\n}\n.swiper-slide {\n  flex-shrink: 0;\n  width: 100%;\n  height: 100%;\n  position: relative;\n  transition-property: transform;\n}\n.swiper-slide-invisible-blank {\n  visibility: hidden;\n}\n.swiper-container-autoheight,\n.swiper-container-autoheight .swiper-slide {\n  height: auto;\n}\n.swiper-container-autoheight .swiper-wrapper {\n  align-items: flex-start;\n  transition-property: transform,height;\n}\n.swiper-container-3d {\n  perspective: 1200px;\n}\n.swiper-container-3d .swiper-cube-shadow,\n.swiper-container-3d .swiper-slide,\n.swiper-container-3d .swiper-slide-shadow-bottom,\n.swiper-container-3d .swiper-slide-shadow-left,\n.swiper-container-3d .swiper-slide-shadow-right,\n.swiper-container-3d .swiper-slide-shadow-top,\n.swiper-container-3d .swiper-wrapper {\n  transform-style: preserve-3d;\n}\n.swiper-container-3d .swiper-slide-shadow-bottom,\n.swiper-container-3d .swiper-slide-shadow-left,\n.swiper-container-3d .swiper-slide-shadow-right,\n.swiper-container-3d .swiper-slide-shadow-top {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n  z-index: 10;\n}\n.swiper-container-3d .swiper-slide-shadow-left {\n  background-image: linear-gradient(to left,rgba(0,0,0,.5),rgba(0,0,0,0));\n}\n.swiper-container-3d .swiper-slide-shadow-right {\n  background-image: linear-gradient(to right,rgba(0,0,0,.5),rgba(0,0,0,0));\n}\n.swiper-container-3d .swiper-slide-shadow-top {\n  background-image: linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,0));\n}\n.swiper-container-3d .swiper-slide-shadow-bottom {\n  background-image: linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,0));\n}\n.swiper-container-css-mode>.swiper-wrapper {\n  overflow: auto;\n  scrollbar-width: none;\n  -ms-overflow-style: none;\n}\n.swiper-container-css-mode>.swiper-wrapper::-webkit-scrollbar {\n  display: none;\n}\n.swiper-container-css-mode>.swiper-wrapper>.swiper-slide {\n  scroll-snap-align: start start;\n}\n.swiper-container-horizontal.swiper-container-css-mode>.swiper-wrapper {\n  scroll-snap-type: x mandatory;\n}\n.swiper-container-vertical.swiper-container-css-mode>.swiper-wrapper {\n  scroll-snap-type: y mandatory;\n}\n.swiper-container-cube {\n  overflow: visible;\n}\n.swiper-container-cube .swiper-slide {\n  pointer-events: none;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n  z-index: 1;\n  visibility: hidden;\n  transform-origin: 0 0;\n  width: 100%;\n  height: 100%;\n}\n.swiper-container-cube .swiper-slide .swiper-slide {\n  pointer-events: none;\n}\n.swiper-container-cube.swiper-container-rtl .swiper-slide {\n  transform-origin: 100% 0;\n}\n.swiper-container-cube .swiper-slide-active,\n.swiper-container-cube .swiper-slide-active .swiper-slide-active {\n  pointer-events: auto;\n}\n.swiper-container-cube .swiper-slide-active,\n.swiper-container-cube .swiper-slide-next,\n.swiper-container-cube .swiper-slide-next+.swiper-slide,\n.swiper-container-cube .swiper-slide-prev {\n  pointer-events: auto;\n  visibility: visible;\n}\n.swiper-container-cube .swiper-slide-shadow-bottom,\n.swiper-container-cube .swiper-slide-shadow-left,\n.swiper-container-cube .swiper-slide-shadow-right,\n.swiper-container-cube .swiper-slide-shadow-top {\n  z-index: 0;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n}\n.swiper-container-cube .swiper-cube-shadow {\n  position: absolute;\n  left: 0;\n  bottom: 0px;\n  width: 100%;\n  height: 100%;\n  background: #000;\n  opacity: .6;\n  -webkit-filter: blur(50px);\n  filter: blur(50px);\n  z-index: 0;\n}\n.swiper-pagination {\n  position: absolute;\n  text-align: center;\n  transition: .3s opacity;\n  transform: translate3d(0,0,0);\n  z-index: 10;\n}\n.swiper-pagination.swiper-pagination-hidden {\n  opacity: 0;\n}\n.swiper-container-horizontal>.swiper-pagination-bullets,\n.swiper-pagination-custom,\n.swiper-pagination-fraction {\n  bottom: 10px;\n  left: 0;\n  width: 100%;\n}\n.swiper-pagination-bullets-dynamic {\n  overflow: hidden;\n  font-size: 0;\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  transform: scale(.33);\n  position: relative;\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active {\n  transform: scale(1);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-main {\n  transform: scale(1);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-prev {\n  transform: scale(.66);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-prev-prev {\n  transform: scale(.33);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-next {\n  transform: scale(.66);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-next-next {\n  transform: scale(.33);\n}\n.swiper-pagination-bullet {\n  width: 8px;\n  height: 8px;\n  display: inline-block;\n  border-radius: 100%;\n  background: #000;\n  opacity: .2;\n}\nbutton.swiper-pagination-bullet {\n  border: none;\n  margin: 0;\n  padding: 0;\n  box-shadow: none;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n}\n.swiper-pagination-clickable .swiper-pagination-bullet {\n  cursor: pointer;\n}\n.swiper-pagination-bullet-active {\n  opacity: 1;\n  background: var(--swiper-pagination-color,var(--swiper-theme-color));\n}\n.swiper-container-vertical>.swiper-pagination-bullets {\n  right: 10px;\n  top: 50%;\n  transform: translate3d(0px,-50%,0);\n}\n.swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet {\n  margin: 6px 0;\n  display: block;\n}\n.swiper-container-vertical>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {\n  top: 50%;\n  transform: translateY(-50%);\n  width: 8px;\n}\n.swiper-container-vertical>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  display: inline-block;\n  transition: .2s transform,.2s top;\n}\n.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {\n  margin: 0 4px;\n}\n.swiper-container-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {\n  left: 50%;\n  transform: translateX(-50%);\n  white-space: nowrap;\n}\n.swiper-container-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  transition: .2s transform,.2s left;\n}\n.swiper-container-horizontal.swiper-container-rtl>.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  transition: .2s transform,.2s right;\n}\n.swiper-pagination-progressbar {\n  background: rgba(0,0,0,.25);\n  position: absolute;\n}\n.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {\n  background: var(--swiper-pagination-color,var(--swiper-theme-color));\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  transform: scale(0);\n  transform-origin: left top;\n}\n.swiper-container-rtl .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {\n  transform-origin: right top;\n}\n.swiper-container-horizontal>.swiper-pagination-progressbar,\n.swiper-container-vertical>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {\n  width: 100%;\n  height: 4px;\n  left: 0;\n  top: 0;\n}\n.swiper-container-horizontal>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite,\n.swiper-container-vertical>.swiper-pagination-progressbar {\n  width: 4px;\n  height: 100%;\n  left: 0;\n  top: 0;\n}\n.swiper-pagination-white {\n  --swiper-pagination-color: #ffffff;\n}\n.swiper-pagination-black {\n  --swiper-pagination-color: #000000;\n}\n.swiper-pagination-lock {\n  display: none;\n}\n"; (require("browserify-css").createStyle(css, { "href": "node_custom_modules/swiper/css/swiper.min.css" }, { "insertAt": "bottom" })); module.exports = css;
-},{"browserify-css":14}],13:[function(require,module,exports){
+},{"browserify-css":15}],14:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6353,7 +6503,7 @@ if (typeof Swiper.use === 'undefined') {
 
 Swiper.use(components);
 
-},{"dom7/dist/dom7.modular":15,"ssr-window":28}],14:[function(require,module,exports){
+},{"dom7/dist/dom7.modular":16,"ssr-window":31}],15:[function(require,module,exports){
 'use strict'; // For more information about browser field, check out the browser field at https://github.com/substack/browserify-handbook#browser-field.
 
 var styleElementsInsertedAtTop = [];
@@ -6438,7 +6588,7 @@ module.exports = {
   }
 };
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8316,7 +8466,736 @@ function scroll() {
   return eventShortcut.bind(this).apply(void 0, ['scroll'].concat(args));
 }
 
-},{"ssr-window":28}],16:[function(require,module,exports){
+},{"ssr-window":31}],17:[function(require,module,exports){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/**
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the W3C SOFTWARE AND DOCUMENT NOTICE AND LICENSE.
+ *
+ *  https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ */
+(function () {
+  'use strict'; // Exit early if we're not running in a browser.
+
+  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) !== 'object') {
+    return;
+  } // Exit early if all IntersectionObserver and IntersectionObserverEntry
+  // features are natively supported.
+
+
+  if ('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
+    // Minimal polyfill for Edge 15's lack of `isIntersecting`
+    // See: https://github.com/w3c/IntersectionObserver/issues/211
+    if (!('isIntersecting' in window.IntersectionObserverEntry.prototype)) {
+      Object.defineProperty(window.IntersectionObserverEntry.prototype, 'isIntersecting', {
+        get: function get() {
+          return this.intersectionRatio > 0;
+        }
+      });
+    }
+
+    return;
+  }
+  /**
+   * A local reference to the document.
+   */
+
+
+  var document = window.document;
+  /**
+   * An IntersectionObserver registry. This registry exists to hold a strong
+   * reference to IntersectionObserver instances currently observing a target
+   * element. Without this registry, instances without another reference may be
+   * garbage collected.
+   */
+
+  var registry = [];
+  /**
+   * Creates the global IntersectionObserverEntry constructor.
+   * https://w3c.github.io/IntersectionObserver/#intersection-observer-entry
+   * @param {Object} entry A dictionary of instance properties.
+   * @constructor
+   */
+
+  function IntersectionObserverEntry(entry) {
+    this.time = entry.time;
+    this.target = entry.target;
+    this.rootBounds = entry.rootBounds;
+    this.boundingClientRect = entry.boundingClientRect;
+    this.intersectionRect = entry.intersectionRect || getEmptyRect();
+    this.isIntersecting = !!entry.intersectionRect; // Calculates the intersection ratio.
+
+    var targetRect = this.boundingClientRect;
+    var targetArea = targetRect.width * targetRect.height;
+    var intersectionRect = this.intersectionRect;
+    var intersectionArea = intersectionRect.width * intersectionRect.height; // Sets intersection ratio.
+
+    if (targetArea) {
+      // Round the intersection ratio to avoid floating point math issues:
+      // https://github.com/w3c/IntersectionObserver/issues/324
+      this.intersectionRatio = Number((intersectionArea / targetArea).toFixed(4));
+    } else {
+      // If area is zero and is intersecting, sets to 1, otherwise to 0
+      this.intersectionRatio = this.isIntersecting ? 1 : 0;
+    }
+  }
+  /**
+   * Creates the global IntersectionObserver constructor.
+   * https://w3c.github.io/IntersectionObserver/#intersection-observer-interface
+   * @param {Function} callback The function to be invoked after intersection
+   *     changes have queued. The function is not invoked if the queue has
+   *     been emptied by calling the `takeRecords` method.
+   * @param {Object=} opt_options Optional configuration options.
+   * @constructor
+   */
+
+
+  function IntersectionObserver(callback, opt_options) {
+    var options = opt_options || {};
+
+    if (typeof callback != 'function') {
+      throw new Error('callback must be a function');
+    }
+
+    if (options.root && options.root.nodeType != 1) {
+      throw new Error('root must be an Element');
+    } // Binds and throttles `this._checkForIntersections`.
+
+
+    this._checkForIntersections = throttle(this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT); // Private properties.
+
+    this._callback = callback;
+    this._observationTargets = [];
+    this._queuedEntries = [];
+    this._rootMarginValues = this._parseRootMargin(options.rootMargin); // Public properties.
+
+    this.thresholds = this._initThresholds(options.threshold);
+    this.root = options.root || null;
+    this.rootMargin = this._rootMarginValues.map(function (margin) {
+      return margin.value + margin.unit;
+    }).join(' ');
+  }
+  /**
+   * The minimum interval within which the document will be checked for
+   * intersection changes.
+   */
+
+
+  IntersectionObserver.prototype.THROTTLE_TIMEOUT = 100;
+  /**
+   * The frequency in which the polyfill polls for intersection changes.
+   * this can be updated on a per instance basis and must be set prior to
+   * calling `observe` on the first target.
+   */
+
+  IntersectionObserver.prototype.POLL_INTERVAL = null;
+  /**
+   * Use a mutation observer on the root element
+   * to detect intersection changes.
+   */
+
+  IntersectionObserver.prototype.USE_MUTATION_OBSERVER = true;
+  /**
+   * Starts observing a target element for intersection changes based on
+   * the thresholds values.
+   * @param {Element} target The DOM element to observe.
+   */
+
+  IntersectionObserver.prototype.observe = function (target) {
+    var isTargetAlreadyObserved = this._observationTargets.some(function (item) {
+      return item.element == target;
+    });
+
+    if (isTargetAlreadyObserved) {
+      return;
+    }
+
+    if (!(target && target.nodeType == 1)) {
+      throw new Error('target must be an Element');
+    }
+
+    this._registerInstance();
+
+    this._observationTargets.push({
+      element: target,
+      entry: null
+    });
+
+    this._monitorIntersections();
+
+    this._checkForIntersections();
+  };
+  /**
+   * Stops observing a target element for intersection changes.
+   * @param {Element} target The DOM element to observe.
+   */
+
+
+  IntersectionObserver.prototype.unobserve = function (target) {
+    this._observationTargets = this._observationTargets.filter(function (item) {
+      return item.element != target;
+    });
+
+    if (!this._observationTargets.length) {
+      this._unmonitorIntersections();
+
+      this._unregisterInstance();
+    }
+  };
+  /**
+   * Stops observing all target elements for intersection changes.
+   */
+
+
+  IntersectionObserver.prototype.disconnect = function () {
+    this._observationTargets = [];
+
+    this._unmonitorIntersections();
+
+    this._unregisterInstance();
+  };
+  /**
+   * Returns any queue entries that have not yet been reported to the
+   * callback and clears the queue. This can be used in conjunction with the
+   * callback to obtain the absolute most up-to-date intersection information.
+   * @return {Array} The currently queued entries.
+   */
+
+
+  IntersectionObserver.prototype.takeRecords = function () {
+    var records = this._queuedEntries.slice();
+
+    this._queuedEntries = [];
+    return records;
+  };
+  /**
+   * Accepts the threshold value from the user configuration object and
+   * returns a sorted array of unique threshold values. If a value is not
+   * between 0 and 1 and error is thrown.
+   * @private
+   * @param {Array|number=} opt_threshold An optional threshold value or
+   *     a list of threshold values, defaulting to [0].
+   * @return {Array} A sorted list of unique and valid threshold values.
+   */
+
+
+  IntersectionObserver.prototype._initThresholds = function (opt_threshold) {
+    var threshold = opt_threshold || [0];
+    if (!Array.isArray(threshold)) threshold = [threshold];
+    return threshold.sort().filter(function (t, i, a) {
+      if (typeof t != 'number' || isNaN(t) || t < 0 || t > 1) {
+        throw new Error('threshold must be a number between 0 and 1 inclusively');
+      }
+
+      return t !== a[i - 1];
+    });
+  };
+  /**
+   * Accepts the rootMargin value from the user configuration object
+   * and returns an array of the four margin values as an object containing
+   * the value and unit properties. If any of the values are not properly
+   * formatted or use a unit other than px or %, and error is thrown.
+   * @private
+   * @param {string=} opt_rootMargin An optional rootMargin value,
+   *     defaulting to '0px'.
+   * @return {Array<Object>} An array of margin objects with the keys
+   *     value and unit.
+   */
+
+
+  IntersectionObserver.prototype._parseRootMargin = function (opt_rootMargin) {
+    var marginString = opt_rootMargin || '0px';
+    var margins = marginString.split(/\s+/).map(function (margin) {
+      var parts = /^(-?\d*\.?\d+)(px|%)$/.exec(margin);
+
+      if (!parts) {
+        throw new Error('rootMargin must be specified in pixels or percent');
+      }
+
+      return {
+        value: parseFloat(parts[1]),
+        unit: parts[2]
+      };
+    }); // Handles shorthand.
+
+    margins[1] = margins[1] || margins[0];
+    margins[2] = margins[2] || margins[0];
+    margins[3] = margins[3] || margins[1];
+    return margins;
+  };
+  /**
+   * Starts polling for intersection changes if the polling is not already
+   * happening, and if the page's visibility state is visible.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._monitorIntersections = function () {
+    if (!this._monitoringIntersections) {
+      this._monitoringIntersections = true; // If a poll interval is set, use polling instead of listening to
+      // resize and scroll events or DOM mutations.
+
+      if (this.POLL_INTERVAL) {
+        this._monitoringInterval = setInterval(this._checkForIntersections, this.POLL_INTERVAL);
+      } else {
+        addEvent(window, 'resize', this._checkForIntersections, true);
+        addEvent(document, 'scroll', this._checkForIntersections, true);
+
+        if (this.USE_MUTATION_OBSERVER && 'MutationObserver' in window) {
+          this._domObserver = new MutationObserver(this._checkForIntersections);
+
+          this._domObserver.observe(document, {
+            attributes: true,
+            childList: true,
+            characterData: true,
+            subtree: true
+          });
+        }
+      }
+    }
+  };
+  /**
+   * Stops polling for intersection changes.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._unmonitorIntersections = function () {
+    if (this._monitoringIntersections) {
+      this._monitoringIntersections = false;
+      clearInterval(this._monitoringInterval);
+      this._monitoringInterval = null;
+      removeEvent(window, 'resize', this._checkForIntersections, true);
+      removeEvent(document, 'scroll', this._checkForIntersections, true);
+
+      if (this._domObserver) {
+        this._domObserver.disconnect();
+
+        this._domObserver = null;
+      }
+    }
+  };
+  /**
+   * Scans each observation target for intersection changes and adds them
+   * to the internal entries queue. If new entries are found, it
+   * schedules the callback to be invoked.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._checkForIntersections = function () {
+    var rootIsInDom = this._rootIsInDom();
+
+    var rootRect = rootIsInDom ? this._getRootRect() : getEmptyRect();
+
+    this._observationTargets.forEach(function (item) {
+      var target = item.element;
+      var targetRect = getBoundingClientRect(target);
+
+      var rootContainsTarget = this._rootContainsTarget(target);
+
+      var oldEntry = item.entry;
+
+      var intersectionRect = rootIsInDom && rootContainsTarget && this._computeTargetAndRootIntersection(target, rootRect);
+
+      var newEntry = item.entry = new IntersectionObserverEntry({
+        time: now(),
+        target: target,
+        boundingClientRect: targetRect,
+        rootBounds: rootRect,
+        intersectionRect: intersectionRect
+      });
+
+      if (!oldEntry) {
+        this._queuedEntries.push(newEntry);
+      } else if (rootIsInDom && rootContainsTarget) {
+        // If the new entry intersection ratio has crossed any of the
+        // thresholds, add a new entry.
+        if (this._hasCrossedThreshold(oldEntry, newEntry)) {
+          this._queuedEntries.push(newEntry);
+        }
+      } else {
+        // If the root is not in the DOM or target is not contained within
+        // root but the previous entry for this target had an intersection,
+        // add a new record indicating removal.
+        if (oldEntry && oldEntry.isIntersecting) {
+          this._queuedEntries.push(newEntry);
+        }
+      }
+    }, this);
+
+    if (this._queuedEntries.length) {
+      this._callback(this.takeRecords(), this);
+    }
+  };
+  /**
+   * Accepts a target and root rect computes the intersection between then
+   * following the algorithm in the spec.
+   * TODO(philipwalton): at this time clip-path is not considered.
+   * https://w3c.github.io/IntersectionObserver/#calculate-intersection-rect-algo
+   * @param {Element} target The target DOM element
+   * @param {Object} rootRect The bounding rect of the root after being
+   *     expanded by the rootMargin value.
+   * @return {?Object} The final intersection rect object or undefined if no
+   *     intersection is found.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._computeTargetAndRootIntersection = function (target, rootRect) {
+    // If the element isn't displayed, an intersection can't happen.
+    if (window.getComputedStyle(target).display == 'none') return;
+    var targetRect = getBoundingClientRect(target);
+    var intersectionRect = targetRect;
+    var parent = getParentNode(target);
+    var atRoot = false;
+
+    while (!atRoot) {
+      var parentRect = null;
+      var parentComputedStyle = parent.nodeType == 1 ? window.getComputedStyle(parent) : {}; // If the parent isn't displayed, an intersection can't happen.
+
+      if (parentComputedStyle.display == 'none') return;
+
+      if (parent == this.root || parent == document) {
+        atRoot = true;
+        parentRect = rootRect;
+      } else {
+        // If the element has a non-visible overflow, and it's not the <body>
+        // or <html> element, update the intersection rect.
+        // Note: <body> and <html> cannot be clipped to a rect that's not also
+        // the document rect, so no need to compute a new intersection.
+        if (parent != document.body && parent != document.documentElement && parentComputedStyle.overflow != 'visible') {
+          parentRect = getBoundingClientRect(parent);
+        }
+      } // If either of the above conditionals set a new parentRect,
+      // calculate new intersection data.
+
+
+      if (parentRect) {
+        intersectionRect = computeRectIntersection(parentRect, intersectionRect);
+        if (!intersectionRect) break;
+      }
+
+      parent = getParentNode(parent);
+    }
+
+    return intersectionRect;
+  };
+  /**
+   * Returns the root rect after being expanded by the rootMargin value.
+   * @return {Object} The expanded root rect.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._getRootRect = function () {
+    var rootRect;
+
+    if (this.root) {
+      rootRect = getBoundingClientRect(this.root);
+    } else {
+      // Use <html>/<body> instead of window since scroll bars affect size.
+      var html = document.documentElement;
+      var body = document.body;
+      rootRect = {
+        top: 0,
+        left: 0,
+        right: html.clientWidth || body.clientWidth,
+        width: html.clientWidth || body.clientWidth,
+        bottom: html.clientHeight || body.clientHeight,
+        height: html.clientHeight || body.clientHeight
+      };
+    }
+
+    return this._expandRectByRootMargin(rootRect);
+  };
+  /**
+   * Accepts a rect and expands it by the rootMargin value.
+   * @param {Object} rect The rect object to expand.
+   * @return {Object} The expanded rect.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._expandRectByRootMargin = function (rect) {
+    var margins = this._rootMarginValues.map(function (margin, i) {
+      return margin.unit == 'px' ? margin.value : margin.value * (i % 2 ? rect.width : rect.height) / 100;
+    });
+
+    var newRect = {
+      top: rect.top - margins[0],
+      right: rect.right + margins[1],
+      bottom: rect.bottom + margins[2],
+      left: rect.left - margins[3]
+    };
+    newRect.width = newRect.right - newRect.left;
+    newRect.height = newRect.bottom - newRect.top;
+    return newRect;
+  };
+  /**
+   * Accepts an old and new entry and returns true if at least one of the
+   * threshold values has been crossed.
+   * @param {?IntersectionObserverEntry} oldEntry The previous entry for a
+   *    particular target element or null if no previous entry exists.
+   * @param {IntersectionObserverEntry} newEntry The current entry for a
+   *    particular target element.
+   * @return {boolean} Returns true if a any threshold has been crossed.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._hasCrossedThreshold = function (oldEntry, newEntry) {
+    // To make comparing easier, an entry that has a ratio of 0
+    // but does not actually intersect is given a value of -1
+    var oldRatio = oldEntry && oldEntry.isIntersecting ? oldEntry.intersectionRatio || 0 : -1;
+    var newRatio = newEntry.isIntersecting ? newEntry.intersectionRatio || 0 : -1; // Ignore unchanged ratios
+
+    if (oldRatio === newRatio) return;
+
+    for (var i = 0; i < this.thresholds.length; i++) {
+      var threshold = this.thresholds[i]; // Return true if an entry matches a threshold or if the new ratio
+      // and the old ratio are on the opposite sides of a threshold.
+
+      if (threshold == oldRatio || threshold == newRatio || threshold < oldRatio !== threshold < newRatio) {
+        return true;
+      }
+    }
+  };
+  /**
+   * Returns whether or not the root element is an element and is in the DOM.
+   * @return {boolean} True if the root element is an element and is in the DOM.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._rootIsInDom = function () {
+    return !this.root || containsDeep(document, this.root);
+  };
+  /**
+   * Returns whether or not the target element is a child of root.
+   * @param {Element} target The target element to check.
+   * @return {boolean} True if the target element is a child of root.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._rootContainsTarget = function (target) {
+    return containsDeep(this.root || document, target);
+  };
+  /**
+   * Adds the instance to the global IntersectionObserver registry if it isn't
+   * already present.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._registerInstance = function () {
+    if (registry.indexOf(this) < 0) {
+      registry.push(this);
+    }
+  };
+  /**
+   * Removes the instance from the global IntersectionObserver registry.
+   * @private
+   */
+
+
+  IntersectionObserver.prototype._unregisterInstance = function () {
+    var index = registry.indexOf(this);
+    if (index != -1) registry.splice(index, 1);
+  };
+  /**
+   * Returns the result of the performance.now() method or null in browsers
+   * that don't support the API.
+   * @return {number} The elapsed time since the page was requested.
+   */
+
+
+  function now() {
+    return window.performance && performance.now && performance.now();
+  }
+  /**
+   * Throttles a function and delays its execution, so it's only called at most
+   * once within a given time period.
+   * @param {Function} fn The function to throttle.
+   * @param {number} timeout The amount of time that must pass before the
+   *     function can be called again.
+   * @return {Function} The throttled function.
+   */
+
+
+  function throttle(fn, timeout) {
+    var timer = null;
+    return function () {
+      if (!timer) {
+        timer = setTimeout(function () {
+          fn();
+          timer = null;
+        }, timeout);
+      }
+    };
+  }
+  /**
+   * Adds an event handler to a DOM node ensuring cross-browser compatibility.
+   * @param {Node} node The DOM node to add the event handler to.
+   * @param {string} event The event name.
+   * @param {Function} fn The event handler to add.
+   * @param {boolean} opt_useCapture Optionally adds the even to the capture
+   *     phase. Note: this only works in modern browsers.
+   */
+
+
+  function addEvent(node, event, fn, opt_useCapture) {
+    if (typeof node.addEventListener == 'function') {
+      node.addEventListener(event, fn, opt_useCapture || false);
+    } else if (typeof node.attachEvent == 'function') {
+      node.attachEvent('on' + event, fn);
+    }
+  }
+  /**
+   * Removes a previously added event handler from a DOM node.
+   * @param {Node} node The DOM node to remove the event handler from.
+   * @param {string} event The event name.
+   * @param {Function} fn The event handler to remove.
+   * @param {boolean} opt_useCapture If the event handler was added with this
+   *     flag set to true, it should be set to true here in order to remove it.
+   */
+
+
+  function removeEvent(node, event, fn, opt_useCapture) {
+    if (typeof node.removeEventListener == 'function') {
+      node.removeEventListener(event, fn, opt_useCapture || false);
+    } else if (typeof node.detatchEvent == 'function') {
+      node.detatchEvent('on' + event, fn);
+    }
+  }
+  /**
+   * Returns the intersection between two rect objects.
+   * @param {Object} rect1 The first rect.
+   * @param {Object} rect2 The second rect.
+   * @return {?Object} The intersection rect or undefined if no intersection
+   *     is found.
+   */
+
+
+  function computeRectIntersection(rect1, rect2) {
+    var top = Math.max(rect1.top, rect2.top);
+    var bottom = Math.min(rect1.bottom, rect2.bottom);
+    var left = Math.max(rect1.left, rect2.left);
+    var right = Math.min(rect1.right, rect2.right);
+    var width = right - left;
+    var height = bottom - top;
+    return width >= 0 && height >= 0 && {
+      top: top,
+      bottom: bottom,
+      left: left,
+      right: right,
+      width: width,
+      height: height
+    };
+  }
+  /**
+   * Shims the native getBoundingClientRect for compatibility with older IE.
+   * @param {Element} el The element whose bounding rect to get.
+   * @return {Object} The (possibly shimmed) rect of the element.
+   */
+
+
+  function getBoundingClientRect(el) {
+    var rect;
+
+    try {
+      rect = el.getBoundingClientRect();
+    } catch (err) {// Ignore Windows 7 IE11 "Unspecified error"
+      // https://github.com/w3c/IntersectionObserver/pull/205
+    }
+
+    if (!rect) return getEmptyRect(); // Older IE
+
+    if (!(rect.width && rect.height)) {
+      rect = {
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        left: rect.left,
+        width: rect.right - rect.left,
+        height: rect.bottom - rect.top
+      };
+    }
+
+    return rect;
+  }
+  /**
+   * Returns an empty rect object. An empty rect is returned when an element
+   * is not in the DOM.
+   * @return {Object} The empty rect.
+   */
+
+
+  function getEmptyRect() {
+    return {
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      width: 0,
+      height: 0
+    };
+  }
+  /**
+   * Checks to see if a parent element contains a child element (including inside
+   * shadow DOM).
+   * @param {Node} parent The parent element.
+   * @param {Node} child The child element.
+   * @return {boolean} True if the parent node contains the child node.
+   */
+
+
+  function containsDeep(parent, child) {
+    var node = child;
+
+    while (node) {
+      if (node == parent) return true;
+      node = getParentNode(node);
+    }
+
+    return false;
+  }
+  /**
+   * Gets the parent node of an element or its host element if the parent node
+   * is a shadow root.
+   * @param {Node} node The node whose parent to get.
+   * @return {Node|null} The parent node or null if no parent exists.
+   */
+
+
+  function getParentNode(node) {
+    var parent = node.parentNode;
+
+    if (parent && parent.nodeType == 11 && parent.host) {
+      // If the parent is a shadow root, return the host element.
+      return parent.host;
+    }
+
+    if (parent && parent.assignedSlot) {
+      // If the parent is distributed in a <slot>, return the parent of a slot.
+      return parent.assignedSlot.parentNode;
+    }
+
+    return parent;
+  } // Exposes the constructors globally.
+
+
+  window.IntersectionObserver = IntersectionObserver;
+  window.IntersectionObserverEntry = IntersectionObserverEntry;
+})();
+
+},{}],18:[function(require,module,exports){
 "use strict";
 
 var root = require('./_root');
@@ -8326,7 +9205,7 @@ var root = require('./_root');
 var _Symbol = root.Symbol;
 module.exports = _Symbol;
 
-},{"./_root":21}],17:[function(require,module,exports){
+},{"./_root":23}],19:[function(require,module,exports){
 "use strict";
 
 var _Symbol = require('./_Symbol'),
@@ -8358,7 +9237,7 @@ function baseGetTag(value) {
 
 module.exports = baseGetTag;
 
-},{"./_Symbol":16,"./_getRawTag":19,"./_objectToString":20}],18:[function(require,module,exports){
+},{"./_Symbol":18,"./_getRawTag":21,"./_objectToString":22}],20:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -8369,7 +9248,7 @@ var freeGlobal = (typeof global === "undefined" ? "undefined" : _typeof(global))
 module.exports = freeGlobal;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 "use strict";
 
 var _Symbol = require('./_Symbol');
@@ -8422,7 +9301,7 @@ function getRawTag(value) {
 
 module.exports = getRawTag;
 
-},{"./_Symbol":16}],20:[function(require,module,exports){
+},{"./_Symbol":18}],22:[function(require,module,exports){
 "use strict";
 
 /** Used for built-in method references. */
@@ -8448,7 +9327,7 @@ function objectToString(value) {
 
 module.exports = objectToString;
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -8463,7 +9342,7 @@ var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof(self)) == 'o
 var root = freeGlobal || freeSelf || Function('return this')();
 module.exports = root;
 
-},{"./_freeGlobal":18}],22:[function(require,module,exports){
+},{"./_freeGlobal":20}],24:[function(require,module,exports){
 "use strict";
 
 var isObject = require('./isObject'),
@@ -8661,7 +9540,7 @@ function debounce(func, wait, options) {
 
 module.exports = debounce;
 
-},{"./isObject":23,"./now":26,"./toNumber":27}],23:[function(require,module,exports){
+},{"./isObject":25,"./now":28,"./toNumber":29}],25:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -8699,7 +9578,7 @@ function isObject(value) {
 
 module.exports = isObject;
 
-},{}],24:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -8734,7 +9613,7 @@ function isObjectLike(value) {
 
 module.exports = isObjectLike;
 
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -8769,7 +9648,7 @@ function isSymbol(value) {
 
 module.exports = isSymbol;
 
-},{"./_baseGetTag":17,"./isObjectLike":24}],26:[function(require,module,exports){
+},{"./_baseGetTag":19,"./isObjectLike":26}],28:[function(require,module,exports){
 "use strict";
 
 var root = require('./_root');
@@ -8797,7 +9676,7 @@ var now = function now() {
 
 module.exports = now;
 
-},{"./_root":21}],27:[function(require,module,exports){
+},{"./_root":23}],29:[function(require,module,exports){
 "use strict";
 
 var isObject = require('./isObject'),
@@ -8870,7 +9749,81 @@ function toNumber(value) {
 
 module.exports = toNumber;
 
-},{"./isObject":23,"./isSymbol":25}],28:[function(require,module,exports){
+},{"./isObject":25,"./isSymbol":27}],30:[function(require,module,exports){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+!function () {
+  "use strict";
+
+  if ("undefined" != typeof window) {
+    var e = window.navigator.userAgent.match(/Edge\/(\d{2})\./),
+        n = !!e && 16 <= parseInt(e[1], 10);
+
+    if (!("objectFit" in document.documentElement.style != !1) || n) {
+      var o = function o(e) {
+        var t = e.parentNode;
+        !function (e) {
+          var t = window.getComputedStyle(e, null),
+              i = t.getPropertyValue("position"),
+              n = t.getPropertyValue("overflow"),
+              o = t.getPropertyValue("display");
+          i && "static" !== i || (e.style.position = "relative"), "hidden" !== n && (e.style.overflow = "hidden"), o && "inline" !== o || (e.style.display = "block"), 0 === e.clientHeight && (e.style.height = "100%"), -1 === e.className.indexOf("object-fit-polyfill") && (e.className = e.className + " object-fit-polyfill");
+        }(t), function (e) {
+          var t = window.getComputedStyle(e, null),
+              i = {
+            "max-width": "none",
+            "max-height": "none",
+            "min-width": "0px",
+            "min-height": "0px",
+            top: "auto",
+            right: "auto",
+            bottom: "auto",
+            left: "auto",
+            "margin-top": "0px",
+            "margin-right": "0px",
+            "margin-bottom": "0px",
+            "margin-left": "0px"
+          };
+
+          for (var n in i) {
+            t.getPropertyValue(n) !== i[n] && (e.style[n] = i[n]);
+          }
+        }(e), e.style.position = "absolute", e.style.height = "100%", e.style.width = "auto", e.clientWidth > t.clientWidth ? (e.style.top = "0", e.style.marginTop = "0", e.style.left = "50%", e.style.marginLeft = e.clientWidth / -2 + "px") : (e.style.width = "100%", e.style.height = "auto", e.style.left = "0", e.style.marginLeft = "0", e.style.top = "50%", e.style.marginTop = e.clientHeight / -2 + "px");
+      },
+          t = function t(e) {
+        if (void 0 === e || e instanceof Event) e = document.querySelectorAll("[data-object-fit]");else if (e && e.nodeName) e = [e];else {
+          if ("object" != _typeof(e) || !e.length || !e[0].nodeName) return !1;
+          e = e;
+        }
+
+        for (var t = 0; t < e.length; t++) {
+          if (e[t].nodeName) {
+            var i = e[t].nodeName.toLowerCase();
+
+            if ("img" === i) {
+              if (n) continue;
+              e[t].complete ? o(e[t]) : e[t].addEventListener("load", function () {
+                o(this);
+              });
+            } else "video" === i ? 0 < e[t].readyState ? o(e[t]) : e[t].addEventListener("loadedmetadata", function () {
+              o(this);
+            }) : o(e[t]);
+          }
+        }
+
+        return !0;
+      };
+
+      "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", t) : t(), window.addEventListener("resize", t), window.objectFitPolyfill = t;
+    } else window.objectFitPolyfill = function () {
+      return !1;
+    };
+  }
+}();
+
+},{}],31:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -9016,4 +9969,409 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   });
 });
 
-},{}]},{},[1,10]);
+},{}],32:[function(require,module,exports){
+"use strict";
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+!function (t, n) {
+  "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) && "undefined" != typeof module ? module.exports = n() : "function" == typeof define && define.amd ? define(n) : (t = t || self).LazyLoad = n();
+}(void 0, function () {
+  "use strict";
+
+  function t() {
+    return (t = Object.assign || function (t) {
+      for (var n = 1; n < arguments.length; n++) {
+        var e = arguments[n];
+
+        for (var i in e) {
+          Object.prototype.hasOwnProperty.call(e, i) && (t[i] = e[i]);
+        }
+      }
+
+      return t;
+    }).apply(this, arguments);
+  }
+
+  var n = "undefined" != typeof window,
+      e = n && !("onscroll" in window) || "undefined" != typeof navigator && /(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent),
+      i = n && "IntersectionObserver" in window,
+      a = n && "classList" in document.createElement("p"),
+      o = n && window.devicePixelRatio > 1,
+      r = {
+    elements_selector: "IMG",
+    container: e || n ? document : null,
+    threshold: 300,
+    thresholds: null,
+    data_src: "src",
+    data_srcset: "srcset",
+    data_sizes: "sizes",
+    data_bg: "bg",
+    data_bg_hidpi: "bg-hidpi",
+    data_bg_multi: "bg-multi",
+    data_bg_multi_hidpi: "bg-multi-hidpi",
+    data_poster: "poster",
+    class_applied: "applied",
+    class_loading: "loading",
+    class_loaded: "loaded",
+    class_error: "error",
+    unobserve_completed: !0,
+    unobserve_entered: !1,
+    cancel_on_exit: !1,
+    callback_enter: null,
+    callback_exit: null,
+    callback_applied: null,
+    callback_loading: null,
+    callback_loaded: null,
+    callback_error: null,
+    callback_finish: null,
+    callback_cancel: null,
+    use_native: !1
+  },
+      c = function c(n) {
+    return t({}, r, n);
+  },
+      l = function l(t, n) {
+    var e,
+        i = new t(n);
+
+    try {
+      e = new CustomEvent("LazyLoad::Initialized", {
+        detail: {
+          instance: i
+        }
+      });
+    } catch (t) {
+      (e = document.createEvent("CustomEvent")).initCustomEvent("LazyLoad::Initialized", !1, !1, {
+        instance: i
+      });
+    }
+
+    window.dispatchEvent(e);
+  },
+      s = function s(t, n) {
+    return t.getAttribute("data-" + n);
+  },
+      u = function u(t, n, e) {
+    var i = "data-" + n;
+    null !== e ? t.setAttribute(i, e) : t.removeAttribute(i);
+  },
+      d = function d(t) {
+    return s(t, "ll-status");
+  },
+      f = function f(t, n) {
+    return u(t, "ll-status", n);
+  },
+      _ = function _(t) {
+    return f(t, null);
+  },
+      g = function g(t) {
+    return null === d(t);
+  },
+      v = function v(t) {
+    return "native" === d(t);
+  },
+      b = function b(t, n, e, i) {
+    t && (void 0 === i ? void 0 === e ? t(n) : t(n, e) : t(n, e, i));
+  },
+      p = function p(t, n) {
+    a ? t.classList.add(n) : t.className += (t.className ? " " : "") + n;
+  },
+      h = function h(t, n) {
+    a ? t.classList.remove(n) : t.className = t.className.replace(new RegExp("(^|\\s+)" + n + "(\\s+|$)"), " ").replace(/^\s+/, "").replace(/\s+$/, "");
+  },
+      m = function m(t) {
+    return t.llTempImage;
+  },
+      E = function E(t, n) {
+    if (n) {
+      var e = n._observer;
+      e && e.unobserve(t);
+    }
+  },
+      I = function I(t, n) {
+    t && (t.loadingCount += n);
+  },
+      A = function A(t, n) {
+    t && (t.toLoadCount = n);
+  },
+      L = function L(t) {
+    for (var n, e = [], i = 0; n = t.children[i]; i += 1) {
+      "SOURCE" === n.tagName && e.push(n);
+    }
+
+    return e;
+  },
+      y = function y(t, n, e) {
+    e && t.setAttribute(n, e);
+  },
+      w = function w(t, n) {
+    t.removeAttribute(n);
+  },
+      k = function k(t) {
+    return !!t.llOriginalAttrs;
+  },
+      z = function z(t) {
+    if (!k(t)) {
+      var n = {};
+      n.src = t.getAttribute("src"), n.srcset = t.getAttribute("srcset"), n.sizes = t.getAttribute("sizes"), t.llOriginalAttrs = n;
+    }
+  },
+      O = function O(t) {
+    if (k(t)) {
+      var n = t.llOriginalAttrs;
+      y(t, "src", n.src), y(t, "srcset", n.srcset), y(t, "sizes", n.sizes);
+    }
+  },
+      C = function C(t, n) {
+    y(t, "sizes", s(t, n.data_sizes)), y(t, "srcset", s(t, n.data_srcset)), y(t, "src", s(t, n.data_src));
+  },
+      M = function M(t) {
+    w(t, "src"), w(t, "srcset"), w(t, "sizes");
+  },
+      N = function N(t, n) {
+    var e = t.parentNode;
+    e && "PICTURE" === e.tagName && L(e).forEach(n);
+  },
+      x = function x(t, n) {
+    L(t).forEach(n);
+  },
+      R = {
+    IMG: function IMG(t, n) {
+      N(t, function (t) {
+        z(t), C(t, n);
+      }), z(t), C(t, n);
+    },
+    IFRAME: function IFRAME(t, n) {
+      y(t, "src", s(t, n.data_src));
+    },
+    VIDEO: function VIDEO(t, n) {
+      x(t, function (t) {
+        y(t, "src", s(t, n.data_src));
+      }), y(t, "poster", s(t, n.data_poster)), y(t, "src", s(t, n.data_src)), t.load();
+    }
+  },
+      G = function G(t, n) {
+    var e = R[t.tagName];
+    e && e(t, n);
+  },
+      T = function T(t, n, e) {
+    I(e, 1), p(t, n.class_loading), f(t, "loading"), b(n.callback_loading, t, e);
+  },
+      D = {
+    IMG: function IMG(t, n) {
+      u(t, n.data_src, null), u(t, n.data_srcset, null), u(t, n.data_sizes, null), N(t, function (t) {
+        u(t, n.data_srcset, null), u(t, n.data_sizes, null);
+      });
+    },
+    IFRAME: function IFRAME(t, n) {
+      u(t, n.data_src, null);
+    },
+    VIDEO: function VIDEO(t, n) {
+      u(t, n.data_src, null), u(t, n.data_poster, null), x(t, function (t) {
+        u(t, n.data_src, null);
+      });
+    }
+  },
+      F = function F(t, n) {
+    u(t, n.data_bg_multi, null), u(t, n.data_bg_multi_hidpi, null);
+  },
+      V = function V(t, n) {
+    var e = D[t.tagName];
+    e ? e(t, n) : function (t, n) {
+      u(t, n.data_bg, null), u(t, n.data_bg_hidpi, null);
+    }(t, n);
+  },
+      j = ["IMG", "IFRAME", "VIDEO"],
+      P = function P(t, n) {
+    !n || function (t) {
+      return t.loadingCount > 0;
+    }(n) || function (t) {
+      return t.toLoadCount > 0;
+    }(n) || b(t.callback_finish, n);
+  },
+      S = function S(t, n, e) {
+    t.addEventListener(n, e), t.llEvLisnrs[n] = e;
+  },
+      U = function U(t, n, e) {
+    t.removeEventListener(n, e);
+  },
+      $ = function $(t) {
+    return !!t.llEvLisnrs;
+  },
+      q = function q(t) {
+    if ($(t)) {
+      var n = t.llEvLisnrs;
+
+      for (var e in n) {
+        var i = n[e];
+        U(t, e, i);
+      }
+
+      delete t.llEvLisnrs;
+    }
+  },
+      H = function H(t, n, e) {
+    !function (t) {
+      delete t.llTempImage;
+    }(t), I(e, -1), function (t) {
+      t && (t.toLoadCount -= 1);
+    }(e), h(t, n.class_loading), n.unobserve_completed && E(t, e);
+  },
+      B = function B(t, n, e) {
+    var i = m(t) || t;
+    $(i) || function (t, n, e) {
+      $(t) || (t.llEvLisnrs = {});
+      var i = "VIDEO" === t.tagName ? "loadeddata" : "load";
+      S(t, i, n), S(t, "error", e);
+    }(i, function (a) {
+      !function (t, n, e, i) {
+        var a = v(n);
+        H(n, e, i), p(n, e.class_loaded), f(n, "loaded"), V(n, e), b(e.callback_loaded, n, i), a || P(e, i);
+      }(0, t, n, e), q(i);
+    }, function (a) {
+      !function (t, n, e, i) {
+        var a = v(n);
+        H(n, e, i), p(n, e.class_error), f(n, "error"), b(e.callback_error, n, i), a || P(e, i);
+      }(0, t, n, e), q(i);
+    });
+  },
+      J = function J(t, n, e) {
+    !function (t) {
+      t.llTempImage = document.createElement("IMG");
+    }(t), B(t, n, e), function (t, n, e) {
+      var i = s(t, n.data_bg),
+          a = s(t, n.data_bg_hidpi),
+          r = o && a ? a : i;
+      r && (t.style.backgroundImage = 'url("'.concat(r, '")'), m(t).setAttribute("src", r), T(t, n, e));
+    }(t, n, e), function (t, n, e) {
+      var i = s(t, n.data_bg_multi),
+          a = s(t, n.data_bg_multi_hidpi),
+          r = o && a ? a : i;
+      r && (t.style.backgroundImage = r, function (t, n, e) {
+        p(t, n.class_applied), f(t, "applied"), F(t, n), n.unobserve_completed && E(t, n), b(n.callback_applied, t, e);
+      }(t, n, e));
+    }(t, n, e);
+  },
+      K = function K(t, n, e) {
+    !function (t) {
+      return j.indexOf(t.tagName) > -1;
+    }(t) ? J(t, n, e) : function (t, n, e) {
+      B(t, n, e), G(t, n), T(t, n, e);
+    }(t, n, e);
+  },
+      Q = ["IMG", "IFRAME"],
+      W = function W(t) {
+    return t.use_native && "loading" in HTMLImageElement.prototype;
+  },
+      X = function X(t, n, e) {
+    t.forEach(function (t) {
+      return function (t) {
+        return t.isIntersecting || t.intersectionRatio > 0;
+      }(t) ? function (t, n, e, i) {
+        b(e.callback_enter, t, n, i), function (t, n, e) {
+          n.unobserve_entered && E(t, e);
+        }(t, e, i), function (t) {
+          return !g(t);
+        }(t) || K(t, e, i);
+      }(t.target, t, n, e) : function (t, n, e, i) {
+        g(t) || (function (t, n, e, i) {
+          e.cancel_on_exit && function (t) {
+            return "loading" === d(t);
+          }(t) && "IMG" === t.tagName && (q(t), function (t) {
+            N(t, function (t) {
+              M(t);
+            }), M(t);
+          }(t), function (t) {
+            N(t, function (t) {
+              O(t);
+            }), O(t);
+          }(t), h(t, e.class_loading), I(i, -1), _(t), b(e.callback_cancel, t, n, i));
+        }(t, n, e, i), b(e.callback_exit, t, n, i));
+      }(t.target, t, n, e);
+    });
+  },
+      Y = function Y(t) {
+    return Array.prototype.slice.call(t);
+  },
+      Z = function Z(t) {
+    return t.container.querySelectorAll(t.elements_selector);
+  },
+      tt = function tt(t) {
+    return function (t) {
+      return "error" === d(t);
+    }(t);
+  },
+      nt = function nt(t, n) {
+    return function (t) {
+      return Y(t).filter(g);
+    }(t || Z(n));
+  },
+      et = function et(t, e) {
+    var a = c(t);
+    this._settings = a, this.loadingCount = 0, function (t, n) {
+      i && !W(t) && (n._observer = new IntersectionObserver(function (e) {
+        X(e, t, n);
+      }, function (t) {
+        return {
+          root: t.container === document ? null : t.container,
+          rootMargin: t.thresholds || t.threshold + "px"
+        };
+      }(t)));
+    }(a, this), function (t, e) {
+      n && window.addEventListener("online", function () {
+        !function (t, n) {
+          var e;
+          (e = Z(t), Y(e).filter(tt)).forEach(function (n) {
+            h(n, t.class_error), _(n);
+          }), n.update();
+        }(t, e);
+      });
+    }(a, this), this.update(e);
+  };
+
+  return et.prototype = {
+    update: function update(t) {
+      var n,
+          a,
+          o = this._settings,
+          r = nt(t, o);
+      A(this, r.length), !e && i ? W(o) ? function (t, n, e) {
+        t.forEach(function (t) {
+          -1 !== Q.indexOf(t.tagName) && (t.setAttribute("loading", "lazy"), function (t, n, e) {
+            B(t, n, e), G(t, n), V(t, n), f(t, "native");
+          }(t, n, e));
+        }), A(e, 0);
+      }(r, o, this) : (a = r, function (t) {
+        t.disconnect();
+      }(n = this._observer), function (t, n) {
+        n.forEach(function (n) {
+          t.observe(n);
+        });
+      }(n, a)) : this.loadAll(r);
+    },
+    destroy: function destroy() {
+      this._observer && this._observer.disconnect(), Z(this._settings).forEach(function (t) {
+        delete t.llOriginalAttrs;
+      }), delete this._observer, delete this._settings, delete this.loadingCount, delete this.toLoadCount;
+    },
+    loadAll: function loadAll(t) {
+      var n = this,
+          e = this._settings;
+      nt(t, e).forEach(function (t) {
+        K(t, e, n);
+      });
+    }
+  }, et.load = function (t, n) {
+    var e = c(n);
+    K(t, e);
+  }, et.resetStatus = function (t) {
+    _(t);
+  }, n && function (t, n) {
+    if (n) if (n.length) for (var e, i = 0; e = n[i]; i += 1) {
+      l(t, e);
+    } else l(t, n);
+  }(et, window.lazyLoadOptions), et;
+});
+
+},{}]},{},[1,11]);

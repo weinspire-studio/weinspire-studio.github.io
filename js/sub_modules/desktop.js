@@ -8,6 +8,8 @@ import {
   toggleNavClasses,
 } from "./mobile.js";
 
+import { loadHDImages } from "../sub_modules/http";
+
 const navAnchors = document.querySelectorAll(".nav-list a");
 const brandDesktop = document.querySelector("#brand-desktop-svg");
 const list = document.querySelector(".swiper-wrapper");
@@ -80,12 +82,15 @@ function animateImagesSafari() {
   list.addEventListener("mouseleave", restoreLink);
 }
 
+function removeImagesListeners() {
+  list.removeEventListener("mouseover", styleLink);
+  list.removeEventListener("mouseleave", restoreLink);
+}
+
 function styleLink() {
   links.forEach((link) => {
     if (link.matches(":hover")) {
-      // console.log(link.id);
       link.style.width = "36%";
-      // console.log(link);
       link.classList.add("overlay-transparent");
       link.firstElementChild.nextElementSibling.classList.add("show-caption");
     } else {
@@ -106,9 +111,78 @@ function restoreLink() {
   });
 }
 
-function removeImagesListeners() {
-  list.removeEventListener("mouseover", styleLink);
-  list.removeEventListener("mouseleave", restoreLink);
+const modal = document.getElementById("modal");
+const modalImage = document.getElementById("modal-image");
+const modalCaption = document.getElementById("modal-caption");
+
+const cross = document.querySelector("span.close");
+const leftArrow = document.getElementById("left-arrow");
+const rightArrow = document.getElementById("right-arrow");
+let hasRequested = false;
+initModal();
+
+function initModal() {
+  if (!hasRequested) {
+    list.addEventListener("click", function showModal(e) {
+      let imageTarget;
+      // console.log(e.target);
+      if (e.target.tagName === "DIV")
+        imageTarget = e.target.previousElementSibling;
+      else if (e.target.tagName === "H4" || e.target.tagName === "H6")
+        imageTarget =
+          e.target.parentNode.previousElementSibling.previousElementSibling;
+      else return;
+
+      loadHDImages(imageTarget, modalImage, modalCaption);
+      animateEntry();
+      slideImages(imageTarget.parentNode);
+    });
+
+    cross.addEventListener("click", function modalClose() {
+      modal.classList.remove("visible");
+      cross.classList.remove("emerge");
+      leftArrow.classList.remove("emerge", "not-allowed");
+      rightArrow.classList.remove("emerge", "not-allowed");
+      modalImage.style.animation = "";
+      modalCaption.style.animation = "";
+    });
+    hasRequested = true;
+  }
+}
+
+function animateEntry() {
+  modal.classList.add("visible");
+  modalImage.style.animation = "1s emerge-anim";
+  modalCaption.style.animation = "1s emerge-anim";
+  cross.classList.add("emerge");
+  leftArrow.classList.add("emerge");
+  rightArrow.classList.add("emerge");
+}
+
+function slideImages(link) {
+  if (!link.previousElementSibling) {
+    leftArrow.classList.add("not-allowed");
+  } else if (!link.nextElementSibling) {
+    rightArrow.classList.add("not-allowed");
+  }
+  leftArrow.addEventListener("click", () => {
+    if (link.previousElementSibling) {
+      if (!link.previousElementSibling.previousElementSibling)
+        leftArrow.classList.add("not-allowed");
+      else if (rightArrow.classList.contains("not-allowed"))
+        rightArrow.classList.remove("not-allowed");
+      link = link.previousElementSibling;
+    }
+  });
+  rightArrow.addEventListener("click", () => {
+    if (link.nextElementSibling) {
+      if (!link.nextElementSibling.nextElementSibling)
+        rightArrow.classList.add("not-allowed");
+      else if (leftArrow.classList.contains("not-allowed"))
+        leftArrow.classList.remove("not-allowed");
+      link = link.nextElementSibling;
+    }
+  });
 }
 
 // changes mobile svg brand colors.

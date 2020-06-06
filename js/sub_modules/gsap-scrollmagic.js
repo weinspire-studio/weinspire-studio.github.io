@@ -1,5 +1,7 @@
 // jshint esversion: 6
 
+import { makeRequest } from "../sub_modules/http";
+
 const url =
   "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/";
 const targets = [
@@ -28,25 +30,9 @@ function prepareRequests() {
   makeRequest(url + targets[3], marketingContainer, animateIconMarketing);
 }
 
-function makeRequest(url, section, callback) {
-  let xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.status === 200) {
-        section.append(xhr.responseXML.documentElement);
-        callback();
-      } else {
-        console.log("There was a problem with the request.");
-      }
-    }
-  };
-  xhr.open("GET", url);
-  xhr.send();
-}
-
 function animateBackground() {
   const svgPaths = document.querySelectorAll("#svg-background path");
-  const heroDivs = document.querySelectorAll("#section-hero .hero");
+  // const heroDivs = document.querySelectorAll("#section-hero .hero");
 
   tl.to(svgPaths[0], 1, { y: 95, ease: Linear.easeNone }, 0.4)
     .to(svgPaths[1], 1, { y: 175, ease: Linear.easeNone }, 0.2)
@@ -200,8 +186,6 @@ function animateIconMarketing() {
   pathsArray.forEach((path) => {
     preparePath(path);
   });
-
-  console.log(iconMarketingPaths);
   let bluePathsArray = [];
   let greenPathsArray = [];
 

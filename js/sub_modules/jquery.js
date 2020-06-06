@@ -21,13 +21,13 @@ function animateImages() {
     function () {
       $(this).addClass("expanded");
       $(this).siblings().addClass("contracted");
-      $(this).children().eq(1).addClass("show-caption");
+      $(this).children().eq(2).addClass("show-caption");
       isExpanded = true;
     },
     function () {
       $(this).removeClass("expanded");
       $(this).siblings().removeClass("contracted");
-      $(this).children().eq(1).removeClass("show-caption");
+      $(this).children().eq(2).removeClass("show-caption");
       isExpanded = false;
     }
   );
