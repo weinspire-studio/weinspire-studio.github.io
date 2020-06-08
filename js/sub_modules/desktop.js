@@ -119,13 +119,16 @@ const cross = document.querySelector("span.close");
 const leftArrow = document.getElementById("left-arrow");
 const rightArrow = document.getElementById("right-arrow");
 let hasRequested = false;
+
+let rightArrowHandler;
+let leftArrowHandler;
+
 initModal();
 
 function initModal() {
   if (!hasRequested) {
     list.addEventListener("click", function showModal(e) {
       let imageTarget;
-      // console.log(e.target);
       if (e.target.tagName === "DIV")
         imageTarget = e.target.previousElementSibling;
       else if (e.target.tagName === "H4" || e.target.tagName === "H6")
@@ -145,6 +148,8 @@ function initModal() {
       rightArrow.classList.remove("emerge", "not-allowed");
       modalImage.style.animation = "";
       modalCaption.style.animation = "";
+      leftArrow.removeEventListener("click", leftArrowHandler);
+      rightArrow.removeEventListener("click", rightArrowHandler);
     });
     hasRequested = true;
   }
@@ -165,24 +170,40 @@ function slideImages(link) {
   } else if (!link.nextElementSibling) {
     rightArrow.classList.add("not-allowed");
   }
-  leftArrow.addEventListener("click", () => {
-    if (link.previousElementSibling) {
-      if (!link.previousElementSibling.previousElementSibling)
-        leftArrow.classList.add("not-allowed");
-      else if (rightArrow.classList.contains("not-allowed"))
-        rightArrow.classList.remove("not-allowed");
-      link = link.previousElementSibling;
-    }
-  });
-  rightArrow.addEventListener("click", () => {
-    if (link.nextElementSibling) {
-      if (!link.nextElementSibling.nextElementSibling)
-        rightArrow.classList.add("not-allowed");
-      else if (leftArrow.classList.contains("not-allowed"))
-        leftArrow.classList.remove("not-allowed");
-      link = link.nextElementSibling;
-    }
-  });
+  leftArrow.addEventListener(
+    "click",
+    (leftArrowHandler = () => {
+      if (link.previousElementSibling) {
+        if (!link.previousElementSibling.previousElementSibling) {
+          leftArrow.classList.add("not-allowed");
+        } else if (rightArrow.classList.contains("not-allowed"))
+          rightArrow.classList.remove("not-allowed");
+        link = link.previousElementSibling;
+        changeCaption(link);
+      }
+    })
+  );
+  rightArrow.addEventListener(
+    "click",
+    (rightArrowHandler = function () {
+      if (link.nextElementSibling) {
+        if (!link.nextElementSibling.nextElementSibling) {
+          rightArrow.classList.add("not-allowed");
+        } else if (leftArrow.classList.contains("not-allowed"))
+          leftArrow.classList.remove("not-allowed");
+        link = link.nextElementSibling;
+        changeCaption(link);
+      }
+    })
+  );
+}
+
+function changeCaption(link) {
+  modalCaption.firstElementChild.textContent =
+    link.lastElementChild.firstElementChild.textContent;
+  modalCaption.lastElementChild.textContent =
+    link.lastElementChild.lastElementChild.textContent;
+  modalImage.src = link.firstElementChild.src;
 }
 
 // changes mobile svg brand colors.
@@ -195,7 +216,6 @@ function styleDesktopBrand() {
 function restoreDesktopBrand() {
   brandDesktop.classList.remove("brand-color");
   brandDesktop.classList.add("brand-negative");
-  // console.log("a mime llaman");
 }
 
 // inits mobile brand svg colors.

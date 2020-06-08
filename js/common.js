@@ -813,13 +813,14 @@ var cross = document.querySelector("span.close");
 var leftArrow = document.getElementById("left-arrow");
 var rightArrow = document.getElementById("right-arrow");
 var hasRequested = false;
+var rightArrowHandler;
+var leftArrowHandler;
 initModal();
 
 function initModal() {
   if (!hasRequested) {
     list.addEventListener("click", function showModal(e) {
-      var imageTarget; // console.log(e.target);
-
+      var imageTarget;
       if (e.target.tagName === "DIV") imageTarget = e.target.previousElementSibling;else if (e.target.tagName === "H4" || e.target.tagName === "H6") imageTarget = e.target.parentNode.previousElementSibling.previousElementSibling;else return;
       (0, _http.loadHDImages)(imageTarget, modalImage, modalCaption);
       animateEntry();
@@ -832,6 +833,8 @@ function initModal() {
       rightArrow.classList.remove("emerge", "not-allowed");
       modalImage.style.animation = "";
       modalCaption.style.animation = "";
+      leftArrow.removeEventListener("click", leftArrowHandler);
+      rightArrow.removeEventListener("click", rightArrowHandler);
     });
     hasRequested = true;
   }
@@ -853,18 +856,32 @@ function slideImages(link) {
     rightArrow.classList.add("not-allowed");
   }
 
-  leftArrow.addEventListener("click", function () {
+  leftArrow.addEventListener("click", leftArrowHandler = function leftArrowHandler() {
     if (link.previousElementSibling) {
-      if (!link.previousElementSibling.previousElementSibling) leftArrow.classList.add("not-allowed");else if (rightArrow.classList.contains("not-allowed")) rightArrow.classList.remove("not-allowed");
+      if (!link.previousElementSibling.previousElementSibling) {
+        leftArrow.classList.add("not-allowed");
+      } else if (rightArrow.classList.contains("not-allowed")) rightArrow.classList.remove("not-allowed");
+
       link = link.previousElementSibling;
+      changeCaption(link);
     }
   });
-  rightArrow.addEventListener("click", function () {
+  rightArrow.addEventListener("click", rightArrowHandler = function rightArrowHandler() {
     if (link.nextElementSibling) {
-      if (!link.nextElementSibling.nextElementSibling) rightArrow.classList.add("not-allowed");else if (leftArrow.classList.contains("not-allowed")) leftArrow.classList.remove("not-allowed");
+      if (!link.nextElementSibling.nextElementSibling) {
+        rightArrow.classList.add("not-allowed");
+      } else if (leftArrow.classList.contains("not-allowed")) leftArrow.classList.remove("not-allowed");
+
       link = link.nextElementSibling;
+      changeCaption(link);
     }
   });
+}
+
+function changeCaption(link) {
+  modalCaption.firstElementChild.textContent = link.lastElementChild.firstElementChild.textContent;
+  modalCaption.lastElementChild.textContent = link.lastElementChild.lastElementChild.textContent;
+  modalImage.src = link.firstElementChild.src;
 } // changes mobile svg brand colors.
 
 
@@ -876,7 +893,7 @@ function styleDesktopBrand() {
 
 function restoreDesktopBrand() {
   brandDesktop.classList.remove("brand-color");
-  brandDesktop.classList.add("brand-negative"); // console.log("a mime llaman");
+  brandDesktop.classList.add("brand-negative");
 } // inits mobile brand svg colors.
 
 
@@ -1342,18 +1359,18 @@ function loadHDImages(clickedImage, modalImage, modalCaption) {
       modalCaption.appendChild(h4);
       modalCaption.appendChild(h6);
       modalCaption.firstElementChild.textContent = caption.firstElementChild.textContent;
-      modalCaption.lastElementChild.textContent = caption.lastElementChild.textContent; // modalCaption.innerText = caption.innerText;
-
+      modalCaption.lastElementChild.textContent = caption.lastElementChild.textContent;
       img.src = newSource;
     }
   });
   setTimeout(function () {
     images.forEach(function (img) {
       if (img.src !== clickedImage.src) {
+        newSource = img.src.replace("-min", "");
         img.src = newSource;
       }
     });
-  }, 100);
+  }, 400);
 } // lazyLoadInstance.update();
 
 

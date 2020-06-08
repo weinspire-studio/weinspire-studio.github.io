@@ -48,17 +48,17 @@ function loadHDImages(clickedImage, modalImage, modalCaption) {
         caption.firstElementChild.textContent;
       modalCaption.lastElementChild.textContent =
         caption.lastElementChild.textContent;
-      // modalCaption.innerText = caption.innerText;
       img.src = newSource;
     }
   });
   setTimeout(() => {
     images.forEach((img) => {
       if (img.src !== clickedImage.src) {
+        newSource = img.src.replace("-min", "");
         img.src = newSource;
       }
     });
-  }, 100);
+  }, 400);
 }
 
 // lazyLoadInstance.update();
