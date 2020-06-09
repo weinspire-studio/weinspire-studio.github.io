@@ -706,6 +706,8 @@ var _mobile = require("./mobile.js");
 
 var _http = require("../sub_modules/http");
 
+var _gsapScrollmagic = require("./gsap-scrollmagic.js");
+
 // jshint esversion: 6
 var navAnchors = document.querySelectorAll(".nav-list a");
 var brandDesktop = document.querySelector("#brand-desktop-svg");
@@ -821,7 +823,15 @@ function initModal() {
   if (!hasRequested) {
     list.addEventListener("click", function showModal(e) {
       var imageTarget;
-      if (e.target.tagName === "DIV") imageTarget = e.target.previousElementSibling;else if (e.target.tagName === "H4" || e.target.tagName === "H6") imageTarget = e.target.parentNode.previousElementSibling.previousElementSibling;else return;
+
+      if (e.target.tagName === "DIV") {
+        if (e.target.className.indexOf("link-caption") === -1) {
+          imageTarget = e.target.previousElementSibling;
+        } else {
+          imageTarget = e.target.previousElementSibling.previousElementSibling;
+        }
+      } else if (e.target.tagName === "H4" || e.target.tagName === "H6") imageTarget = e.target.parentNode.previousElementSibling.previousElementSibling;else return;
+
       (0, _http.loadHDImages)(imageTarget, modalImage, modalCaption);
       animateEntry();
       slideImages(imageTarget.parentNode);
@@ -831,8 +841,9 @@ function initModal() {
       cross.classList.remove("emerge");
       leftArrow.classList.remove("emerge", "not-allowed");
       rightArrow.classList.remove("emerge", "not-allowed");
-      modalImage.style.animation = "";
       modalCaption.style.animation = "";
+      modalImage.style.animation = "";
+      modalImage.parentNode.style.overflow = "visible";
       leftArrow.removeEventListener("click", leftArrowHandler);
       rightArrow.removeEventListener("click", rightArrowHandler);
     });
@@ -843,7 +854,10 @@ function initModal() {
 function animateEntry() {
   modal.classList.add("visible");
   modalImage.style.animation = "1s emerge-anim";
-  modalCaption.style.animation = "1s emerge-anim";
+  modalImage.addEventListener("animationend", function () {
+    modalImage.parentNode.style.overflow = "hidden";
+  });
+  modalCaption.style.animation = "1s caption-emerge-anim";
   cross.classList.add("emerge");
   leftArrow.classList.add("emerge");
   rightArrow.classList.add("emerge");
@@ -857,6 +871,8 @@ function slideImages(link) {
   }
 
   leftArrow.addEventListener("click", leftArrowHandler = function leftArrowHandler() {
+    (0, _gsapScrollmagic.slideAnim)("left");
+
     if (link.previousElementSibling) {
       if (!link.previousElementSibling.previousElementSibling) {
         leftArrow.classList.add("not-allowed");
@@ -867,6 +883,8 @@ function slideImages(link) {
     }
   });
   rightArrow.addEventListener("click", rightArrowHandler = function rightArrowHandler() {
+    (0, _gsapScrollmagic.slideAnim)("right");
+
     if (link.nextElementSibling) {
       if (!link.nextElementSibling.nextElementSibling) {
         rightArrow.classList.add("not-allowed");
@@ -879,9 +897,11 @@ function slideImages(link) {
 }
 
 function changeCaption(link) {
-  modalCaption.firstElementChild.textContent = link.lastElementChild.firstElementChild.textContent;
-  modalCaption.lastElementChild.textContent = link.lastElementChild.lastElementChild.textContent;
-  modalImage.src = link.firstElementChild.src;
+  setTimeout(function () {
+    modalCaption.firstElementChild.textContent = link.lastElementChild.firstElementChild.textContent;
+    modalCaption.lastElementChild.textContent = link.lastElementChild.lastElementChild.textContent;
+    modalImage.src = link.firstElementChild.src;
+  }, 300);
 } // changes mobile svg brand colors.
 
 
@@ -910,7 +930,7 @@ function unsetDesktopBrand() {
   brandDesktop.style.display = "none";
 }
 
-},{"../sub_modules/http":6,"./mobile.js":8}],5:[function(require,module,exports){
+},{"../sub_modules/http":6,"./gsap-scrollmagic.js":5,"./mobile.js":8}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -918,6 +938,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.prepareRequests = prepareRequests;
 exports.animateAssets = animateAssets;
+exports.slideAnim = slideAnim;
 
 var _http = require("../sub_modules/http");
 
@@ -925,12 +946,12 @@ var _http = require("../sub_modules/http");
 var url = "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/";
 var targets = ["svg-background.svg", "design.svg", "software.svg", "marketing.svg"];
 var controller = new ScrollMagic.Controller();
-var tl = new TimelineMax();
-var tl2 = new TimelineMax();
-var tl3 = new TimelineMax();
-var tl4 = new TimelineMax();
-var tl5 = new TimelineMax();
-var tl6 = new TimelineMax();
+var tl = gsap.timeline();
+var tl2 = gsap.timeline();
+var tl3 = gsap.timeline();
+var tl4 = gsap.timeline();
+var tl5 = gsap.timeline();
+var tl6 = gsap.timeline();
 
 function prepareRequests() {
   var sectionBg = document.getElementById("section-background");
@@ -1288,6 +1309,39 @@ function animateSvgPaths() {
     opacity: 0,
     scale: 1.03
   }, 0);
+}
+
+function slideAnim(direction) {
+  var tl = gsap.timeline();
+  var xDirFrom, xDirTo, rotationFrom, rotationTo;
+
+  if (direction === "left") {
+    xDirFrom = 100;
+    xDirTo = -200;
+    rotationFrom = 20;
+    rotationTo = 0;
+  } else {
+    xDirFrom = -200;
+    xDirTo = 200;
+    rotationFrom = -20;
+    rotationTo = 0;
+  }
+
+  tl.fromTo(".modal-overlay", 2.1, {
+    rotation: rotationFrom,
+    scaleX: 2,
+    scaleY: 2,
+    xPercent: xDirFrom,
+    yPercent: 4,
+    opacity: 1,
+    transformOrigin: "0% 0%"
+  }, {
+    rotation: rotationTo,
+    xPercent: xDirTo,
+    yPercent: -2,
+    transformOrigin: "50% 50%",
+    ease: Power2.easeOut
+  });
 } // let parser = new DOMParser();
 // let xmlDoc = parser.parseFromString(xhr.responseText, "image/svg+xml");
 // jQuery way

@@ -12,12 +12,12 @@ const targets = [
 ];
 
 const controller = new ScrollMagic.Controller();
-const tl = new TimelineMax();
-const tl2 = new TimelineMax();
-const tl3 = new TimelineMax();
-const tl4 = new TimelineMax();
-const tl5 = new TimelineMax();
-const tl6 = new TimelineMax();
+const tl = gsap.timeline();
+const tl2 = gsap.timeline();
+const tl3 = gsap.timeline();
+const tl4 = gsap.timeline();
+const tl5 = gsap.timeline();
+const tl6 = gsap.timeline();
 
 function prepareRequests() {
   const sectionBg = document.getElementById("section-background");
@@ -273,7 +273,44 @@ function animateSvgPaths() {
     .from(svgPaths[3], 1.5, { opacity: 0, scale: 1.03 }, 0);
 }
 
-export { prepareRequests, animateAssets };
+function slideAnim(direction) {
+  const tl = gsap.timeline();
+  let xDirFrom, xDirTo, rotationFrom, rotationTo;
+  if (direction === "left") {
+    xDirFrom = 100;
+    xDirTo = -200;
+    rotationFrom = 20;
+    rotationTo = 0;
+  } else {
+    xDirFrom = -200;
+    xDirTo = 200;
+    rotationFrom = -20;
+    rotationTo = 0;
+  }
+
+  tl.fromTo(
+    ".modal-overlay",
+    2.1,
+    {
+      rotation: rotationFrom,
+      scaleX: 2,
+      scaleY: 2,
+      xPercent: xDirFrom,
+      yPercent: 4,
+      opacity: 1,
+      transformOrigin: "0% 0%",
+    },
+    {
+      rotation: rotationTo,
+      xPercent: xDirTo,
+      yPercent: -2,
+      transformOrigin: "50% 50%",
+      ease: Power2.easeOut,
+    }
+  );
+}
+
+export { prepareRequests, animateAssets, slideAnim };
 
 // let parser = new DOMParser();
 // let xmlDoc = parser.parseFromString(xhr.responseText, "image/svg+xml");

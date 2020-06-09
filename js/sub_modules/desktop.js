@@ -9,6 +9,7 @@ import {
 } from "./mobile.js";
 
 import { loadHDImages } from "../sub_modules/http";
+import { slideAnim } from "./gsap-scrollmagic.js";
 
 const navAnchors = document.querySelectorAll(".nav-list a");
 const brandDesktop = document.querySelector("#brand-desktop-svg");
@@ -129,25 +130,28 @@ function initModal() {
   if (!hasRequested) {
     list.addEventListener("click", function showModal(e) {
       let imageTarget;
-      if (e.target.tagName === "DIV")
-        imageTarget = e.target.previousElementSibling;
-      else if (e.target.tagName === "H4" || e.target.tagName === "H6")
+      if (e.target.tagName === "DIV") {
+        if (e.target.className.indexOf("link-caption") === -1) {
+          imageTarget = e.target.previousElementSibling;
+        } else {
+          imageTarget = e.target.previousElementSibling.previousElementSibling;
+        }
+      } else if (e.target.tagName === "H4" || e.target.tagName === "H6")
         imageTarget =
           e.target.parentNode.previousElementSibling.previousElementSibling;
       else return;
-
       loadHDImages(imageTarget, modalImage, modalCaption);
       animateEntry();
       slideImages(imageTarget.parentNode);
     });
-
     cross.addEventListener("click", function modalClose() {
       modal.classList.remove("visible");
       cross.classList.remove("emerge");
       leftArrow.classList.remove("emerge", "not-allowed");
       rightArrow.classList.remove("emerge", "not-allowed");
-      modalImage.style.animation = "";
       modalCaption.style.animation = "";
+      modalImage.style.animation = "";
+      modalImage.parentNode.style.overflow = "visible";
       leftArrow.removeEventListener("click", leftArrowHandler);
       rightArrow.removeEventListener("click", rightArrowHandler);
     });
@@ -158,7 +162,10 @@ function initModal() {
 function animateEntry() {
   modal.classList.add("visible");
   modalImage.style.animation = "1s emerge-anim";
-  modalCaption.style.animation = "1s emerge-anim";
+  modalImage.addEventListener("animationend", () => {
+    modalImage.parentNode.style.overflow = "hidden";
+  });
+  modalCaption.style.animation = "1s caption-emerge-anim";
   cross.classList.add("emerge");
   leftArrow.classList.add("emerge");
   rightArrow.classList.add("emerge");
@@ -173,6 +180,7 @@ function slideImages(link) {
   leftArrow.addEventListener(
     "click",
     (leftArrowHandler = () => {
+      slideAnim("left");
       if (link.previousElementSibling) {
         if (!link.previousElementSibling.previousElementSibling) {
           leftArrow.classList.add("not-allowed");
@@ -186,6 +194,7 @@ function slideImages(link) {
   rightArrow.addEventListener(
     "click",
     (rightArrowHandler = function () {
+      slideAnim("right");
       if (link.nextElementSibling) {
         if (!link.nextElementSibling.nextElementSibling) {
           rightArrow.classList.add("not-allowed");
@@ -199,11 +208,13 @@ function slideImages(link) {
 }
 
 function changeCaption(link) {
-  modalCaption.firstElementChild.textContent =
-    link.lastElementChild.firstElementChild.textContent;
-  modalCaption.lastElementChild.textContent =
-    link.lastElementChild.lastElementChild.textContent;
-  modalImage.src = link.firstElementChild.src;
+  setTimeout(() => {
+    modalCaption.firstElementChild.textContent =
+      link.lastElementChild.firstElementChild.textContent;
+    modalCaption.lastElementChild.textContent =
+      link.lastElementChild.lastElementChild.textContent;
+    modalImage.src = link.firstElementChild.src;
+  }, 300);
 }
 
 // changes mobile svg brand colors.
