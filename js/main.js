@@ -80,7 +80,7 @@ function initLanding() {
 function desktopCode() {
   addClassesToSvgs(false);
   styleNavOnScroll(false);
-  // heroModule.initWriter();
+  desktopModule.initModal();
   desktopModule.styleAnchorOnHover();
   if (isSafari) {
     desktopModule.animateImagesSafari();
@@ -120,7 +120,6 @@ function mobileCode() {
   hasScrollListenerMobile = true;
   if (hasListenersDesktop) {
     window.removeEventListener("scroll", bindedDebouncedNavDesktop);
-    // heroModule.destroyWriter();
     typewriterModule.reviewWidth(true);
     if (isSafari) {
       desktopModule.removeImagesListeners();

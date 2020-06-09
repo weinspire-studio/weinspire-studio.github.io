@@ -308,6 +308,12 @@
     transform: translateY(-50%);
 }
 
+#ie-container {
+    height:100%;
+    display: -ms-grid;
+    -ms-grid-columns: min-content;
+}
+
 .modal-overlay {
     position: absolute;
     left: 0;
@@ -337,6 +343,10 @@
     cursor: pointer;
     transform: rotate(90deg);
     /* transform-origin: center; */
+}
+
+#modal-caption h6 {
+    font-weight: 300;
 }
 
 #modal,

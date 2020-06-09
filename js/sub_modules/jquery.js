@@ -19,6 +19,7 @@ function smoothScroll() {
 function animateImages() {
   $("#section-projects-design li").hover(
     function () {
+      $(this).css("cursor", "pointer");
       $(this).addClass("expanded");
       $(this).siblings().addClass("contracted");
       $(this).children().eq(2).addClass("show-caption");

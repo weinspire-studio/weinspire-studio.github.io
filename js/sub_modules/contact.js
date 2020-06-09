@@ -12,13 +12,12 @@ const newsFormButton = document.querySelector("#news-form button");
 let formElements = Array.prototype.slice.call(inputs);
 let validName = false;
 let validEmail = false;
+let isShowingStatus = false;
 let validText = true;
 let formFlag = true;
 formElements.push(textArea);
 textArea.value = "";
 newsForm[0].value = "";
-
-let isShowingStatus = false;
 
 function validateContactForm() {
   formElements.forEach((formEl) => {
@@ -113,12 +112,12 @@ function success() {
     formElements.forEach((formEl) => {
       formEl.classList.remove("input-correct");
     });
+    formStatus.innerHTML =
+      "Thank you for your message! We will get in touch with you as soon as possible.";
     formButton.classList.remove("button-active");
     formStatus.classList.remove("message-error-contact");
     formButton.classList.add("button-inactive");
     formStatus.classList.add("message-success");
-    formStatus.innerHTML =
-      "Thank you for your message! We will get in touch with you as soon as possible.";
     showMessage(statusContainer);
   } else {
     newsForm.reset();
@@ -192,18 +191,19 @@ function validateText(element) {
 
 function showMessage(statusContainer) {
   let delay;
+  let target;
   if (statusContainer.id === "news-field-status") {
     delay = 4000;
+    target = statusContainer;
   } else {
     delay = 8000;
+    target = statusContainer.firstElementChild;
   }
   isShowingStatus = true;
-  console.log(isShowingStatus);
-  statusContainer.classList.toggle("visible");
+  target.classList.toggle("visible");
   setTimeout(() => {
-    statusContainer.classList.toggle("visible");
+    target.classList.toggle("visible");
     isShowingStatus = false;
-    console.log(isShowingStatus);
   }, delay);
 }
 

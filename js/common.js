@@ -112,8 +112,8 @@ function initLanding() {
 
 function desktopCode() {
   addClassesToSvgs(false);
-  styleNavOnScroll(false); // heroModule.initWriter();
-
+  styleNavOnScroll(false);
+  desktopModule.initModal();
   desktopModule.styleAnchorOnHover();
 
   if (isSafari) {
@@ -157,8 +157,7 @@ function mobileCode() {
   hasScrollListenerMobile = true;
 
   if (hasListenersDesktop) {
-    window.removeEventListener("scroll", bindedDebouncedNavDesktop); // heroModule.destroyWriter();
-
+    window.removeEventListener("scroll", bindedDebouncedNavDesktop);
     typewriterModule.reviewWidth(true);
 
     if (isSafari) {
@@ -482,12 +481,12 @@ var newsFormButton = document.querySelector("#news-form button");
 var formElements = Array.prototype.slice.call(inputs);
 var validName = false;
 var validEmail = false;
+var isShowingStatus = false;
 var validText = true;
 var formFlag = true;
 formElements.push(textArea);
 textArea.value = "";
 newsForm[0].value = "";
-var isShowingStatus = false;
 
 function validateContactForm() {
   formElements.forEach(function (formEl) {
@@ -594,11 +593,11 @@ function success() {
     formElements.forEach(function (formEl) {
       formEl.classList.remove("input-correct");
     });
+    formStatus.innerHTML = "Thank you for your message! We will get in touch with you as soon as possible.";
     formButton.classList.remove("button-active");
     formStatus.classList.remove("message-error-contact");
     formButton.classList.add("button-inactive");
     formStatus.classList.add("message-success");
-    formStatus.innerHTML = "Thank you for your message! We will get in touch with you as soon as possible.";
     showMessage(statusContainer);
   } else {
     newsForm.reset();
@@ -670,20 +669,21 @@ function validateText(element) {
 
 function showMessage(statusContainer) {
   var delay;
+  var target;
 
   if (statusContainer.id === "news-field-status") {
     delay = 4000;
+    target = statusContainer;
   } else {
     delay = 8000;
+    target = statusContainer.firstElementChild;
   }
 
   isShowingStatus = true;
-  console.log(isShowingStatus);
-  statusContainer.classList.toggle("visible");
+  target.classList.toggle("visible");
   setTimeout(function () {
-    statusContainer.classList.toggle("visible");
+    target.classList.toggle("visible");
     isShowingStatus = false;
-    console.log(isShowingStatus);
   }, delay);
 }
 
@@ -701,6 +701,7 @@ exports.setDesktopBrand = setDesktopBrand;
 exports.unsetDesktopBrand = unsetDesktopBrand;
 exports.animateImagesSafari = animateImagesSafari;
 exports.removeImagesListeners = removeImagesListeners;
+exports.initModal = initModal;
 
 var _mobile = require("./mobile.js");
 
@@ -817,7 +818,6 @@ var rightArrow = document.getElementById("right-arrow");
 var hasRequested = false;
 var rightArrowHandler;
 var leftArrowHandler;
-initModal();
 
 function initModal() {
   if (!hasRequested) {
@@ -1481,6 +1481,7 @@ function smoothScroll() {
 
 function animateImages() {
   $("#section-projects-design li").hover(function () {
+    $(this).css("cursor", "pointer");
     $(this).addClass("expanded");
     $(this).siblings().addClass("contracted");
     $(this).children().eq(2).addClass("show-caption");

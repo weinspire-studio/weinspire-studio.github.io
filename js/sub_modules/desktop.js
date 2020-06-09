@@ -124,8 +124,6 @@ let hasRequested = false;
 let rightArrowHandler;
 let leftArrowHandler;
 
-initModal();
-
 function initModal() {
   if (!hasRequested) {
     list.addEventListener("click", function showModal(e) {
@@ -250,4 +248,5 @@ export {
   unsetDesktopBrand,
   animateImagesSafari,
   removeImagesListeners,
+  initModal,
 };
