@@ -140,33 +140,33 @@ module.exports = function (grunt) {
           {
             cleanupIDs: false,
           },
-          {
-            removeAttrs: {
-              attrs: ["xmlns"],
-            },
-          },
           // {
-          //   mergePaths: false,
+          //   removeAttrs: {
+          //     attrs: ["xmlns"],
+          //   },
           // },
+          {
+            mergePaths: false,
+          },
         ],
       },
       dist: {
         files: {
-          "./assets/optimized/brand-mobile.svg": "./assets/brand-mobile.svg",
-          "./assets/optimized/brand-desktop.svg": "./assets/brand-desktop.svg",
-          "./assets/optimized/email.svg": "./assets/email.svg",
-          "./assets/optimized/email-circle.svg": "./assets/email-circle.svg",
-          "./assets/optimized/whatsapp.svg": "./assets/whatsapp.svg",
-          "./assets/optimized/whatsapp-circle.svg": "./assets/whatsapp-circle.svg", // prettier-ignore
-          "./assets/optimized/facebook.svg": "./assets/facebook.svg",
-          "./assets/optimized/behance.svg": "./assets/behance.svg",
-          "./assets/optimized/linkedin.svg": "./assets/linkedin.svg",
-          "./assets/optimized/arrow-up.svg": "./assets/arrow-up.svg",
-          "./assets/optimized/location.svg": "./assets/location.svg",
+          // "./assets/optimized/brand-mobile.svg": "./assets/brand-mobile.svg",
+          // "./assets/optimized/brand-desktop.svg": "./assets/brand-desktop.svg",
+          // "./assets/optimized/email.svg": "./assets/email.svg",
+          // "./assets/optimized/email-circle.svg": "./assets/email-circle.svg",
+          // "./assets/optimized/whatsapp.svg": "./assets/whatsapp.svg",
+          // "./assets/optimized/whatsapp-circle.svg": "./assets/whatsapp-circle.svg", // prettier-ignore
+          // "./assets/optimized/facebook.svg": "./assets/facebook.svg",
+          // "./assets/optimized/behance.svg": "./assets/behance.svg",
+          // "./assets/optimized/linkedin.svg": "./assets/linkedin.svg",
+          // "./assets/optimized/arrow-up.svg": "./assets/arrow-up.svg",
+          // "./assets/optimized/location.svg": "./assets/location.svg",
           // "./assets/optimized_ajax/svg-background.svg": "./assets/svg-background.svg", // prettier-ignore
-          // "./assets/optimized_ajax/design.svg": "./assets/design.svg", // uncomment (along with removeAttrs) and manually optimize svgs for ajax
-          // "./assets/optimized_ajax/software.svg": "./assets/software.svg",
-          // "./assets/optimized_ajax/marketing.svg": "./assets/marketing.svg",
+          "./assets/optimized_ajax/design.svg": "./assets/design.svg", // uncomment (along with removeAttrs) and manually optimize svgs for ajax
+          "./assets/optimized_ajax/software.svg": "./assets/software.svg",
+          "./assets/optimized_ajax/marketing.svg": "./assets/marketing.svg",
         },
       },
     },
