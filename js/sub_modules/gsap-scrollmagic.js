@@ -287,7 +287,6 @@ function slideAnim(direction) {
     rotationFrom = -20;
     rotationTo = 0;
   }
-
   tl.fromTo(
     ".modal-overlay",
     2.1,
