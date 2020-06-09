@@ -24,7 +24,7 @@ html, body {
 body {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
-    background-color: #f0f2f5;
+    background-color: $site-background-light;
     // overflow-x: hidden;
     // background-color: $background-light;
     // background-color: #bdc3cc52;
@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5 {
 }
 
 #section-contact {
-    margin-top: 10%;
+    // margin-top: 10%;
     // min-height: 100%;
 }
 

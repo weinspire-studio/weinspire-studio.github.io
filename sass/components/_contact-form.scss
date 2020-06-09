@@ -1,3 +1,13 @@
+#section-contact {
+  background-image: url(/assets/contact-bg.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 500px;
+  padding-top: 7.5%;
+  margin-top: 2.5%;
+  min-height: 1000px;
+}
+
 form {
   @include media-query ($md) {
     display: flex;
@@ -26,7 +36,7 @@ form {
   // height: 100%;
   @include media-query ($md) {
     max-width: 1000px;
-    box-shadow:  0 5px 20px rgba(107,124,141,.4);
+    box-shadow: $contact-form-double;
     border-radius: 5px;
     width: 70%;
   }
@@ -265,11 +275,12 @@ form {
   display: none;
   @include media-query ($md) {
     display: block;
-    background-color: pink;
     grid-area: right;
     justify-self: right;
     min-width: 200px;
     max-width: 330px;
+    background-color: $site-background-light;
+    box-shadow: $contact-form-double;
     border-top-right-radius: 50%;
     border-bottom-left-radius: 50%;
     height: 94%;

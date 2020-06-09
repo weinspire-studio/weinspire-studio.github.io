@@ -49,10 +49,6 @@ h1, h2, h3, h4, h5 {
   font-weight: 500;
 }
 
-#section-contact {
-  margin-top: 10%;
-}
-
 .overflow-hidden {
   overflow-y: hidden;
 }
@@ -1349,6 +1345,16 @@ h1, h2, h3, h4, h5 {
     transform: scale(1);
   }
 }
+#section-contact {
+  background-image: url(/assets/contact-bg.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 500px;
+  padding-top: 7.5%;
+  margin-top: 2.5%;
+  min-height: 1000px;
+}
+
 @media screen and (min-width: 801px) {
   form {
     display: -ms-flexbox;
@@ -1379,7 +1385,7 @@ h1, h2, h3, h4, h5 {
 @media screen and (min-width: 801px) {
   .form-container {
     max-width: 1000px;
-    box-shadow: 0 5px 20px rgba(107, 124, 141, 0.4);
+    box-shadow: 0 5px 20px rgba(107, 124, 141, 0.4), 1px 1px 3px 2px rgba(107, 124, 141, 0.06);
     border-radius: 5px;
     width: 70%;
   }
@@ -1636,11 +1642,12 @@ h1, h2, h3, h4, h5 {
 @media screen and (min-width: 801px) {
   .form-info {
     display: block;
-    background-color: pink;
     grid-area: right;
     justify-self: right;
     min-width: 200px;
     max-width: 330px;
+    background-color: #f0f2f5;
+    box-shadow: 0 5px 20px rgba(107, 124, 141, 0.4), 1px 1px 3px 2px rgba(107, 124, 141, 0.06);
     border-top-right-radius: 50%;
     border-bottom-left-radius: 50%;
     height: 94%;
