@@ -4,8 +4,8 @@ import "../../node_modules/objectFitPolyfill/dist/objectFitPolyfill.basic.min.js
 import "intersection-observer";
 import LazyLoad from "vanilla-lazyload";
 
-const baseUrl =
-  "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/";
+// https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master
+const baseUrl = "/assets/";
 
 function makeRequest(url, section, callback = null) {
   let xhr = new XMLHttpRequest();

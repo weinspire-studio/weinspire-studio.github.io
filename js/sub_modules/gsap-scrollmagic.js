@@ -2,8 +2,8 @@
 
 import { makeRequest } from "../sub_modules/http";
 
-const url =
-  "https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master/assets/optimized_ajax/";
+// https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master
+const url = "/assets/optimized_ajax/";
 const targets = [
   "svg-background.svg",
   "design.svg",

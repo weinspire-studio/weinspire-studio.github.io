@@ -25,41 +25,13 @@
             border-left: 2px solid #000;
             box-shadow: 0 0 5px 2px rgba(0,0,0,.5);
         }
-        // li:hover {
-            // @include media-query ($md) {
-            //     cursor: pointer!important;
-            //     width: 100px;
-            //     background-color: red!important;
-            // }
-        // }
     }
 }
 
 .content-link {
     overflow: hidden;
     &:first-child {
-        // background-image: url("https://source.unsplash.com/850x450/?nature,sky");
-        // z-index: 4;
         border-left-color: #404040;
-    }
-    &:nth-child(2) {
-        // background-image: url("https://source.unsplash.com/850x450/?nature,fire");
-        // z-index: 3;
-    }
-    &:nth-child(3) {
-        // background-image: url("https://source.unsplash.com/850x450/?nature,stone");
-        // z-index: 2;
-    }
-    &:nth-child(4) {
-        // background-image: url("https://source.unsplash.com/850x450/?nature,tree");
-        // z-index: 1;
-    }
-    &:last-child {
-        // background-image: url("https://source.unsplash.com/850x450/?nature,light");
-        // z-index: 0;
-        // @include media-query ($md) {
-        //     box-shadow: 3px 7px 5px -2.75px #0e0e0e!important;
-        // }
     }
     .link-overlay {
         @include media-query ($md) {
@@ -73,11 +45,6 @@
             position: absolute;
             top: 0;
         }
-        // .link-overlay:hover {
-        //     @include media-query ($md) {
-        //         cursor: pointer;
-        //     }
-        // }
     }
     .link-caption {
         position: absolute;
@@ -88,7 +55,6 @@
         h6 {
             font-weight: 400;
             padding-top: .2em;
-            // opacity: 0;
         }
 
         &:after {
@@ -263,7 +229,6 @@
     width: 100%;
     opacity: 0;
     pointer-events: none;
-    // transition: opacity 0.2s ease;
 }
 
 #modal-image {
@@ -287,8 +252,6 @@
 }
 
 .modal-image-container {
-    // height: 700px;
-    // overflow: hidden;
     position: relative;
     margin: 0 auto;
     width: intrinsic; 
@@ -342,7 +305,6 @@
     text-decoration: none;
     cursor: pointer;
     transform: rotate(90deg);
-    /* transform-origin: center; */
 }
 
 #modal-caption h6 {
