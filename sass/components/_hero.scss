@@ -64,6 +64,10 @@
     z-index: 1;
 }
 
+.icon-container .icon-whatsapp path {
+    box-shadow: $message-light;
+}
+
 #span-we {
     padding: 0 .875rem;
     transition: text-shadow 500ms ease;

@@ -644,6 +644,10 @@ h1, h2, h3, h4, h5 {
   z-index: 1;
 }
 
+.icon-container .icon-whatsapp path {
+  box-shadow: 3px 3px 3px 0px rgba(107, 124, 141, 0.45);
+}
+
 #span-we {
   padding: 0 0.875rem;
   transition: text-shadow 500ms ease;
