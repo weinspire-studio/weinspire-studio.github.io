@@ -260,10 +260,10 @@
 
 .brand-color {
     .brand-blue {
-        fill: #00416B;
+        fill: $brand-color-blue;
     }
     .brand-green {
-        fill: #009889;
+        fill: $brand-color-green;
     }
 }
 .brand-negative {
@@ -271,7 +271,7 @@
         fill: #fff;
     }
     .brand-green {
-        fill: #2fc0bb;
+        fill: $brand-negative-green;
     }
 }
 

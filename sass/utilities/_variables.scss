@@ -20,6 +20,7 @@ $sm: 479px; // landscape cellphones
 $md: 801px; // tablets
 $lg: 1024px; // desktops
 $xl: 1200px; // large desktops
+$xxl: 1450px; // extra large desktops
 
 //colors
 $nav-light: rgba(255, 255, 255, 0.3);
@@ -49,7 +50,7 @@ $footer: #001828;
 // shadows
 $message-light: 3px 3px 3px 0px rgba(107,124,141,.45);
 $message-strong: 2px 2px 2px 0 rgba(89, 101, 113, 0.83);
-$contact-form-double: 0 5px 20px rgba(107,124,141,.4),1px 1px 3px 2px rgba(107, 124, 141, 0.06);
+$contact-form-double: 0 1px 20px rgba(107,124,141,.4), 1px 0px 3px 2px rgba(107,124,141,.05);
 
 // wrap sm (for margin or padding)
 $wrap-sm-mobile-small: 0.5em;

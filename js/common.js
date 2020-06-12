@@ -1474,7 +1474,7 @@ function smoothScroll() {
   $(".arrow-up").on("click", function () {
     $("html, body").animate({
       scrollTop: 0
-    }, 750);
+    }, 950);
   });
 } // adds hover effect on desktop
 
@@ -1617,10 +1617,9 @@ function toggleNavClasses() {
 
 
 function initSwiper(isSafari) {
-  if (isIos || isSafari) {
-    swiperPagination.classList.add("pagination-bottom");
-  } else {
-    swiperPagination.classList.add("pagination-middle");
+  swiperPagination.classList.add("pagination-bottom");
+
+  if (!isIos || !isSafari) {
     window.addEventListener("DOMContentLoaded", listenToArrow);
   }
 } // adds a listener to rightArrowsContainer that triggers the animation.

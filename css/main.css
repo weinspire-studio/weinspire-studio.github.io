@@ -635,6 +635,15 @@ h1, h2, h3, h4, h5 {
   fill: pink;
 }
 
+.icon-container .icon-whatsapp {
+  height: 3em;
+  position: absolute;
+  bottom: 3%;
+  right: 2%;
+  position: fixed;
+  z-index: 1;
+}
+
 #span-we {
   padding: 0 0.875rem;
   transition: text-shadow 500ms ease;
@@ -1345,14 +1354,34 @@ h1, h2, h3, h4, h5 {
     transform: scale(1);
   }
 }
-#section-contact {
-  background-image: url(/assets/contact-bg.svg);
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: 500px;
-  padding-top: 7.5%;
-  margin-top: 2.5%;
-  min-height: 1000px;
+@media screen and (min-width: 801px) {
+  #section-contact {
+    background-size: 400px;
+    min-height: 700px;
+    background-image: url(/assets/contact-bg.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-top: 7.5%;
+    margin-top: 2.5%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #section-contact {
+    background-size: 450px;
+    min-height: 800px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #section-contact {
+    background-size: 550px;
+    min-height: 900px;
+  }
+}
+@media screen and (min-width: 1450px) {
+  #section-contact {
+    background-size: 650px;
+    min-height: 1050px;
+  }
 }
 
 @media screen and (min-width: 801px) {
@@ -1385,7 +1414,7 @@ h1, h2, h3, h4, h5 {
 @media screen and (min-width: 801px) {
   .form-container {
     max-width: 1000px;
-    box-shadow: 0 5px 20px rgba(107, 124, 141, 0.4), 1px 1px 3px 2px rgba(107, 124, 141, 0.06);
+    box-shadow: 0 1px 20px rgba(107, 124, 141, 0.4), 1px 0px 3px 2px rgba(107, 124, 141, 0.05);
     border-radius: 5px;
     width: 70%;
   }
@@ -1403,30 +1432,16 @@ h1, h2, h3, h4, h5 {
 
 .form-fields {
   overflow-x: hidden;
-  margin: 0.5em;
+  margin: 1.5em;
 }
 @media screen and (min-width: 479px) {
-  .form-fields {
-    margin: 0.8em;
-  }
-}
-@media screen and (min-width: 801px) {
-  .form-fields {
-    margin: 1.1em;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .form-fields {
-    margin: 1.5em;
-  }
-}
-@media screen and (min-width: 1200px) {
   .form-fields {
     margin: 2em;
   }
 }
 @media screen and (min-width: 801px) {
   .form-fields {
+    margin: 0.5em;
     display: grid;
     grid-template-columns: 2fr 1.75fr;
     grid-template-rows: repeat(6, 1fr);
@@ -1435,7 +1450,38 @@ h1, h2, h3, h4, h5 {
         justify-content: center;
     -ms-flex-align: center;
         align-items: center;
-    margin-bottom: -1em !important;
+    margin-bottom: -1em;
+    margin-right: 0.5em;
+  }
+}
+@media screen and (min-width: 801px) and (min-width: 479px) {
+  .form-fields {
+    margin: 0.8em;
+  }
+}
+@media screen and (min-width: 801px) and (min-width: 801px) {
+  .form-fields {
+    margin: 1.1em;
+  }
+}
+@media screen and (min-width: 801px) and (min-width: 1024px) {
+  .form-fields {
+    margin: 1.5em;
+  }
+}
+@media screen and (min-width: 801px) and (min-width: 1200px) {
+  .form-fields {
+    margin: 2em;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .form-fields {
+    margin-right: 0.7em;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .form-fields {
+    margin-right: 1em;
   }
 }
 
@@ -1647,12 +1693,20 @@ h1, h2, h3, h4, h5 {
     min-width: 200px;
     max-width: 330px;
     background-color: #f0f2f5;
-    box-shadow: 0 5px 20px rgba(107, 124, 141, 0.4), 1px 1px 3px 2px rgba(107, 124, 141, 0.06);
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 50%;
+    box-shadow: 0 1px 20px rgba(107, 124, 141, 0.4), 1px 0px 3px 2px rgba(107, 124, 141, 0.05);
+    border-top-right-radius: 45%;
+    border-bottom-left-radius: 45%;
+    border-top-left-radius: 8%;
+    border-bottom-right-radius: 8%;
     height: 94%;
     width: 90%;
     margin-bottom: 1.3em;
+    margin-right: 0.75em;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .form-info {
+    margin-right: 1em;
   }
 }
 .form-info h4 {
@@ -1660,7 +1714,9 @@ h1, h2, h3, h4, h5 {
 }
 @media screen and (min-width: 801px) {
   .form-info h4 {
-    margin: 10% 5% 10%;
+    font-size: 1.2em;
+    margin-top: 15%;
+    margin-left: 11.5%;
     width: 67.5%;
   }
 }
@@ -1675,17 +1731,17 @@ h1, h2, h3, h4, h5 {
 @media screen and (min-width: 801px) {
   .info-container {
     width: 100%;
-    margin: 2.5em 0 0 8.5%;
+    margin: 2em 0 0 15%;
+  }
+}
+@media screen and (min-width: 801px) {
+  .info-container:nth-of-type(1) {
+    margin-top: 3em;
   }
 }
 
-.info-icon {
-  height: 1.5em;
-  width: 1.5em;
-}
-
 .info-data {
-  margin-left: 0.25em;
+  margin-left: 0.5em;
   width: 77.5%;
 }
 
@@ -1697,27 +1753,31 @@ h1, h2, h3, h4, h5 {
   width: 70.5%;
 }
 
+.info-container .info-icon {
+  height: 1.5em;
+  width: 1.5em;
+  fill: #001029;
+}
+
 .info-social {
   text-align: center;
   margin-top: 2em;
 }
 .info-social .info-icon {
+  margin-left: 1em;
+  fill: #00416B;
   height: 2.5em;
   width: 2.5em;
+  transition: fill 500ms ease, transform 500ms ease;
+}
+.info-social .info-icon:hover {
+  fill: #009889;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
-.info-social .icon-email {
-  margin-left: 1em;
-  fill: skyblue;
-}
-
-#icon-email .cls-3 {
-  margin-left: 1em;
-  fill: blue;
-}
-
-.info-container .icon-email {
-  fill: #019c01;
+.info-container .info-icon:hover {
+  fill: #006985;
 }
 
 .button-active {

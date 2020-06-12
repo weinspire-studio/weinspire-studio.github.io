@@ -1,11 +1,34 @@
 #section-contact {
-  background-image: url(/assets/contact-bg.svg);
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: 500px;
-  padding-top: 7.5%;
-  margin-top: 2.5%;
-  min-height: 1000px;
+  // background-image: url(/assets/design-color-100.svg);
+  // background-repeat: no-repeat;
+  // background-position: right;
+  // padding-top: 7.5%;
+  // margin-top: 2.5%;
+  // background-size: 600px;
+  // min-height: 1000px;
+  // $contact-form-strong: 0 5px 20px rgba(107,124,141,.4),1px 1px 3px 2px rgba(107, 124, 141, 0.06);
+  @include media-query ($md) {
+    background-size: 400px;
+    min-height: 700px;
+    background-image: url(/assets/contact-bg.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-top: 7.5%;
+    margin-top: 2.5%;
+  }
+  @include media-query ($lg) {
+    background-size: 450px;
+    min-height: 800px;
+  }
+  @include media-query ($xl) {
+    background-size: 550px;
+    min-height: 900px;
+  }
+
+  @include media-query ($xxl) {
+    background-size: 650px;
+    min-height: 1050px;
+  }
 }
 
 form {
@@ -50,14 +73,12 @@ form {
 
 .form-fields {
   overflow-x: hidden;
-  @include margin-map ($content-wrap-sm);
-  // @include media-query ($sm, $md) {
-  //   margin: 4em;
-  // }
-  // @include media-query ($md, $lg) {
-  //   margin: 2em;
-  // }
+  margin: 1.5em;
+  @include media-query ($sm) {
+    margin: 2em;
+  }
   @include media-query ($md) {
+      @include margin-map ($content-wrap-sm);
       display: grid;
       grid-template-columns: 2fr 1.75fr;
       grid-template-rows: repeat(6, 1fr);
@@ -70,7 +91,14 @@ form {
       'status .';
       justify-content: center;
       align-items: center;
-      margin-bottom: -1em!important;
+      margin-bottom: -1em;
+      margin-right: 0.5em;
+    }
+    @include media-query ($lg) {
+      margin-right: .7em;
+    }
+    @include media-query ($xl) {
+      margin-right: 1em;
     }
 
 }
@@ -281,18 +309,26 @@ form {
     max-width: 330px;
     background-color: $site-background-light;
     box-shadow: $contact-form-double;
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 50%;
+    border-top-right-radius: 45%;
+    border-bottom-left-radius: 45%;
+    border-top-left-radius: 8%;
+    border-bottom-right-radius: 8%;
     height: 94%;
     width: 90%;
     margin-bottom: 1.3em;
+    margin-right: .75em;
+  }
 
+  @include media-query ($lg) {
+    margin-right: 1em;
   }
 
   & h4 {
     text-align: center;
     @include media-query ($md) {
-      margin: 10% 5% 10%;
+      font-size: 1.2em;
+      margin-top: 15%;
+      margin-left: 11.5%;
       width: 67.5%;
     }
   }
@@ -305,25 +341,21 @@ form {
   @include media-query ($md) {
     width: 100%;
     // display: inline-block;
-    margin: 2.5em 0 0 8.5%;
+    margin: 2em 0 0 15%;
+  }
+  &:nth-of-type(1) {
+    @include media-query ($md) {
+      margin-top: 3em;
+    }
   }
 }
 
-.info-icon {
-  height: 1.5em;
-  width: 1.5em;
-}
-
-.icon-email {
-  // height: 2.25em;
-  // width: 2.25em;
-}
-
 .info-data {
-  margin-left: .25em;
+  margin-left: 0.5em;
   width: 77.5%;
 }
 
+// SVG Styles
 .info-data span {
   display: inline-block;
 }
@@ -332,29 +364,31 @@ form {
   width: 70.5%;
 }
 
+.info-container .info-icon {
+  height: 1.5em;
+  width: 1.5em;
+  fill: $blue-theme-darker
+}
+
 .info-social {
   text-align: center;
   margin-top: 2em;
   .info-icon {
+    margin-left: 1em;
+    fill: $brand-color-blue;
     height: 2.5em;
     width: 2.5em;
+    transition: fill 500ms ease, transform 500ms ease;
+    &:hover {
+      fill: $brand-color-green;
+      transform: scale(1.1);
+      cursor: pointer;
+    }
   }
 }
 
-// SVG Styles
-.info-social .icon-email {
-  margin-left: 1em;
-  fill: skyblue; //chrome and safari color
-}
-
-#icon-email .cls-3 {
-  margin-left: 1em;
-  fill: blue; //chrome and safari color
-}
-
-//chrome and safari color
-.info-container .icon-email {
-  fill: rgb(1, 156, 1);
+.info-container .info-icon:hover {
+  fill: $blue-theme-middle;
 }
 
 // Event Style Classes

@@ -140,33 +140,41 @@ module.exports = function (grunt) {
           {
             cleanupIDs: false,
           },
-          // {
-          //   removeAttrs: {
-          //     attrs: ["xmlns"],
-          //   },
-          // },
           {
-            mergePaths: false,
+            removeAttrs: {
+              attrs: ["xmlns"],
+            },
           },
+          // {
+          //   mergePaths: false,
+          // },
         ],
       },
       dist: {
         files: {
-          // "./assets/optimized/brand-mobile.svg": "./assets/brand-mobile.svg",
-          // "./assets/optimized/brand-desktop.svg": "./assets/brand-desktop.svg",
-          // "./assets/optimized/email.svg": "./assets/email.svg",
-          // "./assets/optimized/email-circle.svg": "./assets/email-circle.svg",
-          // "./assets/optimized/whatsapp.svg": "./assets/whatsapp.svg",
-          // "./assets/optimized/whatsapp-circle.svg": "./assets/whatsapp-circle.svg", // prettier-ignore
-          // "./assets/optimized/facebook.svg": "./assets/facebook.svg",
-          // "./assets/optimized/behance.svg": "./assets/behance.svg",
-          // "./assets/optimized/linkedin.svg": "./assets/linkedin.svg",
-          // "./assets/optimized/arrow-up.svg": "./assets/arrow-up.svg",
-          // "./assets/optimized/location.svg": "./assets/location.svg",
+          "./assets/optimized/brand-mobile.svg": "./assets/brand-mobile.svg",
+          "./assets/optimized/brand-desktop.svg": "./assets/brand-desktop.svg",
+          "./assets/optimized/facebook.svg": "./assets/facebook.svg",
+          "./assets/optimized/whatsapp.svg": "./assets/whatsapp.svg",
+          "./assets/optimized/linkedin.svg": "./assets/linkedin.svg",
+          "./assets/optimized/behance.svg": "./assets/behance.svg",
+          "./assets/optimized/location.svg": "./assets/location.svg",
+          "./assets/optimized/email.svg": "./assets/email.svg",
+          "./assets/optimized/email-circle.svg": "./assets/email-circle.svg",
+          "./assets/optimized/whatsapp-circle.svg": "./assets/whatsapp-circle.svg", // prettier-ignore
+          "./assets/optimized/location-circle.svg": "./assets/location-circle.svg", // prettier-ignore
+          "./assets/optimized/footer-location.svg": "./assets/footer-location.svg", // prettier-ignore
+          "./assets/optimized/footer-bg.svg": "./assets/footer-bg.svg",
+          "./assets/optimized/footer-map.svg": "./assets/footer-map.svg",
+          "./assets/optimized/arrow-up.svg": "./assets/arrow-up.svg",
+          "./assets/optimized/arrow-left.svg": "./assets/arrow-left.svg",
+          "./assets/optimized/arrow-right.svg": "./assets/arrow-right.svg",
+          "./assets/optimized/cross.svg": "./assets/cross.svg",
+          "./assets/optimized/contact-bg.svg": "./assets/contact-bg.svg",
           // "./assets/optimized_ajax/svg-background.svg": "./assets/svg-background.svg", // prettier-ignore
-          "./assets/optimized_ajax/design.svg": "./assets/design.svg", // uncomment (along with removeAttrs) and manually optimize svgs for ajax
-          "./assets/optimized_ajax/software.svg": "./assets/software.svg",
-          "./assets/optimized_ajax/marketing.svg": "./assets/marketing.svg",
+          // "./assets/optimized_ajax/design.svg": "./assets/design.svg", // uncomment (along with removeAttrs) and manually optimize svgs for ajax
+          // "./assets/optimized_ajax/software.svg": "./assets/software.svg", // comment mergePaths
+          // "./assets/optimized_ajax/marketing.svg": "./assets/marketing.svg",
         },
       },
     },

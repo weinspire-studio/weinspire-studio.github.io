@@ -55,6 +55,15 @@
     }
 }
 
+.icon-container .icon-whatsapp {
+    height: 3em;
+    position: absolute;
+    bottom: 3%;
+    right: 2%;
+    position: fixed;
+    z-index: 1;
+}
+
 #span-we {
     padding: 0 .875rem;
     transition: text-shadow 500ms ease;

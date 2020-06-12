@@ -10,7 +10,7 @@ function smoothScroll() {
       {
         scrollTop: 0,
       },
-      750
+      950
     );
   });
 }
