@@ -180,41 +180,31 @@
     }
 }
 
-#right-arrow-1 {
+.right-arrow-container svg  {
+    grid-area: arrow;
+    transition: animation 500ms ease, opacity 500ms ease;
+    -moz-transition: animation 500ms ease, opacity 500ms ease;
+    -webkit-transition: animation 500ms ease, opacity 500ms ease;
+    -o-transition: animation 500ms ease, opacity 500ms ease;
+    position: relative;
+    opacity: 0;
+}
+
+#arrow-right-1 {
     fill: $blue-theme-dark;
     grid-area: arrow;
-    transition: animation 500ms ease, opacity 500ms ease;
-    -moz-transition: animation 500ms ease, opacity 500ms ease;
-    -webkit-transition: animation 500ms ease, opacity 500ms ease;
-    -o-transition: animation 500ms ease, opacity 500ms ease;
-    position: relative;
     right: -40px;
-    opacity: 0;
 }
 
 
-#right-arrow-2 {
+#arrow-right-2 {
     fill: $blue-theme-middle;
-    grid-area: arrow;
-    transition: animation 500ms ease, opacity 500ms ease;
-    -moz-transition: animation 500ms ease, opacity 500ms ease;
-    -webkit-transition: animation 500ms ease, opacity 500ms ease;
-    -o-transition: animation 500ms ease, opacity 500ms ease;
-    position: relative;
     right: -20px;
-    opacity: 0;
 }
 
 
-#right-arrow-3 {
+#arrow-right-3 {
     fill: $blue-theme-light;
-    grid-area: arrow;
-    position: relative;
-    opacity: 0;
-    transition: animation 500ms ease, opacity 500ms ease;
-    -moz-transition: animation 500ms ease, opacity 500ms ease;
-    -webkit-transition: animation 500ms ease, opacity 500ms ease;
-    -o-transition: animation 500ms ease, opacity 500ms ease;
 }
 
 
@@ -287,9 +277,9 @@
     opacity: 0;
 }
 
-.close {
+#modal-close {
     position: absolute;
-    color: #ccc;
+    fill: #ccc;
     font-size: 4em;
     cursor: pointer;
     top: 0;
@@ -297,15 +287,36 @@
     right: 0.2em;
     transition: opacity 0.5s ease-in, transform 0.3s ease;
     opacity: 0;
+    height: 1.5em;
+    width: 1.5em;
 }
 
-  .close:hover,
-.close:focus {
-    color: rgb(255, 255, 255);
+#modal-close:hover {
+    fill: #fff;
     text-decoration: none;
     cursor: pointer;
     transform: rotate(90deg);
 }
+
+// .close {
+//     position: absolute;
+//     color: #ccc;
+//     font-size: 4em;
+//     cursor: pointer;
+//     top: 0;
+//     padding: 0 0.5em 0 0.5em;
+//     right: 0.2em;
+//     transition: opacity 0.5s ease-in, transform 0.3s ease;
+//     opacity: 0;
+// }
+
+//   .close:hover,
+// .close:focus {
+//     color: rgb(255, 255, 255);
+//     text-decoration: none;
+//     cursor: pointer;
+//     transform: rotate(90deg);
+// }
 
 #modal-caption h6 {
     font-weight: 300;
@@ -315,43 +326,38 @@
 #modal-image,
 #modal-caption,
 .close,
-#right-arrow,
-#left-arrow {
+#modal-arrow-right,
+#modal-arrow-left {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
 
-#right-arrow,
-#left-arrow {
+#modal-arrow-right,
+#modal-arrow-left {
     position: absolute;
-    color: #ccc;
+    fill: #ccc;
     font-size: 4em;
     cursor: pointer;
     opacity: 0;
     transition: 0.3s, opacity 0.5s ease-in;
     outline: none;
+    height: .75em;
+    width: .75em;
+    top: 50%;
 }
 
-#right-arrow {
-    top: 50%;
+#modal-arrow-right {
     right: 10%;
-    transform: rotate(180deg);
 }
 
-#left-arrow {
-    top: 50%;
+#modal-arrow-left {
     left: 10%;
 }
 
-#right-arrow:hover {
-    color: #fff;
-    transform: scale(1.2) rotate(180deg);
-}
-
-#left-arrow:hover {
-    color: #fff;
+#modal-arrow-left:hover, #modal-arrow-right:hover {
+    fill: #fff;
     transform: scale(1.2);
 }
 
@@ -436,25 +442,25 @@
 //Animations
 @-webkit-keyframes arrow-wave-anim {
     0% {
-        transform: rotate(90deg) scale(1);
+        transform: scale(1);
     }
     25% {
-        transform: rotate(90deg) scale(1.3) translateY(2.5px);
+        transform: scale(1.3) translateY(2.5px);
     }
     50%, 75%, 100% {
-        transform: rotate(90deg) scale(1);
+        transform: scale(1);
     }
 }
 
 @keyframes arrow-wave-anim {
     0% {
-        transform: rotate(90deg) scale(1);
+        transform: scale(1);
     }
     25% {
-        transform: rotate(90deg) scale(1.3);
+        transform: scale(1.3);
     }
     50%, 75%, 100% {
-        transform: rotate(90deg) scale(1);
+        transform: scale(1);
     }
 }
 

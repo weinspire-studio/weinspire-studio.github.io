@@ -55,17 +55,13 @@
     }
 }
 
-.icon-container .icon-whatsapp {
+#section-hero .icon-whatsapp {
     height: 3em;
     position: absolute;
     bottom: 3%;
     right: 2%;
     position: fixed;
     z-index: 1;
-}
-
-.icon-container .icon-whatsapp path {
-    box-shadow: $message-light;
 }
 
 #span-we {

@@ -115,10 +115,10 @@ function restoreLink() {
 const modal = document.getElementById("modal");
 const modalImage = document.getElementById("modal-image");
 const modalCaption = document.getElementById("modal-caption");
-
-const cross = document.querySelector("span.close");
-const leftArrow = document.getElementById("left-arrow");
-const rightArrow = document.getElementById("right-arrow");
+// const cross = document.querySelector("span.close");
+const cross = document.getElementById("modal-close");
+const leftArrow = document.getElementById("modal-arrow-left");
+const rightArrow = document.getElementById("modal-arrow-right");
 let hasRequested = false;
 
 let rightArrowHandler;
