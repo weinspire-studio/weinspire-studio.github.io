@@ -172,8 +172,8 @@ module.exports = function (grunt) {
           // "./assets/optimized/contact-bg.svg": "./assets/contact-bg.svg",
           // "./assets/optimized/background-color.svg": "./assets/background-color.svg", // prettier-ignore
           // "./assets/optimized/background-grey.svg": "./assets/background-grey.svg", // prettier-ignore
-          // "./assets/optimized/curve-change-color.svg": "./assets/curve-change-color.svg", // prettier-ignore
-          // "./assets/optimized/svg-background.svg": "./assets/svg-background.svg" // prettier-ignore
+          // "./assets/optimized/svg-separator.svg": "./assets/svg-separator.svg", // prettier-ignore
+          // "./assets/optimized/svg-background.svg": "./assets/svg-background.svg", // prettier-ignore
           // "./assets/optimized/design.svg": "./assets/design.svg", // uncomment and manually optimize svgs for ajax
           // "./assets/optimized/software.svg": "./assets/software.svg", // uncomment mergePaths, comment removeAttrs
           // "./assets/optimized/marketing.svg": "./assets/marketing.svg",

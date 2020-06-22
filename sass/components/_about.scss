@@ -6,10 +6,10 @@
     flex-direction: column;
     justify-content: center;
     @include media-query ($md) {
-        background-image: url(/assets/optimized/background-color.svg);
+        background-image: url(/assets/optimized/background-grey.svg);
         background-repeat: no-repeat;
-        background-position: right;
-        background-size: 400px;
+        background-position: left;
+        background-size: 170px;
     }
 
     .section-title {

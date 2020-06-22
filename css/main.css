@@ -49,6 +49,10 @@ h1, h2, h3, h4, h5 {
   font-weight: 500;
 }
 
+#section-projects-design, #section-contact {
+  background-color: #fff;
+}
+
 .overflow-hidden {
   overflow-y: hidden;
 }
@@ -740,10 +744,10 @@ h1, h2, h3, h4, h5 {
 }
 @media screen and (min-width: 801px) {
   #section-about {
-    background-image: url(/assets/optimized/background-color.svg);
+    background-image: url(/assets/optimized/background-grey.svg);
     background-repeat: no-repeat;
-    background-position: right;
-    background-size: 400px;
+    background-position: left;
+    background-size: 170px;
   }
 }
 #section-about .section-title {
@@ -769,6 +773,19 @@ h1, h2, h3, h4, h5 {
   #section-about p {
     width: 50%;
   }
+}
+
+@media screen and (min-width: 801px) {
+  #section-services {
+    background-image: url(/assets/optimized/curve-change-color.svg);
+    background-repeat: no-repeat;
+    background-position: 100% 100.1%;
+  }
+}
+
+#services-separator {
+  width: 100%;
+  height: 100px;
 }
 
 #services-grid {
@@ -938,6 +955,11 @@ h1, h2, h3, h4, h5 {
     -o-transition: width 450ms ease;
     border-left: 2px solid #000;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+@media screen and (min-width: 801px) {
+  #section-projects-design h1 {
+    padding-top: 0;
   }
 }
 
@@ -1406,7 +1428,6 @@ h1, h2, h3, h4, h5 {
     background-repeat: no-repeat;
     background-position: right;
     padding-top: 7.5%;
-    margin-top: 2.5%;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -1907,7 +1928,6 @@ h1, h2, h3, h4, h5 {
   #footer {
     display: grid;
     justify-items: center;
-    margin-top: 10%;
     grid-template-columns: 2fr 2fr 1.5fr 2.5fr;
     grid-template-areas: "arrow arrow arrow arrow" "news dev-services design-services site" "social map map logo" "info info info info";
   }

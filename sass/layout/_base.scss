@@ -61,6 +61,14 @@ h1, h2, h3, h4, h5 {
     // min-height: 100%;
 }
 
+#section-about, #section-services {
+    // background-color: $site-background-light;
+}
+
+#section-projects-design, #section-contact {
+    background-color: #fff;
+}
+
 //Style Classes
 .overflow-hidden {
     overflow-y: hidden;
