@@ -990,8 +990,8 @@ function prepareRequests() {
 }
 
 function animateBackground() {
-  var svgPaths = document.querySelectorAll("#svg-background path"); // const heroDivs = document.querySelectorAll("#section-hero .hero");
-
+  var svgPaths = document.querySelectorAll("#svg-background path");
+  console.log(svgPaths);
   tl.to(svgPaths[0], 1, {
     y: 95,
     ease: Linear.easeNone

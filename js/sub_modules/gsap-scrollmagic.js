@@ -32,7 +32,7 @@ function prepareRequests() {
 
 function animateBackground() {
   const svgPaths = document.querySelectorAll("#svg-background path");
-  // const heroDivs = document.querySelectorAll("#section-hero .hero");
+  console.log(svgPaths);
 
   tl.to(svgPaths[0], 1, { y: 95, ease: Linear.easeNone }, 0.4)
     .to(svgPaths[1], 1, { y: 175, ease: Linear.easeNone }, 0.2)
