@@ -990,8 +990,9 @@ function prepareRequests() {
 }
 
 function animateBackground() {
-  var svgPaths = document.querySelectorAll("#svg-background path");
-  console.log(svgPaths);
+  var svgPaths = document.querySelectorAll("#svg-background path"); // svgPaths[4].style =
+  //   "-webkit-filter: drop-shadow(0px -2px 5px rgba(107, 124, 141, .65));";
+
   tl.to(svgPaths[0], 1, {
     y: 95,
     ease: Linear.easeNone
@@ -1004,12 +1005,7 @@ function animateBackground() {
   }, 0.3).to(svgPaths[3], 1, {
     y: 25,
     ease: Linear.easeNone
-  }, 0); // prettier-ignore
-  // if(!isSafari) {
-  // tl.to(heroDivs[0], 1, { y: "50%", ease: Linear.easeNone }, 0)
-  //   .to(heroDivs[1], 1, { y: "50%", ease: Linear.easeNone }, 0);
-  // }
-
+  }, 0);
   var ParallaxScene = new ScrollMagic.Scene({
     // triggerElement: this,
     triggerHook: 0,

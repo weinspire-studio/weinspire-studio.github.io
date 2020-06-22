@@ -1,14 +1,16 @@
 #section-about {
     // background-color: pink;
-    min-height: 75%;
+    min-height: 50%;
     @include padding-map($content-wrap-sm);
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    // background-image: url(/assets/contact-bg.svg);
-    // background-repeat: no-repeat;
-    // background-position: right;
+    @include media-query ($md) {
+        background-image: url(/assets/optimized/background-color.svg);
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: 400px;
+    }
 
     .section-title {
         padding-top: 0;

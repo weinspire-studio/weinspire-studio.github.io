@@ -32,17 +32,14 @@ function prepareRequests() {
 
 function animateBackground() {
   const svgPaths = document.querySelectorAll("#svg-background path");
-  console.log(svgPaths);
+
+  // svgPaths[4].style =
+  //   "-webkit-filter: drop-shadow(0px -2px 5px rgba(107, 124, 141, .65));";
 
   tl.to(svgPaths[0], 1, { y: 95, ease: Linear.easeNone }, 0.4)
     .to(svgPaths[1], 1, { y: 175, ease: Linear.easeNone }, 0.2)
     .to(svgPaths[2], 1, { y: 140, ease: Linear.easeNone }, 0.3)
     .to(svgPaths[3], 1, { y: 25, ease: Linear.easeNone }, 0);
-  // prettier-ignore
-  // if(!isSafari) {
-  // tl.to(heroDivs[0], 1, { y: "50%", ease: Linear.easeNone }, 0)
-  //   .to(heroDivs[1], 1, { y: "50%", ease: Linear.easeNone }, 0);
-  // }
 
   const ParallaxScene = new ScrollMagic.Scene({
     // triggerElement: this,
