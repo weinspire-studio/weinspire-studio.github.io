@@ -3,7 +3,7 @@
 import { makeRequest } from "../sub_modules/http";
 
 // https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master
-const url = "/assets/optimized_ajax/";
+const url = "/assets/optimized/";
 const targets = [
   "svg-background.svg",
   "design.svg",
@@ -293,16 +293,16 @@ function slideAnim(direction) {
     {
       rotation: rotationFrom,
       scaleX: 2,
-      scaleY: 2,
+      scaleY: 200,
       xPercent: xDirFrom,
-      yPercent: 4,
+      yPercent: 0,
       opacity: 1,
       transformOrigin: "0% 0%",
     },
     {
       rotation: rotationTo,
       xPercent: xDirTo,
-      yPercent: -2,
+      yPercent: 0,
       transformOrigin: "50% 50%",
       ease: Power2.easeOut,
     }

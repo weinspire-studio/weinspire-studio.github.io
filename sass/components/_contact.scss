@@ -24,20 +24,17 @@
     background-size: 550px;
     min-height: 900px;
   }
-
   @include media-query ($xxl) {
     background-size: 650px;
     min-height: 1050px;
   }
-}
-
-form {
-  @include media-query ($md) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+  form {
+    @include media-query ($md) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+  }
 }
 
 .form-title {
@@ -182,7 +179,6 @@ form {
   align-self: center;
   text-align: center;
   font-size: .9em;
-
   opacity: 0;
   transition: all 1s ease-in;
   @include media-query ($md) {

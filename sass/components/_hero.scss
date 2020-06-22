@@ -62,6 +62,14 @@
     right: 2%;
     position: fixed;
     z-index: 1;
+    transition: filter .75s ease;
+    -webkit-filter: drop-shadow(1px 1px 3px rgba(107, 124, 141, .75));
+    filter: drop-shadow(1px 1px 3px rgba(107, 124, 141, .75));
+    &:hover {
+        -webkit-filter: drop-shadow(2px 2px 6px rgb(107, 124, 141, .65)) contrast(115%);
+        filter: drop-shadow(2px 2px 6px rgb(107, 124, 141, .65)) contrast(115%);
+        cursor: pointer;
+    }
 }
 
 #span-we {

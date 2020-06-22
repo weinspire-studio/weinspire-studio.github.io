@@ -19,6 +19,16 @@ formElements.push(textArea);
 textArea.value = "";
 newsForm[0].value = "";
 
+function initContactForms(isSafari) {
+  validateContactForm();
+  submitContactForm();
+  submitNewsForm();
+  if (isSafari) {
+    const newsButton = document.querySelector("#news-form button");
+    newsButton.classList.add("button-mask-safari");
+  }
+}
+
 function validateContactForm() {
   formElements.forEach((formEl) => {
     let visitedFlag = false;
@@ -207,4 +217,4 @@ function showMessage(statusContainer) {
   }, delay);
 }
 
-export { validateContactForm, submitContactForm, submitNewsForm };
+export { initContactForms };

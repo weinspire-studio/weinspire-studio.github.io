@@ -39,7 +39,8 @@
     grid-area: arrow;
     margin: .5em auto;
     transition: animation 500ms ease-in;
-    animation: enlarge 500ms ease infinite alternate;
+    // animation: enlarge 500ms ease infinite alternate;
+    @include prefixes (animation, enlarge 500ms ease infinite alternate);
     @include media-query ($md) {
         height: 25px;
         width: 25px;
@@ -105,7 +106,6 @@
     border-radius: 40px;
     position: relative;
     margin: 1em 0 3.1em;
-
     @include media-query ($md) {
         margin: 2em 0;
         height: 60px;
@@ -157,12 +157,12 @@
         border: 0;
         border-radius: 50%;
         background-color: transparent;
-        // background-color: $brand-color-blue;
         cursor: pointer;
         transition: opacity 0.75s ease-out;
         overflow: hidden;
         box-shadow: -.75px -.75px 2px .5px rgba(243,243,243,.945),1px 1.3px 2px 1px rgba(141,141,141,.925);
-        // box-shadow: -.75px -.75px 2px .5px rgba(243,243,243,.945),1px .5px 1.5px 1px rgba(141,141,141,.925);
+        @include user-select;
+        -webkit-tap-highlight-color: transparent;
         @include media-query ($md) {
             right: 7.5px;
             top: 7.5px;
@@ -207,17 +207,19 @@
 }
 
 #arrow-right-news {
-    height: 1.85em;
-    width: 1.85em;
+    height: 1.25em;
+    width: 1.25em;
     padding: .1em 0 0 .3em;
     fill: $footer;
     z-index: 2;
     position: relative;
     transition: fill 1s ease;
+    @include media-query ($md) {
+        height: 1.85em;
+        width: 1.85em;
+    }
 }
 
-
-// #footer-social h3
 #footer-design, #footer-dev, #footer-site .footer-title {
     display: none;
     @include media-query ($md) {
@@ -233,13 +235,13 @@
 
 #footer-site p {
     color: white;
-    font-size: 1em !important;
+    font-size: 1em;
     text-transform: uppercase;
     border-bottom: 1px solid fade-out($nav-light, .125);
     line-height: 2.5;
     @include media-query($md) {
         color: $white-opacity;
-        font-size: .7em !important;
+        font-size: .7em;
         border: none;
         text-transform: initial;
         line-height: initial;
@@ -252,7 +254,6 @@
     @include media-query ($md) {
         display: block;
         grid-area: logo;
-        // align-self: center;
         #brand-desktop-svg {
             width: 150px;
             .brand-blue {
@@ -268,17 +269,13 @@
 #footer-map {
     display: none;
     @include media-query ($md) {
-        // position: relative;
         padding-bottom: .75em;
         display: block;
         grid-area: map;
         align-self: center;
         img {
-            // width: 350px;
             min-width: 400px;
             width: 80%;
-            // margin-left: 50%;
-            // transform: translateX(-50%);
         }
     }
 }
@@ -291,11 +288,10 @@
 #footer-map svg {
     position: absolute;
     height: 1.15em;
-    width: 1.15em;
+    // width: 1.15em;
     z-index: 1;
     fill: $map-red;
-    transition: all .5s ease;
-    // transition: fill .5s ease, transform .5s ease, transform-origin .5s ease, z-index .5s ease; 
+    transition: fill .5s ease, transform .5s ease, transform-origin .5s ease, z-index .5s ease; 
 }
 
 #footer-map svg:hover {
@@ -442,6 +438,12 @@
     box-shadow: $message-light;
     background-color: $success;
     border-radius: 9px;
+}
+
+.button-mask-safari {
+    border: .2px solid #978a8a!important;
+    -webkit-mask-image: -webkit-radial-gradient(rgba(243,243,243,.945), rgba(141,141,141,.925));
+    -webkit-filter: drop-shadow(1px 1px 1.75px rgba(0, 0, 0, .5));
 }
 
 @-webkit-keyframes enlarge {

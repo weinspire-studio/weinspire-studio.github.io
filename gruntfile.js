@@ -77,7 +77,7 @@ module.exports = function (grunt) {
     },
     autoprefixer: {
       options: {
-        browserslist: ["defaults", "ie 8", "ie 9", "ie 10"],
+        browserslist: ["defaults", "ie 9", "ie 10", "chrome 35"],
       },
       single_file: {
         src: "<%= conf.main_css %>",
@@ -87,7 +87,7 @@ module.exports = function (grunt) {
     // js bundler
     browserify: {
       development: {
-        src: ["./js/main.js", "./js/sub_modules/swiper.js"],
+        src: ["./js/main.js"],
         dest: "./js/common.js",
         options: {
           // browserifyOptions: { debug: true },
@@ -152,29 +152,31 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          "./assets/optimized/brand-mobile.svg": "./assets/brand-mobile.svg",
-          "./assets/optimized/brand-desktop.svg": "./assets/brand-desktop.svg",
-          "./assets/optimized/facebook.svg": "./assets/facebook.svg",
-          "./assets/optimized/whatsapp.svg": "./assets/whatsapp.svg",
-          "./assets/optimized/linkedin.svg": "./assets/linkedin.svg",
-          "./assets/optimized/behance.svg": "./assets/behance.svg",
-          "./assets/optimized/location.svg": "./assets/location.svg",
-          "./assets/optimized/email.svg": "./assets/email.svg",
-          "./assets/optimized/email-circle.svg": "./assets/email-circle.svg",
-          "./assets/optimized/whatsapp-circle.svg": "./assets/whatsapp-circle.svg", // prettier-ignore
-          "./assets/optimized/location-circle.svg": "./assets/location-circle.svg", // prettier-ignore
-          "./assets/optimized/footer-location.svg": "./assets/footer-location.svg", // prettier-ignore
-          "./assets/optimized/footer-bg.svg": "./assets/footer-bg.svg",
-          "./assets/optimized/footer-map.svg": "./assets/footer-map.svg",
-          "./assets/optimized/arrow-up.svg": "./assets/arrow-up.svg",
-          "./assets/optimized/arrow-left.svg": "./assets/arrow-left.svg",
-          "./assets/optimized/arrow-right.svg": "./assets/arrow-right.svg",
-          "./assets/optimized/cross.svg": "./assets/cross.svg",
-          "./assets/optimized/contact-bg.svg": "./assets/contact-bg.svg",
-          // "./assets/optimized_ajax/svg-background.svg": "./assets/svg-background.svg", // prettier-ignore
-          // "./assets/optimized_ajax/design.svg": "./assets/design.svg", // uncomment (along with removeAttrs) and manually optimize svgs for ajax
-          // "./assets/optimized_ajax/software.svg": "./assets/software.svg", // comment mergePaths
-          // "./assets/optimized_ajax/marketing.svg": "./assets/marketing.svg",
+          "./assets/optimized_sprite/brand-mobile.svg": "./assets/brand-mobile.svg", // prettier-ignore
+          "./assets/optimized_sprite/brand-desktop.svg": "./assets/brand-desktop.svg", // prettier-ignore
+          "./assets/optimized_sprite/facebook.svg": "./assets/facebook.svg",
+          "./assets/optimized_sprite/whatsapp.svg": "./assets/whatsapp.svg",
+          "./assets/optimized_sprite/linkedin.svg": "./assets/linkedin.svg",
+          "./assets/optimized_sprite/behance.svg": "./assets/behance.svg",
+          "./assets/optimized_sprite/location.svg": "./assets/location.svg",
+          "./assets/optimized_sprite/email.svg": "./assets/email.svg",
+          "./assets/optimized_sprite/email-circle.svg": "./assets/email-circle.svg", // prettier-ignore
+          "./assets/optimized_sprite/whatsapp-circle.svg": "./assets/whatsapp-circle.svg", // prettier-ignore
+          "./assets/optimized_sprite/location-circle.svg": "./assets/location-circle.svg", // prettier-ignore
+          "./assets/optimized_sprite/footer-location.svg": "./assets/footer-location.svg", // prettier-ignore
+          "./assets/optimized_sprite/arrow-up.svg": "./assets/arrow-up.svg",
+          "./assets/optimized_sprite/arrow-left.svg": "./assets/arrow-left.svg",
+          "./assets/optimized_sprite/arrow-right.svg": "./assets/arrow-right.svg", // prettier-ignore
+          "./assets/optimized_sprite/cross.svg": "./assets/cross.svg",
+          // "./assets/optimized/footer-bg.svg": "./assets/footer-bg.svg",
+          // "./assets/optimized/contact-bg.svg": "./assets/contact-bg.svg",
+          // "./assets/optimized/background-color.svg": "./assets/background-color.svg", // prettier-ignore
+          // "./assets/optimized/background-grey.svg": "./assets/background-grey.svg", // prettier-ignore
+          // "./assets/optimized/curve-change-color.svg": "./assets/curve-change-color.svg", // prettier-ignore
+          // "./assets/optimized/svg-background.svg": "./assets/svg-background.svg" // prettier-ignore
+          // "./assets/optimized/design.svg": "./assets/design.svg", // uncomment and manually optimize svgs for ajax
+          // "./assets/optimized/software.svg": "./assets/software.svg", // uncomment mergePaths, comment removeAttrs
+          // "./assets/optimized/marketing.svg": "./assets/marketing.svg",
         },
       },
     },
@@ -182,7 +184,7 @@ module.exports = function (grunt) {
     svg_sprite: {
       default: {
         expand: true,
-        cwd: "./assets/optimized/",
+        cwd: "./assets/optimized_sprite/",
         src: ["*.svg"],
         dest: "./assets/",
         options: {

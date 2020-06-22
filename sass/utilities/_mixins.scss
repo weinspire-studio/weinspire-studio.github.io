@@ -12,6 +12,19 @@
     }
 }
 
+@mixin o-media-query ($min-width: 0, $max-width: false, $orientation) {
+    @if ($max-width == false) {
+        @media screen and (min-width: $min-width) and (orientation: $orientation) {
+            @content;
+        }
+    } 
+    @else  {
+        @media screen and (min-width: $min-width) and (max-width: $max-width) and (orientation: $orientation) {
+            @content;
+        }
+    }
+}
+
 
 @mixin grid-media-query ($min-width: 0) {
     @media screen and (min-width: $min-width) {
@@ -86,4 +99,31 @@
             }
         }
     }
+}
+
+// TODO: prefixes sass map
+@mixin prefix($property, $value, $prefixes: ()) {
+    @each $prefix in $prefixes {
+      #{'-' + $prefix + '-' + $property}: $value;
+    }
+    #{$property}: $value;
+}
+
+@mixin prefixes ($property, $value) {
+    #{'-webkit-' + $property}: $value;
+    #{'-moz-' + $property}: $value;
+    #{'-ms-' + $property}: $value;
+    #{$property}: $value;
+}
+
+@mixin anim-prefixes ($property, $value: ()) {
+    #{'-webkit-' + $property}: $value;
+    #{$property}: $value;
+}
+
+@mixin user-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

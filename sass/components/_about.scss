@@ -1,14 +1,33 @@
 #section-about {
     // background-color: pink;
-    min-height: 50%;
+    min-height: 75%;
     @include padding-map($content-wrap-sm);
     display: flex;
     flex-direction: column;
     justify-content: center;
 
+    // background-image: url(/assets/contact-bg.svg);
+    // background-repeat: no-repeat;
+    // background-position: right;
+
     .section-title {
         padding-top: 0;
         margin-top: -10%;
+    }
+
+    p {
+        width: 80%;
+        text-align: center;
+        margin: 0 auto;
+        @include media-query ($lg, $xl) {
+            width: 70%;
+        }
+        @include media-query ($xl, $xxl) {
+            width: 60%;
+        }
+        @include media-query ($xxl) {
+            width: 50%;
+        }
     }
 }
 

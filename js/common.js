@@ -70,9 +70,7 @@ initOnWidthChange();
   polyfill: true
 });
 jQueryModule.smoothScroll();
-contactModule.validateContactForm();
-contactModule.submitContactForm();
-contactModule.submitNewsForm();
+contactModule.initContactForms(isSafari);
 animationsModule.prepareRequests();
 window.addEventListener("load", initLanding); //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
@@ -113,8 +111,8 @@ function initLanding() {
 function desktopCode() {
   addClassesToSvgs(false);
   styleNavOnScroll(false);
-  desktopModule.initModal();
   desktopModule.styleAnchorOnHover();
+  desktopModule.initModal();
 
   if (isSafari) {
     desktopModule.animateImagesSafari();
@@ -159,6 +157,7 @@ function mobileCode() {
   if (hasListenersDesktop) {
     window.removeEventListener("scroll", bindedDebouncedNavDesktop);
     typewriterModule.reviewWidth(true);
+    desktopModule.modalClose();
 
     if (isSafari) {
       desktopModule.removeImagesListeners();
@@ -464,9 +463,7 @@ function addClassesToSvgs() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validateContactForm = validateContactForm;
-exports.submitContactForm = submitContactForm;
-exports.submitNewsForm = submitNewsForm;
+exports.initContactForms = initContactForms;
 // jshint esversion: 6
 var form = document.getElementById("contact-form");
 var statusContainer = document.getElementById("field-status");
@@ -487,6 +484,17 @@ var formFlag = true;
 formElements.push(textArea);
 textArea.value = "";
 newsForm[0].value = "";
+
+function initContactForms(isSafari) {
+  validateContactForm();
+  submitContactForm();
+  submitNewsForm();
+
+  if (isSafari) {
+    var newsButton = document.querySelector("#news-form button");
+    newsButton.classList.add("button-mask-safari");
+  }
+}
 
 function validateContactForm() {
   formElements.forEach(function (formEl) {
@@ -702,6 +710,7 @@ exports.unsetDesktopBrand = unsetDesktopBrand;
 exports.animateImagesSafari = animateImagesSafari;
 exports.removeImagesListeners = removeImagesListeners;
 exports.initModal = initModal;
+exports.modalClose = modalClose;
 
 var _mobile = require("./mobile.js");
 
@@ -817,6 +826,7 @@ var cross = document.getElementById("modal-close");
 var leftArrow = document.getElementById("modal-arrow-left");
 var rightArrow = document.getElementById("modal-arrow-right");
 var hasRequested = false;
+var modalOpen = false;
 var rightArrowHandler;
 var leftArrowHandler;
 
@@ -824,30 +834,17 @@ function initModal() {
   if (!hasRequested) {
     list.addEventListener("click", function showModal(e) {
       var imageTarget;
+      modalOpen = true;
 
       if (e.target.tagName === "DIV") {
-        if (e.target.className.indexOf("link-caption") === -1) {
-          imageTarget = e.target.previousElementSibling;
-        } else {
-          imageTarget = e.target.previousElementSibling.previousElementSibling;
-        }
+        if (e.target.className.indexOf("link-caption") === -1) imageTarget = e.target.previousElementSibling;else imageTarget = e.target.previousElementSibling.previousElementSibling;
       } else if (e.target.tagName === "H4" || e.target.tagName === "H6") imageTarget = e.target.parentNode.previousElementSibling.previousElementSibling;else return;
 
       (0, _http.loadHDImages)(imageTarget, modalImage, modalCaption);
       animateEntry();
       slideImages(imageTarget.parentNode);
     });
-    cross.addEventListener("click", function modalClose() {
-      modal.classList.remove("visible");
-      cross.classList.remove("emerge");
-      leftArrow.classList.remove("emerge", "not-allowed");
-      rightArrow.classList.remove("emerge", "not-allowed");
-      modalCaption.style.animation = "";
-      modalImage.style.animation = "";
-      modalImage.parentNode.style.overflow = "visible";
-      leftArrow.removeEventListener("click", leftArrowHandler);
-      rightArrow.removeEventListener("click", rightArrowHandler);
-    });
+    cross.addEventListener("click", modalClose);
     hasRequested = true;
   }
 }
@@ -898,11 +895,37 @@ function slideImages(link) {
 }
 
 function changeCaption(link) {
+  var title;
+  var subtitle;
+
+  if (link.lastElementChild.id.indexOf("caption") !== -1) {
+    title = link.lastElementChild.firstElementChild;
+    subtitle = link.lastElementChild.lastElementChild;
+  } else {
+    title = link.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild;
+    subtitle = link.firstElementChild.nextElementSibling.nextElementSibling.lastElementChild;
+  }
+
   setTimeout(function () {
-    modalCaption.firstElementChild.textContent = link.lastElementChild.firstElementChild.textContent;
-    modalCaption.lastElementChild.textContent = link.lastElementChild.lastElementChild.textContent;
+    modalCaption.firstElementChild.textContent = title.textContent;
+    modalCaption.lastElementChild.textContent = subtitle.textContent;
     modalImage.src = link.firstElementChild.src;
   }, 300);
+}
+
+function modalClose() {
+  if (modalOpen) {
+    modal.classList.remove("visible");
+    cross.classList.remove("emerge");
+    leftArrow.classList.remove("emerge", "not-allowed");
+    rightArrow.classList.remove("emerge", "not-allowed");
+    modalCaption.style.animation = "";
+    modalImage.style.animation = "";
+    modalImage.parentNode.style.overflow = "visible";
+    leftArrow.removeEventListener("click", leftArrowHandler);
+    rightArrow.removeEventListener("click", rightArrowHandler);
+    modalOpen = false;
+  }
 } // changes mobile svg brand colors.
 
 
@@ -945,7 +968,7 @@ var _http = require("../sub_modules/http");
 
 // jshint esversion: 6
 // https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master
-var url = "/assets/optimized_ajax/";
+var url = "/assets/optimized/";
 var targets = ["svg-background.svg", "design.svg", "software.svg", "marketing.svg"];
 var controller = new ScrollMagic.Controller();
 var tl = gsap.timeline();
@@ -1332,15 +1355,15 @@ function slideAnim(direction) {
   tl.fromTo(".modal-overlay", 2.1, {
     rotation: rotationFrom,
     scaleX: 2,
-    scaleY: 2,
+    scaleY: 200,
     xPercent: xDirFrom,
-    yPercent: 4,
+    yPercent: 0,
     opacity: 1,
     transformOrigin: "0% 0%"
   }, {
     rotation: rotationTo,
     xPercent: xDirTo,
-    yPercent: -2,
+    yPercent: 0,
     transformOrigin: "50% 50%",
     ease: Power2.easeOut
   });
@@ -10448,4 +10471,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   }(et, window.lazyLoadOptions), et;
 });
 
-},{}]},{},[1,11]);
+},{}]},{},[1]);

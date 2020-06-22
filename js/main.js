@@ -36,9 +36,7 @@ init();
 initOnWidthChange();
 svg4everybody({ attributeName: "data-href", polyfill: true });
 jQueryModule.smoothScroll();
-contactModule.validateContactForm();
-contactModule.submitContactForm();
-contactModule.submitNewsForm();
+contactModule.initContactForms(isSafari);
 animationsModule.prepareRequests();
 window.addEventListener("load", initLanding);
 
@@ -80,8 +78,8 @@ function initLanding() {
 function desktopCode() {
   addClassesToSvgs(false);
   styleNavOnScroll(false);
-  desktopModule.initModal();
   desktopModule.styleAnchorOnHover();
+  desktopModule.initModal();
   if (isSafari) {
     desktopModule.animateImagesSafari();
   } else {
@@ -121,6 +119,7 @@ function mobileCode() {
   if (hasListenersDesktop) {
     window.removeEventListener("scroll", bindedDebouncedNavDesktop);
     typewriterModule.reviewWidth(true);
+    desktopModule.modalClose();
     if (isSafari) {
       desktopModule.removeImagesListeners();
     }

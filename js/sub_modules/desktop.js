@@ -120,6 +120,7 @@ const cross = document.getElementById("modal-close");
 const leftArrow = document.getElementById("modal-arrow-left");
 const rightArrow = document.getElementById("modal-arrow-right");
 let hasRequested = false;
+let modalOpen = false;
 
 let rightArrowHandler;
 let leftArrowHandler;
@@ -128,12 +129,12 @@ function initModal() {
   if (!hasRequested) {
     list.addEventListener("click", function showModal(e) {
       let imageTarget;
+      modalOpen = true;
       if (e.target.tagName === "DIV") {
-        if (e.target.className.indexOf("link-caption") === -1) {
+        if (e.target.className.indexOf("link-caption") === -1)
           imageTarget = e.target.previousElementSibling;
-        } else {
+        else
           imageTarget = e.target.previousElementSibling.previousElementSibling;
-        }
       } else if (e.target.tagName === "H4" || e.target.tagName === "H6")
         imageTarget =
           e.target.parentNode.previousElementSibling.previousElementSibling;
@@ -142,17 +143,7 @@ function initModal() {
       animateEntry();
       slideImages(imageTarget.parentNode);
     });
-    cross.addEventListener("click", function modalClose() {
-      modal.classList.remove("visible");
-      cross.classList.remove("emerge");
-      leftArrow.classList.remove("emerge", "not-allowed");
-      rightArrow.classList.remove("emerge", "not-allowed");
-      modalCaption.style.animation = "";
-      modalImage.style.animation = "";
-      modalImage.parentNode.style.overflow = "visible";
-      leftArrow.removeEventListener("click", leftArrowHandler);
-      rightArrow.removeEventListener("click", rightArrowHandler);
-    });
+    cross.addEventListener("click", modalClose);
     hasRequested = true;
   }
 }
@@ -206,13 +197,39 @@ function slideImages(link) {
 }
 
 function changeCaption(link) {
+  let title;
+  let subtitle;
+  if (link.lastElementChild.id.indexOf("caption") !== -1) {
+    title = link.lastElementChild.firstElementChild;
+    subtitle = link.lastElementChild.lastElementChild;
+  } else {
+    title =
+      link.firstElementChild.nextElementSibling.nextElementSibling
+        .firstElementChild;
+    subtitle =
+      link.firstElementChild.nextElementSibling.nextElementSibling
+        .lastElementChild;
+  }
   setTimeout(() => {
-    modalCaption.firstElementChild.textContent =
-      link.lastElementChild.firstElementChild.textContent;
-    modalCaption.lastElementChild.textContent =
-      link.lastElementChild.lastElementChild.textContent;
+    modalCaption.firstElementChild.textContent = title.textContent;
+    modalCaption.lastElementChild.textContent = subtitle.textContent;
     modalImage.src = link.firstElementChild.src;
   }, 300);
+}
+
+function modalClose() {
+  if (modalOpen) {
+    modal.classList.remove("visible");
+    cross.classList.remove("emerge");
+    leftArrow.classList.remove("emerge", "not-allowed");
+    rightArrow.classList.remove("emerge", "not-allowed");
+    modalCaption.style.animation = "";
+    modalImage.style.animation = "";
+    modalImage.parentNode.style.overflow = "visible";
+    leftArrow.removeEventListener("click", leftArrowHandler);
+    rightArrow.removeEventListener("click", rightArrowHandler);
+    modalOpen = false;
+  }
 }
 
 // changes mobile svg brand colors.
@@ -249,4 +266,5 @@ export {
   animateImagesSafari,
   removeImagesListeners,
   initModal,
+  modalClose,
 };

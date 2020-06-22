@@ -642,6 +642,12 @@ h1, h2, h3, h4, h5 {
   right: 2%;
   position: fixed;
   z-index: 1;
+  transition: filter 0.75s ease;
+  filter: drop-shadow(1px 1px 3px rgba(107, 124, 141, 0.75));
+}
+#section-hero .icon-whatsapp:hover {
+  filter: drop-shadow(2px 2px 6px rgba(107, 124, 141, 0.65)) contrast(115%);
+  cursor: pointer;
 }
 
 #span-we {
@@ -703,7 +709,7 @@ h1, h2, h3, h4, h5 {
 }
 
 #section-about {
-  min-height: 50%;
+  min-height: 75%;
   padding: 0.5em;
   display: -ms-flexbox;
   display: flex;
@@ -735,6 +741,26 @@ h1, h2, h3, h4, h5 {
 #section-about .section-title {
   padding-top: 0;
   margin-top: -10%;
+}
+#section-about p {
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+}
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+  #section-about p {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1200px) and (max-width: 1450px) {
+  #section-about p {
+    width: 60%;
+  }
+}
+@media screen and (min-width: 1450px) {
+  #section-about p {
+    width: 50%;
+  }
 }
 
 #services-grid {
@@ -885,12 +911,16 @@ h1, h2, h3, h4, h5 {
     margin-left: 2px;
   }
 }
+@media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
+  #section-projects-design ul {
+    height: 550px;
+  }
+}
 #section-projects-design li {
-  height: 450px;
+  height: 100%;
 }
 @media screen and (min-width: 801px) {
   #section-projects-design li {
-    height: 100%;
     position: relative;
     width: calc(20% - 1px);
     overflow-y: hidden;
@@ -1013,13 +1043,28 @@ h1, h2, h3, h4, h5 {
 }
 
 .swiper-container {
-  height: 450px;
+  height: 300px;
   z-index: 0 !important;
+}
+@media screen and (min-width: 351px) {
+  .swiper-container {
+    height: 350px;
+  }
+}
+@media screen and (min-width: 479px) {
+  .swiper-container {
+    height: 400px;
+  }
 }
 @media screen and (min-width: 801px) {
   .swiper-container {
     width: 99%;
     height: 460px;
+  }
+}
+@media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
+  .swiper-container {
+    height: 550px;
   }
 }
 
@@ -1094,16 +1139,21 @@ h1, h2, h3, h4, h5 {
 }
 
 #modal {
-  display: block;
-  position: fixed;
-  z-index: 3;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  pointer-events: none;
+  display: none;
+}
+@media screen and (min-width: 801px) {
+  #modal {
+    display: block;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 #modal-image {
@@ -1122,7 +1172,7 @@ h1, h2, h3, h4, h5 {
   margin: auto;
   text-align: center;
   color: #ccc;
-  font-size: 2em;
+  font-size: 1.5em;
   margin-top: 0.3em;
 }
 
@@ -1140,7 +1190,7 @@ h1, h2, h3, h4, h5 {
   position: absolute;
   overflow: hidden;
   width: 100%;
-  height: 80%;
+  height: 80.2%;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
@@ -1168,12 +1218,13 @@ h1, h2, h3, h4, h5 {
   font-size: 4em;
   cursor: pointer;
   top: 0;
-  padding: 0 0.5em 0 0.5em;
   right: 0.2em;
+  z-index: 2;
+  margin: 0.3em;
   transition: opacity 0.5s ease-in, transform 0.3s ease;
   opacity: 0;
-  height: 1.5em;
-  width: 1.5em;
+  height: 0.5em;
+  width: 0.5em;
 }
 
 #modal-close:hover {
@@ -1208,8 +1259,8 @@ h1, h2, h3, h4, h5 {
   opacity: 0;
   transition: 0.3s, opacity 0.5s ease-in;
   outline: none;
-  height: 0.75em;
-  width: 0.75em;
+  height: 0.65em;
+  width: 0.65em;
   top: 50%;
 }
 
@@ -1368,9 +1419,8 @@ h1, h2, h3, h4, h5 {
     min-height: 1050px;
   }
 }
-
 @media screen and (min-width: 801px) {
-  form {
+  #section-contact form {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: center;
@@ -2022,6 +2072,11 @@ h1, h2, h3, h4, h5 {
   transition: opacity 0.75s ease-out;
   overflow: hidden;
   box-shadow: -0.75px -0.75px 2px 0.5px rgba(243, 243, 243, 0.945), 1px 1.3px 2px 1px rgba(141, 141, 141, 0.925);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 @media screen and (min-width: 801px) {
   .newsletter-container button {
@@ -2062,13 +2117,19 @@ h1, h2, h3, h4, h5 {
 }
 
 #arrow-right-news {
-  height: 1.85em;
-  width: 1.85em;
+  height: 1.25em;
+  width: 1.25em;
   padding: 0.1em 0 0 0.3em;
   fill: #001828;
   z-index: 2;
   position: relative;
   transition: fill 1s ease;
+}
+@media screen and (min-width: 801px) {
+  #arrow-right-news {
+    height: 1.85em;
+    width: 1.85em;
+  }
 }
 
 #footer-design, #footer-dev, #footer-site .footer-title {
@@ -2088,7 +2149,7 @@ h1, h2, h3, h4, h5 {
 
 #footer-site p {
   color: white;
-  font-size: 1em !important;
+  font-size: 1em;
   text-transform: uppercase;
   border-bottom: 1px solid rgba(255, 255, 255, 0.175);
   line-height: 2.5;
@@ -2096,7 +2157,7 @@ h1, h2, h3, h4, h5 {
 @media screen and (min-width: 801px) {
   #footer-site p {
     color: rgba(250, 250, 250, 0.8);
-    font-size: 0.7em !important;
+    font-size: 0.7em;
     border: none;
     text-transform: initial;
     line-height: initial;
@@ -2150,10 +2211,9 @@ h1, h2, h3, h4, h5 {
 #footer-map svg {
   position: absolute;
   height: 1.15em;
-  width: 1.15em;
   z-index: 1;
   fill: #ec3a48;
-  transition: all 0.5s ease;
+  transition: fill 0.5s ease, transform 0.5s ease, transform-origin 0.5s ease, z-index 0.5s ease;
 }
 
 #footer-map svg:hover {
@@ -2317,6 +2377,12 @@ h1, h2, h3, h4, h5 {
   box-shadow: 3px 3px 3px 0px rgba(107, 124, 141, 0.45);
   background-color: #43cfc3;
   border-radius: 9px;
+}
+
+.button-mask-safari {
+  border: 0.2px solid #978a8a !important;
+  -webkit-mask-image: -webkit-radial-gradient(rgba(243, 243, 243, 0.945), rgba(141, 141, 141, 0.925));
+  -webkit-filter: drop-shadow(1px 1px 1.75px rgba(0, 0, 0, 0.5));
 }
 @keyframes enlarge {
   0% {
