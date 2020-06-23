@@ -1995,11 +1995,9 @@ function initWriter(isMobile) {
   window.addEventListener("scroll", setWriter);
 
   if (isMobile) {
-    calculatedWidth = spanWe.clientWidth + projectWidth + 27.5;
+    calculatedWidth = spanWe.clientWidth + projectWidth + 28.5;
     spanWe.parentElement.style.width = "".concat(calculatedWidth, "px");
-  } // console.log(spanWe, spanWe.style.width);
-  // console.log(spanWords);
-  // console.log(spanWe.clientWidth, spanWords.clientWidth, projectWidth);
+  } // TODO: should update calculatedWidth on width change.
 
 }
 

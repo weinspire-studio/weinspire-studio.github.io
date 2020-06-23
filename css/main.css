@@ -5,8 +5,13 @@
 }
 
 html {
-  font-size: 0.9em;
+  font-size: 0.75em;
   overflow-x: hidden;
+}
+@media screen and (min-width: 351px) {
+  html {
+    font-size: 0.85em;
+  }
 }
 @media screen and (min-width: 479px) {
   html {
@@ -26,6 +31,16 @@ html {
 @media screen and (min-width: 1200px) {
   html {
     font-size: 1.15em;
+  }
+}
+@media screen and (min-width: 1450px) {
+  html {
+    font-size: 1.175em;
+  }
+}
+@media screen and (min-width: 1900px) {
+  html {
+    font-size: 1.3em;
   }
 }
 
@@ -50,7 +65,7 @@ h1, h2, h3, h4, h5 {
 }
 
 #section-projects-design, #section-contact {
-  background-color: #fff;
+  background-color: #f9fbff;
 }
 
 .overflow-hidden {
@@ -75,6 +90,12 @@ h1, h2, h3, h4, h5 {
 .overlay-active {
   z-index: 2;
   opacity: 1;
+}
+
+.section-title {
+  text-align: center;
+  padding: 2em 0 1em;
+  text-transform: uppercase;
 }
 
 #preloader {
@@ -596,6 +617,7 @@ h1, h2, h3, h4, h5 {
   padding: 1em 0;
   margin: 0 auto;
   text-align: left;
+  white-space: nowrap;
 }
 @media screen and (min-width: 801px) {
   .hero-text h1 {
@@ -655,9 +677,20 @@ h1, h2, h3, h4, h5 {
 }
 
 #span-we {
-  padding: 0 0.875rem;
+  padding: 0 0.2em;
+  padding-left: 0.45em;
   transition: text-shadow 500ms ease;
   display: inline-block;
+}
+@media screen and (min-width: 351px) {
+  #span-we {
+    padding-left: 0.28em;
+  }
+}
+@media screen and (min-width: 479px) {
+  #span-we {
+    padding-left: 0.125em;
+  }
 }
 @media screen and (min-width: 801px) {
   #span-we {
@@ -775,17 +808,29 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-@media screen and (min-width: 801px) {
-  #section-services {
-    background-image: url(/assets/optimized/curve-change-color.svg);
-    background-repeat: no-repeat;
-    background-position: 100% 100.1%;
-  }
-}
-
 #services-separator {
   width: 100%;
-  height: 100px;
+  height: 50px;
+  background-image: url(/assets/svg-separator.svg);
+  background-repeat: no-repeat;
+  background-position: 100% 100.1%;
+  background-size: 100%;
+  filter: drop-shadow(0 -10px 5px rgba(107, 124, 141, 0.1));
+}
+@media screen and (min-width: 351px) {
+  #services-separator {
+    height: 70px;
+  }
+}
+@media screen and (min-width: 479px) {
+  #services-separator {
+    height: 90px;
+  }
+}
+@media screen and (min-width: 801px) {
+  #services-separator {
+    height: 200px;
+  }
 }
 
 #services-grid {
@@ -912,16 +957,13 @@ h1, h2, h3, h4, h5 {
   max-width: 400px;
 }
 
-.section-title {
-  text-align: center;
-  padding: 2em 0 1em;
-  text-transform: uppercase;
-}
-
 .service-title {
   padding: 3em 0 1em;
 }
 
+#section-projects-design {
+  position: relative;
+}
 #section-projects-design ul {
   height: 100%;
   list-style: none;
@@ -938,7 +980,7 @@ h1, h2, h3, h4, h5 {
 }
 @media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
   #section-projects-design ul {
-    height: 550px;
+    height: 580px;
   }
 }
 #section-projects-design li {
@@ -957,9 +999,42 @@ h1, h2, h3, h4, h5 {
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
   }
 }
+#section-projects-design h1 {
+  width: 100%;
+  padding-top: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0.7em;
+}
+@media screen and (min-width: 351px) {
+  #section-projects-design h1 {
+    top: 0.3em;
+  }
+}
+@media screen and (min-width: 479px) {
+  #section-projects-design h1 {
+    top: -0.3em;
+  }
+}
 @media screen and (min-width: 801px) {
   #section-projects-design h1 {
-    padding-top: 0;
+    top: -0.5em;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #section-projects-design h1 {
+    top: -0.75em;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #section-projects-design h1 {
+    top: -1em;
+  }
+}
+@media screen and (min-width: 1450px) {
+  #section-projects-design h1 {
+    top: -1.25em;
   }
 }
 
@@ -1073,28 +1148,29 @@ h1, h2, h3, h4, h5 {
 }
 
 .swiper-container {
-  height: 300px;
+  height: 380px;
   z-index: 0 !important;
+  padding-top: 80px !important;
 }
 @media screen and (min-width: 351px) {
   .swiper-container {
-    height: 350px;
+    height: 430px;
   }
 }
 @media screen and (min-width: 479px) {
   .swiper-container {
-    height: 400px;
+    height: 480px;
   }
 }
 @media screen and (min-width: 801px) {
   .swiper-container {
     width: 99%;
-    height: 460px;
+    height: 540px;
   }
 }
 @media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
   .swiper-container {
-    height: 550px;
+    height: 630px;
   }
 }
 
@@ -1423,29 +1499,29 @@ h1, h2, h3, h4, h5 {
 @media screen and (min-width: 801px) {
   #section-contact {
     background-size: 400px;
-    min-height: 700px;
+    min-height: 750px;
     background-image: url(/assets/contact-bg.svg);
     background-repeat: no-repeat;
     background-position: right;
-    padding-top: 7.5%;
+    padding-top: 12%;
   }
 }
 @media screen and (min-width: 1024px) {
   #section-contact {
     background-size: 450px;
-    min-height: 800px;
+    min-height: 850px;
   }
 }
 @media screen and (min-width: 1200px) {
   #section-contact {
     background-size: 550px;
-    min-height: 900px;
+    min-height: 950px;
   }
 }
 @media screen and (min-width: 1450px) {
   #section-contact {
     background-size: 650px;
-    min-height: 1050px;
+    min-height: 1110px;
   }
 }
 @media screen and (min-width: 801px) {
@@ -1496,11 +1572,15 @@ h1, h2, h3, h4, h5 {
 
 .form-fields {
   overflow-x: hidden;
-  margin: 1.5em;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  padding-top: 1.5em;
 }
 @media screen and (min-width: 479px) {
   .form-fields {
-    margin: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding-top: 2em;
   }
 }
 @media screen and (min-width: 801px) {
@@ -1516,6 +1596,7 @@ h1, h2, h3, h4, h5 {
         align-items: center;
     margin-bottom: -1em;
     margin-right: 0.5em;
+    padding-top: 0;
   }
 }
 @media screen and (min-width: 801px) and (min-width: 479px) {
@@ -1756,7 +1837,7 @@ h1, h2, h3, h4, h5 {
     justify-self: right;
     min-width: 200px;
     max-width: 330px;
-    background-color: #f0f2f5;
+    background-color: #f9fbff;
     box-shadow: 0 1px 20px rgba(107, 124, 141, 0.4), 1px 0px 3px 2px rgba(107, 124, 141, 0.05);
     border-top-right-radius: 45%;
     border-bottom-left-radius: 45%;
@@ -2306,7 +2387,7 @@ h1, h2, h3, h4, h5 {
 }
 
 #location-arg-info {
-  left: 0%;
+  left: -2%;
   bottom: 37.5%;
 }
 #location-arg-info .arrow-down {
@@ -2362,7 +2443,7 @@ h1, h2, h3, h4, h5 {
       align-self: center;
   text-align: center;
   padding-bottom: 0.875em;
-  width: 100%;
+  width: 91.5%;
 }
 @media screen and (min-width: 801px) {
   #footer-info {

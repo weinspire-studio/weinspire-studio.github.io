@@ -24,7 +24,7 @@ html, body {
 body {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
-    background-color: $site-background-light;
+    background-color: $site-background-dark;
     // overflow-x: hidden;
     // background-color: $background-light;
     // background-color: #bdc3cc52;
@@ -61,12 +61,8 @@ h1, h2, h3, h4, h5 {
     // min-height: 100%;
 }
 
-#section-about, #section-services {
-    // background-color: $site-background-light;
-}
-
 #section-projects-design, #section-contact {
-    background-color: #fff;
+    background-color: $site-background-light;
 }
 
 //Style Classes
@@ -92,6 +88,12 @@ h1, h2, h3, h4, h5 {
 .overlay-active {
     z-index: 2;
     opacity: 1;
+}
+
+.section-title {
+    text-align: center;
+    padding: 2em 0 1em;
+    text-transform: uppercase;
 }
 
 // .body-fixed {

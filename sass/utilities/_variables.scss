@@ -21,13 +21,15 @@ $md: 801px; // tablets
 $lg: 1024px; // desktops
 $xl: 1200px; // large desktops
 $xxl: 1450px; // extra large desktops
+$hd: 1900px;
 
 //colors
 $nav-light: rgba(255, 255, 255, 0.3);
 $background-light: rgb(245, 245, 245);
 $white-opacity: rgba(250, 250, 250, 0.8);
 $black-opacity: rgba(0, 0, 0, .7);
-$site-background-light: #f0f2f5;
+$site-background-dark: #f0f2f5;
+$site-background-light: #f9fbff;
 
 $font-dark: #414141;
 $font-dark2: #212529;
@@ -102,7 +104,7 @@ $content-wrap-hr: (
 );
 
 // font sizes maps
-$document-font-size: (null: .9em, $sm: .95em, $md: 1.05em, $lg: 1.1em, $xl: 1.15em);
+$document-font-size: (null: .75em, $xs: .85em, $sm: .95em, $md: 1.05em, $lg: 1.1em, $xl: 1.15em, $xxl: 1.175em, $hd: 1.3em);
 $title-font-size: (null: 1.3em, $sm: 1.5em, $md: 1.8em, $lg: 2.2em, $xl: 2.5em);
 
 // grid-list

@@ -1,5 +1,5 @@
 #section-projects-design {
-    // background-color: red;
+    position: relative;
     ul {
         height: 100%;
         list-style: none;
@@ -12,11 +12,10 @@
             margin-left: 2px;
         }
         @include o-media-query ($sm, $md, portrait) {
-            height: 550px;
+            height: 580px;
         }
     }
     li {
-        // height: 450px;
         height: 100%;
         @include media-query ($md) {
             position: relative;
@@ -32,8 +31,29 @@
     }
 
     h1 {
-        @include media-query($md) {
-            padding-top: 0;
+        width: 100%;
+        padding-top: 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0.7em;
+        @include media-query ($xs){
+            top: 0.3em;
+        }
+        @include media-query ($sm){
+            top: -0.3em;
+        }
+        @include media-query ($md){
+            top: -.5em;
+        }
+        @include media-query ($lg) {
+            top: -.75em;
+        }
+        @include media-query ($xl) {
+            top: -1em;
+        }
+        @include media-query ($xxl) {
+            top: -1.25em;
         }
     }
 }
@@ -140,20 +160,21 @@
 }
 
 .swiper-container {
-    height: 300px;
+    height: 380px;
     z-index: 0!important;
+    padding-top: 80px!important;
     @include media-query($xs) {
-        height: 350px;
+        height: 430px;
     }
     @include media-query($sm) {
-        height: 400px;
+        height: 480px;
     }
     @include media-query ($md) {
         width: 99%;
-        height: 460px;
+        height: 540px;
     }
     @include o-media-query ($sm, $md, portrait) {
-        height: 550px;
+        height: 630px;
     }
 }
 
@@ -320,26 +341,6 @@
     cursor: pointer;
     transform: rotate(90deg);
 }
-
-// .close {
-//     position: absolute;
-//     color: #ccc;
-//     font-size: 4em;
-//     cursor: pointer;
-//     top: 0;
-//     padding: 0 0.5em 0 0.5em;
-//     right: 0.2em;
-//     transition: opacity 0.5s ease-in, transform 0.3s ease;
-//     opacity: 0;
-// }
-
-//   .close:hover,
-// .close:focus {
-//     color: rgb(255, 255, 255);
-//     text-decoration: none;
-//     cursor: pointer;
-//     transform: rotate(90deg);
-// }
 
 #modal-caption h6 {
     font-weight: 300;

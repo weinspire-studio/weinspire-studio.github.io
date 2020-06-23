@@ -9,24 +9,24 @@
   // $contact-form-strong: 0 5px 20px rgba(107,124,141,.4),1px 1px 3px 2px rgba(107, 124, 141, 0.06);
   @include media-query ($md) {
     background-size: 400px;
-    min-height: 700px;
+    min-height: 750px;
     background-image: url(/assets/contact-bg.svg);
     background-repeat: no-repeat;
     background-position: right;
-    padding-top: 7.5%;
+    padding-top: 12%;
     // margin-top: 2.5%;
   }
   @include media-query ($lg) {
     background-size: 450px;
-    min-height: 800px;
+    min-height: 850px;
   }
   @include media-query ($xl) {
     background-size: 550px;
-    min-height: 900px;
+    min-height: 950px;
   }
   @include media-query ($xxl) {
     background-size: 650px;
-    min-height: 1050px;
+    min-height: 1110px;
   }
   form {
     @include media-query ($md) {
@@ -70,9 +70,13 @@
 
 .form-fields {
   overflow-x: hidden;
-  margin: 1.5em;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  padding-top: 1.5em;
   @include media-query ($sm) {
-    margin: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding-top: 2em;
   }
   @include media-query ($md) {
       @include margin-map ($content-wrap-sm);
@@ -90,6 +94,7 @@
       align-items: center;
       margin-bottom: -1em;
       margin-right: 0.5em;
+      padding-top: 0;
     }
     @include media-query ($lg) {
       margin-right: .7em;
