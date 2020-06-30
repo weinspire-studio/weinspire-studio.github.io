@@ -30,45 +30,76 @@
 
 .hero {
     color: white;
+    justify-self: center;
     // border: 2px solid black;
-    @include media-query($md){
-        width: 90%;
-        justify-self: center;
-    }
+    // @include media-query($md){
+        // width: 90%;
+        // justify-self: left;
+    // }
+
+    // @include media-query ($lg) {
+    //     justify-self: center;
+    // }
 }
 
-.hero-text {
+.hero.hero-text {
     grid-area: hero-left;
     transition: .55s color ease;
+    @include media-query($md) {
+        width: 90%;
+    }
     h1 {
         padding-bottom: .3em;
         margin: 0 auto;
         text-align: left;
         white-space: nowrap;
-        font-weight: 900;
-        letter-spacing: -6px;
-        font-size: 5.5em;
+        font-weight: 700;
+        letter-spacing: -3px;
+        font-size: 4.5em;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
         @include media-query ($md) {
             margin: 0;
-            // text-align: left;
+            font-size: 4em;
+        }
+        @include media-query ($lg) {
+            font-size: 5em;
+        }
+        @include media-query ($xl) {
+            font-size: 5.5em;
+        }
+        @include media-query ($xxl) {
+            font-size: 5.75em;
+        }
+        @include media-query ($fhd) {
+            font-size: 6.5em;
         }
     }
     h2 {
-        padding-bottom: 2em;
         letter-spacing: -1px;
         @include font-size-map($title-font-size);
+        @include media-query ($md) {
+            padding-bottom: 2em;
+            white-space: nowrap;
+        }
     }
 }
 
-.hero-img {
+.hero.hero-img {
     grid-area: hero-right;
     text-align: center;
+    align-self: center;
     z-index: -1;
     position: relative;
+    @include media-query ($md, $lg) {
+        justify-self: center;
+    }
     .icon-facebook {
         height: 200px;
         width: 200px;
         fill: pink;
+        display: block;
+        margin: 0 auto;
     }
 }
 

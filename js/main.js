@@ -33,6 +33,10 @@ let swiper;
 let isMobile;
 let listenToFlags;
 
+const heroImgContainer = document.querySelector(".hero.hero-img");
+const heroTextContainer = document.querySelector(".hero.hero-text");
+const ctaButton = document.getElementById("hero-cta");
+
 //FUNCTIONS INVOCATIONS
 init();
 initOnWidthChange();
@@ -95,6 +99,7 @@ function desktopCode() {
   window.addEventListener("scroll", bindedDebouncedNavDesktop);
   hasListenersDesktop = true;
   if (hasScrollListenerMobile) {
+    appendCtaDesktop();
     desktopModule.restoreDesktopNav();
     window.removeEventListener("scroll", debouncedNavMobile);
     typewriterModule.reviewWidth(false);
@@ -109,6 +114,7 @@ function desktopCode() {
 function mobileCode() {
   addClassesToSvgs();
   styleNavOnScroll();
+  appendCtaMobile();
   mobileModule.styleMobileNav();
   jQueryModule.unbindImages();
   mobileModule.initSwiper(isSafari);
@@ -193,6 +199,16 @@ function styleFlags(target) {
       }
     }
   }
+}
+
+function appendCtaMobile() {
+  const ctaBtn = ctaButton.parentElement.removeChild(ctaButton);
+  heroImgContainer.appendChild(ctaBtn);
+}
+
+function appendCtaDesktop() {
+  const ctaBtn = heroImgContainer.removeChild(ctaButton);
+  heroTextContainer.appendChild(ctaBtn);
 }
 
 export { navBar, debounce };

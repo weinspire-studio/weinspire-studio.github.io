@@ -22,7 +22,7 @@ html, body {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Lato', sans-serif;
     background-color: $site-background-dark;
     // overflow-x: hidden;
     // background-color: $background-light;
@@ -46,8 +46,9 @@ body {
     transition: background-color .5s ease;
 }
 
-h1, h2, h3, h4, h5 {
-    font-weight: 500;
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
 }
 
 #section-services {
@@ -93,6 +94,7 @@ h1, h2, h3, h4, h5 {
     text-align: center;
     padding: 2em 0 1em;
     text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
 }
 
 // .body-fixed {

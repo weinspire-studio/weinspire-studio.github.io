@@ -50,7 +50,7 @@ html, body {
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Lato", sans-serif;
   background-color: #f0f2f5;
 }
 
@@ -59,8 +59,9 @@ body {
   transition: background-color 0.5s ease;
 }
 
-h1, h2, h3, h4, h5 {
-  font-weight: 500;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
 }
 
 #section-projects-design, #section-contact {
@@ -95,6 +96,7 @@ h1, h2, h3, h4, h5 {
   text-align: center;
   padding: 2em 0 1em;
   text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
 }
 
 #preloader {
@@ -616,22 +618,22 @@ h1, h2, h3, h4, h5 {
 }
 @media screen and (min-width: 801px) {
   #section-hero {
-    padding: 3em;
+    padding: 2.75em;
   }
 }
 @media screen and (min-width: 1024px) {
   #section-hero {
-    padding: 4em;
+    padding: 3.5em;
   }
 }
 @media screen and (min-width: 1200px) {
   #section-hero {
-    padding: 5em;
+    padding: 4.25em;
   }
 }
 @media screen and (min-width: 1450px) {
   #section-hero {
-    padding: 5.75em;
+    padding: 5.5em;
   }
 }
 @media screen and (min-width: 1900px) {
@@ -671,78 +673,115 @@ h1, h2, h3, h4, h5 {
 
 .hero {
   color: white;
-}
-@media screen and (min-width: 801px) {
-  .hero {
-    width: 90%;
-    justify-self: center;
-  }
+  justify-self: center;
 }
 
-.hero-text {
+.hero.hero-text {
   grid-area: hero-left;
   transition: 0.55s color ease;
 }
-.hero-text h1 {
+@media screen and (min-width: 801px) {
+  .hero.hero-text {
+    width: 90%;
+  }
+}
+.hero.hero-text h1 {
   padding-bottom: 0.3em;
   margin: 0 auto;
   text-align: left;
   white-space: nowrap;
-  font-weight: 900;
-  letter-spacing: -6px;
-  font-size: 5.5em;
+  font-weight: 700;
+  letter-spacing: -3px;
+  font-size: 4.5em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
 }
 @media screen and (min-width: 801px) {
-  .hero-text h1 {
+  .hero.hero-text h1 {
     margin: 0;
+    font-size: 4em;
   }
 }
-.hero-text h2 {
-  padding-bottom: 2em;
+@media screen and (min-width: 1024px) {
+  .hero.hero-text h1 {
+    font-size: 5em;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .hero.hero-text h1 {
+    font-size: 5.5em;
+  }
+}
+@media screen and (min-width: 1450px) {
+  .hero.hero-text h1 {
+    font-size: 5.75em;
+  }
+}
+@media screen and (min-width: 1900px) {
+  .hero.hero-text h1 {
+    font-size: 6.5em;
+  }
+}
+.hero.hero-text h2 {
   letter-spacing: -1px;
   font-size: 1.2em;
 }
 @media screen and (min-width: 479px) {
-  .hero-text h2 {
+  .hero.hero-text h2 {
     font-size: 1.3em;
   }
 }
 @media screen and (min-width: 801px) {
-  .hero-text h2 {
+  .hero.hero-text h2 {
     font-size: 1.4em;
   }
 }
 @media screen and (min-width: 1024px) {
-  .hero-text h2 {
+  .hero.hero-text h2 {
     font-size: 1.5em;
   }
 }
 @media screen and (min-width: 1200px) {
-  .hero-text h2 {
+  .hero.hero-text h2 {
     font-size: 1.65em;
   }
 }
 @media screen and (min-width: 1450px) {
-  .hero-text h2 {
+  .hero.hero-text h2 {
     font-size: 1.75em;
   }
 }
 @media screen and (min-width: 1900px) {
-  .hero-text h2 {
+  .hero.hero-text h2 {
     font-size: 2.25em;
   }
 }
+@media screen and (min-width: 801px) {
+  .hero.hero-text h2 {
+    padding-bottom: 2em;
+    white-space: nowrap;
+  }
+}
 
-.hero-img {
+.hero.hero-img {
   grid-area: hero-right;
   text-align: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   z-index: -1;
   position: relative;
 }
-.hero-img .icon-facebook {
+@media screen and (min-width: 801px) and (max-width: 1024px) {
+  .hero.hero-img {
+    justify-self: center;
+  }
+}
+.hero.hero-img .icon-facebook {
   height: 200px;
   width: 200px;
   fill: pink;
+  display: block;
+  margin: 0 auto;
 }
 
 #section-hero .icon-whatsapp {

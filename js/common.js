@@ -63,7 +63,10 @@ var debouncedNavMobile;
 var bindedDebouncedNavDesktop;
 var swiper;
 var isMobile;
-var listenToFlags; //FUNCTIONS INVOCATIONS
+var listenToFlags;
+var heroImgContainer = document.querySelector(".hero.hero-img");
+var heroTextContainer = document.querySelector(".hero.hero-text");
+var ctaButton = document.getElementById("hero-cta"); //FUNCTIONS INVOCATIONS
 
 init();
 initOnWidthChange();
@@ -131,6 +134,7 @@ function desktopCode() {
   hasListenersDesktop = true;
 
   if (hasScrollListenerMobile) {
+    appendCtaDesktop();
     desktopModule.restoreDesktopNav();
     window.removeEventListener("scroll", debouncedNavMobile);
     typewriterModule.reviewWidth(false);
@@ -146,6 +150,7 @@ function desktopCode() {
 function mobileCode() {
   addClassesToSvgs();
   styleNavOnScroll();
+  appendCtaMobile();
   mobileModule.styleMobileNav();
   jQueryModule.unbindImages();
   mobileModule.initSwiper(isSafari);
@@ -238,6 +243,16 @@ function styleFlags(target) {
       }
     }
   }
+}
+
+function appendCtaMobile() {
+  var ctaBtn = ctaButton.parentElement.removeChild(ctaButton);
+  heroImgContainer.appendChild(ctaBtn);
+}
+
+function appendCtaDesktop() {
+  var ctaBtn = heroImgContainer.removeChild(ctaButton);
+  heroTextContainer.appendChild(ctaBtn);
 } //
 //
 // -----------------
