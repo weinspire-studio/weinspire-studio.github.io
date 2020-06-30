@@ -170,8 +170,7 @@ module.exports = function (grunt) {
           "./assets/optimized_sprite/cross.svg": "./assets/cross.svg",
           // "./assets/optimized/footer-bg.svg": "./assets/footer-bg.svg",
           // "./assets/optimized/contact-bg.svg": "./assets/contact-bg.svg",
-          // "./assets/optimized/background-color.svg": "./assets/background-color.svg", // prettier-ignore
-          // "./assets/optimized/background-grey.svg": "./assets/background-grey.svg", // prettier-ignore
+          // "./assets/optimized/svg-bg-left.svg": "./assets/svg-bg-left.svg",
           // "./assets/optimized/svg-separator.svg": "./assets/svg-separator.svg", // prettier-ignore
           // "./assets/optimized/svg-background.svg": "./assets/svg-background.svg", // prettier-ignore
           // "./assets/optimized/design.svg": "./assets/design.svg", // uncomment and manually optimize svgs for ajax

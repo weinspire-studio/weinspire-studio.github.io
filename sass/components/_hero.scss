@@ -1,7 +1,22 @@
+// :root {
+//     --gradient: linear-gradient(
+//       45deg,
+//       #845ec2,
+//       #d65db1,
+//       #ff6f91,
+//       #ff9671,
+//       #ffc75f,
+//       #f9f871
+//       );
+//     --gradient2: linear-gradient(to top, #df3d3d, #dd5a43, #ec8a4f );
+//     --gradient3: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+//     --gradient4: linear-gradient(90deg, #2BD286 0%, #08AEEA 100%);
+// }
+
 #section-hero {
     min-height: 100%;
     text-align: center;
-    @include padding-map($content-wrap-sm);
+    @include padding-map($content-wrap-lg);
     @include media-query( 0, $md) {
         padding-top: 3.25em!important;
     }
@@ -15,7 +30,7 @@
 
 .hero {
     color: white;
-    border: 2px solid black;
+    // border: 2px solid black;
     @include media-query($md){
         width: 90%;
         justify-self: center;
@@ -25,21 +40,22 @@
 .hero-text {
     grid-area: hero-left;
     transition: .55s color ease;
-    span {
-        font-size: 4rem;
-    }
     h1 {
-        padding: 1em 0;
+        padding-bottom: .3em;
         margin: 0 auto;
         text-align: left;
         white-space: nowrap;
+        font-weight: 900;
+        letter-spacing: -6px;
+        font-size: 5.5em;
         @include media-query ($md) {
             margin: 0;
             // text-align: left;
         }
     }
     h2 {
-        padding-bottom: 1em;
+        padding-bottom: 2em;
+        letter-spacing: -1px;
         @include font-size-map($title-font-size);
     }
 }
@@ -104,10 +120,51 @@
     text-shadow: 2px 2px 2px #343434, 2px 2px 10px #000;
 }
 
-
 .hero-text-opacity {
     color: $black-opacity;
 }
+
+
+#hero-cta {
+    position: relative;
+    // left: 50%;
+    // transform: translateX(-50%);
+    padding: .7em 1.35em;
+    background-color: transparent;
+    color: $site-background-dark;
+    font-size: 1.5em;
+    border-radius: 1.5em;
+    margin-top: 1em;
+    border: none;
+    box-shadow: 3px 2px 5px rgb(8, 18, 26), 1px 0 3px 1px rgb(208, 214, 219);
+    p {
+        text-shadow: 1px 1px 1.8px #000;
+    }
+    &:hover, &:focus {
+        cursor: pointer;
+    }
+}
+
+#hero-cta p::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 1.5em;
+    background-image: $btn-gradient;
+    background-size: 100%;
+    background-position: left;
+    transition: transform 0.3s, opacity 0.4s;
+  }
+  
+  #hero-cta:hover > p::after {
+    transform: scale(1.3);
+    opacity: 0;
+  }
 
 
 @-webkit-keyframes blink-anim {

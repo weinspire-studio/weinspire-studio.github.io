@@ -6,6 +6,7 @@ import {
   navElements,
   navContainer,
   toggleNavClasses,
+  appendInfoSocial,
 } from "./mobile.js";
 
 import { loadHDImages } from "../sub_modules/http";
@@ -16,6 +17,18 @@ const brandDesktop = document.querySelector("#brand-desktop-svg");
 const list = document.querySelector(".swiper-wrapper");
 const links = document.querySelectorAll(".swiper-slide");
 let hasHoverListener = false;
+
+function prepareDesktopNav() {
+  styleDesktopNav();
+  styleAnchorOnHover();
+}
+
+// removes flags container from ul and appends it to section-navbar
+function styleDesktopNav() {
+  const langLink = navList.lastElementChild;
+  const langDiv = langLink.removeChild(langLink.firstElementChild);
+  nav.parentElement.appendChild(langDiv);
+}
 
 // animation effect (underline) for desktop nav anchors.
 function styleAnchorOnHover() {
@@ -48,6 +61,7 @@ function restoreDesktopNav() {
   if (navContainer.firstChild !== null) {
     navContainer.removeChild(navList);
     nav.appendChild(navList);
+    appendInfoSocial();
   }
   if (navContainer.classList.contains("translate")) {
     toggleNavClasses();
@@ -258,7 +272,7 @@ function unsetDesktopBrand() {
 
 export {
   restoreDesktopNav,
-  styleAnchorOnHover,
+  prepareDesktopNav,
   styleDesktopBrand,
   restoreDesktopBrand,
   setDesktopBrand,

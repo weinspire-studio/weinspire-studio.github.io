@@ -49,11 +49,12 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 } //VARIABLES
 
 
+var mobileScreenMQ = window.matchMedia("(max-width: 800px)");
 var navBar = document.getElementById("section-navbar");
 exports.navBar = navBar;
 var navWhiteBack = document.querySelector(".navigation-white-back");
 var navShadow = document.querySelector(".navigation-shadow");
-var mobileScreenMQ = window.matchMedia("(max-width: 800px)");
+var flagsContainer = document.getElementById("lang");
 var isSafari = window.safari !== undefined;
 var hasScrollListenerMobile = false;
 var hasListenersDesktop = false;
@@ -61,7 +62,8 @@ var debouncedNavDesktop;
 var debouncedNavMobile;
 var bindedDebouncedNavDesktop;
 var swiper;
-var isMobile; //FUNCTIONS INVOCATIONS
+var isMobile;
+var listenToFlags; //FUNCTIONS INVOCATIONS
 
 init();
 initOnWidthChange();
@@ -111,7 +113,7 @@ function initLanding() {
 function desktopCode() {
   addClassesToSvgs(false);
   styleNavOnScroll(false);
-  desktopModule.styleAnchorOnHover();
+  desktopModule.prepareDesktopNav();
   desktopModule.initModal();
 
   if (isSafari) {
@@ -184,6 +186,8 @@ function styleNavOnScroll() {
         mobileModule.styleMobileBrand();
       } else {
         desktopModule.styleDesktopBrand();
+        flagsContainer.removeEventListener("click", listenToFlags);
+        flagsContainer.classList.add("invisible");
       }
 
       navBar.classList.add("nav-white");
@@ -200,6 +204,10 @@ function styleNavOnScroll() {
     navBar.classList.remove("nav-white");
     navWhiteBack.classList.remove("nav-white-back");
     navShadow.classList.remove("nav-shadow");
+    flagsContainer.classList.remove("invisible");
+    flagsContainer.addEventListener("click", listenToFlags = function listenToFlags(e) {
+      styleFlags(e.target);
+    });
   }
 }
 
@@ -212,6 +220,23 @@ function addClassesToSvgs() {
   } else {
     desktopModule.setDesktopBrand();
     mobileModule.unsetMobileBrand();
+  }
+}
+
+function styleFlags(target) {
+  if (target.tagName === "P") {
+    if (target.classList.contains("inactive")) {
+      target.classList.remove("inactive");
+      target.classList.add("active");
+
+      if (target.nextElementSibling) {
+        target.nextElementSibling.classList.remove("active");
+        target.nextElementSibling.classList.add("inactive");
+      } else {
+        target.previousElementSibling.classList.remove("active");
+        target.previousElementSibling.classList.add("inactive");
+      }
+    }
   }
 } //
 //
@@ -688,9 +713,9 @@ function showMessage(statusContainer) {
   }
 
   isShowingStatus = true;
-  target.classList.toggle("visible");
+  target.classList.toggle("msg-visible");
   setTimeout(function () {
-    target.classList.toggle("visible");
+    target.classList.toggle("msg-visible");
     isShowingStatus = false;
   }, delay);
 }
@@ -702,7 +727,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.restoreDesktopNav = restoreDesktopNav;
-exports.styleAnchorOnHover = styleAnchorOnHover;
+exports.prepareDesktopNav = prepareDesktopNav;
 exports.styleDesktopBrand = styleDesktopBrand;
 exports.restoreDesktopBrand = restoreDesktopBrand;
 exports.setDesktopBrand = setDesktopBrand;
@@ -723,7 +748,21 @@ var navAnchors = document.querySelectorAll(".nav-list a");
 var brandDesktop = document.querySelector("#brand-desktop-svg");
 var list = document.querySelector(".swiper-wrapper");
 var links = document.querySelectorAll(".swiper-slide");
-var hasHoverListener = false; // animation effect (underline) for desktop nav anchors.
+var hasHoverListener = false;
+
+function prepareDesktopNav() {
+  styleDesktopNav();
+  styleAnchorOnHover();
+} // removes flags container from ul and appends it to section-navbar
+
+
+function styleDesktopNav() {
+  var langLink = _mobile.navList.lastElementChild;
+  var langDiv = langLink.removeChild(langLink.firstElementChild);
+
+  _mobile.nav.parentElement.appendChild(langDiv);
+} // animation effect (underline) for desktop nav anchors.
+
 
 function styleAnchorOnHover() {
   if (!hasHoverListener) {
@@ -759,6 +798,8 @@ function restoreDesktopNav() {
     _mobile.navContainer.removeChild(_mobile.navList);
 
     _mobile.nav.appendChild(_mobile.navList);
+
+    (0, _mobile.appendInfoSocial)();
   }
 
   if (_mobile.navContainer.classList.contains("translate")) {
@@ -1498,7 +1539,8 @@ function smoothScroll() {
       scrollTop: 0
     }, 950);
   });
-} // adds hover effect on desktop
+} // TODO: for accessibility: bind to change width on focus (same with animateImagesSafari) .bind("mouseenter focus mouseleave"
+// adds hover effect on desktop
 
 
 function animateImages() {
@@ -1540,6 +1582,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.styleMobileNav = styleMobileNav;
 exports.toggleNavClasses = toggleNavClasses;
+exports.appendInfoSocial = appendInfoSocial;
 exports.initSwiper = initSwiper;
 exports.styleMobileBrand = styleMobileBrand;
 exports.restoreMobileBrand = restoreMobileBrand;
@@ -1553,13 +1596,15 @@ var _main = require("../main.js");
 var siteOverlay = document.querySelector(".site-overlay");
 var servicesSection = document.getElementById("section-services");
 var contactSection = document.getElementById("section-contact");
-var designProjectsSection = document.getElementById("section-projects-design");
+var designProjectsSection = document.getElementById("section-projects-design"); //prettier-ignore
+
 var nav = document.getElementById("home");
 exports.nav = nav;
 var navList = document.querySelector(".nav-list");
 exports.navList = navList;
 var navElements = document.querySelectorAll(".nav-list li");
 exports.navElements = navElements;
+var linkSocial = document.getElementById("link-social");
 var navContainer = document.querySelector(".navigation-container");
 exports.navContainer = navContainer;
 var burger = document.querySelector(".burger");
@@ -1577,9 +1622,17 @@ exports.isOpen_Menu = isOpen_Menu;
 var rightArrowsFlag = true;
 var debouncedRightArrows; // UA sniffing
 
-var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
+var formInfo = document.querySelector(".form-info"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
+  if (nav.nextElementSibling) {
+    var langDiv = nav.parentElement.removeChild(nav.nextElementSibling);
+    navList.lastElementChild.appendChild(langDiv);
+  }
+
+  var infoSocial = formInfo.removeChild(formInfo.lastElementChild);
+  linkSocial.appendChild(infoSocial);
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList); // mobile burger and menu
 
@@ -1587,7 +1640,7 @@ function styleMobileNav() {
     burger.addEventListener("click", function () {
       toggleNavClasses();
       navElements.forEach(function (navEl, index) {
-        navEl.style.animationDelay = "".concat(0.3 + index / 15.5, "s");
+        navEl.style.animationDelay = "".concat((0.3 + index / 15.5).toFixed(2), "s");
         navEl.classList.toggle("nav-link-anim");
         navEl.classList.toggle("invisible");
       });
@@ -1595,6 +1648,11 @@ function styleMobileNav() {
   }
 
   hasClickListener = true;
+}
+
+function appendInfoSocial() {
+  var socialChild = linkSocial.removeChild(linkSocial.firstElementChild);
+  formInfo.appendChild(socialChild);
 } // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
 
 
@@ -1746,7 +1804,7 @@ function slidePreloader() {
   var timer = setTimeout(function () {
     preloader.style.display = "none";
     clearTimeout(timer);
-  }, 1000);
+  }, 2000);
 }
 
 function removeListeners() {

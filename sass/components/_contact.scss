@@ -146,7 +146,6 @@
 }
 
 #contact-form-button {
-  outline: none;
   height: 40px;
   width: 40%;
   font-size: 1em;
@@ -154,6 +153,10 @@
   border-style: none;
   border-radius: 2px;
   transition: background-color 1s ease, color 1s ease;
+}
+
+#contact-form-button:focus {
+  @include button-select;
 }
 
 #field-status {
@@ -375,7 +378,6 @@
   text-align: center;
   margin-top: 2em;
   .info-icon {
-    margin-left: 1em;
     fill: $brand-color-blue;
     height: 2.5em;
     width: 2.5em;
@@ -384,6 +386,9 @@
       fill: $brand-color-green;
       transform: scale(1.1);
       cursor: pointer;
+    }
+    &:last-child {
+      margin-left: 1em;
     }
   }
 }
@@ -405,7 +410,7 @@
   color: rgb(182, 182, 182);
 }
 
-.visible {
+.msg-visible {
   opacity: 1!important;
   pointer-events: all!important;
 }

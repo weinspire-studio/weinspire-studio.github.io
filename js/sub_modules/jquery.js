@@ -15,6 +15,7 @@ function smoothScroll() {
   });
 }
 
+// TODO: for accessibility: bind to change width on focus (same with animateImagesSafari) .bind("mouseenter focus mouseleave"
 // adds hover effect on desktop
 function animateImages() {
   $("#section-projects-design li").hover(

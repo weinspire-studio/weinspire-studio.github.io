@@ -18,10 +18,11 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 }
 
 //VARIABLES
+const mobileScreenMQ = window.matchMedia("(max-width: 800px)");
 const navBar = document.getElementById("section-navbar");
 const navWhiteBack = document.querySelector(".navigation-white-back");
 const navShadow = document.querySelector(".navigation-shadow");
-const mobileScreenMQ = window.matchMedia("(max-width: 800px)");
+const flagsContainer = document.getElementById("lang");
 let isSafari = window.safari !== undefined;
 let hasScrollListenerMobile = false;
 let hasListenersDesktop = false;
@@ -30,6 +31,7 @@ let debouncedNavMobile;
 let bindedDebouncedNavDesktop;
 let swiper;
 let isMobile;
+let listenToFlags;
 
 //FUNCTIONS INVOCATIONS
 init();
@@ -78,7 +80,7 @@ function initLanding() {
 function desktopCode() {
   addClassesToSvgs(false);
   styleNavOnScroll(false);
-  desktopModule.styleAnchorOnHover();
+  desktopModule.prepareDesktopNav();
   desktopModule.initModal();
   if (isSafari) {
     desktopModule.animateImagesSafari();
@@ -141,6 +143,8 @@ function styleNavOnScroll(inMobile = true) {
         mobileModule.styleMobileBrand();
       } else {
         desktopModule.styleDesktopBrand();
+        flagsContainer.removeEventListener("click", listenToFlags);
+        flagsContainer.classList.add("invisible");
       }
       navBar.classList.add("nav-white");
       navWhiteBack.classList.add("nav-white-back");
@@ -155,6 +159,13 @@ function styleNavOnScroll(inMobile = true) {
     navBar.classList.remove("nav-white");
     navWhiteBack.classList.remove("nav-white-back");
     navShadow.classList.remove("nav-shadow");
+    flagsContainer.classList.remove("invisible");
+    flagsContainer.addEventListener(
+      "click",
+      (listenToFlags = (e) => {
+        styleFlags(e.target);
+      })
+    );
   }
 }
 
@@ -165,6 +176,22 @@ function addClassesToSvgs(inMobile = true) {
   } else {
     desktopModule.setDesktopBrand();
     mobileModule.unsetMobileBrand();
+  }
+}
+
+function styleFlags(target) {
+  if (target.tagName === "P") {
+    if (target.classList.contains("inactive")) {
+      target.classList.remove("inactive");
+      target.classList.add("active");
+      if (target.nextElementSibling) {
+        target.nextElementSibling.classList.remove("active");
+        target.nextElementSibling.classList.add("inactive");
+      } else {
+        target.previousElementSibling.classList.remove("active");
+        target.previousElementSibling.classList.add("inactive");
+      }
+    }
   }
 }
 

@@ -1,24 +1,58 @@
 #footer {
     position: relative;
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
     background-color: $footer;
     background-image: url(/assets/footer-bg.svg);
     background-size: cover;
     background-repeat: no-repeat;
     color: $white-opacity;
-    @include padding-map ($content-wrap-hr);
+}
+
+#footer-grid {
+    // position: relative;
+    display: flex;
+    flex-direction: column;
+    // background-color: $footer;
+    // background-image: url(/assets/footer-bg.svg);
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    // color: $white-opacity;
+    // @include padding-map ($footer-wrap);
+    padding: 0 1em;
+    @include media-query ($xs, $sm) {
+        padding: 0 1.5em;
+    }
+    @include media-query ($sm, $md) {
+        padding: 0 2em;
+    }
     @include media-query ($md) {
-        display: grid;
-        justify-items: center;
         // margin-top: 10%;
         // grid-template-rows: 1fr 5fr 4fr 1fr;
-        grid-template-columns: 2fr 2fr 1.5fr 2.5fr;
+        // justify-items: center;
+        display: grid;
+        max-width: 750px;
+        width: 83%;
+        margin: 0 auto;
+        padding: 0;
+        grid-template-columns: 1fr 2fr 2fr 1fr;
         grid-template-areas: 
         'arrow arrow arrow arrow'
-        'news dev-services design-services site'
-        'social map map logo'
+        'site dev-services design-services social'
+        'map map news news'
         'info info info info';
+    }
+    @include media-query ($lg) {
+        max-width: 850px;
+    }
+    @include media-query ($xl) {
+        max-width: 900px;
+    }
+    @include media-query ($xxl) {
+        max-width: 950px;
+    }
+    @include media-query ($fhd) {
+        max-width: 1000px;
     }
     p {
         font-size: .7em;
@@ -33,17 +67,17 @@
 }
 
 .arrow-up {
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     fill: rgba(177, 177, 177, 0.904);
-    grid-area: arrow;
     margin: .5em auto;
     transition: animation 500ms ease-in;
     // animation: enlarge 500ms ease infinite alternate;
     @include prefixes (animation, enlarge 500ms ease infinite alternate);
     @include media-query ($md) {
-        height: 25px;
-        width: 25px;
+        grid-area: arrow;
+        height: 20px;
+        width: 20px;
     }
 }
 
@@ -64,29 +98,61 @@
 }
 
 #footer-design {
-    grid-area: design-services;
+    @include media-query ($md) {
+        grid-area: design-services;
+        justify-self: center;
+    }
 }
 
 #footer-dev {
-    grid-area: dev-services;
+    @include media-query ($md) {
+        grid-area: dev-services;
+        justify-self: center;
+    }
+    // @include media-query ($md, $lg) {
+    //     padding-left: 1.4em;
+    // }
 }
 
 #footer-site {
-    grid-area: site;
+    @include media-query ($md) {
+        grid-area: site;
+        justify-self: left;
+    }
+    // @include media-query ($md, $lg) {
+    //     margin-left: -1em;
+    // }
+    // @include media-query ($lg, $xl) {
+    //     margin-left: -3em;
+    // }
+    // @include media-query ($xl, $xxl) {
+    //     margin-left: -6.5em;
+    // }
+    // @include media-query ($xxl, $fhd) {
+    //     margin-left: -10em;
+    // }
+    // @include media-query ($fhd) {
+    //     margin-left: -13em;
+    // }
 }
 
 #footer-newsletter {
-    grid-area: news;
     display: flex;
     flex-direction: column;
     align-self: center;
     align-items:center;
     padding-top: 1.5em;
     @include media-query ($md) {
+        grid-area: news;
         display: block;
         align-self: auto;
+        justify-self: right;
         padding-top: 0;
+        margin: 2em 0;
     }
+    // @include media-query ($md, $lg) {
+    //     margin-left: 1em;
+    // }
     h4 {
         font-size: .8em;
         width: max-content;
@@ -111,7 +177,7 @@
         height: 60px;
     }
     input {
-        width: 100%;
+        width: 245px;
         height: 45px;
         border-radius: inherit;
         border: 0;
@@ -119,9 +185,11 @@
         color: #000;
         outline: none;
         font-size: .8em;
-        padding: 0 52.5px 2px 17.5px;
+        padding: 0 42.5px 2px 17.5px;
         @include media-query ($md) {
             height: 60px;
+            width: 295px;
+            padding-right: 55px;
         }
         @include media-query ($lg) {
             padding-left: 22.5px;
@@ -189,9 +257,11 @@
             background-color: $brand-color-blue;
         }
     }
-
     button:hover > #arrow-right-news {
         fill: #fff;
+    }
+    button:focus {
+        @include button-select;
     }
 }
 
@@ -199,6 +269,11 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 1s ease-in;
+    max-width: 160px;
+    margin: 0 auto;
+    @include media-query ($md) {
+        max-width: 200px;
+    }
 }
 #news-form-status {
     text-align: center;
@@ -211,7 +286,7 @@
     width: 1.25em;
     padding: .1em 0 0 .3em;
     fill: $footer;
-    z-index: 2;
+    z-index: 1;
     position: relative;
     transition: fill 1s ease;
     @include media-query ($md) {
@@ -227,11 +302,10 @@
     }
 }
 
-#footer-social, #footer-logo, #footer-map {
-    @include media-query ($md) {
-        padding-top: 1.5em;
-    }
-}
+// #footer-social, #footer-logo, #footer-map {
+//     @include media-query ($md) {
+//     }
+// }
 
 #footer-site p {
     color: white;
@@ -245,7 +319,7 @@
         border: none;
         text-transform: initial;
         line-height: initial;
-        line-height: 1.6em;
+        line-height: 1.75em;
     }
 }
 
@@ -253,29 +327,89 @@
     display: none;
     @include media-query ($md) {
         display: block;
-        grid-area: logo;
+        grid-area: social;
+        align-self: center;
+        justify-self: right;
+        top: 15%;
+        position: relative;
+        transform: translateY(15%);
         #brand-desktop-svg {
             width: 150px;
-            .brand-blue {
+            .blue {
                 fill: #fff;
             }
-            .brand-green {
-                fill: #2fc0bb;
+            .green {
+                fill: $brand-negative-green;
             }
         }
     }
 }
 
+#footer-social {
+    padding-top: 1.5em;
+    align-self: center;
+    white-space: nowrap;
+    svg {
+        margin: 0 .5em;
+        height: 1.5em;
+        width: 1.5em;
+        fill: white;
+        @include media-query ($md) {
+            margin: 0 .25em;
+        }
+    }
+    @include media-query ($md) {
+        // align-self: auto;
+        grid-area: social;
+        align-self: center;
+        justify-self: right;
+        position: relative;
+        bottom: 15%;
+        padding-top: 0;
+    } 
+}
+
+#footer-logo, #footer-social {
+    // @include media-query ($md, $lg) {
+    //     margin-right: 2em;
+    // }
+    // @include media-query ($lg, $xl) {
+    //     margin-right: 5em;
+    // }
+    // @include media-query ($xl, $xxl) {
+    //     margin-right: 6em;
+    // }
+    // @include media-query ($xxl, $fhd) {
+    //     margin-right: 5em;
+    // }
+    // @include media-query ($fhd) {
+    //     margin-right: 6em;
+    // }
+}
+
 #footer-map {
     display: none;
     @include media-query ($md) {
-        padding-bottom: .75em;
+        // padding: 1em 0 1em 1em;
         display: block;
         grid-area: map;
+        justify-self: left;
         align-self: center;
         img {
-            min-width: 400px;
+            // min-width: 400px;
             width: 80%;
+        }
+    }
+    @include media-query ($md, $lg) {
+        img {
+            min-width: 355px;
+            margin-left: -2em;
+        }
+    }
+    @include media-query ($lg) {
+        img {
+            min-width: 400px;
+            margin-left: 0;
         }
     }
 }
@@ -296,7 +430,6 @@
 
 #footer-map svg:hover {
     fill: $brand-negative-green;
-    cursor: pointer;
     -webkit-transform: scale(1.75);
     transform: scale(1.75);
     transform-origin: 50% 100%;
@@ -378,37 +511,21 @@
     border-top: .5em solid $map-red;
 }
 
-#footer-social {
-    padding-top: 1.5em;
-    align-self: center;
-    svg {
-        margin: 0 .75em;
-        height: 1.5em;
-        width: 1.5em;
-        fill: white;
-        @include media-query ($md) {
-            margin: 0 .5em;
-        }
-    }
-    @include media-query ($md) {
-        grid-area: social;
-        align-self: auto;
-        // padding-top: 0;
-    } 
-}
-
 #footer-info {
-    grid-area: info;
     align-self: center;
     text-align: center;
     padding-bottom: .875em;
-    width: 91.5%;
     @include media-query ($md) {
+        grid-area: info;
+        width: 90%;
         padding-bottom: 0;
-        align-self: flex-end;
+        justify-self: center;
         border-top: .12em solid fade-out($nav-light, .17);
         border-top-left-radius: 1px;
         border-top-right-radius: 1px;
+    }
+    @include media-query ($lg) {
+        width: 100%;
     }
     h5 {
         padding-top: 1.25em;

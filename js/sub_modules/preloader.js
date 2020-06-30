@@ -23,7 +23,7 @@ function slidePreloader() {
   let timer = setTimeout(() => {
     preloader.style.display = "none";
     clearTimeout(timer);
-  }, 1000);
+  }, 2000);
 }
 
 function removeListeners() {

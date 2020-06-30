@@ -210,9 +210,9 @@ function showMessage(statusContainer) {
     target = statusContainer.firstElementChild;
   }
   isShowingStatus = true;
-  target.classList.toggle("visible");
+  target.classList.toggle("msg-visible");
   setTimeout(() => {
-    target.classList.toggle("visible");
+    target.classList.toggle("msg-visible");
     isShowingStatus = false;
   }, delay);
 }

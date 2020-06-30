@@ -5,12 +5,11 @@ import { navBar, debounce } from "../main.js";
 const siteOverlay = document.querySelector(".site-overlay");
 const servicesSection = document.getElementById("section-services");
 const contactSection = document.getElementById("section-contact");
-const designProjectsSection = document.getElementById(
-  "section-projects-design"
-);
+const designProjectsSection = document.getElementById("section-projects-design"); //prettier-ignore
 const nav = document.getElementById("home");
 const navList = document.querySelector(".nav-list");
 const navElements = document.querySelectorAll(".nav-list li");
+const linkSocial = document.getElementById("link-social");
 const navContainer = document.querySelector(".navigation-container");
 const burger = document.querySelector(".burger");
 const brandMobile = document.querySelector("#brand-mobile-svg");
@@ -31,8 +30,16 @@ let isIos =
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
   !window.MSStream;
 
+const formInfo = document.querySelector(".form-info");
+
 //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
+  if (nav.nextElementSibling) {
+    const langDiv = nav.parentElement.removeChild(nav.nextElementSibling);
+    navList.lastElementChild.appendChild(langDiv);
+  }
+  const infoSocial = formInfo.removeChild(formInfo.lastElementChild);
+  linkSocial.appendChild(infoSocial);
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
   // mobile burger and menu
@@ -40,13 +47,18 @@ function styleMobileNav() {
     burger.addEventListener("click", () => {
       toggleNavClasses();
       navElements.forEach((navEl, index) => {
-        navEl.style.animationDelay = `${0.3 + index / 15.5}s`;
+        navEl.style.animationDelay = `${(0.3 + index / 15.5).toFixed(2)}s`;
         navEl.classList.toggle("nav-link-anim");
         navEl.classList.toggle("invisible");
       });
     });
   }
   hasClickListener = true;
+}
+
+function appendInfoSocial() {
+  const socialChild = linkSocial.removeChild(linkSocial.firstElementChild);
+  formInfo.appendChild(socialChild);
 }
 
 // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
@@ -159,6 +171,7 @@ export {
   isOpen_Menu,
   styleMobileNav,
   toggleNavClasses,
+  appendInfoSocial,
   initSwiper,
   styleMobileBrand,
   restoreMobileBrand,

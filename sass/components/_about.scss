@@ -1,20 +1,21 @@
 #section-about {
     // background-color: pink;
+    height: 750px;
     min-height: 50%;
     @include padding-map($content-wrap-sm);
     display: flex;
     flex-direction: column;
     justify-content: center;
     @include media-query ($md) {
-        background-image: url(/assets/optimized/background-grey.svg);
+        background-image: url(/assets/optimized/svg-bg-left.svg);
         background-repeat: no-repeat;
         background-position: left;
-        background-size: 170px;
+        background-size: 130px;
     }
 
     .section-title {
         padding-top: 0;
-        margin-top: -10%;
+        margin-top: -300px;
     }
 
     p {

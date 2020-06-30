@@ -127,3 +127,8 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+@mixin button-select {
+    outline-style: dotted;
+    outline-width: thin;
+}

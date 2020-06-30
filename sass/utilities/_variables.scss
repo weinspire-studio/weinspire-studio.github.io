@@ -21,7 +21,7 @@ $md: 801px; // tablets
 $lg: 1024px; // desktops
 $xl: 1200px; // large desktops
 $xxl: 1450px; // extra large desktops
-$hd: 1900px;
+$fhd: 1900px; // high definition
 
 //colors
 $nav-light: rgba(255, 255, 255, 0.3);
@@ -34,11 +34,13 @@ $site-background-light: #f9fbff;
 $font-dark: #414141;
 $font-dark2: #212529;
 
-$blue-theme-darker: #001029;
-$blue-theme-dark: #003a58;
-$blue-theme-middle: #006985;
-$blue-theme-light: #009ba9;
-$blue-theme-lighter: #43cfc3;
+$btn-gradient: linear-gradient(90deg, #2BD286 0%, #08AEEA 100%);
+
+$blue-theme-darker: #000321;
+$blue-theme-dark: #003e60;
+$blue-theme-middle: #007393;
+$blue-theme-light: #00abb9;
+$blue-theme-lighter: #0ae5ce;
 
 $brand-color-blue: #00416B;
 $brand-color-green: #009889;
@@ -67,7 +69,13 @@ $wrap-lg-mobile-small: 1.5em;
 $wrap-lg-mobile: 2.25em;
 $wrap-lg-tablet: 3em;
 $wrap-lg-desktop: 4em;
-$wrap-lg-desktop-large: 4.5em;
+$wrap-lg-desktop-xlarge: 5em;
+$wrap-lg-desktop-xxlarge: 5.75em;
+$wrap-lg-desktop-fhd: 7em;
+
+$xl: 1200px; // large desktops
+$xxl: 1450px; // extra large desktops
+$fhd: 1900px; // high definition
 
 // wrap hr (0 vertical space)
 $wrap-hr-mobile-small: 0 1em;
@@ -87,11 +95,14 @@ $content-wrap-sm: (
 
 // wrap-sm map
 $content-wrap-lg: (
-    null: $wrap-lg-mobile-small,
+    null: 0,
+    $xs: $wrap-lg-mobile-small,
     $sm: $wrap-lg-mobile,
     $md: $wrap-lg-tablet,
     $lg: $wrap-lg-desktop,
-    $xl: $wrap-lg-desktop-large
+    $xl: $wrap-lg-desktop-xlarge,
+    $xxl: $wrap-lg-desktop-xxlarge,
+    $fhd: $wrap-lg-desktop-fhd,
 );
 
 //horizontal wrap map
@@ -104,8 +115,8 @@ $content-wrap-hr: (
 );
 
 // font sizes maps
-$document-font-size: (null: .75em, $xs: .85em, $sm: .95em, $md: 1.05em, $lg: 1.1em, $xl: 1.15em, $xxl: 1.175em, $hd: 1.3em);
-$title-font-size: (null: 1.3em, $sm: 1.5em, $md: 1.8em, $lg: 2.2em, $xl: 2.5em);
+$document-font-size: (null: .75em, $xs: .85em, $sm: .95em, $md: 1.05em, $lg: 1.1em, $xl: 1.15em, $xxl: 1.175em, $fhd: 1.3em);
+$title-font-size: (null: 1.2em, $sm: 1.3em, $md: 1.4em, $lg: 1.5em, $xl: 1.65em, $xxl: 1.75em, $fhd: 2.25em);
 
 // grid-list
 $grid-list: null $xs $sm $md $lg $xl;
