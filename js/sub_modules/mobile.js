@@ -61,7 +61,7 @@ function appendInfoSocial() {
   formInfo.appendChild(socialChild);
 }
 
-// adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+// adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu).
 function toggleNavClasses() {
   scrolledY = window.pageYOffset;
   if (scrolledY > 0) {
@@ -69,9 +69,9 @@ function toggleNavClasses() {
     nav.classList.toggle("nav-no-border");
   }
   setTimeout(function () {
-    designProjectsSection.classList.toggle("section-low");
-    contactSection.classList.toggle("section-low");
-    servicesSection.classList.toggle("section-low");
+    // designProjectsSection.classList.toggle("section-low");
+    // contactSection.classList.toggle("section-low");
+    // servicesSection.classList.toggle("section-low");
   }, toggleDelay);
   if (!isOpen_Menu) {
     isOpen_Menu = true;

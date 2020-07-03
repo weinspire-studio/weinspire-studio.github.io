@@ -1,24 +1,15 @@
 #footer {
     position: relative;
-    // display: flex;
-    // flex-direction: column;
-    background-color: $footer;
+    background-color: $footer-dark-blue;
     background-image: url(/assets/footer-bg.svg);
     background-size: cover;
     background-repeat: no-repeat;
-    color: $white-opacity;
+    color: $footer-gray;
 }
 
 #footer-grid {
-    // position: relative;
     display: flex;
     flex-direction: column;
-    // background-color: $footer;
-    // background-image: url(/assets/footer-bg.svg);
-    // background-size: cover;
-    // background-repeat: no-repeat;
-    // color: $white-opacity;
-    // @include padding-map ($footer-wrap);
     padding: 0 1em;
     @include media-query ($xs, $sm) {
         padding: 0 1.5em;
@@ -27,19 +18,16 @@
         padding: 0 2em;
     }
     @include media-query ($md) {
-        // margin-top: 10%;
-        // grid-template-rows: 1fr 5fr 4fr 1fr;
-        // justify-items: center;
         display: grid;
         max-width: 750px;
         width: 83%;
         margin: 0 auto;
         padding: 0;
-        grid-template-columns: 1fr 2fr 2fr 1fr;
+        grid-template-columns: 1.25fr 1.75fr 1.6fr 1.4fr;
         grid-template-areas: 
         'arrow arrow arrow arrow'
         'site dev-services design-services social'
-        'map map news news'
+        'news news map map'
         'info info info info';
     }
     @include media-query ($lg) {
@@ -72,7 +60,6 @@
     fill: rgba(177, 177, 177, 0.904);
     margin: .5em auto;
     transition: animation 500ms ease-in;
-    // animation: enlarge 500ms ease infinite alternate;
     @include prefixes (animation, enlarge 500ms ease infinite alternate);
     @include media-query ($md) {
         grid-area: arrow;
@@ -101,6 +88,7 @@
     @include media-query ($md) {
         grid-area: design-services;
         justify-self: center;
+        margin-left: 2em;
     }
 }
 
@@ -109,9 +97,6 @@
         grid-area: dev-services;
         justify-self: center;
     }
-    // @include media-query ($md, $lg) {
-    //     padding-left: 1.4em;
-    // }
 }
 
 #footer-site {
@@ -119,21 +104,6 @@
         grid-area: site;
         justify-self: left;
     }
-    // @include media-query ($md, $lg) {
-    //     margin-left: -1em;
-    // }
-    // @include media-query ($lg, $xl) {
-    //     margin-left: -3em;
-    // }
-    // @include media-query ($xl, $xxl) {
-    //     margin-left: -6.5em;
-    // }
-    // @include media-query ($xxl, $fhd) {
-    //     margin-left: -10em;
-    // }
-    // @include media-query ($fhd) {
-    //     margin-left: -13em;
-    // }
 }
 
 #footer-newsletter {
@@ -146,19 +116,17 @@
         grid-area: news;
         display: block;
         align-self: auto;
-        justify-self: right;
+        justify-self: left;
         padding-top: 0;
         margin: 2em 0;
     }
-    // @include media-query ($md, $lg) {
-    //     margin-left: 1em;
-    // }
     h4 {
+        font-family: "Lato", sans-serif;
         font-size: .8em;
         width: max-content;
         @include media-query ($md) {
             max-width: 347.5px;
-            color: $white-opacity;
+            color: $footer-gray;
         }
     }
 }
@@ -248,14 +216,11 @@
             transition: background-color .75s ease-in-out, transform .5s ease-in-out;
         }
     }
-    button:hover {
-        // opacity: 0.75;
-        &:before {
+    button:hover::before {
             -webkit-transform: translateX(100%);
             -ms-transform: translateX(100%);
             transform: translateX(100%);
             background-color: $brand-color-blue;
-        }
     }
     button:hover > #arrow-right-news {
         fill: #fff;
@@ -277,7 +242,7 @@
 }
 #news-form-status {
     text-align: center;
-    padding: 1em;
+    padding: 1em 1.25em;
     margin: 1em;
 }
 
@@ -285,7 +250,7 @@
     height: 1.25em;
     width: 1.25em;
     padding: .1em 0 0 .3em;
-    fill: $footer;
+    fill: $footer-dark-blue;
     z-index: 1;
     position: relative;
     transition: fill 1s ease;
@@ -302,11 +267,6 @@
     }
 }
 
-// #footer-social, #footer-logo, #footer-map {
-//     @include media-query ($md) {
-//     }
-// }
-
 #footer-site p {
     color: white;
     font-size: 1em;
@@ -314,7 +274,7 @@
     border-bottom: 1px solid fade-out($nav-light, .125);
     line-height: 2.5;
     @include media-query($md) {
-        color: $white-opacity;
+        color: $footer-gray;
         font-size: .7em;
         border: none;
         text-transform: initial;
@@ -334,7 +294,7 @@
         position: relative;
         transform: translateY(15%);
         #brand-desktop-svg {
-            width: 150px;
+            width: 9.5em;
             .blue {
                 fill: #fff;
             }
@@ -350,12 +310,20 @@
     align-self: center;
     white-space: nowrap;
     svg {
-        margin: 0 .5em;
-        height: 1.5em;
-        width: 1.5em;
-        fill: white;
+        height: 2em;
+        width: 2em;
+        margin: 0 .15em;
+        fill: $footer-gray;
         @include media-query ($md) {
-            margin: 0 .25em;
+            margin: 0 .1em;
+            height: 1.7em;
+            width: 1.7em;
+            transition: fill .5s ease, transform .5s ease;
+            &:hover {
+                cursor: pointer;
+                fill: #fff;
+                transform: scale(1.15);
+            }
         }
     }
     @include media-query ($md) {
@@ -369,47 +337,25 @@
     } 
 }
 
-#footer-logo, #footer-social {
-    // @include media-query ($md, $lg) {
-    //     margin-right: 2em;
-    // }
-    // @include media-query ($lg, $xl) {
-    //     margin-right: 5em;
-    // }
-    // @include media-query ($xl, $xxl) {
-    //     margin-right: 6em;
-    // }
-    // @include media-query ($xxl, $fhd) {
-    //     margin-right: 5em;
-    // }
-    // @include media-query ($fhd) {
-    //     margin-right: 6em;
-    // }
-}
-
 #footer-map {
     display: none;
     @include media-query ($md) {
-        // padding: 1em 0 1em 1em;
         display: block;
         grid-area: map;
-        justify-self: left;
+        justify-self: right;
         align-self: center;
         img {
-            // min-width: 400px;
             width: 80%;
         }
     }
-    @include media-query ($md, $lg) {
-        img {
-            min-width: 355px;
-            margin-left: -2em;
+    img {
+        @include media-query ($md, $lg) {
+                min-width: 355px;
+                margin-left: -2em;
         }
-    }
-    @include media-query ($lg) {
-        img {
-            min-width: 400px;
-            margin-left: 0;
+        @include media-query ($lg) {
+                min-width: 425px;
+                margin-left: 0;
         }
     }
 }
@@ -422,7 +368,6 @@
 #footer-map svg {
     position: absolute;
     height: 1.15em;
-    // width: 1.15em;
     z-index: 1;
     fill: $map-red;
     transition: fill .5s ease, transform .5s ease, transform-origin .5s ease, z-index .5s ease; 
@@ -452,16 +397,25 @@
 }
 
 #footer-location-us {
-    top: 25.5%;
-    left: 23%;
+    top: 31.5%;
+    left: 24%;
+    @include media-query ($md, $lg) {
+        left: 16%;
+    }
 }
 #footer-location-arg {
-    bottom: 13%;
-    left: 20.5%;
+    bottom: 15%;
+    left: 24.5%;
+    @include media-query ($md, $lg) {
+        left: 17%;
+    }
 }
 #footer-location-uru {
-    bottom: 15.95%;
-    left: 23.85%;
+    bottom: 17%;
+    left: 27.5%;
+    @include media-query ($md, $lg) {
+        left: 20%;
+    }
 }
 
 #footer-location-us:hover ~ #location-us-info {
@@ -478,26 +432,38 @@
 }
 
 #location-us-info {
-    top: -10%;
-    left: 24%;
+    @include media-query ($md, $lg) {
+        left: 17%;
+        top: -2%;
+    }
+    top: 0%;
+    left: 24.25%;
     .arrow-down {
         bottom: -14%;
         left: 0;
     }
 }
 #location-arg-info {
-    left: -2%;
-    bottom: 37.5%;
+    bottom: 35%;
+    left: 4%;
+    @include media-query ($md, $lg) {
+        left: -7.5%;
+        bottom: 36.15%;
+    }
     .arrow-down {
         right: 0;
-        bottom: -16%;
+        bottom: -13.5%;
     }
 }
 #location-uru-info {
-    left: 25%;
-    bottom: 39%;
+    bottom: 36.25%;
+    left: 27.75%;
+    @include media-query ($md, $lg) {
+        bottom: 38%;
+        left: 20.5%;
+    }
     .arrow-down {
-        bottom: -15%;
+        bottom: -13%;
         left: 0;
     }
 }

@@ -34,7 +34,10 @@ $site-background-light: #f9fbff;
 $font-dark: #414141;
 $font-dark2: #212529;
 
-$btn-gradient: linear-gradient(90deg, #2BD286 0%, #08AEEA 100%);
+$green-btn-gradient: #2BD286;
+$middle-btn-gradient: #19bfba;
+$blue-btn-gradient: #08AEEA;
+$btn-gradient: linear-gradient(90deg, $green-btn-gradient 0%, $blue-btn-gradient 100%);
 
 $blue-theme-darker: #000321;
 $blue-theme-dark: #003e60;
@@ -50,7 +53,8 @@ $map-red: #ec3a48;
 $error: #ee6d6d;
 $success: $blue-theme-lighter;
 $selected: $brand-color-blue;
-$footer: #001828;
+$footer-dark-blue: #001828;
+$footer-gray: #c2c2c2;
 
 // shadows
 $message-light: 3px 3px 3px 0px rgba(107,124,141,.45);
@@ -112,7 +116,7 @@ $content-wrap-hr: (
 
 // font sizes maps
 $document-font-size: (null: .75em, $xs: .85em, $sm: .95em, $md: 1.05em, $lg: 1.1em, $xl: 1.15em, $xxl: 1.175em, $fhd: 1.3em);
-$title-font-size: (null: 1.2em, $sm: 1.3em, $md: 1.4em, $lg: 1.5em, $xl: 1.65em, $xxl: 1.75em, $fhd: 2.25em);
+$title-font-size: (null: 1.2em, $xs: 1.3em, $sm: 1.4em, $md: 1.5em, $lg: 1.55em, $xl: 1.6em, $xxl: 1.65em, $fhd: 1.8em);
 
 // grid-list
 $grid-list: null $xs $sm $md $lg $xl;

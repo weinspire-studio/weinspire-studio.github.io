@@ -69,12 +69,20 @@ function typeWriter() {
 }
 
 function initWriter(isMobile) {
-  typeWriter();
-  window.addEventListener("scroll", setWriter);
+  let delay = 1450;
   if (isMobile) {
     calculatedWidth = spanWe.clientWidth + projectWidth + 28.5;
     spanWe.parentElement.style.width = `${calculatedWidth}px`;
+    delay = 1250;
   }
+  window.addEventListener("scroll", setWriter);
+  let timer = setTimeout(() => {
+    typeWriter();
+    if (spanWords.style.opacity === "") {
+      spanWords.style.opacity = 1;
+    }
+    clearTimeout(timer);
+  }, delay);
   // TODO: should update calculatedWidth on width change.
 }
 

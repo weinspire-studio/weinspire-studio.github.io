@@ -160,6 +160,8 @@ module.exports = function (grunt) {
           "./assets/optimized_sprite/behance.svg": "./assets/behance.svg",
           "./assets/optimized_sprite/location.svg": "./assets/location.svg",
           "./assets/optimized_sprite/email.svg": "./assets/email.svg",
+          "./assets/optimized_sprite/instagram.svg": "./assets/instagram.svg",
+          "./assets/optimized_sprite/instagram-circle.svg": "./assets/instagram-circle.svg", // prettier-ignore
           "./assets/optimized_sprite/email-circle.svg": "./assets/email-circle.svg", // prettier-ignore
           "./assets/optimized_sprite/whatsapp-circle.svg": "./assets/whatsapp-circle.svg", // prettier-ignore
           "./assets/optimized_sprite/location-circle.svg": "./assets/location-circle.svg", // prettier-ignore

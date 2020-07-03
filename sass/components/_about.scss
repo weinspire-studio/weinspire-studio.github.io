@@ -1,21 +1,28 @@
 #section-about {
     // background-color: pink;
-    height: 750px;
+    height: 350px;
     min-height: 50%;
     @include padding-map($content-wrap-sm);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-image: url(/assets/optimized/svg-bg-left.svg);
+    background-repeat: no-repeat;
+    background-position: left top;
+    margin-top: 2em;
+    background-size: 60px;
     @include media-query ($md) {
-        background-image: url(/assets/optimized/svg-bg-left.svg);
-        background-repeat: no-repeat;
-        background-position: left;
         background-size: 130px;
+        height: 750px;
+        background-position: left;
     }
 
     .section-title {
-        padding-top: 0;
-        margin-top: -300px;
+        margin-top: -120px;
+        @include media-query ($md) {
+            padding-top: 0;
+            margin-top: -300px;
+        }
     }
 
     p {

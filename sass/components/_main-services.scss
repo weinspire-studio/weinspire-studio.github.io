@@ -1,5 +1,8 @@
 #section-services {
-    margin-top: -200px;
+    margin-top: -100px;
+    @include media-query ($md) {
+        margin-top: -200px;
+    }
 }
 
 #services-separator {
@@ -9,6 +12,8 @@
     background-repeat: no-repeat;
     background-position: 100% 100.1%;
     background-size: 100%;
+    z-index: -1;
+    position: relative;
     // filter: drop-shadow(0px -2px 5px rgba(107, 124, 141, .65));
     filter: drop-shadow(0 -10px 5px rgba(107, 124, 141, .1));
     @include media-query ($xs) {

@@ -24,7 +24,7 @@
     @include grid-map($grid-list) {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-evenly;
     }
 }
 
@@ -53,9 +53,8 @@
         margin: 0 auto;
         text-align: left;
         white-space: nowrap;
-        font-weight: 700;
         letter-spacing: -3px;
-        font-size: 4.5em;
+        font-size: 4em;
         font-family: "Montserrat", sans-serif;
         font-weight: 600;
         @include media-query ($md) {
@@ -63,13 +62,13 @@
             font-size: 4em;
         }
         @include media-query ($lg) {
-            font-size: 5em;
+            font-size: 4.25em;
         }
         @include media-query ($xl) {
-            font-size: 5.5em;
+            font-size: 4.75em;
         }
         @include media-query ($xxl) {
-            font-size: 5.75em;
+            font-size: 5em;
         }
         @include media-query ($fhd) {
             font-size: 6.5em;
@@ -136,6 +135,7 @@
 
 #span-words {
     display: inline-block;
+    opacity: 0;
 }
 
 .inner-span {
@@ -171,7 +171,7 @@
     p {
         text-shadow: 1px 1px 1.8px #000;
     }
-    &:hover, &:focus {
+    &:hover {
         cursor: pointer;
     }
 }

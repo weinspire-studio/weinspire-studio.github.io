@@ -105,11 +105,10 @@ function initOnWidthChange() {
 
 
 function initLanding() {
-  preloaderModule.hidePreloader();
-  var timer = setTimeout(function () {
-    typewriterModule.initWriter(isMobile);
-    clearTimeout(timer);
-  }, 1050);
+  preloaderModule.hidePreloader(); // let timer = setTimeout(() => {
+
+  typewriterModule.initWriter(isMobile); //   clearTimeout(timer);
+  // }, 1250);
 } //code that executes only in desktop and large tablets screens (> 801px).
 
 
@@ -192,7 +191,7 @@ function styleNavOnScroll() {
       } else {
         desktopModule.styleDesktopBrand();
         flagsContainer.removeEventListener("click", listenToFlags);
-        flagsContainer.classList.add("invisible");
+        flagsContainer.classList.add("flag-invisible");
       }
 
       navBar.classList.add("nav-white");
@@ -209,7 +208,7 @@ function styleNavOnScroll() {
     navBar.classList.remove("nav-white");
     navWhiteBack.classList.remove("nav-white-back");
     navShadow.classList.remove("nav-shadow");
-    flagsContainer.classList.remove("invisible");
+    flagsContainer.classList.remove("flag-invisible");
     flagsContainer.addEventListener("click", listenToFlags = function listenToFlags(e) {
       styleFlags(e.target);
     });
@@ -1668,7 +1667,7 @@ function styleMobileNav() {
 function appendInfoSocial() {
   var socialChild = linkSocial.removeChild(linkSocial.firstElementChild);
   formInfo.appendChild(socialChild);
-} // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu). Small and Large screens.
+} // adds or removes classes to nav and burger, and changes z-index and opacity to elements at the back (for black div when opening menu).
 
 
 function toggleNavClasses() {
@@ -1680,10 +1679,9 @@ function toggleNavClasses() {
     nav.classList.toggle("nav-no-border");
   }
 
-  setTimeout(function () {
-    designProjectsSection.classList.toggle("section-low");
-    contactSection.classList.toggle("section-low");
-    servicesSection.classList.toggle("section-low");
+  setTimeout(function () {// designProjectsSection.classList.toggle("section-low");
+    // contactSection.classList.toggle("section-low");
+    // servicesSection.classList.toggle("section-low");
   }, toggleDelay);
 
   if (!isOpen_Menu) {
@@ -2064,14 +2062,24 @@ function typeWriter() {
 }
 
 function initWriter(isMobile) {
-  typeWriter();
-  window.addEventListener("scroll", setWriter);
+  var delay = 1450;
 
   if (isMobile) {
     calculatedWidth = spanWe.clientWidth + projectWidth + 28.5;
     spanWe.parentElement.style.width = "".concat(calculatedWidth, "px");
-  } // TODO: should update calculatedWidth on width change.
+    delay = 1250;
+  }
 
+  window.addEventListener("scroll", setWriter);
+  var timer = setTimeout(function () {
+    typeWriter();
+
+    if (spanWords.style.opacity === "") {
+      spanWords.style.opacity = 1;
+    }
+
+    clearTimeout(timer);
+  }, delay); // TODO: should update calculatedWidth on width change.
 }
 
 function clearWriter() {

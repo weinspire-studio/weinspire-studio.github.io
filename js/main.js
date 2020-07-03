@@ -74,10 +74,10 @@ function initOnWidthChange() {
 // hides preloader, animate assets and inits typeWriter.
 function initLanding() {
   preloaderModule.hidePreloader();
-  let timer = setTimeout(() => {
-    typewriterModule.initWriter(isMobile);
-    clearTimeout(timer);
-  }, 1050);
+  // let timer = setTimeout(() => {
+  typewriterModule.initWriter(isMobile);
+  //   clearTimeout(timer);
+  // }, 1250);
 }
 
 //code that executes only in desktop and large tablets screens (> 801px).
@@ -150,7 +150,7 @@ function styleNavOnScroll(inMobile = true) {
       } else {
         desktopModule.styleDesktopBrand();
         flagsContainer.removeEventListener("click", listenToFlags);
-        flagsContainer.classList.add("invisible");
+        flagsContainer.classList.add("flag-invisible");
       }
       navBar.classList.add("nav-white");
       navWhiteBack.classList.add("nav-white-back");
@@ -165,7 +165,7 @@ function styleNavOnScroll(inMobile = true) {
     navBar.classList.remove("nav-white");
     navWhiteBack.classList.remove("nav-white-back");
     navShadow.classList.remove("nav-shadow");
-    flagsContainer.classList.remove("invisible");
+    flagsContainer.classList.remove("flag-invisible");
     flagsContainer.addEventListener(
       "click",
       (listenToFlags = (e) => {

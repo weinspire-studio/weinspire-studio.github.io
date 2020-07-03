@@ -1,5 +1,8 @@
 #section-projects-design {
     position: relative;
+    overflow: hidden;
+    padding-bottom: 3em;
+    z-index: -1;
     ul {
         height: 100%;
         list-style: none;
@@ -36,24 +39,15 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        top: 0.7em;
+        top: 1.5em;
         @include media-query ($xs){
-            top: 0.3em;
+            top: 1.25em;
         }
         @include media-query ($sm){
-            top: -0.3em;
+            top: 1em;
         }
         @include media-query ($md){
-            top: -.5em;
-        }
-        @include media-query ($lg) {
-            top: -.75em;
-        }
-        @include media-query ($xl) {
-            top: -1em;
-        }
-        @include media-query ($xxl) {
-            top: -1.25em;
+            top: 0;
         }
     }
 }
@@ -71,7 +65,6 @@
             -moz-transition: .55s ease background-color;
             -webkit-transition: .55s ease background-color;
             -o-transition: .55s ease background-color;
-
             position: absolute;
             top: 0;
         }
@@ -83,7 +76,6 @@
         color: white;
         padding: 1.25em 0 1.25em 1.5em;
         h6 {
-            font-weight: 400;
             padding-top: .2em;
         }
 
@@ -340,10 +332,6 @@
     text-decoration: none;
     cursor: pointer;
     transform: rotate(90deg);
-}
-
-#modal-caption h6 {
-    font-weight: 300;
 }
 
 #modal,
