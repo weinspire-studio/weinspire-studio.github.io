@@ -119,14 +119,14 @@
 
 #span-we {
     padding: 0 .2em;
-    padding-left: .45em;
+    padding-left: .3em;
     transition: text-shadow 500ms ease;
     display: inline-block;
     @include media-query ($xs) {
-        padding-left: .28em;
+        padding-left: .2em;
     }
     @include media-query ($sm) {
-        padding-left: .125em;
+        padding-left: .15em;
     }
     @include media-query($md) {
         padding-left: 0;

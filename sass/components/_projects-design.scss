@@ -1,8 +1,13 @@
 #section-projects-design {
     position: relative;
-    overflow: hidden;
-    padding-bottom: 3em;
-    z-index: -1;
+    @include media-query (0, $md) {
+        overflow: hidden;
+        padding-bottom: 3em;
+        z-index: -1;
+    }
+    @include o-media-query ($sm, $md, portrait) {
+        padding-bottom: 6em;
+    }
     ul {
         height: 100%;
         list-style: none;
@@ -30,9 +35,11 @@
             -o-transition: width 450ms ease;
             border-left: 2px solid #000;
             box-shadow: 0 0 5px 2px rgba(0,0,0,.5);
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
-
     h1 {
         width: 100%;
         padding-top: 0;
@@ -75,10 +82,18 @@
         width: 100%;
         color: white;
         padding: 1.25em 0 1.25em 1.5em;
+        white-space: nowrap;
+        h4 {
+            @include media-query (0, $md) {
+                font-size: 1.1em;
+            }
+        }
         h6 {
             padding-top: .2em;
+            @include media-query (0, $md) {
+                font-size: .8em;
+            }
         }
-
         &:after {
             content: "";
             position: absolute;
@@ -87,7 +102,6 @@
             top: 1em;
             width: .25em;
         }
-
         @include media-query ($md) {
             transform: translateY(100%);
             transition: transform 500ms ease;
@@ -167,6 +181,13 @@
     }
     @include o-media-query ($sm, $md, portrait) {
         height: 630px;
+    }
+}
+
+.swiper-pagination {
+    bottom: -2.25em!important;
+    @include o-media-query ($sm, $md, portrait) {
+        bottom: -5em!important;
     }
 }
 
@@ -253,6 +274,7 @@
         width: 100%;
         opacity: 0;
         pointer-events: none;
+        transition: opacity .3s ease-in-out;
     }
 }
 
@@ -263,6 +285,9 @@
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+    @include media-query ($md, $lg) {
+        height: 65%;
+    }
 }
 
 #modal-caption {
@@ -294,6 +319,9 @@
     top: 50%;
     left: 0;
     transform: translateY(-50%);
+    @include media-query ($md, $lg) {
+        height: 65.2%;
+    }
 }
 
 #ie-container {
@@ -386,8 +414,7 @@
 
 .not-allowed {
     opacity: 0.2 !important;
-    cursor: not-allowed;
-    pointer-events: none;
+    cursor: not-allowed!important;
   }
 
 // Style Classes
@@ -411,9 +438,9 @@
     width: calc(17.5% - 1px)!important;
 }
 
-.pagination-bottom {
-    bottom: -2.25em!important;
-}
+// .pagination-bottom {
+//     bottom: -2.25em!important;
+// }
 
 .pagination-middle {
     bottom: 5em!important;

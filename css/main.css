@@ -5,12 +5,12 @@
 }
 
 html {
-  font-size: 0.75em;
+  font-size: 0.85em;
   overflow-x: hidden;
 }
 @media screen and (min-width: 351px) {
   html {
-    font-size: 0.85em;
+    font-size: 0.9em;
   }
 }
 @media screen and (min-width: 479px) {
@@ -43,6 +43,11 @@ html {
     font-size: 1.3em;
   }
 }
+@media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
+  html {
+    font-size: 1.1em !important;
+  }
+}
 
 html, body {
   overflow-y: visible;
@@ -62,6 +67,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   font-family: "Montserrat", sans-serif;
+  letter-spacing: -0.25px;
 }
 
 #section-projects-design, #section-contact {
@@ -179,6 +185,12 @@ button#hero-cta:focus, button#contact-form-button:focus {
       align-self: center;
   width: 75%;
   height: 70px;
+  position: absolute;
+}
+@media screen and (min-width: 801px) {
+  #preloader-container {
+    position: relative;
+  }
 }
 
 #brand-preloader {
@@ -821,18 +833,18 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 #span-we {
   padding: 0 0.2em;
-  padding-left: 0.45em;
+  padding-left: 0.3em;
   transition: text-shadow 500ms ease;
   display: inline-block;
 }
 @media screen and (min-width: 351px) {
   #span-we {
-    padding-left: 0.28em;
+    padding-left: 0.2em;
   }
 }
 @media screen and (min-width: 479px) {
   #span-we {
-    padding-left: 0.125em;
+    padding-left: 0.15em;
   }
 }
 @media screen and (min-width: 801px) {
@@ -1167,9 +1179,18 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 #section-projects-design {
   position: relative;
-  overflow: hidden;
-  padding-bottom: 3em;
-  z-index: -1;
+}
+@media screen and (min-width: 0) and (max-width: 801px) {
+  #section-projects-design {
+    overflow: hidden;
+    padding-bottom: 3em;
+    z-index: -1;
+  }
+}
+@media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
+  #section-projects-design {
+    padding-bottom: 6em;
+  }
 }
 #section-projects-design ul {
   height: 100%;
@@ -1204,6 +1225,9 @@ button#hero-cta:focus, button#contact-form-button:focus {
     -o-transition: width 450ms ease;
     border-left: 2px solid #000;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+  }
+  #section-projects-design li:hover {
+    cursor: pointer;
   }
 }
 #section-projects-design h1 {
@@ -1254,9 +1278,20 @@ button#hero-cta:focus, button#contact-form-button:focus {
   width: 100%;
   color: white;
   padding: 1.25em 0 1.25em 1.5em;
+  white-space: nowrap;
+}
+@media screen and (min-width: 0) and (max-width: 801px) {
+  .content-link .link-caption h4 {
+    font-size: 1.1em;
+  }
 }
 .content-link .link-caption h6 {
   padding-top: 0.2em;
+}
+@media screen and (min-width: 0) and (max-width: 801px) {
+  .content-link .link-caption h6 {
+    font-size: 0.8em;
+  }
 }
 .content-link .link-caption:after {
   content: "";
@@ -1365,6 +1400,15 @@ button#hero-cta:focus, button#contact-form-button:focus {
   }
 }
 
+.swiper-pagination {
+  bottom: -2.25em !important;
+}
+@media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
+  .swiper-pagination {
+    bottom: -5em !important;
+  }
+}
+
 .swiper-pagination-bullet-active {
   transform: scale(1.75) !important;
   transition: transform 0.5s ease;
@@ -1450,6 +1494,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
     width: 100%;
     opacity: 0;
     pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
   }
 }
 
@@ -1460,6 +1505,11 @@ button#hero-cta:focus, button#contact-form-button:focus {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+@media screen and (min-width: 801px) and (max-width: 1024px) {
+  #modal-image {
+    height: 65%;
+  }
 }
 
 #modal-caption {
@@ -1491,6 +1541,11 @@ button#hero-cta:focus, button#contact-form-button:focus {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
+}
+@media screen and (min-width: 801px) and (max-width: 1024px) {
+  .modal-overlay-container {
+    height: 65.2%;
+  }
 }
 
 #ie-container {
@@ -1581,8 +1636,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 .not-allowed {
   opacity: 0.2 !important;
-  cursor: not-allowed;
-  pointer-events: none;
+  cursor: not-allowed !important;
 }
 
 .expanded {
@@ -1603,10 +1657,6 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 .contracted {
   width: calc(17.5% - 1px) !important;
-}
-
-.pagination-bottom {
-  bottom: -2.25em !important;
 }
 
 .pagination-middle {
@@ -1685,11 +1735,16 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 #section-contact {
   background-size: 310px;
-  min-height: 550px;
+  min-height: 41em;
   background-image: url(/assets/contact-bg.svg);
   background-repeat: no-repeat;
   background-position: right 10%;
   padding-top: 2em;
+}
+@media screen and (min-width: 351px) {
+  #section-contact {
+    min-height: 40em;
+  }
 }
 @media screen and (min-width: 801px) {
   #section-contact {
@@ -1751,15 +1806,25 @@ button#hero-cta:focus, button#contact-form-button:focus {
   font-family: "Lato", sans-serif;
 }
 
+@media screen and (min-width: 0) and (max-width: 479px) {
+  .form-container {
+    height: 31.75em;
+    width: 90%;
+  }
+}
+@media screen and (min-width: 479px) and (max-width: 801px) {
+  .form-container {
+    height: 32em;
+    width: 80%;
+  }
+}
 @media screen and (min-width: 0) and (max-width: 801px) {
   .form-container {
     background-color: #ffffffba;
-    width: 80%;
+    border-radius: 2.5em;
     margin: 0 auto;
     margin-top: 0px;
-    height: 420px;
     box-shadow: 0 1px 20px rgba(107, 124, 141, 0.4), 1px 0px 3px 2px rgba(107, 124, 141, 0.05);
-    margin-top: 2em;
   }
 }
 @media screen and (min-width: 801px) {
@@ -1785,13 +1850,13 @@ button#hero-cta:focus, button#contact-form-button:focus {
   overflow-x: hidden;
   margin-left: 1.5em;
   margin-right: 1.5em;
-  padding-top: 2em;
+  padding-top: 1.5em;
 }
 @media screen and (min-width: 479px) {
   .form-fields {
     margin-left: 2em;
     margin-right: 2em;
-    padding-top: 2.5em;
+    padding-top: 2em;
   }
 }
 @media screen and (min-width: 801px) {
@@ -1882,7 +1947,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 @media screen and (min-width: 0) and (max-width: 801px) {
   .field-button {
-    margin-bottom: 1.15em;
+    margin-bottom: 2.2em;
   }
 }
 
@@ -1934,25 +1999,30 @@ button#hero-cta:focus, button#contact-form-button:focus {
   grid-area: status;
   height: 75px;
   pointer-events: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  padding-top: 1em;
+}
+@media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
+  #field-status {
+    padding-top: 3.75em;
+    margin-bottom: 2em;
+  }
 }
 
 #contact-form-status {
   color: #001828;
-  margin-top: 0.5em;
   padding: 0.75em 0.9em;
   width: 98%;
-  max-width: 450px;
+  max-width: 370px;
   -ms-flex-item-align: center;
       align-self: center;
   text-align: center;
   font-size: 0.9em;
   opacity: 0;
   transition: opacity 0.5s ease-in;
-}
-@media screen and (min-width: 801px) {
-  #contact-form-status {
-    margin: 0 auto;
-  }
 }
 
 .form-fields input {
@@ -2112,6 +2182,10 @@ button#hero-cta:focus, button#contact-form-button:focus {
     width: 67.5%;
     transform: translateX(-10px);
   }
+}
+.form-info .info-container:nth-child(4) svg {
+  height: 1.6em;
+  width: 1.6em;
 }
 
 .info-container {
@@ -2593,10 +2667,12 @@ button#hero-cta:focus, button#contact-form-button:focus {
   height: 2em;
   width: 2em;
   margin: 0 0.15em;
+  padding: 0.01em;
   fill: #c2c2c2;
 }
 @media screen and (min-width: 801px) {
   #footer-social svg {
+    padding: 0;
     margin: 0 0.1em;
     height: 1.7em;
     width: 1.7em;

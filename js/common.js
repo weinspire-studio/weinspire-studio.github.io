@@ -46,8 +46,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // polyfill forEach IE11.
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
-} //VARIABLES
+}
 
+console.log(navigator.language);
+console.log(Intl); // 0 1px 3px rgba(0,0,0,.3)
+//VARIABLES
 
 var mobileScreenMQ = window.matchMedia("(max-width: 800px)");
 var navBar = document.getElementById("section-navbar");
@@ -105,10 +108,8 @@ function initOnWidthChange() {
 
 
 function initLanding() {
-  preloaderModule.hidePreloader(); // let timer = setTimeout(() => {
-
-  typewriterModule.initWriter(isMobile); //   clearTimeout(timer);
-  // }, 1250);
+  preloaderModule.hidePreloader();
+  typewriterModule.initWriter(isMobile);
 } //code that executes only in desktop and large tablets screens (> 801px).
 
 
@@ -163,7 +164,8 @@ function mobileCode() {
   if (hasListenersDesktop) {
     window.removeEventListener("scroll", bindedDebouncedNavDesktop);
     typewriterModule.reviewWidth(true);
-    desktopModule.modalClose();
+    desktopModule.closeModal();
+    desktopModule.destroyModal();
 
     if (isSafari) {
       desktopModule.removeImagesListeners();
@@ -749,7 +751,8 @@ exports.unsetDesktopBrand = unsetDesktopBrand;
 exports.animateImagesSafari = animateImagesSafari;
 exports.removeImagesListeners = removeImagesListeners;
 exports.initModal = initModal;
-exports.modalClose = modalClose;
+exports.destroyModal = destroyModal;
+exports.closeModal = closeModal;
 
 var _mobile = require("./mobile.js");
 
@@ -762,7 +765,20 @@ var navAnchors = document.querySelectorAll(".nav-list a");
 var brandDesktop = document.querySelector("#brand-desktop-svg");
 var list = document.querySelector(".swiper-wrapper");
 var links = document.querySelectorAll(".swiper-slide");
+var modal = document.getElementById("modal");
+var modalImage = document.getElementById("modal-image");
+var modalCaption = document.getElementById("modal-caption");
+var cross = document.getElementById("modal-close");
+var leftArrow = document.getElementById("modal-arrow-left");
+var rightArrow = document.getElementById("modal-arrow-right");
 var hasHoverListener = false;
+var hasRequested = false;
+var modalOpen = false;
+var modalHandler;
+var rightArrowHandler;
+var leftArrowHandler;
+var escapeHandler;
+var arrowKeyHandler;
 
 function prepareDesktopNav() {
   styleDesktopNav();
@@ -856,11 +872,11 @@ function styleLink() {
     if (link.matches(":hover")) {
       link.style.width = "36%";
       link.classList.add("overlay-transparent");
-      link.firstElementChild.nextElementSibling.classList.add("show-caption");
+      link.lastElementChild.classList.add("show-caption");
     } else {
       link.style.width = "18%";
       link.classList.remove("overlay-transparent");
-      link.firstElementChild.nextElementSibling.classList.remove("show-caption");
+      link.lastElementChild.classList.remove("show-caption");
     }
   });
 }
@@ -869,25 +885,13 @@ function restoreLink() {
   links.forEach(function (link) {
     link.style.width = "20%";
     link.classList.remove("overlay-transparent");
-    link.firstElementChild.nextElementSibling.classList.remove("show-caption");
+    link.lastElementChild.classList.remove("show-caption");
   });
 }
 
-var modal = document.getElementById("modal");
-var modalImage = document.getElementById("modal-image");
-var modalCaption = document.getElementById("modal-caption"); // const cross = document.querySelector("span.close");
-
-var cross = document.getElementById("modal-close");
-var leftArrow = document.getElementById("modal-arrow-left");
-var rightArrow = document.getElementById("modal-arrow-right");
-var hasRequested = false;
-var modalOpen = false;
-var rightArrowHandler;
-var leftArrowHandler;
-
 function initModal() {
   if (!hasRequested) {
-    list.addEventListener("click", function showModal(e) {
+    list.addEventListener("click", modalHandler = function modalHandler(e) {
       var imageTarget;
       modalOpen = true;
 
@@ -896,10 +900,20 @@ function initModal() {
       } else if (e.target.tagName === "H4" || e.target.tagName === "H6") imageTarget = e.target.parentNode.previousElementSibling.previousElementSibling;else return;
 
       (0, _http.loadHDImages)(imageTarget, modalImage, modalCaption);
-      animateEntry();
+      var timer = setTimeout(function () {
+        animateEntry();
+        clearTimeout(timer);
+      }, 200);
       slideImages(imageTarget.parentNode);
+      document.addEventListener("keyup", escapeHandler = function escapeHandler(event) {
+        var key = event.key || event.keyCode;
+
+        if (key === "Escape" || key === "Esc") {
+          closeModal();
+        }
+      });
     });
-    cross.addEventListener("click", modalClose);
+    cross.addEventListener("click", closeModal);
     hasRequested = true;
   }
 }
@@ -924,6 +938,24 @@ function slideImages(link) {
   }
 
   leftArrow.addEventListener("click", leftArrowHandler = function leftArrowHandler() {
+    link = moveLeft(link);
+  });
+  rightArrow.addEventListener("click", rightArrowHandler = function rightArrowHandler() {
+    link = moveRight(link);
+  });
+  document.addEventListener("keyup", arrowKeyHandler = function arrowKeyHandler(event) {
+    var key = event.key || event.keyCode;
+
+    if (key === "ArrowLeft" || key === "Left" || key == "37") {
+      link = moveLeft(link);
+    } else if (key === "ArrowRight" || key === "Right" || key == "39") {
+      link = moveRight(link);
+    }
+  });
+}
+
+function moveLeft(link) {
+  if (!leftArrow.classList.contains("not-allowed")) {
     (0, _gsapScrollmagic.slideAnim)("left");
 
     if (link.previousElementSibling) {
@@ -931,11 +963,17 @@ function slideImages(link) {
         leftArrow.classList.add("not-allowed");
       } else if (rightArrow.classList.contains("not-allowed")) rightArrow.classList.remove("not-allowed");
 
-      link = link.previousElementSibling;
-      changeCaption(link);
+      var previousLink = link.previousElementSibling;
+      changeImage(previousLink);
+      return previousLink;
     }
-  });
-  rightArrow.addEventListener("click", rightArrowHandler = function rightArrowHandler() {
+  }
+
+  return link;
+}
+
+function moveRight(link) {
+  if (!rightArrow.classList.contains("not-allowed")) {
     (0, _gsapScrollmagic.slideAnim)("right");
 
     if (link.nextElementSibling) {
@@ -943,13 +981,16 @@ function slideImages(link) {
         rightArrow.classList.add("not-allowed");
       } else if (leftArrow.classList.contains("not-allowed")) leftArrow.classList.remove("not-allowed");
 
-      link = link.nextElementSibling;
-      changeCaption(link);
+      var nextLink = link.nextElementSibling;
+      changeImage(nextLink);
+      return nextLink;
     }
-  });
+  }
+
+  return link;
 }
 
-function changeCaption(link) {
+function changeImage(link) {
   var title;
   var subtitle;
 
@@ -968,7 +1009,7 @@ function changeCaption(link) {
   }, 300);
 }
 
-function modalClose() {
+function closeModal() {
   if (modalOpen) {
     modal.classList.remove("visible");
     cross.classList.remove("emerge");
@@ -979,8 +1020,15 @@ function modalClose() {
     modalImage.parentNode.style.overflow = "visible";
     leftArrow.removeEventListener("click", leftArrowHandler);
     rightArrow.removeEventListener("click", rightArrowHandler);
+    document.removeEventListener("keyup", arrowKeyHandler);
+    document.removeEventListener("keyup", escapeHandler);
     modalOpen = false;
   }
+}
+
+function destroyModal() {
+  list.removeEventListener("click", modalHandler);
+  hasRequested = false;
 } // changes mobile svg brand colors.
 
 
@@ -1559,7 +1607,6 @@ function smoothScroll() {
 
 function animateImages() {
   $("#section-projects-design li").hover(function () {
-    $(this).css("cursor", "pointer");
     $(this).addClass("expanded");
     $(this).siblings().addClass("contracted");
     $(this).children().eq(2).addClass("show-caption");
@@ -1624,8 +1671,8 @@ exports.navContainer = navContainer;
 var burger = document.querySelector(".burger");
 var brandMobile = document.querySelector("#brand-mobile-svg");
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
-var rightArrows = document.querySelectorAll(".right-arrow-container svg");
-var swiperPagination = document.querySelector(".swiper-pagination");
+var rightArrows = document.querySelectorAll(".right-arrow-container svg"); // const swiperPagination = document.querySelector(".swiper-pagination");
+
 var designOffset = designProjectsSection.offsetTop;
 var clientHeight = document.body.clientHeight;
 var scrolledY = 0;
@@ -1710,8 +1757,7 @@ function toggleNavClasses() {
 
 
 function initSwiper(isSafari) {
-  swiperPagination.classList.add("pagination-bottom");
-
+  // swiperPagination.classList.add("pagination-bottom");
   if (!isIos || !isSafari) {
     window.addEventListener("DOMContentLoaded", listenToArrow);
   }

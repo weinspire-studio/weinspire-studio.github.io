@@ -7,6 +7,9 @@
 
 html {
     @include font-size-map($document-font-size);
+    @include o-media-query ($sm, $md, portrait) {
+        font-size: 1.1em!important;
+    }
     // overflow-x: auto;
     // overflow-y: visible;
     // min-height: 100%;
@@ -50,6 +53,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
     font-family: "Montserrat", sans-serif;
+    letter-spacing: -0.25px;
 }
 
 #section-services {

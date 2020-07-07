@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <!-- Google Tag Manager -->
     <script>
@@ -21,7 +21,7 @@
       content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, viewport-fit=cover"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./dist/css/main.min.css?v={1/v}" />
+    <link rel="stylesheet" href="./dist/css/main.min.css?v={1/y}" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
       rel="preload"
@@ -132,6 +132,17 @@
         </div>
       </div>
     </div>
+    <script>
+      const vh = Math.max(
+        document.documentElement.clientHeight || 0,
+        window.innerHeight || 0
+      );
+      const mobile = window.matchMedia("(max-width: 800px)");
+      if (mobile.matches) {
+        const ads = document.getElementById("preloader-container");
+        ads.style.top = `${vh / 2 - 35}px`;
+      }
+    </script>
     <div class="site-overlay"></div>
     <div id="site-wrapper">
       <section id="section-background"></section>
@@ -320,7 +331,7 @@
               <img class="lazy" data-object-fit data-src="/assets/design-brochure-min.jpg" src="" alt="">
               <div class="link-overlay" id="overlay-3"></div>
               <div class="link-caption" id="caption-3">
-                <h4>Graphic Identity + brochure</h4>
+                <h4>Identity + brochure</h4>
                 <h6>Nanotex</h6>
               </div>
             </li><li class="content-link swiper-slide" tabindex="0">
@@ -334,7 +345,7 @@
               <img class="lazy" data-object-fit data-src="/assets/design-food-min.jpg" src="" alt="">
               <div class="link-overlay" id="overlay-5"></div>
               <div class="link-caption" id="caption-5">
-                <h4>Food Styling + photo retouch</h4>
+                <h4>Food Styling + retouch</h4>
                 <h6>Crv Productions</h6>
               </div>
             </li>
@@ -443,7 +454,7 @@
                 <div class="info-container">
                   <svg class="info-icon">
                     <use
-                      data-href="../assets/sprites/svg-sprite.svg#whatsapp"
+                      data-href="../assets/sprites/svg-sprite.svg#whatsapp-transparent"
                     ></use>
                   </svg>
                   <p class="info-data">+54 911 36 91 2183</p>

@@ -7,12 +7,15 @@
   // background-size: 600px;
   // min-height: 1000px;
   // $contact-form-strong: 0 5px 20px rgba(107,124,141,.4),1px 1px 3px 2px rgba(107, 124, 141, 0.06);
-    background-size: 310px;
-    min-height: 550px;
-    background-image: url(/assets/contact-bg.svg);
-    background-repeat: no-repeat;
-    background-position: right 10%;
-    padding-top: 2em;
+  background-size: 310px;
+  min-height: 41em;
+  background-image: url(/assets/contact-bg.svg);
+  background-repeat: no-repeat;
+  background-position: right 10%;
+  padding-top: 2em;
+  @include media-query ($xs) {
+    min-height: 40em;
+  }
   @include media-query ($md) {
     background-size: 400px;
     min-height: 750px;
@@ -63,16 +66,21 @@
 }
 
 .form-container {
+  @include media-query (0, $sm) {
+    height: 31.75em;
+    width: 90%;
+  }
+  @include media-query ($sm, $md) {
+    height: 32em;
+    width: 80%;
+  }
   @include media-query (0, $md) {
     background-color: #ffffffba;
-    width: 80%;
+    border-radius: 2.5em;
     margin: 0 auto;
     margin-top: 0px;
-    height: 420px;
     box-shadow: 0 1px 20px rgba(107,124,141,.4), 1px 0px 3px 2px rgba(107,124,141,.05);
-    margin-top: 2em;
   }
-  // height: 100%;
   @include media-query ($md) {
     max-width: 1000px;
     box-shadow: $contact-form-double;
@@ -91,11 +99,11 @@
   overflow-x: hidden;
   margin-left: 1.5em;
   margin-right: 1.5em;
-  padding-top: 2em;
+  padding-top: 1.5em;
   @include media-query ($sm) {
     margin-left: 2em;
     margin-right: 2em;
-    padding-top: 2.5em;
+    padding-top: 2em;
   }
   @include media-query ($md) {
       @include margin-map ($content-wrap-sm);
@@ -160,7 +168,7 @@
   text-align: center;
   outline: none;
   @include media-query (0, $md) {
-    margin-bottom: 1.15em;
+    margin-bottom: 2.2em;
   }
 }
 
@@ -215,22 +223,27 @@
   grid-area: status;
   height: 75px;
   pointer-events: none;
+  display: flex;
+  justify-content: center;
+  padding-top: 1em;
+  @include o-media-query ($sm, $md, portrait) {
+    padding-top: 3.75em;
+    margin-bottom: 2em;
+  }
 }
 
 #contact-form-status {
   color: #001828;
-  margin-top: .5em;
   padding: .75em .9em;
   width: 98%;
-  max-width: 450px;
+  max-width: 370px;
   align-self: center;
   text-align: center;
   font-size: .9em;
   opacity: 0;
   transition: opacity .5s ease-in;
-  @include media-query ($md) {
-    margin: 0 auto;
-  }
+  // margin-top: .5em;
+  // margin: 0 auto;
 }
 
 .form-fields input {
@@ -359,13 +372,11 @@
     margin-bottom: 1.3em;
     margin-right: .75em;
   }
-
   @include media-query ($lg) {
     margin-right: 1em;
     max-width: 300px;
   }
-
-  & h4 {
+  h4 {
     text-align: center;
     @include media-query ($md) {
       font-size: 1.2em;
@@ -373,6 +384,12 @@
       margin-top: 1.35em;
       width: 67.5%;
       transform: translateX(-10px);
+    }
+  }
+  .info-container:nth-child(4) {
+    svg {
+      height: 1.6em;
+      width: 1.6em;
     }
   }
 }
@@ -409,7 +426,7 @@
 .info-container .info-icon {
   height: 1.5em;
   width: 1.5em;
-  fill: $blue-theme-darker
+  fill: $blue-theme-darker;
 }
 
 .info-social {

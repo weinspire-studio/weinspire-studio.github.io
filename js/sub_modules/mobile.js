@@ -15,7 +15,7 @@ const burger = document.querySelector(".burger");
 const brandMobile = document.querySelector("#brand-mobile-svg");
 const rightArrowsContainer = document.querySelector(".right-arrow-container");
 const rightArrows = document.querySelectorAll(".right-arrow-container svg");
-const swiperPagination = document.querySelector(".swiper-pagination");
+// const swiperPagination = document.querySelector(".swiper-pagination");
 let designOffset = designProjectsSection.offsetTop;
 let clientHeight = document.body.clientHeight;
 let scrolledY = 0;
@@ -96,7 +96,7 @@ function toggleNavClasses() {
 
 // styles Swiper (arrows and pagination) depending on mobile OS.
 function initSwiper(isSafari) {
-  swiperPagination.classList.add("pagination-bottom");
+  // swiperPagination.classList.add("pagination-bottom");
   if (!isIos || !isSafari) {
     window.addEventListener("DOMContentLoaded", listenToArrow);
   }

@@ -163,8 +163,8 @@ module.exports = function (grunt) {
           "./assets/optimized_sprite/instagram.svg": "./assets/instagram.svg",
           "./assets/optimized_sprite/instagram-circle.svg": "./assets/instagram-circle.svg", // prettier-ignore
           "./assets/optimized_sprite/email-circle.svg": "./assets/email-circle.svg", // prettier-ignore
-          "./assets/optimized_sprite/whatsapp-circle.svg": "./assets/whatsapp-circle.svg", // prettier-ignore
           "./assets/optimized_sprite/location-circle.svg": "./assets/location-circle.svg", // prettier-ignore
+          "./assets/optimized_sprite/whatsapp-transparent.svg": "./assets/whatsapp-transparent.svg", // prettier-ignore
           "./assets/optimized_sprite/footer-location.svg": "./assets/footer-location.svg", // prettier-ignore
           "./assets/optimized_sprite/arrow-up.svg": "./assets/arrow-up.svg",
           "./assets/optimized_sprite/arrow-left.svg": "./assets/arrow-left.svg",

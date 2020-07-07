@@ -17,6 +17,10 @@ if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
+console.log(navigator.language);
+console.log(Intl);
+// 0 1px 3px rgba(0,0,0,.3)
+
 //VARIABLES
 const mobileScreenMQ = window.matchMedia("(max-width: 800px)");
 const navBar = document.getElementById("section-navbar");
@@ -74,10 +78,7 @@ function initOnWidthChange() {
 // hides preloader, animate assets and inits typeWriter.
 function initLanding() {
   preloaderModule.hidePreloader();
-  // let timer = setTimeout(() => {
   typewriterModule.initWriter(isMobile);
-  //   clearTimeout(timer);
-  // }, 1250);
 }
 
 //code that executes only in desktop and large tablets screens (> 801px).
@@ -127,7 +128,8 @@ function mobileCode() {
   if (hasListenersDesktop) {
     window.removeEventListener("scroll", bindedDebouncedNavDesktop);
     typewriterModule.reviewWidth(true);
-    desktopModule.modalClose();
+    desktopModule.closeModal();
+    desktopModule.destroyModal();
     if (isSafari) {
       desktopModule.removeImagesListeners();
     }

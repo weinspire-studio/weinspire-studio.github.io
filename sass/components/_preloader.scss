@@ -51,6 +51,13 @@
   align-self: center;
   width: 75%;
   height: 70px;
+
+  position: absolute;
+  @include media-query ($md) {
+    // top: 50%!important;
+    // transform: translateY(-50%);
+    position: relative;
+  }
 }
 
 #brand-preloader {
