@@ -87,12 +87,13 @@ h1, h2, h3, h4, h5, h6 {
     background-color: $black-opacity;
     z-index: -1;
     opacity: 0;
-    transition: opacity .5s ease, z-index .5s ease;
+    transition: opacity .5s ease, z-index 1s ease;
 }
 
 .overlay-active {
-    z-index: 2;
+    z-index: 3;
     opacity: 1;
+    transition: opacity .5s ease;
 }
 
 .section-title {
@@ -113,9 +114,13 @@ button#hero-cta, button#contact-form-button {
     letter-spacing: 0.1px;
 }
 
-// .body-fixed {
-//     // overflow: hidden;
-// }
-// .html-fixed {
-//     overflow-x: hidden;
-// }
+.ie-conditional {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 40px 0;
+    background-color: #eee;
+    text-align: center;
+}

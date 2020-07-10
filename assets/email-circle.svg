@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31 31" id="email-circle" aria-labelledby="title, description">
+<svg xmlns="http://www.w3.org/2000/svg" id="email-circle" aria-labelledby="title, description">
     <title>Email Icon</title>
     <desc>Contact Email Icon</desc>
-    <path d="M15.5,0A15.5,15.5,0,1,0,31,15.5,15.5,15.5,0,0,0,15.5,0Zm9,9-9,7.3L6.5,9ZM6.5,20.7V10.9L12,15.5,6.5,20.7Zm1.3,1.2,5.6-5.4,2.1,1.7,2.1-1.7,5.6,5.4Zm16.8-1.2L19,15.5l5.6-4.5Z"/>
+    <path d="M15.5,0C6.9,0,0,6.9,0,15.5S6.9,31,15.5,31S31,24.1,31,15.5S24.1,0,15.5,0z M25.5,8.3l-10,8.1l-10-8.1H25.5z M5.5,21.3V10.4l6.1,5.1L5.5,21.3z M6.9,22.6l6.2-6l2.3,1.9l2.3-1.9l6.2,6H6.9z M25.6,21.3l-6.2-5.8l6.2-5L25.6,21.3z"/>
 </svg>

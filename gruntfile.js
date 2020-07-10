@@ -18,9 +18,9 @@ module.exports = function (grunt) {
       },
       build: ["gruntfile.js", "./js/sub_modules/*.js"],
     },
-    // Loos for html errors.
+    // Looks for html errors.
     htmlhint: {
-      build: {
+      html1: {
         options: {
           "tag-pair": true,
           "attr-lowercase": ["viewBox", "gradientUnits"],
@@ -28,10 +28,19 @@ module.exports = function (grunt) {
           "doctype-first": true,
           "spec-char-escape": true,
           "id-unique": true,
-          "head-script-disabled": true,
-          "style-disabled": true,
         },
-        src: ["index-dev.html"],
+        src: ["./html/index-dev.html"],
+      },
+      html2: {
+        options: {
+          "tag-pair": true,
+          "attr-lowercase": ["viewBox", "gradientUnits"],
+          "attr-value-double-quotes": true,
+          "doctype-first": true,
+          "spec-char-escape": true,
+          "id-unique": true,
+        },
+        src: ["./es/index.html"],
       },
     },
     // compiles sass to css
@@ -77,7 +86,7 @@ module.exports = function (grunt) {
     },
     autoprefixer: {
       options: {
-        browserslist: ["defaults", "ie 9", "ie 10", "chrome 35"],
+        browserslist: ["defaults", "ie 10", "chrome 35"],
       },
       single_file: {
         src: "<%= conf.main_css %>",
@@ -161,7 +170,6 @@ module.exports = function (grunt) {
           "./assets/optimized_sprite/location.svg": "./assets/location.svg",
           "./assets/optimized_sprite/email.svg": "./assets/email.svg",
           "./assets/optimized_sprite/instagram.svg": "./assets/instagram.svg",
-          "./assets/optimized_sprite/instagram-circle.svg": "./assets/instagram-circle.svg", // prettier-ignore
           "./assets/optimized_sprite/email-circle.svg": "./assets/email-circle.svg", // prettier-ignore
           "./assets/optimized_sprite/location-circle.svg": "./assets/location-circle.svg", // prettier-ignore
           "./assets/optimized_sprite/whatsapp-transparent.svg": "./assets/whatsapp-transparent.svg", // prettier-ignore
@@ -220,6 +228,10 @@ module.exports = function (grunt) {
       html: {
         files: "./html/index-dev.html",
         tasks: ["htmlhint", "critical"],
+      },
+      html2: {
+        files: "./es/index.html",
+        tasks: ["htmlhint"],
       },
     },
   });

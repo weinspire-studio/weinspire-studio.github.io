@@ -13,14 +13,8 @@ function makeRequest(url, section, callback = null) {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         section.append(xhr.responseXML.documentElement);
-        if (callback) {
-          callback();
-        } else {
-          console.log("no call");
-        }
-      } else {
-        console.log("There was a problem with the request.");
-      }
+        if (callback) callback();
+      } else console.log("There was a problem with the request.");
     }
   };
   xhr.open("GET", url);

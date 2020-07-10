@@ -3,6 +3,18 @@
     @include media-query ($md) {
         margin-top: -200px;
     }
+    @include o-media-query ($sm, $md, portrait) {
+        margin-top: -150px;
+    }
+
+    .service-title {
+        @include media-query (0) {
+            letter-spacing: -0.65px!important;
+        }
+        @include media-query ($md) {
+            letter-spacing: -0.8px!important;
+        }
+    }
 }
 
 #services-separator {

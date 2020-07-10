@@ -90,12 +90,13 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgba(0, 0, 0, 0.7);
   z-index: -1;
   opacity: 0;
-  transition: opacity 0.5s ease, z-index 0.5s ease;
+  transition: opacity 0.5s ease, z-index 1s ease;
 }
 
 .overlay-active {
-  z-index: 2;
+  z-index: 3;
   opacity: 1;
+  transition: opacity 0.5s ease;
 }
 
 .section-title {
@@ -115,6 +116,17 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 #section-about p, #section-services p, #section-contact p, #footer p {
   letter-spacing: 0.1px;
+}
+
+.ie-conditional {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  padding: 40px 0;
+  background-color: #eee;
+  text-align: center;
 }
 
 #preloader {
@@ -235,7 +247,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
 .navigation-container {
   height: 100%;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   left: 0;
   transition: transform 0.5s ease;
@@ -262,7 +274,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
 #section-navbar {
   overflow: hidden;
   position: fixed;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   height: 3.25em;
   transition: background-color 0.35s ease, box-shadow 0.35s ease;
@@ -444,6 +456,18 @@ button#hero-cta:focus, button#contact-form-button:focus {
     top: 48.5%;
   }
 }
+#lang a {
+  text-decoration: none;
+}
+#lang img {
+  width: 18px;
+  height: 18px;
+}
+@media screen and (min-width: 801px) {
+  #lang img {
+    margin-top: 20%;
+  }
+}
 @media screen and (min-width: 801px) {
   #lang::before {
     content: "";
@@ -459,12 +483,12 @@ button#hero-cta:focus, button#contact-form-button:focus {
     border-bottom-left-radius: 20px;
   }
 }
+#lang > *:last-child {
+  margin-left: 5px;
+}
 #lang p {
   font-size: 20px;
   transition: transform 0.3s ease;
-}
-#lang p:last-child {
-  margin-left: 5px;
 }
 #lang p[class=active] {
   cursor: default;
@@ -472,10 +496,12 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 #lang p[class=inactive] {
   filter: grayscale(100%);
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 #lang p[class=inactive]:hover {
   transform: scale(1.25);
   cursor: pointer;
+  filter: none;
 }
 
 .burger {
@@ -487,6 +513,11 @@ button#hero-cta:focus, button#contact-form-button:focus {
   outline: none;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+@media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
+  .burger {
+    padding-top: 0.35em;
+  }
 }
 @media screen and (min-width: 801px) {
   .burger {
@@ -581,7 +612,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 .nav-white-back {
   background-color: #fff;
-  z-index: 0;
+  z-index: 2;
 }
 
 .nav-shadow {
@@ -816,21 +847,6 @@ button#hero-cta:focus, button#contact-form-button:focus {
   margin: 0 auto;
 }
 
-#section-hero .icon-whatsapp {
-  height: 3em;
-  position: absolute;
-  bottom: 3%;
-  right: 2%;
-  position: fixed;
-  z-index: 1;
-  transition: filter 0.75s ease;
-  filter: drop-shadow(1px 1px 3px rgba(107, 124, 141, 0.75));
-}
-#section-hero .icon-whatsapp:hover {
-  filter: drop-shadow(1.5px 1.5px 6px rgba(107, 124, 141, 0.7)) contrast(115%);
-  cursor: pointer;
-}
-
 #span-we {
   padding: 0 0.2em;
   padding-left: 0.3em;
@@ -874,14 +890,20 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 #hero-cta {
   position: relative;
-  padding: 0.7em 1.35em;
+  padding: 0.6em 1.15em;
   background-color: transparent;
   color: #f0f2f5;
-  font-size: 1.5em;
+  font-size: 1.15em;
   border-radius: 1.5em;
   margin-top: 1em;
   border: none;
   box-shadow: 3px 2px 5px #08121a, 1px 0 3px 1px #d0d6db;
+}
+@media screen and (min-width: 801px) {
+  #hero-cta {
+    padding: 0.7em 1.35em;
+    font-size: 1.5em;
+  }
 }
 #hero-cta p {
   text-shadow: 1px 1px 1.8px #000;
@@ -909,6 +931,122 @@ button#hero-cta:focus, button#contact-form-button:focus {
 #hero-cta:hover > p::after {
   transform: scale(1.3);
   opacity: 0;
+}
+
+#section-hero .icon-whatsapp {
+  height: 3em;
+  position: absolute;
+  bottom: 3%;
+  right: 2%;
+  position: fixed;
+  z-index: 1;
+  transition: filter 0.75s ease;
+  filter: drop-shadow(1px 1px 3px rgba(107, 124, 141, 0.75));
+}
+#section-hero .icon-whatsapp:hover {
+  filter: drop-shadow(1.5px 1.5px 6px rgba(107, 124, 141, 0.7)) contrast(115%);
+  cursor: pointer;
+}
+
+#lang-modal {
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  overflow: hidden;
+  display: none;
+}
+#lang-modal > div {
+  transform: translateY(100%);
+  color: #f0f2f5;
+  background-color: #001828;
+}
+#lang-modal p {
+  padding: 0.75em 1em;
+  font-size: 0.9em;
+}
+@media screen and (min-width: 351px) {
+  #lang-modal p {
+    padding: 1em 1.45em;
+  }
+}
+@media screen and (min-width: 479px) {
+  #lang-modal p {
+    padding: 1em 1.5em;
+    max-width: 530px;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 801px) {
+  #lang-modal p {
+    padding: 2em 0;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #lang-modal p {
+    padding: 2em 0;
+    max-width: initial;
+    margin: 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #lang-modal p {
+    padding: 2.5em 3em;
+  }
+}
+#lang-modal span {
+  font-weight: bold;
+}
+#lang-modal a {
+  color: #0ae5ce;
+  transition: color 0.2s ease-in-out;
+}
+#lang-modal a:hover {
+  color: #5df8e8;
+}
+#lang-modal svg {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 12.5px;
+  width: 12.5px;
+  padding: 0.1em;
+  transition: transform 0.3s ease-in-out, fill 0.3s ease-in-out;
+  fill: #f0f2f5;
+}
+@media screen and (min-width: 801px) {
+  #lang-modal svg {
+    top: 5px;
+    right: 5px;
+    height: 20px;
+    width: 20px;
+    padding: 0.25em;
+  }
+}
+#lang-modal svg:hover {
+  transform: scale(1.25);
+  cursor: pointer;
+  fill: #0ae5ce;
+}
+
+.slide-modal {
+  animation: slide-modal-anim 7.5s ease-in-out forwards 2.5s;
+}
+@keyframes slide-modal-anim {
+  0% {
+    transform: translateY(100%);
+  }
+  4% {
+    transform: translateY(0);
+  }
+  96% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
 }
 @keyframes blink-anim {
   0% {
@@ -983,6 +1121,12 @@ button#hero-cta:focus, button#contact-form-button:focus {
     background-position: left;
   }
 }
+@media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
+  #section-about {
+    height: 575px;
+    background-size: 100px;
+  }
+}
 #section-about .section-title {
   margin-top: -120px;
 }
@@ -990,6 +1134,11 @@ button#hero-cta:focus, button#contact-form-button:focus {
   #section-about .section-title {
     padding-top: 0;
     margin-top: -300px;
+  }
+}
+@media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
+  #section-about .section-title {
+    margin-top: -250px;
   }
 }
 #section-about p {
@@ -1019,6 +1168,21 @@ button#hero-cta:focus, button#contact-form-button:focus {
 @media screen and (min-width: 801px) {
   #section-services {
     margin-top: -200px;
+  }
+}
+@media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
+  #section-services {
+    margin-top: -150px;
+  }
+}
+@media screen and (min-width: 0) {
+  #section-services .service-title {
+    letter-spacing: -0.65px !important;
+  }
+}
+@media screen and (min-width: 801px) {
+  #section-services .service-title {
+    letter-spacing: -0.8px !important;
   }
 }
 
@@ -1567,16 +1731,14 @@ button#hero-cta:focus, button#contact-form-button:focus {
 #modal-close {
   position: absolute;
   fill: #ccc;
-  font-size: 4em;
-  cursor: pointer;
-  top: 0;
-  right: 0.2em;
+  top: 1em;
+  right: 1.5em;
   z-index: 2;
-  margin: 0.3em;
   transition: opacity 0.5s ease-in, transform 0.3s ease;
   opacity: 0;
-  height: 0.5em;
-  width: 0.5em;
+  height: 2.25em;
+  width: 2.25em;
+  padding: 0.5em;
 }
 
 #modal-close:hover {
@@ -1748,7 +1910,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 @media screen and (min-width: 801px) {
   #section-contact {
-    background-size: 400px;
+    background-size: 350px;
     min-height: 750px;
     background-position: right;
     padding-top: 12%;
@@ -1756,20 +1918,25 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 @media screen and (min-width: 1024px) {
   #section-contact {
-    background-size: 450px;
+    background-size: 410px;
     min-height: 850px;
   }
 }
 @media screen and (min-width: 1200px) {
   #section-contact {
-    background-size: 550px;
+    background-size: 500px;
     min-height: 950px;
   }
 }
 @media screen and (min-width: 1450px) {
   #section-contact {
-    background-size: 650px;
+    background-size: 575px;
     min-height: 1110px;
+  }
+}
+@media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
+  #section-contact {
+    background-size: 400px;
   }
 }
 @media screen and (min-width: 801px) {
@@ -2178,7 +2345,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
   .form-info h4 {
     font-size: 1.2em;
     margin: 0 auto;
-    margin-top: 1.35em;
+    margin-top: 1.15em;
     width: 67.5%;
     transform: translateX(-10px);
   }
@@ -2194,6 +2361,17 @@ button#hero-cta:focus, button#contact-form-button:focus {
   display: flex;
   -ms-flex-align: center;
       align-items: center;
+}
+.info-container a {
+  text-decoration: none;
+  color: #000;
+}
+.info-container a p {
+  display: inline-block;
+}
+.info-container a .info-icon {
+  vertical-align: middle;
+  margin-bottom: 0.15em;
 }
 @media screen and (min-width: 801px) {
   .info-container {
@@ -2245,6 +2423,12 @@ button#hero-cta:focus, button#contact-form-button:focus {
   margin-left: 1em;
 }
 
+.info-container a:hover {
+  color: #007393;
+}
+.info-container a:hover svg {
+  fill: #007393;
+}
 .info-container .info-icon:hover {
   fill: #007393;
 }
@@ -2361,20 +2545,28 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 #footer-grid p:hover {
   cursor: default;
-  color: #fff;
+  animation: link-hover-anim 0.5s ease-in-out forwards;
 }
 
-.arrow-up {
+.footer-arrow {
+  grid-area: arrow;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+.footer-arrow .arrow-up {
   height: 15px;
   width: 15px;
+  margin: 0.5em 0;
   fill: rgba(177, 177, 177, 0.904);
-  margin: 0.5em auto;
   transition: animation 500ms ease-in;
-  animation: enlarge 500ms ease infinite alternate;
+  animation: enlarge-anim 500ms ease infinite alternate;
 }
 @media screen and (min-width: 801px) {
-  .arrow-up {
-    grid-area: arrow;
+  .footer-arrow .arrow-up {
     height: 20px;
     width: 20px;
   }
@@ -2555,12 +2747,12 @@ button#hero-cta:focus, button#contact-form-button:focus {
   left: -100%;
   width: 100%;
   height: 100%;
-  background-color: #009889;
-  transition: background-color 0.75s ease-in-out, transform 0.5s ease-in-out;
+  background-color: #00416B;
+  transition: background-color 1.25s ease-in-out, transform 0.5s ease-in-out;
 }
 .newsletter-container button:hover::before {
   transform: translateX(100%);
-  background-color: #00416B;
+  background-color: #009889;
 }
 .newsletter-container button:hover > #arrow-right-news {
   fill: #fff;
@@ -2646,13 +2838,13 @@ button#hero-cta:focus, button#contact-form-button:focus {
     position: relative;
     transform: translateY(15%);
   }
-  #footer-logo #brand-desktop-svg {
+  #footer-logo #brand-footer-svg {
     width: 9.5em;
   }
-  #footer-logo #brand-desktop-svg .blue {
+  #footer-logo #brand-footer-svg .blue {
     fill: #fff;
   }
-  #footer-logo #brand-desktop-svg .green {
+  #footer-logo #brand-footer-svg .green {
     fill: #2fc0bb;
   }
 }
@@ -2738,7 +2930,6 @@ button#hero-cta:focus, button#contact-form-button:focus {
   fill: #ec3a48;
   transition: fill 0.5s ease, transform 0.5s ease, transform-origin 0.5s ease, z-index 0.5s ease;
 }
-
 #footer-map svg:hover {
   fill: #2fc0bb;
   transform: scale(1.75);
@@ -2754,6 +2945,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
   border-radius: 0.2em;
   background-color: #ec3a48;
   box-shadow: 2px 2px 2px 0 rgba(89, 101, 113, 0.83);
+  color: #fff;
   text-align: center;
   opacity: 0;
   pointer-events: none;
@@ -2919,11 +3111,22 @@ button#hero-cta:focus, button#contact-form-button:focus {
   -webkit-mask-image: -webkit-radial-gradient(rgba(243, 243, 243, 0.945), rgba(141, 141, 141, 0.925));
   -webkit-filter: drop-shadow(1px 1px 1.75px rgba(0, 0, 0, 0.5));
 }
-@keyframes enlarge {
+@keyframes enlarge-anim {
   0% {
     transform: scale(1) translateY(2.5px);
   }
   100% {
     transform: scale(1.2) translateY(-1.5px);
+  }
+}
+@keyframes link-hover-anim {
+  0% {
+    color: #007393;
+  }
+  50% {
+    color: #00abb9;
+  }
+  100% {
+    color: #0ae5ce;
   }
 }

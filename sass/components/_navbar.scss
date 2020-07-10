@@ -2,7 +2,7 @@
 .navigation-container {
     height: 100%;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
     top: 0;
     left: 0;
     transition: transform .5s ease;
@@ -30,7 +30,7 @@
 #section-navbar {
     overflow: hidden;
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     width: 100%;
     height: 3.25em;
     transition: background-color .35s ease, box-shadow .35s ease;
@@ -168,6 +168,16 @@
         right: 0;
         top: 48.5%;
     }
+    a {
+        text-decoration: none;
+    }
+    img {
+        width: 18px;
+        height: 18px;
+        @include media-query ($md) {
+            margin-top: 20%;
+        }
+    }
     &::before {
         @include media-query ($md) {
             content: "";
@@ -184,12 +194,12 @@
     
         }
     }
+    & > *:last-child {
+        margin-left: 5px;
+    }
     p {
         font-size: 20px;
         transition: transform .3s ease;
-        &:last-child {
-            margin-left: 5px;
-        }
     }
     p[class=active] {
         // font-size: 25px;
@@ -198,9 +208,11 @@
     }
     p[class=inactive] {
         filter: grayscale(100%);
+        transition: transform .3s ease, filter .3s ease;
         &:hover {
             transform: scale(1.25);
             cursor: pointer;
+            filter: none;
         }
     }
 }
@@ -215,6 +227,9 @@
     outline: none;
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+    @include o-media-query ($sm, $md, portrait) {
+        padding-top: .35em;
+    }
     @include media-query ($md) {
         display: none;
   }
@@ -307,7 +322,7 @@
 
 .nav-white-back {
     background-color: #fff;
-    z-index: 0;
+    z-index: 2;
 }
 
 .nav-shadow {

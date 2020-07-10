@@ -8,6 +8,7 @@ import * as animationsModule from "./sub_modules/gsap-scrollmagic";
 import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
 import * as contactModule from "./sub_modules/contact";
+import * as locationModule from "./sub_modules/location";
 import debounce from "lodash/debounce";
 import svg4everybody from "./sub_modules/svg4everybody";
 import "./sub_modules/classList";
@@ -17,8 +18,8 @@ if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
-console.log(navigator.language);
-console.log(Intl);
+// console.log(navigator.language);
+// console.log(Intl);
 // 0 1px 3px rgba(0,0,0,.3)
 
 //VARIABLES
@@ -45,9 +46,10 @@ const ctaButton = document.getElementById("hero-cta");
 init();
 initOnWidthChange();
 svg4everybody({ attributeName: "data-href", polyfill: true });
+locationModule.getUserUbication();
+animationsModule.prepareRequests();
 jQueryModule.smoothScroll();
 contactModule.initContactForms(isSafari);
-animationsModule.prepareRequests();
 window.addEventListener("load", initLanding);
 
 //FUNCTIONS DEFINITIONS

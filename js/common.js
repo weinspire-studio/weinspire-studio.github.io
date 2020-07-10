@@ -30,6 +30,8 @@ var jQueryModule = _interopRequireWildcard(require("./sub_modules/jquery"));
 
 var contactModule = _interopRequireWildcard(require("./sub_modules/contact"));
 
+var locationModule = _interopRequireWildcard(require("./sub_modules/location"));
+
 var _debounce = _interopRequireDefault(require("lodash/debounce"));
 
 var _svg4everybody = _interopRequireDefault(require("./sub_modules/svg4everybody"));
@@ -46,11 +48,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // polyfill forEach IE11.
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
-}
-
-console.log(navigator.language);
-console.log(Intl); // 0 1px 3px rgba(0,0,0,.3)
+} // console.log(navigator.language);
+// console.log(Intl);
+// 0 1px 3px rgba(0,0,0,.3)
 //VARIABLES
+
 
 var mobileScreenMQ = window.matchMedia("(max-width: 800px)");
 var navBar = document.getElementById("section-navbar");
@@ -77,9 +79,10 @@ initOnWidthChange();
   attributeName: "data-href",
   polyfill: true
 });
+locationModule.getUserUbication();
+animationsModule.prepareRequests();
 jQueryModule.smoothScroll();
 contactModule.initContactForms(isSafari);
-animationsModule.prepareRequests();
 window.addEventListener("load", initLanding); //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 
@@ -364,7 +367,7 @@ function appendCtaDesktop() {
 // ::selection background-color
 // svg sprite loading twice?
 
-},{"./sub_modules/classList":2,"./sub_modules/contact":3,"./sub_modules/desktop":4,"./sub_modules/gsap-scrollmagic":5,"./sub_modules/jquery":7,"./sub_modules/mobile":8,"./sub_modules/preloader":9,"./sub_modules/svg4everybody":10,"./sub_modules/swiper":11,"./sub_modules/typewriter":12,"lodash/debounce":24}],2:[function(require,module,exports){
+},{"./sub_modules/classList":2,"./sub_modules/contact":3,"./sub_modules/desktop":4,"./sub_modules/gsap-scrollmagic":5,"./sub_modules/jquery":7,"./sub_modules/location":8,"./sub_modules/mobile":9,"./sub_modules/preloader":10,"./sub_modules/svg4everybody":11,"./sub_modules/swiper":12,"./sub_modules/typewriter":13,"lodash/debounce":25}],2:[function(require,module,exports){
 "use strict";
 
 "document" in self && ("classList" in document.createElement("_") && (!document.createElementNS || "classList" in document.createElementNS("http://www.w3.org/2000/svg", "g")) || !function (t) {
@@ -1057,7 +1060,7 @@ function unsetDesktopBrand() {
   brandDesktop.style.display = "none";
 }
 
-},{"../sub_modules/http":6,"./gsap-scrollmagic.js":5,"./mobile.js":8}],5:[function(require,module,exports){
+},{"../sub_modules/http":6,"./gsap-scrollmagic.js":5,"./mobile.js":9}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1504,15 +1507,8 @@ function makeRequest(url, section) {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         section.append(xhr.responseXML.documentElement);
-
-        if (callback) {
-          callback();
-        } else {
-          console.log("no call");
-        }
-      } else {
-        console.log("There was a problem with the request.");
-      }
+        if (callback) callback();
+      } else console.log("There was a problem with the request.");
     }
   };
 
@@ -1581,7 +1577,7 @@ objectFitPolyfill(); // function makeRequest2(url, section, callback = null) {
 //   console.log(document.querySelectorAll(".content-link"));
 // }
 
-},{"../../node_modules/objectFitPolyfill/dist/objectFitPolyfill.basic.min.js":30,"intersection-observer":17,"vanilla-lazyload":32}],7:[function(require,module,exports){
+},{"../../node_modules/objectFitPolyfill/dist/objectFitPolyfill.basic.min.js":31,"intersection-observer":18,"vanilla-lazyload":33}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1636,6 +1632,91 @@ function unbindImages() {
 }
 
 },{}],8:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getUserUbication = getUserUbication;
+// jshint esversion: 6
+// country codes: US, ES, AR, UY, langs: es, en.
+var esFlag = document.getElementById("lang").lastElementChild;
+var dataLoc = document.getElementById("data-loc");
+var docLang = document.documentElement.lang;
+var langModal = document.getElementById("lang-modal");
+var spanCity = document.getElementById("span-city");
+var spanLang = document.getElementById("span-lang");
+var languages = {
+  es: "Español",
+  en: "English"
+};
+
+function getUserUbication() {
+  $.get("https://ipinfo.io?token=7be137e8e33fca", function (res) {
+    prepareCustomContent(res.country, res.city);
+  }, "jsonp");
+}
+
+function prepareCustomContent(countryCode, city) {
+  var flagImg;
+
+  if (docLang === "en") {
+    flagImg = esFlag.firstElementChild.firstElementChild;
+
+    if (countryCode === "US") {} else if (countryCode === "ES") {
+      showMessage(city, languages.es);
+    } else if (countryCode === "AR") {
+      showMessage(city, languages.es);
+      flagImg.src = "./assets/flag-ar.png";
+    } else if (countryCode === "UY") {
+      showMessage(city, languages.es);
+      flagImg.src = "./assets/flag-uy.png";
+    }
+  } else if (docLang === "es") {
+    flagImg = esFlag.firstElementChild;
+
+    if (countryCode === "US") {
+      showMessage(city, languages.en);
+    } else if (countryCode === "ES") {} else if (countryCode === "AR") {
+      flagImg.src = "../assets/flag-ar.png";
+      dataLoc.textContent = "Martín Fierro 3782, Pqe. Leloir, Ituzaingó, Argentina";
+    } else if (countryCode === "UY") {
+      flagImg.src = "../assets/flag-uy.png";
+      dataLoc.textContent = "Palmeiras 1513, Playa Pascual, San José, Uruguay";
+    }
+  }
+}
+
+function showMessage(city, language) {
+  var langMessage = langModal.firstElementChild;
+  var cross = langMessage.firstElementChild;
+
+  var _animationHandler;
+
+  var _crossHandler;
+
+  var hasClosed = false;
+  langModal.style.display = "block";
+  spanCity.textContent = city;
+  spanLang.textContent = language;
+  langMessage.classList.add("slide-modal");
+  cross.addEventListener("click", _crossHandler = function crossHandler() {
+    langMessage.classList.remove("slide-modal");
+    langModal.style.display = "none";
+    cross.removeEventListener("click", _crossHandler);
+    hasClosed = true;
+  });
+
+  if (!hasClosed) {
+    langMessage.addEventListener("animationend", _animationHandler = function animationHandler() {
+      langModal.style.display = "none";
+      cross.removeEventListener("click", _crossHandler);
+      langMessage.removeEventListener("animationend", _animationHandler);
+    });
+  }
+}
+
+},{}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1833,7 +1914,7 @@ function unsetMobileBrand() {
   brandMobile.style.display = "none";
 }
 
-},{"../main.js":1}],9:[function(require,module,exports){
+},{"../main.js":1}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1871,7 +1952,7 @@ function removeListeners() {
   preloaderContainer.removeEventListener("animationend", setLanding);
 }
 
-},{"../sub_modules/gsap-scrollmagic":5}],10:[function(require,module,exports){
+},{"../sub_modules/gsap-scrollmagic":5}],11:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1983,7 +2064,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   return svg4everybody;
 });
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2021,7 +2102,7 @@ var defineSwiper = function defineSwiper() {
 
 exports.defineSwiper = defineSwiper;
 
-},{"../../node_custom_modules/swiper/css/swiper.min.css":13,"../../node_custom_modules/swiper/js/swiper.esm.js":14}],12:[function(require,module,exports){
+},{"../../node_custom_modules/swiper/css/swiper.min.css":14,"../../node_custom_modules/swiper/js/swiper.esm.js":15}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2146,9 +2227,9 @@ function reviewWidth(isMobile) {
   }
 }
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 var css = "/**\n * Swiper 5.3.6\n * Most modern mobile touch slider and framework with hardware accelerated transitions\n * http://swiperjs.com\n *\n * Copyright 2014-2020 Vladimir Kharlampidi\n *\n * Released under the MIT License\n *\n * Released on: April 4, 2020\n */\n@font-face {\n  font-family: swiper-icons;\n  src: url(\"data:application/font-woff;charset=utf-8;base64, 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\") format(\"woff\");\n  font-weight: 400;\n  font-style: normal;\n}\n:root {\n  --swiper-theme-color: #007aff;\n}\n.swiper-container {\n  margin-left: auto;\n  margin-right: auto;\n  position: relative;\n  overflow: hidden;\n  list-style: none;\n  padding: 0;\n  z-index: 1;\n}\n.swiper-container-vertical>.swiper-wrapper {\n  flex-direction: column;\n}\n.swiper-wrapper {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  z-index: 1;\n  display: flex;\n  transition-property: transform;\n  box-sizing: content-box;\n}\n.swiper-container-android .swiper-slide,\n.swiper-wrapper {\n  transform: translate3d(0px,0,0);\n}\n.swiper-container-multirow>.swiper-wrapper {\n  flex-wrap: wrap;\n}\n.swiper-container-multirow-column>.swiper-wrapper {\n  flex-wrap: wrap;\n  flex-direction: column;\n}\n.swiper-container-free-mode>.swiper-wrapper {\n  transition-timing-function: ease-out;\n  margin: 0 auto;\n}\n.swiper-slide {\n  flex-shrink: 0;\n  width: 100%;\n  height: 100%;\n  position: relative;\n  transition-property: transform;\n}\n.swiper-slide-invisible-blank {\n  visibility: hidden;\n}\n.swiper-container-autoheight,\n.swiper-container-autoheight .swiper-slide {\n  height: auto;\n}\n.swiper-container-autoheight .swiper-wrapper {\n  align-items: flex-start;\n  transition-property: transform,height;\n}\n.swiper-container-3d {\n  perspective: 1200px;\n}\n.swiper-container-3d .swiper-cube-shadow,\n.swiper-container-3d .swiper-slide,\n.swiper-container-3d .swiper-slide-shadow-bottom,\n.swiper-container-3d .swiper-slide-shadow-left,\n.swiper-container-3d .swiper-slide-shadow-right,\n.swiper-container-3d .swiper-slide-shadow-top,\n.swiper-container-3d .swiper-wrapper {\n  transform-style: preserve-3d;\n}\n.swiper-container-3d .swiper-slide-shadow-bottom,\n.swiper-container-3d .swiper-slide-shadow-left,\n.swiper-container-3d .swiper-slide-shadow-right,\n.swiper-container-3d .swiper-slide-shadow-top {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n  z-index: 10;\n}\n.swiper-container-3d .swiper-slide-shadow-left {\n  background-image: linear-gradient(to left,rgba(0,0,0,.5),rgba(0,0,0,0));\n}\n.swiper-container-3d .swiper-slide-shadow-right {\n  background-image: linear-gradient(to right,rgba(0,0,0,.5),rgba(0,0,0,0));\n}\n.swiper-container-3d .swiper-slide-shadow-top {\n  background-image: linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,0));\n}\n.swiper-container-3d .swiper-slide-shadow-bottom {\n  background-image: linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,0));\n}\n.swiper-container-css-mode>.swiper-wrapper {\n  overflow: auto;\n  scrollbar-width: none;\n  -ms-overflow-style: none;\n}\n.swiper-container-css-mode>.swiper-wrapper::-webkit-scrollbar {\n  display: none;\n}\n.swiper-container-css-mode>.swiper-wrapper>.swiper-slide {\n  scroll-snap-align: start start;\n}\n.swiper-container-horizontal.swiper-container-css-mode>.swiper-wrapper {\n  scroll-snap-type: x mandatory;\n}\n.swiper-container-vertical.swiper-container-css-mode>.swiper-wrapper {\n  scroll-snap-type: y mandatory;\n}\n.swiper-container-cube {\n  overflow: visible;\n}\n.swiper-container-cube .swiper-slide {\n  pointer-events: none;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n  z-index: 1;\n  visibility: hidden;\n  transform-origin: 0 0;\n  width: 100%;\n  height: 100%;\n}\n.swiper-container-cube .swiper-slide .swiper-slide {\n  pointer-events: none;\n}\n.swiper-container-cube.swiper-container-rtl .swiper-slide {\n  transform-origin: 100% 0;\n}\n.swiper-container-cube .swiper-slide-active,\n.swiper-container-cube .swiper-slide-active .swiper-slide-active {\n  pointer-events: auto;\n}\n.swiper-container-cube .swiper-slide-active,\n.swiper-container-cube .swiper-slide-next,\n.swiper-container-cube .swiper-slide-next+.swiper-slide,\n.swiper-container-cube .swiper-slide-prev {\n  pointer-events: auto;\n  visibility: visible;\n}\n.swiper-container-cube .swiper-slide-shadow-bottom,\n.swiper-container-cube .swiper-slide-shadow-left,\n.swiper-container-cube .swiper-slide-shadow-right,\n.swiper-container-cube .swiper-slide-shadow-top {\n  z-index: 0;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n}\n.swiper-container-cube .swiper-cube-shadow {\n  position: absolute;\n  left: 0;\n  bottom: 0px;\n  width: 100%;\n  height: 100%;\n  background: #000;\n  opacity: .6;\n  -webkit-filter: blur(50px);\n  filter: blur(50px);\n  z-index: 0;\n}\n.swiper-pagination {\n  position: absolute;\n  text-align: center;\n  transition: .3s opacity;\n  transform: translate3d(0,0,0);\n  z-index: 10;\n}\n.swiper-pagination.swiper-pagination-hidden {\n  opacity: 0;\n}\n.swiper-container-horizontal>.swiper-pagination-bullets,\n.swiper-pagination-custom,\n.swiper-pagination-fraction {\n  bottom: 10px;\n  left: 0;\n  width: 100%;\n}\n.swiper-pagination-bullets-dynamic {\n  overflow: hidden;\n  font-size: 0;\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  transform: scale(.33);\n  position: relative;\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active {\n  transform: scale(1);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-main {\n  transform: scale(1);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-prev {\n  transform: scale(.66);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-prev-prev {\n  transform: scale(.33);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-next {\n  transform: scale(.66);\n}\n.swiper-pagination-bullets-dynamic .swiper-pagination-bullet-active-next-next {\n  transform: scale(.33);\n}\n.swiper-pagination-bullet {\n  width: 8px;\n  height: 8px;\n  display: inline-block;\n  border-radius: 100%;\n  background: #000;\n  opacity: .2;\n}\nbutton.swiper-pagination-bullet {\n  border: none;\n  margin: 0;\n  padding: 0;\n  box-shadow: none;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n}\n.swiper-pagination-clickable .swiper-pagination-bullet {\n  cursor: pointer;\n}\n.swiper-pagination-bullet-active {\n  opacity: 1;\n  background: var(--swiper-pagination-color,var(--swiper-theme-color));\n}\n.swiper-container-vertical>.swiper-pagination-bullets {\n  right: 10px;\n  top: 50%;\n  transform: translate3d(0px,-50%,0);\n}\n.swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet {\n  margin: 6px 0;\n  display: block;\n}\n.swiper-container-vertical>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {\n  top: 50%;\n  transform: translateY(-50%);\n  width: 8px;\n}\n.swiper-container-vertical>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  display: inline-block;\n  transition: .2s transform,.2s top;\n}\n.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {\n  margin: 0 4px;\n}\n.swiper-container-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {\n  left: 50%;\n  transform: translateX(-50%);\n  white-space: nowrap;\n}\n.swiper-container-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  transition: .2s transform,.2s left;\n}\n.swiper-container-horizontal.swiper-container-rtl>.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {\n  transition: .2s transform,.2s right;\n}\n.swiper-pagination-progressbar {\n  background: rgba(0,0,0,.25);\n  position: absolute;\n}\n.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {\n  background: var(--swiper-pagination-color,var(--swiper-theme-color));\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  transform: scale(0);\n  transform-origin: left top;\n}\n.swiper-container-rtl .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {\n  transform-origin: right top;\n}\n.swiper-container-horizontal>.swiper-pagination-progressbar,\n.swiper-container-vertical>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {\n  width: 100%;\n  height: 4px;\n  left: 0;\n  top: 0;\n}\n.swiper-container-horizontal>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite,\n.swiper-container-vertical>.swiper-pagination-progressbar {\n  width: 4px;\n  height: 100%;\n  left: 0;\n  top: 0;\n}\n.swiper-pagination-white {\n  --swiper-pagination-color: #ffffff;\n}\n.swiper-pagination-black {\n  --swiper-pagination-color: #000000;\n}\n.swiper-pagination-lock {\n  display: none;\n}\n"; (require("browserify-css").createStyle(css, { "href": "node_custom_modules/swiper/css/swiper.min.css" }, { "insertAt": "bottom" })); module.exports = css;
-},{"browserify-css":15}],14:[function(require,module,exports){
+},{"browserify-css":16}],15:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6721,7 +6802,7 @@ if (typeof Swiper.use === 'undefined') {
 
 Swiper.use(components);
 
-},{"dom7/dist/dom7.modular":16,"ssr-window":31}],15:[function(require,module,exports){
+},{"dom7/dist/dom7.modular":17,"ssr-window":32}],16:[function(require,module,exports){
 'use strict'; // For more information about browser field, check out the browser field at https://github.com/substack/browserify-handbook#browser-field.
 
 var styleElementsInsertedAtTop = [];
@@ -6806,7 +6887,7 @@ module.exports = {
   }
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8684,7 +8765,7 @@ function scroll() {
   return eventShortcut.bind(this).apply(void 0, ['scroll'].concat(args));
 }
 
-},{"ssr-window":31}],17:[function(require,module,exports){
+},{"ssr-window":32}],18:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -9413,7 +9494,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   window.IntersectionObserverEntry = IntersectionObserverEntry;
 })();
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 "use strict";
 
 var root = require('./_root');
@@ -9423,7 +9504,7 @@ var root = require('./_root');
 var _Symbol = root.Symbol;
 module.exports = _Symbol;
 
-},{"./_root":23}],19:[function(require,module,exports){
+},{"./_root":24}],20:[function(require,module,exports){
 "use strict";
 
 var _Symbol = require('./_Symbol'),
@@ -9455,7 +9536,7 @@ function baseGetTag(value) {
 
 module.exports = baseGetTag;
 
-},{"./_Symbol":18,"./_getRawTag":21,"./_objectToString":22}],20:[function(require,module,exports){
+},{"./_Symbol":19,"./_getRawTag":22,"./_objectToString":23}],21:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -9466,7 +9547,7 @@ var freeGlobal = (typeof global === "undefined" ? "undefined" : _typeof(global))
 module.exports = freeGlobal;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 "use strict";
 
 var _Symbol = require('./_Symbol');
@@ -9519,7 +9600,7 @@ function getRawTag(value) {
 
 module.exports = getRawTag;
 
-},{"./_Symbol":18}],22:[function(require,module,exports){
+},{"./_Symbol":19}],23:[function(require,module,exports){
 "use strict";
 
 /** Used for built-in method references. */
@@ -9545,7 +9626,7 @@ function objectToString(value) {
 
 module.exports = objectToString;
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -9560,7 +9641,7 @@ var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof(self)) == 'o
 var root = freeGlobal || freeSelf || Function('return this')();
 module.exports = root;
 
-},{"./_freeGlobal":20}],24:[function(require,module,exports){
+},{"./_freeGlobal":21}],25:[function(require,module,exports){
 "use strict";
 
 var isObject = require('./isObject'),
@@ -9758,7 +9839,7 @@ function debounce(func, wait, options) {
 
 module.exports = debounce;
 
-},{"./isObject":25,"./now":28,"./toNumber":29}],25:[function(require,module,exports){
+},{"./isObject":26,"./now":29,"./toNumber":30}],26:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -9796,7 +9877,7 @@ function isObject(value) {
 
 module.exports = isObject;
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -9831,7 +9912,7 @@ function isObjectLike(value) {
 
 module.exports = isObjectLike;
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -9866,7 +9947,7 @@ function isSymbol(value) {
 
 module.exports = isSymbol;
 
-},{"./_baseGetTag":19,"./isObjectLike":26}],28:[function(require,module,exports){
+},{"./_baseGetTag":20,"./isObjectLike":27}],29:[function(require,module,exports){
 "use strict";
 
 var root = require('./_root');
@@ -9894,7 +9975,7 @@ var now = function now() {
 
 module.exports = now;
 
-},{"./_root":23}],29:[function(require,module,exports){
+},{"./_root":24}],30:[function(require,module,exports){
 "use strict";
 
 var isObject = require('./isObject'),
@@ -9967,7 +10048,7 @@ function toNumber(value) {
 
 module.exports = toNumber;
 
-},{"./isObject":25,"./isSymbol":27}],30:[function(require,module,exports){
+},{"./isObject":26,"./isSymbol":28}],31:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -10041,7 +10122,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   }
 }();
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -10187,7 +10268,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   });
 });
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }

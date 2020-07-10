@@ -343,16 +343,14 @@
 #modal-close {
     position: absolute;
     fill: #ccc;
-    font-size: 4em;
-    cursor: pointer;
-    top: 0;
-    right: 0.2em;
+    top: 1em;
+    right: 1.5em;
     z-index: 2;
-    margin: .3em;
     transition: opacity 0.5s ease-in, transform 0.3s ease;
     opacity: 0;
-    height: .5em;
-    width: .5em;
+    height: 2.25em;
+    width: 2.25em;
+    padding: .5em;
 }
 
 #modal-close:hover {
@@ -368,10 +366,7 @@
 .close,
 #modal-arrow-right,
 #modal-arrow-left {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    @include user-select;
 }
 
 #modal-arrow-right,

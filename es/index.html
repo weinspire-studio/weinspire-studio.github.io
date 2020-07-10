@@ -16,12 +16,15 @@
     </script>
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, viewport-fit=cover"
     />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./dist/css/main.min.css?v={1/y}" />
+    <meta name="robots" content="index, follow" />
+    <link rel="home" href="/es/" />
+    <title>We Inspire</title>
+    <link rel="stylesheet" href="../dist/css/main.min.css?v={1/b}" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
       rel="preload"
@@ -74,20 +77,49 @@
           url("./assets/fonts/lato-v16-latin-regular.ttf") format("truetype");
       }
     </style>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-166886483-1"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "UA-166886483-1");
-    </script> -->
-    <title>Inspire Studio</title>
+    <!--Common Open Graph tags -->
+    <meta property="og:type" content="website" />
+    <!-- <meta property="og:image" content="https://developer.mozilla.org/static/img/opengraph-logo.72382e605ce3.png"> -->
+    <!-- <meta property="og:image" content="https://gardenestudio.com.br/garden-estudio.jpg"/> -->
+    <meta property="og:site_name" content="We Inspire Studio" />
+    <!-- icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="../assets/favicon144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="../assets/favicon114.png"
+    />
+    <link rel="apple-touch-icon" sizes="72x72" href="../assets/favicon72.png" />
+    <link rel="apple-touch-icon" href="../assets/favicon57.png" />
+    <link rel="icon" type="image/png" href="../assets/favicon32.png" />
+    <!-- language links -->
+    <link rel="canonical" href="https://weinspire-studio.github.io/es/" />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://weinspire-studio.github.io/es"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://weinspire-studio.github.io/"
+    />
+    <!-- document specific tags -->
+    <meta property="og:title" content="We Inspire Studio " />
+    <meta property="og:url" content="https://weinspire-studio.github.io/es/" />
+    <meta
+      property="og:description"
+      content="The NavigatorLanguage.language read-only property returns a string representing the preferred language of the user, usually the language of the browser UI."
+    />
+    <meta
+      name="description"
+      content="Somos We Inspire, un estudio de disenio grafico y desarrollo web, enfocado en brindar un servicio integral de construccion de identidad digital"
+    />
+    <!-- <meta name="description" content="Somos a Garden, um estúdio reconhecido internacionalmente focado na criação de experiências digitais. Usamos todo o nosso conhecimento para ajudar // hasta aca // nossos clientes a construírem suas marcas através da interatividade."> -->
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -99,7 +131,9 @@
         style="display: none; visibility: hidden;"
       ></iframe
     ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <!-- [if lt IE 9]>
+    <p class="ie-conditional">Estás usando una versión <strong>desactualizada</strong> de Internet Explorer. Por favor <a href="https://browsehappy.com/">actualiza tu navegador</a> para navegar el sitio.</p>
+    <![endif] -->
     <div id="preloader">
       <div id="preloader-container">
         <svg
@@ -151,6 +185,7 @@
         <div class="navigation-shadow"></div>
         <div class="navigation-container"></div>
       </section>
+      <!-- navigation -->
       <section id="section-navbar">
         <nav id="home">
           <svg id="brand-mobile-svg">
@@ -170,30 +205,34 @@
           </div>
           <ul class="nav-list">
             <li tabindex="0">
-              <a href="https://weinspire-studio.github.io/home/projects.html"
-                >Projects</a
+              <a href="https://weinspire-studio.github.io/projects.html"
+                >Proyectos</a
               >
             </li>
             <li tabindex="0">
-              <a href="https://weinspire-studio.github.io/home/services.html"
-                >Services</a
+              <a href="https://weinspire-studio.github.io/services.html"
+                >Servicios</a
               >
             </li>
             <li tabindex="0">
-              <a href="https://weinspire-studio.github.io/home/about.html"
-                >About</a
+              <a href="https://weinspire-studio.github.io/about.html"
+                >Nosotros</a
               >
             </li>
             <li tabindex="0">
-              <a href="https://weinspire-studio.github.io/home/contact.html"
-                >Contact</a
+              <a href="https://weinspire-studio.github.io/contact.html"
+                >Contacto</a
               >
             </li>
             <li id="link-social"></li>
             <li>
               <div id="lang">
-                <p class="active">🇺🇸</p>
-                <p class="inactive">🇪🇸</p>
+                <a href="/">
+                  <p class="inactive">
+                    <img src="../assets/flag-us.png" alt="" />
+                  </p>
+                </a>
+                <p class="active"><img src="../assets/flag-es.png" alt="" /></p>
               </div>
             </li>
           </ul>
@@ -213,7 +252,7 @@
           </h2>
           <button id="hero-cta">
             <p>
-              Request Estimate
+              Solicitar Presupuesto
             </p>
           </button>
         </div>
@@ -222,16 +261,30 @@
             <use data-href="../assets/sprites/svg-sprite.svg#facebook"></use>
           </svg>
         </div>
-        <svg class="icon-whatsapp">
-          <use data-href="../assets/sprites/svg-sprite.svg#whatsapp"></use>
-        </svg>
+        <a
+          href="https://wa.me/5491136912183?text=Estoy%20interesado%20en%20sus%20servicios,%20por%20favor%20contáctenme%20cuando%20sea%20posible"
+        >
+          <svg class="icon-whatsapp">
+            <use data-href="../assets/sprites/svg-sprite.svg#whatsapp"></use>
+          </svg>
+        </a>
+        <div id="lang-modal">
+          <div>
+            <svg>
+              <use data-href="../assets/sprites/svg-sprite.svg#cross"></use>
+            </svg>
+            <p>
+              We detected that you are visiting our site from
+              <span id="span-city"></span>, <a href="/">click here</a> if you
+              want to be redirected to the <span id="span-lang"></span> version.
+            </p>
+          </div>
+        </div>
       </main>
-      <!-- eof main -->
-
       <!-- about -->
       <section id="section-about">
         <h1 class="section-title">
-          Who We Are
+          Quienes somos
         </h1>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia
@@ -239,14 +292,9 @@
           autem et suscipit odit tenetur reprehenderit itaque veritatis.
         </p>
       </section>
-      <!-- eof about -->
-
       <!-- services -->
       <section id="section-services">
-        <h1 class="section-title">Our Main Services</h1>
-        <!-- <h4 class="section-subtitle">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae.
-        </h4> -->
+        <h1 class="section-title">Nuestros servicios</h1>
         <div id="services-grid">
           <div id="grid-top-info" class="service-info">
             <h2 class="service-title">Web and Mobile Development</h2>
@@ -278,17 +326,13 @@
         </div>
         <div id="services-separator"></div>
       </section>
-      <!-- eof services -->
-
       <!-- projects-design -->
       <!-- prettier-ignore -->
       <section id="section-projects-design">
         <h1 class="section-title">
-          Latest Design Projects
+          Ultimos Projectos de Disenio 
         </h1>
-        
         <div id="modal">
-          <!-- <span class="close">&times;</span> -->
           <svg id="modal-close">
             <use data-href="../assets/sprites/svg-sprite.svg#cross"></use>
           </svg>
@@ -306,11 +350,8 @@
           <svg id="modal-arrow-right">
             <use data-href="../assets/sprites/svg-sprite.svg#arrow-right"></use>
           </svg>
-          <!-- <span id="left-arrow">&#x2B05;</span>
-          <span id="right-arrow">&#x2B05;</span> -->
           <div id="modal-caption"></div>
         </div>
-
         <div class="swiper-container">
           <ul class="swiper-wrapper">
             <li class="content-link swiper-slide" tabindex="0">
@@ -364,8 +405,6 @@
           </div>
       </div>
       </section>
-      <!-- eof projects-design -->
-
       <!-- contact -->
       <section id="section-contact">
         <form
@@ -377,14 +416,13 @@
           <div class="form-container">
             <div class="form-fields">
               <div class="field form-title">
-                <h2>Contact Us</h2>
+                <h2>Contactanos</h2>
                 <h4>
-                  Please fill in the form and tell us something about your
-                  bussiness idea.
+                  Por favor, llena el formulario y cuentanos sobre tu negocio o
+                  proyecto.
                 </h4>
               </div>
               <div class="field field-name">
-                <!-- <label class="outside-label">Name or Company:</label> -->
                 <input
                   type="text"
                   name="name"
@@ -399,7 +437,6 @@
                 >
               </div>
               <div class="field field-email">
-                <!-- <label class="outside-label">Email:</label> -->
                 <input
                   type="email"
                   name="email"
@@ -440,16 +477,18 @@
                 <p id="contact-form-status"></p>
               </div>
               <div class="form-info">
-                <h4>Relevant Information</h4>
+                <h4>Información relevante</h4>
                 <div class="info-container">
-                  <svg class="info-icon">
-                    <use
-                      data-href="../assets/sprites/svg-sprite.svg#email"
-                    ></use>
-                  </svg>
-                  <p class="info-data">
-                    weInspire.studio<span>@gmail.com</span>
-                  </p>
+                  <a href="mailto:weinspire.studio@gmail.com">
+                    <svg class="info-icon">
+                      <use
+                        data-href="../assets/sprites/svg-sprite.svg#email"
+                      ></use>
+                    </svg>
+                    <p class="info-data">
+                      weInspire.studio@gmail.com
+                    </p>
+                  </a>
                 </div>
                 <div class="info-container">
                   <svg class="info-icon">
@@ -465,7 +504,7 @@
                       data-href="../assets/sprites/svg-sprite.svg#location"
                     ></use>
                   </svg>
-                  <p class="info-data">
+                  <p id="data-loc" class="info-data">
                     2165 Matthews Ave Bronx NY
                   </p>
                 </div>
@@ -477,7 +516,7 @@
                   </svg>
                   <svg class="info-icon">
                     <use
-                      data-href="../assets/sprites/svg-sprite.svg#instagram-circle"
+                      data-href="../assets/sprites/svg-sprite.svg#instagram"
                     ></use>
                   </svg>
                 </div>
@@ -486,14 +525,14 @@
           </div>
         </form>
       </section>
-      <!-- eof contact -->
-
       <!-- footer -->
       <footer id="footer">
         <div id="footer-grid">
-          <svg class="arrow-up">
-            <use data-href="../assets/sprites/svg-sprite.svg#arrow-up"></use>
-          </svg>
+          <div class="footer-arrow">
+            <svg class="arrow-up">
+              <use data-href="../assets/sprites/svg-sprite.svg#arrow-up"></use>
+            </svg>
+          </div>
           <div id="footer-design">
             <h3 class="footer-title">
               Design
@@ -521,9 +560,7 @@
             <p>Social Media Marketing</p>
             <p>SEO Services</p>
             <p>Data & Database Design</p>
-            <!-- COMPAnY/SITE LINKS/EXPLORE/MENU/PAGES -->
             <!-- Application Securitiy -->
-            <!-- Angular Applications -->
             <!-- Angular Applications -->
             <!-- UX / UI design -->
           </div>
@@ -538,25 +575,31 @@
             <p>Contact</p>
           </div>
           <div id="footer-social">
+            <a href="https://www.facebook.com/weinspirestudio">
+              <svg class="footer-icon">
+                <use
+                  data-href="../assets/sprites/svg-sprite.svg#facebook"
+                ></use>
+              </svg>
+            </a>
+            <svg class="footer-icon">
+              <use data-href="../assets/sprites/svg-sprite.svg#instagram"></use>
+            </svg>
+            <a href="mailto:weinspire.studio@gmail.com">
+              <svg class="footer-icon">
+                <use
+                  data-href="../assets/sprites/svg-sprite.svg#email-circle"
+                ></use>
+              </svg>
+            </a>
             <svg class="footer-icon">
               <use data-href="../assets/sprites/svg-sprite.svg#linkedin"></use>
             </svg>
-            <svg class="footer-icon">
-              <use data-href="../assets/sprites/svg-sprite.svg#facebook"></use>
-            </svg>
-            <svg class="footer-icon">
-              <use
-                data-href="../assets/sprites/svg-sprite.svg#instagram-circle"
-              ></use>
-            </svg>
-            <svg class="footer-icon">
-              <use data-href="../assets/sprites/svg-sprite.svg#behance"></use>
-            </svg>
-            <svg class="footer-icon">
-              <use
-                data-href="../assets/sprites/svg-sprite.svg#email-circle"
-              ></use>
-            </svg>
+            <a href="https://www.behance.net/victoriaramicone/projects">
+              <svg class="footer-icon">
+                <use data-href="../assets/sprites/svg-sprite.svg#behance"></use>
+              </svg>
+            </a>
           </div>
           <div id="footer-newsletter">
             <h3 class="footer-title">
@@ -592,7 +635,7 @@
             </div>
           </div>
           <div id="footer-logo">
-            <svg id="brand-desktop-svg">
+            <svg id="brand-footer-svg">
               <use
                 data-href="../assets/sprites/svg-sprite.svg#brand-desktop"
               ></use>
@@ -630,7 +673,7 @@
                 Uruguay
                 <div class="arrow-down"></div>
               </div>
-              <img src="./assets/footer-map.png" alt="" />
+              <img src="../assets/footer-map.png" alt="" />
             </div>
           </div>
           <div id="footer-info">
@@ -646,9 +689,7 @@
           </div>
         </div>
       </footer>
-      <!-- eof footer -->
     </div>
-    <!-- eof site-wrapper-->
     <!-- scripts -->
     <!-- jquery -->
     <script
@@ -677,7 +718,7 @@
     <!-- <script src="dist/objectFitPolyfill.basic.min.js"></script> -->
 
     <!-- main.js -->
-    <script type="module" src="./dist/js/all.min.js"></script>
-    <script defer nomodule src="./dist/js/all.min.js"></script>
+    <script type="module" src="../dist/js/all.min.js"></script>
+    <script defer nomodule src="../dist/js/all.min.js"></script>
   </body>
 </html>

@@ -16,15 +16,20 @@
         height: 750px;
         background-position: left;
     }
-
+    @include o-media-query ($sm, $md, portrait) {
+        height: 575px;
+        background-size: 100px;
+    }
     .section-title {
         margin-top: -120px;
         @include media-query ($md) {
             padding-top: 0;
             margin-top: -300px;
         }
+        @include o-media-query ($sm, $md, portrait) {
+            margin-top: -250px;
+        }
     }
-
     p {
         width: 80%;
         text-align: center;

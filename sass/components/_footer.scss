@@ -47,24 +47,29 @@
         @include media-query ($md) {
             line-height: 1.4em;
         }
-    }
-    p:hover {
-        cursor: default;
-        color: #fff;
+        &:hover {
+            cursor: default;
+            animation: link-hover-anim .5s ease-in-out forwards;
+        }
     }
 }
 
-.arrow-up {
-    height: 15px;
-    width: 15px;
-    fill: rgba(177, 177, 177, 0.904);
-    margin: .5em auto;
-    transition: animation 500ms ease-in;
-    @include prefixes (animation, enlarge 500ms ease infinite alternate);
-    @include media-query ($md) {
-        grid-area: arrow;
-        height: 20px;
-        width: 20px;
+.footer-arrow {
+    grid-area: arrow;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    .arrow-up {
+        height: 15px;
+        width: 15px;
+        margin: .5em 0;
+        fill: rgba(177, 177, 177, 0.904);
+        transition: animation 500ms ease-in;
+        @include prefixes (animation, enlarge-anim 500ms ease infinite alternate);
+        @include media-query ($md) {
+            height: 20px;
+            width: 20px;
+        }
     }
 }
 
@@ -212,15 +217,15 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background-color: $brand-color-green;
-            transition: background-color .75s ease-in-out, transform .5s ease-in-out;
+            background-color: $brand-color-blue;
+            transition: background-color 1.25s ease-in-out, transform .5s ease-in-out;
         }
     }
     button:hover::before {
             -webkit-transform: translateX(100%);
             -ms-transform: translateX(100%);
             transform: translateX(100%);
-            background-color: $brand-color-blue;
+            background-color: $brand-color-green;
     }
     button:hover > #arrow-right-news {
         fill: #fff;
@@ -293,7 +298,7 @@
         top: 15%;
         position: relative;
         transform: translateY(15%);
-        #brand-desktop-svg {
+        #brand-footer-svg {
             width: 9.5em;
             .blue {
                 fill: #fff;
@@ -373,16 +378,14 @@
     z-index: 1;
     fill: $map-red;
     transition: fill .5s ease, transform .5s ease, transform-origin .5s ease, z-index .5s ease; 
+    &:hover {
+        fill: $brand-negative-green;
+        -webkit-transform: scale(1.75);
+        transform: scale(1.75);
+        transform-origin: 50% 100%;
+        z-index: 2;
+    }
 }
-
-#footer-map svg:hover {
-    fill: $brand-negative-green;
-    -webkit-transform: scale(1.75);
-    transform: scale(1.75);
-    transform-origin: 50% 100%;
-    z-index: 2;
-}
-
 
 #map-wrapper > div {
     position: absolute;
@@ -392,6 +395,7 @@
     border-radius: 0.2em;
     background-color: $map-red;
     box-shadow: $message-strong;
+    color: #fff;
     text-align: center;
     opacity: 0;
     pointer-events: none;
@@ -531,7 +535,7 @@
     -webkit-filter: drop-shadow(1px 1px 1.75px rgba(0, 0, 0, .5));
 }
 
-@-webkit-keyframes enlarge {
+@-webkit-keyframes enlarge-anim {
     0% {
         -webkit-transform: scale(1) translateY(2.5px);
         -ms-transform: scale(1) translateY(2.5px);
@@ -543,7 +547,7 @@
         transform: scale(1.2) translateY(-1.5px);
     }
 }
-@keyframes enlarge {
+@keyframes enlarge-anim {
     0% {
         -webkit-transform: scale(1) translateY(2.5px);
         -ms-transform: scale(1) translateY(2.5px);
@@ -553,5 +557,28 @@
         -webkit-transform: scale(1.2) translateY(-1.5px);
         -ms-transform: scale(1.2) translateY(-1.5px);
         transform: scale(1.2) translateY(-1.5px);
+    }
+}
+
+@-webkit-keyframes link-hover-anim {
+    0% {
+        color: $blue-theme-middle;
+    }
+    50% {
+        color: $blue-theme-light;
+    }
+    100% {
+        color: $blue-theme-lighter;
+    }
+}
+@keyframes link-hover-anim {
+    0% {
+        color: $blue-theme-middle;
+    }
+    50% {
+        color: $blue-theme-light;
+    }
+    100% {
+        color: $blue-theme-lighter;
     }
 }

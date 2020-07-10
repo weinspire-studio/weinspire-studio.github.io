@@ -1,12 +1,4 @@
 #section-contact {
-  // background-image: url(/assets/design-color-100.svg);
-  // background-repeat: no-repeat;
-  // background-position: right;
-  // padding-top: 7.5%;
-  // margin-top: 2.5%;
-  // background-size: 600px;
-  // min-height: 1000px;
-  // $contact-form-strong: 0 5px 20px rgba(107,124,141,.4),1px 1px 3px 2px rgba(107, 124, 141, 0.06);
   background-size: 310px;
   min-height: 41em;
   background-image: url(/assets/contact-bg.svg);
@@ -17,25 +9,25 @@
     min-height: 40em;
   }
   @include media-query ($md) {
-    background-size: 400px;
+    background-size: 350px;
     min-height: 750px;
-    // background-image: url(/assets/contact-bg.svg);
-    // background-repeat: no-repeat;
     background-position: right;
     padding-top: 12%;
-    // margin-top: 2.5%;
   }
   @include media-query ($lg) {
-    background-size: 450px;
+    background-size: 410px;
     min-height: 850px;
   }
   @include media-query ($xl) {
-    background-size: 550px;
+    background-size: 500px;
     min-height: 950px;
   }
   @include media-query ($xxl) {
-    background-size: 650px;
+    background-size: 575px;
     min-height: 1110px;
+  }
+  @include o-media-query ($sm, $md, portrait) {
+    background-size: 400px;
   }
   form {
     @include media-query ($md) {
@@ -381,7 +373,7 @@
     @include media-query ($md) {
       font-size: 1.2em;
       margin: 0 auto;
-      margin-top: 1.35em;
+      margin-top: 1.15em;
       width: 67.5%;
       transform: translateX(-10px);
     }
@@ -398,6 +390,17 @@
   font-size: 0.8em;
   display: flex;
   align-items: center;
+  a {
+    text-decoration: none;
+    color: #000;
+    p {
+      display: inline-block;
+    }
+    .info-icon {
+      vertical-align: middle;
+      margin-bottom: .15em;
+    }
+  }
   @include media-query ($md) {
     width: 100%;
     margin: 1.25em 0 0 13%;
@@ -448,26 +451,28 @@
   }
 }
 
-.info-container .info-icon:hover {
-  fill: $blue-theme-middle;
+.info-container {
+  a:hover {
+    color: $blue-theme-middle;
+    svg {
+      fill: $blue-theme-middle;
+    }
+  }
+
+  .info-icon:hover {
+    fill: $blue-theme-middle;
+  }
 }
 
 // Event Style Classes
 .button-active {
-  // background-color: rgba(184, 182, 182, 0.884);
-  // color: #fff;
-  // text-shadow: 1px 1px 1.8px #000;
   cursor: pointer;
 }
 
 .button-inactive {
   cursor: not-allowed;
-  // background-color: rgb(236, 236, 236);
-  // color: #000;
-  // opacity: 0.5;
   color: #737373;
   filter: contrast(190%) grayscale(100%) opacity(.5);
-  // opacity(.45)
 }
 
 .msg-visible {
