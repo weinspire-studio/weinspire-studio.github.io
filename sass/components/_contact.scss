@@ -213,11 +213,10 @@
 
 #field-status {
   grid-area: status;
-  height: 75px;
+  height: 77.5px;
   pointer-events: none;
   display: flex;
   justify-content: center;
-  padding-top: 1em;
   @include o-media-query ($sm, $md, portrait) {
     padding-top: 3.75em;
     margin-bottom: 2em;
@@ -439,6 +438,7 @@
     fill: $brand-color-blue;
     height: 2.25em;
     width: 2.25em;
+    padding: 1px;
     transition: fill 350ms ease, transform 350ms ease;
     &:hover {
       fill: $brand-color-green;
@@ -476,8 +476,10 @@
 }
 
 .msg-visible {
+  // -webkit-opacity: 1!important;
   opacity: 1!important;
   pointer-events: all!important;
+  // background-color: red;
 }
 
 .button-shake {

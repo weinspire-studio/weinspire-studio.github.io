@@ -48,10 +48,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // polyfill forEach IE11.
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
-} // console.log(navigator.language);
-// console.log(Intl);
-// 0 1px 3px rgba(0,0,0,.3)
-//VARIABLES
+} //VARIABLES
 
 
 var mobileScreenMQ = window.matchMedia("(max-width: 800px)");
@@ -60,7 +57,7 @@ exports.navBar = navBar;
 var navWhiteBack = document.querySelector(".navigation-white-back");
 var navShadow = document.querySelector(".navigation-shadow");
 var flagsContainer = document.getElementById("lang");
-var isSafari = window.safari !== undefined;
+var isSafari = navigator.vendor && navigator.vendor.indexOf("Apple") > -1 && navigator.userAgent && navigator.userAgent.indexOf("CriOS") === -1 && navigator.userAgent.indexOf("FxiOS") === -1;
 var hasScrollListenerMobile = false;
 var hasListenersDesktop = false;
 var debouncedNavDesktop;
@@ -535,9 +532,25 @@ function initContactForms(isSafari) {
   submitNewsForm();
 
   if (isSafari) {
-    var newsButton = document.querySelector("#news-form button");
-    newsButton.classList.add("button-mask-safari");
+    prepareFormsSafari();
+    prepareMetaSafari();
+    console.log("tu vieja");
   }
+}
+
+function prepareFormsSafari() {
+  var newsButton = document.querySelector("#news-form button");
+  newsButton.classList.add("button-mask-safari");
+  formElements.forEach(function (formEl) {
+    formEl.addEventListener("focus", function () {
+      formEl.nextElementSibling.firstElementChild.style.fontSize = "1em";
+    });
+  });
+}
+
+function prepareMetaSafari() {
+  var viewport = document.querySelector("meta[name=viewport]");
+  viewport.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover");
 }
 
 function validateContactForm() {
@@ -720,17 +733,9 @@ function validateText(element) {
 }
 
 function showMessage(statusContainer) {
+  var target = statusContainer.firstElementChild;
   var delay;
-  var target;
-
-  if (statusContainer.id === "news-field-status") {
-    delay = 4000;
-    target = statusContainer;
-  } else {
-    delay = 8000;
-    target = statusContainer.firstElementChild;
-  }
-
+  if (statusContainer.id === "news-field-status") delay = 4000;else delay = 8000;
   isShowingStatus = true;
   target.classList.toggle("msg-visible");
   setTimeout(function () {
@@ -1838,7 +1843,6 @@ function toggleNavClasses() {
 
 
 function initSwiper(isSafari) {
-  // swiperPagination.classList.add("pagination-bottom");
   if (!isIos || !isSafari) {
     window.addEventListener("DOMContentLoaded", listenToArrow);
   }
@@ -2199,7 +2203,9 @@ function initWriter(isMobile) {
 
   window.addEventListener("scroll", setWriter);
   var timer = setTimeout(function () {
-    typeWriter();
+    if (window.pageYOffset < threshold) {
+      typeWriter();
+    }
 
     if (spanWords.style.opacity === "") {
       spanWords.style.opacity = 1;

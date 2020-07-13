@@ -84,13 +84,18 @@
     @include media-query ($md, $lg) {
         justify-self: center;
     }
-    .icon-facebook {
-        height: 200px;
-        width: 200px;
-        fill: pink;
-        display: block;
-        margin: 0 auto;
+    img {
+        height: 700px;
+        margin-top: 3em;
+        margin-right: -3em;
     }
+    // .icon-facebook {
+    //     height: 200px;
+    //     width: 200px;
+    //     fill: pink;
+    //     display: block;
+    //     margin: 0 auto;
+    // }
 }
 
 #span-we {
@@ -175,18 +180,27 @@
     opacity: 0;
 }
 
-  #section-hero .icon-whatsapp {
-    height: 3em;
-    position: absolute;
-    bottom: 3%;
-    right: 2%;
-    position: fixed;
-    z-index: 1;
-    transition: filter .75s ease;
-    filter: drop-shadow(1px 1px 3px rgba(107, 124, 141, .75));
-    &:hover {
-        filter: drop-shadow(1.5px 1.5px 6px rgb(107, 124, 141, .7)) contrast(115%);
-        cursor: pointer;
+  #section-hero {
+    & > a {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        text-decoration: none;
+        @include user-select;
+    }
+    .icon-whatsapp {
+        height: 3em;
+        position: absolute;
+        bottom: 3%;
+        right: 2%;
+        position: fixed;
+        z-index: 1;
+        transition: filter .75s ease;
+        filter: drop-shadow(1px 1px 3px rgba(107, 124, 141, .75));
+        &:hover {
+            filter: drop-shadow(1.5px 1.5px 6px rgb(107, 124, 141, .7)) contrast(115%);
+            cursor: pointer;
+        }
     }
 }
 
@@ -291,7 +305,7 @@
         transform: translateY(0);
     }
     100% {
-        transform: translateY(100%);
+        transform: translateY(0%);
     }
 }
 

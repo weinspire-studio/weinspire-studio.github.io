@@ -839,12 +839,10 @@ button#hero-cta:focus, button#contact-form-button:focus {
     justify-self: center;
   }
 }
-.hero.hero-img .icon-facebook {
-  height: 200px;
-  width: 200px;
-  fill: pink;
-  display: block;
-  margin: 0 auto;
+.hero.hero-img img {
+  height: 700px;
+  margin-top: 3em;
+  margin-right: -3em;
 }
 
 #span-we {
@@ -933,6 +931,16 @@ button#hero-cta:focus, button#contact-form-button:focus {
   opacity: 0;
 }
 
+#section-hero > a {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 #section-hero .icon-whatsapp {
   height: 3em;
   position: absolute;
@@ -1045,7 +1053,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(100%);
+    transform: translateY(0%);
   }
 }
 @keyframes blink-anim {
@@ -2164,13 +2172,12 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 #field-status {
   grid-area: status;
-  height: 75px;
+  height: 77.5px;
   pointer-events: none;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
       justify-content: center;
-  padding-top: 1em;
 }
 @media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
   #field-status {
@@ -2412,6 +2419,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
   fill: #00416B;
   height: 2.25em;
   width: 2.25em;
+  padding: 1px;
   transition: fill 350ms ease, transform 350ms ease;
 }
 .info-social .info-icon:hover {
@@ -2542,10 +2550,6 @@ button#hero-cta:focus, button#contact-form-button:focus {
   #footer-grid p {
     line-height: 1.4em;
   }
-}
-#footer-grid p:hover {
-  cursor: default;
-  animation: link-hover-anim 0.5s ease-in-out forwards;
 }
 
 .footer-arrow {
@@ -2763,9 +2767,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 
 #news-field-status {
-  opacity: 0;
   pointer-events: none;
-  transition: opacity 1s ease-in;
   max-width: 160px;
   margin: 0 auto;
 }
@@ -2779,6 +2781,8 @@ button#hero-cta:focus, button#contact-form-button:focus {
   text-align: center;
   padding: 1em 1.25em;
   margin: 1em;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
 }
 
 #arrow-right-news {
@@ -2804,6 +2808,11 @@ button#hero-cta:focus, button#contact-form-button:focus {
   #footer-design, #footer-dev, #footer-site .footer-title {
     display: block;
   }
+}
+
+#footer-dev p:hover, #footer-design p:hover, #footer-site p:hover {
+  cursor: default;
+  animation: link-hover-anim 0.5s ease-in-out forwards;
 }
 
 #footer-site p {
@@ -2854,6 +2863,13 @@ button#hero-cta:focus, button#contact-form-button:focus {
   -ms-flex-item-align: center;
       align-self: center;
   white-space: nowrap;
+}
+#footer-social a {
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #footer-social svg {
   height: 2em;

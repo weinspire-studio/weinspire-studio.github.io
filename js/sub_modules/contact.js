@@ -24,9 +24,28 @@ function initContactForms(isSafari) {
   submitContactForm();
   submitNewsForm();
   if (isSafari) {
-    const newsButton = document.querySelector("#news-form button");
-    newsButton.classList.add("button-mask-safari");
+    prepareFormsSafari();
+    prepareMetaSafari();
+    console.log("tu vieja");
   }
+}
+
+function prepareFormsSafari() {
+  const newsButton = document.querySelector("#news-form button");
+  newsButton.classList.add("button-mask-safari");
+  formElements.forEach((formEl) => {
+    formEl.addEventListener("focus", () => {
+      formEl.nextElementSibling.firstElementChild.style.fontSize = "1em";
+    });
+  });
+}
+
+function prepareMetaSafari() {
+  const viewport = document.querySelector("meta[name=viewport]");
+  viewport.setAttribute(
+    "content",
+    "width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover"
+  );
 }
 
 function validateContactForm() {
@@ -200,15 +219,10 @@ function validateText(element) {
 }
 
 function showMessage(statusContainer) {
+  const target = statusContainer.firstElementChild;
   let delay;
-  let target;
-  if (statusContainer.id === "news-field-status") {
-    delay = 4000;
-    target = statusContainer;
-  } else {
-    delay = 8000;
-    target = statusContainer.firstElementChild;
-  }
+  if (statusContainer.id === "news-field-status") delay = 4000;
+  else delay = 8000;
   isShowingStatus = true;
   target.classList.toggle("msg-visible");
   setTimeout(() => {

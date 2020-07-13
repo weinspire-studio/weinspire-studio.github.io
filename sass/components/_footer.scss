@@ -47,10 +47,6 @@
         @include media-query ($md) {
             line-height: 1.4em;
         }
-        &:hover {
-            cursor: default;
-            animation: link-hover-anim .5s ease-in-out forwards;
-        }
     }
 }
 
@@ -236,19 +232,20 @@
 }
 
 #news-field-status {
-    opacity: 0;
     pointer-events: none;
-    transition: opacity 1s ease-in;
     max-width: 160px;
     margin: 0 auto;
     @include media-query ($md) {
         max-width: 200px;
     }
 }
+
 #news-form-status {
     text-align: center;
     padding: 1em 1.25em;
     margin: 1em;
+    opacity: 0;
+    transition: opacity .5s ease-in;
 }
 
 #arrow-right-news {
@@ -270,6 +267,11 @@
     @include media-query ($md) {
         display: block;
     }
+}
+
+#footer-dev p:hover, #footer-design p:hover, #footer-site p:hover {
+    cursor: default;
+    animation: link-hover-anim .5s ease-in-out forwards;
 }
 
 #footer-site p {
@@ -314,6 +316,10 @@
     padding-top: 1.5em;
     align-self: center;
     white-space: nowrap;
+    a {
+        text-decoration: none;
+        @include user-select;
+    }
     svg {
         height: 2em;
         width: 2em;

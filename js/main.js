@@ -18,17 +18,18 @@ if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
-// console.log(navigator.language);
-// console.log(Intl);
-// 0 1px 3px rgba(0,0,0,.3)
-
 //VARIABLES
 const mobileScreenMQ = window.matchMedia("(max-width: 800px)");
 const navBar = document.getElementById("section-navbar");
 const navWhiteBack = document.querySelector(".navigation-white-back");
 const navShadow = document.querySelector(".navigation-shadow");
 const flagsContainer = document.getElementById("lang");
-let isSafari = window.safari !== undefined;
+const isSafari =
+  navigator.vendor &&
+  navigator.vendor.indexOf("Apple") > -1 &&
+  navigator.userAgent &&
+  navigator.userAgent.indexOf("CriOS") === -1 &&
+  navigator.userAgent.indexOf("FxiOS") === -1;
 let hasScrollListenerMobile = false;
 let hasListenersDesktop = false;
 let debouncedNavDesktop;

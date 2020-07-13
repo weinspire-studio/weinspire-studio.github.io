@@ -77,7 +77,9 @@ function initWriter(isMobile) {
   }
   window.addEventListener("scroll", setWriter);
   let timer = setTimeout(() => {
-    typeWriter();
+    if (window.pageYOffset < threshold) {
+      typeWriter();
+    }
     if (spanWords.style.opacity === "") {
       spanWords.style.opacity = 1;
     }

@@ -96,7 +96,6 @@ function toggleNavClasses() {
 
 // styles Swiper (arrows and pagination) depending on mobile OS.
 function initSwiper(isSafari) {
-  // swiperPagination.classList.add("pagination-bottom");
   if (!isIos || !isSafari) {
     window.addEventListener("DOMContentLoaded", listenToArrow);
   }
