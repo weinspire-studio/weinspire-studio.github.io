@@ -45,6 +45,9 @@
   margin-bottom: 2em;
     @include media-query ($md) {
       grid-area: title;
+      -ms-grid-row: 1;
+      -ms-grid-column: 1;
+      -ms-grid-column-span: 2;
       margin-bottom: 1em!important;
     }
     h2 {
@@ -99,10 +102,13 @@
   }
   @include media-query ($md) {
       @include margin-map ($content-wrap-sm);
+      display: -ms-grid;
       display: grid;
+      -ms-grid-columns: 2fr 1.75fr;
       grid-template-columns: 2fr 1.75fr;
+      -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
       grid-template-rows: repeat(5, 1fr) auto;
-      grid-template-areas: 
+          grid-template-areas: 
       'title title'
       'name right'
       'email right'
@@ -132,12 +138,18 @@
   }
   .field-name {
     grid-area: name;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
   }
   .field-email {
-      grid-area: email;
+    grid-area: email;
+      -ms-grid-row: 3;
+      -ms-grid-column: 1;
   }
   .field-message {
-      grid-area: subject;
+    grid-area: subject;
+      -ms-grid-row: 4;
+      -ms-grid-column: 1;
       margin-top: .1em;
   }
 }
@@ -156,6 +168,8 @@
 
 .field-button {
   grid-area: button;
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
   align-self: center;
   text-align: center;
   outline: none;
@@ -213,6 +227,8 @@
 
 #field-status {
   grid-area: status;
+  -ms-grid-row: 6;
+  -ms-grid-column: 1;
   height: 77.5px;
   pointer-events: none;
   display: flex;
@@ -349,6 +365,9 @@
   @include media-query ($md) {
     display: block;
     grid-area: right;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 4;
+    -ms-grid-column: 2;
     justify-self: right;
     min-width: 200px;
     max-width: 275px;

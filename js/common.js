@@ -1537,7 +1537,7 @@ function makeRequest(url, section) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
-        section.append(xhr.responseXML.documentElement);
+        section.appendChild(xhr.responseXML.documentElement);
         if (callback) callback();
       } else console.log("There was a problem with the request.");
     }

@@ -1249,8 +1249,11 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 @media screen and (min-width: 801px) {
   #services-grid {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: 1fr 1fr 1fr;
     grid-template-rows: repeat(3, 1fr);
     grid-template-areas: "info-top icon-top" "icon-mid info-mid" "info-btm icon-btm";
     justify-items: center;
@@ -1288,6 +1291,8 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 #grid-top-info {
   grid-area: info-top;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
 }
 #grid-top-info h2 {
   padding-top: 0;
@@ -1300,22 +1305,32 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 #grid-top-icon {
   grid-area: icon-top;
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
 }
 
 #grid-mid-icon {
   grid-area: icon-mid;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
 }
 
 #grid-mid-info {
   grid-area: info-mid;
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
 }
 
 #grid-btm-info {
   grid-area: info-btm;
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
 }
 
 #grid-btm-icon {
   grid-area: icon-btm;
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
 }
 
 .service-icon {
@@ -1971,6 +1986,9 @@ button#hero-cta:focus, button#contact-form-button:focus {
 @media screen and (min-width: 801px) {
   .form-title {
     grid-area: title;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
     margin-bottom: 1em !important;
   }
 }
@@ -2039,8 +2057,11 @@ button#hero-cta:focus, button#contact-form-button:focus {
 @media screen and (min-width: 801px) {
   .form-fields {
     margin: 0.5em;
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 2fr 1.75fr;
     grid-template-columns: 2fr 1.75fr;
+    -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: repeat(5, 1fr) auto;
     grid-template-areas: "title title" "name right" "email right" "subject right" "button right" "status .";
     -ms-flex-pack: center;
@@ -2094,12 +2115,18 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 .field .field-name {
   grid-area: name;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
 }
 .field .field-email {
   grid-area: email;
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
 }
 .field .field-message {
   grid-area: subject;
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
   margin-top: 0.1em;
 }
 
@@ -2117,6 +2144,8 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 .field-button {
   grid-area: button;
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
   -ms-flex-item-align: center;
       align-self: center;
   text-align: center;
@@ -2174,6 +2203,8 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 #field-status {
   grid-area: status;
+  -ms-grid-row: 6;
+  -ms-grid-column: 1;
   height: 77.5px;
   pointer-events: none;
   display: -ms-flexbox;
@@ -2326,6 +2357,9 @@ button#hero-cta:focus, button#contact-form-button:focus {
   .form-info {
     display: block;
     grid-area: right;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 4;
+    -ms-grid-column: 2;
     justify-self: right;
     min-width: 200px;
     max-width: 275px;
