@@ -1767,8 +1767,6 @@ var _main = require("../main.js");
 
 // jshint esversion: 6
 var siteOverlay = document.querySelector(".site-overlay");
-var servicesSection = document.getElementById("section-services");
-var contactSection = document.getElementById("section-contact");
 var designProjectsSection = document.getElementById("section-projects-design"); //prettier-ignore
 
 var nav = document.getElementById("home");
@@ -1783,8 +1781,8 @@ exports.navContainer = navContainer;
 var burger = document.querySelector(".burger");
 var brandMobile = document.querySelector("#brand-mobile-svg");
 var rightArrowsContainer = document.querySelector(".right-arrow-container");
-var rightArrows = document.querySelectorAll(".right-arrow-container svg"); // const swiperPagination = document.querySelector(".swiper-pagination");
-
+var rightArrows = document.querySelectorAll(".right-arrow-container svg");
+var formInfo = document.querySelector(".form-info");
 var designOffset = designProjectsSection.offsetTop;
 var clientHeight = document.body.clientHeight;
 var scrolledY = 0;
@@ -1794,8 +1792,7 @@ exports.isOpen_Menu = isOpen_Menu;
 var rightArrowsFlag = true;
 var debouncedRightArrows; // UA sniffing
 
-var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
-var formInfo = document.querySelector(".form-info"); //appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; //appends flags, social svgs and navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
 function styleMobileNav() {
   if (nav.nextElementSibling) {
@@ -1823,7 +1820,8 @@ function styleMobileNav() {
   }
 
   hasClickListener = true;
-}
+} // appends social svgs to contact info container
+
 
 function appendInfoSocial() {
   var socialChild = linkSocial.removeChild(linkSocial.firstElementChild);

@@ -3,8 +3,6 @@
 import { navBar, debounce } from "../main.js";
 
 const siteOverlay = document.querySelector(".site-overlay");
-const servicesSection = document.getElementById("section-services");
-const contactSection = document.getElementById("section-contact");
 const designProjectsSection = document.getElementById("section-projects-design"); //prettier-ignore
 const nav = document.getElementById("home");
 const navList = document.querySelector(".nav-list");
@@ -15,7 +13,7 @@ const burger = document.querySelector(".burger");
 const brandMobile = document.querySelector("#brand-mobile-svg");
 const rightArrowsContainer = document.querySelector(".right-arrow-container");
 const rightArrows = document.querySelectorAll(".right-arrow-container svg");
-// const swiperPagination = document.querySelector(".swiper-pagination");
+const formInfo = document.querySelector(".form-info");
 let designOffset = designProjectsSection.offsetTop;
 let clientHeight = document.body.clientHeight;
 let scrolledY = 0;
@@ -29,9 +27,7 @@ let isIos =
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
   !window.MSStream;
 
-const formInfo = document.querySelector(".form-info");
-
-//appends navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
+//appends flags, social svgs and navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 function styleMobileNav() {
   if (nav.nextElementSibling) {
     const langDiv = nav.parentElement.removeChild(nav.nextElementSibling);
@@ -57,6 +53,7 @@ function styleMobileNav() {
   hasClickListener = true;
 }
 
+// appends social svgs to contact info container
 function appendInfoSocial() {
   const socialChild = linkSocial.removeChild(linkSocial.firstElementChild);
   formInfo.appendChild(socialChild);
