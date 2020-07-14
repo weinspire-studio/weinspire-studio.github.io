@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    // -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 html {
@@ -10,42 +9,20 @@ html {
     @include o-media-query ($sm, $md, portrait) {
         font-size: 1.1em!important;
     }
-    // overflow-x: auto;
-    // overflow-y: visible;
-    // min-height: 100%;
     overflow-x: hidden;
 }
 
 html, body {
     overflow-y: visible;
     height: 100%;
-    // overflow-x: hidden;
-    // overflow-y: scroll;
-    // z-index: -10;
-    // overflow: auto;
 }
 
 body {
     font-family: 'Lato', sans-serif;
     background-color: $site-background-dark;
-    // overflow-x: hidden;
-    // background-color: $background-light;
-    // background-color: #bdc3cc52;
-    // #c5d4d526
-    // #dadfd145
-    // #fdf0e95e
-    // #e3dfcd4f
-    // #cdf9ff24
-    // #b1d8dd3b
-    // #bdc3cc52
-    // overflow-x: auto;
-    // overflow-y: visible;
-    // min-height: 100%;
 }
 
 #site-wrapper {
-    // overflow-x: hidden;
-    // position: relative;
     height: 100%;
     transition: background-color .5s ease;
 }
@@ -56,16 +33,6 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.25px;
 }
 
-#section-services {
-    // min-height: 150%;
-    // background-color: lightcyan;
-}
-
-#section-contact {
-    // margin-top: 10%;
-    // min-height: 100%;
-}
-
 #section-projects-design, #section-contact {
     background-color: $site-background-light;
 }
@@ -73,11 +40,6 @@ h1, h2, h3, h4, h5, h6 {
 //Style Classes
 .overflow-hidden {
     overflow-y: hidden;
-}
-
-.section-low {
-    z-index: -1;
-    position: relative;
 }
 
 .site-overlay {

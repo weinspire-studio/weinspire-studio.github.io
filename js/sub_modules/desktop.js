@@ -39,8 +39,10 @@ function prepareDesktopNav() {
 // removes flags container from ul and appends it to section-navbar
 function styleDesktopNav() {
   const langLink = navList.lastElementChild;
-  const langDiv = langLink.removeChild(langLink.firstElementChild);
-  nav.parentElement.appendChild(langDiv);
+  if (langLink.firstElementChild) {
+    const langDiv = langLink.removeChild(langLink.firstElementChild);
+    nav.parentElement.appendChild(langDiv);
+  }
 }
 
 // animation effect (underline) for desktop nav anchors.

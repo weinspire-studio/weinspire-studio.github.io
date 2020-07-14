@@ -57,18 +57,19 @@ exports.navBar = navBar;
 var navWhiteBack = document.querySelector(".navigation-white-back");
 var navShadow = document.querySelector(".navigation-shadow");
 var flagsContainer = document.getElementById("lang");
+var heroImgContainer = document.querySelector(".hero.hero-img");
+var heroTextContainer = document.querySelector(".hero.hero-text");
+var ctaButton = document.getElementById("hero-cta");
 var isSafari = navigator.vendor && navigator.vendor.indexOf("Apple") > -1 && navigator.userAgent && navigator.userAgent.indexOf("CriOS") === -1 && navigator.userAgent.indexOf("FxiOS") === -1;
-var hasScrollListenerMobile = false;
-var hasListenersDesktop = false;
+var isListening = false;
+var comesFromMobile = false;
+var comesFromDesktop = false;
 var debouncedNavDesktop;
 var debouncedNavMobile;
 var bindedDebouncedNavDesktop;
 var swiper;
 var isMobile;
-var listenToFlags;
-var heroImgContainer = document.querySelector(".hero.hero-img");
-var heroTextContainer = document.querySelector(".hero.hero-text");
-var ctaButton = document.getElementById("hero-cta"); //FUNCTIONS INVOCATIONS
+var listenToFlags; //FUNCTIONS INVOCATIONS
 
 init();
 initOnWidthChange();
@@ -95,15 +96,18 @@ function init() {
 
 
 function initOnWidthChange() {
-  mobileScreenMQ.addListener(function () {
-    if (mobileScreenMQ.matches) {
-      isMobile = true;
-      mobileCode();
-    } else {
-      isMobile = false;
-      desktopCode();
-    }
-  });
+  if (!isListening) {
+    mobileScreenMQ.addListener(function () {
+      if (mobileScreenMQ.matches) {
+        isMobile = true;
+        mobileCode();
+      } else {
+        isMobile = false;
+        desktopCode();
+      }
+    });
+    isListening = true;
+  }
 } // hides preloader, animate assets and inits typeWriter.
 
 
@@ -131,18 +135,20 @@ function desktopCode() {
   });
   bindedDebouncedNavDesktop = debouncedNavDesktop.bind(null, false);
   window.addEventListener("scroll", bindedDebouncedNavDesktop);
-  hasListenersDesktop = true;
+  comesFromDesktop = true;
 
-  if (hasScrollListenerMobile) {
+  if (comesFromMobile) {
     appendCtaDesktop();
     desktopModule.restoreDesktopNav();
     window.removeEventListener("scroll", debouncedNavMobile);
     typewriterModule.reviewWidth(false);
-    hasScrollListenerMobile = false;
+    comesFromMobile = false;
   }
 
-  if (swiper && swiper.params.init === true) {
-    swiper.destroy();
+  if (swiper) {
+    if (swiper.params && swiper.params.init === true) {
+      swiper.destroy();
+    }
   }
 } //code that executes only in phones and small tablets screens (< 801px).
 
@@ -159,9 +165,9 @@ function mobileCode() {
     trailing: true
   });
   window.addEventListener("scroll", debouncedNavMobile);
-  hasScrollListenerMobile = true;
+  comesFromMobile = true;
 
-  if (hasListenersDesktop) {
+  if (comesFromDesktop) {
     window.removeEventListener("scroll", bindedDebouncedNavDesktop);
     typewriterModule.reviewWidth(true);
     desktopModule.closeModal();
@@ -171,7 +177,7 @@ function mobileCode() {
       desktopModule.removeImagesListeners();
     }
 
-    hasListenersDesktop = false;
+    comesFromDesktop = false;
   }
 
   swiper = swiperModule.defineSwiper();
@@ -190,6 +196,7 @@ function styleNavOnScroll() {
     if (!mobileModule.isOpen_Menu) {
       if (inMobile) {
         mobileModule.styleMobileBrand();
+        flagsContainer.classList.remove("flag-invisible");
       } else {
         desktopModule.styleDesktopBrand();
         flagsContainer.removeEventListener("click", listenToFlags);
@@ -363,6 +370,21 @@ function appendCtaDesktop() {
 // postcss? autoprefixer? html min? jquery as an external link? npm audit!
 // ::selection background-color
 // svg sprite loading twice?
+// body
+// overflow-x: hidden;
+// background-color: $background-light;
+// background-color: #bdc3cc52;
+// #c5d4d526
+// #dadfd145
+// #fdf0e95e
+// #e3dfcd4f
+// #cdf9ff24
+// #b1d8dd3b
+// #bdc3cc52
+// overflow-x: auto;
+// overflow-y: visible;
+// min-height: 100%;
+// -webkit-tap-highlight-color: rgba(0,0,0,0);
 
 },{"./sub_modules/classList":2,"./sub_modules/contact":3,"./sub_modules/desktop":4,"./sub_modules/gsap-scrollmagic":5,"./sub_modules/jquery":7,"./sub_modules/location":8,"./sub_modules/mobile":9,"./sub_modules/preloader":10,"./sub_modules/svg4everybody":11,"./sub_modules/swiper":12,"./sub_modules/typewriter":13,"lodash/debounce":25}],2:[function(require,module,exports){
 "use strict";
@@ -796,9 +818,12 @@ function prepareDesktopNav() {
 
 function styleDesktopNav() {
   var langLink = _mobile.navList.lastElementChild;
-  var langDiv = langLink.removeChild(langLink.firstElementChild);
 
-  _mobile.nav.parentElement.appendChild(langDiv);
+  if (langLink.firstElementChild) {
+    var langDiv = langLink.removeChild(langLink.firstElementChild);
+
+    _mobile.nav.parentElement.appendChild(langDiv);
+  }
 } // animation effect (underline) for desktop nav anchors.
 
 
@@ -1417,29 +1442,30 @@ function animateAssets() {
 function zoomHeroDivs() {
   var heroDivs = document.querySelectorAll("#section-hero .hero");
   tl3.from(heroDivs[0], 1.25, {
-    scale: 1.35
+    scale: 1.25
   }).from(heroDivs[1], 1.25, {
-    scale: 1.35
+    scale: 1.15
   }, 0);
 }
 
 function animateSvgPaths() {
-  var svgPaths = document.querySelectorAll("#svg-background path"); // prettier-ignore
+  var svgPaths = document.querySelectorAll("#svg-background path"); //   .from(svgPaths[0], 1, { opacity: 0, scale: 1.25 }, 0.4)
+  //   .from(svgPaths[1], 1.25, { opacity: 0, scale: 1.25 }, 0.2)
+  //   .from(svgPaths[2], 1.25, { opacity: 0, scaleX: 1.25, scaleY: 0.9, rotation: "1deg" }, 0.3)
+  //   .from(svgPaths[3], 1.5, { opacity: 0, scale: 1.03 }, 0);
 
-  tl4.from(svgPaths[0], 1, {
+  tl4.from(svgPaths[0], {
     opacity: 0,
-    scale: 1.25
-  }, 0.4).from(svgPaths[1], 1.25, {
+    duration: 2
+  }, 1).from(svgPaths[1], {
     opacity: 0,
-    scale: 1.25
-  }, 0.2).from(svgPaths[2], 1.25, {
+    duration: 2
+  }, 0.4).from(svgPaths[2], {
     opacity: 0,
-    scaleX: 1.25,
-    scaleY: 0.9,
-    rotation: "1deg"
-  }, 0.3).from(svgPaths[3], 1.5, {
+    duration: 2
+  }, 0.7).from(svgPaths[3], {
     opacity: 0,
-    scale: 1.03
+    duration: 2
   }, 0);
 }
 
@@ -1762,7 +1788,6 @@ var rightArrows = document.querySelectorAll(".right-arrow-container svg"); // co
 var designOffset = designProjectsSection.offsetTop;
 var clientHeight = document.body.clientHeight;
 var scrolledY = 0;
-var toggleDelay = 0;
 var hasClickListener = false;
 var isOpen_Menu = false;
 exports.isOpen_Menu = isOpen_Menu;
@@ -1778,8 +1803,11 @@ function styleMobileNav() {
     navList.lastElementChild.appendChild(langDiv);
   }
 
-  var infoSocial = formInfo.removeChild(formInfo.lastElementChild);
-  linkSocial.appendChild(infoSocial);
+  if (formInfo.lastElementChild) {
+    var infoSocial = formInfo.removeChild(formInfo.lastElementChild);
+    linkSocial.appendChild(infoSocial);
+  }
+
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList); // mobile burger and menu
 
@@ -1812,21 +1840,14 @@ function toggleNavClasses() {
     nav.classList.toggle("nav-no-border");
   }
 
-  setTimeout(function () {// designProjectsSection.classList.toggle("section-low");
-    // contactSection.classList.toggle("section-low");
-    // servicesSection.classList.toggle("section-low");
-  }, toggleDelay);
-
   if (!isOpen_Menu) {
     exports.isOpen_Menu = isOpen_Menu = true;
-    toggleDelay = 400;
 
     if (scrolledY > 0) {
       restoreMobileBrand();
     }
   } else {
     exports.isOpen_Menu = isOpen_Menu = false;
-    toggleDelay = 0;
 
     if (scrolledY > 0) {
       styleMobileBrand();

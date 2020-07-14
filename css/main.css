@@ -78,11 +78,6 @@ h1, h2, h3, h4, h5, h6 {
   overflow-y: hidden;
 }
 
-.section-low {
-  z-index: -1;
-  position: relative;
-}
-
 .site-overlay {
   position: fixed;
   height: 100%;
@@ -484,7 +479,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
   }
 }
 #lang > *:last-child {
-  margin-left: 5px;
+  margin-left: 7.5px;
 }
 #lang p {
   font-size: 20px;
@@ -657,6 +652,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
 #section-hero {
   min-height: 100%;
   text-align: center;
+  overflow: hidden;
   padding: 0;
   display: -ms-flexbox;
   display: flex;
@@ -840,9 +836,15 @@ button#hero-cta:focus, button#contact-form-button:focus {
   }
 }
 .hero.hero-img img {
-  height: 700px;
   margin-top: 3em;
   margin-right: -3em;
+  height: 300px;
+  display: block;
+}
+@media screen and (min-width: 801px) {
+  .hero.hero-img img {
+    height: 700px;
+  }
 }
 
 #span-we {
@@ -2413,13 +2415,15 @@ button#hero-cta:focus, button#contact-form-button:focus {
 
 .info-social {
   text-align: center;
-  margin-top: 1.25em;
+}
+@media screen and (min-width: 801px) {
+  .info-social {
+    margin-top: 1.25em;
+  }
 }
 .info-social .info-icon {
   fill: #00416B;
-  height: 2.25em;
-  width: 2.25em;
-  padding: 1px;
+  height: 35px;
   transition: fill 350ms ease, transform 350ms ease;
 }
 .info-social .info-icon:hover {
@@ -2428,7 +2432,12 @@ button#hero-cta:focus, button#contact-form-button:focus {
   cursor: pointer;
 }
 .info-social .info-icon:last-child {
-  margin-left: 1em;
+  margin-left: 0.5em;
+}
+@media screen and (min-width: 801px) {
+  .info-social .info-icon:last-child {
+    margin-left: 1em;
+  }
 }
 
 .info-container a:hover {
@@ -2873,9 +2882,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 #footer-social svg {
   height: 2em;
-  width: 2em;
   margin: 0 0.15em;
-  padding: 0.01em;
   fill: #c2c2c2;
 }
 @media screen and (min-width: 801px) {
@@ -2883,7 +2890,6 @@ button#hero-cta:focus, button#contact-form-button:focus {
     padding: 0;
     margin: 0 0.1em;
     height: 1.7em;
-    width: 1.7em;
     transition: fill 0.5s ease, transform 0.5s ease;
   }
   #footer-social svg:hover {

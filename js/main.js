@@ -24,24 +24,24 @@ const navBar = document.getElementById("section-navbar");
 const navWhiteBack = document.querySelector(".navigation-white-back");
 const navShadow = document.querySelector(".navigation-shadow");
 const flagsContainer = document.getElementById("lang");
+const heroImgContainer = document.querySelector(".hero.hero-img");
+const heroTextContainer = document.querySelector(".hero.hero-text");
+const ctaButton = document.getElementById("hero-cta");
 const isSafari =
   navigator.vendor &&
   navigator.vendor.indexOf("Apple") > -1 &&
   navigator.userAgent &&
   navigator.userAgent.indexOf("CriOS") === -1 &&
   navigator.userAgent.indexOf("FxiOS") === -1;
-let hasScrollListenerMobile = false;
-let hasListenersDesktop = false;
+let isListening = false;
+let comesFromMobile = false;
+let comesFromDesktop = false;
 let debouncedNavDesktop;
 let debouncedNavMobile;
 let bindedDebouncedNavDesktop;
 let swiper;
 let isMobile;
 let listenToFlags;
-
-const heroImgContainer = document.querySelector(".hero.hero-img");
-const heroTextContainer = document.querySelector(".hero.hero-text");
-const ctaButton = document.getElementById("hero-cta");
 
 //FUNCTIONS INVOCATIONS
 init();
@@ -67,15 +67,18 @@ function init() {
 
 // adds listener that executes when screen width changes (passing by 801px).
 function initOnWidthChange() {
-  mobileScreenMQ.addListener(() => {
-    if (mobileScreenMQ.matches) {
-      isMobile = true;
-      mobileCode();
-    } else {
-      isMobile = false;
-      desktopCode();
-    }
-  });
+  if (!isListening) {
+    mobileScreenMQ.addListener(() => {
+      if (mobileScreenMQ.matches) {
+        isMobile = true;
+        mobileCode();
+      } else {
+        isMobile = false;
+        desktopCode();
+      }
+    });
+    isListening = true;
+  }
 }
 
 // hides preloader, animate assets and inits typeWriter.
@@ -101,16 +104,18 @@ function desktopCode() {
   });
   bindedDebouncedNavDesktop = debouncedNavDesktop.bind(null, false);
   window.addEventListener("scroll", bindedDebouncedNavDesktop);
-  hasListenersDesktop = true;
-  if (hasScrollListenerMobile) {
+  comesFromDesktop = true;
+  if (comesFromMobile) {
     appendCtaDesktop();
     desktopModule.restoreDesktopNav();
     window.removeEventListener("scroll", debouncedNavMobile);
     typewriterModule.reviewWidth(false);
-    hasScrollListenerMobile = false;
+    comesFromMobile = false;
   }
-  if (swiper && swiper.params.init === true) {
-    swiper.destroy();
+  if (swiper) {
+    if (swiper.params && swiper.params.init === true) {
+      swiper.destroy();
+    }
   }
 }
 
@@ -127,8 +132,8 @@ function mobileCode() {
     trailing: true,
   });
   window.addEventListener("scroll", debouncedNavMobile);
-  hasScrollListenerMobile = true;
-  if (hasListenersDesktop) {
+  comesFromMobile = true;
+  if (comesFromDesktop) {
     window.removeEventListener("scroll", bindedDebouncedNavDesktop);
     typewriterModule.reviewWidth(true);
     desktopModule.closeModal();
@@ -136,7 +141,7 @@ function mobileCode() {
     if (isSafari) {
       desktopModule.removeImagesListeners();
     }
-    hasListenersDesktop = false;
+    comesFromDesktop = false;
   }
   swiper = swiperModule.defineSwiper();
   swiper.on("init", function () {
@@ -152,6 +157,7 @@ function styleNavOnScroll(inMobile = true) {
     if (!mobileModule.isOpen_Menu) {
       if (inMobile) {
         mobileModule.styleMobileBrand();
+        flagsContainer.classList.remove("flag-invisible");
       } else {
         desktopModule.styleDesktopBrand();
         flagsContainer.removeEventListener("click", listenToFlags);
@@ -346,3 +352,19 @@ export { navBar, debounce };
 // postcss? autoprefixer? html min? jquery as an external link? npm audit!
 // ::selection background-color
 // svg sprite loading twice?
+
+// body
+// overflow-x: hidden;
+// background-color: $background-light;
+// background-color: #bdc3cc52;
+// #c5d4d526
+// #dadfd145
+// #fdf0e95e
+// #e3dfcd4f
+// #cdf9ff24
+// #b1d8dd3b
+// #bdc3cc52
+// overflow-x: auto;
+// overflow-y: visible;
+// min-height: 100%;
+// -webkit-tap-highlight-color: rgba(0,0,0,0);

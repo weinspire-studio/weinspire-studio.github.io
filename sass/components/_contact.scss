@@ -433,12 +433,12 @@
 
 .info-social {
   text-align: center;
-  margin-top: 1.25em;
+  @include media-query ($md) {
+    margin-top: 1.25em;
+  }
   .info-icon {
     fill: $brand-color-blue;
-    height: 2.25em;
-    width: 2.25em;
-    padding: 1px;
+    height: 35px;
     transition: fill 350ms ease, transform 350ms ease;
     &:hover {
       fill: $brand-color-green;
@@ -446,7 +446,10 @@
       cursor: pointer;
     }
     &:last-child {
-      margin-left: 1em;
+      margin-left: .5em;
+      @include media-query ($md) {
+        margin-left: 1em;
+      }
     }
   }
 }

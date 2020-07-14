@@ -256,18 +256,21 @@ function animateAssets() {
 function zoomHeroDivs() {
   const heroDivs = document.querySelectorAll("#section-hero .hero");
   tl3
-    .from(heroDivs[0], 1.25, { scale: 1.35 })
-    .from(heroDivs[1], 1.25, { scale: 1.35 }, 0);
+    .from(heroDivs[0], 1.25, { scale: 1.25 })
+    .from(heroDivs[1], 1.25, { scale: 1.15 }, 0);
 }
 
 function animateSvgPaths() {
   const svgPaths = document.querySelectorAll("#svg-background path");
-  // prettier-ignore
+  //   .from(svgPaths[0], 1, { opacity: 0, scale: 1.25 }, 0.4)
+  //   .from(svgPaths[1], 1.25, { opacity: 0, scale: 1.25 }, 0.2)
+  //   .from(svgPaths[2], 1.25, { opacity: 0, scaleX: 1.25, scaleY: 0.9, rotation: "1deg" }, 0.3)
+  //   .from(svgPaths[3], 1.5, { opacity: 0, scale: 1.03 }, 0);
   tl4
-    .from(svgPaths[0], 1, { opacity: 0, scale: 1.25 }, 0.4)
-    .from(svgPaths[1], 1.25, { opacity: 0, scale: 1.25 }, 0.2)
-    .from(svgPaths[2], 1.25, { opacity: 0, scaleX: 1.25, scaleY: 0.9, rotation: "1deg" }, 0.3)
-    .from(svgPaths[3], 1.5, { opacity: 0, scale: 1.03 }, 0);
+    .from(svgPaths[0], { opacity: 0, duration: 2 }, 1)
+    .from(svgPaths[1], { opacity: 0, duration: 2 }, 0.4)
+    .from(svgPaths[2], { opacity: 0, duration: 2 }, 0.7)
+    .from(svgPaths[3], { opacity: 0, duration: 2 }, 0);
 }
 
 function slideAnim(direction) {

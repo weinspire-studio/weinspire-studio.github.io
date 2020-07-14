@@ -19,7 +19,6 @@ const rightArrows = document.querySelectorAll(".right-arrow-container svg");
 let designOffset = designProjectsSection.offsetTop;
 let clientHeight = document.body.clientHeight;
 let scrolledY = 0;
-let toggleDelay = 0;
 let hasClickListener = false;
 let isOpen_Menu = false;
 let rightArrowsFlag = true;
@@ -38,8 +37,10 @@ function styleMobileNav() {
     const langDiv = nav.parentElement.removeChild(nav.nextElementSibling);
     navList.lastElementChild.appendChild(langDiv);
   }
-  const infoSocial = formInfo.removeChild(formInfo.lastElementChild);
-  linkSocial.appendChild(infoSocial);
+  if (formInfo.lastElementChild) {
+    const infoSocial = formInfo.removeChild(formInfo.lastElementChild);
+    linkSocial.appendChild(infoSocial);
+  }
   navList.parentNode.removeChild(navList);
   navContainer.appendChild(navList);
   // mobile burger and menu
@@ -68,20 +69,13 @@ function toggleNavClasses() {
     navBar.classList.toggle("nav-white");
     nav.classList.toggle("nav-no-border");
   }
-  setTimeout(function () {
-    // designProjectsSection.classList.toggle("section-low");
-    // contactSection.classList.toggle("section-low");
-    // servicesSection.classList.toggle("section-low");
-  }, toggleDelay);
   if (!isOpen_Menu) {
     isOpen_Menu = true;
-    toggleDelay = 400;
     if (scrolledY > 0) {
       restoreMobileBrand();
     }
   } else {
     isOpen_Menu = false;
-    toggleDelay = 0;
     if (scrolledY > 0) {
       styleMobileBrand();
     }

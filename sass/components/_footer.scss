@@ -322,15 +322,12 @@
     }
     svg {
         height: 2em;
-        width: 2em;
         margin: 0 .15em;
-        padding: 0.01em;
         fill: $footer-gray;
         @include media-query ($md) {
             padding: 0;
             margin: 0 .1em;
             height: 1.7em;
-            width: 1.7em;
             transition: fill .5s ease, transform .5s ease;
             &:hover {
                 cursor: pointer;

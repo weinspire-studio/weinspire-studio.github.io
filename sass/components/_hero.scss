@@ -16,6 +16,7 @@
 #section-hero {
     min-height: 100%;
     text-align: center;
+    overflow: hidden;
     @include padding-map($content-wrap-lg);
     @include media-query( 0, $md) {
         padding-top: 3.25em!important;
@@ -85,9 +86,14 @@
         justify-self: center;
     }
     img {
-        height: 700px;
         margin-top: 3em;
         margin-right: -3em;
+        height: 300px;
+        display: block;
+        @include media-query ($md) {
+            height: 700px;
+
+        }
     }
     // .icon-facebook {
     //     height: 200px;
