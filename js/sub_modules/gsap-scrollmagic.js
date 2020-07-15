@@ -1,8 +1,8 @@
 // jshint esversion: 6
 
 import { makeRequest } from "../sub_modules/http";
+import debounce from "lodash/debounce";
 
-// https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master
 const url = "/assets/optimized/";
 const targets = [
   "svg-background.svg",
@@ -10,6 +10,8 @@ const targets = [
   "software.svg",
   "marketing.svg",
 ];
+
+let i = 0;
 
 const controller = new ScrollMagic.Controller();
 const tl = gsap.timeline();
@@ -24,8 +26,16 @@ function prepareRequests() {
   const designContainer = document.getElementById("grid-btm-icon");
   const softwareContainer = document.getElementById("grid-mid-icon");
   const marketingContainer = document.getElementById("grid-top-icon");
-  makeRequest(url + targets[0], sectionBg, animateBackground);
-  makeRequest(url + targets[1], designContainer, animateIconDesign);
+  let debouncedTest = debounce(animateBackground, 200, {
+    leading: true,
+    trailing: true,
+  });
+  let debouncedTest2 = debounce(animateIconDesign, 200, {
+    leading: true,
+    trailing: true,
+  });
+  makeRequest(url + targets[0], sectionBg, debouncedTest);
+  makeRequest(url + targets[1], designContainer, debouncedTest2);
   makeRequest(url + targets[2], softwareContainer, animateIconSoftware);
   makeRequest(url + targets[3], marketingContainer, animateIconMarketing);
 }

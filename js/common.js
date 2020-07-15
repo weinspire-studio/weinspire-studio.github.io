@@ -1108,10 +1108,14 @@ exports.slideAnim = slideAnim;
 
 var _http = require("../sub_modules/http");
 
+var _debounce = _interopRequireDefault(require("lodash/debounce"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 // jshint esversion: 6
-// https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master
 var url = "/assets/optimized/";
 var targets = ["svg-background.svg", "design.svg", "software.svg", "marketing.svg"];
+var i = 0;
 var controller = new ScrollMagic.Controller();
 var tl = gsap.timeline();
 var tl2 = gsap.timeline();
@@ -1125,8 +1129,16 @@ function prepareRequests() {
   var designContainer = document.getElementById("grid-btm-icon");
   var softwareContainer = document.getElementById("grid-mid-icon");
   var marketingContainer = document.getElementById("grid-top-icon");
-  (0, _http.makeRequest)(url + targets[0], sectionBg, animateBackground);
-  (0, _http.makeRequest)(url + targets[1], designContainer, animateIconDesign);
+  var debouncedTest = (0, _debounce["default"])(animateBackground, 200, {
+    leading: true,
+    trailing: true
+  });
+  var debouncedTest2 = (0, _debounce["default"])(animateIconDesign, 200, {
+    leading: true,
+    trailing: true
+  });
+  (0, _http.makeRequest)(url + targets[0], sectionBg, debouncedTest);
+  (0, _http.makeRequest)(url + targets[1], designContainer, debouncedTest2);
   (0, _http.makeRequest)(url + targets[2], softwareContainer, animateIconSoftware);
   (0, _http.makeRequest)(url + targets[3], marketingContainer, animateIconMarketing);
 }
@@ -1515,7 +1527,7 @@ function slideAnim(direction) {
 // });
 // fill="none" stroke="#000000" stroke-width="1"
 
-},{"../sub_modules/http":6}],6:[function(require,module,exports){
+},{"../sub_modules/http":6,"lodash/debounce":25}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

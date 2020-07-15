@@ -79,7 +79,7 @@
   @include media-query ($md) {
     max-width: 1000px;
     box-shadow: $contact-form-double;
-    border-radius: 5px;
+    border-radius: 20px;
     width: 70%;
   }
   @include media-query ($md, $lg) {
