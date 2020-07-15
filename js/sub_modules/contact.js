@@ -19,7 +19,7 @@ formElements.push(textArea);
 textArea.value = "";
 newsForm[0].value = "";
 
-function initContactForms(isSafari) {
+function initContactForms(isSafari, isIE = false) {
   validateContactForm();
   submitContactForm();
   submitNewsForm();
@@ -27,6 +27,9 @@ function initContactForms(isSafari) {
     prepareFormsSafari();
     prepareMetaSafari();
     console.log("tu vieja");
+  }
+  if (isIE) {
+    formButton.style.marginTop = "2em";
   }
 }
 

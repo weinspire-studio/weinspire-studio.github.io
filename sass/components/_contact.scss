@@ -136,23 +136,31 @@
   @include media-query($md) {
     margin: 0;
   }
-  .field-name {
+  &.field-name {
     grid-area: name;
     -ms-grid-row: 2;
     -ms-grid-column: 1;
   }
-  .field-email {
+  &.field-email {
     grid-area: email;
       -ms-grid-row: 3;
       -ms-grid-column: 1;
   }
-  .field-message {
+  &.field-message {
     grid-area: subject;
       -ms-grid-row: 4;
       -ms-grid-column: 1;
       margin-top: .1em;
   }
 }
+
+// .field.field-message {
+//     grid-area: subject;
+//       -ms-grid-row: 4;
+//       -ms-grid-column: 1;
+//       margin-top: .1em;
+//       background-color:red;
+// }
   
 .form-fields textarea {
   width: 100%;

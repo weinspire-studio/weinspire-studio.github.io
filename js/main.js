@@ -33,6 +33,9 @@ const isSafari =
   navigator.userAgent &&
   navigator.userAgent.indexOf("CriOS") === -1 &&
   navigator.userAgent.indexOf("FxiOS") === -1;
+const isIE =
+  navigator.userAgent.indexOf("MSIE") !== -1 ||
+  navigator.appVersion.indexOf("Trident/") > -1;
 let isListening = false;
 let comesFromMobile = false;
 let comesFromDesktop = false;
@@ -50,7 +53,7 @@ svg4everybody({ attributeName: "data-href", polyfill: true });
 locationModule.getUserUbication();
 animationsModule.prepareRequests();
 jQueryModule.smoothScroll();
-contactModule.initContactForms(isSafari);
+contactModule.initContactForms(isSafari, isIE);
 window.addEventListener("load", initLanding);
 
 //FUNCTIONS DEFINITIONS

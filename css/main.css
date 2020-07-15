@@ -2113,17 +2113,17 @@ button#hero-cta:focus, button#contact-form-button:focus {
     margin: 0;
   }
 }
-.field .field-name {
+.field.field-name {
   grid-area: name;
   -ms-grid-row: 2;
   -ms-grid-column: 1;
 }
-.field .field-email {
+.field.field-email {
   grid-area: email;
   -ms-grid-row: 3;
   -ms-grid-column: 1;
 }
-.field .field-message {
+.field.field-message {
   grid-area: subject;
   -ms-grid-row: 4;
   -ms-grid-column: 1;

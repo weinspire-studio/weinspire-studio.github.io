@@ -61,6 +61,7 @@ var heroImgContainer = document.querySelector(".hero.hero-img");
 var heroTextContainer = document.querySelector(".hero.hero-text");
 var ctaButton = document.getElementById("hero-cta");
 var isSafari = navigator.vendor && navigator.vendor.indexOf("Apple") > -1 && navigator.userAgent && navigator.userAgent.indexOf("CriOS") === -1 && navigator.userAgent.indexOf("FxiOS") === -1;
+var isIE = navigator.userAgent.indexOf("MSIE") !== -1 || navigator.appVersion.indexOf("Trident/") > -1;
 var isListening = false;
 var comesFromMobile = false;
 var comesFromDesktop = false;
@@ -80,7 +81,7 @@ initOnWidthChange();
 locationModule.getUserUbication();
 animationsModule.prepareRequests();
 jQueryModule.smoothScroll();
-contactModule.initContactForms(isSafari);
+contactModule.initContactForms(isSafari, isIE);
 window.addEventListener("load", initLanding); //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 
@@ -549,6 +550,7 @@ textArea.value = "";
 newsForm[0].value = "";
 
 function initContactForms(isSafari) {
+  var isIE = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   validateContactForm();
   submitContactForm();
   submitNewsForm();
@@ -557,6 +559,10 @@ function initContactForms(isSafari) {
     prepareFormsSafari();
     prepareMetaSafari();
     console.log("tu vieja");
+  }
+
+  if (isIE) {
+    formButton.style.marginTop = "2em";
   }
 }
 
