@@ -371,3 +371,17 @@ export { navBar, debounce };
 // overflow-y: visible;
 // min-height: 100%;
 // -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+// transform: scaleY(0.01) scaleX(0);
+// animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+// @keyframes unfoldIn {
+// 	0% {
+// 		transform: scaleY(0.005) scaleX(0);
+// 	}
+// 	50% {
+// 		transform: scaleY(0.005) scaleX(1);
+// 	}
+// 	100% {
+// 		transform: scaleY(1) scaleX(1);
+// 	}
+// }

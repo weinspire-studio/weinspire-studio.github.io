@@ -386,6 +386,19 @@ function appendCtaDesktop() {
 // overflow-y: visible;
 // min-height: 100%;
 // -webkit-tap-highlight-color: rgba(0,0,0,0);
+// transform: scaleY(0.01) scaleX(0);
+// animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+// @keyframes unfoldIn {
+// 	0% {
+// 		transform: scaleY(0.005) scaleX(0);
+// 	}
+// 	50% {
+// 		transform: scaleY(0.005) scaleX(1);
+// 	}
+// 	100% {
+// 		transform: scaleY(1) scaleX(1);
+// 	}
+// }
 
 },{"./sub_modules/classList":2,"./sub_modules/contact":3,"./sub_modules/desktop":4,"./sub_modules/gsap-scrollmagic":5,"./sub_modules/jquery":7,"./sub_modules/location":8,"./sub_modules/mobile":9,"./sub_modules/preloader":10,"./sub_modules/svg4everybody":11,"./sub_modules/swiper":12,"./sub_modules/typewriter":13,"lodash/debounce":25}],2:[function(require,module,exports){
 "use strict";
