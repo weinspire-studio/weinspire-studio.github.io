@@ -102,7 +102,7 @@ function initOnWidthChange() {
 // hides preloader, animate assets and inits typeWriter.
 function initLanding() {
   preloaderModule.hidePreloader();
-  typewriterModule.initWriter(isMobile);
+  typewriterModule.initWriter(isMobile, supportsPassive);
 }
 
 //code that executes only in desktop and large tablets screens (> 801px).

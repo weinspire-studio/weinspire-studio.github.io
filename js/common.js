@@ -130,7 +130,7 @@ function initOnWidthChange() {
 
 function initLanding() {
   preloaderModule.hidePreloader();
-  typewriterModule.initWriter(isMobile);
+  typewriterModule.initWriter(isMobile, supportsPassive);
 } //code that executes only in desktop and large tablets screens (> 801px).
 
 
@@ -2187,7 +2187,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.initWriter = initWriter;
-exports.destroyWriter = destroyWriter;
 exports.reviewWidth = reviewWidth;
 // jshint esversion: 6
 var spanWords = document.getElementById("span-words");
@@ -2266,7 +2265,7 @@ function typeWriter() {
   }, typeSpeed);
 }
 
-function initWriter(isMobile) {
+function initWriter(isMobile, supportsPassive) {
   var delay = 1450;
 
   if (isMobile) {
@@ -2275,7 +2274,9 @@ function initWriter(isMobile) {
     delay = 1250;
   }
 
-  window.addEventListener("scroll", setWriter);
+  window.addEventListener("scroll", setWriter, supportsPassive ? {
+    passive: true
+  } : false);
   var timer = setTimeout(function () {
     if (window.pageYOffset < threshold) {
       typeWriter();
@@ -2290,11 +2291,6 @@ function initWriter(isMobile) {
 }
 
 function clearWriter() {
-  clearTimeout(timer);
-}
-
-function destroyWriter() {
-  window.removeEventListener("scroll", setWriter);
   clearTimeout(timer);
 }
 

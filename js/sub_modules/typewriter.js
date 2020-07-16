@@ -68,14 +68,18 @@ function typeWriter() {
   timer = setTimeout(() => typeWriter(), typeSpeed);
 }
 
-function initWriter(isMobile) {
+function initWriter(isMobile, supportsPassive) {
   let delay = 1450;
   if (isMobile) {
     calculatedWidth = spanWe.clientWidth + projectWidth + 28.5;
     spanWe.parentElement.style.width = `${calculatedWidth}px`;
     delay = 1250;
   }
-  window.addEventListener("scroll", setWriter);
+  window.addEventListener(
+    "scroll",
+    setWriter,
+    supportsPassive ? { passive: true } : false
+  );
   let timer = setTimeout(() => {
     if (window.pageYOffset < threshold) {
       typeWriter();
@@ -92,11 +96,6 @@ function clearWriter() {
   clearTimeout(timer);
 }
 
-function destroyWriter() {
-  window.removeEventListener("scroll", setWriter);
-  clearTimeout(timer);
-}
-
 function reviewWidth(isMobile) {
   if (isMobile) {
     calculatedWidth = spanWe.clientWidth + projectWidth + 27.5;
@@ -106,4 +105,4 @@ function reviewWidth(isMobile) {
   }
 }
 
-export { initWriter, destroyWriter, reviewWidth };
+export { initWriter, reviewWidth };
