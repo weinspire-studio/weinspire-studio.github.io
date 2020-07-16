@@ -13,11 +13,6 @@ import debounce from "lodash/debounce";
 import svg4everybody from "./sub_modules/svg4everybody";
 import "./sub_modules/classList";
 
-// polyfill forEach IE11.
-if (window.NodeList && !NodeList.prototype.forEach) {
-  NodeList.prototype.forEach = Array.prototype.forEach;
-}
-
 //VARIABLES
 const mobileScreenMQ = window.matchMedia("(max-width: 800px)");
 const navBar = document.getElementById("section-navbar");
@@ -36,6 +31,7 @@ const isSafari =
 const isIE =
   navigator.userAgent.indexOf("MSIE") !== -1 ||
   navigator.appVersion.indexOf("Trident/") > -1;
+let supportsPassive = false;
 let isListening = false;
 let comesFromMobile = false;
 let comesFromDesktop = false;
@@ -45,6 +41,25 @@ let bindedDebouncedNavDesktop;
 let swiper;
 let isMobile;
 let listenToFlags;
+
+// forEach polyfill IE11.
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach;
+}
+
+// passive support IE11
+try {
+  const options = {
+    get passive() {
+      supportsPassive = true;
+      return false;
+    },
+  };
+  window.addEventListener("test", null, options);
+  window.removeEventListener("test", null, options);
+} catch (err) {
+  supportsPassive = false;
+}
 
 //FUNCTIONS INVOCATIONS
 init();
@@ -106,12 +121,20 @@ function desktopCode() {
     trailing: true,
   });
   bindedDebouncedNavDesktop = debouncedNavDesktop.bind(null, false);
-  window.addEventListener("scroll", bindedDebouncedNavDesktop);
+  window.addEventListener(
+    "scroll",
+    bindedDebouncedNavDesktop,
+    supportsPassive ? { passive: true } : false
+  );
   comesFromDesktop = true;
   if (comesFromMobile) {
     appendCtaDesktop();
     desktopModule.restoreDesktopNav();
-    window.removeEventListener("scroll", debouncedNavMobile);
+    window.removeEventListener(
+      "scroll",
+      debouncedNavMobile,
+      supportsPassive ? { passive: true } : false
+    );
     typewriterModule.reviewWidth(false);
     comesFromMobile = false;
   }
@@ -134,10 +157,18 @@ function mobileCode() {
     leading: true,
     trailing: true,
   });
-  window.addEventListener("scroll", debouncedNavMobile);
+  window.addEventListener(
+    "scroll",
+    debouncedNavMobile,
+    supportsPassive ? { passive: true } : false
+  );
   comesFromMobile = true;
   if (comesFromDesktop) {
-    window.removeEventListener("scroll", bindedDebouncedNavDesktop);
+    window.removeEventListener(
+      "scroll",
+      bindedDebouncedNavDesktop,
+      supportsPassive ? { passive: true } : false
+    );
     typewriterModule.reviewWidth(true);
     desktopModule.closeModal();
     desktopModule.destroyModal();

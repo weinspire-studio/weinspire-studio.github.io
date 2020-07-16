@@ -45,12 +45,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 // jshint esversion: 6
-// polyfill forEach IE11.
-if (window.NodeList && !NodeList.prototype.forEach) {
-  NodeList.prototype.forEach = Array.prototype.forEach;
-} //VARIABLES
-
-
+//VARIABLES
 var mobileScreenMQ = window.matchMedia("(max-width: 800px)");
 var navBar = document.getElementById("section-navbar");
 exports.navBar = navBar;
@@ -62,6 +57,7 @@ var heroTextContainer = document.querySelector(".hero.hero-text");
 var ctaButton = document.getElementById("hero-cta");
 var isSafari = navigator.vendor && navigator.vendor.indexOf("Apple") > -1 && navigator.userAgent && navigator.userAgent.indexOf("CriOS") === -1 && navigator.userAgent.indexOf("FxiOS") === -1;
 var isIE = navigator.userAgent.indexOf("MSIE") !== -1 || navigator.appVersion.indexOf("Trident/") > -1;
+var supportsPassive = false;
 var isListening = false;
 var comesFromMobile = false;
 var comesFromDesktop = false;
@@ -70,7 +66,27 @@ var debouncedNavMobile;
 var bindedDebouncedNavDesktop;
 var swiper;
 var isMobile;
-var listenToFlags; //FUNCTIONS INVOCATIONS
+var listenToFlags; // forEach polyfill IE11.
+
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach;
+} // passive support IE11
+
+
+try {
+  var options = {
+    get passive() {
+      supportsPassive = true;
+      return false;
+    }
+
+  };
+  window.addEventListener("test", null, options);
+  window.removeEventListener("test", null, options);
+} catch (err) {
+  supportsPassive = false;
+} //FUNCTIONS INVOCATIONS
+
 
 init();
 initOnWidthChange();
@@ -135,13 +151,17 @@ function desktopCode() {
     trailing: true
   });
   bindedDebouncedNavDesktop = debouncedNavDesktop.bind(null, false);
-  window.addEventListener("scroll", bindedDebouncedNavDesktop);
+  window.addEventListener("scroll", bindedDebouncedNavDesktop, supportsPassive ? {
+    passive: true
+  } : false);
   comesFromDesktop = true;
 
   if (comesFromMobile) {
     appendCtaDesktop();
     desktopModule.restoreDesktopNav();
-    window.removeEventListener("scroll", debouncedNavMobile);
+    window.removeEventListener("scroll", debouncedNavMobile, supportsPassive ? {
+      passive: true
+    } : false);
     typewriterModule.reviewWidth(false);
     comesFromMobile = false;
   }
@@ -165,11 +185,15 @@ function mobileCode() {
     leading: true,
     trailing: true
   });
-  window.addEventListener("scroll", debouncedNavMobile);
+  window.addEventListener("scroll", debouncedNavMobile, supportsPassive ? {
+    passive: true
+  } : false);
   comesFromMobile = true;
 
   if (comesFromDesktop) {
-    window.removeEventListener("scroll", bindedDebouncedNavDesktop);
+    window.removeEventListener("scroll", bindedDebouncedNavDesktop, supportsPassive ? {
+      passive: true
+    } : false);
     typewriterModule.reviewWidth(true);
     desktopModule.closeModal();
     desktopModule.destroyModal();
