@@ -1851,7 +1851,7 @@ function mobileInitCode(isSafari, supportsPassive) {
   mobileModule.appendCtaMobile();
   mobileModule.styleMobileNav();
   jQueryModule.unbindImages();
-  mobileModule.initSwiperAnim(isSafari);
+  mobileModule.initSwiperAnim(isSafari, supportsPassive);
   var debouncedNavMobile = (0, _debounce["default"])(styleMobNavOnScroll, 200, {
     leading: true,
     trailing: true
@@ -1940,7 +1940,10 @@ var hasClickListener = false;
 var isOpen_Menu = false;
 exports.isOpen_Menu = isOpen_Menu;
 var rightArrowsFlag = true;
-var debouncedRightArrows; // UA sniffing
+var debouncedRightArrows;
+var bindedListenToArrow;
+var bindedSlideRightArrows;
+var bindedDebouncedShowRightArrows; // UA sniffing
 
 var isIos = (/iPad|iPhone|iPod/.test(navigator.userAgent) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream; //appends flags, social svgs and navList to navContainer (because of burger z-index issue) and adds click listener to menu burger.
 
@@ -2011,27 +2014,34 @@ function toggleNavClasses() {
 } // styles Swiper (arrows and pagination) depending on mobile OS.
 
 
-function initSwiperAnim(isSafari) {
+function initSwiperAnim(isSafari, supportsPassive) {
   if (!isIos || !isSafari) {
-    window.addEventListener("DOMContentLoaded", listenToArrow);
+    bindedListenToArrow = listenToArrow.bind(null, supportsPassive);
+    window.addEventListener("DOMContentLoaded", bindedListenToArrow);
   }
 } // adds a listener to rightArrowsContainer that triggers the animation.
 
 
-function listenToArrow() {
+function listenToArrow(supportsPassive) {
   debouncedRightArrows = (0, _main.debounce)(showRightArrows, 200, {
     leading: true,
     trailing: true
   });
-  window.addEventListener("scroll", debouncedRightArrows);
-  rightArrowsContainer.addEventListener("click", slideRightArrows);
-  rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
+  bindedDebouncedShowRightArrows = debouncedRightArrows.bind(null, supportsPassive);
+  window.addEventListener("scroll", bindedDebouncedShowRightArrows, supportsPassive ? {
+    passive: true
+  } : false);
+  bindedSlideRightArrows = slideRightArrows.bind(null, supportsPassive);
+  rightArrowsContainer.addEventListener("click", bindedSlideRightArrows);
+  rightArrowsContainer.addEventListener("touchmove", bindedSlideRightArrows, supportsPassive ? {
+    passive: true
+  } : false);
 } // shows arrows when passing through threshold.
 
 
-function showRightArrows() {
+function showRightArrows(supportsPassive) {
   scrolledY = window.pageYOffset;
-  var threshold = designOffset - clientHeight + 100;
+  var threshold = designOffset + clientHeight - 100;
 
   if (scrolledY > threshold) {
     rightArrows.forEach(function (arrow) {
@@ -2040,13 +2050,13 @@ function showRightArrows() {
     rightArrows[0].style.animationDelay = "250ms";
     rightArrows[1].style.animationDelay = "125ms";
     setTimeout(function () {
-      slideRightArrows();
-    }, 5000);
+      slideRightArrows(supportsPassive);
+    }, 15000);
   }
 } // adds animation to arrow and removes listeners.
 
 
-function slideRightArrows() {
+function slideRightArrows(supportsPassive) {
   if (rightArrowsFlag) {
     rightArrows.forEach(function (arrow) {
       return arrow.classList.remove("arrow-wave");
@@ -2054,9 +2064,13 @@ function slideRightArrows() {
     rightArrows.forEach(function (arrow) {
       return arrow.classList.add("arrow-slide");
     });
-    window.removeEventListener("scroll", debouncedRightArrows);
-    rightArrowsContainer.removeEventListener("click", slideRightArrows);
-    rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
+    window.removeEventListener("scroll", bindedDebouncedShowRightArrows, supportsPassive ? {
+      passive: true
+    } : false);
+    rightArrowsContainer.removeEventListener("click", bindedSlideRightArrows);
+    rightArrowsContainer.removeEventListener("touchmove", bindedSlideRightArrows, supportsPassive ? {
+      passive: true
+    } : false);
     rightArrowsFlag = false;
   }
 } // changes mobile svg brand colors.

@@ -21,6 +21,9 @@ let hasClickListener = false;
 let isOpen_Menu = false;
 let rightArrowsFlag = true;
 let debouncedRightArrows;
+let bindedListenToArrow;
+let bindedSlideRightArrows;
+let bindedDebouncedShowRightArrows;
 // UA sniffing
 let isIos =
   (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
@@ -86,45 +89,67 @@ function toggleNavClasses() {
 }
 
 // styles Swiper (arrows and pagination) depending on mobile OS.
-function initSwiperAnim(isSafari) {
+function initSwiperAnim(isSafari, supportsPassive) {
   if (!isIos || !isSafari) {
-    window.addEventListener("DOMContentLoaded", listenToArrow);
+    bindedListenToArrow = listenToArrow.bind(null, supportsPassive);
+    window.addEventListener("DOMContentLoaded", bindedListenToArrow);
   }
 }
 
 // adds a listener to rightArrowsContainer that triggers the animation.
-function listenToArrow() {
+function listenToArrow(supportsPassive) {
   debouncedRightArrows = debounce(showRightArrows, 200, {
     leading: true,
     trailing: true,
   });
-  window.addEventListener("scroll", debouncedRightArrows);
-  rightArrowsContainer.addEventListener("click", slideRightArrows);
-  rightArrowsContainer.addEventListener("touchmove", slideRightArrows);
+  bindedDebouncedShowRightArrows = debouncedRightArrows.bind(
+    null,
+    supportsPassive
+  );
+  window.addEventListener(
+    "scroll",
+    bindedDebouncedShowRightArrows,
+    supportsPassive ? { passive: true } : false
+  );
+  bindedSlideRightArrows = slideRightArrows.bind(null, supportsPassive);
+  rightArrowsContainer.addEventListener("click", bindedSlideRightArrows);
+  rightArrowsContainer.addEventListener(
+    "touchmove",
+    bindedSlideRightArrows,
+    supportsPassive ? { passive: true } : false
+  );
 }
 
 // shows arrows when passing through threshold.
-function showRightArrows() {
+function showRightArrows(supportsPassive) {
   scrolledY = window.pageYOffset;
-  let threshold = designOffset - clientHeight + 100;
+  let threshold = designOffset + clientHeight - 100;
   if (scrolledY > threshold) {
     rightArrows.forEach((arrow) => arrow.classList.add("arrow-wave"));
     rightArrows[0].style.animationDelay = "250ms";
     rightArrows[1].style.animationDelay = "125ms";
     setTimeout(function () {
-      slideRightArrows();
-    }, 5000);
+      slideRightArrows(supportsPassive);
+    }, 15000);
   }
 }
 
 // adds animation to arrow and removes listeners.
-function slideRightArrows() {
+function slideRightArrows(supportsPassive) {
   if (rightArrowsFlag) {
     rightArrows.forEach((arrow) => arrow.classList.remove("arrow-wave"));
     rightArrows.forEach((arrow) => arrow.classList.add("arrow-slide"));
-    window.removeEventListener("scroll", debouncedRightArrows);
-    rightArrowsContainer.removeEventListener("click", slideRightArrows);
-    rightArrowsContainer.removeEventListener("touchmove", slideRightArrows);
+    window.removeEventListener(
+      "scroll",
+      bindedDebouncedShowRightArrows,
+      supportsPassive ? { passive: true } : false
+    );
+    rightArrowsContainer.removeEventListener("click", bindedSlideRightArrows);
+    rightArrowsContainer.removeEventListener(
+      "touchmove",
+      bindedSlideRightArrows,
+      supportsPassive ? { passive: true } : false
+    );
     rightArrowsFlag = false;
   }
 }

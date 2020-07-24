@@ -23,7 +23,7 @@ function mobileInitCode(isSafari, supportsPassive) {
   mobileModule.appendCtaMobile();
   mobileModule.styleMobileNav();
   jQueryModule.unbindImages();
-  mobileModule.initSwiperAnim(isSafari);
+  mobileModule.initSwiperAnim(isSafari, supportsPassive);
   let debouncedNavMobile = debounce(styleMobNavOnScroll, 200, {
     leading: true,
     trailing: true,
