@@ -51,17 +51,25 @@
     transition: border .5s ease;
         // brand
     #brand-mobile-svg {
+        display: block;
         width: 3.5em;
         height: 3.5em;
         path {
             transition: fill .5s ease;
         }
+        @include media-query ($md) {
+            display: none;
+        }
     }
     #brand-desktop-svg {
-        width: 8.5em;
-        padding-top: .25em;
-        path {
-            transition: fill .5s ease;
+        display: none; 
+        @include media-query ($md) {
+            display: block;
+            width: 8.5em;
+            padding-top: .25em;
+            path {
+                transition: fill .5s ease;
+            }
         }
     }
 }

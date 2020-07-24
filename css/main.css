@@ -315,18 +315,30 @@ button#hero-cta:focus, button#contact-form-button:focus {
   transition: border 0.5s ease;
 }
 #home #brand-mobile-svg {
+  display: block;
   width: 3.5em;
   height: 3.5em;
 }
 #home #brand-mobile-svg path {
   transition: fill 0.5s ease;
 }
-#home #brand-desktop-svg {
-  width: 8.5em;
-  padding-top: 0.25em;
+@media screen and (min-width: 801px) {
+  #home #brand-mobile-svg {
+    display: none;
+  }
 }
-#home #brand-desktop-svg path {
-  transition: fill 0.5s ease;
+#home #brand-desktop-svg {
+  display: none;
+}
+@media screen and (min-width: 801px) {
+  #home #brand-desktop-svg {
+    display: block;
+    width: 8.5em;
+    padding-top: 0.25em;
+  }
+  #home #brand-desktop-svg path {
+    transition: fill 0.5s ease;
+  }
 }
 
 .nav-list {
@@ -1394,6 +1406,8 @@ button#hero-cta:focus, button#contact-form-button:focus {
     box-shadow: -1px 4px 4px -2px #0e0e0ead;
     box-shadow: -1px 4px 4px -2px #6b7c8d;
     border-radius: 20px;
+    display: -ms-flexbox;
+    display: flex;
   }
 }
 @media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
@@ -1415,6 +1429,9 @@ button#hero-cta:focus, button#contact-form-button:focus {
     -o-transition: width 450ms ease;
     border-left: 2px solid #000;
     box-shadow: -0.5px 0 5px 1px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
   }
   #section-projects-design li:hover {
     cursor: pointer;
@@ -1567,6 +1584,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
   height: 380px;
   z-index: 0 !important;
   padding-top: 80px !important;
+  margin: 0 auto;
 }
 @media screen and (min-width: 351px) {
   .swiper-container {

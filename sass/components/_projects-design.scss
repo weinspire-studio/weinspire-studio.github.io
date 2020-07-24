@@ -19,6 +19,7 @@
             box-shadow: -1px 4px 4px -2px #0e0e0ead;
             box-shadow: -1px 4px 4px -2px rgb(107, 124, 141);
             border-radius: 20px;
+            display: flex;
         }
         @include o-media-query ($sm, $md, portrait) {
             height: 580px;
@@ -39,6 +40,8 @@
             box-shadow: -0.5px 0 5px 1px rgba(0,0,0,.5); 
             // box-shadow: 0 0 5px 2px rgb(107, 124, 141);
             
+            display: inline-block;
+            flex-shrink: 0;
             &:hover {
                 cursor: pointer;
             }
@@ -178,6 +181,7 @@
     height: 380px;
     z-index: 0!important;
     padding-top: 80px!important;
+    margin: 0 auto;
     @include media-query($xs) {
         height: 430px;
     }

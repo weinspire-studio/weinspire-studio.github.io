@@ -1,27 +1,21 @@
 // jshint esversion: 6
 
 import * as preloaderModule from "./sub_modules/preloader";
-import * as mobileModule from "./sub_modules/mobile";
-import * as desktopModule from "./sub_modules/desktop";
 import * as typewriterModule from "./sub_modules/typewriter";
 import * as animationsModule from "./sub_modules/gsap-scrollmagic";
-import * as swiperModule from "./sub_modules/swiper";
 import * as jQueryModule from "./sub_modules/jquery";
-import * as contactModule from "./sub_modules/contact";
 import * as locationModule from "./sub_modules/location";
+import { prepareForMobile, prepareForDesktop } from "./sub_modules/desktop";
 import debounce from "lodash/debounce";
 import svg4everybody from "./sub_modules/svg4everybody";
 import "./sub_modules/classList";
 
+import "core-js/modules/es.promise";
+import "core-js/modules/es.array.iterator";
+
 //VARIABLES
 const mobileScreenMQ = window.matchMedia("(max-width: 800px)");
 const navBar = document.getElementById("section-navbar");
-const navWhiteBack = document.querySelector(".navigation-white-back");
-const navShadow = document.querySelector(".navigation-shadow");
-const flagsContainer = document.getElementById("lang");
-const heroImgContainer = document.querySelector(".hero.hero-img");
-const heroTextContainer = document.querySelector(".hero.hero-text");
-const ctaButton = document.getElementById("hero-cta");
 const isSafari =
   navigator.vendor &&
   navigator.vendor.indexOf("Apple") > -1 &&
@@ -33,14 +27,11 @@ const isIE =
   navigator.appVersion.indexOf("Trident/") > -1;
 let supportsPassive = false;
 let isListening = false;
-let comesFromMobile = false;
-let comesFromDesktop = false;
-let debouncedNavDesktop;
-let debouncedNavMobile;
-let bindedDebouncedNavDesktop;
-let swiper;
+let toDesk = false;
+let toMob = false;
+let mobResult;
+let deskResult;
 let isMobile;
-let listenToFlags;
 
 // forEach polyfill IE11.
 if (window.NodeList && !NodeList.prototype.forEach) {
@@ -68,18 +59,17 @@ svg4everybody({ attributeName: "data-href", polyfill: true });
 locationModule.getUserUbication();
 animationsModule.prepareRequests();
 jQueryModule.smoothScroll();
-contactModule.initContactForms(isSafari, isIE);
 window.addEventListener("load", initLanding);
 
 //FUNCTIONS DEFINITIONS
 //on pageload, executes the following code, depending on screen width.
 function init() {
   if (mobileScreenMQ.matches) {
+    deployMobile();
     isMobile = true;
-    mobileCode();
   } else {
+    deployDesktop();
     isMobile = false;
-    desktopCode();
   }
 }
 
@@ -89,14 +79,97 @@ function initOnWidthChange() {
     mobileScreenMQ.addListener(() => {
       if (mobileScreenMQ.matches) {
         isMobile = true;
-        mobileCode();
+        toMob = true;
+        deployMobile();
       } else {
         isMobile = false;
-        desktopCode();
+        toDesk = true;
+        deployDesktop();
       }
     });
     isListening = true;
   }
+}
+
+function deployMobile() {
+  import("./sub_modules/mobile-init").then((mobileInit) => {
+    mobResult = mobileInit.mobileInitCode(isSafari, supportsPassive);
+    if (toMob) {
+      window.removeEventListener(
+        "scroll",
+        deskResult.debounce,
+        supportsPassive ? { passive: true } : false
+      );
+    }
+  });
+  if (toMob) {
+    toMobile();
+    deferMobile(true);
+  } else {
+    window.addEventListener("load", () => {
+      deferMobile();
+    });
+  }
+}
+
+function deployDesktop() {
+  import("./sub_modules/desktop-init").then((desktopInit) => {
+    deskResult = desktopInit.desktopInitCode(isSafari, supportsPassive);
+    if (toDesk) {
+      window.removeEventListener(
+        "scroll",
+        mobResult.debounce,
+        supportsPassive ? { passive: true } : false
+      );
+    }
+  });
+  if (toDesk) {
+    toDesktop();
+    deferDesktop(true);
+  } else {
+    window.addEventListener("load", () => {
+      deferDesktop();
+    });
+  }
+}
+
+function deferMobile(hasCommon = false) {
+  import("./sub_modules/mobile-defer").then((mobileDefer) => {
+    mobileDefer.testFunction();
+  });
+  if (!hasCommon) {
+    import("./sub_modules/common-defer").then((commonDefer) => {
+      commonDefer.testFunction();
+      commonDefer.commonDeferInit(isSafari, isIE);
+    });
+  }
+}
+
+function deferDesktop(hasCommon = false) {
+  import("./sub_modules/desktop-defer").then((desktopDefer) => {
+    desktopDefer.testFunction();
+  });
+  if (!hasCommon) {
+    import("./sub_modules/common-defer").then((commonDefer) => {
+      commonDefer.testFunction();
+      commonDefer.commonDeferInit(isSafari, isIE);
+    });
+  }
+}
+
+function toMobile() {
+  console.log("toMobile");
+  typewriterModule.reviewWidth(true);
+  prepareForMobile(isSafari);
+}
+
+function toDesktop() {
+  console.log("toDesktop");
+  prepareForDesktop();
+  typewriterModule.reviewWidth(false);
+  if (mobResult.swiper)
+    if (mobResult.swiper.params && mobResult.swiper.params.init === true)
+      mobResult.swiper.destroy();
 }
 
 // hides preloader, animate assets and inits typeWriter.
@@ -105,249 +178,7 @@ function initLanding() {
   typewriterModule.initWriter(isMobile, supportsPassive);
 }
 
-//code that executes only in desktop and large tablets screens (> 801px).
-function desktopCode() {
-  addClassesToSvgs(false);
-  styleNavOnScroll(false);
-  desktopModule.prepareDesktopNav();
-  desktopModule.initModal();
-  if (isSafari) {
-    desktopModule.animateImagesSafari();
-  } else {
-    jQueryModule.animateImages();
-  }
-  debouncedNavDesktop = debounce(styleNavOnScroll, 200, {
-    leading: true,
-    trailing: true,
-  });
-  bindedDebouncedNavDesktop = debouncedNavDesktop.bind(null, false);
-  window.addEventListener(
-    "scroll",
-    bindedDebouncedNavDesktop,
-    supportsPassive ? { passive: true } : false
-  );
-  comesFromDesktop = true;
-  if (comesFromMobile) {
-    appendCtaDesktop();
-    desktopModule.restoreDesktopNav();
-    window.removeEventListener(
-      "scroll",
-      debouncedNavMobile,
-      supportsPassive ? { passive: true } : false
-    );
-    typewriterModule.reviewWidth(false);
-    comesFromMobile = false;
-  }
-  if (swiper) {
-    if (swiper.params && swiper.params.init === true) {
-      swiper.destroy();
-    }
-  }
-}
-
-//code that executes only in phones and small tablets screens (< 801px).
-function mobileCode() {
-  addClassesToSvgs();
-  styleNavOnScroll();
-  appendCtaMobile();
-  mobileModule.styleMobileNav();
-  jQueryModule.unbindImages();
-  mobileModule.initSwiper(isSafari);
-  debouncedNavMobile = debounce(styleNavOnScroll, 200, {
-    leading: true,
-    trailing: true,
-  });
-  window.addEventListener(
-    "scroll",
-    debouncedNavMobile,
-    supportsPassive ? { passive: true } : false
-  );
-  comesFromMobile = true;
-  if (comesFromDesktop) {
-    window.removeEventListener(
-      "scroll",
-      bindedDebouncedNavDesktop,
-      supportsPassive ? { passive: true } : false
-    );
-    typewriterModule.reviewWidth(true);
-    desktopModule.closeModal();
-    desktopModule.destroyModal();
-    if (isSafari) {
-      desktopModule.removeImagesListeners();
-    }
-    comesFromDesktop = false;
-  }
-  swiper = swiperModule.defineSwiper();
-  swiper.on("init", function () {
-    swiper.params.init = true;
-  });
-  swiper.init();
-}
-
-//adds or removes classes in order to give white styles to the nav.
-function styleNavOnScroll(inMobile = true) {
-  let scrolledY = window.pageYOffset;
-  if (scrolledY !== 0) {
-    if (!mobileModule.isOpen_Menu) {
-      if (inMobile) {
-        mobileModule.styleMobileBrand();
-        flagsContainer.classList.remove("flag-invisible");
-      } else {
-        desktopModule.styleDesktopBrand();
-        flagsContainer.removeEventListener("click", listenToFlags);
-        flagsContainer.classList.add("flag-invisible");
-      }
-      navBar.classList.add("nav-white");
-      navWhiteBack.classList.add("nav-white-back");
-      navShadow.classList.add("nav-shadow");
-    }
-  } else {
-    if (inMobile) {
-      mobileModule.restoreMobileBrand();
-    } else {
-      desktopModule.restoreDesktopBrand();
-    }
-    navBar.classList.remove("nav-white");
-    navWhiteBack.classList.remove("nav-white-back");
-    navShadow.classList.remove("nav-shadow");
-    flagsContainer.classList.remove("flag-invisible");
-    flagsContainer.addEventListener(
-      "click",
-      (listenToFlags = (e) => {
-        styleFlags(e.target);
-      })
-    );
-  }
-}
-
-function addClassesToSvgs(inMobile = true) {
-  if (inMobile) {
-    mobileModule.setMobileBrand();
-    desktopModule.unsetDesktopBrand();
-  } else {
-    desktopModule.setDesktopBrand();
-    mobileModule.unsetMobileBrand();
-  }
-}
-
-function styleFlags(target) {
-  if (target.tagName === "P") {
-    if (target.classList.contains("inactive")) {
-      target.classList.remove("inactive");
-      target.classList.add("active");
-      if (target.nextElementSibling) {
-        target.nextElementSibling.classList.remove("active");
-        target.nextElementSibling.classList.add("inactive");
-      } else {
-        target.previousElementSibling.classList.remove("active");
-        target.previousElementSibling.classList.add("inactive");
-      }
-    }
-  }
-}
-
-function appendCtaMobile() {
-  const ctaBtn = ctaButton.parentElement.removeChild(ctaButton);
-  heroImgContainer.appendChild(ctaBtn);
-}
-
-function appendCtaDesktop() {
-  const ctaBtn = heroImgContainer.removeChild(ctaButton);
-  heroTextContainer.appendChild(ctaBtn);
-}
-
 export { navBar, debounce };
-
-//
-//
-// -----------------
-// $("#section-projects-design ul").slick({
-//   slide: "li"
-// });
-
-// $("#section-projects-design ul").slick({
-//   autoplay: true,
-//   autoplaySpeed: 2000,
-//   fade: true,
-//   arrows: false
-// });
-
-// Plain JS way (projects-design).
-// const list = document.querySelectorAll("#section-projects-design li");
-// // console.log(list);
-// list.forEach(l => {
-//   l.addEventListener("mouseover", expand);
-//   l.addEventListener("mouseleave", contract);
-// });
-
-// list[0].addEventListener("mouseover", () => {
-//   console.log("expandedasd");
-// });
-
-// function expand() {
-//   if (this.nextElementSibling !== null) {
-//     this.classList.remove("contracted");
-//     this.classList.add("expanded");
-//     this.lastElementChild.classList.add("show-caption");
-//     let siblings = getAllSiblings(this, this.parentElement);
-//     siblings.forEach(el => {
-//       el.classList.remove("expanded");
-//       el.classList.add("contracted");
-//     });
-//   }
-// }
-
-// function contract() {
-//   this.classList.remove("expanded");
-//   this.lastElementChild.classList.remove("show-caption");
-//   let siblings = getAllSiblings(this, this.parentElement);
-//   siblings.forEach(el => {
-//     el.classList.remove("contracted");
-//   });
-// }
-
-// function getAllSiblings(element, parent) {
-//   const children = [...parent.children];
-//   children.length = 5;
-//   return children.filter(child => child !== element);
-// }
-
-//// /////////// /////
-// changes the href of a navLink depending on whether the site is in home or in another page.
-// const anchorHome = document.querySelector(".nav-home");
-// const anchorContact = document.querySelector(".nav-contact");
-
-// console.log(anchorHome);
-// console.log(window.location.href);
-// console.log(anchorHome.href);
-
-// if (
-//   window.location.href === "https://weinspire-studio.github.io/home" ||
-//   window.location.href === "https://weinspire-studio.github.io/home/"
-// ) {
-//   anchorHome.href = "/home/#home";
-//   console.log("home");
-// }
-
-// function styleDesktopNav() {
-// let scro = siteWrapper.scrollHeight;
-// console.log("height" + scro);
-// console.log(window.innerHeight);
-// let scrolledY = siteWrapper.scrollTop;
-// console.log(scrolledY);
-// }
-
-// svg styling! used another approach, jic!
-// let x = getComputedStyle(document.documentElement);
-// let y = x.getPropertyValue("--color-1");
-
-// let asd = document.querySelector("#brand-mobile-svg");
-// console.log(asd.firstElementChild);
-
-// let sheet = document.styleSheets[0];
-// console.log(sheet);
-// let classes = sheet.rules || sheet.cssRules;
-// console.log(classes[23]);
 
 // TODO:
 // shadows
@@ -416,3 +247,9 @@ export { navBar, debounce };
 // 		transform: scaleY(1) scaleX(1);
 // 	}
 // }
+
+// styleFlags, appendCTAMobile, appendCTADEsktop
+
+// mobile: mobile.js
+
+// desktop:

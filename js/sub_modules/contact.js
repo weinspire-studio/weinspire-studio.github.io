@@ -68,8 +68,7 @@ function validateContactForm() {
             formEl.classList.add("input-error");
           }
         }
-      }
-      if (formElType === "email") {
+      } else if (formElType === "email") {
         if (formEl.value.length !== 0) visitedFlag = true;
         if (visitedFlag) {
           validEmail = validateEmail(formEl);
@@ -81,8 +80,7 @@ function validateContactForm() {
             formEl.classList.remove("input-correct");
           }
         }
-      }
-      if (formElType === "text") {
+      } else if (formElType === "text") {
         if (formEl.value.length !== 0) visitedFlag = true;
         if (visitedFlag) {
           validText = validateText(formEl);

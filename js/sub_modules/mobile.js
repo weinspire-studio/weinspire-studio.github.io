@@ -86,7 +86,7 @@ function toggleNavClasses() {
 }
 
 // styles Swiper (arrows and pagination) depending on mobile OS.
-function initSwiper(isSafari) {
+function initSwiperAnim(isSafari) {
   if (!isIos || !isSafari) {
     window.addEventListener("DOMContentLoaded", listenToArrow);
   }
@@ -144,13 +144,13 @@ function restoreMobileBrand() {
 // inits mobile brand svg colors.
 function setMobileBrand() {
   brandMobile.classList.add("brand-negative");
-  if (brandMobile.style.display === "none") {
-    brandMobile.style.display = "initial";
-  }
 }
-// inits mobile brand svg colors.
-function unsetMobileBrand() {
-  brandMobile.style.display = "none";
+
+function appendCtaMobile() {
+  const heroImgContainer = document.querySelector(".hero.hero-img");
+  const ctaButton = document.getElementById("hero-cta");
+  const ctaBtn = ctaButton.parentElement.removeChild(ctaButton);
+  heroImgContainer.appendChild(ctaBtn);
 }
 
 export {
@@ -162,9 +162,9 @@ export {
   styleMobileNav,
   toggleNavClasses,
   appendInfoSocial,
-  initSwiper,
+  initSwiperAnim,
   styleMobileBrand,
   restoreMobileBrand,
   setMobileBrand,
-  unsetMobileBrand,
+  appendCtaMobile,
 };

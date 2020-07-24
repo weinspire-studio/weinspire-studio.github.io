@@ -11,8 +11,6 @@ const targets = [
   "marketing.svg",
 ];
 
-let i = 0;
-
 const controller = new ScrollMagic.Controller();
 const tl = gsap.timeline();
 const tl2 = gsap.timeline();

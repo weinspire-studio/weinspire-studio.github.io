@@ -14,6 +14,39 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-TVSZ2SC");
     </script>
+    <script type="text/javascript">
+      // var isMobile = true;
+      // var supportsMM = true;
+      // var matchesMedia = window.matchMedia || window.msMatchMedia;
+      // if (matchesMedia) {
+      //   var mobile = matchesMedia("screen and (max-width: 800px)");
+      //   if (!mobile.matches) {
+      //     isMobile = false;
+      //   }
+      // } else supportsMM = false;
+
+      // if (window.addEventListener)
+      //   window.addEventListener("load", requestDeferredJS, false);
+      // else if (window.attachEvent)
+      //   window.attachEvent("onload", requestDeferredJS);
+      // else window.onload = requestDeferredJS;
+
+      // function requestDeferredJS() {
+      //   var element = document.createElement("script");
+      //   if (supportsMM) {
+      //     if (isMobile) {
+      //       element.src = "./js/defer-mobile.js";
+      //     } else element.src = "./js/defer-desktop.js";
+      //     document.body.appendChild(element);
+      //   } else {
+      //     var element2 = document.createElement("script");
+      //     element.src = "./js/defer-mobile.js";
+      //     element2.src = "./js/defer-desktop.js";
+      //     document.body.appendChild(element);
+      //     document.body.appendChild(element2);
+      //   }
+      // }
+    </script>
     <!-- End Google Tag Manager -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta charset="UTF-8" />
@@ -761,7 +794,9 @@
     <!-- <script src="dist/objectFitPolyfill.basic.min.js"></script> -->
 
     <!-- main.js -->
-    <script type="module" src="./dist/js/all.min.js"></script>
-    <script defer nomodule src="./dist/js/all.min.js"></script>
+    <!-- <script type="module" src="./dist/js/all.min.js"></script>
+    <script defer nomodule src="./dist/js/all.min.js"></script> -->
+    <script type="module" src="./js/common.js"></script>
+    <script defer nomodule src="./js/common.js"></script>
   </body>
 </html>

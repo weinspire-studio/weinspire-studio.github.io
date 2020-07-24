@@ -36,6 +36,17 @@ function prepareDesktopNav() {
   styleAnchorOnHover();
 }
 
+function prepareForMobile(isSafari) {
+  closeModal();
+  destroyModal();
+  if (isSafari) removeImagesListeners();
+}
+
+function prepareForDesktop() {
+  appendCtaDesktop();
+  restoreDesktopNav();
+}
+
 // removes flags container from ul and appends it to section-navbar
 function styleDesktopNav() {
   const langLink = navList.lastElementChild;
@@ -311,25 +322,27 @@ function restoreDesktopBrand() {
 // inits mobile brand svg colors.
 function setDesktopBrand() {
   brandDesktop.classList.add("brand-negative");
-  if (brandDesktop.style.display === "none") {
-    brandDesktop.style.display = "initial";
-  }
 }
-// inits mobile brand svg colors.
-function unsetDesktopBrand() {
-  brandDesktop.style.display = "none";
+
+function appendCtaDesktop() {
+  const heroTextContainer = document.querySelector(".hero.hero-text");
+  const ctaButton = document.getElementById("hero-cta");
+  const ctaBtn = ctaButton.parentElement.removeChild(ctaButton);
+  heroTextContainer.appendChild(ctaBtn);
 }
 
 export {
-  restoreDesktopNav,
+  // restoreDesktopNav,
+  // setDesktopBrand,
+  // appendCtaDesktop,
+  // removeImagesListeners,
+  // destroyModal,
+  // closeModal,
   prepareDesktopNav,
   styleDesktopBrand,
   restoreDesktopBrand,
-  setDesktopBrand,
-  unsetDesktopBrand,
   animateImagesSafari,
-  removeImagesListeners,
   initModal,
-  destroyModal,
-  closeModal,
+  prepareForMobile,
+  prepareForDesktop,
 };
