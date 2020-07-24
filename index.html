@@ -14,39 +14,6 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "GTM-TVSZ2SC");
     </script>
-    <script type="text/javascript">
-      // var isMobile = true;
-      // var supportsMM = true;
-      // var matchesMedia = window.matchMedia || window.msMatchMedia;
-      // if (matchesMedia) {
-      //   var mobile = matchesMedia("screen and (max-width: 800px)");
-      //   if (!mobile.matches) {
-      //     isMobile = false;
-      //   }
-      // } else supportsMM = false;
-
-      // if (window.addEventListener)
-      //   window.addEventListener("load", requestDeferredJS, false);
-      // else if (window.attachEvent)
-      //   window.attachEvent("onload", requestDeferredJS);
-      // else window.onload = requestDeferredJS;
-
-      // function requestDeferredJS() {
-      //   var element = document.createElement("script");
-      //   if (supportsMM) {
-      //     if (isMobile) {
-      //       element.src = "./js/defer-mobile.js";
-      //     } else element.src = "./js/defer-desktop.js";
-      //     document.body.appendChild(element);
-      //   } else {
-      //     var element2 = document.createElement("script");
-      //     element.src = "./js/defer-mobile.js";
-      //     element2.src = "./js/defer-desktop.js";
-      //     document.body.appendChild(element);
-      //     document.body.appendChild(element2);
-      //   }
-      // }
-    </script>
     <!-- End Google Tag Manager -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
@@ -61,9 +28,9 @@
     <link rel="preload" href="./dist/css/main.min.css?v={1/c}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="./dist/css/main.min.css?v={1/c}"></noscript>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2" as="font" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_bZF3gnD_vx3rCs.woff2" as="font" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2" as="font" crossorigin>
+    <link rel="preload" href="./assets/fonts/montserrat-v14-latin-regular.woff2" as="font" crossorigin>
+    <link rel="preload" href="./assets/fonts/montserrat-v14-latin-600.woff2" as="font" crossorigin>
+    <link rel="preload" href="./assets/fonts/lato-v16-latin-regular.woff2" as="font" crossorigin>
     <style>
       @font-face {
         font-family: "Montserrat";
@@ -71,11 +38,11 @@
         font-weight: 400;
         font-display: swap;
         src: local("Montserrat Regular"), local("Montserrat-Regular"),
-          url("https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2")
+          /* url("https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2") */
+            /* format("woff2"), */
+            url("./assets/fonts/montserrat-v14-latin-regular.woff2")
             format("woff2"),
-          /* url("./assets/fonts/montserrat-v14-latin-regular.woff2") */
-            url("./assets/fonts/montserrat-v14-latin-regular.woff")
-            format("woff"),
+          url("./assets/fonts/montserrat-v14-latin-regular.woff") format("woff"),
           url("./assets/fonts/montserrat-v14-latin-regular.ttf")
             format("truetype");
       }
@@ -85,10 +52,10 @@
         font-weight: 600;
         font-display: swap;
         src: local("Montserrat SemiBold"), local("Montserrat-SemiBold"),
-          url("https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_bZF3gnD_vx3rCs.woff2")
-            format("woff2"),
-          /* url("./assets/fonts/montserrat-v14-latin-600.woff2") format("woff2"), */
-            url("./assets/fonts/montserrat-v14-latin-600.woff") format("woff"),
+          /* url("https://fonts.gstatic.com/s/montserrat/v14/JTURjIg1_i6t8kCHKm45_bZF3gnD_vx3rCs.woff2") */
+            /* format("woff2"), */
+            url("./assets/fonts/montserrat-v14-latin-600.woff2") format("woff2"),
+          url("./assets/fonts/montserrat-v14-latin-600.woff") format("woff"),
           url("./assets/fonts/montserrat-v14-latin-600.ttf") format("truetype");
       }
       @font-face {
@@ -97,10 +64,10 @@
         font-weight: 400;
         font-display: swap;
         src: local("Lato Regular"), local("Lato-Regular"),
-          url("https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2")
-            format("woff2"),
-          /* url("./assets/fonts/lato-v16-latin-regular.woff2") format("woff2"), */
-            url("./assets/fonts/lato-v16-latin-regular.woff") format("woff"),
+          /* url("https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2")
+            format("woff2"), */
+            url("./assets/fonts/lato-v16-latin-regular.woff2") format("woff2"),
+          url("./assets/fonts/lato-v16-latin-regular.woff") format("woff"),
           url("./assets/fonts/lato-v16-latin-regular.ttf") format("truetype");
       }
     </style>
@@ -110,17 +77,25 @@
     <!-- <meta property="og:image" content="https://gardenestudio.com.br/garden-estudio.jpg"/> -->
     <meta property="og:site_name" content="We Inspire Studio">
     <!-- icons -->
-    <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicon144square.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./assets/favicon114mdn.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicon72.png">
-    <link rel="apple-touch-icon" href="./assets/favicon57.png">
+    <!-- <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="./assets/favicon144square.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="./assets/favicon114mdn.png"
+    /> -->
     <link rel="icon" type="image/png" href="./assets/favicon32.png">
+    <link rel="apple-touch-icon" href="./assets/favicon72.png">
+    <link rel="apple-touch-icon" href="./assets/favicon57.png">
+    <link rel="apple-touch-icon" href="./assets/favicon114.png">
+    <link rel="apple-touch-icon" href="./assets/favicon144.png">
 
-    <!-- <link rel="apple-touch-icon" href="./assets/favicon-32.png" />
-    <link rel="apple-touch-icon" href="./assets/favicon-57.png" />
-    <link rel="apple-touch-icon" href="./assets/favicon-72.png" />
-    <link rel="apple-touch-icon" href="./assets/favicon-114.png" />
-    <link rel="apple-touch-icon" href="./assets/favicon-144.png" /> -->
+    <!-- <link rel="apple-touch-icon" href="./assets/favicon-32.png" /> -->
+    <!-- <link rel="apple-touch-icon" href="./assets/favicon-57.png" /> -->
+    <!-- <link rel="apple-touch-icon" href="./assets/favicon-72.png" /> -->
     <link rel="apple-touch-icon" href="./assets/favicon-152.png">
     <link rel="apple-touch-icon" href="./assets/favicon-180.png">
     <!-- language links -->
@@ -668,9 +643,9 @@
     <!-- <script src="dist/objectFitPolyfill.basic.min.js"></script> -->
 
     <!-- main.js -->
-    <!-- <script type="module" src="./dist/js/all.min.js"></script>
-    <script defer nomodule src="./dist/js/all.min.js"></script> -->
-    <script type="module" src="./js/common.js"></script>
-    <script defer nomodule src="./js/common.js"></script>
+    <script type="module" src="./dist/js/all.min.js"></script>
+    <script defer nomodule src="./dist/js/all.min.js"></script>
+    <!-- <script type="module" src="./js/common.js"></script>
+    <script defer nomodule src="./js/common.js"></script> -->
   </body>
 </html>
