@@ -16,7 +16,7 @@ module.exports = function (grunt) {
           "./js/sub_modules/classList.js",
         ],
       },
-      build: ["gruntfile.js", "./js/sub_modules/*.js"],
+      build: ["gruntfile.js", "package.json", "./js/sub_modules/*.js"],
     },
     // Looks for html errors.
     htmlhint: {
@@ -24,10 +24,10 @@ module.exports = function (grunt) {
         options: {
           "tag-pair": true,
           "attr-lowercase": ["viewBox", "gradientUnits"],
-          "attr-value-double-quotes": true,
           "doctype-first": true,
-          "spec-char-escape": true,
           "id-unique": true,
+          "attr-value-double-quotes": false,
+          "spec-char-escape": false,
         },
         src: ["./html/index-dev.html"],
       },
@@ -95,39 +95,209 @@ module.exports = function (grunt) {
     },
     // js bundler
     browserify: {
-      development: {
-        src: ["./js/main.js"],
-        dest: "./js/common.js",
+      mobInit: {
+        src: ["./js/sub_modules/mobile-init.js"],
+        dest: "./dist/js/empty/empty-mi.js",
         options: {
-          // browserifyOptions: { debug: true },
+          exclude: ["./js/sub_modules/jquery.js"],
+          transform: [
+            [
+              "babelify",
+              {
+                presets: ["@babel/preset-env"],
+              },
+            ],
+          ],
+          plugin: [
+            [
+              "factor-bundle",
+              {
+                outputs: ["./dist/js/mobile-init.js"],
+              },
+            ],
+          ],
+        },
+      },
+      mobDefer: {
+        src: ["./js/sub_modules/mobile-defer.js", "./js/sub_modules/swiper.js"],
+        dest: "./dist/js/mobile-defer.js",
+        options: {
+          // ignore: ["lodash/debounce"],
+          require: ["./js/sub_modules/swiper.js"],
           transform: [
             [
               "babelify",
               {
                 presets: ["@babel/preset-env"],
                 global: true,
-                only: [
-                  /^(?:.*\/node_custom_modules\/(?:swiper)\/|(?!.*\/node_custom_modules\/)).*$/,
-                ],
               },
             ],
             ["browserify-css", { global: true }],
           ],
-          // watch: true,
-          // keepAlive: true
+        },
+      },
+      deskInit: {
+        src: ["./js/sub_modules/desktop-init.js"],
+        dest: "./dist/js/empty/empty-di.js",
+        options: {
+          exclude: [
+            "lodash/debounce",
+            "./js/sub_modules/http.js",
+            "./js/sub_modules/animation.js",
+          ],
+          transform: [
+            [
+              "babelify",
+              {
+                presets: ["@babel/preset-env"],
+              },
+            ],
+          ],
+          plugin: [
+            [
+              "factor-bundle",
+              {
+                outputs: ["./dist/js/desktop-init.js"],
+              },
+            ],
+          ],
+        },
+      },
+      deskDefer: {
+        src: ["./js/sub_modules/desktop-defer.js"],
+        dest: "./dist/js/empty/empty-dd.js",
+        options: {
+          transform: [
+            [
+              "babelify",
+              {
+                presets: ["@babel/preset-env"],
+              },
+            ],
+          ],
+          plugin: [
+            [
+              "factor-bundle",
+              {
+                outputs: ["./dist/js/desktop-defer.js"],
+              },
+            ],
+          ],
+        },
+      },
+      commonDefer: {
+        src: [
+          "./js/sub_modules/common-defer.js",
+          "./js/sub_modules/contact.js",
+        ],
+        dest: "./dist/js/common-defer.js",
+        options: {
+          require: ["./js/sub_modules/contact.js"],
+          transform: [
+            [
+              "babelify",
+              {
+                presets: ["@babel/preset-env"],
+                global: true,
+              },
+            ],
+          ],
+        },
+      },
+      main: {
+        src: [
+          "./js/main.js",
+          "./js/sub_modules/desktop-init.js",
+          "./js/sub_modules/desktop-defer.js",
+          "./js/sub_modules/mobile-init.js",
+          "./js/sub_modules/mobile-defer.js",
+          "./js/sub_modules/typewriter.js",
+          "./js/sub_modules/preloader.js",
+          "./js/sub_modules/animation.js",
+          "./js/sub_modules/jquery.js",
+          "./js/sub_modules/svg4everybody.js",
+          "./js/sub_modules/classlist.js",
+          "./js/sub_modules/http.js",
+          "loadash/debounce",
+          // "core-js/modules/es.promise",
+          // "core-js/modules/es.array.iterator",
+          // "intersection-observer",
+        ],
+        dest: "./dist/js/common.js",
+        options: {
+          ignore: [
+            "./js/sub_modules/desktop-defer.js",
+            "./js/sub_modules/desktop-init.js",
+            "./js/sub_modules/mobile-init.js",
+            "./js/sub_modules/mobile-defer.js",
+            "./js/sub_modules/common-defer.js",
+            "./js/sub_modules/swiper.js",
+          ],
+          require: [
+            // "core-js/modules/es.promise",
+            // "core-js/modules/es.array.iterator",
+          ],
+          // external: ["intersection-observer"],
+          transform: [
+            [
+              "babelify",
+              {
+                presets: ["@babel/preset-env"],
+              },
+            ],
+          ],
+          plugin: [
+            [
+              "factor-bundle",
+              {
+                outputs: ["./dist/js/main.js"],
+              },
+            ],
+          ],
         },
       },
     },
     // js minifier
     uglify: {
-      all_src: {
-        options: {
-          sourceMap: true,
-          sourceMapName: "./dist/js/sourceMap.map",
+      options: {
+        sourceMap: true,
+        sourceMapName: "./dist/js/sourceMap.map",
+        output: {
+          comments: "some",
         },
-        src: "./js/common.js",
-        dest: "./dist/js/all.min.js",
-        // src: "./js/*-es5.js",
+      },
+      // all: {
+      //   src: "./js/common.js",
+      //   dest: "./dist/js/all.min.js",
+      //   // src: "./js/*-es5.js",
+      // },
+      mobInit: {
+        src: "./dist/js/mobile-init.js",
+        dest: "./dist/js/min/mobile-init.min.js",
+      },
+      mobDefer: {
+        src: "./dist/js/mobile-defer.js",
+        dest: "./dist/js/min/mobile-defer.min.js",
+      },
+      deskInit: {
+        src: "./dist/js/desktop-init.js",
+        dest: "./dist/js/min/desktop-init.min.js",
+      },
+      deskDefer: {
+        src: "./dist/js/desktop-defer.js",
+        dest: "./dist/js/min/desktop-defer.min.js",
+      },
+      commonDefer: {
+        src: "./dist/js/common-defer.js",
+        dest: "./dist/js/min/common-defer.min.js",
+      },
+      common: {
+        src: "./dist/js/common.js",
+        dest: "./dist/js/min/common.min.js",
+      },
+      main: {
+        src: "./dist/js/main.js",
+        dest: "./dist/js/min/main.min.js",
       },
     },
     // svg optimizer and minifier
@@ -211,6 +381,29 @@ module.exports = function (grunt) {
         },
       },
     },
+    responsive_images: {
+      default: {
+        options: {
+          sizes: [
+            {
+              name: "small",
+              width: 400,
+            },
+            {
+              name: "medium",
+              width: 800,
+            },
+            {
+              name: "large",
+              width: 1080,
+            },
+          ],
+        },
+        files: {
+          "./assets/hero-img.png": "./assets/hero-img.png",
+        },
+      },
+    },
     // Compile everything into one task with Watch Plugin
     watch: {
       scss: {
@@ -222,8 +415,22 @@ module.exports = function (grunt) {
         tasks: ["autoprefixer", "cssmin", "critical"],
       },
       js: {
-        files: ["./js/main.js", "./js/sub_modules/*.js", "./gruntfile.js"],
-        tasks: ["jshint", "browserify", "uglify"],
+        files: [
+          "./js/main.js",
+          "./js/sub_modules/*.js",
+          "./gruntfile.js",
+          "./dist/js/*.js",
+        ],
+        tasks: [
+          "jshint",
+          // "browserify:mobInit",
+          // "browserify:mobDefer",
+          // "browserify:deskInit",
+          // "browserify:deskDefer",
+          // "browserify:commonDefer",
+          // "browserify:main",
+          "uglify",
+        ],
       },
       html: {
         files: "./html/index-dev.html",
@@ -250,11 +457,14 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks("grunt-svg-sprite");
   grunt.loadNpmTasks("grunt-svgmin");
+  grunt.loadNpmTasks("grunt-responsive-images");
 
   // Register Grunt tasks
   grunt.registerTask("default", ["watch"]);
   grunt.registerTask("svg-tasks", ["svgmin", "svg_sprite"]);
+  grunt.registerTask("responsive-images", ["responsive_images"]);
 
   // prettier-ignore
   grunt.registerTask("build", ["clean", "sass", "autoprefixer", "cssmin", "critical", "htmlhint", "jshint", "browserify", "uglify"]);
 };
+// commonDefer: 30, deskInit: 11, deskDefer:10, mobInit: 13, mobDefer: 12, debounce: 16, jquery: 5// http: 3, animation: 2.

@@ -848,14 +848,16 @@ button#hero-cta:focus, button#contact-form-button:focus {
   }
 }
 .hero.hero-img img {
-  margin-top: 3em;
-  margin-right: -3em;
-  height: 300px;
   display: block;
+  height: 300px;
+  height: auto;
+  max-width: 100%;
+  margin-left: 5%;
 }
 @media screen and (min-width: 801px) {
   .hero.hero-img img {
-    height: 700px;
+    margin-top: 3em;
+    margin-left: 0;
   }
 }
 
@@ -1114,7 +1116,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
   background-repeat: no-repeat;
   background-position: left top;
   margin-top: 2em;
-  background-size: 60px;
+  background-size: contain;
 }
 @media screen and (min-width: 479px) {
   #section-about {
@@ -1138,7 +1140,6 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 @media screen and (min-width: 801px) {
   #section-about {
-    background-size: 130px;
     height: 750px;
     background-position: left;
   }
@@ -1146,7 +1147,6 @@ button#hero-cta:focus, button#contact-form-button:focus {
 @media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
   #section-about {
     height: 575px;
-    background-size: 100px;
   }
 }
 #section-about .section-title {
@@ -1189,7 +1189,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
 }
 @media screen and (min-width: 801px) {
   #section-services {
-    margin-top: -200px;
+    margin-top: -265px;
   }
 }
 @media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
@@ -1372,6 +1372,10 @@ button#hero-cta:focus, button#contact-form-button:focus {
 #design {
   width: 20em;
   max-width: 400px;
+}
+
+.section-title {
+  padding-top: 5em;
 }
 
 .service-title {
@@ -1584,6 +1588,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
   height: 380px;
   z-index: 0 !important;
   padding-top: 80px !important;
+  overflow: visible !important;
   margin: 0 auto;
 }
 @media screen and (min-width: 351px) {
@@ -1600,6 +1605,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
   .swiper-container {
     width: 99%;
     height: 540px;
+    overflow: hidden;
   }
 }
 @media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
@@ -1614,6 +1620,11 @@ button#hero-cta:focus, button#contact-form-button:focus {
 @media screen and (min-width: 479px) and (max-width: 801px) and (orientation: portrait) {
   .swiper-pagination {
     bottom: -5em !important;
+  }
+}
+@media screen and (min-width: 801px) {
+  .swiper-pagination {
+    display: none;
   }
 }
 
@@ -2280,7 +2291,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
   font-size: 0.6em;
 }
 
-.form-fields .input-label:after {
+.form-fields .input-label::after {
   content: "";
   position: absolute;
   bottom: -1px;
@@ -2292,14 +2303,14 @@ button#hero-cta:focus, button#contact-form-button:focus {
   transition: transform 0.5s ease, border-bottom 1s ease-out;
 }
 
-.input-error + .input-label:after {
+.input-error + .input-label::after {
   bottom: -1px;
   transform: translateX(0);
   transition-delay: 0.5s;
   border-bottom-color: #ee6d6d;
 }
 
-.input-error-email + .input-label:after {
+.input-error-email + .input-label::after {
   transition-delay: 12.5s;
 }
 
@@ -2309,7 +2320,7 @@ button#hero-cta:focus, button#contact-form-button:focus {
   color: #00416B;
 }
 
-.input-correct + .input-label:after {
+.input-correct + .input-label::after {
   bottom: -1px;
   transform: translateX(0);
   border-bottom-color: #0ae5ce;
@@ -2347,10 +2358,10 @@ button#hero-cta:focus, button#contact-form-button:focus {
   color: #00416B;
 }
 
-.form-fields input:focus + .input-label:after,
-.form-fields input:valid + .input-label:after,
-.form-fields textarea:focus + .input-label:after,
-.form-fields textarea:valid + .input-label:after {
+.form-fields input:focus + .input-label::after,
+.form-fields input:valid + .input-label::after,
+.form-fields textarea:focus + .input-label::after,
+.form-fields textarea:valid + .input-label::after {
   transform: translateX(0);
 }
 

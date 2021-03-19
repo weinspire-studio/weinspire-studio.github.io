@@ -290,7 +290,7 @@
   font-size: .6em;
 }
 
-.form-fields .input-label:after {
+.form-fields .input-label::after {
   content: "";
   position: absolute;
   bottom: -1px;
@@ -302,14 +302,14 @@
   transition: transform .5s ease, border-bottom 1s ease-out;
 }
 
-.input-error + .input-label:after {
+.input-error + .input-label::after {
   bottom: -1px;
   transform: translateX(0);
   transition-delay: .5s;
   border-bottom-color: $error;
 }
 
-.input-error-email + .input-label:after {
+.input-error-email + .input-label::after {
   transition-delay: 12.5s;
 }
 
@@ -319,7 +319,7 @@
   color: $selected;
 }
 
-.input-correct + .input-label:after {
+.input-correct + .input-label::after {
   bottom: -1px;
   transform: translateX(0);
   border-bottom-color: $success;
@@ -356,10 +356,10 @@
   color: $selected;
 }
 
-.form-fields input:focus + .input-label:after,
-.form-fields input:valid + .input-label:after,
-.form-fields textarea:focus + .input-label:after,
-.form-fields textarea:valid + .input-label:after {
+.form-fields input:focus + .input-label::after,
+.form-fields input:valid + .input-label::after,
+.form-fields textarea:focus + .input-label::after,
+.form-fields textarea:valid + .input-label::after {
   transform: translateX(0);
 }
   

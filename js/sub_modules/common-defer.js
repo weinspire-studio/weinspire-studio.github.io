@@ -1,12 +1,9 @@
 // jshint esversion: 6
 
 import * as contactModule from "../sub_modules/contact";
-
-let flagsHandler;
-
-function testFunction() {
-  console.log("common defer");
-}
+import { getUserUbication } from "../sub_modules/location";
+import "../../node_modules/objectFitPolyfill/dist/objectFitPolyfill.basic.min.js";
+import LazyLoad from "vanilla-lazyload";
 
 function commonDeferInit(isSafari, isIE) {
   contactModule.initContactForms(isSafari, isIE);
@@ -15,6 +12,7 @@ function commonDeferInit(isSafari, isIE) {
 
 function listenToFlags() {
   const flagsContainer = document.getElementById("lang");
+  let flagsHandler;
   flagsContainer.addEventListener(
     "click",
     (flagsHandler = (e) => {
@@ -39,4 +37,11 @@ function styleFlags(target) {
   }
 }
 
-export { testFunction, commonDeferInit };
+getUserUbication();
+objectFitPolyfill();
+const lazyContent = new LazyLoad({
+  elements_selector: ".lazy",
+  unobserve_entered: true,
+});
+
+export { commonDeferInit };

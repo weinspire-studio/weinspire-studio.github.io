@@ -10,15 +10,16 @@
     background-repeat: no-repeat;
     background-position: left top;
     margin-top: 2em;
-    background-size: 60px;
+    background-size: contain;
+    // background-size: 60px;
     @include media-query ($md) {
-        background-size: 130px;
+        // background-size: 130px;
         height: 750px;
         background-position: left;
     }
     @include o-media-query ($sm, $md, portrait) {
         height: 575px;
-        background-size: 100px;
+        // background-size: 100px;
     }
     .section-title {
         margin-top: -120px;

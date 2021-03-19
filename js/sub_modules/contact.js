@@ -26,7 +26,6 @@ function initContactForms(isSafari, isIE = false) {
   if (isSafari) {
     prepareFormsSafari();
     prepareMetaSafari();
-    console.log("tu vieja");
   }
   if (isIE) {
     formButton.style.marginTop = "2em";

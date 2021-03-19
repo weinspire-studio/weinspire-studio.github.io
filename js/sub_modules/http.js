@@ -1,12 +1,5 @@
 // jshint esversion: 6
 
-import "../../node_modules/objectFitPolyfill/dist/objectFitPolyfill.basic.min.js";
-import "intersection-observer";
-import LazyLoad from "vanilla-lazyload";
-
-// https://raw.githubusercontent.com/weinspire-studio/weinspire-studio.github.com/master
-const baseUrl = "/assets/";
-
 function makeRequest(url, section, callback = null) {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
@@ -20,10 +13,6 @@ function makeRequest(url, section, callback = null) {
   xhr.open("GET", url);
   xhr.send();
 }
-
-var lazyLoadInstance = new LazyLoad({
-  elements_selector: ".swiper-wrapper img.lazy",
-});
 
 function loadHDImages(clickedImage, modalImage, modalCaption) {
   const images = document.querySelectorAll(".swiper-wrapper img");
@@ -56,8 +45,6 @@ function loadHDImages(clickedImage, modalImage, modalCaption) {
 }
 
 // lazyLoadInstance.update();
-
-objectFitPolyfill();
 
 // function makeRequest2(url, section, callback = null) {
 //   let xhr = new XMLHttpRequest();

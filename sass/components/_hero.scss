@@ -86,22 +86,16 @@
         justify-self: center;
     }
     img {
-        margin-top: 3em;
-        margin-right: -3em;
-        height: 300px;
         display: block;
+        height: 300px;
+        height: auto;
+        max-width: 100%;
+        margin-left: 5%;
         @include media-query ($md) {
-            height: 700px;
-
+            margin-top: 3em;
+            margin-left: 0;
         }
     }
-    // .icon-facebook {
-    //     height: 200px;
-    //     width: 200px;
-    //     fill: pink;
-    //     display: block;
-    //     margin: 0 auto;
-    // }
 }
 
 #span-we {

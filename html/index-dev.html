@@ -45,6 +45,13 @@
       as="font"
       crossorigin
     />
+    <link
+      rel="preload"
+      as="image"
+      href="./assets/hero-img.png"
+      imagesrcset="./assets/hero-img-small.png 400w, ./assets/hero-img-medium.png 800w, ./assets/hero-img-large.png 1080w"
+      imagesizes="100vw"
+    />
     <style>
       @font-face {
         font-family: "Montserrat";
@@ -133,7 +140,7 @@
     />
     <meta
       name="description"
-      content="Somos We Inspire, un estudio de disenio grafico y desarrollo web, enfocado en brindar un servicio integral de construccion de identidad digital"
+      content="We Inspire, a graphic design and web development studio, focused on providing a comprehensive service for building your digital identity and taking your business to the next level."
     />
     <!-- <meta name="description" content="Somos a Garden, um estúdio reconhecido internacionalmente focado na criação de experiências digitais. Usamos todo o nosso conhecimento para ajudar // hasta aca // nossos clientes a construírem suas marcas através da interatividade."> -->
   </head>
@@ -144,7 +151,7 @@
         src="https://www.googletagmanager.com/ns.html?id=GTM-TVSZ2SC"
         height="0"
         width="0"
-        style="display: none; visibility: hidden;"
+        style="display: none; visibility: hidden"
       ></iframe
     ></noscript>
     <!-- [if lt IE 9]>
@@ -267,13 +274,21 @@
             a succesful reality.
           </h2>
           <button id="hero-cta">
-            <p>
-              Request Estimate
-            </p>
+            <p>Request Estimate</p>
           </button>
         </div>
         <div class="hero hero-img">
-          <img src="./assets/hero-img.png" alt="" />
+          <!-- <img src="./assets/hero-img.png" alt="" /> -->
+          <img
+            src="./assets/hero-img.png"
+            srcset="
+              ./assets/hero-img-small.png   400w,
+              ./assets/hero-img-medium.png  800w,
+              ./assets/hero-img-large.png  1080w
+            "
+            sizes="100vw"
+            alt="Landing page with custom fluid design"
+          />
         </div>
         <a
           target="_blank"
@@ -300,9 +315,7 @@
       </main>
       <!-- about -->
       <section id="section-about">
-        <h1 class="section-title">
-          Who We Are
-        </h1>
+        <h1 class="section-title">Who We Are</h1>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia
           voluptas eligendi distinctio impedit quis explicabo, velit maiores
@@ -375,21 +388,21 @@
         <div class="swiper-container">
           <ul class="swiper-wrapper">
             <li class="content-link swiper-slide" tabindex="0">
-              <img class="lazy" data-object-fit="cover" data-src="/assets/design-grafitti-min.jpg" src="" alt="">
+              <img class="lazy" data-object-fit="cover" data-src="/assets/design-brochure-min.jpg" src="" alt="">
               <div class="link-overlay" id="overlay-1"></div>
               <div class="link-caption" id="caption-1">
                 <h4>Flyer</h4>
                 <h6>Street Festival</h6>
               </div>
             </li><li class="content-link swiper-slide" tabindex="0">
-              <img class="lazy" data-object-fit data-src="/assets/design-menu-min.jpg" src="" alt="">
+              <img class="lazy" data-object-fit data-src="/assets/design-grafitti-min.jpg" src="" alt="">
               <div class="link-overlay" id="overlay-2"></div>
               <div class="link-caption" id="caption-2">
                 <h4>Graphic Identity + menu</h4>
                 <h6>Hamburguesas de la silla</h6>
               </div>
             </li><li class="content-link swiper-slide" tabindex="0">
-              <img class="lazy" data-object-fit data-src="/assets/design-brochure-min.jpg" src="" alt="">
+              <img class="lazy" data-object-fit data-src="/assets/design-menu-min.jpg" src="" alt="">
               <div class="link-overlay" id="overlay-3"></div>
               <div class="link-caption" id="caption-3">
                 <h4>Identity + brochure</h4>
@@ -488,9 +501,7 @@
                   id="contact-form-button"
                   class="button-inactive"
                 >
-                  <p>
-                    Send
-                  </p>
+                  <p>Send</p>
                 </button>
               </div>
               <div id="field-status">
@@ -505,9 +516,7 @@
                         data-href="../assets/sprites/svg-sprite.svg#email"
                       ></use>
                     </svg>
-                    <p class="info-data">
-                      weInspire.studio@gmail.com
-                    </p>
+                    <p class="info-data">weInspire.studio@gmail.com</p>
                   </a>
                 </div>
                 <div class="info-container">
@@ -555,9 +564,7 @@
             </svg>
           </div>
           <div id="footer-design">
-            <h3 class="footer-title">
-              Design
-            </h3>
+            <h3 class="footer-title">Design</h3>
             <p>Flyers</p>
             <p>Branding</p>
             <p>Brochures</p>
@@ -569,9 +576,7 @@
             <p>Banners</p>
           </div>
           <div id="footer-dev">
-            <h3 class="footer-title">
-              Software
-            </h3>
+            <h3 class="footer-title">Software</h3>
             <p>Web Development</p>
             <p>Custom Websites</p>
             <p>E-commerce Sites</p>
@@ -586,9 +591,7 @@
             <!-- UX / UI design -->
           </div>
           <div id="footer-site">
-            <h3 class="footer-title">
-              Navigation
-            </h3>
+            <h3 class="footer-title">Navigation</h3>
             <p>Projects</p>
             <p>Services</p>
             <p>About</p>
@@ -642,12 +645,8 @@
             </a>
           </div>
           <div id="footer-newsletter">
-            <h3 class="footer-title">
-              Monthly Newsletter
-            </h3>
-            <h4>
-              Keep updated with our latest projects!
-            </h4>
+            <h3 class="footer-title">Monthly Newsletter</h3>
+            <h4>Keep updated with our latest projects!</h4>
             <div class="newsletter-container">
               <form
                 novalidate
@@ -713,19 +712,29 @@
                 Uruguay
                 <div class="arrow-down"></div>
               </div>
-              <img src="./assets/footer-map.png" alt="" />
+              <!-- prettier-ignore -->
+              <picture>
+                <source media="(max-width: 800px)" data-sizes="1px" data-srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w">
+                <source media="(min-width: 801px)" data-sizes="492px" data-srcset="./assets/footer-map.png 492w">
+                <img class="lazy" data-src="./assets/footer-map.png" alt="Footer map with offices locations">
+              </picture>
+              <!-- <img
+                class="lazy"
+                src="./assets/footer-map.png"
+                srcset="
+                  ./assets/footer-map-small.png   400w,
+                  ./assets/footer-map-medium.png  800w,
+                  ./assets/footer-map-large.png  1080w
+                "
+                sizes="100w"
+                alt="Footer map with offices locations"
+              /> -->
             </div>
           </div>
           <div id="footer-info">
-            <h5>
-              Privacy Policy | Sitemap
-            </h5>
-            <h5 class="info-separator">
-              |
-            </h5>
-            <h6>
-              © weInspire Studio 2020. All rights reserved.
-            </h6>
+            <h5>Privacy Policy | Sitemap</h5>
+            <h5 class="info-separator">|</h5>
+            <h6>© weInspire Studio 2020. All rights reserved.</h6>
           </div>
         </div>
       </footer>
@@ -755,12 +764,7 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"
     ></script> -->
 
-    <!-- <script src="dist/objectFitPolyfill.basic.min.js"></script> -->
-
-    <!-- main.js -->
-    <script type="module" src="./dist/js/all.min.js"></script>
-    <script defer nomodule src="./dist/js/all.min.js"></script>
-    <!-- <script type="module" src="./js/common.js"></script>
-    <script defer nomodule src="./js/common.js"></script> -->
+    <script defer src="./dist/js/common.js"></script>
+    <script defer src="./dist/js/main.js"></script>
   </body>
 </html>

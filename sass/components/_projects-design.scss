@@ -181,6 +181,7 @@
     height: 380px;
     z-index: 0!important;
     padding-top: 80px!important;
+    overflow: visible!important;
     margin: 0 auto;
     @include media-query($xs) {
         height: 430px;
@@ -191,6 +192,7 @@
     @include media-query ($md) {
         width: 99%;
         height: 540px;
+        overflow: hidden;
     }
     @include o-media-query ($sm, $md, portrait) {
         height: 630px;
@@ -201,6 +203,9 @@
     bottom: -2.25em!important;
     @include o-media-query ($sm, $md, portrait) {
         bottom: -5em!important;
+    }
+    @include media-query ($md) {
+        display: none;
     }
 }
 

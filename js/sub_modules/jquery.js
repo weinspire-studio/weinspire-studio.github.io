@@ -5,10 +5,54 @@ let isExpanded = false;
 
 // jQuery for animated scroll
 function smoothScroll() {
+  arrowScroll();
+  linksScroll();
+}
+
+function arrowScroll() {
   $(".arrow-up").on("click", function () {
     $("html, body").animate(
       {
         scrollTop: 0,
+      },
+      950
+    );
+  });
+}
+
+function linksScroll() {
+  $("#section-navbar ul.nav-list > li:first-child").on("click", function (e) {
+    e.preventDefault();
+    $("html, body").animate(
+      {
+        scrollTop: $("#section-projects-design").offset().top - 200,
+      },
+      950
+    );
+  });
+  $("#section-navbar ul.nav-list > li:nth-child(2)").on("click", function (e) {
+    e.preventDefault();
+    $("html, body").animate(
+      {
+        scrollTop: $("#section-services").offset().top,
+      },
+      950
+    );
+  });
+  $("#section-navbar ul.nav-list > li:nth-child(3)").on("click", function (e) {
+    e.preventDefault();
+    $("html, body").animate(
+      {
+        scrollTop: $("#section-about").offset().top,
+      },
+      950
+    );
+  });
+  $("#section-navbar ul.nav-list > li:nth-child(4)").on("click", function (e) {
+    e.preventDefault();
+    $("html, body").animate(
+      {
+        scrollTop: $("#section-contact").offset().top,
       },
       950
     );

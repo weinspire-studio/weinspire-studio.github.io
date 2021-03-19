@@ -1,11 +1,9 @@
 // jshint esversion: 6
 
-import { animateAssets } from "../sub_modules/gsap-scrollmagic";
+import { animateAssets } from "../sub_modules/animation.js";
 
 const preloader = document.getElementById("preloader");
 const preloaderContainer = document.getElementById("preloader-container");
-
-// window.addEventListener("load", hidePreloader);
 
 function hidePreloader() {
   preloaderContainer.classList.add("fade-preloader");

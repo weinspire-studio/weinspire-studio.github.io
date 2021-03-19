@@ -1,7 +1,7 @@
 #section-services {
     margin-top: -100px;
     @include media-query ($md) {
-        margin-top: -200px;
+        margin-top: -265px;
     }
     @include o-media-query ($sm, $md, portrait) {
         margin-top: -150px;
@@ -131,11 +131,9 @@
 
 
 // TODO: section title, and other common elements in base with same class.
-// .section-title {
-//     text-align: center;
-//     padding: 2em 0 1em;
-//     text-transform: uppercase;
-// }
+.section-title {
+    padding-top: 5em;
+}
 
 .service-title {
     padding: 3em 0 1em;

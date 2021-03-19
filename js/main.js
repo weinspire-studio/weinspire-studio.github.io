@@ -2,20 +2,15 @@
 
 import * as preloaderModule from "./sub_modules/preloader";
 import * as typewriterModule from "./sub_modules/typewriter";
-import * as animationsModule from "./sub_modules/gsap-scrollmagic";
+import * as animationsModule from "./sub_modules/animation";
+import * as httpModule from "./sub_modules/http";
 import * as jQueryModule from "./sub_modules/jquery";
-import * as locationModule from "./sub_modules/location";
-import { prepareForMobile, prepareForDesktop } from "./sub_modules/desktop";
-import debounce from "lodash/debounce";
 import svg4everybody from "./sub_modules/svg4everybody";
-import "./sub_modules/classList";
-
-import "core-js/modules/es.promise";
-import "core-js/modules/es.array.iterator";
+import debounce from "lodash/debounce";
+import "./sub_modules/classlist";
 
 //VARIABLES
 const mobileScreenMQ = window.matchMedia("(max-width: 800px)");
-const navBar = document.getElementById("section-navbar");
 const isSafari =
   navigator.vendor &&
   navigator.vendor.indexOf("Apple") > -1 &&
@@ -27,11 +22,20 @@ const isIE =
   navigator.appVersion.indexOf("Trident/") > -1;
 let supportsPassive = false;
 let isListening = false;
+let hasCommonDefer = false;
 let toDesk = false;
 let toMob = false;
-let mobResult;
-let deskResult;
+let isAppended_MobileInit = false;
+let isAppended_MobileDefer = false;
+let isAppended_DesktopInit = false;
+let isAppended_DesktopDefer = false;
 let isMobile;
+let mobileInitResult;
+let desktopInitResult;
+let mobileDeferResult;
+let env;
+if (document.documentElement.lang === "en") env = ".";
+else env = "..";
 
 // forEach polyfill IE11.
 if (window.NodeList && !NodeList.prototype.forEach) {
@@ -56,7 +60,6 @@ try {
 init();
 initOnWidthChange();
 svg4everybody({ attributeName: "data-href", polyfill: true });
-locationModule.getUserUbication();
 animationsModule.prepareRequests();
 jQueryModule.smoothScroll();
 window.addEventListener("load", initLanding);
@@ -73,112 +76,199 @@ function init() {
   }
 }
 
-// adds listener that executes when screen width changes (passing by 801px).
-function initOnWidthChange() {
-  if (!isListening) {
-    mobileScreenMQ.addListener(() => {
-      if (mobileScreenMQ.matches) {
-        isMobile = true;
-        toMob = true;
-        deployMobile();
-      } else {
-        isMobile = false;
-        toDesk = true;
-        deployDesktop();
-      }
-    });
-    isListening = true;
-  }
-}
-
-function deployMobile() {
-  import("./sub_modules/mobile-init").then((mobileInit) => {
-    mobResult = mobileInit.mobileInitCode(isSafari, supportsPassive);
-    if (toMob) {
-      window.removeEventListener(
-        "scroll",
-        deskResult.debounce,
-        supportsPassive ? { passive: true } : false
-      );
-    }
-  });
-  if (toMob) {
-    toMobile();
-    deferMobile(true);
-  } else {
-    window.addEventListener("load", () => {
-      deferMobile();
-    });
-  }
-}
-
-function deployDesktop() {
-  import("./sub_modules/desktop-init").then((desktopInit) => {
-    deskResult = desktopInit.desktopInitCode(isSafari, supportsPassive);
-    if (toDesk) {
-      window.removeEventListener(
-        "scroll",
-        mobResult.debounce,
-        supportsPassive ? { passive: true } : false
-      );
-    }
-  });
-  if (toDesk) {
-    toDesktop();
-    deferDesktop(true);
-  } else {
-    window.addEventListener("load", () => {
-      deferDesktop();
-    });
-  }
-}
-
-function deferMobile(hasCommon = false) {
-  import("./sub_modules/mobile-defer").then((mobileDefer) => {
-    mobileDefer.testFunction();
-  });
-  if (!hasCommon) {
-    import("./sub_modules/common-defer").then((commonDefer) => {
-      commonDefer.testFunction();
-      commonDefer.commonDeferInit(isSafari, isIE);
-    });
-  }
-}
-
-function deferDesktop(hasCommon = false) {
-  import("./sub_modules/desktop-defer").then((desktopDefer) => {
-    desktopDefer.testFunction();
-  });
-  if (!hasCommon) {
-    import("./sub_modules/common-defer").then((commonDefer) => {
-      commonDefer.testFunction();
-      commonDefer.commonDeferInit(isSafari, isIE);
-    });
-  }
-}
-
-function toMobile() {
-  console.log("toMobile");
-  typewriterModule.reviewWidth(true);
-  prepareForMobile(isSafari);
-}
-
-function toDesktop() {
-  console.log("toDesktop");
-  prepareForDesktop();
-  typewriterModule.reviewWidth(false);
-  if (mobResult.swiper)
-    if (mobResult.swiper.params && mobResult.swiper.params.init === true)
-      mobResult.swiper.destroy();
-}
-
 // hides preloader, animate assets and inits typeWriter.
 function initLanding() {
   preloaderModule.hidePreloader();
   typewriterModule.initWriter(isMobile, supportsPassive);
 }
 
-export { navBar, debounce };
+// adds listener that executes when screen width changes (passing by 801px).
+function initOnWidthChange() {
+  if (!isListening) {
+    try {
+      // Chrome & Firefox
+      mobileScreenMQ.addEventListener("change", (e) => {
+        if (e.matches) {
+          isMobile = true;
+          toMob = true;
+          deployMobile();
+        } else {
+          isMobile = false;
+          toDesk = true;
+          deployDesktop();
+        }
+      });
+    } catch (e1) {
+      try {
+        // Safari
+        mobileScreenMQ.addListener(() => {
+          if (mobileScreenMQ.matches) {
+            isMobile = true;
+            toMob = true;
+            deployMobile();
+          } else {
+            isMobile = false;
+            toDesk = true;
+            deployDesktop();
+          }
+        });
+      } catch (e2) {
+        console.error(e2);
+      }
+    }
+    isListening = true;
+  }
+}
+
+function deployMobile() {
+  appendScript(
+    "mobile-init",
+    importMobileInit.bind(null, isAppended_MobileInit),
+    isAppended_MobileInit
+  );
+  isAppended_MobileInit = true;
+}
+
+function deployDesktop() {
+  appendScript("desktop-init", importDesktopInit, isAppended_DesktopInit);
+  isAppended_DesktopInit = true;
+}
+
+function importMobileInit(isAppended_MobileInit) {
+  import("./sub_modules/mobile-init").then((mobileInit) => {
+    mobileInitResult = mobileInit.mobileInitCode(
+      supportsPassive,
+      isAppended_MobileInit,
+      debounce
+    );
+    if (toMob) {
+      toMobile();
+      deferMobile();
+      window.removeEventListener(
+        "scroll",
+        desktopInitResult,
+        supportsPassive ? { passive: true } : false
+      );
+    } else {
+      window.addEventListener("load", () => {
+        deferMobile();
+        if (!hasCommonDefer) {
+          deferCommon();
+          hasCommonDefer = true;
+        }
+      });
+    }
+  });
+}
+
+function importDesktopInit() {
+  import("./sub_modules/desktop-init").then((desktopInit) => {
+    desktopInitResult = desktopInit.desktopInitCode(supportsPassive, debounce);
+    if (toDesk) {
+      toDesktop(desktopInit.prepareForDesktop);
+      deferDesktop();
+      window.removeEventListener(
+        "scroll",
+        mobileInitResult,
+        supportsPassive ? { passive: true } : false
+      );
+    } else {
+      window.addEventListener("load", () => {
+        deferDesktop();
+        if (!hasCommonDefer) {
+          deferCommon();
+          hasCommonDefer = true;
+        }
+      });
+    }
+  });
+}
+
+function deferMobile() {
+  appendScript("mobile-defer", importMobileDefer, isAppended_MobileDefer);
+  isAppended_MobileDefer = true;
+}
+
+function deferDesktop() {
+  appendScript("desktop-defer", importDesktopDefer, isAppended_DesktopDefer);
+  isAppended_DesktopDefer = true;
+}
+
+function deferCommon() {
+  appendScript("common-defer", importCommonDefer, false);
+}
+
+function importMobileDefer() {
+  import("./sub_modules/mobile-defer").then((mobileDefer) => {
+    mobileDeferResult = mobileDefer.mobileDeferCode(
+      isSafari,
+      supportsPassive,
+      debounce
+    );
+  });
+}
+
+function importDesktopDefer() {
+  import("./sub_modules/desktop-defer").then((desktopDefer) => {
+    desktopDefer.desktopDeferCode(
+      isSafari,
+      jQueryModule.animateImages,
+      httpModule.loadHDImages,
+      animationsModule.slideAnim
+    );
+  });
+}
+
+function importCommonDefer() {
+  import("./sub_modules/common-defer").then((commonDefer) => {
+    commonDefer.commonDeferInit(isSafari, isIE);
+  });
+}
+
+// WIDTH CHANGE
+function toMobile() {
+  typewriterModule.reviewWidth(true);
+  import("./sub_modules/desktop-defer").then((desktopDefer) => {
+    desktopDefer.prepareForMobile(isSafari);
+  });
+}
+
+function toDesktop(callback) {
+  typewriterModule.reviewWidth(false);
+  import("./sub_modules/mobile-init").then((mobileInit) => {
+    callback(mobileInit.toggleNavClasses);
+  });
+  import("./sub_modules/mobile-defer").then((mobileDefer) => {
+    mobileDefer.slideRightArrows(supportsPassive);
+  });
+  if (mobileDeferResult)
+    if (mobileDeferResult.params && mobileDeferResult.params.init === true)
+      mobileDeferResult.destroy();
+}
+
+// HELPER FUNCTIONS
+function appendScript(moduleName, callback, isAppended) {
+  if (!isAppended) {
+    let script = document.createElement("script");
+    script.defer = true;
+    script.onload = callback;
+    script.onerror = errorHandler;
+    script.src = `${env}/dist/js/min/${moduleName}.min.js`;
+    if (script.readyState == "complete") {
+      script.onreadystatechange = function () {
+        callback();
+      };
+    }
+    document.getElementsByTagName("body")[0].appendChild(script);
+  } else callback();
+}
+
+function errorHandler() {
+  console.log("Dynamic import failed! Please check your internet connection.");
+}
+
+// debounce
+// export { navBar };
 
 // TODO:
 // shadows
@@ -253,3 +343,24 @@ export { navBar, debounce };
 // mobile: mobile.js
 
 // desktop:
+
+//   "browser": {
+//     "desktopInit": "./js/sub_modules/desktop-init.js"
+// },
+//   "browserify": {
+//     "transform": [ "browserify-shim" ]
+//   },
+//   "browserify-shim": {
+//     "./js/libs.js": { "exports": "libs"}
+// },
+// "browserify": {
+//   "transform": [ "browserify-shim" ]
+// },
+// "browserify-shim": {
+//   "./js/libs.js": { "exports": "desktopInit", "depends": [ "./js/sub_modules/desktop-init.js" ] }
+// },
+
+// JS performance changes:
+// query selector, implicit bind, supports passive if.
+
+// HDimageload toPrmise!!
