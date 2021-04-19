@@ -1,5 +1,7 @@
 // jshint esversion: 6
 
+import { initIntersection } from "./intersection";
+
 const list = document.querySelector(".swiper-wrapper");
 const links = document.querySelectorAll(".swiper-slide");
 const modal = document.getElementById("modal");
@@ -23,6 +25,7 @@ function desktopDeferCode(isSafari, animateImages, loadHDImages, slideAnim) {
   initModal(loadHDImages, slideAnim);
   if (isSafari) animateImagesSafari();
   else animateImages();
+  initIntersection();
 }
 
 function initModal(loadHDImages, slideAnim) {

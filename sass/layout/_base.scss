@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.25px;
 }
 
-#section-projects-design, #section-contact {
+#section-projects-design, #section-projects-software, #section-contact {
     background-color: $site-background-light;
 }
 
@@ -58,11 +58,34 @@ h1, h2, h3, h4, h5, h6 {
     transition: opacity .5s ease;
 }
 
-.section-title {
+h1.section-title {
     text-align: center;
     padding: 2em 0 1em;
     text-transform: uppercase;
     font-family: "Montserrat", sans-serif;
+}
+
+h1.section-title, #contact-form h2 {
+    position: relative;
+    text-shadow: 1px 1px 0px #FFF, 2px 2px 0px rgba(107, 107, 107, 0.41);
+
+    &::before {
+        content: "";
+        position: absolute;
+        // left: initial;
+        // top: 0;
+        display: inline-block;
+        width: 3px;
+        height: 35px;
+        margin-left: -7.5px;
+        border-radius: 2px;
+        background-image: linear-gradient(155deg, $blue-theme-darker, $blue-theme-dark, $blue-theme-middle, $blue-theme-light, $blue-theme-lighter);
+        // box-shadow: inset 0 16px 15px -4px #eee;
+    }
+}
+
+h2.service-title, h2.software-title {
+    text-shadow: .75px .75px .75px #afafaf;
 }
 
 button#hero-cta, button#contact-form-button {

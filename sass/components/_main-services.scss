@@ -26,6 +26,7 @@
     background-size: 100%;
     z-index: -1;
     position: relative;
+    // margin-top: -100px;
     // filter: drop-shadow(0px -2px 5px rgba(107, 124, 141, .65));
     filter: drop-shadow(0 -10px 5px rgba(107, 124, 141, .1));
     @include media-query ($xs) {
@@ -45,11 +46,8 @@
     text-align: center;
     @include padding-map($content-wrap-sm);
     @include media-query ($md) {
-        display: -ms-grid;
         display: grid;
-        -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
-        -ms-grid-rows: 1fr 1fr 1fr;
         grid-template-rows: repeat(3, 1fr);
         grid-template-areas: 
          'info-top icon-top'
@@ -68,8 +66,6 @@
 
 #grid-top-info {
     grid-area: info-top;
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
     h2 {
         padding-top: 0;
         @include media-query ($md) {
@@ -79,28 +75,18 @@
 }
 #grid-top-icon {
     grid-area: icon-top;
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
 }
 #grid-mid-icon {
     grid-area: icon-mid;
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
 }
 #grid-mid-info {
     grid-area: info-mid;
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
 }
 #grid-btm-info {
     grid-area: info-btm;
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
 }
 #grid-btm-icon {
     grid-area: icon-btm;
-    -ms-grid-row: 3;
-    -ms-grid-column: 2;
 }
 
 .service-icon {
@@ -131,10 +117,6 @@
 
 
 // TODO: section title, and other common elements in base with same class.
-.section-title {
-    padding-top: 5em;
-}
-
 .service-title {
     padding: 3em 0 1em;
 }

@@ -1,0 +1,91 @@
+#section-projects-software {
+    > h1 {
+        padding-bottom: 2em;
+    }
+    @include media-query (0, $md) {
+        display: none;
+    }
+}
+
+
+#software-grid {
+    @include padding-map($content-wrap-sm);
+    @include media-query ($md) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas: 
+        'wordpress wordpress-video'
+        'ecommerce-video ecommerce'
+        'custom custom-video';
+        align-items: center;
+        justify-items: center;
+        gap: 2em;
+    }
+    h2 {
+        padding-bottom: 1em;
+    }
+    > div {
+        padding: 1em;
+        min-height: 400px;
+    }
+    > :first-child {
+        grid-area: wordpress;
+    }
+    > :nth-child(2) {
+        grid-area: wordpress-video;
+        width: 100%;
+        height: 100%;
+    }
+    > :nth-child(3) {
+        grid-area: ecommerce-video;
+        width: 100%;
+        height: 100%;
+    }
+    > :nth-child(4) {
+        grid-area: ecommerce;
+    }
+    > :nth-child(5) {
+        grid-area: custom;
+    }
+    > :last-child {
+        grid-area: custom-video;
+        width: 100%;
+        height: 100%;
+    }
+    > :first-child, > :nth-child(4), > :nth-child(5) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &::after {
+            content: "";
+            width: 17.5%;
+            height: 3px;
+            background: blue;
+            background-image: linear-gradient(155deg, $blue-theme-darker, $blue-theme-dark, $blue-theme-middle, $blue-theme-light, $blue-theme-lighter);
+            margin-top: 2.5em;
+            border-radius: 2px;
+        }
+    }
+    p {
+        max-width: 600px;
+    }
+}
+
+#software-grid .software-container {
+    position: relative;
+    > video {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        object-fit: cover;
+    }
+    > svg {
+        position: absolute;
+        width: 600px;
+        height: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: -58px;
+    }
+}

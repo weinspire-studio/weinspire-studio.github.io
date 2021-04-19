@@ -39,6 +39,9 @@ require = (function e(t, n, r) {
         });
         exports.desktopDeferCode = desktopDeferCode;
         exports.prepareForMobile = prepareForMobile;
+
+        var _intersection = require("./intersection");
+
         // jshint esversion: 6
         var list = document.querySelector(".swiper-wrapper");
         var links = document.querySelectorAll(".swiper-slide");
@@ -68,6 +71,7 @@ require = (function e(t, n, r) {
           initModal(loadHDImages, slideAnim);
           if (isSafari) animateImagesSafari();
           else animateImages();
+          (0, _intersection.initIntersection)();
         }
 
         function initModal(loadHDImages, slideAnim) {
@@ -285,6 +289,112 @@ require = (function e(t, n, r) {
         function removeImagesListeners() {
           list.removeEventListener("mouseover", styleLink);
           list.removeEventListener("mouseleave", restoreLink);
+        }
+      },
+      { "./intersection": 2 },
+    ],
+    2: [
+      function (require, module, exports) {
+        "use strict";
+
+        Object.defineProperty(exports, "__esModule", {
+          value: true,
+        });
+        exports.initIntersection = initIntersection;
+        // jshint esversion: 6
+        var svgsArray = document.querySelectorAll(
+          "#software-grid .software-container > svg"
+        );
+        var videosArray = document.querySelectorAll(
+          "#software-grid .software-container > video"
+        );
+
+        function initIntersection() {
+          if (
+            "IntersectionObserver" in window &&
+            "IntersectionObserverEntry" in window
+          ) {
+            var observer;
+            var observerOptions = {
+              root: null,
+              rootMargin: "0px",
+              threshold: 1,
+            };
+            observer = new IntersectionObserver(
+              processEntries,
+              observerOptions
+            );
+            svgsArray.forEach(function (svg) {
+              observer.observe(svg);
+            });
+          } else {
+            svgsArray.forEach(function (svg) {
+              intersectViewport(svg);
+            });
+          }
+        }
+
+        function processEntries(entries, observer) {
+          entries.forEach(function (entry) {
+            if (typeof entry.isIntersecting !== "undefined") {
+              if (entry.isIntersecting) {
+                videosArray.forEach(function (video) {
+                  if (!video.paused) video.pause();
+                });
+                entry.target.nextElementSibling.play();
+                observer.unobserve(entry.target);
+              }
+            } else if (typeof entry.intersectionRatio !== "undefined") {
+              if (entry.intersectionRatio > 0) {
+                videosArray.forEach(function (video) {
+                  if (video.playing) video.pause();
+                });
+                entry.target.nextElementSibling.play();
+                observer.unobserve(entry.target);
+              }
+            }
+          });
+        }
+
+        function intersectViewport(element) {
+          addEventListener("load", processInterception.bind(null, element));
+          addEventListener(
+            "scroll",
+            processInterception.bind(null, element),
+            supportsPassive
+              ? {
+                  passive: true,
+                }
+              : false
+          );
+          addEventListener("resize", processInterception.bind(null, element));
+        }
+
+        function processInterception(ele) {
+          var _ele$getBoundingClien = ele.getBoundingClientRect(),
+            top = _ele$getBoundingClien.top,
+            bottom = _ele$getBoundingClien.bottom;
+
+          var vHeight =
+            window.innerHeight || document.documentElement.clientHeight;
+
+          if ((top > 0 || bottom > 0) && top < vHeight) {
+            videosArray.forEach(function (video) {
+              if (video.playing) video.pause();
+            });
+            ele.nextElementSibling.play();
+            removeEventListener("load", processInterception);
+            removeEventListener(
+              "scroll",
+              processInterception,
+              supportsPassive
+                ? {
+                    passive: true,
+                  }
+                : false
+            );
+            removeEventListener("resize", processInterception);
+          }
         }
       },
       {},

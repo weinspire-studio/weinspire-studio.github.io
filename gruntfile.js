@@ -348,6 +348,7 @@ module.exports = function (grunt) {
           "./assets/optimized_sprite/arrow-left.svg": "./assets/arrow-left.svg",
           "./assets/optimized_sprite/arrow-right.svg": "./assets/arrow-right.svg", // prettier-ignore
           "./assets/optimized_sprite/cross.svg": "./assets/cross.svg",
+          "./assets/optimized_sprite/screen.svg": "./assets/screen.svg",
           // "./assets/optimized/footer-bg.svg": "./assets/footer-bg.svg",
           // "./assets/optimized/contact-bg.svg": "./assets/contact-bg.svg",
           // "./assets/optimized/svg-bg-left.svg": "./assets/svg-bg-left.svg",

@@ -25,7 +25,7 @@ function linksScroll() {
     e.preventDefault();
     $("html, body").animate(
       {
-        scrollTop: $("#section-projects-design").offset().top - 200,
+        scrollTop: $("#section-projects-software").offset().top - 90,
       },
       950
     );
@@ -34,7 +34,7 @@ function linksScroll() {
     e.preventDefault();
     $("html, body").animate(
       {
-        scrollTop: $("#section-services").offset().top,
+        scrollTop: $("#section-projects-design").offset().top - 200,
       },
       950
     );
@@ -43,7 +43,7 @@ function linksScroll() {
     e.preventDefault();
     $("html, body").animate(
       {
-        scrollTop: $("#section-about").offset().top,
+        scrollTop: $("#section-services").offset().top - 100,
       },
       950
     );
@@ -52,11 +52,23 @@ function linksScroll() {
     e.preventDefault();
     $("html, body").animate(
       {
-        scrollTop: $("#section-contact").offset().top,
+        scrollTop: $("#section-about").offset().top,
       },
       950
     );
   });
+  $("#section-navbar ul.nav-list > li:nth-child(5), #hero-cta").on(
+    "click",
+    function (e) {
+      e.preventDefault();
+      $("html, body").animate(
+        {
+          scrollTop: $("#section-contact").offset().top,
+        },
+        950
+      );
+    }
+  );
 }
 
 // TODO: for accessibility: bind to change width on focus (same with animateImagesSafari) .bind("mouseenter focus mouseleave"

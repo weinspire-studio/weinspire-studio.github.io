@@ -2,6 +2,7 @@
     position: relative;
     @include media-query (0, $md) {
         overflow: hidden;
+        padding-top: 25px;
         padding-bottom: 3em;
         z-index: -1;
     }
@@ -46,28 +47,10 @@
                 cursor: pointer;
             }
         }
-        // &:last-child {
-        //     @include media-query ($md) {
-        //         box-shadow: -.5px 0 5px 1px rgba(49, 93, 149, 0.97) 
-        //     }
-        // }
     }
     h1 {
-        width: 100%;
         padding-top: 0;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 1.5em;
-        @include media-query ($xs){
-            top: 1.25em;
-        }
-        @include media-query ($sm){
-            top: 1em;
-        }
-        @include media-query ($md){
-            top: 0;
-        }
+        padding-bottom: 0;
     }
 }
 
@@ -106,13 +89,14 @@
                 font-size: .8em;
             }
         }
-        &:after {
+        &::after {
             content: "";
             position: absolute;
             left: 1em;
             bottom: 1em;
             top: 1em;
-            width: .25em;
+            width: 3px;
+            border-radius: 2px;
         }
         @include media-query ($md) {
             transform: translateY(100%);
@@ -180,7 +164,7 @@
 .swiper-container {
     height: 380px;
     z-index: 0!important;
-    padding-top: 80px!important;
+    padding-top: 50px!important;
     overflow: visible!important;
     margin: 0 auto;
     @include media-query($xs) {
