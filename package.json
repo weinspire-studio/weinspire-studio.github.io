@@ -35,7 +35,7 @@
     "lodash": "^4.17.19",
     "lodash.debounce": "^4.0.8",
     "objectFitPolyfill": "^2.3.0",
-    "swiper": "^5.4.1",
+    "swiper": "^6.5.1",
     "vanilla-lazyload": "^16.1.0",
     "websocket-extensions": "^0.1.4"
   }
