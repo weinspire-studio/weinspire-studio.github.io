@@ -10,7 +10,7 @@
     "babelify": "^10.0.0",
     "browserify-css": "^0.15.0",
     "browserify-shim": "^3.8.14",
-    "grunt": "^1.1.0",
+    "grunt": "^1.5.3",
     "grunt-autoprefixer": "latest",
     "grunt-browserify": "^5.3.0",
     "grunt-contrib-clean": "^2.0.0",
